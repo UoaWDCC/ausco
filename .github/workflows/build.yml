@@ -1,0 +1,39 @@
+name: Check Next.js Build
+
+on:
+  # run on push to any branch except main
+  push:
+    branches:
+      - "*"
+      - "!main"
+  # run on pull request events
+  pull_request:
+    types: [opened, reopened]
+  # allow manual triggers
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URI: ${{ secrets.DATABASE_URI }}
+      PAYLOAD_SECRET: ${{ secrets.PAYLOAD_SECRET }}
+    steps:
+      # checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # set-up node
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      # install dependencies using npm
+      - name: Install dependencies
+        run: npm ci
+
+      # build the application
+      - name: Build Next.js project
+        run: npm run build
