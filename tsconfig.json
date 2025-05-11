@@ -20,6 +20,7 @@
     ],
     "paths": {
       "@payload-config": ["./src/payload.config.ts"],
+      "@components/*": ["./src/app/(frontend)/components/*"],
       "@libs/*": ["./src/libs/*"],
       "@/*": ["./src/*"]
     },
