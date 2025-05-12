@@ -2,6 +2,8 @@ import { getLandingPage } from "@/actions/getLandingPage";
 import { getAllTest } from "@/actions/getTest";
 import config from "@/payload.config";
 
+import {Button} from "../ui/button";
+
 const HeroSection = async () => {
     const [payloadConfig, content, testItems] = await Promise.all([
         config,
@@ -37,6 +39,7 @@ const HeroSection = async () => {
             </div>
           ))}
         </div>
+        <Button>Click me</Button>
       </div>
     </div>
     );
