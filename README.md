@@ -50,4 +50,17 @@
   - refactor: simplify authentication logic
 
 
+## add .env file under ausco
 
+```
+PAYLOAD_SECRET="a710400222333f83c1b1bd6abb7bd3116e3321f813c48efe8ba93bc75cd16b82"
+DATABASE_URI="mongodb+srv://ausco:ausco!!!@ausco.ioi3ahr.mongodb.net/"
+```
+
+## payload admin login
+
+```
+payload logins
+ausco@wdcc.co.nz
+e1160e47
+```
