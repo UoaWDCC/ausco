@@ -1,4 +1,4 @@
-
+import { Mail,Instagram,Facebook } from 'lucide-react';
 
 const cardData = [
   {
@@ -24,9 +24,9 @@ const cardData = [
     linkText:"Feedback Form↗",
     linkHref:"",
     contacts:[
-      {text:"chamberorchestra.ausa@gmail.com↗",href:""},
-      {text:"@ausco.uoa↗",href:""},
-      {text: "@ausco.ausa↗",href:""}
+      {icon:<Mail />,text:"chamberorchestra.ausa@gmail.com↗",href:""},
+      {icon:<Instagram />,text:"@ausco.uoa↗",href:""},
+      {icon:<Facebook />,text: "@ausco.ausa↗",href:""}
     ]
   },
 ];
@@ -43,10 +43,10 @@ const InfoCards = () => {
                 <p className="text-base leading-relaxed">{card.description}</p>
               <a href={card.linkHref} className="text-base font-semibold">{card.linkText}</a>
                 {card.contacts && (
-                  <ul className="text-base font-semibold p-5">
+                  <ul className="text-base flex flex-col items-center font-semibold p-5">
                     {card.contacts.map((contact,j) => (
                       <li key={j} >
-                        <a href={contact.href}>{contact.text}</a>
+                        <a className="flex items-center gap-2" href={contact.href}>{contact.icon}{contact.text}</a>
                       </li>
                     ))}
                   </ul>
