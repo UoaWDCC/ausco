@@ -1,3 +1,5 @@
+
+
 const cardData = [
   {
     title: "About Us",
@@ -22,9 +24,9 @@ const cardData = [
     linkText:"Feedback Form↗",
     linkHref:"",
     contacts:[
-      {text:"chamberorchestra.ausa@gmail.com",href:""},
-      {text:"@ausco.uoa",href:""},
-      {text:"@ausco.ausa",href:""}
+      {text:"chamberorchestra.ausa@gmail.com↗",href:""},
+      {text:"@ausco.uoa↗",href:""},
+      {text: "@ausco.ausa↗",href:""}
     ]
   },
 ];
@@ -33,25 +35,23 @@ const InfoCards = () => {
     <section className="bg-[#F6F4EC] py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-10">
         {cardData.map((card, i) => (
-          <div key={i} className=" flex flex-col justify-center bg-[#EEEADE] md:w-[30%] min-h-[680px] rounded-[1rem] p-10 text-center text-[#264C84] font-['Schibsted_Grotesk'] space-y-6 shadow-sm">
-            <p className="text-base p-10">(illustration)</p>
-          
-            <div className="">
-              <h2 className="text-5xl font-[Fraunces]">{card.title}</h2>
-              <p className="text-base leading-relaxed">{card.description}</p>
-            </div>
+          <div key={i} className=" flex flex-col justify-start bg-[#EEEADE] md:w-[30%] min-h-[680px] rounded-[1rem] p-10 text-center text-[#264C84] font-['Schibsted_Grotesk'] space-y-6 shadow-sm">
+            <p className="text-base p-10 pt-25">(illustration)</p>
+            <h2 className="text-5xl font-[Fraunces]">{card.title}</h2>
 
-            <a href={card.linkHref} className="text-base font-semibold">{card.linkText}</a>
-            
-            {card.contacts && (
-              <ul className="text-base font-semibold ">
-                {card.contacts.map((contact,j) => (
-                  <li key={j} >
-                    <a href={contact.href}>{contact.text}</a>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <div className="space-y-3">
+                <p className="text-base leading-relaxed">{card.description}</p>
+              <a href={card.linkHref} className="text-base font-semibold">{card.linkText}</a>
+                {card.contacts && (
+                  <ul className="text-base font-semibold p-5">
+                    {card.contacts.map((contact,j) => (
+                      <li key={j} >
+                        <a href={contact.href}>{contact.text}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+            </div>
           </div>
         ))}
       </div>
