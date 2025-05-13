@@ -34,6 +34,15 @@ const InfoCards = () => {
             <h2 className="">{card.title}</h2>
             <p className="">{card.description}</p>
             <a href={card.linkHref}>{card.linkText}</a>
+            {card.contacts && (
+              <ul>
+                {card.contacts.map((contact,j) => (
+                  <li key={j}>
+                    <a href={contact.href}>{contact.text}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         ))}
       </div>
