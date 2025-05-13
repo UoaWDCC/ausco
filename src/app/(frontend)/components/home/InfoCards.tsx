@@ -30,21 +30,23 @@ const cardData = [
 ];
 const InfoCards = () => {
   return (
-    <section className="bg-[#F6F4EC] py-16 px-6">
-      <div className="max-w-[95rem] mx-auto flex flex-wrap justify-center gap-8">
+    <section className="bg-[#F6F4EC] py-40 px-6">
+      <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-10">
         {cardData.map((card, i) => (
-          <div key={i} className=" flex flex-col justify-between bg-[#EEEADE] w-full md:w-[30%] rounded-xl py-14 px-8 text-center text-[#264C84] font-['Schibsted_Grotesk'] space-y-6 shadow-sm">
-            <p className="text-sm">(illustration)</p>
+          <div key={i} className=" flex flex-col justify-center bg-[#EEEADE] md:w-[30%] min-h-[680px] rounded-[1rem] p-10 text-center text-[#264C84] font-['Schibsted_Grotesk'] space-y-6 shadow-sm">
+            <p className="text-base p-10">(illustration)</p>
+          
+            <div className="">
+              <h2 className="text-5xl font-[Fraunces]">{card.title}</h2>
+              <p className="text-base leading-relaxed">{card.description}</p>
+            </div>
 
-            <h2 className="text-4xl font-[Fraunces]">{card.title}</h2>
-            <p className="text-sm leading-relaxed">{card.description}</p>
-
-            <a href={card.linkHref} className="text-sm font-semibold">{card.linkText}</a>
+            <a href={card.linkHref} className="text-base font-semibold">{card.linkText}</a>
             
             {card.contacts && (
-              <ul className="text-sm font-semibold">
+              <ul className="text-base font-semibold ">
                 {card.contacts.map((contact,j) => (
-                  <li key={j}>
+                  <li key={j} >
                     <a href={contact.href}>{contact.text}</a>
                   </li>
                 ))}
