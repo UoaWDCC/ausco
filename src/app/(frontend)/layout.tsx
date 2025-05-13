@@ -11,6 +11,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en">
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces&family=Schibsted+Grotesk&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body>
         <main>{children}</main>
       </body>
