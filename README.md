@@ -83,6 +83,11 @@ This will pull new changes made to the main branch into your feature branch.
 - The folder src\app\(frontend)\assets for media you may need for your tickets.
 - If the folder does not contain the media you need, send us a message on Discord and we'll look to get it sorted. 
 
+### ShadCn UI
+- We are using shadcn ui for pre-built components 
+- Visit this site to find different components https://ui.shadcn.com/docs/components/accordion
+- follow the instruction to install the component
+
 ### Icons
 - We are using Lucide icon library for our icons.
 - Lucide is already installed into our repo so no additional installation is required.
