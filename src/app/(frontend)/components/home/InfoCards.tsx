@@ -1,6 +1,6 @@
 //importing icons for contacts list
 import { Mail, Instagram, Facebook } from "lucide-react";
-import { fraunces, schibstedGrotesk } from "../../layout";
+import { fraunces, schibstedGrotesk } from "../../fonts";
 
 //array for card display content
 const cardData = [
