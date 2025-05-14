@@ -38,19 +38,19 @@ const cardData = [
 //react functional component for card rendering
 const InfoCards = () => {
   return (
-    <section className="bg-[#F6F4EC] py-40 px-6">
-      <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-10">
+    <section className="bg-[#F6F4EC] py-24 lg:py-40 px-6">
+      <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-8 lg:gap-10">
         {cardData.map((card, i) => (
           //flex column container for card content, styling card text/layout
           <div
             key={i}
-            className="flex flex-col justify-start bg-[#EEEADE] md:w-[30%] min-h-[680px] rounded-[1rem] p-10 text-center text-[#264C84] font-[Schibsted_Grotesk] space-y-6 shadow-sm"
+            className="flex flex-col justify-start bg-[#EEEADE] sm:w-[45%] md:w-[30%] min-h-[580px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] font-[Schibsted_Grotesk] space-y-5 lg:space-y-6 shadow-sm"
           >
             {/*card image placeholder*/}
-            <p className="text-base p-10 pt-25">(illustration)</p>
+            <p className="text-base p-8 lg:p-10">(illustration)</p>
 
             {/*card title*/}
-            <h2 className="text-5xl font-[Fraunces]">{card.title}</h2>
+            <h2 className="text-4xl lg:text-5xl font-[Fraunces]">{card.title}</h2>
 
             {/*card description and links*/}
             <div className="space-y-3">
@@ -62,7 +62,7 @@ const InfoCards = () => {
               {/*displays contact information as a list if provided*/}
               {card.contacts && (
                 //applying flex to join contact icons and text
-                <ul className="text-base flex flex-col items-center font-semibold p-5">
+                <ul className="text-base flex flex-col items-center font-semibold p-4 lg:p-5 space-y-2">
                   {card.contacts.map((contact, j) => (
                     <li key={j}>
                       <a className="flex items-center gap-2" href={contact.href}>
