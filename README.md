@@ -11,11 +11,11 @@
 2. Navigate to the location where you want the AUSCO project to be
 3. Run: "git clone https://github.com/UoaWDCC/ausco"
 4. Run: "cd ausco"
-5. Run: "code ."
+5. Run: "code ." (This automatically opens the repo in VS Code, if it's not working, you'll have to do it manually)
 
 ### Running the Project (Frontend)
 1. Open the VS terminal
-2. Navigate to the frontend folder: "cd src/app/(frontend)"
+2. Navigate to the frontend folder: "cd src/app/'(frontend)'"
 3. Run: "npm install"
 4. Run: "npm run dev"
 5. Go to your browser and enter: "http://localhost:3000"
