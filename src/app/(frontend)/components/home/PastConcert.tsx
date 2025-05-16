@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 
 const PastConcert = () => {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const [scrollRatio, setScrollRatio] = useState(0);
   const [hovered, setHovered] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -27,9 +27,9 @@ const PastConcert = () => {
   }, []);
 
   // Helper to interpolate color
-  function interpolateColor(hex1, hex2, factor) {
-    const c1 = hex1.match(/\w\w/g).map(x => parseInt(x, 16));
-    const c2 = hex2.match(/\w\w/g).map(x => parseInt(x, 16));
+  function interpolateColor(hex1: string, hex2: string, factor: number) {
+    const c1 = hex1.match(/\w\w/g)!.map(x => parseInt(x, 16));
+    const c2 = hex2.match(/\w\w/g)!.map(x => parseInt(x, 16));
     const result = c1.map((v, i) => Math.round(v + (c2[i] - v) * factor));
     return `#${result.map(x => x.toString(16).padStart(2, "0")).join("")}`;
   }
