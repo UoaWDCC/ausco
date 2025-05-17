@@ -1,38 +1,41 @@
+import { getFooter } from "@/actions/getFooter";
 import Image from "next/image";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import auscoLogo from "../../assets/ausco-logo-1.png";
+import spotifyLogo from "../../assets/spotify-logo.svg";
+import config from "@/payload.config";
 
-const Footer = () => {
+const Footer = async () => {
+  const [payloadConfig, content] = await Promise.all([config, getFooter()]);
+
   return (
     <footer>
-      <div className="flex justify-around items-center h-48">
-        <div className="flex items-center">
-          <div>
+      <div className="flex justify-between px-8 lg:px-16 items-center h-56">
+        <div className="flex items-top">
+          <div className="h-24 mb-8">
             <Image src={auscoLogo} alt="AUSCO logo" width={130} height={200} />
           </div>
-          <div className="flex flex-col h-24 justify-evenly">
-            <div className="w-36 font-bold">Auckland University Chamber Orchestra Inc.</div>
-            <div className="flex justify-between">
-              <Facebook />
-              <Instagram />
-              <Youtube />
+          <div className="flex mt-3 flex-col h-24 justify-evenly gap-1">
+            <div className="w-50 font-bold mb-2 text-2xl lg:text-xl">{content.title}</div>
+            <div className="flex gap-2">
+              <Instagram width={20} height={20} />
+              <Facebook width={20} height={20} />
+              <Image src={spotifyLogo} alt="spotifyLogo" width={20} height={20} />
+              <Youtube width={20} height={20} />
             </div>
           </div>
         </div>
-        <div>
-          <div className="font-bold">Documents</div>
-          <p>Proof of Registration</p>
-          <p>Constitution</p>
-        </div>
-        <div>
-          <div className="font-bold">Join us</div>
-          <p>Sign up form</p>
-        </div>
-        <div>
-          <div className="font-bold">Reach out to us</div>
-          <p>chamberorchestra.ausa@gmail.com</p>
-          <p>Feedback form</p>
-          <p>Engage Page</p>
+        <div className="flex items-top justify-between">
+          {content.sections?.map((section, secId) => (
+            <div key={secId} className="w-60">
+              <h3 className="font-bold mb-1.5">{section.title}</h3>
+              {section.links?.map((link, linkId) => (
+                <a key={linkId} href={link.url} className="text-sm mb-1 block hover:underline">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </footer>
