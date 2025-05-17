@@ -1,25 +1,41 @@
 # AUSCO Project
 
-### Installaion Requirements / Recommendations:
+## Project Setup
+### Installaion Requirements / Recommendations
 - Git
 - VS Code
 - VS Code Extensions: 
 
-### Cloning the Project:
+### Cloning the Project
 1. Open Git Bash
 2. Navigate to the location where you want the AUSCO project to be
 3. Run: "git clone https://github.com/UoaWDCC/ausco"
 4. Run: "cd ausco"
-5. Run: "code ."
+5. Run: "code ." (This automatically opens the repo in VS Code, if it's not working, you'll have to do it manually)
 
 ### Running the Project (Frontend)
 1. Open the VS terminal
-2. Navigate to the frontend folder: "cd src/app/(frontend)"
+2. Navigate to the frontend folder: "cd src/app/'(frontend)'"
 3. Run: "npm install"
 4. Run: "npm run dev"
 5. Go to your browser and enter: "http://localhost:3000"
 6. Any saved changes you make in VS Code will be automatically reflected in localhost:3000
 
+### Add .env file under ausco (root directory)
+
+```
+PAYLOAD_SECRET="a710400222333f83c1b1bd6abb7bd3116e3321f813c48efe8ba93bc75cd16b82"
+DATABASE_URI="mongodb+srv://ausco:ausco!!!@ausco.ioi3ahr.mongodb.net/"
+```
+
+### Payload admin login
+
+```
+ausco@wdcc.co.nz
+e1160e47
+```
+
+## Development
 ### How to Start Development
 1. Create a new branch (copy the command in your assigned Jira ticket, under "Development - Create branch", and run this command in VS Code Terminal).
 2. Each ticket also represents a component of the home page, so when you begin development, use your respective component, which can be found in the (frontend)/components folder.
@@ -49,18 +65,43 @@
   - style: format code with Prettier
   - refactor: simplify authentication logic
 
+## Pulling New Changes
+### If you've already cloned the repo but haven't made your feature branch
+Run ``` git pull ``` on the main branch.
 
-## add .env file under ausco
-
+### If you've already cloned the repo and made your feature branch
 ```
-PAYLOAD_SECRET="a710400222333f83c1b1bd6abb7bd3116e3321f813c48efe8ba93bc75cd16b82"
-DATABASE_URI="mongodb+srv://ausco:ausco!!!@ausco.ioi3ahr.mongodb.net/"
-```
+git checkout main 
+git pull
+git checkout your-feature-branch
+git merge main
+``` 
+This will pull new changes made to the main branch into your feature branch. 
 
-## payload admin login
+## Accessing Media and Icons
+### Media
+- The folder src\app\(frontend)\assets for media you may need for your tickets.
+- If the folder does not contain the media you need, send us a message on Discord and we'll look to get it sorted. 
 
+### ShadCn UI
+- We are using shadcn ui for pre-built components 
+- Visit this site to find different components https://ui.shadcn.com/docs/components/accordion
+- follow the instruction to install the component
+
+### Icons
+- We are using Lucide icon library for our icons.
+- Lucide is already installed into our repo so no additional installation is required.
+- Visit the Lucide site to browse the different icons: https://lucide.dev/icons/
+- Select/Search for the icon you want to use and follow the instructions on how to import it into your file. 
+- For example: If I wanted to use Facebook icon, run the following code at the top of your file:
+``` typescript
+import { Facebook } from 'lucide-react';
 ```
-payload logins
-ausco@wdcc.co.nz
-e1160e47
+- And then you can use the Facebook icon as such: 
+``` typescript
+const App = () => {
+  return (
+    <Facebook />
+  );
+};
 ```
