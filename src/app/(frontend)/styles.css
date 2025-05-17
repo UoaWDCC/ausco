@@ -253,11 +253,3 @@ footer {
 footer div {
   color: #264c84;
 }
-
-.footer-box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  height: 200px;
-  align-items: center;
-}
