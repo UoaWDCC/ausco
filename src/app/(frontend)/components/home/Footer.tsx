@@ -27,10 +27,14 @@ const Footer = async () => {
         </div>
         <div className="flex items-top justify-between">
           {content.sections?.map((section, secId) => (
-            <div key={secId} className="w-60">
+            <div key={secId} className="w-60 flex flex-col">
               <h3 className="font-bold mb-1.5">{section.title}</h3>
               {section.links?.map((link, linkId) => (
-                <a key={linkId} href={link.url} className="text-sm mb-1 block hover:underline">
+                <a
+                  key={linkId}
+                  href={link.url}
+                  className="text-sm mb-1 inline-block w-fit hover:underline"
+                >
                   {link.label}
                 </a>
               ))}
