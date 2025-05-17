@@ -245,3 +245,19 @@ svg {
     @apply bg-background text-foreground;
   }
 }
+
+footer {
+  background-color: #eee5d8;
+}
+
+footer div {
+  color: #264c84;
+}
+
+.footer-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 200px;
+  align-items: center;
+}
