@@ -15,7 +15,7 @@ const HeroSection = async () => {
 
     return (
       <div className="relative overflow-hidden h-screen">
-      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-no-repeat bg-bottom bg-center"></div>
+      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-no-repeat bg-[center_bottom_0%] z-0"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0.6)] z-10"></div>
       <div className="relative z-20 home">
       <div className="content gap-8">
