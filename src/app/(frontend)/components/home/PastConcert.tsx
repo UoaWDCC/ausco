@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Volume2, VolumeX } from "lucide-react"; 
+import { Volume2, VolumeX } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
 
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -141,7 +142,7 @@ const PastConcert = () => {
           )}
         </div>
       </div>
-    </section>
+      </section>
   );
 };
 
