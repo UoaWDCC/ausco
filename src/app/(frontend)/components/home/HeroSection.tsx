@@ -3,6 +3,8 @@ import { getAllTest } from "@/actions/getTest";
 import config from "@/payload.config";
 
 import {Button} from "../ui/button";
+/*import logo from "../../assets/ausco-logo-1.png";*/
+import heroImage from "../../assets/hero.jpg";
 
 const HeroSection = async () => {
     const [payloadConfig, content, testItems] = await Promise.all([
@@ -12,7 +14,9 @@ const HeroSection = async () => {
     ]);
 
     return (
-      <div className="home ">
+      <div className="relative bg-[url('./assets/hero.jpg')] bg-cover bg-no-repeat bg-bottom bg-center overflow-hidden h-screen">
+      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0.6)] z-10">
+      <div className="relative z-20 home">
       <div className="content gap-8">
         {content && (
           <>
@@ -41,6 +45,8 @@ const HeroSection = async () => {
         </div>
         <Button>Click me</Button>
       </div>
+    </div>
+    </div>
     </div>
     );
   };
