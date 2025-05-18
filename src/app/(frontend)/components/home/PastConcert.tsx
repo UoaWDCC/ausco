@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react"; 
 
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -132,19 +133,9 @@ const PastConcert = () => {
               aria-label={isMuted ? "Unmute video" : "Mute video"}
             >
               {isMuted ? (
-                // Muted icon
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M16 12V7a4 4 0 0 0-8 0v5" stroke="#fff" strokeWidth="2" />
-                  <rect x="7" y="12" width="10" height="7" rx="2" fill="#fff" />
-                  <line x1="19" y1="19" x2="5" y2="5" stroke="#e74c3c" strokeWidth="2" />
-                </svg>
+                <VolumeX color="#fff" size={28} />
               ) : (
-                // Unmuted icon
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                  <path d="M16 12V7a4 4 0 0 0-8 0v5" stroke="#fff" strokeWidth="2" />
-                  <rect x="7" y="12" width="10" height="7" rx="2" fill="#fff" />
-                  <path d="M20 15c1.333-1.333 1.333-4.667 0-6" stroke="#fff" strokeWidth="2" />
-                </svg>
+                <Volume2 color="#fff" size={28} />
               )}
             </button>
           )}
