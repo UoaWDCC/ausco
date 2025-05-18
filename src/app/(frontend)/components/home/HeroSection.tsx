@@ -4,6 +4,7 @@ import config from "@/payload.config";
 
 import {Button} from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
+import { ArrowUpRight } from 'lucide-react';
 
 const HeroSection = async () => {
     const [payloadConfig, content, testItems] = await Promise.all([
@@ -44,8 +45,8 @@ const HeroSection = async () => {
             </div>
           ))}
         </div>
-        <Button>Click me</Button>
-    </div>
+        <Button className="w-28 py-6 bg-transparent text-[#f6f4ec] border-2 border-[#f6f4ec]">Join us<ArrowUpRight /></Button>
+      </div>
     </div>
     </div>
     );
