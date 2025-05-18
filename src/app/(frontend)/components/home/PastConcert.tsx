@@ -2,7 +2,6 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
 
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -28,7 +27,6 @@ const PastConcert = () => {
     };
   }, []);
 
-  // Helper to interpolate color
   function interpolateColor(hex1: string, hex2: string, factor: number) {
     const c1 = hex1.match(/\w\w/g)!.map(x => parseInt(x, 16));
     const c2 = hex2.match(/\w\w/g)!.map(x => parseInt(x, 16));
@@ -50,64 +48,25 @@ const PastConcert = () => {
   return (
     <section
       ref={sectionRef}
-      style={{
-        background: bgColor,
-        minHeight: "60vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "2rem 0",
-        transition: "background 0.5s",
-      }}
+      className="flex flex-col items-center justify-center min-h-[60vh] py-8 transition-colors duration-500"
+      style={{ background: bgColor }}
     >
       <h2
-        style={{
-          width: "560px",
-          maxWidth: "90vw",
-          fontSize: "2.7rem",
-          fontWeight: 900,
-          color: "#2451a6",
-          textAlign: "center",
-          letterSpacing: "0.01em",
-          margin: "0 0 0.5rem 0",
-          lineHeight: 1.05,
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis",
-        }}
+        className="w-[560px] max-w-[90vw] text-[2.7rem] font-extrabold text-[#2451a6] text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
       >
         From our last concert
       </h2>
       <div
+        className="flex items-center justify-center mx-auto transition-all duration-400"
         style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
           width: boxWidth,
           height: boxHeight,
           maxWidth: "95vw",
           maxHeight: "60vh",
-          margin: "0 auto",
-          transition: "width 0.4s, height 0.4s",
         }}
       >
-        {/* Video sector placeholder */}
         <div
-          style={{
-            width: "100%",
-            height: "100%",
-            background: "#b0b9c6",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            color: "#555",
-            fontSize: "1.2rem",
-            borderRadius: "8px",
-            transition: "background 0.4s, width 0.4s, height 0.4s",
-            position: "relative",
-            overflow: "hidden",
-          }}
+          className="w-full h-full bg-[#b0b9c6] flex items-center justify-center text-[#555] text-[1.2rem] rounded-lg transition-all duration-400 relative overflow-hidden"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -115,22 +74,7 @@ const PastConcert = () => {
           {hovered && (
             <button
               onClick={handleToggleMute}
-              style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                background: "#2451a6",
-                border: "none",
-                borderRadius: "50%",
-                padding: "0.5rem",
-                cursor: "pointer",
-                zIndex: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-              }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2451a6] border-none rounded-full p-2 cursor-pointer z-20 flex items-center justify-center shadow-lg"
               aria-label={isMuted ? "Unmute video" : "Mute video"}
             >
               {isMuted ? (
@@ -142,7 +86,7 @@ const PastConcert = () => {
           )}
         </div>
       </div>
-      </section>
+    </section>
   );
 };
 
