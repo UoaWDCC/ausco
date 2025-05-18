@@ -12,8 +12,6 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        data-new-gr-c-s-check-loaded="14.1235.0"
--       data-gr-ext-installed=""
         <main>{children}</main>
       </body>
     </html>
