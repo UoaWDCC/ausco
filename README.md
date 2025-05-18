@@ -83,10 +83,13 @@ This will pull new changes made to the main branch into your feature branch.
 - The folder src\app\(frontend)\assets for media you may need for your tickets.
 - If the folder does not contain the media you need, send us a message on Discord and we'll look to get it sorted. 
 
+### Tailwind CSS
+- We are using tailwind for styling
+
 ### ShadCn UI
 - We are using shadcn ui for pre-built components 
 - Visit this site to find different components https://ui.shadcn.com/docs/components/accordion
-- follow the instruction to install the component
+- Follow the instructions to install the component
 
 ### Icons
 - We are using Lucide icon library for our icons.
