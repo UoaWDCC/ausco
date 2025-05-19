@@ -1,6 +1,7 @@
 import { getLandingPage } from "@/actions/getLandingPage";
 import { getAllTest } from "@/actions/getTest";
 import config from "@/payload.config";
+import Header from "@components/home/Header";
 
 import {Button} from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
@@ -15,7 +16,8 @@ const HeroSection = async () => {
 
     return (
       <div className="relative overflow-hidden h-screen">
-      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-no-repeat bg-[center_bottom_0%] z-0"></div>
+        <Header />
+      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-no-repeat z-0"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.6)] to-[rgba(0,0,0,0.6)] z-10"></div>
       <div className="relative z-20 home">
         <img src={logo.src} alt="AUSCO logo" className="w-1/3 h=auto"/>
@@ -26,25 +28,6 @@ const HeroSection = async () => {
             <h3 className="text-center">{content.header.content}</h3>
           </>
         )}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
-        </div>
-        <div className="flex gap-4">
-          {testItems.map((item, i) => (
-            <div key={i} className="bg-white text-black p-2 rounded px-4">
-              <h3>{item.title}</h3>
-              <hr />
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
         <Button className="w-28 py-6 bg-transparent text-[#f6f4ec] border-2 border-[#f6f4ec]">Join us<ArrowUpRight /></Button>
       </div>
     </div>
