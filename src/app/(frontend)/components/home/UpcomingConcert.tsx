@@ -1,7 +1,8 @@
 const UpcomingConcert = () => {
     return (
       <section>
-        <h2>Upcoming Concerts</h2>
+        <h2>Our Upcoming Concert, Till Death Do Us Apart</h2>
+        
       </section>
     );
   };
