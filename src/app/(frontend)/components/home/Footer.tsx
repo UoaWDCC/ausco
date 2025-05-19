@@ -12,7 +12,7 @@ const Footer = async () => {
       <div className="flex justify-between px-8 pt-16 lg:px-16 items-top h-56">
         <div className="flex items-top gap-6">
           <div className="h-24 mt-2">
-            {typeof content.logo === "object" && "url" in content.logo && (
+            {typeof content.logo === "object" && typeof content.logo.url === "string" && (
               <Image src={content.logo.url} alt={content.logo.alt} width={86} height={144} />
             )}
           </div>
