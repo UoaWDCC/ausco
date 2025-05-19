@@ -11,9 +11,9 @@ const Footer = async () => {
   return (
     <footer>
       <div className="flex justify-between px-8 pt-16 lg:px-16 items-top h-56">
-        <div className="flex items-top">
-          <div className="h-24">
-            <Image src={auscoLogo} alt="AUSCO logo" width={130} height={200} />
+        <div className="flex items-top gap-6">
+          <div className="h-24 mt-2">
+            <Image src={auscoLogo} alt="AUSCO logo" width={86} height={144} />
           </div>
           <div className="flex flex-col h-24 justify-evenly gap-1">
             <div className="w-50 font-bold mb-2 text-2xl lg:text-xl">{content.title}</div>
