@@ -33,7 +33,7 @@ const Footer = async () => {
                 <a
                   key={linkId}
                   href={link.url}
-                  className="text-sm mb-1 inline-block w-fit hover:underline"
+                  className="relative inline-block text-sm mb-1 w-fit after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {link.label}
                 </a>
