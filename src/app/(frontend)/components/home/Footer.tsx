@@ -27,11 +27,10 @@ const Footer = async () => {
           </div>
           <div className="flex flex-col h-24 justify-evenly gap-1">
             <div className="w-50 font-bold mb-2 text-2xl lg:text-xl">{content.title}</div>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               {content.socials?.map((social, index) => (
-                <a key={index} href={social.url} className="flex items-center gap-2">
+                <a key={index} href={social.url}>
                   {platformIconMap[social.platform]}
-                  <span>{social.platform}</span>
                 </a>
               ))}
             </div>
