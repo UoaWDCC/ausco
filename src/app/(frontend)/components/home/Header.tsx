@@ -1,23 +1,29 @@
-"use client";
+import { getHeader } from "@/actions/getHeader";
 import Image from "next/image";
-import auscologo from "../../assets/ausco-logo-1.png";
-const Header = () => {
+import config from "@/payload.config";
+const Header = async () => {
+  const [payloadConfig, content] = await Promise.all([config, getHeader()]);
+
   return (
     <header>
       <nav className="flex items-center justify-between pt-6 pr-12 pl-12">
         <div className="flex items-center space-x-4">
-          <Image src={auscologo} alt="AUSCO logo" width={60} height={60} />
-          <span className="text-lg font-medium">
-            Auckland University <br />
-            Student Chamber Orchestra Inc.
-          </span>
+          {content.logo?.url && (
+            <Image src={content.logo.url} alt={content.logo.alt} width={60} height={60} />
+          )}
+          <span
+            className="text-lg font-medium"
+            dangerouslySetInnerHTML={{
+              __html: content.title || "",
+            }}
+          />
         </div>
         <div className="flex items-center gap-12">
-          <button className="text-sm">About Us</button>
-          <button className="text-sm">Our People</button>
-          <button className="text-sm">Concerts</button>
-          <button className="text-sm">Gallery</button>
-          <button className="text-sm">Contact Us</button>
+          {content.navLinks?.map((link, i) => (
+            <a key={i} href={link.url || "#"} className="text-sm hover:underline">
+              {link.label}
+            </a>
+          ))}
         </div>
       </nav>
     </header>
