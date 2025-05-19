@@ -3,12 +3,41 @@
 import { useRef, useEffect, useState } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
+declare global {
+  interface Window {
+    YT?: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const playerRef = useRef<any>(null);
   const [scrollRatio, setScrollRatio] = useState(0);
   const [hovered, setHovered] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(true); // default muted for autoplay
+  const [youtubeUrl, setYoutubeUrl] = useState<string | null>(null);
+  const [videoId, setVideoId] = useState<string | null>(null);
+  const [inView, setInView] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
+  const [boxWidth, setBoxWidth] = useState(560);
+  const [boxHeight, setBoxHeight] = useState(315);
 
+  // Fetch YouTube URL from Payload Videos collection
+  useEffect(() => {
+    fetch("/api/videos")
+      .then(res => res.json())
+      .then(data => {
+        if (data.docs && data.docs.length > 0) {
+          const video = data.docs[0];
+          setYoutubeUrl(video.youtubeUrl);
+          const match = video.youtubeUrl.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
+          setVideoId(match ? match[1] : null);
+        }
+      });
+  }, []);
+
+  // Parallax effect (for color)
   useEffect(() => {
     function handleScroll() {
       if (!sectionRef.current) return;
@@ -27,50 +56,133 @@ const PastConcert = () => {
     };
   }, []);
 
+  // Intersection Observer for autoplay and expand
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.5 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Responsive video box size (SSR-safe)
+  useEffect(() => {
+    function updateSize() {
+      if (inView && typeof window !== "undefined") {
+        setBoxWidth(window.innerWidth);
+        setBoxHeight(window.innerHeight);
+      } else {
+        setBoxWidth(560);
+        setBoxHeight(315);
+      }
+    }
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
+  }, [inView]);
+
+  // Color interpolation
   function interpolateColor(hex1: string, hex2: string, factor: number) {
     const c1 = hex1.match(/\w\w/g)!.map(x => parseInt(x, 16));
     const c2 = hex2.match(/\w\w/g)!.map(x => parseInt(x, 16));
     const result = c1.map((v, i) => Math.round(v + (c2[i] - v) * factor));
     return `#${result.map(x => x.toString(16).padStart(2, "0")).join("")}`;
   }
-
   const bgColor = interpolateColor("c7d5e8", "2451a6", scrollRatio);
 
-  // Video box size: from 560x315 to 95vw x 60vh
-  const minW = 560, minH = 315;
-  const maxW = typeof window !== "undefined" ? window.innerWidth * 0.95 : minW;
-  const maxH = typeof window !== "undefined" ? window.innerHeight * 0.6 : minH;
-  const boxWidth = minW + (maxW - minW) * scrollRatio;
-  const boxHeight = minH + (maxH - minH) * scrollRatio;
+  // YouTube Player API
+  useEffect(() => {
+    if (!videoId) return;
+    if (window.YT) {
+      createPlayer();
+    } else {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+      window.onYouTubeIframeAPIReady = createPlayer;
+    }
 
-  const handleToggleMute = () => setIsMuted((prev) => !prev);
+    function createPlayer() {
+      if (playerRef.current) return;
+      playerRef.current = new window.YT.Player("youtube-player", {
+        videoId: videoId,
+        playerVars: {
+          autoplay: inView ? 1 : 0,
+          controls: 0,
+          enablejsapi: 1,
+          mute: 1, // always muted for autoplay
+        },
+        events: {
+          onReady: (event: any) => {
+            setPlayerReady(true);
+            if (!isMuted) event.target.unMute();
+            if (inView) event.target.playVideo();
+          },
+        },
+      });
+    }
+    // eslint-disable-next-line
+  }, [videoId, inView, isMuted]);
+
+  // Autoplay/pause when in view
+  useEffect(() => {
+    if (playerRef.current && playerReady) {
+      if (inView) {
+        playerRef.current.playVideo();
+      } else {
+        playerRef.current.pauseVideo();
+      }
+    }
+  }, [inView, playerReady]);
+
+  // Mute/unmute handler
+  const handleToggleMute = () => {
+    setIsMuted((prev) => {
+      const next = !prev;
+      if (playerRef.current) {
+        if (next) {
+          playerRef.current.mute();
+        } else {
+          playerRef.current.unMute();
+        }
+      }
+      return next;
+    });
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="flex flex-col items-center justify-center min-h-[60vh] py-8 transition-colors duration-500"
+      className="flex flex-col items-center justify-center min-h-[60vh] py-8 transition-colors duration-500 w-full"
       style={{ background: bgColor }}
     >
-      <h2
-        className="w-[560px] max-w-[90vw] text-[2.7rem] font-extrabold text-[#2451a6] text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
-      >
+      <h2 className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-extrabold text-[#2451a6] text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
         From our last concert
       </h2>
       <div
-        className="flex items-center justify-center mx-auto transition-all duration-400"
+        className="flex items-center justify-center mx-auto transition-all duration-500 w-full"
         style={{
-          width: boxWidth,
-          height: boxHeight,
-          maxWidth: "95vw",
-          maxHeight: "60vh",
+          width: inView ? "100vw" : boxWidth,
+          height: inView ? "100vh" : boxHeight,
+          maxWidth: "100vw",
+          maxHeight: "100vh",
         }}
       >
         <div
-          className="w-full h-full bg-[#b0b9c6] flex items-center justify-center text-[#555] text-[1.2rem] rounded-lg transition-all duration-400 relative overflow-hidden"
+          className="w-full h-full bg-[#b0b9c6] flex items-center justify-center text-[#555] text-[1.2rem] rounded-lg transition-all duration-500 relative overflow-hidden"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          Video here
+          {/* Always render the player container when videoId is available */}
+          {videoId && (
+            <div
+              id="youtube-player"
+              className="w-full h-full rounded-lg aspect-video"
+              style={{ background: "#000" }}
+            />
+          )}
           {hovered && (
             <button
               onClick={handleToggleMute}
@@ -89,6 +201,5 @@ const PastConcert = () => {
     </section>
   );
 };
-
 
 export default PastConcert;
