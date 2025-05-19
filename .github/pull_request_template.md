@@ -13,9 +13,9 @@ AUSCO-
 - [ ] I have performed a self-review of my code.
 - [ ] I have commented my code in hard-to-understand areas.
 - [ ] I have moved my Jira ticket from IN PROGRESS to READY TO REVIEW.
-- [ ] I have verified that my pull request is merging my branch (right side) into the main branch (left side).
+- [ ] I have verified that my pull request is merging my branch (right side) into the main branch (left side) - see the top banner, underneath the "Open a pull request" header.
 
-## 📸 Notes
+## 📸 Notess
 
 <!-- Add screenshots and/or extra information that might help the team understand your changes better. -->
 
