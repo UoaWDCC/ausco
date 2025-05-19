@@ -1,12 +1,15 @@
 # AUSCO Project
 
 ## Project Setup
+
 ### Installaion Requirements / Recommendations
+
 - Git
 - VS Code
-- VS Code Extensions: 
+- VS Code Extensions:
 
 ### Cloning the Project
+
 1. Open Git Bash
 2. Navigate to the location where you want the AUSCO project to be
 3. Run: "git clone https://github.com/UoaWDCC/ausco"
@@ -14,6 +17,7 @@
 5. Run: "code ." (This automatically opens the repo in VS Code, if it's not working, you'll have to do it manually)
 
 ### Running the Project (Frontend)
+
 1. Open the VS terminal
 2. Navigate to the frontend folder: "cd src/app/'(frontend)'"
 3. Run: "npm install"
@@ -36,18 +40,22 @@ e1160e47
 ```
 
 ## Development
+
 ### How to Start Development
+
 1. Create a new branch (copy the command in your assigned Jira ticket, under "Development - Create branch", and run this command in VS Code Terminal).
 2. Each ticket also represents a component of the home page, so when you begin development, use your respective component, which can be found in the (frontend)/components folder.
 3. Ensure you are committing and pushing your work as you develop!
 
 ### Pushing to the AUSCO Repo
+
 1. Ensure you are on your feature branch (use "git checkout your-feature-branch-name" to switch to your feature branch)
 2. Run: "git add ." (This will add all files with changes to the staging area)
 3. Run: "git commit -m "(header): (message)"" (See below section for header/message guidelines)
 4. Run: "git push" (If this is your first time pushing a newly created branch, you may need to copy and paste the recommended command shown by Git)
 
 ### Git Commit Guidelines
+
 - Git commit command: "git commit -m "(header): (message)""
 - Common git header examples:
   - feat – a new feature
@@ -66,45 +74,70 @@ e1160e47
   - refactor: simplify authentication logic
 
 ## Pulling New Changes
+
 ### If you've already cloned the repo but haven't made your feature branch
-Run ``` git pull ``` on the main branch.
+
+Run `git pull` on the main branch.
 
 ### If you've already cloned the repo and made your feature branch
+
 ```
-git checkout main 
+git checkout main
 git pull
 git checkout your-feature-branch
 git merge main
-``` 
-This will pull new changes made to the main branch into your feature branch. 
+```
+
+This will pull new changes made to the main branch into your feature branch.
 
 ## Accessing Media and Icons
+
 ### Media
+
 - The folder src\app\(frontend)\assets for media you may need for your tickets.
-- If the folder does not contain the media you need, send us a message on Discord and we'll look to get it sorted. 
+- If the folder does not contain the media you need, send us a message on Discord and we'll look to get it sorted.
 
 ### Tailwind CSS
+
 - We are using tailwind for styling
 
 ### ShadCn UI
-- We are using shadcn ui for pre-built components 
+
+- We are using shadcn ui for pre-built components
 - Visit this site to find different components https://ui.shadcn.com/docs/components/accordion
 - Follow the instructions to install the component
 
 ### Icons
+
 - We are using Lucide icon library for our icons.
 - Lucide is already installed into our repo so no additional installation is required.
 - Visit the Lucide site to browse the different icons: https://lucide.dev/icons/
-- Select/Search for the icon you want to use and follow the instructions on how to import it into your file. 
+- Select/Search for the icon you want to use and follow the instructions on how to import it into your file.
 - For example: If I wanted to use Facebook icon, run the following code at the top of your file:
-``` typescript
-import { Facebook } from 'lucide-react';
+
+```typescript
+import { Facebook } from "lucide-react";
 ```
-- And then you can use the Facebook icon as such: 
-``` typescript
+
+- And then you can use the Facebook icon as such:
+
+```typescript
 const App = () => {
   return (
     <Facebook />
   );
 };
 ```
+
+## Finishing Your Branch
+
+### Creating a pull request
+
+1. Go to GitHub's AUSCO page.
+2. Select the "Pull requests" tab at the top left corner.
+3. Select the "New pull request" button (in green on the right).
+4. Select your branch.
+5. Select the "Create pull request" button (in green on the right).
+6. Fill in the description.
+7. Select the "Create pull request" button (in green).
+8. Await approval !
