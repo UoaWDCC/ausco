@@ -23,8 +23,14 @@ export const Footer: GlobalConfig = {
       fields: [
         {
           name: "platform",
-          type: "text",
+          type: "select",
           required: true,
+          options: [
+            { label: "Facebook", value: "facebook" },
+            { label: "Instagram", value: "instagram" },
+            { label: "YouTube", value: "youtube" },
+            { label: "Spotify", value: "spotify" },
+          ],
         },
         {
           name: "url",

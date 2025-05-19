@@ -329,7 +329,7 @@ export interface Footer {
   title: string;
   socials?:
     | {
-        platform: string;
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
         url: string;
         icon?: (string | null) | Media;
         id?: string | null;
