@@ -175,14 +175,11 @@ const PastConcert = () => {
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          {/* Always render the player container when videoId is available */}
-          {videoId && (
-            <div
-              id="youtube-player"
-              className="w-full h-full rounded-lg aspect-video"
-              style={{ background: "#000" }}
-            />
-          )}
+          <div
+            id="youtube-player"
+            className="w-full h-full rounded-lg aspect-video"
+            style={{ background: "#000" }}
+          />
           {hovered && (
             <button
               onClick={handleToggleMute}
