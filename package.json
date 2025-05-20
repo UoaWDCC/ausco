@@ -15,9 +15,12 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@payloadcms/db-mongodb": "3.38.0",
-    "@payloadcms/next": "3.38.0",
-    "@payloadcms/payload-cloud": "3.38.0",
+    "@payloadcms/db-mongodb": "^3.38.0",
+    "@payloadcms/email-nodemailer": "^3.38.0",
+    "@payloadcms/graphql": "^3.38.0",
+    "@payloadcms/next": "^3.38.0",
+    "@payloadcms/payload-cloud": "^3.38.0",
+    "@payloadcms/ui": "^3.38.0",
     "@radix-ui/react-accordion": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.2",
     "@tailwindcss/postcss": "^4.1.5",
