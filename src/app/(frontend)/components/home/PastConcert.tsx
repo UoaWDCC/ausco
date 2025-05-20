@@ -95,33 +95,38 @@ const PastConcert = () => {
   // YouTube Player API
   useEffect(() => {
     if (!videoId) return;
-    if (window.YT) {
-      createPlayer();
+
+    function createPlayerWhenReady() {
+      if (window.YT && window.YT.Player) {
+        if (playerRef.current) return;
+        playerRef.current = new window.YT.Player("youtube-player", {
+          videoId: videoId,
+          playerVars: {
+            autoplay: inView ? 1 : 0,
+            controls: 0,
+            enablejsapi: 1,
+            mute: 1,
+          },
+          events: {
+            onReady: (event: any) => {
+              setPlayerReady(true);
+              if (!isMuted) event.target.unMute();
+              if (inView) event.target.playVideo();
+            },
+          },
+        });
+      } else {
+        setTimeout(createPlayerWhenReady, 100); // Try again in 100ms
+      }
+    }
+
+    if (window.YT && window.YT.Player) {
+      createPlayerWhenReady();
     } else {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
       document.body.appendChild(tag);
-      window.onYouTubeIframeAPIReady = createPlayer;
-    }
-
-    function createPlayer() {
-      if (playerRef.current) return;
-      playerRef.current = new window.YT.Player("youtube-player", {
-        videoId: videoId,
-        playerVars: {
-          autoplay: inView ? 1 : 0,
-          controls: 0,
-          enablejsapi: 1,
-          mute: 1, // always muted for autoplay
-        },
-        events: {
-          onReady: (event: any) => {
-            setPlayerReady(true);
-            if (!isMuted) event.target.unMute();
-            if (inView) event.target.playVideo();
-          },
-        },
-      });
+      window.onYouTubeIframeAPIReady = createPlayerWhenReady;
     }
     // eslint-disable-next-line
   }, [videoId, inView, isMuted]);
