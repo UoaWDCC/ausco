@@ -1,16 +1,19 @@
 import { getHeader } from "@/actions/getHeader";
 import Image from "next/image";
-import config from "@/payload.config";
+
 const Header = async () => {
-  const [payloadConfig, content] = await Promise.all([config, getHeader()]);
+  const content = await getHeader();
+
+  const logo =
+    typeof content.logo === "object" && content.logo !== null && "url" in content.logo
+      ? content.logo
+      : null;
 
   return (
     <header>
       <nav className="flex items-center justify-between pt-6 pr-12 pl-12">
         <div className="flex items-center space-x-4">
-          {content.logo?.url && (
-            <Image src={content.logo.url} alt={content.logo.alt} width={60} height={60} />
-          )}
+          {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
           <span
             className="text-lg font-medium"
             dangerouslySetInnerHTML={{
