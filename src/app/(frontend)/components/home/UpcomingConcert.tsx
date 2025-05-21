@@ -7,7 +7,13 @@ const UpcomingConcert = () => {
           <h1 className="inline-block mr-4">Our Upcoming Concert,</h1> 
           <h1 className="inline-block italic"> Till Death Do Us Apart</h1>
         </div>
-        <img src="{ UpcomingConcertPoster }" alt="Till Death Do Us Apart Concert Poster" />
+        <div className="justify-center">
+          <img 
+          src={ UpcomingConcertPoster.src } 
+          alt="Till Death Do Us Apart Concert Poster" 
+          className="w-64 h-auto inline-block mr-4" />
+        </div>
+        
       </section>
     );
   };
