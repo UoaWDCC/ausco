@@ -314,6 +314,16 @@ export interface LandingPage {
     title: string;
     content: string;
   };
+  infoCards: {
+    cards: {
+      title: string;
+      description: string;
+      image: string;
+      linkText: string;
+      linkHref?: string | null;
+      id?: string | null;
+    }[];
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -327,6 +337,20 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         content?: T;
+      };
+  infoCards?:
+    | T
+    | {
+        cards?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              linkText?: T;
+              linkHref?: T;
+              id?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
