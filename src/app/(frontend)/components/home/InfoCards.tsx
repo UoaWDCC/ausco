@@ -1,42 +1,19 @@
 //importing icons for contacts list
 import { Mail, Instagram, Facebook } from "lucide-react";
-
-//array for card display content
-const cardData = [
-  {
-    title: "About Us",
-    description:
-      "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-    image: "PLACEHOLDER",
-    linkText: "Read more↗",
-    linkHref: "",
-  },
-  {
-    title: "Our People",
-    description:
-      "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-    image: "PLACEHOLDER",
-    linkText: "Read more↗",
-    linkHref: "",
-  },
-  {
-    title: "Reach Out",
-    description: "Here are a few ways you can reach out to us:",
-    image: "PLACEHOLDER",
-    linkText: "Feedback Form↗",
-    linkHref: "",
-
-    //array storing contact icons, text and href links
-    contacts: [
-      { icon: <Mail />, text: "chamberorchestra.ausa@gmail.com↗", href: "" },
-      { icon: <Instagram />, text: "@ausco.uoa↗", href: "" },
-      { icon: <Facebook />, text: "@ausco.ausa↗", href: "" },
-    ],
-  },
-];
+import { getLandingPage } from "@/actions/getLandingPage";
 
 //react functional component for card rendering
-const InfoCards = () => {
+const InfoCards = async () => {
+  const content = await getLandingPage();
+  const cardData = content.infoCards.cards;
+
+  // contacts list
+  const contacts = [
+    { icon: <Mail />, text: "chamberorchestra.ausa@gmail.com↗", href: "" },
+    { icon: <Instagram />, text: "@ausco.uoa↗", href: "" },
+    { icon: <Facebook />, text: "@ausco.ausa↗", href: "" },
+  ];
+
   return (
     <section className="bg-[#F6F4EC] py-24 lg:py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-8 lg:gap-10">
@@ -56,17 +33,17 @@ const InfoCards = () => {
             <div className="space-y-2 lg:space-y-3">
               <p className="text-sm sm:text-base leading-relaxed">{card.description}</p>
               <a
-                href={card.linkHref}
+                href={card.linkHref || "#"}
                 className="text-sm sm:text-base font-semibold hover:underline"
               >
                 {card.linkText}
               </a>
 
               {/*displays contact information as a list if provided*/}
-              {card.contacts && (
+              {card.title === "Reach Out" && (
                 //applying flex to join contact icons and text
                 <ul className="text-sm sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
-                  {card.contacts.map((contact, j) => (
+                  {contacts.map((contact, j) => (
                     <li key={j}>
                       <a className="flex items-center gap-2 hover:underline" href={contact.href}>
                         {contact.icon}
