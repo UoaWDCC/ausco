@@ -5,7 +5,7 @@ const UpcomingConcert = () => {
       <section className="bg-[#eee5d8] text-[#602c0f] text-center mx-auto">
         <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
           <p className="inline-block mr-4">Our Upcoming Concert,</p> 
-          <p className="inline-block italic"> Till Death Do Us Apart</p>
+          <p className="inline-block italic"> Till Death Do Us 'Part</p>
         </div>
         <div className="flex flex-row gap-17 justify-center items-center mt-4">
           <img 
