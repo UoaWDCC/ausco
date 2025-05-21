@@ -2,17 +2,17 @@ import { getLandingPage } from "@/actions/getLandingPage";
 import { getAllTest } from "@/actions/getTest";
 import config from "@/payload.config";
 
-import {Button} from "../ui/button";
+import { Button } from "../ui/button";
 
 const HeroSection = async () => {
-    const [payloadConfig, content, testItems] = await Promise.all([
-        config,
-        getLandingPage(),
-        getAllTest(),
-    ]);
+  const [payloadConfig, content, testItems] = await Promise.all([
+    config,
+    getLandingPage(),
+    getAllTest(),
+  ]);
 
-    return (
-      <div className="home ">
+  return (
+    <div className="home ">
       <div className="content gap-8">
         {content && (
           <>
@@ -42,7 +42,7 @@ const HeroSection = async () => {
         <Button>Click me</Button>
       </div>
     </div>
-    );
-  };
-  
+  );
+};
+
 export default HeroSection;
