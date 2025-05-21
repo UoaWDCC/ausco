@@ -3,8 +3,10 @@ import UpcomingConcertPoster from "../../assets/upcoming-concert.jpg";
 const UpcomingConcert = () => {
     return (
       <section>
-        <h1>Our Upcoming Concert,</h1>
-        <h1> Till Death Do Us Apart</h1>
+        <div className="UpcomingTitle">
+          <h1>Our Upcoming Concert,</h1>
+          <h1> Till Death Do Us Apart</h1>
+        </div>
         <img src="{ UpcomingConcertPoster }" alt="Till Death Do Us Apart Concert Poster" />
       </section>
     );
