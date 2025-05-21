@@ -15,6 +15,7 @@ const UpcomingConcert = () => {
           <div className="w-120 text-sm">
             <p >Love, Passion, and Loss. Our Semester 1 concert delves into the trials and the tribulations of romance and its all-encompassing nature - as well as the grief we feel in its absence</p>
             <p>That's why we partnered with Tōtara Hospice, in support of providing accessible, quality, and compassionate palliative care in their last moments. All concert proceeds will go towards this cause. Join us at one of our two concerts!</p>
+            <hr className="border-t-[1.5px] border-[#602c0f] my-4" />
           </div>
         </div>
         
