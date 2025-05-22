@@ -43,7 +43,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <h2 className="text-2xl sm:text-3xl lg:text-5xl font-[Fraunces]">{title}</h2>
 
       {/*card description and links*/}
-      <div className="space-y-2 lg:space-y-3">
+      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
           <a href={linkHref || "#"} className="text-sm sm:text-base font-semibold hover:underline">
