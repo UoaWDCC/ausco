@@ -1,13 +1,5 @@
 import React from "react";
 import "./styles.css";
-import { Fraunces, Schibsted_Grotesk } from "next/font/google";
-
-const fraunces = Fraunces({ subsets: ["latin"] });
-const schibstedGrotesk = Schibsted_Grotesk({
-  weight: ["400", "600"],
-  subsets: ["latin"],
-  variable: "--font-schibsted",
-});
 
 export const metadata = {
   description: "A blank template using Payload in a Next.js app.",
@@ -18,7 +10,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
 
   return (
-    <html lang="en" className={`${schibstedGrotesk.variable} ${fraunces.className}`}>
+    <html lang="en">
       <body>
         <main>{children}</main>
       </body>
