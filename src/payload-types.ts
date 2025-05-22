@@ -314,8 +314,11 @@ export interface LandingPage {
     title: string;
     content: string;
   };
+  /**
+   * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
+   */
   infoCards: {
-    cards: {
+    regularCards: {
       title: string;
       description: string;
       image: string;
@@ -323,6 +326,19 @@ export interface LandingPage {
       linkHref?: string | null;
       id?: string | null;
     }[];
+    contactsCard: {
+      title: string;
+      description: string;
+      image: string;
+      linkText: string;
+      linkHref?: string | null;
+      contacts: {
+        text: string;
+        href?: string | null;
+        icon: 'mail' | 'instagram' | 'facebook';
+        id?: string | null;
+      }[];
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -341,7 +357,7 @@ export interface LandingPageSelect<T extends boolean = true> {
   infoCards?:
     | T
     | {
-        cards?:
+        regularCards?:
           | T
           | {
               title?: T;
@@ -350,6 +366,23 @@ export interface LandingPageSelect<T extends boolean = true> {
               linkText?: T;
               linkHref?: T;
               id?: T;
+            };
+        contactsCard?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              linkText?: T;
+              linkHref?: T;
+              contacts?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                    icon?: T;
+                    id?: T;
+                  };
             };
       };
   updatedAt?: T;
