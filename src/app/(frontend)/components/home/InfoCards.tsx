@@ -1,6 +1,7 @@
 //importing icons for contacts list, allows user to add more icons in the future
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/getLandingPage";
+import { ReactNode } from "react";
 
 //define icon mapping type
 type IconMapping = {
@@ -28,7 +29,7 @@ type InfoCardProp = {
   linkText?: string | null;
   linkHref?: string | null;
   contacts?: Contact[];
-  getIcon?: (iconType: string) => any;
+  getIcon?: (iconType: string) => ReactNode;
 };
 
 //infocard component for all shared card features
@@ -70,13 +71,13 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
 
 //async component fetches/extracts card data from payload
 const InfoCards = async () => {
-  const content = await getLandingPage();
-  const regularCards = content.infoCards.regularCards;
-  const contactsCard = content.infoCards.contactsCard;
+  const {
+    infoCards: { regularCards, contactsCard },
+  } = await getLandingPage();
 
   //function to fetch icon component
   //mail icon set as default/fallback
-  const getIcon = (iconType: string) => {
+  const getIcon = (iconType: string): ReactNode => {
     const IconComponent = iconMapping[iconType] || Mail;
     return <IconComponent />;
   };
