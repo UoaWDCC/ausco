@@ -14,6 +14,60 @@ const iconMapping: IconMapping = {
   facebook: Facebook,
 };
 
+//define contact structure
+type Contact = {
+  icon: string;
+  text: string;
+  href?: string | null;
+};
+
+//define infocard structure
+type InfoCardProp = {
+  title: string;
+  description: string;
+  linkText?: string | null;
+  linkHref?: string | null;
+  contacts?: Contact[];
+  getIcon?: (iconType: string) => any;
+};
+
+//infocard component for all shared card features
+const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
+  return (
+    <div className="flex flex-col justify-start bg-[#EEEADE] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] font-[Schibsted_Grotesk] space-y-5 lg:space-y-6 shadow-sm">
+      {/*card image placeholder*/}
+      <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
+
+      {/*card title*/}
+      <h2 className="text-2xl sm:text-3xl lg:text-5xl font-[Fraunces]">{title}</h2>
+
+      {/*card description and links*/}
+      <div className="space-y-2 lg:space-y-3">
+        <p className="text-sm sm:text-base leading-relaxed">{description}</p>
+        {linkText && (
+          <a href={linkHref || "#"} className="text-sm sm:text-base font-semibold hover:underline">
+            {linkText}
+          </a>
+        )}
+
+        {/*displays contact information as a list if contacts exist*/}
+        {contacts && contacts.length > 0 && (
+          <ul className="text-sm sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
+            {contacts.map((contact, j) => (
+              <li key={j}>
+                <a className="flex items-center gap-2 hover:underline" href={contact.href || "#"}>
+                  {getIcon && getIcon(contact.icon)}
+                  {contact.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
+};
+
 //async component fetches/extracts card data from payload
 const InfoCards = async () => {
   const content = await getLandingPage();
@@ -26,67 +80,31 @@ const InfoCards = async () => {
     const IconComponent = iconMapping[iconType] || Mail;
     return <IconComponent />;
   };
-  //NOTE FOR DEL (ME) MAKE THE REPEATED CARD STUFF A REUSABLE COMPONENT TO REDUCE REDUNDANCY
+
   //card rendering
   return (
     <section className="bg-[#F6F4EC] py-24 lg:py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-8 lg:gap-10">
-        {/*mapping non-contact cards*/}
+        {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
-          <div
+          <InfoCard
             key={i}
-            className="flex flex-col justify-start bg-[#EEEADE] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] font-[Schibsted_Grotesk] space-y-5 lg:space-y-6 shadow-sm"
-          >
-            {/*card image placeholder*/}
-            <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
-
-            {/*card title*/}
-            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-[Fraunces]">{card.title}</h2>
-
-            {/*card description and links*/}
-            <div className="space-y-2 lg:space-y-3">
-              <p className="text-sm sm:text-base leading-relaxed">{card.description}</p>
-              <a
-                href={card.linkHref || "#"}
-                className="text-sm sm:text-base font-semibold hover:underline"
-              >
-                {card.linkText}
-              </a>
-            </div>
-          </div>
+            title={card.title}
+            description={card.description}
+            linkText={card.linkText}
+            linkHref={card.linkHref}
+          />
         ))}
 
-        {/*contacts card*/}
-        <div className="flex flex-col justify-start bg-[#EEEADE] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] font-[Schibsted_Grotesk] space-y-5 lg:space-y-6 shadow-sm">
-          {/*card image placeholder*/}
-          <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
-
-          {/*card title*/}
-          <h2 className="text-2xl sm:text-3xl lg:text-5xl font-[Fraunces]">{contactsCard.title}</h2>
-
-          {/*card description and links*/}
-          <div className="space-y-2 lg:space-y-3">
-            <p className="text-sm sm:text-base leading-relaxed">{contactsCard.description}</p>
-            <a
-              href={contactsCard.linkHref || "#"}
-              className="text-sm sm:text-base font-semibold hover:underline"
-            >
-              {contactsCard.linkText}
-            </a>
-
-            {/*displays contact information as a list*/}
-            <ul className="text-sm sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
-              {contactsCard.contacts.map((contact, j) => (
-                <li key={j}>
-                  <a className="flex items-center gap-2 hover:underline" href={contact.href || "#"}>
-                    {getIcon(contact.icon)}
-                    {contact.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        {/*contact card*/}
+        <InfoCard
+          title={contactsCard.title}
+          description={contactsCard.description}
+          linkText={contactsCard.linkText}
+          linkHref={contactsCard.linkHref}
+          contacts={contactsCard.contacts}
+          getIcon={getIcon}
+        />
       </div>
     </section>
   );
