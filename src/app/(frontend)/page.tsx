@@ -4,6 +4,7 @@ import InfoCards from "@components/home/InfoCards";
 import PastConcert from "@components/home/PastConcert";
 import Footer from "@components/home/Footer";
 import HeroSection from "@components/home/HeroSection";
+import Ticket from "@components/home/Ticket";
 
 export default async function HomePage() {
   return (
@@ -14,6 +15,7 @@ export default async function HomePage() {
       <InfoCards />
       <PastConcert />
       <Footer />
+      <Ticket />
     </>
   );
 }
