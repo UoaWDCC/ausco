@@ -10,6 +10,9 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
 import Header from "./collections/global/Header";
+
+import { Footer } from "./collections/global/Footer";
+
 import LandingPage from "./collections/global/LandingPage";
 
 const filename = fileURLToPath(import.meta.url);
@@ -22,7 +25,9 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [LandingPage, Header],
+
+  globals: [LandingPage, Footer, Header],
+
   collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
