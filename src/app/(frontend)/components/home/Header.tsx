@@ -11,8 +11,8 @@ const Header = async () => {
 
   return (
     <header>
-      <nav className="flex items-center justify-between pt-6 pr-12 pl-12">
-        <div className="flex items-center space-x-4">
+      <nav className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 sm:pt-6 px-4 sm:px-12 w-full">
+        <div className="flex items-center space-x-4 w-full sm:w-auto mb-4 sm:mb-0">
           {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
           <span
             className="text-lg font-medium"
@@ -21,9 +21,9 @@ const Header = async () => {
             }}
           />
         </div>
-        <div className="flex items-center gap-12">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-12 w-full sm:w-auto">
           {content.navLinks?.map((link, i) => (
-            <a key={i} href={link.url || "#"} className="text-sm hover:underline">
+            <a key={i} href={link.url || "#"} className="text-sm hover:underline block">
               {link.label}
             </a>
           ))}
