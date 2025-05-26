@@ -27,7 +27,7 @@ export const LandingPage: GlobalConfig = {
           type: "text",
         },
         {
-          name: "concertPoster",
+          name: "poster",
           type: "upload",
           relationTo: "media",
         },
