@@ -1,6 +1,12 @@
 import UpcomingConcertPoster from "../../assets/upcoming-concert.jpg";
+import { getLandingPage } from "@/actions/getLandingPage";
 
-const UpcomingConcert = () => {
+const UpcomingConcert = async () => {
+
+    const [content] = await Promise.all([
+      getLandingPage(),
+    ]);
+
     return (
       <section className="bg-[#eee5d8] text-[#602c0f] mx-auto">
 
