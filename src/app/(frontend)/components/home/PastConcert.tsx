@@ -15,7 +15,7 @@ const PastConcert = () => {
   const playerRef = useRef<any>(null);
   const [scrollRatio, setScrollRatio] = useState(0);
   const [hovered, setHovered] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); // default muted for autoplay
+  const [isMuted, setIsMuted] = useState(true); //
   const [youtubeUrl, setYoutubeUrl] = useState<string | null>(null);
   const [videoId, setVideoId] = useState<string | null>(null);
   const [inView, setInView] = useState(false);
@@ -105,7 +105,7 @@ const PastConcert = () => {
             autoplay: inView ? 1 : 0,
             controls: 0,
             enablejsapi: 1,
-            mute: 1,
+            mute: 1, 
           },
           events: {
             onReady: (event: any) => {
