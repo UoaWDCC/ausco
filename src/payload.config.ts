@@ -9,6 +9,10 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
+import Header from "./collections/global/Header";
+
+import { Footer } from "./collections/global/Footer";
+
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
 
@@ -22,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [LandingPage],
+  globals: [LandingPage, Footer, Header],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
