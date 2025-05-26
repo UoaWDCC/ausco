@@ -318,7 +318,7 @@ export interface LandingPage {
   };
   upcomingConcert?: {
     title?: string | null;
-    'Concert Poster'?: (string | null) | Media;
+    concertPoster?: (string | null) | Media;
     description?: string | null;
   };
   /**
@@ -397,7 +397,7 @@ export interface LandingPageSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        'Concert Poster'?: T;
+        concertPoster?: T;
         description?: T;
       };
   infoCards?:
