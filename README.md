@@ -19,7 +19,7 @@
 ### Running the Project (Frontend)
 
 1. Open the VS terminal
-2. Navigate to the frontend folder: "cd src/app/'(frontend)'"
+2. Navigate to the ausco folder
 3. Run: "npm install"
 4. Run: "npm run dev"
 5. Go to your browser and enter: "http://localhost:3000"

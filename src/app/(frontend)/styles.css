@@ -100,7 +100,7 @@ h1 {
 }
 
 p {
-  margin: 24px 0;
+  margin: 0;
 
   @media (max-width: 1024px) {
     margin: calc(var(--base) * 0.75) 0;
@@ -244,4 +244,12 @@ svg {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+footer {
+  background-color: #eee5d8;
+}
+
+footer div {
+  color: #032b50;
 }
