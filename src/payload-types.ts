@@ -88,9 +88,13 @@ export interface Config {
   };
   globals: {
     'landing-page': LandingPage;
+    footer: Footer;
+    header: Header;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   user: User & {
@@ -314,6 +318,82 @@ export interface LandingPage {
     title: string;
     content: string;
   };
+  /**
+   * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
+   */
+  infoCards: {
+    regularCards: {
+      title: string;
+      description: string;
+      image: string;
+      linkText: string;
+      linkHref?: string | null;
+      id?: string | null;
+    }[];
+    contactsCard: {
+      title: string;
+      description: string;
+      image: string;
+      linkText: string;
+      linkHref?: string | null;
+      contacts: {
+        text: string;
+        href?: string | null;
+        icon: 'mail' | 'instagram' | 'facebook';
+        id?: string | null;
+      }[];
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  logo: string | Media;
+  title: string;
+  socials?:
+    | {
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        url: string;
+        icon?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  sections?:
+    | {
+        title: string;
+        links?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  logo?: (string | null) | Media;
+  title?: string | null;
+  navLinks?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -327,6 +407,87 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         content?: T;
+      };
+  infoCards?:
+    | T
+    | {
+        regularCards?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              linkText?: T;
+              linkHref?: T;
+              id?: T;
+            };
+        contactsCard?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              image?: T;
+              linkText?: T;
+              linkHref?: T;
+              contacts?:
+                | T
+                | {
+                    text?: T;
+                    href?: T;
+                    icon?: T;
+                    id?: T;
+                  };
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
+  title?: T;
+  socials?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        icon?: T;
+        id?: T;
+      };
+  sections?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  title?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

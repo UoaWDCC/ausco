@@ -9,7 +9,6 @@ import Ticket from "@components/home/Ticket";
 export default async function HomePage() {
   return (
     <>
-      <Header />
       <HeroSection />
       <UpcomingConcert />
       <InfoCards />

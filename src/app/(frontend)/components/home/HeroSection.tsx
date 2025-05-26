@@ -1,48 +1,46 @@
 import { getLandingPage } from "@/actions/getLandingPage";
-import { getAllTest } from "@/actions/getTest";
-import config from "@/payload.config";
-
-import {Button} from "../ui/button";
+import Header from "@components/home/Header";
+import { Button } from "../ui/button";
+import logo from "../../assets/ausco-logo-1.png";
+import { ArrowUpRight } from 'lucide-react';
 
 const HeroSection = async () => {
-    const [payloadConfig, content, testItems] = await Promise.all([
-        config,
-        getLandingPage(),
-        getAllTest(),
-    ]);
+  const [content] = await Promise.all([
+    getLandingPage(),
+  ]);
 
-    return (
-      <div className="home ">
-      <div className="content gap-8">
-        {content && (
-          <>
-            <h1>{content.header.title}</h1>
-            <h3>{content.header.content}</h3>
-          </>
-        )}
-        <div className="links">
-          <a
-            className="admin"
-            href={payloadConfig.routes.admin}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Go to admin panel
-          </a>
+  return (
+    <div className="relative overflow-hidden min-h-screen">      
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-center bg-no-repeat z-0"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10"></div>
+      
+      {/* Header (fixed) */}
+      <div className="relative z-30">
+        <Header />
+      </div>
+      
+      <div className="relative z-20 flex flex-col items-center justify-center text-white px-4 pb-8 md:pb-16 text-center">
+        <img
+          src={logo.src}
+          alt="AUSCO logo"
+          className="w-40 md:w-60 mb-6"
+        />
+
+        <div className="space-y-6 max-w-3xl">
+          {content && (
+            <>
+              <h1 className="text-3xl md:text-5xl font-bold leading-tight">{content.header.title}</h1>
+              <h3 className="text-base md:text-lg">{content.header.content}</h3>
+            </>
+          )}
+          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[#f6f4ec] border-2 border-[#f6f4ec] hover:bg-white hover:text-black transition">
+            Join us <ArrowUpRight size={18} />
+          </Button>
         </div>
-        <div className="flex gap-4">
-          {testItems.map((item, i) => (
-            <div key={i} className="bg-white text-black p-2 rounded px-4">
-              <h3>{item.title}</h3>
-              <hr />
-              <p>{item.description}</p>
-            </div>
-          ))}
-        </div>
-        <Button>Click me</Button>
       </div>
     </div>
-    );
-  };
-  
+  );
+};
+
 export default HeroSection;
