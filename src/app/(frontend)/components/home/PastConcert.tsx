@@ -39,13 +39,20 @@ const PastConcert = () => {
 
   // Parallax effect (for color)
   useEffect(() => {
+    let ticking = false;
     function handleScroll() {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-      let ratio = 1 - Math.max(0, Math.min(1, rect.top / windowHeight));
-      ratio = Math.max(0, Math.min(1, ratio));
-      setScrollRatio(ratio);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!sectionRef.current) return;
+          const rect = sectionRef.current.getBoundingClientRect();
+          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+          let ratio = 1 - Math.max(0, Math.min(1, rect.top / windowHeight));
+          ratio = Math.max(0, Math.min(1, ratio));
+          setScrollRatio(ratio);
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleScroll);
@@ -59,9 +66,19 @@ const PastConcert = () => {
   // Intersection Observer for autoplay and expand
   useEffect(() => {
     if (!sectionRef.current) return;
+    let lastInView = false;
     const observer = new window.IntersectionObserver(
-      ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.5 }
+      ([entry]) => {
+        // Use two thresholds for hysteresis
+        if (!lastInView && entry.intersectionRatio > 0.66) {
+          setInView(true);
+          lastInView = true;
+        } else if (lastInView && entry.intersectionRatio < 0.33) {
+          setInView(false);
+          lastInView = false;
+        }
+      },
+      { threshold: [0, 0.33, 0.5, 0.66, 1] }
     );
     observer.observe(sectionRef.current);
     return () => observer.disconnect();
