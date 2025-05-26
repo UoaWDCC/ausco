@@ -16,8 +16,8 @@ const UpcomingConcert = async () => {
 
         <div className="flex flex-row gap-16 justify-center item-start mt-4">
           <img 
-          src={ "content.upcomingConcert.poster" } 
-          alt="Upcoming Concert Poster" 
+          src={ content.upcomingConcert?.poster?.url } 
+          alt={ content.upcomingConcert?.poster?.alt }
           className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0" />
           <div className="w-96 text-xs text-left mt-0 pt-0">
             <p className="mt-0 pt-0"> {content.upcomingConcert?.description} </p>
