@@ -8,7 +8,6 @@ import HeroSection from "@components/home/HeroSection";
 export default async function HomePage() {
   return (
     <>
-      <Header />
       <HeroSection />
       <UpcomingConcert />
       <InfoCards />
