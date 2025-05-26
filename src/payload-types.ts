@@ -88,13 +88,13 @@ export interface Config {
   };
   globals: {
     'landing-page': LandingPage;
-    header: Header;
     footer: Footer;
+    header: Header;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
-    header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   user: User & {
