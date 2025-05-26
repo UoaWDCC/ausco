@@ -17,6 +17,11 @@ export const LandingPage: GlobalConfig = {
       ],
     },
     {
+      name: "upcomingConcert",
+      label: "Upcoming Concert", 
+      type: "group"
+    },
+    {
       name: "infoCards",
       label: "Info Cards",
       type: "group",
