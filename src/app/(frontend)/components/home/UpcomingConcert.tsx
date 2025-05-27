@@ -21,7 +21,7 @@ const UpcomingConcert = async () => {
         {/* poster for the upcoming concert */}
         {isMedia(content.upcomingConcert?.poster) ? (
           <img
-            src={content.upcomingConcert.poster.src}
+            src={content.upcomingConcert.poster.url}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
             className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
           />
