@@ -89,10 +89,12 @@ export interface Config {
   globals: {
     'landing-page': LandingPage;
     footer: Footer;
+    header: Header;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   user: User & {
@@ -384,6 +386,24 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  logo?: (string | null) | Media;
+  title?: string | null;
+  navLinks?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -461,6 +481,24 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               id?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  logo?: T;
+  title?: T;
+  navLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;
