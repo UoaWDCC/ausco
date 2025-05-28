@@ -37,7 +37,7 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 
-  /*colour variables*/
+  /*custom colour variables*/
   --navy: oklch(0.4187 0.1033 258.11); 
   --cream: oklch(0.9665 0.0108 95.16);
   --brown: oklch(0.359 0.0856 46.62);
@@ -254,9 +254,9 @@ svg {
 }
 
 footer {
-  background-color: #eee5d8;
+  background-color: var(--beige);
 }
 
 footer div {
-  color: #032b50;
+  color: var(--navy);
 }

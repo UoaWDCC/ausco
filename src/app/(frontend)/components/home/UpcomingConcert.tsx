@@ -10,7 +10,7 @@ const UpcomingConcert = async () => {
   const [content] = await Promise.all([getLandingPage()]);
 
   return (
-    <section className="bg-[#eee5d8] text-[#602c0f] mx-auto py-4">
+    <section className="bg-[var(--beige)] text-[var(--brown)] mx-auto py-4">
       {/* name of the upcoming concert */}
       <div className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
         <p className="inline-block mr-4">Our Upcoming Concert,</p>
@@ -23,7 +23,7 @@ const UpcomingConcert = async () => {
           <img
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
-            className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
+            className="w-80 h-auto mr-4 border-2 border-[var(--brown)] rounded-md mt-0"
           />
         ) : (
           <p>No valid poster available</p>
@@ -33,7 +33,7 @@ const UpcomingConcert = async () => {
           {/* description for the upcoming concert*/}
           <p className="mt-0 pt-0"> {content.upcomingConcert?.description} </p>
 
-          <hr className="border-t-[1.5px] border-[#602c0f] mt-12" />
+          <hr className="border-t-[1.5px] border-[var(--brown)] mt-12" />
         </div>
       </div>
     </section>
