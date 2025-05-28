@@ -70,7 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     test: Test;
-    videos: Video;
+    Videos: Video;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,7 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
-    videos: VideosSelect<false> | VideosSelect<true>;
+    Videos: VideosSelect<false> | VideosSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -175,7 +175,7 @@ export interface Test {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos".
+ * via the `definition` "Videos".
  */
 export interface Video {
   id: string;
@@ -204,7 +204,7 @@ export interface PayloadLockedDocument {
         value: string | Test;
       } | null)
     | ({
-        relationTo: 'videos';
+        relationTo: 'Videos';
         value: string | Video;
       } | null);
   globalSlug?: string | null;
@@ -295,7 +295,7 @@ export interface TestSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos_select".
+ * via the `definition` "Videos_select".
  */
 export interface VideosSelect<T extends boolean = true> {
   title?: T;

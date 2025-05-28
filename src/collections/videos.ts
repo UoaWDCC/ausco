@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload";
 
 const Videos: CollectionConfig = {
-  slug: "videos",
+  slug: "Videos",
   fields: [
     {
       name: "title",

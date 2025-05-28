@@ -15,22 +15,20 @@ const PastConcert = () => {
   const playerRef = useRef<any>(null);
   const [scrollRatio, setScrollRatio] = useState(0);
   const [hovered, setHovered] = useState(false);
-  const [isMuted, setIsMuted] = useState(true); //
-  const [youtubeUrl, setYoutubeUrl] = useState<string | null>(null);
+  const [isMuted, setIsMuted] = useState(true);
   const [videoId, setVideoId] = useState<string | null>(null);
   const [inView, setInView] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const [boxWidth, setBoxWidth] = useState(560);
   const [boxHeight, setBoxHeight] = useState(315);
 
-  // Fetch YouTube URL from Payload Videos collection
+  // Fetch YouTube video ID from API
   useEffect(() => {
-    fetch("/api/videos")
+    fetch("/api/Videos")
       .then(res => res.json())
       .then(data => {
         if (data.docs && data.docs.length > 0) {
           const video = data.docs[0];
-          setYoutubeUrl(video.youtubeUrl);
           const match = video.youtubeUrl.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
           setVideoId(match ? match[1] : null);
         }
@@ -69,7 +67,6 @@ const PastConcert = () => {
     let lastInView = false;
     const observer = new window.IntersectionObserver(
       ([entry]) => {
-        // Use two thresholds for hysteresis
         if (!lastInView && entry.intersectionRatio > 0.66) {
           setInView(true);
           lastInView = true;
@@ -84,7 +81,7 @@ const PastConcert = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Responsive video box size (SSR-safe)
+  // Responsive video box size
   useEffect(() => {
     function updateSize() {
       if (inView && typeof window !== "undefined") {
@@ -122,7 +119,7 @@ const PastConcert = () => {
             autoplay: inView ? 1 : 0,
             controls: 0,
             enablejsapi: 1,
-            mute: 1, 
+            mute: 1,
           },
           events: {
             onReady: (event: any) => {
@@ -133,7 +130,7 @@ const PastConcert = () => {
           },
         });
       } else {
-        setTimeout(createPlayerWhenReady, 100); // Try again in 100ms
+        setTimeout(createPlayerWhenReady, 100);
       }
     }
 
@@ -145,7 +142,6 @@ const PastConcert = () => {
       document.body.appendChild(tag);
       window.onYouTubeIframeAPIReady = createPlayerWhenReady;
     }
-    // eslint-disable-next-line
   }, [videoId, inView, isMuted]);
 
   // Autoplay/pause when in view
@@ -194,6 +190,10 @@ const PastConcert = () => {
       >
         <div
           className="w-full h-full bg-[#b0b9c6] flex items-center justify-center text-[#555] text-[1.2rem] rounded-lg transition-all duration-500 relative overflow-hidden"
+          style={{
+            transition:
+              "width 0.6s cubic-bezier(0.4,0,0.2,1), height 0.6s cubic-bezier(0.4,0,0.2,1)",
+          }}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
