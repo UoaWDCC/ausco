@@ -116,7 +116,6 @@ p {
 
 a {
   color: currentColor;
-  nge that n
   &:focus {
     opacity: 0.8;
     outline: none;
