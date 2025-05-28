@@ -15,6 +15,9 @@ const Videos: CollectionConfig = {
       required: true,
     },
   ],
+  access: {
+    read: () => true, 
+  },
 };
 
 export default Videos;
