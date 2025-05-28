@@ -36,6 +36,13 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /*colour variables*/
+  --navy: oklch(0.4187 0.1033 258.11); 
+  --cream: oklch(0.9665 0.0108 95.16);
+  --brown: oklch(0.359 0.0856 46.62);
+  --beige: oklch(0.9255 0.02 77.31); 
+  --blue: oklch(0.6648 0.0945 255.48); 
 }
 
 * {
