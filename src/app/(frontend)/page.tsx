@@ -1,4 +1,3 @@
-import Header from "@components/home/Header";
 import UpcomingConcert from "@components/home/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import PastConcert from "@components/home/PastConcert";
