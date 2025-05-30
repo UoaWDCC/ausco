@@ -350,6 +350,18 @@ export interface LandingPage {
     poster?: (string | null) | Media;
     description?: string | null;
   };
+  matinee?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  concert?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
   /**
    * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
    */
@@ -446,6 +458,22 @@ export interface LandingPageSelect<T extends boolean = true> {
         title?: T;
         poster?: T;
         description?: T;
+      };
+  matinee?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  concert?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
       };
   infoCards?:
     | T
