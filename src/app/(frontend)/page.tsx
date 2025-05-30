@@ -4,8 +4,9 @@ import PastConcert from "@components/home/PastConcert";
 import Footer from "@components/home/Footer";
 import HeroSection from "@components/home/HeroSection";
 import Ticket from "@components/home/Ticket";
-
+import { getLandingPage } from "@/actions/getLandingPage";
 export default async function HomePage() {
+  const landingPageData = await getLandingPage();
   return (
     <>
       <HeroSection />
@@ -13,7 +14,7 @@ export default async function HomePage() {
       <InfoCards />
       <PastConcert />
       <Footer />
-      <Ticket />
+      <Ticket matineeData={landingPageData.matinee}/>
     </>
   );
 }

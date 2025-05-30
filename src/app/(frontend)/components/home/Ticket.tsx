@@ -1,10 +1,9 @@
-import { getTicket } from "@/actions/getTicket";
 import config from "@/payload.config";
 import { Button } from "../ui/button";
 import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
 
-const Ticket = async () => {
-  const ticketData = await getTicket();
+const Ticket = async ({matineeData}) => {
+  // const ticketData = await getTicket();
   return (
 
     <section className="flex justify-around p-6">
@@ -14,7 +13,7 @@ const Ticket = async () => {
         <div className="details text-[#602C0F]">
           <div className="flex items-center gap-2">
             <Calendar size={20} className="stroke-[#602C0F]" />
-            <span>Date TBC</span>
+            <span>{matineeData?.date}</span>
           </div>
           <div className="flex items-center gap-2 mt-2">
             <MapPin size={20} className="stroke-[#602C0F]" />
