@@ -10,7 +10,6 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
 import Header from "./collections/global/Header";
-import  Ticket from "./collections/global/Ticket";
 import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";

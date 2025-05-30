@@ -14,7 +14,7 @@ export default async function HomePage() {
       <InfoCards />
       <PastConcert />
       <Footer />
-      <Ticket matineeData={landingPageData.matinee}/>
+      <Ticket matineeData={landingPageData.matinee} concertData={landingPageData.concert}/>
     </>
   );
 }
