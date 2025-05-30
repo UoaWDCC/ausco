@@ -14,6 +14,7 @@ import  Ticket from "./collections/global/Ticket";
 import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
+import Videos from "./collections/videos";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -26,9 +27,8 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, Ticket],
-
-  collections: [Users, Media, Item],
+  globals: [LandingPage, Footer, Header],
+  collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     test: Test;
+    Videos: Video;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
+    Videos: VideosSelect<false> | VideosSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -173,6 +175,17 @@ export interface Test {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Videos".
+ */
+export interface Video {
+  id: string;
+  title: string;
+  youtubeUrl: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -189,6 +202,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'test';
         value: string | Test;
+      } | null)
+    | ({
+        relationTo: 'Videos';
+        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -278,6 +295,16 @@ export interface TestSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  title?: T;
+  youtubeUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -317,6 +344,11 @@ export interface LandingPage {
   header: {
     title: string;
     content: string;
+  };
+  upcomingConcert?: {
+    title?: string | null;
+    poster?: (string | null) | Media;
+    description?: string | null;
   };
   /**
    * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
@@ -407,6 +439,13 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         content?: T;
+      };
+  upcomingConcert?:
+    | T
+    | {
+        title?: T;
+        poster?: T;
+        description?: T;
       };
   infoCards?:
     | T
