@@ -1,28 +1,15 @@
-import { getLandingPage } from "@/actions/getLandingPage";
+import { getTicket } from "@/actions/getTicket";
 import config from "@/payload.config";
 import { Button } from "../ui/button";
 import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
 
-const getTickets = async () => {
-  return {
-    matinee: {
-      title:  "Matinee",
-      date: "Date TBC",
-      location: "Location TBC",
-      
-
-    }
-  }
-}
-
 const Ticket = async () => {
-  const [payloadConfig, content] = await Promise.all([config, getLandingPage()]);
-
+  const ticketData = await getTicket();
   return (
 
     <section className="flex justify-around p-6">
       {/* Matinee Section */}
-      <div className="ticket-section bg-card p-4 rounded w-1/3 text-center">
+      <div className="ticket-section bg-[#EEE5D8] p-4 rounded w-1/3 text-center">
         <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Matinee</h2>
         <div className="details text-[#602C0F]">
           <div className="flex items-center gap-2">
@@ -40,7 +27,7 @@ const Ticket = async () => {
       </div>
 
       {/* Concert Section */}
-      <div className="ticket-section bg-card p-4 rounded w-1/3 text-center">
+      <div className="ticket-section bg-[EEE5D8] p-4 rounded w-1/3 text-center">
         <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Concert</h2>
         <div className="details text-[#602C0F]">
           <div className="flex items-center gap-2">
