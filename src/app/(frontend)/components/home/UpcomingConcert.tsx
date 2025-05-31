@@ -17,13 +17,13 @@ const UpcomingConcert = async () => {
         <p className="inline-block italic"> {content.upcomingConcert?.title} </p>
       </div>
 
-      <div className="flex flex-row gap-16 justify-center item-start my-9">
+      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 align-center justify-center items-center lg:items-start my-9">
         {/* poster for the upcoming concert */}
         {isMedia(content.upcomingConcert?.poster) ? (
           <img
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
-            className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
+            className="lg:w-80 w-94 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
           />
         ) : (
           <p>No valid poster available</p>

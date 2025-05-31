@@ -35,7 +35,7 @@ type InfoCardProp = {
 //infocard component for all shared card features
 const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
   return (
-    <div className="flex flex-col justify-start bg-[#EEEADE] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] space-y-5 lg:space-y-6 shadow-sm">
+    <div className="w-[60%] sm:w-[60%] md:w-[60%] lg:w-[30%] min-h-[680px] bg-[#EEEADE] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] space-y-5 lg:space-y-6 shadow-sm">
       {/*card image placeholder*/}
       <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
 
@@ -85,7 +85,7 @@ const InfoCards = async () => {
   //card rendering
   return (
     <section className="bg-[#F6F4EC] py-24 lg:py-40 px-6">
-      <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-8 lg:gap-10">
+      <div className="max-w-[93rem] mx-auto flex flex-col lg:flex-row flex-wrap items-center lg:items-stretch justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
           <InfoCard
