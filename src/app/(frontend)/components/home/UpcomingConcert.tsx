@@ -10,10 +10,10 @@ const UpcomingConcert = async () => {
   const [content] = await Promise.all([getLandingPage()]);
 
   return (
-    <section className="bg-[#eee5d8] text-[#602c0f] mx-auto py-4">
+    <section className="bg-[#eee5d8] text-[#602c0f] mx-auto pt-30 pb-20">
       {/* name of the upcoming concert */}
       <div className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-        <p className="inline-block mr-4">Our Upcoming Concert,</p>
+        <p className="inline-block mr-4">Our Upcoming Concert,&nbsp;</p>
         <p className="inline-block italic"> {content.upcomingConcert?.title} </p>
       </div>
 
@@ -29,11 +29,11 @@ const UpcomingConcert = async () => {
           <p>No valid poster available</p>
         )}
 
-        <div className="w-96 text-xs text-left mt-0 pt-0">
+        <div className="w-96 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
           {/* description for the upcoming concert*/}
-          <p className="mt-0 pt-0"> {content.upcomingConcert?.description} </p>
-
-          <hr className="border-t-[1.5px] border-[#602c0f] mt-12" />
+          <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
+          <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>
+          <hr className="border-t-[1.5px] border-[#602c0f] mt-6" />
         </div>
       </div>
     </section>
