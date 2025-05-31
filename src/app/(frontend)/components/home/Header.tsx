@@ -11,7 +11,7 @@ const Header = async () => {
 
   return (
     <header>
-      <nav className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 sm:pt-6 px-4 sm:px-12 w-full">
+      <nav className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-4 sm:py-6 px-4 sm:px-12 w-full">
         <div className="flex items-center space-x-4 w-full sm:w-auto mb-4 sm:mb-0">
           {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
           <span
