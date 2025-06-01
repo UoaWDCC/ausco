@@ -5,9 +5,11 @@ import logo from "../../assets/ausco-logo-1.png";
 import { ArrowUpRight } from "lucide-react";
 import heroImage from "../../assets/hero.jpg";
 import Image from "next/image";
+import { getHeader } from "@/actions/getHeader";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
+  const headerContent = await getHeader();
 
   return (
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
@@ -19,7 +21,7 @@ const HeroSection = async () => {
 
       {/* Header (fixed) */}
       <div className="relative z-30">
-        <Header />
+        <Header content={headerContent} />
       </div>
 
       <div className="relative z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
