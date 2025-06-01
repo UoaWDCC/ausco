@@ -9,7 +9,6 @@ import { getHeader } from "@/actions/getHeader";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
-  const headerContent = await getHeader();
 
   return (
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
@@ -19,12 +18,7 @@ const HeroSection = async () => {
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10" />
 
-      {/* Header (fixed) */}
-      <div className="relative z-30">
-        <Header content={headerContent} />
-      </div>
-
-      <div className="relative z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
+      <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
         <img src={logo.src} alt="AUSCO logo" className="w-40 md:w-45 mb-6" />
 
         <div className="space-y-6 max-w-3xl">

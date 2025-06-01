@@ -22,7 +22,7 @@ const Header = ({ content }: HeaderProps) => {
 
   return (
     <header>
-      <nav className="flex flex-col xl:flex-row relative items-start xl:items-center justify-between py-4 sm:py-6 px-4 sm:px-12 w-full">
+      <nav className="flex flex-col xl:flex-row absolute z-30 items-start xl:items-center justify-between py-4 sm:py-6 px-4 sm:px-12 w-full">
         <div className="flex items-center justify-between w-full xl:w-auto mb-4 xl:mb-0">
           <div className="flex items-center space-x-4">
             {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
