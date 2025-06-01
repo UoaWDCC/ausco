@@ -47,10 +47,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
-          <Button
-            href={linkHref || "#"}
-            className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent border-2 text-[#264C84] border-[#264C84] hover:bg-[#264C84] hover:text-[#EEEADE] transition"
-          >
+          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent border-2 text-[#264C84] border-[#264C84] hover:bg-[#264C84] hover:text-[#EEEADE] transition">
             {linkText}
           </Button>
         )}
