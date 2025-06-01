@@ -1,4 +1,3 @@
-import config from "@/payload.config";
 import { Button } from "../ui/button";
 import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
 
@@ -15,7 +14,7 @@ type TicketProps = {
   };
 };
 
-const Ticket = async ({ matineeData, concertData }) => {
+const Ticket = ({ matineeData, concertData }: TicketProps) => {
   return (
     <section className="flex justify-around p-6 bg-[#EEE5D8]">
       {/* Matinee Section */}

@@ -21,7 +21,10 @@ const UpcomingConcert = async () => {
       <div className="flex flex-row gap-16 justify-center item-start my-9">
         {/* poster for the upcoming concert */}
         {isMedia(content.upcomingConcert?.poster) ? (
+          // TODO: the width and height will need to be adjusted based on the actual image size, currently hardcoded as next/image requires dimension for app to run
           <Image
+            width={320}
+            height={480}
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
             className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
