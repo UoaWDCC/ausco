@@ -25,7 +25,8 @@ const Header = ({ content }: HeaderProps) => {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 10);
+      /* for devs: adjusting this y value will change how far user needs to scroll for header background to change */
+      setScrolled(window.scrollY > 35);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
