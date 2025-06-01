@@ -19,7 +19,7 @@ const HeroSection = async () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10" />
 
       <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
-        <img src={logo.src} alt="AUSCO logo" className="w-40 md:w-45 mb-6" />
+        <img src={logo.src} alt="AUSCO logo" className="w-35 sm:w-40 md:w-45 mb-6" />
 
         <div className="space-y-6 max-w-3xl">
           {content && (

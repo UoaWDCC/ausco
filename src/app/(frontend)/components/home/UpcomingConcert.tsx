@@ -23,13 +23,13 @@ const UpcomingConcert = async () => {
           <img
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
-            className="lg:w-80 w-94 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
+            className="lg:w-80 md:w-94 w-75 h-auto lg:mr-4 mr-1 border-2 border-[#602c0f] rounded-md mt-0"
           />
         ) : (
           <p>No valid poster available</p>
         )}
 
-        <div className="w-96 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
+        <div className="lg:w-96 w-64 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
           {/* description for the upcoming concert*/}
           <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
           <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>

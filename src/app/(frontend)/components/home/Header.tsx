@@ -44,7 +44,10 @@ const Header = ({ content }: HeaderProps) => {
           <div className="flex items-center space-x-4">
             {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
             <span
-              className={clsx("text-lg font-medium", scrolled ? "text-[#264C84]" : "text-white")}
+              className={clsx(
+                "text:md md:text-lg font-medium",
+                scrolled ? "text-[#264C84]" : "text-white",
+              )}
               dangerouslySetInnerHTML={{ __html: content.title || "" }}
             />
           </div>
