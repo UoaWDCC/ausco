@@ -2,7 +2,8 @@
 
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
 
 type HeaderProps = {
   content: {
@@ -20,33 +21,76 @@ const Header = ({ content }: HeaderProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header>
-      <nav className="flex flex-col xl:flex-row absolute z-30 items-start xl:items-center justify-between py-4 sm:py-6 px-4 sm:px-12 w-full">
+      <nav
+        className={clsx(
+          "flex flex-col xl:flex-row absolute z-30 items-start xl:items-center justify-between py-4 sm:py-6 px-4 sm:px-12 w-full",
+          scrolled ? "fixed bg-[#F6F4EC] shadow-md" : "absolute bg-transparent",
+        )}
+      >
         <div className="flex items-center justify-between w-full xl:w-auto mb-4 xl:mb-0">
           <div className="flex items-center space-x-4">
             {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
             <span
-              className="text-lg font-medium"
+              className={clsx("text-lg font-medium", scrolled ? "text-[#264C84]" : "text-white")}
               dangerouslySetInnerHTML={{ __html: content.title || "" }}
             />
           </div>
           {/*hamburger/cross menu that appears for small screens */}
-          <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden" aria-label="Toggle menu">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={clsx("xl:hidden", scrolled ? "text-[#264C84]" : "text-white")}
+            aria-label="Toggle menu"
+          >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-        <div className="hidden xl:flex flex-wrap items-center gap-4 sm:gap-12">
+        <div
+          className={clsx(
+            "hidden xl:flex flex-wrap items-center gap-4 sm:gap-12",
+            scrolled ? "text-[#264C84]" : "text-white",
+          )}
+        >
           {content.navLinks?.map((link, i) => (
-            <a key={i} href={link.url || "#"} className="text-sm hover:underline block">
+            <a
+              key={i}
+              href={link.url || "#"}
+              className={clsx(
+                "text-sm hover:underline block",
+                scrolled ? "text-[#264C84]" : "text-white",
+              )}
+            >
               {link.label}
             </a>
           ))}
         </div>
         {isOpen && (
-          <div className="xl:hidden mt-2 ābsolute flex flex-col gap-2 w-full">
+          <div
+            className={clsx(
+              "xl:hidden mt-2 ābsolute flex flex-col gap-2 w-full",
+              scrolled ? "text-[#264C84]" : "text-white",
+            )}
+          >
             {content.navLinks?.map((link, i) => (
-              <a key={i} href={link.url || "#"} className="text-sm hover:underline block">
+              <a
+                key={i}
+                href={link.url || "#"}
+                className={clsx(
+                  "text-sm hover:underline block",
+                  scrolled ? "text-[#264C84]" : "text-white",
+                )}
+              >
                 {link.label}
               </a>
             ))}
