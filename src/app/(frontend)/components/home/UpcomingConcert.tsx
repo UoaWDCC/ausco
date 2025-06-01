@@ -1,5 +1,6 @@
 import { getLandingPage } from "@/actions/getLandingPage";
 import { Media } from "@/payload-types";
+import Image from "next/image";
 
 // Type guard to check if poster is a Media object
 function isMedia(poster: string | Media | null | undefined): poster is Media {
@@ -20,7 +21,7 @@ const UpcomingConcert = async () => {
       <div className="flex flex-row gap-16 justify-center item-start my-9">
         {/* poster for the upcoming concert */}
         {isMedia(content.upcomingConcert?.poster) ? (
-          <img
+          <Image
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
             className="w-80 h-auto mr-4 border-2 border-[#602c0f] rounded-md mt-0"
