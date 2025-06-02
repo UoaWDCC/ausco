@@ -6,7 +6,7 @@ import config from "@/payload.config";
 import { JSX } from "react";
 
 const Footer = async () => {
-  const [payloadConfig, content] = await Promise.all([config, getFooter()]);
+  const [_payloadConfig, content] = await Promise.all([config, getFooter()]);
 
   const platformIconMap: Record<string, JSX.Element> = {
     facebook: <Facebook width={20} height={20} />,
