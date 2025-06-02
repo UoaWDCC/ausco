@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload";
 
 const Videos: CollectionConfig = {
-  slug: "videos",
+  slug: "Videos",
   fields: [
     {
       name: "title",
@@ -15,6 +15,9 @@ const Videos: CollectionConfig = {
       required: true,
     },
   ],
+  access: {
+    read: () => true, 
+  },
 };
 
 export default Videos;

@@ -14,6 +14,7 @@ import Header from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
+import Videos from "./collections/videos";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -25,10 +26,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-
   globals: [LandingPage, Footer, Header],
-
-  collections: [Users, Media, Item],
+  collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
