@@ -2,6 +2,7 @@
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/getLandingPage";
 import { ReactNode } from "react";
+import { Button } from "../ui/button";
 
 //define icon mapping type
 type IconMapping = {
@@ -46,20 +47,30 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
-          <a href={linkHref || "#"} className="text-sm sm:text-base font-semibold hover:underline">
-            {linkText}
-          </a>
+          <Button
+            variant="link"
+            asChild
+            className="sm:text-base font-semibold p-0 h-auto border-none inline-flex justify-center w-full"
+          >
+            <a href={linkHref || "#"}>{linkText}</a>
+          </Button>
         )}
 
         {/*displays contact information as a list if contacts exist*/}
         {contacts && contacts.length > 0 && (
-          <ul className="text-sm sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
+          <ul className="sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
             {contacts.map((contact, j) => (
-              <li key={j}>
-                <a className="flex items-center gap-2 hover:underline" href={contact.href || "#"}>
-                  {getIcon && getIcon(contact.icon)}
-                  {contact.text}
-                </a>
+              <li key={j} className="w-full flex justify-center">
+                <Button
+                  variant="link"
+                  asChild
+                  className="flex items-center gap-2 p-0 h-auto border-none"
+                >
+                  <a href={contact.href || "#"}>
+                    {getIcon && getIcon(contact.icon)}
+                    {contact.text}
+                  </a>
+                </Button>
               </li>
             ))}
           </ul>
