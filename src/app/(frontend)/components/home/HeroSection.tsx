@@ -34,7 +34,7 @@ const HeroSection = async () => {
               <h3 className="text-base md:text-lg">{content.header.content}</h3>
             </>
           )}
-          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[var(--cream)]  border-2 border-[var(--cream)] hover:bg-white hover:text-black transition">
+          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[var(--cream)] border-2 border-[var(--cream)] hover:bg-white hover:text-black transition">
             Join us <ArrowUpRight size={18} />
           </Button>
         </div>
