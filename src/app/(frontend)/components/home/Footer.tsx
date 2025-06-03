@@ -42,7 +42,12 @@ const Footer = async () => {
             <div key={secId} className="w-60 flex flex-col">
               <h3 className="font-bold mb-1.5">{section.title}</h3>
               {section.links?.map((link, linkId) => (
-                <Button key={linkId} variant="link" asChild>
+                <Button
+                  key={linkId}
+                  variant="link"
+                  asChild
+                  className="inline-flex items-start justify-start gap-0 whitespace-normal rounded-none p-0 h-auto text-sm mb-1 w-fit"
+                >
                   <a href={link.url}>{link.label}</a>
                 </Button>
               ))}
