@@ -65,7 +65,11 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
               <li key={j} className="w-full flex justify-center">
                 <div className="flex items-center gap-2">
                   {getIcon && getIcon(contact.icon)}
-                  <Button variant="link" asChild className="p-0 h-auto border-none inline-flex">
+                  <Button
+                    variant="link"
+                    asChild
+                    className="p-0 h-auto border-none inline-flex font-semibold"
+                  >
                     <a href={contact.href || "#"}>{contact.text}</a>
                   </Button>
                 </div>
