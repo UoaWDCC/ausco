@@ -3,6 +3,8 @@ import Header from "@components/home/Header";
 import { Button } from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
 import { ArrowUpRight } from "lucide-react";
+import heroImage from "../../assets/hero.jpg";
+import Image from "next/image";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
@@ -10,8 +12,10 @@ const HeroSection = async () => {
   return (
     <div className="relative overflow-hidden min-h-screen">
       {/* Background Image */}
-      <div className="absolute inset-0 bg-[url('./assets/hero.jpg')] bg-cover bg-center bg-no-repeat z-0"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10"></div>
+      <div className="absolute inset-0 z-0">
+        <Image src={heroImage} alt="Hero background" fill className="object-cover" priority />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10" />
 
       {/* Header (fixed) */}
       <div className="relative z-30">
@@ -30,7 +34,7 @@ const HeroSection = async () => {
               <h3 className="text-base md:text-lg">{content.header.content}</h3>
             </>
           )}
-          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[var(--cream)] border-2 border-[var(--cream)] hover:bg-white hover:text-black transition">
+          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[var(--cream)]  border-2 border-[var(--cream)] hover:bg-white hover:text-black transition">
             Join us <ArrowUpRight size={18} />
           </Button>
         </div>
