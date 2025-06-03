@@ -1,5 +1,6 @@
 import { getHeader } from "@/actions/getHeader";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 const Header = async () => {
   const content = await getHeader();
