@@ -47,13 +47,15 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
-          <Button
-            variant="link"
-            asChild
-            className="sm:text-base font-semibold p-0 h-auto border-none inline-flex justify-center w-full"
-          >
-            <a href={linkHref || "#"}>{linkText}</a>
-          </Button>
+          <div className="flex justify-center w-full">
+            <Button
+              variant="link"
+              asChild
+              className="sm:text-base font-semibold p-0 h-auto border-none inline-flex"
+            >
+              <a href={linkHref || "#"}>{linkText}</a>
+            </Button>
+          </div>
         )}
 
         {/*displays contact information as a list if contacts exist*/}
