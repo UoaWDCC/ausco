@@ -64,11 +64,11 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
             {contacts.map((contact, j) => (
               <li key={j} className="w-full flex justify-center">
                 <div className="flex items-center gap-2">
-                  {getIcon && getIcon(contact.icon)}
+                  <div className="flex items-center">{getIcon && getIcon(contact.icon)}</div>
                   <Button
                     variant="link"
                     asChild
-                    className="p-0 h-auto border-none inline-flex font-semibold"
+                    className="sm:text-base font-semibold p-0 h-auto border-none inline-flex"
                   >
                     <a href={contact.href || "#"}>{contact.text}</a>
                   </Button>

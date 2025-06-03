@@ -4,6 +4,7 @@ import { Facebook, Instagram, Youtube } from "lucide-react";
 import spotifyLogo from "../../assets/spotify-logo.svg";
 import config from "@/payload.config";
 import { JSX } from "react";
+import { Button } from "../ui/button";
 
 const Footer = async () => {
   const [_payloadConfig, content] = await Promise.all([config, getFooter()]);
@@ -41,13 +42,9 @@ const Footer = async () => {
             <div key={secId} className="w-60 flex flex-col">
               <h3 className="font-bold mb-1.5">{section.title}</h3>
               {section.links?.map((link, linkId) => (
-                <a
-                  key={linkId}
-                  href={link.url}
-                  className="relative inline-block text-sm mb-1 w-fit after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
-                >
-                  {link.label}
-                </a>
+                <Button key={linkId} variant="link" asChild>
+                  <a href={link.url}>{link.label}</a>
+                </Button>
               ))}
             </div>
           ))}
