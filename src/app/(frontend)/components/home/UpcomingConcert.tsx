@@ -1,6 +1,7 @@
 import { getLandingPage } from "@/actions/getLandingPage";
 import { Media } from "@/payload-types";
 import Image from "next/image";
+import Ticket from "./Ticket";
 
 // Type guard to check if poster is a Media object
 function isMedia(poster: string | Media | null | undefined): poster is Media {
@@ -33,11 +34,16 @@ const UpcomingConcert = async () => {
           <p>No valid poster available</p>
         )}
 
-        <div className="lg:w-96 w-64 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
-          {/* description for the upcoming concert*/}
-          <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
-          <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>
-          <hr className="border-t-[1.5px] border-[var(--brown)] mt-6" />
+        <div className="flex flex-col">
+          <div className="lg:w-96 w-64 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
+            {/* description for the upcoming concert*/}
+            <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
+            <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>
+            <hr className="border-t-[1.5px] border-[var(--brown)] mt-6" />
+          </div>
+          <div className="pt-9">
+            <Ticket matineeData={content.matinee} concertData={content.concert} />
+          </div>
         </div>
       </div>
     </section>

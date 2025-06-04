@@ -12,6 +12,7 @@ const headerContent = await getHeader();
 
 export default async function HomePage() {
   const landingPageData = await getLandingPage();
+
   return (
     <>
       <Header content={headerContent} />
@@ -20,7 +21,6 @@ export default async function HomePage() {
       <InfoCards />
       <PastConcert />
       <Footer />
-      <Ticket matineeData={landingPageData.matinee} concertData={landingPageData.concert} />
     </>
   );
 }
