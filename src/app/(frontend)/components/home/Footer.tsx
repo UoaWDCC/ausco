@@ -20,14 +20,14 @@ const Footer = async () => {
     <footer>
       <div className="flex flex-col lg:flex-row justify-between px-8 pt-16 lg:px-16 items-start h-auto lg:h-56 gap-20 lg:gap-0">
         <div className="flex items-start gap-6">
-          <div className="h-24 mt-2">
+          <div className="h-24 mt-2 lg:min-w-18">
             {/* Prevents Next errors by checking image has a valid URL */}
             {typeof content.logo === "object" && typeof content.logo.url === "string" && (
               <Image src={content.logo.url} alt={content.logo.alt} width={86} height={144} />
             )}
           </div>
           <div className="flex flex-col h-24 justify-evenly gap-1">
-            <div className="w-50 font-bold mb-2 text-2xl lg:text-xl">{content.title}</div>
+            <div className="w-50 font-bold mb-2 text-xl lg:text-xl">{content.title}</div>
             <div className="flex gap-3">
               {content.socials?.map((social, index) => (
                 <a key={index} href={social.url}>
@@ -37,7 +37,7 @@ const Footer = async () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-4 lg:gap-8">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-4 lg:gap-8">
           {content.sections?.map((section, secId) => (
             <div key={secId} className="w-full md:w-48 lg:w-60 flex flex-col">
               <h3 className="font-bold mb-1.5">{section.title}</h3>

@@ -5,26 +5,21 @@ import logo from "../../assets/ausco-logo-1.png";
 import { ArrowUpRight } from "lucide-react";
 import heroImage from "../../assets/hero.jpg";
 import Image from "next/image";
+import { getHeader } from "@/actions/getHeader";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
 
   return (
-    <div className="relative overflow-hidden min-h-screen">
+    <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image src={heroImage} alt="Hero background" fill className="object-cover" priority />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60 z-10" />
 
-      {/* Header (fixed) */}
-      <div className="relative z-30">
-        <Header />
-      </div>
-
-      <div className="relative z-20 flex flex-col items-center justify-center text-white px-4 pb-8 md:pb-16 text-center">
-        <img src={logo.src} alt="AUSCO logo" className="w-40 md:w-60 mb-6" />
-
+      <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
+        <img src={logo.src} alt="AUSCO logo" className="w-35 sm:w-40 md:w-45 mb-6" />
         <div className="space-y-6 max-w-3xl">
           {content && (
             <>
