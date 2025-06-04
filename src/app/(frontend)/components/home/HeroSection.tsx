@@ -20,7 +20,6 @@ const HeroSection = async () => {
 
       <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
         <img src={logo.src} alt="AUSCO logo" className="w-35 sm:w-40 md:w-45 mb-6" />
-
         <div className="space-y-6 max-w-3xl">
           {content && (
             <>
@@ -30,7 +29,7 @@ const HeroSection = async () => {
               <h3 className="text-base md:text-lg">{content.header.content}</h3>
             </>
           )}
-          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[#f6f4ec] border-2 border-[#f6f4ec] hover:bg-white hover:text-black transition">
+          <Button className="flex items-center justify-center w-fit mx-auto gap-2 px-6 py-4 text-sm md:text-base bg-transparent text-[var(--cream)] border-2 border-[var(--cream)] hover:bg-white hover:text-black transition">
             Join us <ArrowUpRight size={18} />
           </Button>
         </div>

@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { Button } from "../ui/button";
 
 type HeaderProps = {
   content: {
@@ -67,16 +68,14 @@ const Header = ({ content }: HeaderProps) => {
           )}
         >
           {content.navLinks?.map((link, i) => (
-            <a
-              key={i}
-              href={link.url || "#"}
-              className={clsx(
-                "text-sm hover:underline block",
-                scrolled ? "text-[#264C84]" : "text-white",
-              )}
-            >
-              {link.label}
-            </a>
+            <Button key={i} variant="link" asChild>
+              <a
+                className={clsx("text-sm", scrolled ? "text-[#264C84]" : "text-white")}
+                href={link.url || "#"}
+              >
+                {link.label}
+              </a>
+            </Button>
           ))}
         </div>
         {isOpen && (

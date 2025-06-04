@@ -5,10 +5,13 @@ import Footer from "@components/home/Footer";
 import HeroSection from "@components/home/HeroSection";
 import Header from "@components/home/Header";
 import { getHeader } from "@/actions/getHeader";
+import Ticket from "@components/home/Ticket";
+import { getLandingPage } from "@/actions/getLandingPage";
 
 const headerContent = await getHeader();
 
 export default async function HomePage() {
+  const landingPageData = await getLandingPage();
   return (
     <>
       <Header content={headerContent} />
@@ -17,6 +20,7 @@ export default async function HomePage() {
       <InfoCards />
       <PastConcert />
       <Footer />
+      <Ticket matineeData={landingPageData.matinee} concertData={landingPageData.concert} />
     </>
   );
 }
