@@ -39,9 +39,9 @@ const UpcomingConcert = async () => {
             {/* description for the upcoming concert*/}
             <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
             <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>
-            <hr className="border-t-[1.5px] border-[var(--brown)] mt-6" />
+            <hr className="border-t-[1.5px] border-[var(--brown)] lg:mt-6 mt-3" />
           </div>
-          <div className="pt-9">
+          <div className="lg:pt-9 pt-4">
             <Ticket matineeData={content.matinee} concertData={content.concert} />
           </div>
         </div>

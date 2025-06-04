@@ -36,7 +36,7 @@ type InfoCardProp = {
 //infocard component for all shared card features
 const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
   return (
-    <div className="flex flex-col justify-start bg-[var(--beige)] w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
+    <div className="flex flex-col justify-start bg-[var(--beige)] w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
       {/*card image placeholder*/}
       <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
 
