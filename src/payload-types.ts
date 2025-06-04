@@ -348,7 +348,8 @@ export interface LandingPage {
   upcomingConcert?: {
     title?: string | null;
     poster?: (string | null) | Media;
-    description?: string | null;
+    description1?: string | null;
+    description2?: string | null;
   };
   /**
    * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
@@ -445,7 +446,8 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description?: T;
+        description1?: T;
+        description2?: T;
       };
   infoCards?:
     | T
