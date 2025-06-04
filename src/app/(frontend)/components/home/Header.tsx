@@ -5,12 +5,13 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { Button } from "../ui/button";
+import type { Media } from "@/payload-types";
 
 type HeaderProps = {
   content: {
-    title?: string;
-    logo?: { url: string; alt?: string };
-    navLinks?: { url?: string; label?: string }[];
+    title?: string | null;
+    logo?: string | Media | null;
+    navLinks?: { url?: string | null; label?: string | null }[] | null;
   };
 };
 
