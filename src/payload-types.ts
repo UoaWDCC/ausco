@@ -92,11 +92,13 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    'about-first-cards': AboutFirstCard;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -443,6 +445,27 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-first-cards".
+ */
+export interface AboutFirstCard {
+  id: string;
+  visionCard: {
+    'background-image': string | Media;
+    title: string;
+    'short-desc': string;
+    'full-desc': string;
+  };
+  historyCard: {
+    'background-image': string | Media;
+    title: string;
+    'short-desc': string;
+    'full-desc': string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -555,6 +578,31 @@ export interface HeaderSelect<T extends boolean = true> {
         label?: T;
         url?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-first-cards_select".
+ */
+export interface AboutFirstCardsSelect<T extends boolean = true> {
+  visionCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
+        'short-desc'?: T;
+        'full-desc'?: T;
+      };
+  historyCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
+        'short-desc'?: T;
+        'full-desc'?: T;
       };
   updatedAt?: T;
   createdAt?: T;
