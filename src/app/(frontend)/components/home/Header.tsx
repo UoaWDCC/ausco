@@ -24,7 +24,7 @@ const Header = async () => {
         </div>
         <div className="flex flex-wrap items-center gap-4 sm:gap-12 w-full sm:w-auto">
           {content.navLinks?.map((link, i) => (
-            <Button key={i} variant="link" asChild className="text-sm p-0 h-auto border-none">
+            <Button key={i} variant="link" asChild>
               <a href={link.url || "#"}>{link.label}</a>
             </Button>
           ))}

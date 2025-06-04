@@ -48,11 +48,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
           <div className="flex justify-center w-full">
-            <Button
-              variant="link"
-              asChild
-              className="sm:text-base font-semibold p-0 h-auto border-none inline-flex"
-            >
+            <Button variant="link" asChild>
               <a href={linkHref || "#"}>{linkText}</a>
             </Button>
           </div>
@@ -65,11 +61,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
               <li key={j} className="w-full flex justify-center">
                 <div className="flex items-center gap-2">
                   {getIcon && getIcon(contact.icon)}
-                  <Button
-                    variant="link"
-                    asChild
-                    className="sm:text-base font-semibold p-0 h-auto border-none inline-flex"
-                  >
+                  <Button variant="link" asChild>
                     <a href={contact.href || "#"}>{contact.text}</a>
                   </Button>
                 </div>
