@@ -1,5 +1,6 @@
 import { getHeader } from "@/actions/getHeader";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 const Header = async () => {
   const content = await getHeader();
@@ -23,9 +24,9 @@ const Header = async () => {
         </div>
         <div className="flex flex-wrap items-center gap-4 sm:gap-12 w-full sm:w-auto">
           {content.navLinks?.map((link, i) => (
-            <a key={i} href={link.url || "#"} className="text-sm hover:underline block">
-              {link.label}
-            </a>
+            <Button key={i} variant="link" asChild>
+              <a href={link.url || "#"}>{link.label}</a>
+            </Button>
           ))}
         </div>
       </nav>

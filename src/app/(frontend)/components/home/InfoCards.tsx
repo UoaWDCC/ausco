@@ -2,6 +2,7 @@
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/getLandingPage";
 import { ReactNode } from "react";
+import { Button } from "../ui/button";
 
 //define icon mapping type
 type IconMapping = {
@@ -35,7 +36,7 @@ type InfoCardProp = {
 //infocard component for all shared card features
 const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
   return (
-    <div className="flex flex-col justify-start bg-[#EEEADE] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[#264C84] space-y-5 lg:space-y-6 shadow-sm">
+    <div className="flex flex-col justify-start bg-[var(--beige)] w-full sm:w-[45%] md:w-[30%] min-h-[400px] sm:min-h-[500px] lg:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
       {/*card image placeholder*/}
       <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
 
@@ -46,20 +47,24 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
-          <a href={linkHref || "#"} className="text-sm sm:text-base font-semibold hover:underline">
-            {linkText}
-          </a>
+          <div className="flex justify-center w-full">
+            <Button variant="link" asChild>
+              <a href={linkHref || "#"}>{linkText}</a>
+            </Button>
+          </div>
         )}
 
         {/*displays contact information as a list if contacts exist*/}
         {contacts && contacts.length > 0 && (
-          <ul className="text-sm sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
+          <ul className="sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
             {contacts.map((contact, j) => (
-              <li key={j}>
-                <a className="flex items-center gap-2 hover:underline" href={contact.href || "#"}>
+              <li key={j} className="w-full flex justify-center">
+                <div className="flex items-center gap-2">
                   {getIcon && getIcon(contact.icon)}
-                  {contact.text}
-                </a>
+                  <Button variant="link" asChild>
+                    <a href={contact.href || "#"}>{contact.text}</a>
+                  </Button>
+                </div>
               </li>
             ))}
           </ul>
@@ -84,7 +89,7 @@ const InfoCards = async () => {
 
   //card rendering
   return (
-    <section className="bg-[#F6F4EC] py-24 lg:py-40 px-6">
+    <section className="bg-[var(--cream)] py-24 lg:py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-wrap justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (

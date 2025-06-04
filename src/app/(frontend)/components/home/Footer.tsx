@@ -4,6 +4,7 @@ import { Facebook, Instagram, Youtube } from "lucide-react";
 import spotifyLogo from "../../assets/spotify-logo.svg";
 import config from "@/payload.config";
 import { JSX } from "react";
+import { Button } from "../ui/button";
 
 const Footer = async () => {
   const [_payloadConfig, content] = await Promise.all([config, getFooter()]);
@@ -17,8 +18,8 @@ const Footer = async () => {
 
   return (
     <footer>
-      <div className="flex justify-between px-8 pt-16 lg:px-16 items-top h-56">
-        <div className="flex items-top gap-6">
+      <div className="flex flex-col lg:flex-row justify-between px-8 pt-16 lg:px-16 items-start h-auto lg:h-56 gap-20 lg:gap-0">
+        <div className="flex items-start gap-6">
           <div className="h-24 mt-2">
             {/* Prevents Next errors by checking image has a valid URL */}
             {typeof content.logo === "object" && typeof content.logo.url === "string" && (
@@ -36,18 +37,14 @@ const Footer = async () => {
             </div>
           </div>
         </div>
-        <div className="flex items-top justify-between">
+        <div className="flex flex-col md:flex-row items-start justify-between gap-6 md:gap-4 lg:gap-8">
           {content.sections?.map((section, secId) => (
-            <div key={secId} className="w-60 flex flex-col">
+            <div key={secId} className="w-full md:w-48 lg:w-60 flex flex-col">
               <h3 className="font-bold mb-1.5">{section.title}</h3>
               {section.links?.map((link, linkId) => (
-                <a
-                  key={linkId}
-                  href={link.url}
-                  className="relative inline-block text-sm mb-1 w-fit after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1px] after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
-                >
-                  {link.label}
-                </a>
+                <Button key={linkId} variant="link" asChild className="mb-1.5">
+                  <a href={link.url}>{link.label}</a>
+                </Button>
               ))}
             </div>
           ))}
