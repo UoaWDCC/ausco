@@ -1,5 +1,13 @@
-const OurPeople = async () => {
-  return <h1>OurPeople</h1>;
+const OurPeople = () => {
+  return (
+    <div>
+      <img 
+
+      />
+      <h1>Our People</h1>
+      <p></p>
+    </div>
+  );
 };
 
 export default OurPeople;
