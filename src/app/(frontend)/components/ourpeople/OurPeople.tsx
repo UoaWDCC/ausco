@@ -1,11 +1,13 @@
 const OurPeople = () => {
   return (
-    <div>
+    <div className="bg-[#eee5d8] text-[#602c0f]">
       <img 
 
       />
-      <h1>Our People</h1>
-      <p></p>
+      <div>
+        <h1>Our People</h1>
+        <p>short description about the team</p>
+      </div>
     </div>
   );
 };
