@@ -1,6 +1,6 @@
 const OurPeople = () => {
   return (
-    <div className="bg-[#eee5d8] text-[#602c0f]">
+    <div className="bg-[#eee5d8] text-[#042b50]">
       <img 
 
       />
