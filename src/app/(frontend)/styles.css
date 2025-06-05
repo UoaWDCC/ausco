@@ -41,8 +41,8 @@
   --navy: oklch(0.4187 0.1033 258.11); /*#264C84*/
   --cream: oklch(0.9665 0.0108 95.16); /*#F6F4EC*/
   --brown: oklch(0.359 0.0856 46.62); /*#602C0F*/
-  --beige: oklch(0.9255 0.02 77.31);  /*#EEE5D8*/
-  --blue: oklch(0.6648 0.0945 255.48);  /*#6C96CD*/
+  --beige: oklch(0.9255 0.02 77.31); /*#EEE5D8*/
+  --blue: oklch(0.6648 0.0945 255.48); /*#6C96CD*/
 }
 
 * {
@@ -214,7 +214,7 @@ svg {
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-  --color-popover: popover);
+  --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
