@@ -92,11 +92,13 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    'our-people': OurPerson;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
   };
   locale: null;
   user: User & {
@@ -443,6 +445,17 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-people".
+ */
+export interface OurPerson {
+  id: string;
+  Image?: (string | null) | Media;
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -556,6 +569,17 @@ export interface HeaderSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-people_select".
+ */
+export interface OurPeopleSelect<T extends boolean = true> {
+  Image?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
