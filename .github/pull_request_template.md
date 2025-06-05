@@ -10,11 +10,13 @@ AUSCO-
 
 ## ✅ Checklist
 
-- [] All Next.js build checks are passing. (This can be technical - if you've tried to fix build errors but they persist, it's okay to leave this unchecked)
-- [] I have performed a self-review of my code.
-- [] I have commented my code in hard-to-understand areas.
-- [] I have moved my Jira ticket from IN PROGRESS to READY TO REVIEW.
-- [] I have verified that my pull request is merging my branch (right side) into the main branch (left side) - see the top banner, underneath the "Open a pull request" header.
+<!-- To complete an item, type "x" inside the brackets like this: [x] -->
+
+- [ ] All Next.js build checks are passing. (This can be technical - if you've tried to fix build errors but they persist, it's okay to leave this unchecked)
+- [ ] I have performed a self-review of my code.
+- [ ] I have commented my code in hard-to-understand areas.
+- [ ] I have moved my Jira ticket from IN PROGRESS to READY TO REVIEW.
+- [ ] I have verified that my pull request is merging my branch (right side) into the main branch (left side) - see the top banner, underneath the "Open a pull request" header.
 
 ## 📸 Notes
 
