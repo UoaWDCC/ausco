@@ -449,7 +449,7 @@ export interface Header {
  */
 export interface OurPerson {
   id: string;
-  Image?: (string | null) | Media;
+  image?: (string | null) | Media;
   description?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -578,7 +578,7 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
-  Image?: T;
+  image?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;

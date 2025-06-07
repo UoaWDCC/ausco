@@ -1,6 +1,6 @@
 import { GlobalConfig } from 'payload';
 
-const OurPeople: GlobalConfig = {
+export const OurPeople: GlobalConfig = {
   slug: 'our-people',
   label: 'Our People',
   access: {
@@ -8,7 +8,8 @@ const OurPeople: GlobalConfig = {
   },
   fields: [
     {
-        name: "Image",
+        name: "image",
+        label: "Our People Image",
         type: "upload",
         relationTo: "media",
     },
