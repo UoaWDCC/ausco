@@ -1,12 +1,11 @@
 import { getOurPeople } from "@/actions/getOurPeoplePage";
 import { Media } from "@/payload-types";
-import heroImage from "../../assets/hero.jpg"
 import Image from "next/image";
 
 const OurPeople = async () => {
   const [content] = await Promise.all([getOurPeople()]);
   return (
-    <div className="bg-[#eee5d8] text-[#042b50] flex flex-row gap-16 justify-center items-start py-9 px-auto">
+    <div className="bg-[#eee5d8] text-[#042b50] flex flex-col gap-16 justify-center items-center mx-auto py-9 px-4 lg:flex-row">
       <Image 
         src={content.image.url ?? ""}
         alt={content.image.alt ?? "Concert poster"}
