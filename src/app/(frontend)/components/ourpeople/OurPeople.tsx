@@ -9,7 +9,6 @@ const OurPeople = async () => {
       <Image 
         src={content.image.url ?? ""}
         alt={content.image.alt ?? "Concert poster"}
-        // TODO: the width and height will need to be adjusted based on the actual image size, currently hardcoded as next/image requires dimension for app to run
         width={400}
         height={300}
       />
