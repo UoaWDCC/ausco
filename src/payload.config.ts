@@ -11,6 +11,7 @@ import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
 import Header from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
+import OurPeople from "./collections/global/OurPeople";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
@@ -26,7 +27,7 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header],
+  globals: [LandingPage, Footer, Header, OurPeople],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
