@@ -92,11 +92,13 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    'second-two-card': SecondTwoCard;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
   };
   locale: null;
   user: User & {
@@ -443,6 +445,25 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "second-two-card".
+ */
+export interface SecondTwoCard {
+  id: string;
+  leftBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+  };
+  rightBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -555,6 +576,29 @@ export interface HeaderSelect<T extends boolean = true> {
         label?: T;
         url?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "second-two-card_select".
+ */
+export interface SecondTwoCardSelect<T extends boolean = true> {
+  leftBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
+      };
+  rightBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
       };
   updatedAt?: T;
   createdAt?: T;

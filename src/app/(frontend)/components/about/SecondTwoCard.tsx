@@ -1,6 +1,23 @@
+"use client";
 import { BookText, Handshake } from "lucide-react";
+import { useEffect, useState } from "react";
+
+async function fetchSecondTwoCard() {
+  const res = await fetch("/api/globals/second-two-card");
+  if (!res.ok) throw new Error("Failed to fetch");
+  return res.json();
+}
 
 const SecondTwoCard = () => {
+  const [data, setData] = useState<any>(null);
+  const [hovered, setHovered] = useState<"left" | "right" | null>(null);
+
+  useEffect(() => {
+    fetchSecondTwoCard().then(setData).catch(console.error);
+  }, []);
+
+  if (!data) return null;
+
   return (
     <div className="w-full bg-[#F6F4EC] py-10">
       <div className="flex flex-col sm:flex-row w-full max-w-4xl mx-auto gap-6">
@@ -8,6 +25,8 @@ const SecondTwoCard = () => {
           href=""
           className="relative flex-1 max-w-[40%] min-w-[180px] sm:h-96 h-64 rounded-lg overflow-hidden group cursor-pointer block flex flex-col items-center justify-center text-center w-full sm:w-auto mb-4 sm:mb-0"
           style={{ minWidth: 180 }}
+          onMouseEnter={() => setHovered("left")}
+          onMouseLeave={() => setHovered(null)}
         >
           <div
             className="absolute inset-0 bg-cover bg-center transition-opacity duration-300 group-hover:opacity-0"
@@ -20,9 +39,9 @@ const SecondTwoCard = () => {
           <div className="absolute inset-0 bg-[#6C96CD] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 pb-6 w-full space-y-4">
             <BookText size={40} className="mb-4 text-[#2d3a4a] mt-2" />
-            <h2 className="text-xl font-bold mb-2 text-[#2d3a4a]">Constitution</h2>
+            <h2 className="text-xl font-bold mb-2 text-[#2d3a4a]">{data.leftBox.title}</h2>
             <p className="text-[#2d3a4a] mb-4">
-              Read our constitution and learn about our mission and values.
+              {hovered === "left" ? data.leftBox.fullText : data.leftBox.shortDescription}
             </p>
             <span className="text-[#2d3a4a] underline font-medium">Read more</span>
           </div>
@@ -30,6 +49,8 @@ const SecondTwoCard = () => {
         <div
           className="relative flex-[1.3] min-w-[220px] sm:h-96 h-64 rounded-lg overflow-hidden group cursor-pointer flex flex-col items-center justify-center text-center w-full sm:w-auto"
           style={{ minWidth: 220 }}
+          onMouseEnter={() => setHovered("right")}
+          onMouseLeave={() => setHovered(null)}
         >
           <div
             className="absolute inset-0 bg-cover bg-center transition-opacity duration-300 group-hover:opacity-0"
@@ -42,8 +63,10 @@ const SecondTwoCard = () => {
           <div className="absolute inset-0 bg-[#EEE5D8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 w-full">
             <Handshake size={40} className="mb-4 text-[#2d3a4a] mt-6" />
-            <h2 className="text-xl font-bold mb-2 text-[#2d3a4a]">Sponsors and Partnership</h2>
-            <p className="text-[#2d3a4a]">Discover our sponsors and partnership opportunities.</p>
+            <h2 className="text-xl font-bold mb-2 text-[#2d3a4a]">{data.rightBox.title}</h2>
+            <p className="text-[#2d3a4a]">
+              {hovered === "right" ? data.rightBox.fullText : data.rightBox.shortDescription}
+            </p>
           </div>
         </div>
       </div>
