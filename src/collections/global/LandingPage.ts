@@ -18,7 +18,7 @@ export const LandingPage: GlobalConfig = {
     },
     {
       name: "upcomingConcert",
-      label: "Upcoming Concert", 
+      label: "Upcoming Concert",
       type: "group",
       fields: [
         {
@@ -32,11 +32,16 @@ export const LandingPage: GlobalConfig = {
           relationTo: "media",
         },
         {
-          name: "description",
-          label: "description",
+          name: "description1",
+          label: "description 1",
           type: "text",
-        }
-      ]
+        },
+        {
+          name: "description2",
+          label: "description 2",
+          type: "text",
+        },
+      ],
     },
     {
       name: "matinee",
