@@ -27,6 +27,13 @@ const SecondTwoCard: GlobalConfig = {
           type: "textarea",
           required: true,
         },
+        {
+          name: "backgroundImage",
+          label: "Background Image",
+          type: "upload",
+          relationTo: "media",
+          required: false,
+        },
       ],
     },
     {
@@ -51,6 +58,27 @@ const SecondTwoCard: GlobalConfig = {
           label: "Full Text (on hover)",
           type: "textarea",
           required: true,
+        },
+        {
+          name: "sponsorLogos",
+          label: "Sponsor Logos",
+          type: "array",
+          fields: [
+            {
+              name: "logo",
+              label: "Logo Image",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+        {
+          name: "backgroundImage",
+          label: "Background Image",
+          type: "upload",
+          relationTo: "media",
+          required: false,
         },
       ],
     },

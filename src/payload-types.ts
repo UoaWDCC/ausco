@@ -453,11 +453,19 @@ export interface SecondTwoCard {
     title: string;
     shortDescription: string;
     fullText: string;
+    backgroundImage?: (string | null) | Media;
   };
   rightBox: {
     title: string;
     shortDescription: string;
     fullText: string;
+    sponsorLogos?:
+      | {
+          logo: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+    backgroundImage?: (string | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -592,6 +600,7 @@ export interface SecondTwoCardSelect<T extends boolean = true> {
         title?: T;
         shortDescription?: T;
         fullText?: T;
+        backgroundImage?: T;
       };
   rightBox?:
     | T
@@ -599,6 +608,13 @@ export interface SecondTwoCardSelect<T extends boolean = true> {
         title?: T;
         shortDescription?: T;
         fullText?: T;
+        sponsorLogos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
+        backgroundImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

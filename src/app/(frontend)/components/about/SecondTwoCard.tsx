@@ -64,6 +64,25 @@ const SecondTwoCard = () => {
           <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 w-full">
             <Handshake size={40} className="mb-4 text-[#2d3a4a] mt-6" />
             <h2 className="text-xl font-bold mb-2 text-[#2d3a4a]">{data.rightBox.title}</h2>
+            {/* Sponsor Logos BELOW the title */}
+            {Array.isArray(data.rightBox.sponsorLogos) && data.rightBox.sponsorLogos.length > 0 && (
+              <div className="flex flex-wrap justify-center items-center gap-2 mb-2">
+                {data.rightBox.sponsorLogos.map((item: any, idx: number) => {
+                  const logo = item.logo;
+                  const logoUrl = typeof logo === "object" && logo?.url ? logo.url : undefined;
+                  if (!logoUrl) return null;
+                  return (
+                    <img
+                      key={idx}
+                      src={logoUrl}
+                      alt="Sponsor logo"
+                      className="h-8 w-auto object-contain"
+                      style={{ maxWidth: 64 }}
+                    />
+                  );
+                })}
+              </div>
+            )}
             <p className="text-[#2d3a4a]">
               {hovered === "right" ? data.rightBox.fullText : data.rightBox.shortDescription}
             </p>
