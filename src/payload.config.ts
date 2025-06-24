@@ -15,6 +15,8 @@ import { Footer } from "./collections/global/Footer";
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
 
+import AboutFirstCards from "./collections/global/AboutFirstCards";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -26,7 +28,7 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header],
+  globals: [LandingPage, Footer, Header, AboutFirstCards],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
