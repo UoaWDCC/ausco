@@ -17,12 +17,12 @@ export const OurPeople: GlobalConfig = {
       type: "array",
       label: "Executive Members",
       /*TEMPORARY for testing grid render*/
-      defaultValue: Array.from({ length: 10 }).map(() => ({
+      defaultValue: Array.from({ length: 25 }).map(() => ({
         name: "John Doe",
         role: "General Exec",
         degree: "BSci",
         description: "Lorem Ipsum",
-        image: "",
+        image: "68716e81b0bf6c59846349f1",
       })),
       fields: [
         {
@@ -30,24 +30,28 @@ export const OurPeople: GlobalConfig = {
           label: "Name",
           type: "text",
           required: true,
+          defaultValue: "John Doe",
         },
         {
           name: "role",
           label: "Executive Role",
           type: "text",
           required: true,
+          defaultValue: "General Exec",
         },
         {
           name: "degree",
           label: "Degree",
           type: "text",
           required: true,
+          defaultValue: "BSci",
         },
         {
           name: "description",
           label: "Fun Fact / Description",
           type: "text",
           required: true,
+          defaultValue: "Lorem Ipsum",
         },
         {
           name: "image",
@@ -55,6 +59,7 @@ export const OurPeople: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          defaultValue: "68716e81b0bf6c59846349f1",
         },
       ],
     },
