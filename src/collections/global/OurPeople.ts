@@ -2,12 +2,13 @@ import { GlobalConfig } from "payload";
 
 export const OurPeople: GlobalConfig = {
   slug: "our-people",
-  label: "Our People Page",
+  label: "Our People",
   fields: [
     {
       name: "generalDescription",
       label: "Short Description of Executive Committee",
       type: "text",
+      defaultValue: "testing",
       required: false,
     },
     {

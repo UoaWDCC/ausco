@@ -1,4 +1,6 @@
+import { getOurPeople } from "@/actions/getOurPeople";
 const ExecutiveTeam = async () => {
+  const [content] = await Promise.all([getOurPeople()]);
   return (
     <div className="w-full bg-[#F6F4EC]">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 sm:py-8">
@@ -7,10 +9,7 @@ const ExecutiveTeam = async () => {
             Executive Team
           </h2>
           {/*note for del: add desc text to payload*/}
-          <p className="text-xs  max-w-full md:max-w-lg font-light">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          </p>
+          <p className="text-xs  max-w-full md:max-w-lg font-light">{content.generalDescription}</p>
         </div>
       </div>
     </div>
