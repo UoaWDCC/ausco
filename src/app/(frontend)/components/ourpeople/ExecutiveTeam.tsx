@@ -9,13 +9,13 @@ const ExecutiveTeam = async () => {
   return (
     <div className="w-full bg-[#F6F4EC]">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 sm:py-8">
-        <div className="flex items-end justify-between gap-4 md:gap-0 text-[var(--navy)]">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-3 md:gap-0 text-[var(--navy)]">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium">
             Executive Team
           </h2>
           <p className="text-xs max-w-full md:max-w-lg font-light">{content.generalDescription}</p>
         </div>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+        <div className="my-6 sm:my-10 md:my-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
           {/*maps execs in array to grid, renders grid*/}
           {execs.map((exec, i) => {
             //handles both string and media cases for Image
@@ -28,7 +28,6 @@ const ExecutiveTeam = async () => {
                   height={200}
                   width={200}
                   className="max-h-[200px] object-cover mb-2"
-                  priority
                 />
                 {/*displaying exec info*/}
                 <div className="text-xs text-[var(--navy)]">
@@ -41,6 +40,7 @@ const ExecutiveTeam = async () => {
             );
           })}
         </div>
+        <hr className="border-t-[1.5px] border-[var(--navy)]" />
       </div>
     </div>
   );
