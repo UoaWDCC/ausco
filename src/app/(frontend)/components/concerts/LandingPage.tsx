@@ -18,11 +18,11 @@ const LandingPage = async () => {
     };
 
   return (
-    <div className="w-full bg-[#F6F4EC] pt-20 md:h-[max(880px,100dvh)]">
+    <div className="w-full bg-[#F6F4EC] pt-20 md:pt-25 md:h-[max(880px,100dvh)]">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-[#602C0F] text-center">Concerts</h1>
 
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-12 pt-10">
+        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12 pt-10">
           <div className="relative md:w-1/2 lg:w-1/2 aspect-4/3 rounded-lg overflow-hidden shadow-sm">
             {content.upcomingCard && content.upcomingCard["background-image"] && (
               <img
