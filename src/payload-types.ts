@@ -475,11 +475,9 @@ export interface ConcertsLanding {
   id: string;
   upcomingCard: {
     'background-image': string | Media;
-    title: string;
   };
   pastCard: {
     'background-image': string | Media;
-    title: string;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -638,13 +636,11 @@ export interface ConcertsLandingSelect<T extends boolean = true> {
     | T
     | {
         'background-image'?: T;
-        title?: T;
       };
   pastCard?:
     | T
     | {
         'background-image'?: T;
-        title?: T;
       };
   updatedAt?: T;
   createdAt?: T;

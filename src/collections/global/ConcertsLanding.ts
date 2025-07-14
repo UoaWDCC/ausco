@@ -13,7 +13,6 @@ export const ConcertsLanding: GlobalConfig = {
       type: "group",
       fields: [
         { name: "background-image", label: "Background Image", type: "upload", relationTo: "media", required: true },
-        { name: "title", label: "Title", type: "text", required: true },
       ],
     },
     {
@@ -22,7 +21,6 @@ export const ConcertsLanding: GlobalConfig = {
       type: "group",
       fields: [
         { name: "background-image", label: "Background Image", type: "upload", relationTo: "media", required: true },
-        { name: "title", label: "Title", type: "text", required: true },
       ],
     },
   ],  
