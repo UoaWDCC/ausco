@@ -48,5 +48,41 @@ export const OurPeople: GlobalConfig = {
         },
       ],
     },
+    {
+      name: "playerDescription",
+      label: "Short Description of Players",
+      type: "text",
+      required: false,
+    },
+    {
+      name: "sections",
+      type: "array",
+      label: "Orchestra Sections",
+      fields: [
+        {
+          name: "sectionTitle",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "photo",
+          type: "upload",
+          relationTo: "media", // assumes you have a media collection
+          required: true,
+        },
+        {
+          name: "players",
+          type: "array",
+          label: "Players",
+          fields: [
+            {
+              name: "name",
+              type: "text",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
   ],
 };

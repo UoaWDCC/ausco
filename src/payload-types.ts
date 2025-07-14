@@ -484,6 +484,20 @@ export interface OurPerson {
         id?: string | null;
       }[]
     | null;
+  playerDescription?: string | null;
+  sections?:
+    | {
+        sectionTitle: string;
+        photo: string | Media;
+        players?:
+          | {
+              name: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -646,6 +660,20 @@ export interface OurPeopleSelect<T extends boolean = true> {
         degree?: T;
         description?: T;
         image?: T;
+        id?: T;
+      };
+  playerDescription?: T;
+  sections?:
+    | T
+    | {
+        sectionTitle?: T;
+        photo?: T;
+        players?:
+          | T
+          | {
+              name?: T;
+              id?: T;
+            };
         id?: T;
       };
   updatedAt?: T;
