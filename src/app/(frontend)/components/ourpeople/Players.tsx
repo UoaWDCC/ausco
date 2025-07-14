@@ -9,17 +9,17 @@ const Players = async () => {
   }[];
 
   return (
-    <div className="w-5/6 bg-[#EEE5D8] pt-20 pb-10">
+    <div className="w-5/6 bg-[var(--beige)] text-[var(--brown)] pt-20 pb-10">
       <div className="flex flex-row justify-evenly">
-        <div className="w-1/4">
-          <div>Players</div>
+        <div className="w-1/4 mt-0 md:mt-33">
+          <div className="text-4xl mb-6">Players</div>
           <div>{content.playerDescription}</div>
         </div>
 
         {sections.map((section: any, idx: number) => (
           <div className="flex flex-col items-center gap-0" key={idx}>
-            <h3>{section.sectionTitle}</h3>
-            <img src={section.photo.url} alt={section.sectionTitle} width={108} />
+            <img className="mb-10" src={section.photo.url} alt={section.sectionTitle} width={108} />
+            <h2 className="mb-6 text-xl">{section.sectionTitle}</h2>
             {section.players.map((player: any, i: number) => (
               <p className="mb-0 leading-tight" key={i}>
                 {player.name}
