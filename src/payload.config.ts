@@ -16,6 +16,7 @@ import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
 
 import AboutFirstCards from "./collections/global/AboutFirstCards";
+import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -28,7 +29,7 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, AboutFirstCards],
+  globals: [LandingPage, Footer, Header, AboutFirstCards, ConcertsLanding],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
