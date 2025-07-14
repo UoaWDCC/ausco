@@ -93,12 +93,14 @@ export interface Config {
     footer: Footer;
     header: Header;
     'about-first-cards': AboutFirstCard;
+    'concerts-landing': ConcertsLanding;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
+    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -467,6 +469,23 @@ export interface AboutFirstCard {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-landing".
+ */
+export interface ConcertsLanding {
+  id: string;
+  upcomingCard: {
+    'background-image': string | Media;
+    title: string;
+  };
+  pastCard: {
+    'background-image': string | Media;
+    title: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -605,6 +624,27 @@ export interface AboutFirstCardsSelect<T extends boolean = true> {
         title?: T;
         'short-desc'?: T;
         'full-desc'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-landing_select".
+ */
+export interface ConcertsLandingSelect<T extends boolean = true> {
+  upcomingCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
+      };
+  pastCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
       };
   updatedAt?: T;
   createdAt?: T;
