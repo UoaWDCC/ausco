@@ -470,8 +470,9 @@ export interface SecondTwoCard {
         }[]
       | null;
     backgroundImage?: (string | null) | Media;
-
- * via the `definition` "about-first-cards".
+      }
+    }
+/* via the `definition` "about-first-cards".
  */
 export interface AboutFirstCard {
   id: string;
