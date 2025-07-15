@@ -93,12 +93,14 @@ export interface Config {
     footer: Footer;
     header: Header;
     'second-two-card': SecondTwoCard;
+    'about-first-cards': AboutFirstCard;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
+    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -350,7 +352,8 @@ export interface LandingPage {
   upcomingConcert?: {
     title?: string | null;
     poster?: (string | null) | Media;
-    description?: string | null;
+    description1?: string | null;
+    description2?: string | null;
   };
   matinee?: {
     title?: string | null;
@@ -445,6 +448,7 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+
  * via the `definition` "second-two-card".
  */
 export interface SecondTwoCard {
@@ -466,6 +470,23 @@ export interface SecondTwoCard {
         }[]
       | null;
     backgroundImage?: (string | null) | Media;
+
+ * via the `definition` "about-first-cards".
+ */
+export interface AboutFirstCard {
+  id: string;
+  visionCard: {
+    'background-image': string | Media;
+    title: string;
+    'short-desc': string;
+    'full-desc': string;
+  };
+  historyCard: {
+    'background-image': string | Media;
+    title: string;
+    'short-desc': string;
+    'full-desc': string;
+
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -486,7 +507,8 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description?: T;
+        description1?: T;
+        description2?: T;
       };
   matinee?:
     | T
@@ -591,6 +613,7 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+
  * via the `definition` "second-two-card_select".
  */
 export interface SecondTwoCardSelect<T extends boolean = true> {
@@ -615,6 +638,24 @@ export interface SecondTwoCardSelect<T extends boolean = true> {
               id?: T;
             };
         backgroundImage?: T;
+ * via the `definition` "about-first-cards_select".
+ */
+export interface AboutFirstCardsSelect<T extends boolean = true> {
+  visionCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
+        'short-desc'?: T;
+        'full-desc'?: T;
+      };
+  historyCard?:
+    | T
+    | {
+        'background-image'?: T;
+        title?: T;
+        'short-desc'?: T;
+        'full-desc'?: T;
       };
   updatedAt?: T;
   createdAt?: T;
