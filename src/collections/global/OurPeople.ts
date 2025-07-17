@@ -1,4 +1,4 @@
-import { GlobalConfig } from 'payload';
+import { GlobalConfig } from "payload";
 
 export const OurPeople: GlobalConfig = {
   slug: 'our-people',
