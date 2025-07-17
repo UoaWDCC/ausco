@@ -56,29 +56,65 @@ export const OurPeople: GlobalConfig = {
     },
     {
       name: "sections",
-      type: "array",
-      label: "Orchestra Sections",
-      fields: [
+      type: "blocks",
+      blocks: [
         {
-          name: "sectionTitle",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "photo",
-          type: "upload",
-          relationTo: "media", // assumes you have a media collection
-          required: true,
-        },
-        {
-          name: "players",
-          type: "array",
-          label: "Players",
+          slug: "large-group",
+          labels: {
+            singular: "Large Orchestra Section (full column)",
+            plural: "Large Orchestra Sections (full columns)",
+          },
           fields: [
             {
-              name: "name",
+              name: "sectionTitle",
               type: "text",
               required: true,
+            },
+            {
+              name: "photo",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "players",
+              type: "array",
+              fields: [
+                {
+                  name: "name",
+                  type: "text",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          slug: "small-group",
+          labels: {
+            singular: "Small Orchestra Section (half column)",
+            plural: "Small Orchestra Sections (half columns)",
+          },
+          fields: [
+            {
+              name: "sectionTitle",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "photo",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "players",
+              type: "array",
+              fields: [
+                {
+                  name: "name",
+                  type: "text",
+                },
+              ],
             },
           ],
         },

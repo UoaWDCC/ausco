@@ -486,17 +486,34 @@ export interface OurPerson {
     | null;
   playerDescription?: string | null;
   sections?:
-    | {
-        sectionTitle: string;
-        photo: string | Media;
-        players?:
-          | {
-              name: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
+    | (
+        | {
+            sectionTitle: string;
+            photo: string | Media;
+            players?:
+              | {
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'large-group';
+          }
+        | {
+            sectionTitle: string;
+            photo: string | Media;
+            players?:
+              | {
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'small-group';
+          }
+      )[]
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -666,15 +683,34 @@ export interface OurPeopleSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        sectionTitle?: T;
-        photo?: T;
-        players?:
+        'large-group'?:
           | T
           | {
-              name?: T;
+              sectionTitle?: T;
+              photo?: T;
+              players?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
               id?: T;
+              blockName?: T;
             };
-        id?: T;
+        'small-group'?:
+          | T
+          | {
+              sectionTitle?: T;
+              photo?: T;
+              players?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;
