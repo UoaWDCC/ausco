@@ -93,12 +93,14 @@ export interface Config {
     footer: Footer;
     header: Header;
     'about-first-cards': AboutFirstCard;
+    'our-people': OurPerson;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
+    'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
   };
   locale: null;
   user: User & {
@@ -467,6 +469,26 @@ export interface AboutFirstCard {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-people".
+ */
+export interface OurPerson {
+  id: string;
+  generalDescription?: string | null;
+  execs?:
+    | {
+        name: string;
+        role: string;
+        degree: string;
+        description: string;
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -605,6 +627,26 @@ export interface AboutFirstCardsSelect<T extends boolean = true> {
         title?: T;
         'short-desc'?: T;
         'full-desc'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-people_select".
+ */
+export interface OurPeopleSelect<T extends boolean = true> {
+  generalDescription?: T;
+  execs?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        degree?: T;
+        description?: T;
+        image?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
