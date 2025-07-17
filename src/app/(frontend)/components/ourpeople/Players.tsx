@@ -42,19 +42,16 @@ const Players = async () => {
           ))}
 
           {chunkedSmallGroups.map((groupPair: any[], colIdx: number) => (
-            <div key={`small-col-${colIdx}`} className="flex flex-col h-full">
+            <div key={`small-col-${colIdx}`} className="flex flex-col h-full gap-10">
               {groupPair.map((section, idx) => (
-                <div
-                  key={`small-${colIdx}-${idx}`}
-                  className="flex flex-col items-center h-1/2 justify-center"
-                >
+                <div key={`small-${colIdx}-${idx}`} className="flex flex-col items-center h-1/2">
                   <img
-                    className="mb-6"
+                    className="mb-10"
                     src={section.photo.url}
                     alt={section.sectionTitle}
                     width={108}
                   />
-                  <h2 className="mb-4 text-xl">{section.sectionTitle}</h2>
+                  <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
                   {section.players.map((player: any, i: number) => (
                     <p className="mb-0 leading-tight" key={i}>
                       {player.name}
