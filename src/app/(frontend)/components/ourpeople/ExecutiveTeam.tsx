@@ -13,24 +13,24 @@ const ExecutiveTeam = async () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium">
             Executive Team
           </h2>
-          <p className="text-xs max-w-full md:max-w-lg font-light">{content.generalDescription}</p>
+          <p className="text-sm max-w-full md:max-w-xl font-light">{content.generalDescription}</p>
         </div>
-        <div className="my-6 sm:my-10 md:my-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
+        <div className="my-6 sm:my-10 md:my-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 justify-items-center">
           {/*maps execs in array to grid, renders grid*/}
           {execs.map((exec, i) => {
             //handles both string and media cases for Image
             const imageUrl = typeof exec.image === "string" ? exec.image : exec.image?.url;
             return (
-              <div key={i} className="flex max-w-[200px] flex-col items-center">
+              <div key={i} className="flex flex-col items-start justify-between">
                 <Image
                   src={imageUrl || ""}
                   alt={exec.name}
                   height={200}
                   width={200}
-                  className="max-h-[200px] object-cover mb-2"
+                  className="w-full object-cover mb-6"
                 />
                 {/*displaying exec info*/}
-                <div className="text-xs text-[var(--navy)]">
+                <div className="text-xs text-[var(--navy)] w-full leading-5">
                   <div className="font-semibold text-[var(--navy)]">Name: {exec.name}</div>
                   <div>Role: {exec.role}</div>
                   <div>Degree: {exec.degree}</div>
