@@ -16,14 +16,7 @@ export const OurPeople: GlobalConfig = {
       name: "execs",
       type: "array",
       label: "Executive Members",
-      /*TEMPORARY for testing grid render*/
-      defaultValue: Array.from({ length: 25 }).map(() => ({
-        name: "John Doe",
-        role: "General Exec",
-        degree: "BSci",
-        description: "Lorem Ipsum",
-        image: "68716e81b0bf6c59846349f1",
-      })),
+
       fields: [
         {
           name: "name",
