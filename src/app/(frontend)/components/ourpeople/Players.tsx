@@ -10,7 +10,7 @@ const Players = async () => {
 
   const largeGroups = sections.filter((section: any) => section.blockType === "large-group");
   const smallGroups = sections.filter((section: any) => section.blockType === "small-group");
-  const chunkedSmallGroups = [];
+  const chunkedSmallGroups = []; // this is necessary to map the small groups into columns of length 2.
   for (let i = 0; i < smallGroups.length; i += 2) {
     chunkedSmallGroups.push(smallGroups.slice(i, i + 2));
   }
@@ -41,26 +41,31 @@ const Players = async () => {
             </div>
           ))}
 
-          {chunkedSmallGroups.map((groupPair: any[], colIdx: number) => (
-            <div key={`small-col-${colIdx}`} className="flex flex-col h-full gap-10">
-              {groupPair.map((section, idx) => (
-                <div key={`small-${colIdx}-${idx}`} className="flex flex-col items-center h-1/2">
-                  <img
-                    className="mb-10"
-                    src={section.photo.url}
-                    alt={section.sectionTitle}
-                    width={108}
-                  />
-                  <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
-                  {section.players.map((player: any, i: number) => (
-                    <p className="mb-0 leading-tight" key={i}>
-                      {player.name}
-                    </p>
-                  ))}
-                </div>
-              ))}
-            </div>
-          ))}
+          {chunkedSmallGroups.map(
+            (
+              groupPair: any[],
+              colIdx: number, // group pair is one set of 2 (ie one column)
+            ) => (
+              <div key={`small-col-${colIdx}`} className="flex flex-col h-full gap-10">
+                {groupPair.map((section, idx) => (
+                  <div key={`small-${colIdx}-${idx}`} className="flex flex-col items-center h-1/2">
+                    <img
+                      className="mb-10"
+                      src={section.photo.url}
+                      alt={section.sectionTitle}
+                      width={108}
+                    />
+                    <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
+                    {section.players.map((player: any, i: number) => (
+                      <p className="mb-0 leading-tight" key={i}>
+                        {player.name}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ),
+          )}
         </div>
       </div>
     </div>
