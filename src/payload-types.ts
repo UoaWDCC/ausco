@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | "Pacific/Midway"
+  | "Pacific/Niue"
+  | "Pacific/Honolulu"
+  | "Pacific/Rarotonga"
+  | "America/Anchorage"
+  | "Pacific/Gambier"
+  | "America/Los_Angeles"
+  | "America/Tijuana"
+  | "America/Denver"
+  | "America/Phoenix"
+  | "America/Chicago"
+  | "America/Guatemala"
+  | "America/New_York"
+  | "America/Bogota"
+  | "America/Caracas"
+  | "America/Santiago"
+  | "America/Buenos_Aires"
+  | "America/Sao_Paulo"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/Azores"
+  | "Atlantic/Cape_Verde"
+  | "Europe/London"
+  | "Europe/Berlin"
+  | "Africa/Lagos"
+  | "Europe/Athens"
+  | "Africa/Cairo"
+  | "Europe/Moscow"
+  | "Asia/Riyadh"
+  | "Asia/Dubai"
+  | "Asia/Baku"
+  | "Asia/Karachi"
+  | "Asia/Tashkent"
+  | "Asia/Calcutta"
+  | "Asia/Dhaka"
+  | "Asia/Almaty"
+  | "Asia/Jakarta"
+  | "Asia/Bangkok"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Tokyo"
+  | "Asia/Seoul"
+  | "Australia/Brisbane"
+  | "Australia/Sydney"
+  | "Pacific/Guam"
+  | "Pacific/Noumea"
+  | "Pacific/Auckland"
+  | "Pacific/Fiji";
 
 export interface Config {
   auth: {
@@ -71,9 +71,9 @@ export interface Config {
     media: Media;
     test: Test;
     Videos: Video;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
@@ -81,28 +81,32 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
     Videos: VideosSelect<false> | VideosSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
   globals: {
-    'landing-page': LandingPage;
+    "landing-page": LandingPage;
     footer: Footer;
     header: Header;
-    'about-first-cards': AboutFirstCard;
+    "second-two-card": SecondTwoCard;
+    "about-first-cards": AboutFirstCard;
   };
   globalsSelect: {
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    "landing-page": LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
+    "second-two-card": SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
+    "about-first-cards": AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
   };
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
     tasks: unknown;
@@ -194,24 +198,24 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'test';
+        relationTo: "test";
         value: string | Test;
       } | null)
     | ({
-        relationTo: 'Videos';
+        relationTo: "Videos";
         value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -224,7 +228,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -386,7 +390,7 @@ export interface LandingPage {
       contacts: {
         text: string;
         href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
+        icon: "mail" | "instagram" | "facebook";
         id?: string | null;
       }[];
     };
@@ -404,7 +408,7 @@ export interface Footer {
   title: string;
   socials?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        platform: "facebook" | "instagram" | "youtube" | "spotify";
         url: string;
         icon?: (string | null) | Media;
         id?: string | null;
@@ -446,21 +450,45 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards".
+
+ * via the `definition` "second-two-card".
+ */
+export interface SecondTwoCard {
+  id: string;
+  leftBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+    backgroundImage?: (string | null) | Media;
+  };
+  rightBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+    sponsorLogos?:
+      | {
+          logo: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+    backgroundImage?: (string | null) | Media;
+  };
+}
+/* via the `definition` "about-first-cards".
  */
 export interface AboutFirstCard {
   id: string;
   visionCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    "short-desc": string;
+    "full-desc": string;
   };
   historyCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    "short-desc": string;
+    "full-desc": string;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -587,24 +615,51 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards_select".
+
+ * via the `definition` "second-two-card_select".
+ */
+export interface SecondTwoCardSelect<T extends boolean = true> {
+  leftBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
+        backgroundImage?: T;
+      };
+  rightBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
+        sponsorLogos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
+        backgroundImage?: T;
+      };
+}
+/* via the `definition` "about-first-cards_select".
  */
 export interface AboutFirstCardsSelect<T extends boolean = true> {
   visionCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        "short-desc"?: T;
+        "full-desc"?: T;
       };
   historyCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        "short-desc"?: T;
+        "full-desc"?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -618,7 +673,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
