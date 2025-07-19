@@ -14,6 +14,7 @@ import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
+import SecondTwoCard from "./collections/global/SecondTwoCard";
 
 import AboutFirstCards from "./collections/global/AboutFirstCards";
 
@@ -28,7 +29,8 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, AboutFirstCards],
+  globals: [LandingPage, Footer, Header, AboutFirstCards, SecondTwoCard],
+
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
