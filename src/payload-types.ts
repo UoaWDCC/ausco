@@ -93,6 +93,7 @@ export interface Config {
     footer: Footer;
     header: Header;
     'about-first-cards': AboutFirstCard;
+    'second-two-card': SecondTwoCard;
     'our-people': OurPerson;
   };
   globalsSelect: {
@@ -100,6 +101,7 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
+    'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
   };
   locale: null;
@@ -469,6 +471,33 @@ export interface AboutFirstCard {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "second-two-card".
+ */
+export interface SecondTwoCard {
+  id: string;
+  leftBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+    backgroundImage?: (string | null) | Media;
+  };
+  rightBox: {
+    title: string;
+    shortDescription: string;
+    fullText: string;
+    sponsorLogos?:
+      | {
+          logo: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+    backgroundImage?: (string | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-people".
  */
 export interface OurPerson {
@@ -658,6 +687,37 @@ export interface AboutFirstCardsSelect<T extends boolean = true> {
         title?: T;
         'short-desc'?: T;
         'full-desc'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "second-two-card_select".
+ */
+export interface SecondTwoCardSelect<T extends boolean = true> {
+  leftBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
+        backgroundImage?: T;
+      };
+  rightBox?:
+    | T
+    | {
+        title?: T;
+        shortDescription?: T;
+        fullText?: T;
+        sponsorLogos?:
+          | T
+          | {
+              logo?: T;
+              id?: T;
+            };
+        backgroundImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;
