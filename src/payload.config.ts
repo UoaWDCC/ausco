@@ -18,6 +18,8 @@ import SecondTwoCard from "./collections/global/SecondTwoCard";
 
 import AboutFirstCards from "./collections/global/AboutFirstCards";
 
+import { OurPeople } from "./collections/global/OurPeople";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -29,8 +31,7 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, AboutFirstCards, SecondTwoCard],
-
+  globals: [LandingPage, Footer, Header, AboutFirstCards, SecondTwoCard, OurPeople],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
