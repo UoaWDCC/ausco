@@ -17,6 +17,7 @@ import Videos from "./collections/videos";
 import SecondTwoCard from "./collections/global/SecondTwoCard";
 
 import AboutFirstCards from "./collections/global/AboutFirstCards";
+import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
 
@@ -31,8 +32,15 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, AboutFirstCards, SecondTwoCard, OurPeople],
-
+  globals: [
+    LandingPage,
+    Footer,
+    Header,
+    AboutFirstCards,
+    SecondTwoCard,
+    OurPeople,
+    ConcertsLanding,
+  ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

@@ -95,6 +95,7 @@ export interface Config {
     'about-first-cards': AboutFirstCard;
     'second-two-card': SecondTwoCard;
     'our-people': OurPerson;
+    'concerts-landing': ConcertsLanding;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -103,6 +104,7 @@ export interface Config {
     'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
     'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
+    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -549,6 +551,21 @@ export interface OurPerson {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-landing".
+ */
+export interface ConcertsLanding {
+  id: string;
+  upcomingCard: {
+    'background-image': string | Media;
+  };
+  pastCard: {
+    'background-image': string | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -771,6 +788,25 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-landing_select".
+ */
+export interface ConcertsLandingSelect<T extends boolean = true> {
+  upcomingCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  pastCard?:
+    | T
+    | {
+        'background-image'?: T;
       };
   updatedAt?: T;
   createdAt?: T;
