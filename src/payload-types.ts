@@ -96,6 +96,7 @@ export interface Config {
     'second-two-card': SecondTwoCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
+    'upcoming-concerts': UpcomingConcert;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -105,6 +106,7 @@ export interface Config {
     'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
+    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -535,6 +537,33 @@ export interface ConcertsLanding {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "upcoming-concerts".
+ */
+export interface UpcomingConcert {
+  id: string;
+  hero: string;
+  upcomingConcert?: {
+    title?: string | null;
+    poster?: (string | null) | Media;
+    description?: string | null;
+  };
+  eventOne?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  eventTwo?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -743,6 +772,39 @@ export interface ConcertsLandingSelect<T extends boolean = true> {
     | T
     | {
         'background-image'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "upcoming-concerts_select".
+ */
+export interface UpcomingConcertsSelect<T extends boolean = true> {
+  hero?: T;
+  upcomingConcert?:
+    | T
+    | {
+        title?: T;
+        poster?: T;
+        description?: T;
+      };
+  eventOne?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  eventTwo?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
       };
   updatedAt?: T;
   createdAt?: T;

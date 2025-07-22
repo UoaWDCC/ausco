@@ -1,4 +1,7 @@
+import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
+
 const HeroSection = async () => {
+  const concerts = await getUpcomingConcerts();
   return (
     <div className="w-full bg-[var(--cream)]  pt-40 pb-20">
       <div className="max-w-screen-xl mx-auto">
