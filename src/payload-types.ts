@@ -545,7 +545,8 @@ export interface UpcomingConcert {
   upcomingConcert?: {
     title?: string | null;
     poster?: (string | null) | Media;
-    description?: string | null;
+    descriptionOne?: string | null;
+    descriptionTwo?: string | null;
   };
   eventOne?: {
     title?: string | null;
@@ -788,7 +789,8 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description?: T;
+        descriptionOne?: T;
+        descriptionTwo?: T;
       };
   eventOne?:
     | T
