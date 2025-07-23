@@ -15,12 +15,12 @@ const EventInfo = ({ title, date, location, ticketUrl }: EventInfoProps) => (
       <Calendar size={18} className="stroke-[var(--brown)] stroke-[3px]" />
       <span>{date}</span>
     </div>
-    <div className="flex items-center gap-2 mb-3 text-[var(--brown)]">
+    <div className="flex items-center gap-2 mb-2 md:mb-3 text-[var(--brown)]">
       <MapPin size={18} className="stroke-[var(--brown)] stroke-[3px]" />
       <span>{location}</span>
     </div>
     {ticketUrl && (
-      <Button className="mt-2 -ml-2 lg:ml-0 h-10 lg:h-12 w-24 lg:w-28 bg-transparent text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--beige)] px-8 py-4 rounded-lg">
+      <Button className="mt-2 h-10 lg:h-12 w-24 lg:w-28 bg-transparent text-[var(--brown)] border-2 border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--beige)] px-8 py-4 rounded-lg">
         <a href={ticketUrl} className="flex items-center gap-2">
           <span>Tickets</span>
           <ArrowUpRight size={20} />
