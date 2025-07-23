@@ -1,6 +1,8 @@
+//component for upcoming concerts page heading + short description
 import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
 
 const HeroSection = async () => {
+  //fetch description from payload
   const concerts = await getUpcomingConcerts();
   return (
     <div className="m w-full bg-[var(--cream)] pt-10 sm:pt-16 md:pt-24 pb-4 ">
