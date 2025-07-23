@@ -20,6 +20,15 @@ const SemesterOneConcert = async () => {
             height={503}
             className="rounded-lg border border-[var(--brown)] "
           />
+
+          <div className="flex-1 flex flex-col max-w-lg gap-4">
+            <div className="flex gap-8 mb-6">
+              <span className=" bg-[var(--brown)] text-[var(--cream)] px-6 py-3 rounded-lg text-xs font-semibold w-fit mb-2">
+                Semester 1
+              </span>
+              <h2 className="italic text-4xl font-bold">{concert?.title}</h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
