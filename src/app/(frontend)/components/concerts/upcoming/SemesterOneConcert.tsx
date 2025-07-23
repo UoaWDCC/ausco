@@ -7,10 +7,13 @@ const SemesterOneConcert = async () => {
   const concert = concerts.upcomingConcert;
   const eventOne = concerts.eventOne;
   const eventTwo = concerts.eventTwo;
+
   const posterMedia =
     typeof concert?.poster === "object" && concert?.poster !== null ? concert.poster : undefined;
   const posterUrl = posterMedia?.url || "";
   const posterAlt = posterMedia?.alt || "Concert Poster";
+  const { title, description1, description2 } = concert || {};
+  const descriptions = [description1, description2];
 
   return (
     <div className="w-full bg-[var(--cream)] py-10">
@@ -29,16 +32,21 @@ const SemesterOneConcert = async () => {
               <span className="bg-[var(--brown)] text-[var(--cream)] px-6 py-3 rounded-lg text-xs font-semibold w-fit mb-2 whitespace-nowrap">
                 Semester 1
               </span>
-              <h2 className="italic text-4xl font-bold">{concert?.title}</h2>
+              <h2 className="italic text-4xl font-bold">{title}</h2>
             </div>
 
-            <p className="text-sm mb-2">{concert?.description1}</p>
-            <p className="text-sm mb-2">{concert?.description2}</p>
+            {descriptions.map((dsc, i) => (
+              <p className="text-sm mb-2" key={i}>
+                {dsc}
+              </p>
+            ))}
+
             <hr className="border-t-[2px] border-[var(--brown)]" />
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <EventInfo {...eventOne} />
-              <EventInfo {...eventTwo} />
+              {[eventOne, eventTwo].map((event, j) => (
+                <EventInfo {...event} key={j} />
+              ))}
             </div>
           </div>
         </div>
