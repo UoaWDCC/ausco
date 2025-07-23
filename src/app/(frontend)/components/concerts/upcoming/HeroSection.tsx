@@ -3,10 +3,10 @@ import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
 const HeroSection = async () => {
   const concerts = await getUpcomingConcerts();
   return (
-    <div className="w-full bg-[var(--cream)] pt-50 pb-5">
-      <div className="max-w-3xl text-[var(--brown)] text-center mx-auto">
-        <h1>Upcoming Concerts</h1>
-        <p>{concerts.hero}</p>
+    <div className="m w-full bg-[var(--cream)] pt-10 sm:pt-16 md:pt-24 pb-4 ">
+      <div className="max-w-xl lg:max-w-3xl text-[var(--brown)] text-center mx-auto px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">Upcoming Concerts</h1>
+        <p className="text-xs sm:text-sm md:text-base ">{concerts.hero}</p>
       </div>
     </div>
   );
