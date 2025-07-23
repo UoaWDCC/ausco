@@ -38,7 +38,7 @@ const SemesterOneConcert = async () => {
           {/*card text + event info*/}
           <div className="flex-1 flex flex-col w-full md:max-w-lg gap-3 sm:gap-4">
             {/*row for semester tag + title*/}
-            <div className="flex flex-col lg:flex-row  gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:items-center">
+            <div className="flex flex-col lg:flex-row  gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:justify-center lg:items-center">
               <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit mb-1 sm:mb-2 whitespace-nowrap">
                 Semester 1
               </span>
