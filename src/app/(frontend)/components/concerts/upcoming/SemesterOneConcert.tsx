@@ -18,17 +18,17 @@ const SemesterOneConcert = async () => {
   return (
     <div className="w-full bg-[var(--cream)] py-6 sm:py-8 md:py-10">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:p-16">
-        <div className="bg-[var(--beige)] text-[var(--brown)] min-h-[400px] md:min-h-[700px] rounded-xl p-4 sm:p-6 md:p-12 pt-4 sm:pt-24 pb-4 sm:pb-16  flex flex-col md:flex-row justify-evenly items-center gap-4 sm:gap-8">
+        <div className="bg-[var(--beige)] text-[var(--brown)] min-h-[400px] md:min-h-[700px] rounded-xl p-4 sm:p-6 md:p-12 pt-4 sm:pt-24 pb-4 sm:pb-16  flex flex-col lg:flex-row justify-evenly items-center gap-4 sm:gap-8">
           <Image
             src={posterUrl}
             alt={posterAlt}
             width={403}
             height={503}
-            className="rounded-lg border border-[var(--brown)] w-full max-w-xs sm:max-w-sm md:w-[403px] md:h-[503px] object-cover"
+            className="rounded-lg border border-[var(--brown)] w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-[403px] lg:h-[503px] object-cover"
           />
 
           <div className="flex-1 flex flex-col w-full md:max-w-lg gap-3 sm:gap-4">
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-8 mb-2 md:mb-6 flex-nowrap items-start sm:items-center">
+            <div className="flex flex-col lg:flex-row gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:items-center">
               <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit mb-1 sm:mb-2 whitespace-nowrap">
                 Semester 1
               </span>
