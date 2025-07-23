@@ -20,6 +20,7 @@ import AboutFirstCards from "./collections/global/AboutFirstCards";
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
+import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -40,6 +41,7 @@ export default buildConfig({
     SecondTwoCard,
     OurPeople,
     ConcertsLanding,
+    UpcomingConcerts,
   ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
