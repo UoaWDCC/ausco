@@ -30,14 +30,14 @@ export const UpcomingConcerts: GlobalConfig = {
           relationTo: "media",
         },
         {
-          name: "descriptionOne",
+          name: "description1",
           label: "Description One",
           type: "text",
           defaultValue:
             "Love, Passion, and Loss. Our Semester 1 concert delves into the trials and tribulations of romance and its all-encompassing nature — as well as the grief we feel in its absence.",
         },
         {
-          name: "descriptionTwo",
+          name: "description2",
           label: "Description Two",
           type: "text",
           defaultValue:
