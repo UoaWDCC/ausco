@@ -28,6 +28,10 @@ const SemesterOneConcert = async () => {
               </span>
               <h2 className="italic text-4xl font-bold">{concert?.title}</h2>
             </div>
+
+            <p className="text-sm mb-2">{concert?.description1}</p>
+            <p className="text-sm mb-2">{concert?.description2}</p>
+            <hr className="border-t-[2px] border-[var(--brown)]" />
           </div>
         </div>
       </div>
