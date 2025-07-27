@@ -1,4 +1,4 @@
-// storage-adapter-import-placeholder
+import { s3Storage } from "@payloadcms/storage-s3";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
 import path from "path";
@@ -17,6 +17,9 @@ import Videos from "./collections/videos";
 import SecondTwoCard from "./collections/global/SecondTwoCard";
 
 import AboutFirstCards from "./collections/global/AboutFirstCards";
+import { ConcertsLanding } from "./collections/global/ConcertsLanding";
+
+import { OurPeople } from "./collections/global/OurPeople";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -29,8 +32,15 @@ export default buildConfig({
     },
   },
 
-  globals: [LandingPage, Footer, Header, AboutFirstCards, SecondTwoCard],
-
+  globals: [
+    LandingPage,
+    Footer,
+    Header,
+    AboutFirstCards,
+    SecondTwoCard,
+    OurPeople,
+    ConcertsLanding,
+  ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -43,5 +53,18 @@ export default buildConfig({
   plugins: [
     payloadCloudPlugin(),
     // storage-adapter-placeholder
+    s3Storage({
+      collections: {
+        media: true, // your collection slug
+      },
+      bucket: process.env.S3_BUCKET || " ",
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || "", // default to empty string
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "", // default to empty string
+        },
+        region: process.env.S3_REGION || "", // default to empty string
+      },
+    }),
   ],
 });

@@ -1,3 +1,9 @@
-export default function Concerts() {
-  return <h1>All Concerts</h1>;
+import LandingPage from "@components/concerts/LandingPage";
+
+export default async function Concerts() {
+  return (
+    <>
+      <LandingPage />
+    </>
+  );
 }
