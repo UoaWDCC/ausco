@@ -98,6 +98,20 @@ const Header = ({ content }: HeaderProps) => {
                 {link.label}
               </a>
             ))}
+            <a
+              onClick={() => {
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: "smooth",
+                });
+              }}
+              className={clsx(
+                "text-sm hover:underline block",
+                scrolled ? "text-[#264C84]" : "text-white",
+              )}
+            >
+              Contact Us
+            </a>
           </div>
         )}
       </nav>
