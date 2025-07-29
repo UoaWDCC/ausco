@@ -17,7 +17,7 @@ const Footer = async () => {
   };
 
   return (
-    <footer>
+    <footer id="footer">
       <div className="flex flex-col lg:flex-row justify-between px-8 pt-16 lg:px-16 items-start h-auto lg:h-56 gap-20 lg:gap-0">
         <div className="flex items-start gap-6">
           <div className="h-24 mt-2 lg:min-w-18">

@@ -14,7 +14,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <Header content={headerContent} />
+      <Header content={headerContent} isHomePage={true} />
       <HeroSection />
       <UpcomingConcert />
       <InfoCards />
