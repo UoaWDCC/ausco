@@ -91,15 +91,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
                 {link.label}
               </a>
             ))}
-            <a
-              onClick={() => {
-                window.scrollTo({
-                  top: document.body.scrollHeight,
-                  behavior: "smooth",
-                });
-              }}
-              className={clsx("text-sm hover:underline block", textColor)}
-            >
+            <a href="#footer" className={clsx("text-sm hover:underline block", textColor)}>
               Contact Us
             </a>
           </div>
