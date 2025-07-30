@@ -1,4 +1,6 @@
 import OurPeople from "@components/ourpeople/OurPeople";
+import ExecutiveTeam from "@components/ourpeople/ExecutiveTeam";
+import Players from "@components/ourpeople/Players";
 import Conductors from "@components/ourpeople/Conductors";
 
 export default async function OurPeoplePage() {
@@ -6,6 +8,8 @@ export default async function OurPeoplePage() {
     <>
       <OurPeople />
       <Conductors />
+      <ExecutiveTeam />
+      <Players />
     </>
   );
 }
