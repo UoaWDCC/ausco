@@ -25,19 +25,38 @@ const Conductors = () => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("/api/media")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.docs && data.docs.length > 0) {
-          const frame = data.docs.find((doc: PayloadImage) => doc.filename === frameFilename) || null;
-          setFrameImg(frame);
+    let foundFrame: PayloadImage | null = null;
+    let foundConductors: (PayloadImage | null)[] = [null, null, null];
+    const allowedNames = ["Conductor_1.PNG", "Conductor_2.PNG", "Conductor_3.PNG"];
 
-          const conductors = conductorPhotos.map(({ filename }) =>
-            data.docs.find((doc: PayloadImage) => doc.filename === filename) || null
-          );
-          setConductorImgs(conductors);
+    const fetchAllPages = async (page = 1) => {
+      const res = await fetch(`/api/media?page=${page}`);
+      const data = await res.json();
+
+      if (data.docs && data.docs.length > 0) {
+        // Find frame if not already found
+        if (!foundFrame) {
+          foundFrame = data.docs.find((doc: PayloadImage) => doc.filename === "ROUND_FRAME_1.PNG") || null;
         }
-      });
+        // Find conductors by allowedNames, keep null if not found
+        allowedNames.forEach((filename, idx) => {
+          if (!foundConductors[idx]) {
+            const img = data.docs.find((doc: PayloadImage) => doc.filename === filename);
+            foundConductors[idx] = img || null;
+          }
+        });
+      }
+
+      // If there's another page, keep fetching
+      if (data.hasNextPage) {
+        await fetchAllPages(page + 1);
+      }
+    };
+
+    fetchAllPages().then(() => {
+      setFrameImg(foundFrame);
+      setConductorImgs(foundConductors);
+    });
   }, []);
 
   return (
@@ -46,7 +65,7 @@ const Conductors = () => {
         Conductors
       </h1>
       <div className="flex flex-row items-center justify-center gap-2 md:gap-5 mt-2">
-        {[0, 1, 2].map((i) => (
+        {conductorImgs.map((img, i) => (
           <div
             key={i}
             className="w-50 h-62 md:w-82 md:h-82 flex items-center justify-center rounded-full relative cursor-pointer transition-all duration-300"
@@ -66,26 +85,34 @@ const Conductors = () => {
               />
             )}
             {/* Photo or Description hovering */}
-            {hovered === i ? (
-              <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
-                  {conductorPhotos[i].title}
-                </span>
-                <span className="text-center text-s md:text-lg font-medium text-[#602C0F]">
-                  {conductorPhotos[i].text}
-                </span>
-              </div>
-            ) : conductorImgs[i] ? (
-              <Image
-                src={conductorImgs[i]!.url}
-                alt={conductorImgs[i]!.alt || `Conductor ${i + 1}`}
-                width={160}
-                height={200}
-                className="absolute left-1/2 top-1/2 w-30 h-40 md:w-52 md:h-66 -translate-x-1/2 -translate-y-1/3 rounded-[50%/50%] object-cover z-10"
-                priority={i === 0}
-              />
+            {img ? (
+              hovered === i ? (
+                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
+                  <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
+                    {conductorPhotos[i]?.title}
+                  </span>
+                  <span className="text-center text-s md:text-lg font-medium text-[#602C0F]">
+                    {conductorPhotos[i]?.text}
+                  </span>
+                </div>
+              ) : (
+                <Image
+                  src={img.url}
+                  alt={img.alt || `Conductor ${i + 1}`}
+                  width={160}
+                  height={200}
+                  className="absolute left-1/2 top-1/2 w-30 h-40 md:w-52 md:h-66 -translate-x-1/2 -translate-y-1/3 rounded-[50%/50%] object-cover z-10"
+                  priority={i === 0}
+                />
+              )
             ) : (
-              <div className="absolute left-1/2 top-1/2 w-30 h-40 md:w-52 md:h-66 -translate-x-1/2 -translate-y-1/3 bg-gray-200 rounded-[50%/50%] animate-pulse z-10" />
+              hovered === i ? (
+                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
+                  <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
+                    Conductor doesn't exist
+                  </span>
+                </div>
+              ) : null
             )}
           </div>
         ))}
