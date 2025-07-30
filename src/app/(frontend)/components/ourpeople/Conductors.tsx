@@ -12,7 +12,6 @@ interface PayloadImage {
   filename?: string;
 }
 
-const frameFilename = "ROUND_FRAME_1.PNG";
 const conductorPhotos = [
   { filename: "Conductor_1.PNG", title: "Conductor 1", text: "Description about them (Developers just put lorem ipsum text for now)" },
   { filename: "Conductor_2.PNG", title: "Conductor 2", text: "Description about them (Developers just put lorem ipsum text for now)" },
@@ -26,7 +25,7 @@ const Conductors = () => {
 
   useEffect(() => {
     let foundFrame: PayloadImage | null = null;
-    let foundConductors: (PayloadImage | null)[] = [null, null, null];
+    const foundConductors: (PayloadImage | null)[] = [null, null, null];
     const allowedNames = ["Conductor_1.PNG", "Conductor_2.PNG", "Conductor_3.PNG"];
 
     const fetchAllPages = async (page = 1) => {
@@ -109,7 +108,7 @@ const Conductors = () => {
               hovered === i ? (
                 <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
                   <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
-                    Conductor doesn't exist
+                    Conductor doesn&apos;t exist
                   </span>
                 </div>
               ) : null
