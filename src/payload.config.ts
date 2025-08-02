@@ -21,6 +21,7 @@ import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
+import { PastConcerts } from "./collections/global/PastConcerts";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,6 +43,7 @@ export default buildConfig({
     OurPeople,
     ConcertsLanding,
     UpcomingConcerts,
+    PastConcerts,
   ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",

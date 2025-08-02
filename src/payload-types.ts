@@ -97,6 +97,7 @@ export interface Config {
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
     'upcoming-concerts': UpcomingConcert;
+    'past-concerts': PastConcert;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -107,6 +108,7 @@ export interface Config {
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -596,6 +598,51 @@ export interface UpcomingConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "past-concerts".
+ */
+export interface PastConcert {
+  id: string;
+  headerSection: {
+    title: string;
+    'short-desc': string;
+  };
+  years?:
+    | {
+        year: string;
+        concerts: {
+          semester1: {
+            poster: string | Media;
+            semester: string;
+            concertTitle: string;
+            desc: string;
+            videoUrl: string;
+            charity: {
+              name: string;
+              websiteURL: string;
+              donationAmount: number;
+            };
+          };
+          semester2: {
+            poster: string | Media;
+            semester: string;
+            concertTitle: string;
+            desc: string;
+            videoUrl: string;
+            charity: {
+              name: string;
+              websiteURL: string;
+              donationAmount: number;
+            };
+          };
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -871,6 +918,63 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
         date?: T;
         location?: T;
         ticketUrl?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "past-concerts_select".
+ */
+export interface PastConcertsSelect<T extends boolean = true> {
+  headerSection?:
+    | T
+    | {
+        title?: T;
+        'short-desc'?: T;
+      };
+  years?:
+    | T
+    | {
+        year?: T;
+        concerts?:
+          | T
+          | {
+              semester1?:
+                | T
+                | {
+                    poster?: T;
+                    semester?: T;
+                    concertTitle?: T;
+                    desc?: T;
+                    videoUrl?: T;
+                    charity?:
+                      | T
+                      | {
+                          name?: T;
+                          websiteURL?: T;
+                          donationAmount?: T;
+                        };
+                  };
+              semester2?:
+                | T
+                | {
+                    poster?: T;
+                    semester?: T;
+                    concertTitle?: T;
+                    desc?: T;
+                    videoUrl?: T;
+                    charity?:
+                      | T
+                      | {
+                          name?: T;
+                          websiteURL?: T;
+                          donationAmount?: T;
+                        };
+                  };
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
