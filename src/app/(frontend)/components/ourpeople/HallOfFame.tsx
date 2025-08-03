@@ -8,31 +8,31 @@ type CardStructure = {
   description: string;
 };
 
-const PastPresidentsCard = ({ name, description, }: CardStructure) => {
+const PastPresidentsCard = ({ name, image, description }: CardStructure) => {
   return (
-    <div className="flex flex-col justify-center bg-[#c6d5e8] w-[200px] h-[260px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%]">
+    <div className="group flex flex-col justify-center bg-[#c6d5e8] w-[220px] h-[280px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%]">
        
       {/* name */}
-      <h2 className="text-md sm:text-l lg:text-xl font-serif">{name}</h2>
+      <h2 className="text-md sm:text-l lg:text-xl font-serif hidden group-hover:block ">{name}</h2>
 
       {/* description */}
-      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
+      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3 hidden group-hover:block">
         <p className="text-xs sm:xs leading-relaxed">{description}</p>
       </div>
     </div>
   );
 };
 
-const FoundersCard = ({ name, description, }: CardStructure) => {
+const FoundersCard = ({ name, description }: CardStructure) => {
   return (
-    <div className="flex flex-col justify-center bg-[#EEEADE] w-[200px] h-[260px] text-center text-[#042b50] space-y-5 lg:space-y-6">
+    <div className="group flex flex-col justify-center bg-[#EEEADE] w-[200px] h-[260px] text-center text-[#042b50] space-y-5 lg:space-y-6">
 
       {/* name */}
-      <h2 className="text-md sm:text-l lg:text-xl font-serif">{name}</h2>
+      <h2 className="text-md sm:text-l lg:text-xl font-serif hidden group-hover:block">{name}</h2>
 
       {/* description */}
-      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
-        <p className="text-xs sm:xs leading-relaxed">{description}</p>
+      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3 hidden group-hover:block">
+        <p className="text-xs sm:xs leading-relaxed hidden group-hover:block">{description}</p>
       </div>
     </div>
   );
