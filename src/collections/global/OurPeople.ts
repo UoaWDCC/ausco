@@ -2,7 +2,7 @@ import { GlobalConfig } from "payload";
 
 export const OurPeople: GlobalConfig = {
   slug: "our-people",
-  label: "Our People",
+  label: "Our People Page",
   fields: [
     {
       name: "generalDescription",
@@ -16,7 +16,6 @@ export const OurPeople: GlobalConfig = {
       name: "execs",
       type: "array",
       label: "Executive Members",
-
       fields: [
         {
           name: "name",
@@ -53,6 +52,78 @@ export const OurPeople: GlobalConfig = {
           relationTo: "media",
           required: true,
           defaultValue: "68716e81b0bf6c59846349f1",
+        },
+      ],
+    },
+    {
+      name: "playerDescription",
+      label: "Short Description of Players",
+      type: "text",
+      required: false,
+    },
+    {
+      name: "sections",
+      type: "blocks",
+      blocks: [
+        {
+          slug: "large-group",
+          labels: {
+            singular: "Large Orchestra Section (full column)",
+            plural: "Large Orchestra Sections (full columns)",
+          },
+          fields: [
+            {
+              name: "sectionTitle",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "photo",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "players",
+              type: "array",
+              fields: [
+                {
+                  name: "name",
+                  type: "text",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          slug: "small-group",
+          labels: {
+            singular: "Small Orchestra Section (half column)",
+            plural: "Small Orchestra Sections (half columns)",
+          },
+          fields: [
+            {
+              name: "sectionTitle",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "photo",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "players",
+              type: "array",
+              fields: [
+                {
+                  name: "name",
+                  type: "text",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
