@@ -1,3 +1,9 @@
+import PastConcerts from "@components/concerts/PastConcerts";
+
 export default function Past() {
-  return <h1>Past Concerts</h1>;
-}
+  return (
+    <>
+      <PastConcerts />
+    </>
+  )
+};
