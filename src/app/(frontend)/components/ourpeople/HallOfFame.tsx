@@ -10,8 +10,8 @@ type CardStructure = {
 
 const PastPresidentsCard = ({ name, description, }: CardStructure) => {
   return (
-    <div className="flex flex-col justify-center bg-[#c6d5e8] w-full sm:w-[25%] md:w-[16%] min-h-[200px] sm:min-h-[250px] lg:min-h-[340px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%]">
-
+    <div className="flex flex-col justify-center bg-[#c6d5e8] w-[200px] h-[260px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%]">
+       
       {/* name */}
       <h2 className="text-md sm:text-l lg:text-xl font-serif">{name}</h2>
 
@@ -25,7 +25,7 @@ const PastPresidentsCard = ({ name, description, }: CardStructure) => {
 
 const FoundersCard = ({ name, description, }: CardStructure) => {
   return (
-    <div className="flex flex-col justify-center bg-[#EEEADE] w-full sm:w-[25%] md:w-[16%] min-h-[200px] sm:min-h-[250px] lg:min-h-[340px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6">
+    <div className="flex flex-col justify-center bg-[#EEEADE] w-[200px] h-[260px] text-center text-[#042b50] space-y-5 lg:space-y-6">
 
       {/* name */}
       <h2 className="text-md sm:text-l lg:text-xl font-serif">{name}</h2>
@@ -52,7 +52,7 @@ const HallOfFame = async () => {
             {/* Past Presidents */}
             <div>
                 <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Past Presidents </h5>
-                <div className="flex flex-row justify-center gap-6">
+                <div className="flex flex-wrap justify-center gap-6">
                     {pastPresidents.map(({ name, image, description }) => (
                         <PastPresidentsCard
                             key={name}
