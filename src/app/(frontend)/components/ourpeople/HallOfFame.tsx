@@ -1,10 +1,7 @@
 import { getOurPeople } from "@/actions/getOurPeoplePage";
 import { Media } from "@/payload-types";
-
-// Define the image structure from Payload
-type UploadedImage = {
-  url: string;
-};
+import pastPresidentsFrame from "../../assets/pastPresidentsFrame.png";
+import foundersFrame from "../../assets/fourndersFrame.png";
 
 // Define cards structure
 type CardStructure = {
@@ -16,11 +13,7 @@ type CardStructure = {
 const PastPresidentsCard = ({ name, image, description }: CardStructure) => {
   const imageUrl = typeof image === "string" ? image : image?.url;
   return (
-    <div className="group flex flex-col justify-center bg-cover bg-center bg-no-repeat hover:bg-[#c6d5e8] w-[220px] h-[280px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%]"
-      style={{
-      backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
-    }}
-    >
+    <div className="group border-2 flex flex-col justify-center bg-cover bg-center bg-no-repeat hover:bg-[#c6d5e8] w-[220px] h-[280px] p-6 lg:p-8 text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%] shadow-sm">
        
       {/* name */}
       <h2 className="text-md sm:text-l lg:text-xl font-serif hidden group-hover:block ">{name}</h2>
@@ -35,7 +28,7 @@ const PastPresidentsCard = ({ name, image, description }: CardStructure) => {
 
 const FoundersCard = ({ name, description }: CardStructure) => {
   return (
-    <div className="group flex flex-col justify-center bg-[#EEEADE] w-[200px] h-[260px] text-center text-[#042b50] space-y-5 lg:space-y-6">
+    <div className="group flex flex-col justify-center bg-[#EEEADE] w-[200px] h-[260px] text-center text-[#042b50] space-y-5 lg:space-y-6 shadow-sm">
 
       {/* name */}
       <h2 className="text-md sm:text-l lg:text-xl font-serif hidden group-hover:block">{name}</h2>
