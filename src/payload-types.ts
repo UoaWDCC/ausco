@@ -451,6 +451,27 @@ export interface OurPerson {
   id: string;
   image?: (string | null) | Media;
   description?: string | null;
+  /**
+   * Add, edit, or remove cards for Hall of Fame section. Each card can have a title, description and image.
+   */
+  hallOfFame?: {
+    pastPresidents?:
+      | {
+          name?: string | null;
+          image?: (string | null) | Media;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    founders?:
+      | {
+          name?: string | null;
+          image?: (string | null) | Media;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -580,6 +601,26 @@ export interface HeaderSelect<T extends boolean = true> {
 export interface OurPeopleSelect<T extends boolean = true> {
   image?: T;
   description?: T;
+  hallOfFame?:
+    | T
+    | {
+        pastPresidents?:
+          | T
+          | {
+              name?: T;
+              image?: T;
+              description?: T;
+              id?: T;
+            };
+        founders?:
+          | T
+          | {
+              name?: T;
+              image?: T;
+              description?: T;
+              id?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
