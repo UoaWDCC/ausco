@@ -30,7 +30,7 @@ const PastPresidentsCard = ({ name, image, description, index }: CardStructure) 
           src={pastPresidentsFrame.src}
           alt="Frame"
           fill
-          className="object-contain rounded-[50%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[40%] md:-translate-y-1/2.5 w-full h-full rounded-full object-cover pointer-events-none"
+          className="object-contain rounded-[50%] absolute -translate-x-1/2 md:-translate-y-1/2.5 w-full h-full rounded-full object-cover pointer-events-none"
           priority={index === 0}
         />
       </div>
