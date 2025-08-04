@@ -4,7 +4,7 @@ import { getOurPeople } from "@/actions/getOurPeoplePage";
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import pastPresidentsFrame from "../../assets/pastPresidentsFrame.png";
-import foundersFrame from "../../assets/fourndersFrame.png";
+import foundersFrame from "../../assets/foundersFrame.png";
 import { useEffect, useState } from "react";
 
 // Define cards structure
@@ -20,12 +20,24 @@ const PastPresidentsCard = ({ name, image, description, index }: CardStructure) 
   const imageALT = typeof image == "string" ? image : image?.alt;
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <div className="flex flex-col justify-center w-[220px] h-[280px] text-center text-[#042b50] space-y-5 lg:space-y-6 rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
+    <div className="relative flex flex-col justify-center w-[220px] h-[260px] text-center text-[#042b50] rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
     >
+      {/* Frame as background */}
+      <div className="absolute w-[480px] h-[640px] z-30 pointer-events-none"> 
+        <Image
+          src={pastPresidentsFrame.src}
+          alt="Frame"
+          fill
+          className="object-contain rounded-[50%] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[40%] md:-translate-y-1/2.5 w-full h-full rounded-full object-cover pointer-events-none"
+          priority={index === 0}
+        />
+      </div>
+
+      {/* hovered state - past president's name and description */}
       {hovered === index ? (
-        <div className="flex flex-col items-center justify-center z-20 pointer-events-none px-4 w-[220px] h-[280px] rounded-[50%] bg-[#c6d5e8] transition-all duration-300">
+        <div className="relative flex flex-col space-y-5 lg:space-y-6 items-center justify-center z-20 pointer-events-none px-4 w-[220px] h-[280px] rounded-[50%] bg-[#c6d5e8] transition-all duration-300">
           <span className="text-center text-md sm:text-l lg:text-xl font-serif">
             {name}
           </span>
@@ -33,18 +45,20 @@ const PastPresidentsCard = ({ name, image, description, index }: CardStructure) 
             {description}
           </span>
         </div>
-      ) : imageUrl ? (
-        <div className="relative w-[220px] h-[280px] rounded-[50%]"> 
+      ) : imageUrl ? ( 
+        <div className="relative w-[220px] h-[260px] rounded-[50%]"> 
+          {/* unhovered state - past president's image */}
           <Image
             src={imageUrl}
             alt={imageALT}
             fill
-            className="object-cover rounded-[50%] z-10 transition-all duration-300"
+            className="object-cover absolute rounded-[50%] z-10 transition-all duration-300"
             priority={index === 0}
           />
         </div>
       ) : (
-        <div className="flex flex-col w-[220px] h-[280px] items-center justify-center rounded-[50%] px-4 transition-all duration-300 z-10" > 
+        // unhovered state when there's no image uploaded 
+        <div className="flex flex-col w-[220px] h-[260px] items-center justify-center rounded-[50%] px-4 transition-all duration-300 z-10" > 
           <span className="text-center text-xs sm:xs leading-relaxed">
             image placeholder
           </span>
@@ -59,10 +73,21 @@ const FoundersCard = ({ name, image, description, index }: CardStructure) => {
   const imageALT = typeof image == "string" ? image : image?.alt;
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <div className="flex flex-col justify-center w-[220px] h-[280px] bg-[#EEE5D8] text-center text-[#042b50] space-y-5 lg:space-y-6 cursor-pointer transition-all duration-300"
+    <div className="flex flex-col justify-center w-[220px] h-[280px] bg-[#EEE5D8] text-center text-[#042b50] space-y-5 lg:space-y-6 shadow-sm cursor-pointer transition-all duration-300"
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
     >
+      {/* Frame as background */}
+      <Image
+        src={foundersFrame.src}
+        alt="Frame"
+        width={220}
+        height={280}
+        className="absolute w-[320px] h-[380px] object-cover pointer-events-none"
+        priority={index === 0}
+      />
+
+      {/* hovered state - founder's name and description */}
       {hovered === index ? (
         <div className="flex flex-col items-center justify-center z-20 pointer-events-none px-4 w-[220px] h-[280px] bg-[#EEE5D8] transition-all duration-300">
           <span className="text-center text-md sm:text-l lg:text-xl font-serif">
@@ -74,6 +99,7 @@ const FoundersCard = ({ name, image, description, index }: CardStructure) => {
         </div>
       ) : imageUrl ? (
         <div className="relative w-[220px] h-[280px]"> 
+          {/* unhovered state - founder's image */}
           <Image
             src={imageUrl}
             alt={imageALT}
@@ -83,6 +109,7 @@ const FoundersCard = ({ name, image, description, index }: CardStructure) => {
           />
         </div>
       ) : (
+        // unhovered state when there's no image uploaded 
         <div className="flex flex-col w-[220px] h-[280px] items-center justify-center px-4 transition-all duration-300 z-10" > 
           <span className="text-center text-xs sm:xs leading-relaxed">
             image placeholder
