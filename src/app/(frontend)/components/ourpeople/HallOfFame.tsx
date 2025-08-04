@@ -181,7 +181,7 @@ const HallOfFame = () => {
       {/* Founders */}
       <div>
           <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Founders </h5>
-          <div className="flex flex-row justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-6">
               {founders.map(({ name, image, description }, i) => (
                   <FoundersCard
                   key={name}
