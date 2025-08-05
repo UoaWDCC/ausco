@@ -20,7 +20,7 @@ const PastPresidentsCard = ({ name, image, description, index }: CardStructure) 
   const imageALT = typeof image == "string" ? image : image?.alt;
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <div className="relative flex flex-col justify-center w-[220px] h-[260px] text-center text-[#042b50] rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
+    <div className="flex flex-col items-center justify-center w-[220px] h-[260px] text-center text-[#042b50] rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
     >
@@ -30,7 +30,7 @@ const PastPresidentsCard = ({ name, image, description, index }: CardStructure) 
           src={pastPresidentsFrame.src}
           alt="Frame"
           fill
-          className="object-contain rounded-[50%] absolute -translate-x-1/2 md:-translate-y-1/2.5 w-full h-full rounded-full object-cover pointer-events-none"
+          className="absolute rounded-[50%] w-full h-full object-cover pointer-events-none"
           priority={index === 0}
         />
       </div>
@@ -73,19 +73,20 @@ const FoundersCard = ({ name, image, description, index }: CardStructure) => {
   const imageALT = typeof image == "string" ? image : image?.alt;
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <div className="flex flex-col justify-center w-[220px] h-[280px] bg-[#EEE5D8] text-center text-[#042b50] space-y-5 lg:space-y-6 shadow-sm cursor-pointer transition-all duration-300"
+    <div className="flex flex-col items-center justify-center w-[220px] h-[280px] bg-[#EEE5D8] text-center text-[#042b50] space-y-5 lg:space-y-6 shadow-sm cursor-pointer transition-all duration-300"
       onMouseEnter={() => setHovered(index)}
       onMouseLeave={() => setHovered(null)}
     >
       {/* Frame as background */}
-      <Image
-        src={foundersFrame.src}
-        alt="Frame"
-        width={220}
-        height={280}
-        className="absolute w-[320px] h-[380px] object-cover pointer-events-none"
-        priority={index === 0}
-      />
+      <div className="absolute w-[320px] h-[380px] z-30 pointer-events-none"> 
+        <Image
+          src={foundersFrame.src}
+          alt="Frame"
+          fill
+          className="absolute w-full h-full object-cover pointer-events-none -translate-y-[-20px]"
+          priority={index === 0}
+        />
+      </div>
 
       {/* hovered state - founder's name and description */}
       {hovered === index ? (
@@ -162,7 +163,7 @@ const HallOfFame = () => {
       {/* Past Presidents */}
       <div>
           <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Past Presidents </h5>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-16 py-9">
               {pastPresidents.map(({ name, image, description }, i) => (
                   <PastPresidentsCard
                       key={name}
@@ -181,7 +182,7 @@ const HallOfFame = () => {
       {/* Founders */}
       <div>
           <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Founders </h5>
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-16 py-9">
               {founders.map(({ name, image, description }, i) => (
                   <FoundersCard
                   key={name}
