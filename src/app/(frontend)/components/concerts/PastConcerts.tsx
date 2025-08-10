@@ -42,17 +42,27 @@ const PastConcerts = async () => {
                   {/*Semester 1 concert info*/}
                   <div className="flex flex-col md:flex-row relative w-full md:w-1/2 h-full">
                     <div className="flex w-full md:w-1/2 h-full justify-center items-center p-4">
-                      {semester1 && semester1.poster && (
-                        <img
-                          src={getImageUrl(semester1.poster)}
-                          alt={
-                            typeof semester1.poster === "object"
-                              ? semester1.poster.alt
-                              : "Semester 1 Concert Poster"
-                          }
-                          className="w-full rounded-lg aspect-[4/5] object-cover"
-                        />
-                      )}
+                      <div className="relative group w-full rounded-lg overflow-hidden aspect-[4/5]">
+                        {semester1 && semester1.poster && (
+                          <img
+                            src={getImageUrl(semester1.poster)}
+                            alt={
+                              typeof semester1.poster === "object"
+                                ? semester1.poster.alt
+                                : "Semester 1 Concert Poster"
+                            }
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+
+                        <div className="absolute inset-0 bg-[var(--brown)] text-[var(--cream)] font-semibold flex flex-col items-center justify-center text-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                          <p>View the</p> 
+                          <p>photos for this</p> 
+                          <span className="flex items-center justify-center">
+                            concert <ArrowUpRight className="size-[20px]"/>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                     <div className="flex flex-col w-full md:w-1/2 md:my-8 lg:my-16 md:mx-8 text-[var(--brown)]">
                       <h3 className="font-semibold">{semester1.semester}</h3>
@@ -69,17 +79,27 @@ const PastConcerts = async () => {
                   {/*Semester 2 concert info*/} 
                   <div className="flex flex-col md:flex-row relative w-full md:w-1/2 h-full">
                     <div className="flex w-full md:w-1/2 h-full justify-center items-center p-4">
-                      {semester2 && semester2.poster && (
-                        <img
-                          src={getImageUrl(semester2.poster)}
-                          alt={
-                            typeof semester2.poster === "object"
-                              ? semester2.poster.alt
-                              : "Semester 2 Concert Poster"
-                          }
-                          className="w-full rounded-lg aspect-[4/5] object-cover"
-                        />
-                      )}
+                      <div className="relative group w-full rounded-lg overflow-hidden aspect-[4/5]">
+                        {semester2 && semester2.poster && (
+                          <img
+                            src={getImageUrl(semester2.poster)}
+                            alt={
+                              typeof semester2.poster === "object"
+                                ? semester2.poster.alt
+                                : "Semester 2 Concert Poster"
+                            }
+                            className="w-full rounded-lg aspect-[4/5] object-cover"
+                          />
+                        )}
+
+                        <div className="absolute inset-0 bg-[var(--brown)] text-[var(--cream)] font-semibold flex flex-col items-center justify-center text-center p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                          <p>View the</p> 
+                          <p>photos for this</p> 
+                          <span className="flex items-center justify-center">
+                            concert <ArrowUpRight className="size-[20px]"/>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                     <div className="flex flex-col w-full md:w-1/2 md:my-8 lg:my-16 md:mx-8 text-[var(--brown)]">
                       <h3 className="font-semibold">{semester2.semester}</h3>
