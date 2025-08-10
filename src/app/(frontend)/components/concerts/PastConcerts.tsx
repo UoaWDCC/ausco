@@ -1,6 +1,8 @@
 import { getPastConcerts } from "@/actions/getPastConcerts";
 import { Media } from "@/payload-types";
 import { Youtube, ArrowUpRight } from "lucide-react";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const PastConcerts = async () => {
   const past = await getPastConcerts();
@@ -26,22 +28,76 @@ const PastConcerts = async () => {
         </div>
 
         <div>
-          {years && years.map((yearData) => (
-            <div key={yearData.year}>
-              <div className="flex-col items-center">
-                <div className="flex-grow border-t-2 border-[var(--brown)]"></div>
-                <h1 className="text-[var(--brown)] text-2xl sm:text-3xl md:text-4xl font-bold">{yearData.year}</h1>
-              </div>
+          {years && years.map((yearData) => {
+            const { concerts } = yearData;
+            const { semester1, semester2 } = concerts;
+            return (
+              <div key={yearData.year}>
+                <div className="flex-col items-center">
+                  <div className="flex-grow border-t-2 border-[var(--brown)]"></div>
+                  <h1 className="text-[var(--brown)] text-2xl sm:text-3xl md:text-4xl font-bold">{yearData.year}</h1>
+                </div>
 
-              <div className="flex-col md:flex-row relative bg-[var(--beige)] w-full mt-10 mb-16 lg:mt-14 lg:mb-20 aspect-[16/7] rounded-lg overflow-hidden shadow-sm">
-                <div className="flex-col md:flex-row relative w-1/2">
-                  <div>
-                    {/*Poster image div*/}
+                <div className="flex flex-col md:flex-row relative bg-[var(--beige)] w-full mt-10 mb-16 lg:mt-14 lg:mb-20 gap-8 p-8 aspect-[16/7] rounded-lg overflow-hidden shadow-sm">
+                  {/*Semester 1 concert info*/}
+                  <div className="flex flex-col md:flex-row relative w-1/2 h-full">
+                    <div className="flex w-1/2 h-full justify-center items-center p-4">
+                      {semester1 && semester1.poster && (
+                        <img
+                          src={getImageUrl(semester1.poster)}
+                          alt={
+                            typeof semester1.poster === "object"
+                              ? semester1.poster.alt
+                              : "Semester 1 Concert Poster"
+                          }
+                          className="w-full rounded-lg aspect-[4/5] object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="flex flex-col w-1/2 md:my-16 md:mx-8 text-[var(--brown)]">
+                      <h3 className="font-semibold">{semester1.semester}</h3>
+                      <h2 className="text-xl font-bold italic mt-2 mb-4">{semester1.concertTitle}</h2>
+                      <p className="text-md leading-tight">{semester1.desc}</p> {/*add mt higher than mb to this after all elements added*/}
+                      {/*next: add button w/ icon, divider, charity info; then manage spacing/scaling*/}
+                      <Button className="bg-[var(--brown)] text-[var(--cream)] my-6 hover:bg-[var(--beige)] hover:border-2 hover:border-[var(--brown)] hover:text-[var(--brown)] transition">
+                        <Youtube className="size-[25px]" /> Watch the concert video
+                      </Button>
+                      <hr className="border-t-[1px] border-[var(--brown)] md:mb-4 sm:mb-6" />
+                      <p className="italic">${semester1.charity.donationAmount} donated to <Link href={semester1.charity.websiteURL} target="_blank" className="hover:underline">{semester1.charity.name}</Link></p>
+                    </div>
+                  </div>
+                   
+                  {/*Semester 2 concert info*/} 
+                  <div className="flex flex-col md:flex-row relative w-1/2 h-full">
+                    <div className="flex w-1/2 h-full justify-center items-center p-4">
+                      {semester2 && semester2.poster && (
+                        <img
+                          src={getImageUrl(semester2.poster)}
+                          alt={
+                            typeof semester2.poster === "object"
+                              ? semester2.poster.alt
+                              : "Semester 2 Concert Poster"
+                          }
+                          className="w-full rounded-lg aspect-[4/5] object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="flex flex-col w-1/2 md:my-16 md:mx-8 text-[var(--brown)]">
+                      <h3 className="font-semibold">{semester2.semester}</h3>
+                      <h2 className="text-xl font-bold italic mt-2 mb-4">{semester2.concertTitle}</h2>
+                      <p className="text-md leading-tight">{semester2.desc}</p> {/*add mt higher than mb to this after all elements added*/}
+                      {/*next: add button w/ icon, divider, charity info; then manage spacing/scaling*/}
+                      <Button className="bg-[var(--brown)] text-[var(--cream)] my-6 hover:bg-[var(--beige)] hover:border-2 hover:border-[var(--brown)] hover:text-[var(--brown)] transition">
+                        <Youtube className="size-[25px]" /> Watch the concert video
+                      </Button>
+                      <hr className="border-t-[1px] border-[var(--brown)] md:mb-4 sm:mb-6" />
+                      <p className="italic">${semester2.charity.donationAmount} donated to <Link href={semester2.charity.websiteURL} target="_blank" className="hover:underline">{semester2.charity.name}</Link></p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
