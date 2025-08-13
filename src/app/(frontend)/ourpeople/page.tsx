@@ -10,7 +10,6 @@ export default async function OurPeoplePage() {
   return (
     <>
       <Header content={headerContent} />
-      <OurPeople />
       <ExecutiveTeam />
       <Players />
     </>
