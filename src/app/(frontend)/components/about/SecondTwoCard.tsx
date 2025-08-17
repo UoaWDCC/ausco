@@ -1,9 +1,9 @@
 import { Media } from "@/payload-types";
 import { BookText, Handshake } from "lucide-react";
-import { getSecondTwoCard } from "@/actions/getSecondTwoCard";
+import { getAboutUsCards } from "@/actions/getAboutUsCards";
 
 const SecondTwoCard = async () => {
-  const content = await getSecondTwoCard();
+  const content = await getAboutUsCards();
 
   const getImageUrl = (imageField: string | Media | null | undefined) => {
     if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
