@@ -14,9 +14,7 @@ import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
-import SecondTwoCard from "./collections/global/SecondTwoCard";
-
-import AboutFirstCards from "./collections/global/AboutFirstCards";
+import AboutUsCards from "./collections/global/AboutUsCards";
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
@@ -38,8 +36,7 @@ export default buildConfig({
     LandingPage,
     Footer,
     Header,
-    AboutFirstCards,
-    SecondTwoCard,
+    AboutUsCards,
     OurPeople,
     ConcertsLanding,
     UpcomingConcerts,

@@ -1,9 +1,58 @@
 import { GlobalConfig } from "payload";
 
-const SecondTwoCard: GlobalConfig = {
-  slug: "second-two-card",
-  label: "Second Two Card",
+const AboutUsCards: GlobalConfig = {
+  slug: "about-us-cards",
+  label: "About Us Cards",
+  access: {
+    read: () => true,
+  },
   fields: [
+    // Fields from AboutFirstCards.ts
+    {
+      name: "visionCard",
+      label: "Vision Card",
+      type: "group",
+      fields: [
+        {
+          name: "background-image",
+          label: "Background Image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        { name: "title", label: "Title", type: "text", required: true },
+        { name: "short-desc", label: "Short Description", type: "textarea", required: true },
+        {
+          name: "full-desc",
+          label: "Full Description (on hover)",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    {
+      name: "historyCard",
+      label: "History Card",
+      type: "group",
+      fields: [
+        {
+          name: "background-image",
+          label: "Background Image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        { name: "title", label: "Title", type: "text", required: true },
+        { name: "short-desc", label: "Short Description", type: "textarea", required: true },
+        {
+          name: "full-desc",
+          label: "Full Description (on hover)",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    // Fields from SecondTwoCard.ts
     {
       name: "leftBox",
       label: "Left Box (Constitution)",
@@ -85,4 +134,4 @@ const SecondTwoCard: GlobalConfig = {
   ],
 };
 
-export default SecondTwoCard;
+export default AboutUsCards;
