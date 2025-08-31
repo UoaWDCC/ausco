@@ -27,12 +27,22 @@ RUN npm install
 # Copy application code
 COPY . .
 
-# Build application
-RUN npx next build --experimental-build-mode compile
+RUN --mount=type=secret,id=DATABASE_URI \
+    --mount=type=secret,id=PAYLOAD_SECRET \
+    --mount=type=secret,id=S3_BUCKET \
+    --mount=type=secret,id=S3_ACCESS_KEY_ID \
+    --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+    --mount=type=secret,id=S3_REGION \
+    PAYLOAD_SECRET="${{ secrets.PAYLOAD_SECRET }}" \
+    DATABASE_URI="${{ secrets.DATABASE_URI }}" \
+    S3_ACCESS_KEY_ID="${{ secrets.S3_ACCESS_KEY_ID }}" \
+    S3_SECRET_ACCESS_KEY="${{ secrets.S3_SECRET_ACCESS_KEY }}" \
+    S3_BUCKET="${{ secrets.S3_BUCKET }}" \
+    S3_REGION="${{ secrets.S3_REGION }}" \
+    npx next build --experimental-build-mode compile
 
 # Remove development dependencies
 RUN npm prune --omit=dev
-
 
 # Final stage for app image
 FROM base
@@ -40,8 +50,11 @@ FROM base
 # Copy built application
 COPY --from=build /app /app
 
-# Entrypoint sets up the container.
-ENTRYPOINT [ "/docker-entrypoint.js" ]
+# Print the final image file structure
+RUN apt-get update -qq && \
+    apt-get install tree
+RUN tree -I "node_modules"
+
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
