@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Adjust NODE_VERSION as desired
-ARG NODE_VERSION=22.14.0
+ARG NODE_VERSION=23.9.0
 FROM node:${NODE_VERSION}-slim AS base
 
 LABEL fly_launch_runtime="Next.js"
@@ -22,15 +22,23 @@ RUN apt-get update -qq && \
 
 # Install node modules
 COPY package-lock.json package.json ./
-RUN npm install --production
+RUN npm ci
 
 # Copy application code
 COPY . .
 
-RUN --mount=type=secret,id=DATABASE_URI \
-    --mount=type=secret,id=PAYLOAD_SECRET \
+RUN --mount=type=secret,id=PAYLOAD_SECRET \
+    --mount=type=secret,id=DATABASE_URI \
+    --mount=type=secret,id=S3_ACCESS_KEY_ID \
+    --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+    --mount=type=secret,id=S3_BUCKET \
+    --mount=type=secret,id=S3_REGION \
     PAYLOAD_SECRET="$(cat /run/secrets/PAYLOAD_SECRET)" \
     DATABASE_URI="$(cat /run/secrets/DATABASE_URI)" \
+    S3_ACCESS_KEY_ID="$(cat /run/secrets/S3_ACCESS_KEY_ID)" \
+    S3_SECRET_ACCESS_KEY="$(cat /run/secrets/S3_SECRET_ACCESS_KEY)" \
+    S3_BUCKET="$(cat /run/secrets/S3_BUCKET)" \
+    S3_REGION="$(cat /run/secrets/S3_REGION)" \
     npx next build --experimental-build-mode compile
 
 # Remove development dependencies
