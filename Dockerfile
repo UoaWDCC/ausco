@@ -22,23 +22,15 @@ RUN apt-get update -qq && \
 
 # Install node modules
 COPY package-lock.json package.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
 # Copy application code
 COPY . .
 
 RUN --mount=type=secret,id=DATABASE_URI \
     --mount=type=secret,id=PAYLOAD_SECRET \
-    --mount=type=secret,id=S3_BUCKET \
-    --mount=type=secret,id=S3_ACCESS_KEY_ID \
-    --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
-    --mount=type=secret,id=S3_REGION \
-    PAYLOAD_SECRET="${{ secrets.PAYLOAD_SECRET }}" \
-    DATABASE_URI="${{ secrets.DATABASE_URI }}" \
-    S3_ACCESS_KEY_ID="${{ secrets.S3_ACCESS_KEY_ID }}" \
-    S3_SECRET_ACCESS_KEY="${{ secrets.S3_SECRET_ACCESS_KEY }}" \
-    S3_BUCKET="${{ secrets.S3_BUCKET }}" \
-    S3_REGION="${{ secrets.S3_REGION }}" \
+    PAYLOAD_SECRET="$(cat /run/secrets/PAYLOAD_SECRET)" \
+    DATABASE_URI="$(cat /run/secrets/DATABASE_URI)" \
     npx next build --experimental-build-mode compile
 
 # Remove development dependencies
@@ -54,7 +46,6 @@ COPY --from=build /app /app
 RUN apt-get update -qq && \
     apt-get install tree
 RUN tree -I "node_modules"
-
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
