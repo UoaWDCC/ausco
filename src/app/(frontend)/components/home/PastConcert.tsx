@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { inView } from "motion";
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ const PastConcert = () => {
   const playerRef = useRef<any>(null);
   const [videoId, setVideoId] = useState<string | null>(null);
   const [playerReady, setPlayerReady] = useState(false);
+  const [hasAutoplayed, setHasAutoplayed] = useState(false);
 
   // Fetch YouTube video ID from API
   useEffect(() => {
@@ -70,6 +72,34 @@ const PastConcert = () => {
     }
   }, [videoId]);
 
+  //autoplays when 60% of the video frame is in view
+  useEffect(() => {
+    if (!playerReady || hasAutoplayed) return;
+
+    //finds parent container via id
+    const videoContainer = document.getElementById("youtube-player")?.parentElement;
+    if (!videoContainer) return;
+
+    //call youtube api for playback
+    const stopInView = inView(
+      videoContainer,
+      () => {
+        if (playerReady && !hasAutoplayed && playerRef.current) {
+          playerRef.current.playVideo();
+          setHasAutoplayed(true);
+        }
+      },
+      {
+        amount: 0.6,
+      },
+    );
+
+    //stop playing/cleanup
+    return () => {
+      stopInView();
+    };
+  }, [playerReady, hasAutoplayed]);
+
   return (
     <section
       ref={sectionRef}
@@ -87,7 +117,7 @@ const PastConcert = () => {
       </h2>
 
       <div className="flex items-center justify-center mx-auto w-[560px] h-[315px]">
-        <div className="w-full h-full bg-gray-200 flex items-center justify-center text-[1.2rem] relative overflow-hidden">
+        <div className="w-full h-full bg-black flex items-center justify-center text-[1.2rem] relative overflow-hidden">
           <div id="youtube-player" className="w-full h-full aspect-video" />
         </div>
       </div>
