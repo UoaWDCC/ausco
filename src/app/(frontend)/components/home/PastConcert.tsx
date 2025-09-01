@@ -103,7 +103,7 @@ const PastConcert = () => {
   return (
     <section
       ref={sectionRef}
-      className="flex flex-col items-center justify-center py-8 w-full"
+      className="flex flex-col items-center justify-center py-8 gap-8 w-full"
       style={{
         background: "var(--headerblue)",
         minHeight: "calc(100vh - 80px)",
