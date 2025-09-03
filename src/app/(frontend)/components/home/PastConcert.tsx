@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { inView } from "motion";
+import { motion, useScroll, useTransform } from "motion/react";
 
 declare global {
   interface Window {
@@ -12,10 +13,27 @@ declare global {
 
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const videoContainerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
   const [videoId, setVideoId] = useState<string | null>(null);
   const [playerReady, setPlayerReady] = useState(false);
   const [hasAutoplayed, setHasAutoplayed] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+
+  //track section scroll progress, video container scaling
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const scaleValue = useTransform(scrollYProgress, [0.2, 0.5], [1, 2.5]);
+
+  //hide or show header based on scroll
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (latest) => {
+      setShowHeader(latest < 0.2);
+    });
+    return unsubscribe;
+  }, [scrollYProgress]);
 
   // Fetch YouTube video ID from API
   useEffect(() => {
@@ -74,11 +92,9 @@ const PastConcert = () => {
 
   //autoplays when 60% of the video frame is in view
   useEffect(() => {
-    if (!playerReady || hasAutoplayed) return;
+    if (!videoContainerRef.current) return;
 
-    //finds parent container via id
-    const videoContainer = document.getElementById("youtube-player")?.parentElement;
-    if (!videoContainer) return;
+    const videoContainer = videoContainerRef.current;
 
     //call youtube api for playback
     const stopInView = inView(
@@ -106,21 +122,28 @@ const PastConcert = () => {
       className="flex flex-col items-center justify-center py-8 gap-8 w-full"
       style={{
         background: "var(--headerblue)",
-        minHeight: "calc(100vh - 80px)",
+        minHeight: "100vh",
       }}
     >
       <h2
-        className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis"
+        className={`w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis  ${
+          showHeader ? "block" : "hidden"
+        }`}
         style={{ color: "var(--concertblue)" }}
       >
         From our last concert
       </h2>
 
-      <div className="flex items-center justify-center mx-auto w-[560px] h-[315px]">
-        <div className="w-full h-full bg-black flex items-center justify-center text-[1.2rem] relative overflow-hidden">
-          <div id="youtube-player" className="w-full h-full aspect-video" />
-        </div>
-      </div>
+      {/*motion container with dynamic scroll-based scaling effect*/}
+      <motion.div
+        ref={videoContainerRef}
+        className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[660px] h-[315px]"
+        style={{
+          scale: scaleValue,
+        }}
+      >
+        <div id="youtube-player" className="w-full h-full aspect-video"></div>
+      </motion.div>
     </section>
   );
 };
