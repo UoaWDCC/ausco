@@ -20,12 +20,18 @@ const PastConcert = () => {
   const [hasAutoplayed, setHasAutoplayed] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
 
-  //track section scroll progress, video container scaling
+  //track section scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
+
+  //video size scaling
   const scaleValue = useTransform(scrollYProgress, [0.2, 0.5], [1, 2.5]);
+
+  //bg colour transform
+  //when i use the css style vars it does not smoothly transition the colours
+  const bgColor = useTransform(scrollYProgress, [0.2, 0.5], ["#c7d5e8", "#264c84"]);
 
   //hide or show header based on scroll
   useEffect(() => {
@@ -117,14 +123,15 @@ const PastConcert = () => {
   }, [playerReady, hasAutoplayed]);
 
   return (
-    <section
+    <motion.section
       ref={sectionRef}
       className="flex flex-col items-center justify-center py-8 gap-8 w-full"
       style={{
-        background: "var(--headerblue)",
+        backgroundColor: bgColor,
         minHeight: "100vh",
       }}
     >
+      {/*section header, disappears with scroll*/}
       <h2
         className={`w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis  ${
           showHeader ? "block" : "hidden"
@@ -134,7 +141,7 @@ const PastConcert = () => {
         From our last concert
       </h2>
 
-      {/*motion container with dynamic scroll-based scaling effect*/}
+      {/*motion container for video with dynamic scroll-based scaling effect*/}
       <motion.div
         ref={videoContainerRef}
         className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[660px] h-[315px]"
@@ -144,7 +151,7 @@ const PastConcert = () => {
       >
         <div id="youtube-player" className="w-full h-full aspect-video"></div>
       </motion.div>
-    </section>
+    </motion.section>
   );
 };
 
