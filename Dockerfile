@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Adjust NODE_VERSION as desired
-ARG NODE_VERSION=22.14.0
+ARG NODE_VERSION=23.9.0
 FROM node:${NODE_VERSION}-slim AS base
 
 LABEL fly_launch_runtime="Next.js"
@@ -12,7 +12,6 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV="production"
 
-
 # Throw-away build stage to reduce size of final image
 FROM base AS build
 
@@ -21,27 +20,35 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
 
 # Install node modules
-COPY package-lock.json package.json ./
-RUN npm ci --include=dev
+COPY package.json package-lock.json ./
+RUN npm install 
 
 # Copy application code
 COPY . .
 
 # Build application
-RUN npx next build --experimental-build-mode compile
+RUN --mount=type=secret,id=PAYLOAD_SECRET \
+    --mount=type=secret,id=DATABASE_URI \
+    --mount=type=secret,id=S3_ACCESS_KEY_ID \
+    --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+    --mount=type=secret,id=S3_BUCKET \
+    --mount=type=secret,id=S3_REGION \
+    PAYLOAD_SECRET="$(cat /run/secrets/PAYLOAD_SECRET)" \
+    DATABASE_URI="$(cat /run/secrets/DATABASE_URI)" \
+    S3_ACCESS_KEY_ID="$(cat /run/secrets/S3_ACCESS_KEY_ID)" \
+    S3_SECRET_ACCESS_KEY="$(cat /run/secrets/S3_SECRET_ACCESS_KEY)" \
+    S3_BUCKET="$(cat /run/secrets/S3_BUCKET)" \
+    S3_REGION="$(cat /run/secrets/S3_REGION)" \
+    npx next build --experimental-build-mode compile
 
 # Remove development dependencies
-RUN npm prune --omit=dev
-
+RUN npm prune --prod
 
 # Final stage for app image
 FROM base
 
 # Copy built application
 COPY --from=build /app /app
-
-# Entrypoint sets up the container.
-ENTRYPOINT [ "/app/docker-entrypoint.js" ]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
