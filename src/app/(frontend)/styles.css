@@ -46,6 +46,21 @@
   --headerblue: oklch(89.36% 0.048 256.37) /*#C7D5E8*/;
 }
 
+/* custom wiggle animation */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.wiggle-hover:hover {
+  animation: wiggle 0.3s ease-in-out;
+}
+
 * {
   box-sizing: border-box;
 }

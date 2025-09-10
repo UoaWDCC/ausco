@@ -29,7 +29,7 @@ const HeroSection = async () => {
               if (!url) return null;
 
               return (
-                <div key={i} className="w-20 h-20 relative">
+                <div key={i} className="w-20 h-20 relative wiggle-hover">
                   <Image
                     src={url}
                     alt={(sticker["sticker-image"] as Media)?.alt || "Sticker"}
