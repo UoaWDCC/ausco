@@ -16,6 +16,7 @@ import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
 import SecondTwoCard from "./collections/global/SecondTwoCard";
 
+import AboutHeroSection from "./collections/global/AboutHeroSection";
 import AboutFirstCards from "./collections/global/AboutFirstCards";
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
@@ -38,6 +39,7 @@ export default buildConfig({
     LandingPage,
     Footer,
     Header,
+    AboutHeroSection,
     AboutFirstCards,
     SecondTwoCard,
     OurPeople,

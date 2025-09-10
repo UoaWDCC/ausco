@@ -92,6 +92,7 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    'about-hero-section': AboutHeroSection;
     'about-first-cards': AboutFirstCard;
     'second-two-card': SecondTwoCard;
     'our-people': OurPerson;
@@ -103,6 +104,7 @@ export interface Config {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
     'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
     'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
@@ -456,6 +458,21 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-hero-section".
+ */
+export interface AboutHeroSection {
+  id: string;
+  aboutUsStickers?:
+    | {
+        'sticker-image': string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "about-first-cards".
  */
 export interface AboutFirstCard {
@@ -755,6 +772,21 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         label?: T;
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-hero-section_select".
+ */
+export interface AboutHeroSectionSelect<T extends boolean = true> {
+  aboutUsStickers?:
+    | T
+    | {
+        'sticker-image'?: T;
         id?: T;
       };
   updatedAt?: T;
