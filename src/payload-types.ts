@@ -468,6 +468,8 @@ export interface AboutHeroSection {
         id?: string | null;
       }[]
     | null;
+  AboutUsHeader?: string | null;
+  AboutUsDescription?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -789,6 +791,8 @@ export interface AboutHeroSectionSelect<T extends boolean = true> {
         'sticker-image'?: T;
         id?: T;
       };
+  AboutUsHeader?: T;
+  AboutUsDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

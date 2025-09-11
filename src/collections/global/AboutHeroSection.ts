@@ -21,6 +21,16 @@ export const AboutHeroSection: GlobalConfig = {
         },
       ],
     },
+    {
+      name: "AboutUsHeader",
+      label: "about us header",
+      type: "text",
+    },
+    {
+      name: "AboutUsDescription",
+      label: "about us description",
+      type: "text",
+    },
   ],
 };
 
