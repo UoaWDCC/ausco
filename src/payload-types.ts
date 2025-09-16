@@ -97,6 +97,7 @@ export interface Config {
     'concerts-landing': ConcertsLanding;
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
+    'gallery-landing': GalleryLanding;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -107,6 +108,7 @@ export interface Config {
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -632,6 +634,27 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing".
+ */
+export interface GalleryLanding {
+  id: string;
+  concertPhotosCard: {
+    'background-image': string | Media;
+  };
+  annCampCard: {
+    'background-image': string | Media;
+  };
+  execCampCard: {
+    'background-image': string | Media;
+  };
+  otherPhotosCard: {
+    'background-image': string | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -955,6 +978,35 @@ export interface PastConcertsSelect<T extends boolean = true> {
                   };
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing_select".
+ */
+export interface GalleryLandingSelect<T extends boolean = true> {
+  concertPhotosCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  annCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  execCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  otherPhotosCard?:
+    | T
+    | {
+        'background-image'?: T;
       };
   updatedAt?: T;
   createdAt?: T;
