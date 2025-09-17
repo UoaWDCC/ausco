@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState } from "react";
 import { inView } from "motion";
 import { motion, useScroll, useTransform } from "motion/react";
+import { Volume2, VolumeX } from "lucide-react";
 
 declare global {
   interface Window {
@@ -19,14 +20,14 @@ const PastConcert = () => {
   const [playerReady, setPlayerReady] = useState(false);
   const [hasAutoplayed, setHasAutoplayed] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
 
   //track section scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-
-  //video size scaling
   const scaleValue = useTransform(scrollYProgress, [0.2, 0.5], [1, 2.5]);
 
   //bg colour transform
@@ -76,8 +77,18 @@ const PastConcert = () => {
             fs: 0,
           },
           events: {
+            //checks if mute state is correct
             onReady: (event: any) => {
+              if (isMuted) event.target.mute();
+              else event.target.unMute();
               setPlayerReady(true);
+            },
+            //restarts video when finished
+            onStateChange: (event: any) => {
+              if (event.data === 0) {
+                event.target.seekTo(0);
+                event.target.playVideo();
+              }
             },
           },
         });
@@ -94,7 +105,7 @@ const PastConcert = () => {
       document.body.appendChild(tag);
       window.onYouTubeIframeAPIReady = createPlayerWhenReady;
     }
-  }, [videoId]);
+  }, [videoId, isMuted]);
 
   //autoplays when 60% of the video frame is in view
   useEffect(() => {
@@ -122,6 +133,21 @@ const PastConcert = () => {
     };
   }, [playerReady, hasAutoplayed]);
 
+  const handleMute = () => {
+    const player = playerRef.current;
+    if (!player) return;
+
+    setIsMuted((wasMuted) => {
+      const isNowMuted = !wasMuted;
+      if (isNowMuted) player.mute();
+      else player.unMute();
+      return isNowMuted;
+    });
+  };
+
+  //conditional icon for mute
+  const Icon = isMuted ? VolumeX : Volume2;
+
   return (
     <motion.section
       ref={sectionRef}
@@ -148,8 +174,24 @@ const PastConcert = () => {
         style={{
           scale: scaleValue,
         }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div id="youtube-player" className="w-full h-full aspect-video"></div>
+
+        {/*mute button appears when hovered*/}
+        <button
+          type="button"
+          onClick={handleMute}
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-250 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ background: "transparent" }}
+        >
+          <span className="rounded-full bg-black/50 p-2">
+            <Icon className="w-7 h-7 text-[var(--blue)]" />
+          </span>
+        </button>
       </motion.div>
     </motion.section>
   );
