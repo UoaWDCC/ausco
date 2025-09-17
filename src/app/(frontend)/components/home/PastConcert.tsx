@@ -7,7 +7,7 @@ import { Volume2, VolumeX } from "lucide-react";
 
 declare global {
   interface Window {
-    YT?: any;
+    YT?: { Player: new (elementId: string, options: unknown) => unknown };
     onYouTubeIframeAPIReady?: () => void;
   }
 }
@@ -15,7 +15,12 @@ declare global {
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoContainerRef = useRef<HTMLDivElement | null>(null);
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<{
+    mute: () => void;
+    unMute: () => void;
+    playVideo: () => void;
+    seekTo: (seconds: number) => void;
+  } | null>(null);
   const [videoId, setVideoId] = useState<string | null>(null);
   const [playerReady, setPlayerReady] = useState(false);
   const [hasAutoplayed, setHasAutoplayed] = useState(false);
@@ -95,7 +100,15 @@ const PastConcert = () => {
     function createPlayerWhenReady() {
       if (window.YT && window.YT.Player) {
         if (playerRef.current) return;
-        playerRef.current = new window.YT.Player("youtube-player", {
+        playerRef.current = new (window.YT.Player as unknown as new (
+          elementId: string,
+          options: unknown,
+        ) => {
+          mute: () => void;
+          unMute: () => void;
+          playVideo: () => void;
+          seekTo: (seconds: number) => void;
+        })("youtube-player", {
           videoId: videoId,
           playerVars: {
             autoplay: 0,
@@ -111,13 +124,16 @@ const PastConcert = () => {
           },
           events: {
             //checks if mute state is correct
-            onReady: (event: any) => {
+            onReady: (event: { target: { mute: () => void; unMute: () => void } }) => {
               if (isMuted) event.target.mute();
               else event.target.unMute();
               setPlayerReady(true);
             },
             //restarts video when finished
-            onStateChange: (event: any) => {
+            onStateChange: (event: {
+              data: number;
+              target: { seekTo: (seconds: number) => void; playVideo: () => void };
+            }) => {
               if (event.data === 0) {
                 event.target.seekTo(0);
                 event.target.playVideo();
