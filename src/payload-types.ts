@@ -92,23 +92,23 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
-    'about-first-cards': AboutFirstCard;
-    'second-two-card': SecondTwoCard;
+    'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
+    'gallery-landing': GalleryLanding;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
-    'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
+    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -456,9 +456,9 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards".
+ * via the `definition` "about-us-cards".
  */
-export interface AboutFirstCard {
+export interface AboutUsCard {
   id: string;
   visionCard: {
     'background-image': string | Media;
@@ -472,15 +472,6 @@ export interface AboutFirstCard {
     'short-desc': string;
     'full-desc': string;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card".
- */
-export interface SecondTwoCard {
-  id: string;
   leftBox: {
     title: string;
     shortDescription: string;
@@ -643,6 +634,27 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing".
+ */
+export interface GalleryLanding {
+  id: string;
+  concertPhotosCard: {
+    'background-image': string | Media;
+  };
+  annCampCard: {
+    'background-image': string | Media;
+  };
+  execCampCard: {
+    'background-image': string | Media;
+  };
+  otherPhotosCard: {
+    'background-image': string | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -763,9 +775,9 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards_select".
+ * via the `definition` "about-us-cards_select".
  */
-export interface AboutFirstCardsSelect<T extends boolean = true> {
+export interface AboutUsCardsSelect<T extends boolean = true> {
   visionCard?:
     | T
     | {
@@ -782,15 +794,6 @@ export interface AboutFirstCardsSelect<T extends boolean = true> {
         'short-desc'?: T;
         'full-desc'?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card_select".
- */
-export interface SecondTwoCardSelect<T extends boolean = true> {
   leftBox?:
     | T
     | {
@@ -975,6 +978,35 @@ export interface PastConcertsSelect<T extends boolean = true> {
                   };
             };
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing_select".
+ */
+export interface GalleryLandingSelect<T extends boolean = true> {
+  concertPhotosCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  annCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  execCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  otherPhotosCard?:
+    | T
+    | {
+        'background-image'?: T;
       };
   updatedAt?: T;
   createdAt?: T;

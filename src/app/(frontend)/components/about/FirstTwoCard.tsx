@@ -2,10 +2,10 @@ import { Media } from "@/payload-types";
 import { Eye } from "lucide-react";
 import { History } from "lucide-react";
 
-import { getAboutFirstCards } from "@/actions/getAboutFirstCards";
+import { getAboutUsCards } from "@/actions/getAboutUsCards";
 
 const FirstTwoCard = async () => {
-  const [content] = await Promise.all([getAboutFirstCards()]);
+  const [content] = await Promise.all([getAboutUsCards()]);
 
   const getImageUrl = (imageField: string | Media | null | undefined): string | undefined => {
     if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
