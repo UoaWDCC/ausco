@@ -22,24 +22,57 @@ const PastConcert = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [maxScale, setMaxScale] = useState<number>(3);
+  const [sectionHeight, setSectionHeight] = useState<string>("100vh");
 
-  //track section scroll progress
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const scaleValue = useTransform(scrollYProgress, [0.2, 0.5], [1, 2.5]);
+
+  //scaling animation
+  const unclampedScale = useTransform(scrollYProgress, [0.35, 0.6], [1, maxScale]);
+  const scaleValue = useTransform(unclampedScale, (v) => Math.max(1, Math.min(maxScale, v)));
 
   //bg colour transform
   //when i use the css style vars it does not smoothly transition the colours
   const bgColor = useTransform(scrollYProgress, [0.2, 0.5], ["#c7d5e8", "#264c84"]);
 
-  //hide or show header based on scroll
+  //header opacity animation
+  const headerOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
+
+  //calc max scale + section height
   useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (latest) => {
-      setShowHeader(latest < 0.2);
-    });
-    return unsubscribe;
+    const compute = () => {
+      if (!videoContainerRef.current) return;
+
+      const width = videoContainerRef.current.offsetWidth;
+      const height = videoContainerRef.current.offsetHeight;
+      if (!width) return;
+
+      //makes sure video can only scale to 90% of vw, between 1x and 3x scale
+      const scale = Math.min(3, Math.max(1, (window.innerWidth * 0.9) / width));
+      setMaxScale(scale);
+      setSectionHeight(
+        `${Math.max(height * scale + (showHeader ? 296 : 196), window.innerHeight)}px`,
+      );
+    };
+
+    //video container observer recalcs scaling + height when resized
+    const resizeObserver = new ResizeObserver(compute);
+    if (videoContainerRef.current) {
+      compute();
+      resizeObserver.observe(videoContainerRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [showHeader]);
+
+  //scroll-based header visibility
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => setShowHeader(v < 0.7));
   }, [scrollYProgress]);
 
   // Fetch YouTube video ID from API
@@ -110,76 +143,55 @@ const PastConcert = () => {
   //autoplays when 60% of the video frame is in view
   useEffect(() => {
     if (!videoContainerRef.current) return;
-
-    const videoContainer = videoContainerRef.current;
-
-    //call youtube api for playback
-    const stopInView = inView(
-      videoContainer,
+    return inView(
+      videoContainerRef.current,
       () => {
         if (playerReady && !hasAutoplayed && playerRef.current) {
           playerRef.current.playVideo();
           setHasAutoplayed(true);
         }
       },
-      {
-        amount: 0.6,
-      },
+      { amount: 0.6 },
     );
-
-    //stop playing/cleanup
-    return () => {
-      stopInView();
-    };
   }, [playerReady, hasAutoplayed]);
 
   const handleMute = () => {
-    const player = playerRef.current;
-    if (!player) return;
-
-    setIsMuted((wasMuted) => {
-      const isNowMuted = !wasMuted;
-      if (isNowMuted) player.mute();
-      else player.unMute();
-      return isNowMuted;
-    });
+    if (!playerRef.current) return;
+    const newState = !isMuted;
+    playerRef.current[newState ? "mute" : "unMute"]();
+    setIsMuted(newState);
   };
 
-  //conditional icon for mute
-  const Icon = isMuted ? VolumeX : Volume2;
+  const MuteIcon = isMuted ? VolumeX : Volume2;
 
   return (
     <motion.section
       ref={sectionRef}
-      className="flex flex-col items-center justify-center py-8 gap-8 w-full"
-      style={{
-        backgroundColor: bgColor,
-        minHeight: "100vh",
-      }}
+      className="relative flex flex-col items-center justify-center py-8 gap-8 w-full"
+      style={{ backgroundColor: bgColor, minHeight: sectionHeight }}
     >
-      {/*section header, disappears with scroll*/}
-      <h2
-        className={`w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis  ${
-          showHeader ? "block" : "hidden"
-        }`}
-        style={{ color: "var(--concertblue)" }}
-      >
-        From our last concert
-      </h2>
+      {showHeader && (
+        <motion.h2
+          className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
+          style={{
+            color: "var(--concertblue)",
+            opacity: headerOpacity,
+            top: "-140px",
+          }}
+        >
+          From our last concert
+        </motion.h2>
+      )}
 
-      {/*motion container for video with dynamic scroll-based scaling effect*/}
       <motion.div
         ref={videoContainerRef}
-        className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[660px] h-[315px]"
-        style={{
-          scale: scaleValue,
-        }}
+        className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[180px] sm:w-[420px] md:w-[660px] max-w-[100vw] aspect-video z-10"
+        style={{ scale: scaleValue }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div id="youtube-player" className="w-full h-full aspect-video"></div>
+        <div id="youtube-player" className="w-full h-full aspect-video" />
 
-        {/*mute button appears when hovered*/}
         <button
           type="button"
           onClick={handleMute}
@@ -189,7 +201,7 @@ const PastConcert = () => {
           style={{ background: "transparent" }}
         >
           <span className="rounded-full bg-black/50 p-2">
-            <Icon className="w-7 h-7 text-[var(--blue)]" />
+            <MuteIcon className="w-7 h-7 text-[var(--blue)]" />
           </span>
         </button>
       </motion.div>
