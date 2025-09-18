@@ -1,1 +1,3 @@
-// TODO: Our Story Page
+function OurStoryPage() {
+  return <div>{/* TODO: Page content */}</div>;
+}
