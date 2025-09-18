@@ -1,3 +1,3 @@
-function OurStoryPage() {
+export default function OurStoryPage() {
   return <div>{/* TODO: Page content */}</div>;
 }
