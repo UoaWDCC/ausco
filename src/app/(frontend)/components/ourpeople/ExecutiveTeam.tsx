@@ -7,7 +7,7 @@ const ExecutiveTeam = async () => {
   const execs = content.execs || [];
 
   return (
-    <div className="w-full bg-[var(--cream)]">
+    <div className="w-full bg-[var(--cream)] pt-20 md:pt-24">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 sm:py-8">
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-3 md:gap-0 text-[var(--navy)]">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium">
