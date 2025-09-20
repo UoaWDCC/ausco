@@ -15,7 +15,6 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@next/swc-darwin-arm64": "^15.4.5",
     "@payloadcms/db-mongodb": "^3.38.0",
     "@payloadcms/email-nodemailer": "^3.38.0",
     "@payloadcms/graphql": "^3.38.0",
@@ -32,6 +31,7 @@
     "date-fns": "^4.1.0",
     "graphql": "^16.8.1",
     "lucide-react": "^0.509.0",
+    "motion": "^12.23.12",
     "next": "15.3.2",
     "payload": "^3.38.0",
     "postcss": "^8.5.3",
