@@ -152,6 +152,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -275,6 +282,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -550,6 +564,20 @@ export interface OurPerson {
  */
 export interface ConcertsLanding {
   id: string;
+  header: {
+    title: string;
+    description: string;
+  };
+  matinee?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+  };
+  concert?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+  };
   upcomingCard: {
     'background-image': string | Media;
   };
@@ -878,6 +906,26 @@ export interface OurPeopleSelect<T extends boolean = true> {
  * via the `definition` "concerts-landing_select".
  */
 export interface ConcertsLandingSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  matinee?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+      };
+  concert?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+      };
   upcomingCard?:
     | T
     | {
