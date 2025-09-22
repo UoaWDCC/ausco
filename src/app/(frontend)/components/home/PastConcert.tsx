@@ -1,32 +1,90 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { inView } from "motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Volume2, VolumeX } from "lucide-react";
 
 declare global {
   interface Window {
-    YT?: any;
+    YT?: { Player: new (elementId: string, options: unknown) => unknown };
     onYouTubeIframeAPIReady?: () => void;
   }
 }
 
 const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const playerRef = useRef<any>(null);
-  const [scrollRatio, setScrollRatio] = useState(0);
-  const [hovered, setHovered] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const videoContainerRef = useRef<HTMLDivElement | null>(null);
+  const playerRef = useRef<{
+    mute: () => void;
+    unMute: () => void;
+    playVideo: () => void;
+    seekTo: (seconds: number) => void;
+  } | null>(null);
   const [videoId, setVideoId] = useState<string | null>(null);
-  const [inView, setInView] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
-  const [boxWidth, setBoxWidth] = useState(560);
-  const [boxHeight, setBoxHeight] = useState(315);
+  const [hasAutoplayed, setHasAutoplayed] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [maxScale, setMaxScale] = useState<number>(3);
+  const [sectionHeight, setSectionHeight] = useState<string>("100vh");
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  //scaling animation
+  const unclampedScale = useTransform(scrollYProgress, [0.35, 0.6], [1, maxScale]);
+  const scaleValue = useTransform(unclampedScale, (v) => Math.max(1, Math.min(maxScale, v)));
+
+  //bg colour transform
+  //when i use the css style vars it does not smoothly transition the colours
+  const bgColor = useTransform(scrollYProgress, [0.2, 0.5], ["#c7d5e8", "#264c84"]);
+
+  //header opacity animation
+  const headerOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
+
+  //calc max scale + section height
+  useEffect(() => {
+    const compute = () => {
+      if (!videoContainerRef.current) return;
+
+      const width = videoContainerRef.current.offsetWidth;
+      const height = videoContainerRef.current.offsetHeight;
+      if (!width) return;
+
+      //makes sure video can only scale to 90% of vw, between 1x and 3x scale
+      const scale = Math.min(3, Math.max(1, (window.innerWidth * 0.9) / width));
+      setMaxScale(scale);
+      setSectionHeight(
+        `${Math.max(height * scale + (showHeader ? 296 : 196), window.innerHeight)}px`,
+      );
+    };
+
+    //video container observer recalcs scaling + height when resized
+    const resizeObserver = new ResizeObserver(compute);
+    if (videoContainerRef.current) {
+      compute();
+      resizeObserver.observe(videoContainerRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [showHeader]);
+
+  //scroll-based header visibility
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => setShowHeader(v < 0.7));
+  }, [scrollYProgress]);
 
   // Fetch YouTube video ID from API
   useEffect(() => {
     fetch("/api/Videos")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.docs && data.docs.length > 0) {
           const video = data.docs[0];
           const match = video.youtubeUrl.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
@@ -35,77 +93,6 @@ const PastConcert = () => {
       });
   }, []);
 
-  // Parallax effect (for color)
-  useEffect(() => {
-    let ticking = false;
-    function handleScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          if (!sectionRef.current) return;
-          const rect = sectionRef.current.getBoundingClientRect();
-          const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-          let ratio = 1 - Math.max(0, Math.min(1, rect.top / windowHeight));
-          ratio = Math.max(0, Math.min(1, ratio));
-          setScrollRatio(ratio);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
-    handleScroll();
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
-  // Intersection Observer for autoplay and expand
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    let lastInView = false;
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (!lastInView && entry.intersectionRatio > 0.66) {
-          setInView(true);
-          lastInView = true;
-        } else if (lastInView && entry.intersectionRatio < 0.33) {
-          setInView(false);
-          lastInView = false;
-        }
-      },
-      { threshold: [0, 0.33, 0.5, 0.66, 1] }
-    );
-    observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
-
-  // Responsive video box size
-  useEffect(() => {
-    function updateSize() {
-      if (inView && typeof window !== "undefined") {
-        setBoxWidth(window.innerWidth);
-        setBoxHeight(window.innerHeight);
-      } else {
-        setBoxWidth(560);
-        setBoxHeight(315);
-      }
-    }
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
-  }, [inView]);
-
-  // Color interpolation
-  function interpolateColor(hex1: string, hex2: string, factor: number) {
-    const c1 = hex1.match(/\w\w/g)!.map(x => parseInt(x, 16));
-    const c2 = hex2.match(/\w\w/g)!.map(x => parseInt(x, 16));
-    const result = c1.map((v, i) => Math.round(v + (c2[i] - v) * factor));
-    return `#${result.map(x => x.toString(16).padStart(2, "0")).join("")}`;
-  }
-  const bgColor = interpolateColor("c7d5e8", "2451a6", scrollRatio);
-
   // YouTube Player API
   useEffect(() => {
     if (!videoId) return;
@@ -113,19 +100,44 @@ const PastConcert = () => {
     function createPlayerWhenReady() {
       if (window.YT && window.YT.Player) {
         if (playerRef.current) return;
-        playerRef.current = new window.YT.Player("youtube-player", {
+        playerRef.current = new (window.YT.Player as unknown as new (
+          elementId: string,
+          options: unknown,
+        ) => {
+          mute: () => void;
+          unMute: () => void;
+          playVideo: () => void;
+          seekTo: (seconds: number) => void;
+        })("youtube-player", {
           videoId: videoId,
           playerVars: {
-            autoplay: inView ? 1 : 0,
-            controls: 0,
+            autoplay: 0,
+            controls: 1,
             enablejsapi: 1,
             mute: 1,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+            iv_load_policy: 3,
+            cc_load_policy: 0,
+            fs: 0,
           },
           events: {
-            onReady: (event: any) => {
+            //checks if mute state is correct
+            onReady: (event: { target: { mute: () => void; unMute: () => void } }) => {
+              if (isMuted) event.target.mute();
+              else event.target.unMute();
               setPlayerReady(true);
-              if (!isMuted) event.target.unMute();
-              if (inView) event.target.playVideo();
+            },
+            //restarts video when finished
+            onStateChange: (event: {
+              data: number;
+              target: { seekTo: (seconds: number) => void; playVideo: () => void };
+            }) => {
+              if (event.data === 0) {
+                event.target.seekTo(0);
+                event.target.playVideo();
+              }
             },
           },
         });
@@ -142,82 +154,74 @@ const PastConcert = () => {
       document.body.appendChild(tag);
       window.onYouTubeIframeAPIReady = createPlayerWhenReady;
     }
-  }, [videoId, inView, isMuted]);
+  }, [videoId, isMuted]);
 
-  // Autoplay/pause when in view
+  //autoplays when 60% of the video frame is in view
   useEffect(() => {
-    if (playerRef.current && playerReady) {
-      if (inView) {
-        playerRef.current.playVideo();
-      } else {
-        playerRef.current.pauseVideo();
-      }
-    }
-  }, [inView, playerReady]);
-
-  // Mute/unmute handler
-  const handleToggleMute = () => {
-    setIsMuted((prev) => {
-      const next = !prev;
-      if (playerRef.current) {
-        if (next) {
-          playerRef.current.mute();
-        } else {
-          playerRef.current.unMute();
+    if (!videoContainerRef.current) return;
+    return inView(
+      videoContainerRef.current,
+      () => {
+        if (playerReady && !hasAutoplayed && playerRef.current) {
+          playerRef.current.playVideo();
+          setHasAutoplayed(true);
         }
-      }
-      return next;
-    });
+      },
+      { amount: 0.6 },
+    );
+  }, [playerReady, hasAutoplayed]);
+
+  const handleMute = () => {
+    if (!playerRef.current) return;
+    const newState = !isMuted;
+    playerRef.current[newState ? "mute" : "unMute"]();
+    setIsMuted(newState);
   };
 
+  const MuteIcon = isMuted ? VolumeX : Volume2;
+
   return (
-    <section
+    <motion.section
       ref={sectionRef}
-      className="flex flex-col items-center justify-center min-h-[60vh] py-8 transition-colors duration-500 w-full"
-      style={{ background: bgColor }}
+      className="relative flex flex-col items-center justify-center py-8 gap-8 w-full"
+      style={{ backgroundColor: bgColor, minHeight: sectionHeight }}
     >
-      <h2 className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-extrabold text-[#2451a6] text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis">
-        From our last concert
-      </h2>
-      <div
-        className="flex items-center justify-center mx-auto transition-all duration-500 w-full"
-        style={{
-          width: inView ? "100vw" : boxWidth,
-          height: inView ? "100vh" : boxHeight,
-          maxWidth: "100vw",
-          maxHeight: "100vh",
-        }}
-      >
-        <div
-          className="w-full h-full bg-[#b0b9c6] flex items-center justify-center text-[#555] text-[1.2rem] rounded-lg transition-all duration-500 relative overflow-hidden"
+      {showHeader && (
+        <motion.h2
+          className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
           style={{
-            transition:
-              "width 0.6s cubic-bezier(0.4,0,0.2,1), height 0.6s cubic-bezier(0.4,0,0.2,1)",
+            color: "var(--concertblue)",
+            opacity: headerOpacity,
+            top: "-140px",
           }}
-          onMouseEnter={() => setHovered(true)}
-          onMouseLeave={() => setHovered(false)}
         >
-          <div
-            id="youtube-player"
-            className="w-full h-full rounded-lg aspect-video"
-            style={{ background: "#000" }}
-          />
-          {hovered && (
-            <button
-              onClick={handleToggleMute}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#2451a6] border-none rounded-full p-2 cursor-pointer z-20 flex items-center justify-center shadow-lg"
-              aria-label={isMuted ? "Unmute video" : "Mute video"}
-            >
-              {isMuted ? (
-                <VolumeX color="#fff" size={28} />
-              ) : (
-                <Volume2 color="#fff" size={28} />
-              )}
-            </button>
-          )}
-        </div>
-      </div>
-    </section>
+          From our last concert
+        </motion.h2>
+      )}
+
+      <motion.div
+        ref={videoContainerRef}
+        className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[180px] sm:w-[420px] md:w-[660px] max-w-[100vw] aspect-video z-10"
+        style={{ scale: scaleValue }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div id="youtube-player" className="w-full h-full aspect-video" />
+
+        <button
+          type="button"
+          onClick={handleMute}
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-250 ${
+            isHovered ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ background: "transparent" }}
+        >
+          <span className="rounded-full bg-black/50 p-2">
+            <MuteIcon className="w-7 h-7 text-[var(--blue)]" />
+          </span>
+        </button>
+      </motion.div>
+    </motion.section>
   );
 };
 

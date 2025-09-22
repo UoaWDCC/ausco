@@ -10,11 +10,11 @@ import { getLandingPage } from "@/actions/getLandingPage";
 const headerContent = await getHeader();
 
 export default async function HomePage() {
-  const landingPageData = await getLandingPage();
+  // const landingPageData = await getLandingPage();
 
   return (
     <>
-      <Header content={headerContent} />
+      <Header content={headerContent} isHomePage={true} />
       <HeroSection />
       <UpcomingConcert />
       <InfoCards />
