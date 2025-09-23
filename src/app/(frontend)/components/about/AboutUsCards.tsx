@@ -20,7 +20,7 @@ const AboutUsCards = async () => {
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         <div className="flex flex-col md:flex-row justify-center items-stretch gap-8">
           {/* vision card */}
-          <div className="group relative w-full md:w-3/5 lg:w-3/5 aspect-video rounded-lg overflow-hidden shadow-sm">
+          <div className="group relative w-full md:w-3/5 lg:w-3/5 h-[400px] rounded-lg overflow-hidden shadow-sm">
             {content.visionCard?.["background-image"] && (
               <img
                 src={getImageUrl(content.visionCard["background-image"])}
@@ -48,7 +48,7 @@ const AboutUsCards = async () => {
           </div>
 
           {/* history card */}
-          <div className="group relative w-full md:w-2/5 lg:w-2/5 aspect-video rounded-lg overflow-hidden shadow-sm">
+          <div className="group relative w-full md:w-2/5 lg:w-2/5 h-[400px] rounded-lg overflow-hidden shadow-sm">
             {content.historyCard?.["background-image"] && (
               <img
                 src={getImageUrl(content.historyCard["background-image"])}
@@ -78,7 +78,7 @@ const AboutUsCards = async () => {
 
         <div className="flex flex-col md:flex-row justify-center items-stretch gap-8">
           {/* constitution card */}
-          <div className="group relative w-full md:w-2/5 lg:w-2/5 aspect-video rounded-lg overflow-hidden shadow-sm flex flex-col justify-center">
+          <div className="group relative w-full md:w-2/5 lg:w-2/5 h-[400px] rounded-lg overflow-hidden shadow-sm">
             {content.leftBox?.backgroundImage && (
               <img
                 src={getImageUrl(content.leftBox.backgroundImage)}
@@ -115,7 +115,7 @@ const AboutUsCards = async () => {
           </div>
 
           {/* sponsorship card */}
-          <div className="group relative w-full md:w-3/5 lg:w-3/5 aspect-video rounded-lg overflow-hidden shadow-sm flex flex-col justify-center">
+          <div className="group relative w-full md:w-3/5 lg:w-3/5 h-[400px] rounded-lg overflow-hidden shadow-sm">
             {content.rightBox?.backgroundImage && (
               <img
                 src={getImageUrl(content.rightBox.backgroundImage)}
