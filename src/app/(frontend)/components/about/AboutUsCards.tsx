@@ -29,12 +29,13 @@ const AboutUsCards = async () => {
                     ? content.visionCard["background-image"].alt
                     : "Vision Background"
                 }
-                className="absolute inset-0 w-full h-full object-cover opacity-15"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-300" />
             <div className="absolute inset-0 group-hover:bg-[#EEE5D8] transition-colors duration-300" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[#602C0F] px-2 py-4 lg:p-16">
-              <Eye className="size-[40px] sm:size-[40px] text-[#602C0F] group-hover:text-[#C3B2A0] group-hover:mb-4" />
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--headerblue)] px-2 py-4 lg:p-16">
+              <Eye className="size-[40px] sm:size-[40px] text-[var(--headerblue)] group-hover:text-[var(--headerblue)] group-hover:mb-4" />
               <h3 className="text-3xl lg:text-5xl font-bold my-4 group-hover:hidden">
                 {content.visionCard.title}
               </h3>
@@ -57,12 +58,13 @@ const AboutUsCards = async () => {
                     ? content.historyCard["background-image"].alt
                     : "History Background"
                 }
-                className="absolute inset-0 w-full h-full object-cover opacity-15"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-300" />
             <div className="absolute inset-0 group-hover:bg-[#C7D5E8] transition-colors duration-300" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[#264C84] px-2 py-4 lg:p-16">
-              <History className="size-[35px] sm:size-[35px] text-[#264C84] group-hover:text-[#83A0CA] group-hover:mb-4" />
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--headerblue)] px-2 py-4 lg:p-16">
+              <History className="size-[35px] sm:size-[35px] text-[var(--headerblue)] group-hover:text-[var(--headerblue)] group-hover:mb-4" />
               <h3 className="text-3xl lg:text-5xl font-bold my-4 group-hover:hidden">
                 {content.historyCard.title}
               </h3>
@@ -87,13 +89,14 @@ const AboutUsCards = async () => {
                     ? content.leftBox.backgroundImage.alt
                     : "Constitution Background"
                 }
-                className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none select-none"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-300" />
             <div className="absolute inset-0 group-hover:bg-[#6C96CD] transition-colors duration-300" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[#2d3a4a] px-2 py-4 lg:p-16">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--headerblue)] px-2 py-4 lg:p-16">
               <span className="flex flex-col items-center">
-                <BookText className="size-[40px] sm:size-[40px] text-[#2d3a4a] mb-1" />
+                <BookText className="size-[40px] sm:size-[40px] text-[var(--headerblue)] mb-1" />
                 <h3 className="text-3xl lg:text-5xl font-bold my-2 min-h-[2.5em] flex items-center justify-center">
                   {content.leftBox.title}
                 </h3>
@@ -107,7 +110,10 @@ const AboutUsCards = async () => {
                     {content.leftBox.fullText}
                   </p>
                 </div>
-                <a href="#" className="mt-2 underline text-[#2d3a4a] text-base font-medium">
+                <a
+                  href="#"
+                  className="mt-2 underline text-[var(--headerblue)] text-base font-medium"
+                >
                   Read more
                 </a>
               </div>
@@ -124,12 +130,13 @@ const AboutUsCards = async () => {
                     ? content.rightBox.backgroundImage.alt
                     : "Sponsorship Background"
                 }
-                className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none select-none"
+                className="absolute inset-0 w-full h-full object-cover"
               />
             )}
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-300" />
             <div className="absolute inset-0 group-hover:bg-[#EEE5D8] transition-colors duration-300" />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[#2d3a4a] px-2 py-4 lg:p-16">
-              <Handshake className="size-[35px] sm:size-[35px] text-[#2d3a4a] mb-4" />
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--headerblue)] px-2 py-4 lg:p-16">
+              <Handshake className="size-[35px] sm:size-[35px] text-[var(--headerblue)] mb-4" />
               <h3 className="text-3xl lg:text-5xl font-bold my-9 flex items-center justify-center group-hover:hidden">
                 {content.rightBox.title}
               </h3>
