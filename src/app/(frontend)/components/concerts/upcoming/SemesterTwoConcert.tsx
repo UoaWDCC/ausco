@@ -24,8 +24,8 @@ const SemesterTwoConcert = async () => {
           {/* Left section */}
           <div className="flex-1 flex flex-col w-full md:max-w-lg gap-3 sm:gap-4 order-2 lg:order-1">
             {/* Header Section*/}
-            <div className="flex flex-col lg:flex-row gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:justify-center lg:items-center">
-              <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit mb-1 sm:mb-2 whitespace-nowrap">
+            <div className="flex flex-col lg:flex-row gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-center lg:justify-start lg:items-center">
+              <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit whitespace-nowrap">
                 Semester 2
               </span>
               <h2 className="italic text-2xl sm:text-3xl md:text-4xl font-bold">
