@@ -3,6 +3,7 @@ import SemesterOneConcert from "@components/concerts/upcoming/SemesterOneConcert
 import SemesterTwoConcert from "@components/concerts/upcoming/SemesterTwoConcert";
 import Calendar from "@components/concerts/upcoming/Calendar";
 import Header from "@components/home/Header";
+import Footer from "@components/home/Footer";
 import { getHeader } from "@/actions/getHeader";
 
 export default async function Upcoming() {
@@ -15,6 +16,7 @@ export default async function Upcoming() {
       <SemesterOneConcert />
       <SemesterTwoConcert />
       <Calendar />
+      <Footer />
     </>
   );
 }
