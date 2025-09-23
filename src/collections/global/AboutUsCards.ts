@@ -7,7 +7,6 @@ const AboutUsCards: GlobalConfig = {
     read: () => true,
   },
   fields: [
-    // Fields from AboutFirstCards.ts
     {
       name: "visionCard",
       label: "Vision Card",
@@ -52,7 +51,6 @@ const AboutUsCards: GlobalConfig = {
         },
       ],
     },
-    // Fields from SecondTwoCard.ts
     {
       name: "leftBox",
       label: "Left Box (Constitution)",

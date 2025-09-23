@@ -1,6 +1,6 @@
 import Header from "@components/home/Header";
 import HeroSection from "@components/about/HeroSection";
-import FirstTwoCard from "@components/about/FirstTwoCard";
+import AboutUsCard from "@components/about/AboutUsCards";
 import { getHeader } from "@/actions/getHeader";
 
 const headerContent = await getHeader();
@@ -10,7 +10,7 @@ export default async function AboutPage() {
     <>
       <Header content={headerContent} />
       <HeroSection />
-      <FirstTwoCard />
+      <AboutUsCard />
     </>
   );
 }
