@@ -4,6 +4,7 @@ import ExecutiveTeam from "@components/ourpeople/ExecutiveTeam";
 import { getHeader } from "@/actions/getHeader";
 import Players from "@components/ourpeople/Players";
 import Footer from "@components/home/Footer";
+import Conductors from "@components/ourpeople/Conductors";
 
 export default async function OurPeoplePage() {
   const headerContent = await getHeader();
@@ -11,7 +12,9 @@ export default async function OurPeoplePage() {
   return (
     <>
       <Header content={headerContent} />
+      <OurPeople />
       <ExecutiveTeam />
+      <Conductors />
       <Players />
       <Footer />
     </>

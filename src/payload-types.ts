@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | "Pacific/Midway"
+  | "Pacific/Niue"
+  | "Pacific/Honolulu"
+  | "Pacific/Rarotonga"
+  | "America/Anchorage"
+  | "Pacific/Gambier"
+  | "America/Los_Angeles"
+  | "America/Tijuana"
+  | "America/Denver"
+  | "America/Phoenix"
+  | "America/Chicago"
+  | "America/Guatemala"
+  | "America/New_York"
+  | "America/Bogota"
+  | "America/Caracas"
+  | "America/Santiago"
+  | "America/Buenos_Aires"
+  | "America/Sao_Paulo"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/Azores"
+  | "Atlantic/Cape_Verde"
+  | "Europe/London"
+  | "Europe/Berlin"
+  | "Africa/Lagos"
+  | "Europe/Athens"
+  | "Africa/Cairo"
+  | "Europe/Moscow"
+  | "Asia/Riyadh"
+  | "Asia/Dubai"
+  | "Asia/Baku"
+  | "Asia/Karachi"
+  | "Asia/Tashkent"
+  | "Asia/Calcutta"
+  | "Asia/Dhaka"
+  | "Asia/Almaty"
+  | "Asia/Jakarta"
+  | "Asia/Bangkok"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Tokyo"
+  | "Asia/Seoul"
+  | "Australia/Brisbane"
+  | "Australia/Sydney"
+  | "Pacific/Guam"
+  | "Pacific/Noumea"
+  | "Pacific/Auckland"
+  | "Pacific/Fiji";
 
 export interface Config {
   auth: {
@@ -71,9 +71,9 @@ export interface Config {
     media: Media;
     test: Test;
     Videos: Video;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
@@ -81,40 +81,42 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
     Videos: VideosSelect<false> | VideosSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
   globals: {
-    'landing-page': LandingPage;
+    "landing-page": LandingPage;
     footer: Footer;
     header: Header;
-    'about-hero-section': AboutHeroSection;
-    'about-first-cards': AboutFirstCard;
-    'second-two-card': SecondTwoCard;
-    'our-people': OurPerson;
-    'concerts-landing': ConcertsLanding;
-    'upcoming-concerts': UpcomingConcert;
-    'past-concerts': PastConcert;
+    "about-us-cards": AboutUsCard;
+    "about-hero-section": AboutHeroSection;
+    "our-people": OurPerson;
+    "concerts-landing": ConcertsLanding;
+    "upcoming-concerts": UpcomingConcert;
+    "past-concerts": PastConcert;
+    "gallery-landing": GalleryLanding;
   };
   globalsSelect: {
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    "landing-page": LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
-    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
-    'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
-    'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
-    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
-    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    "about-us-cards": AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
+    "about-hero-section": AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
+    "our-people": OurPeopleSelect<false> | OurPeopleSelect<true>;
+    "concerts-landing": ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
+    "upcoming-concerts": UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    "past-concerts": PastConcertsSelect<false> | PastConcertsSelect<true>;
+    "gallery-landing": GalleryLandingSelect<false> | GalleryLandingSelect<true>;
   };
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
     tasks: unknown;
@@ -154,6 +156,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -206,24 +215,24 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'test';
+        relationTo: "test";
         value: string | Test;
       } | null)
     | ({
-        relationTo: 'Videos';
+        relationTo: "Videos";
         value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -236,7 +245,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -277,6 +286,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -398,7 +414,7 @@ export interface LandingPage {
       contacts: {
         text: string;
         href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
+        icon: "mail" | "instagram" | "facebook";
         id?: string | null;
       }[];
     };
@@ -416,7 +432,7 @@ export interface Footer {
   title: string;
   socials?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        platform: "facebook" | "instagram" | "youtube" | "spotify";
         url: string;
         icon?: (string | null) | Media;
         id?: string | null;
@@ -464,7 +480,7 @@ export interface AboutHeroSection {
   id: string;
   aboutUsStickers?:
     | {
-        'sticker-image': string | Media;
+        "sticker-image": string | Media;
         id?: string | null;
       }[]
     | null;
@@ -475,31 +491,22 @@ export interface AboutHeroSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards".
+ * via the `definition` "about-us-cards".
  */
-export interface AboutFirstCard {
+export interface AboutUsCard {
   id: string;
   visionCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    "short-desc": string;
+    "full-desc": string;
   };
   historyCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    "short-desc": string;
+    "full-desc": string;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card".
- */
-export interface SecondTwoCard {
-  id: string;
   leftBox: {
     title: string;
     shortDescription: string;
@@ -552,7 +559,7 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'large-group';
+            blockType: "large-group";
           }
         | {
             sectionTitle: string;
@@ -565,7 +572,7 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'small-group';
+            blockType: "small-group";
           }
       )[]
     | null;
@@ -578,11 +585,25 @@ export interface OurPerson {
  */
 export interface ConcertsLanding {
   id: string;
+  header: {
+    title: string;
+    description: string;
+  };
+  matinee?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+  };
+  concert?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+  };
   upcomingCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
   };
   pastCard: {
-    'background-image': string | Media;
+    "background-image": string | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -623,7 +644,7 @@ export interface PastConcert {
   id: string;
   headerSection: {
     title: string;
-    'short-desc': string;
+    "short-desc": string;
   };
   years?:
     | {
@@ -657,6 +678,27 @@ export interface PastConcert {
         id?: string | null;
       }[]
     | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing".
+ */
+export interface GalleryLanding {
+  id: string;
+  concertPhotosCard: {
+    "background-image": string | Media;
+  };
+  annCampCard: {
+    "background-image": string | Media;
+  };
+  execCampCard: {
+    "background-image": string | Media;
+  };
+  otherPhotosCard: {
+    "background-image": string | Media;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -788,7 +830,7 @@ export interface AboutHeroSectionSelect<T extends boolean = true> {
   aboutUsStickers?:
     | T
     | {
-        'sticker-image'?: T;
+        "sticker-image"?: T;
         id?: T;
       };
   AboutUsHeader?: T;
@@ -799,34 +841,25 @@ export interface AboutHeroSectionSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards_select".
+ * via the `definition` "about-us-cards_select".
  */
-export interface AboutFirstCardsSelect<T extends boolean = true> {
+export interface AboutUsCardsSelect<T extends boolean = true> {
   visionCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        "short-desc"?: T;
+        "full-desc"?: T;
       };
   historyCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        "short-desc"?: T;
+        "full-desc"?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card_select".
- */
-export interface SecondTwoCardSelect<T extends boolean = true> {
   leftBox?:
     | T
     | {
@@ -873,7 +906,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        'large-group'?:
+        "large-group"?:
           | T
           | {
               sectionTitle?: T;
@@ -887,7 +920,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        'small-group'?:
+        "small-group"?:
           | T
           | {
               sectionTitle?: T;
@@ -911,15 +944,35 @@ export interface OurPeopleSelect<T extends boolean = true> {
  * via the `definition` "concerts-landing_select".
  */
 export interface ConcertsLandingSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+      };
+  matinee?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+      };
+  concert?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+      };
   upcomingCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
       };
   pastCard?:
     | T
     | {
-        'background-image'?: T;
+        "background-image"?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -968,7 +1021,7 @@ export interface PastConcertsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        'short-desc'?: T;
+        "short-desc"?: T;
       };
   years?:
     | T
@@ -1018,13 +1071,41 @@ export interface PastConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing_select".
+ */
+export interface GalleryLandingSelect<T extends boolean = true> {
+  concertPhotosCard?:
+    | T
+    | {
+        "background-image"?: T;
+      };
+  annCampCard?:
+    | T
+    | {
+        "background-image"?: T;
+      };
+  execCampCard?:
+    | T
+    | {
+        "background-image"?: T;
+      };
+  otherPhotosCard?:
+    | T
+    | {
+        "background-image"?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
