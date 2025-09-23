@@ -1,7 +1,9 @@
 const Calendar = () => (
   <section className="w-full flex flex-col items-center justify-center py-8 bg-[var(--cream)]">
-    <h2 className="text-2xl font-bold text-[var(--brown)] mb-4">Our Google Calendar</h2>
-    <div className="w-full max-w-5xl aspect-[3/2] rounded-lg overflow-hidden shadow-lg" style={{ minHeight: 600 }}>
+    <div
+      className="w-full max-w-5xl aspect-[3/2] rounded-lg overflow-hidden shadow-lg"
+      style={{ minHeight: 600 }}
+    >
       <iframe
         src="https://calendar.google.com/calendar/embed?src=ausco.manage@gmail.com&ctz=Pacific/Auckland"
         style={{ border: 0, width: "100%", height: "100%" }}
