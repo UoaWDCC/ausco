@@ -1,4 +1,4 @@
-import { Calendar, MapPin} from "lucide-react";
+import EventInfo from "./upcoming/EventInfo";
 
 type ComingSoonProps = {
   title?: string | null;
@@ -7,11 +7,13 @@ type ComingSoonProps = {
     title?: string | null;
     date?: string | null;
     location?: string | null;
+    ticketUrl?: string | null;
   };
   concertData?: {
     title?: string | null;
     date?: string | null;
     location?: string | null;
+    ticketUrl?: string | null;
   };
 };
 
@@ -28,49 +30,45 @@ const ComingSoon = ({ title, description, matineeData, concertData }: ComingSoon
                 <div className="inline-block bg-[#602C0F] text-white px-7 py-3.5 rounded-2xl text-sm font-medium">
                   Semester 2
                 </div>
-                <h1 className="text-[45px] text-[#602C0F]" style={{ fontFamily: 'Fraunces, serif', fontWeight: 300, fontStyle: 'italic', lineHeight: '150%', letterSpacing: '-1.1%' }}>
+                <h1
+                  className="text-[45px] text-[#602C0F]"
+                  style={{
+                    fontFamily: "Fraunces, serif",
+                    fontWeight: 300,
+                    fontStyle: "italic",
+                    lineHeight: "150%",
+                    letterSpacing: "-1.1%",
+                  }}
+                >
                   {title || "Coming soon!"}
                 </h1>
               </div>
               <p className="text-[#602C0F] max-w-md leading-relaxed">
-                {description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."}
+                {description ||
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud."}
               </p>
             </div>
 
             <div className="border-t border-[#602C0F] pt-8">
-              <div className="flex flex-col sm:flex-row gap-8 lg:gap-16">
+              <div className="flex flex-col sm:flex-row gap-8 lg:gap-16 text-[var(--brown)]">
                 {/* Matinee Section */}
                 <div className="flex-1">
-                  <h2 className="text-xl font-bold mb-4 text-[#602C0F]">
-                    {matineeData?.title || "Matinee"}
-                  </h2>
-                  <div className="space-y-3 text-[#602C0F]">
-                    <div className="flex items-center gap-3">
-                      <Calendar size={20} className="stroke-[#602C0F]" />
-                      <span>{matineeData?.date || "Date TBC"}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <MapPin size={20} className="stroke-[#602C0F]" />
-                      <span>{matineeData?.location || "Location TBC"}</span>
-                    </div>
-                  </div>
+                  <EventInfo
+                    title={matineeData?.title || "Matinee"}
+                    date={matineeData?.date || "Date TBC"}
+                    location={matineeData?.location || "Location TBC"}
+                    ticketUrl={matineeData?.ticketUrl || undefined}
+                  />
                 </div>
 
                 {/* Concert Section */}
                 <div className="flex-1">
-                  <h2 className="text-xl font-bold mb-4 text-[#602C0F]">
-                    {concertData?.title || "Concert"}
-                  </h2>
-                  <div className="space-y-3 text-[#602C0F]">
-                    <div className="flex items-center gap-3">
-                      <Calendar size={20} className="stroke-[#602C0F]" />
-                      <span>{concertData?.date || "Date TBC"}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <MapPin size={20} className="stroke-[#602C0F]" />
-                      <span>{concertData?.location || "Location TBC"}</span>
-                    </div>
-                  </div>
+                  <EventInfo
+                    title={concertData?.title || "Concert"}
+                    date={concertData?.date || "Date TBC"}
+                    location={concertData?.location || "Location TBC"}
+                    ticketUrl={concertData?.ticketUrl || undefined}
+                  />
                 </div>
               </div>
             </div>
