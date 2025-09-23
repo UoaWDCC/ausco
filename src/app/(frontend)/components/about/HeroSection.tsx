@@ -24,7 +24,7 @@ const HeroSection = async () => {
               {content.AboutUsDescription}
             </p>
           </div>
-          <div className="flex flex-row w-full justify-center lg:gap-4 gap-8 items-spread lg:items-start">
+          <div className="flex flex-row flex-wrap md:flex-nowrap justify-center lg:gap-4 gap-8 lg:items-start">
             {content.aboutUsStickers?.map((sticker, i) => {
               const url = getImageUrl(sticker["sticker-image"]);
               if (!url) return null;
@@ -32,7 +32,7 @@ const HeroSection = async () => {
               return (
                 <div
                   key={i}
-                  className="lg:w-20 lg:h-20 mt-4 lg:mt-0 w-16 h-16 relative wiggle-hover"
+                  className="lg:w-20 lg:h-20 mt-4 lg:mt-0 md:w-16 md:h-16 sm:w-10 sm:h-10 w-8 h-8 relative wiggle-hover"
                 >
                   <Image
                     src={url}
