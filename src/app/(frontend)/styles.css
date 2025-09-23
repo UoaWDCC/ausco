@@ -47,6 +47,21 @@
   --concertblue: oklch(0.3004 0.0775 250.91) /*#082f53*/
 }
 
+/* custom wiggle animation */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.wiggle-hover:hover {
+  animation: wiggle 0.3s ease-in-out;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -52,13 +52,13 @@ const SecondTwoCard = async () => {
             </div>
           </div>
           <div className="group relative w-full md:w-3/5 lg:w-3/5 aspect-video rounded-lg overflow-hidden shadow-sm flex flex-col justify-center">
-            {content.rightBox && content.rightBox.backgroundImage && (
+            {content.leftBox && content.leftBox.backgroundImage && (
               <img
-                src={getImageUrl(content.rightBox.backgroundImage) || undefined}
+                src={getImageUrl(content.leftBox.backgroundImage) || undefined}
                 alt={
-                  typeof content.rightBox.backgroundImage === "object"
-                    ? content.rightBox.backgroundImage.alt
-                    : "Right Card Background"
+                  typeof content.leftBox.backgroundImage === "object"
+                    ? content.leftBox.backgroundImage.alt
+                    : "Left Card Background"
                 }
                 className="absolute inset-0 w-full h-full object-cover opacity-15 pointer-events-none select-none"
               />
@@ -66,7 +66,7 @@ const SecondTwoCard = async () => {
             <div className="absolute inset-0 group-hover:bg-[#EEE5D8] transition-colors duration-300"></div>
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[#2d3a4a] px-2 py-4 lg:p-16">
               <Handshake className="size-[35px] sm:size-[35px] text-[#2d3a4a] mb-4" />
-              <h3 className="text-3xl lg:text-5xl font-bold my-9 flex items-center justify-center group-hover:hidden">
+              <h3 className="text-3xl lg:text-5xl font-bold my-9 flex items-center justify-center">
                 {content.rightBox.title}
               </h3>
               {Array.isArray(content.rightBox.sponsorLogos) &&
@@ -91,7 +91,7 @@ const SecondTwoCard = async () => {
                 <p className="text-sm md:text-base group-hover:hidden break-words break-all whitespace-pre-line w-full max-w-full block">
                   {content.rightBox.shortDescription}
                 </p>
-                <p className="hidden group-hover:flex text-sm md:text-base break-words break-all whitespace-pre-line w-full max-w-full block">
+                <p className="hidden group-hover:flex text-sm md:text-base break-words break-all whitespace-pre-line w-full max-w-full">
                   {content.rightBox.fullText}
                 </p>
               </div>

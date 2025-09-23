@@ -14,7 +14,10 @@ import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
+
+import AboutHeroSection from "./collections/global/AboutHeroSection";
 import AboutUsCards from "./collections/global/AboutUsCards";
+
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
@@ -38,6 +41,7 @@ export default buildConfig({
     LandingPage,
     Footer,
     Header,
+    AboutHeroSection,
     AboutUsCards,
     OurPeople,
     ConcertsLanding,
