@@ -7,8 +7,8 @@ const SemesterOneConcert = async () => {
   //fetch upcoming concert data from payload
   const concerts = await getUpcomingConcerts();
   const concert = concerts.upcomingConcert;
-  const eventOne = concerts.eventOne;
-  const eventTwo = concerts.eventTwo;
+  const eventOne = concerts.semOneEventOne;
+  const eventTwo = concerts.semOneEventTwo;
 
   //extract poster image from object
   const posterMedia =
