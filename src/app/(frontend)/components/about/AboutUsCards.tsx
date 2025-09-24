@@ -103,7 +103,7 @@ const AboutUsCards = async () => {
                 ? content.visionCard["background-image"].alt
                 : "Vision Background"
             }
-            icon={<Eye className="h-8 w-8" />} // all icons same base size
+            icon={<Eye className="h-12 w-12" />}
             title={content.visionCard?.title}
             shortDesc={content.visionCard?.["short-desc"]}
             fullDesc={content.visionCard?.["full-desc"]}
@@ -117,7 +117,7 @@ const AboutUsCards = async () => {
                 ? content.historyCard["background-image"].alt
                 : "History Background"
             }
-            icon={<History className="h-8 w-8" />}
+            icon={<History className="h-12 w-12" />}
             title={content.historyCard?.title}
             shortDesc={content.historyCard?.["short-desc"]}
             fullDesc={content.historyCard?.["full-desc"]}
@@ -134,7 +134,7 @@ const AboutUsCards = async () => {
                 ? (content.leftBox?.backgroundImage?.alt ?? "Constitution Background")
                 : "Constitution Background"
             }
-            icon={<BookText className="h-8 w-8" />}
+            icon={<BookText className="h-12 w-12" />}
             title={content.leftBox?.title}
             shortDesc={content.leftBox?.shortDescription}
             fullDesc={content.leftBox?.fullText}
@@ -148,7 +148,7 @@ const AboutUsCards = async () => {
                 ? (content.rightBox?.backgroundImage?.alt ?? "Sponsorship Background")
                 : "Sponsorship Background"
             }
-            icon={<Handshake className="h-8 w-8" />}
+            icon={<Handshake className="h-12 w-12" />}
             title={content.rightBox?.title}
             shortDesc={content.rightBox?.shortDescription}
             fullDesc={content.rightBox?.fullText}
