@@ -38,6 +38,7 @@ const Card = ({
   link?: string;
 }) => {
   const Wrapper = link ? "a" : "div"; // use <a> if link exists, else <div>
+  const isSmallCard = size === "md:w-2/5 lg:w-2/5";
 
   return (
     <Wrapper
@@ -68,7 +69,9 @@ const Card = ({
             </p>
           )}
           {fullDesc && (
-            <p className="hidden group-hover:flex text-sm md:text-base break-words whitespace-pre-line">
+            <p
+              className={`${isSmallCard ? "text-4xl mt-24" : "text-sm md:text-base"} hidden group-hover:flex break-words whitespace-pre-line`}
+            >
               {fullDesc}
             </p>
           )}

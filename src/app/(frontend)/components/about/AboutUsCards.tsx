@@ -65,7 +65,7 @@ const AboutUsCards = async () => {
             shortDesc={content.leftBox?.shortDescription}
             fullDesc={content.leftBox?.fullText}
             size="md:w-2/5 lg:w-2/5"
-            link="/"
+            link="https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
           />
 
           <Card
