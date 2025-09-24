@@ -4,7 +4,7 @@ import ComingSoon from "@/app/(frontend)/components/concerts/ComingSoon";
 import Calendar from "@components/concerts/upcoming/Calendar";
 import Header from "@components/home/Header";
 import { getHeader } from "@/actions/getHeader";
-import { getComingSoon } from "@/actions/getComingSoon";
+import { getComingSoon } from "@/actions/concertsActions";
 
 export default async function Upcoming() {
   const headerContent = await getHeader();
