@@ -31,7 +31,7 @@ const AboutUsCards = async () => {
     title: string;
     shortDesc?: string;
     fullDesc?: string;
-    sponsorLogos?: any[];
+    sponsorLogos?: { logo: string | Media; id?: string | null }[] | null;
     size?: string;
   }) => (
     <div className={`group relative w-full ${size} h-[400px] rounded-lg overflow-hidden shadow-sm`}>
@@ -72,7 +72,7 @@ const AboutUsCards = async () => {
         {/* bottom (optional logos) */}
         {sponsorLogos && sponsorLogos.length > 0 && (
           <div className="hidden group-hover:flex flex-wrap justify-center items-center gap-2 mt-4">
-            {sponsorLogos.map((item: any, idx: number) => {
+            {sponsorLogos.map((item, idx) => {
               const logo = item.logo;
               const logoUrl = typeof logo === "object" && logo?.url ? logo.url : undefined;
               if (!logoUrl) return null;
