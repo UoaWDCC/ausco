@@ -1,11 +1,9 @@
 import { getLandingPage } from "@/actions/homeActions";
-import Header from "@components/home/Header";
 import { Button } from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
 import { ArrowUpRight } from "lucide-react";
 import heroImage from "../../assets/hero.jpg";
 import Image from "next/image";
-import { getHeader } from "@/actions/getHeader";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
