@@ -2,7 +2,7 @@ import { Media } from "@/payload-types";
 import { Eye } from "lucide-react";
 import { History } from "lucide-react";
 
-import { getAboutUsCards } from "@/actions/getAboutUsCards";
+import { getAboutUsCards } from "@/actions/aboutUsActions";
 
 const FirstTwoCard = async () => {
   const [content] = await Promise.all([getAboutUsCards()]);

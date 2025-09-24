@@ -1,6 +1,6 @@
 import { Media } from "@/payload-types";
 import { BookText, Handshake } from "lucide-react";
-import { getAboutUsCards } from "@/actions/getAboutUsCards";
+import { getAboutUsCards } from "@/actions/aboutUsActions";
 
 const SecondTwoCard = async () => {
   const content = await getAboutUsCards();
