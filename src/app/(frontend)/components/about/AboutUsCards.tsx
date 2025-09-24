@@ -131,7 +131,7 @@ const AboutUsCards = async () => {
             image={getImageUrl(content.leftBox?.backgroundImage)}
             alt={
               typeof content.leftBox?.backgroundImage === "object"
-                ? content.leftBox.backgroundImage.alt
+                ? (content.leftBox?.backgroundImage?.alt ?? "Constitution Background")
                 : "Constitution Background"
             }
             icon={<BookText className="h-8 w-8" />}
@@ -145,7 +145,7 @@ const AboutUsCards = async () => {
             image={getImageUrl(content.rightBox?.backgroundImage)}
             alt={
               typeof content.rightBox?.backgroundImage === "object"
-                ? content.rightBox.backgroundImage.alt
+                ? (content.rightBox?.backgroundImage?.alt ?? "Sponsorship Background")
                 : "Sponsorship Background"
             }
             icon={<Handshake className="h-8 w-8" />}
