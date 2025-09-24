@@ -1,4 +1,4 @@
-import { getFooter } from "@/actions/getFooter";
+import { getFooter } from "@/actions/homeActions";
 import Image from "next/image";
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import spotifyLogo from "../../assets/spotify-logo.svg";

@@ -1,4 +1,4 @@
-import { getLandingPage } from "@/actions/getLandingPage";
+import { getLandingPage } from "@/actions/homeActions";
 import Header from "@components/home/Header";
 import { Button } from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
