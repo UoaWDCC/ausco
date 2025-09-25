@@ -2,6 +2,7 @@
 
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import logo from "../../assets/ausco-logo-1.png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
@@ -18,11 +19,6 @@ type HeaderProps = {
 };
 
 const Header = ({ content, isHomePage = false }: HeaderProps) => {
-  const logo =
-    typeof content.logo === "object" && content.logo !== null && "url" in content.logo
-      ? content.logo
-      : null;
-
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -56,7 +52,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             className="flex items-center space-x-4 cursor-pointer"
             onClick={() => router.push("/")}
           >
-            {logo?.url && <Image src={logo.url} alt={logo.alt || "Logo"} width={60} height={60} />}
+            <img src={logo.src} alt="AUSCO logo" className="w-14" />
             <span
               className={clsx("text:md md:text-lg font-medium", textColor)}
               dangerouslySetInnerHTML={{ __html: content.title || "" }}
