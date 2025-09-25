@@ -46,9 +46,11 @@ const Card = ({
       className={`group relative w-full ${size} h-[400px] rounded-lg overflow-hidden shadow-sm ${link ? "cursor-pointer" : ""}`}
     >
       {image && (
-        <img src={image} alt={alt} className="absolute inset-0 w-full h-full object-cover" />
+        <div
+          className="absolute inset-0 bg-center bg-cover"
+          style={{ backgroundImage: `url(${image})` }}
+        />
       )}
-
       {/* overlays */}
       <div className="absolute inset-0 bg-black/70 group-hover:bg-black/0 transition-colors duration-300" />
       <div className="absolute inset-0 group-hover:bg-[var(--hovercardblue)] transition-colors duration-300" />
