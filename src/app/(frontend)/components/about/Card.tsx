@@ -68,6 +68,24 @@ const Card = ({
               {shortDesc}
             </p>
           )}
+          {sponsorLogos && sponsorLogos.length > 0 && (
+            <div className="hidden group-hover:flex bg-[var(--headerblue)] py-3 px-6 mb-2 rounded-md gap-6 flex-wrap justify-center items-center mt-4">
+              {sponsorLogos.map((item, idx) => {
+                let logoUrl: string | undefined;
+                if (typeof item.logo === "string") logoUrl = item.logo;
+                else if (item.logo?.url) logoUrl = item.logo.url;
+                if (!logoUrl) return null;
+                return (
+                  <img
+                    key={idx}
+                    src={logoUrl}
+                    className="h-8 w-auto object-contain"
+                    style={{ maxWidth: 64 }}
+                  />
+                );
+              })}
+            </div>
+          )}
           {fullDesc && (
             <p
               className={`${isSmallCard ? "text-4xl mt-24" : "text-sm md:text-base"} hidden group-hover:flex break-words whitespace-pre-line`}
@@ -76,25 +94,6 @@ const Card = ({
             </p>
           )}
         </div>
-
-        {sponsorLogos && sponsorLogos.length > 0 && (
-          <div className="hidden group-hover:flex flex-wrap justify-center items-center gap-2 mt-4">
-            {sponsorLogos.map((item, idx) => {
-              let logoUrl: string | undefined;
-              if (typeof item.logo === "string") logoUrl = item.logo;
-              else if (item.logo?.url) logoUrl = item.logo.url;
-              if (!logoUrl) return null;
-              return (
-                <img
-                  key={idx}
-                  src={logoUrl}
-                  className="h-8 w-auto object-contain"
-                  style={{ maxWidth: 64 }}
-                />
-              );
-            })}
-          </div>
-        )}
       </div>
     </Wrapper>
   );
