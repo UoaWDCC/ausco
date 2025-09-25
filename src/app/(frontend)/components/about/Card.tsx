@@ -50,7 +50,7 @@ const Card = ({
       )}
 
       {/* overlays */}
-      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/0 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-black/70 group-hover:bg-black/0 transition-colors duration-300" />
       <div className="absolute inset-0 group-hover:bg-[var(--hovercardblue)] transition-colors duration-300" />
 
       {/* content */}
@@ -62,9 +62,9 @@ const Card = ({
         </div>
 
         <div className="flex-1 flex flex-col items-center">
-          <h3 className="text-3xl lg:text-5xl font-bold mb-2 group-hover:hidden">{title}</h3>
+          <h3 className="text-3xl lg:text-5xl font-bold mb-6 group-hover:hidden">{title}</h3>
           {shortDesc && (
-            <p className="text-sm md:text-base group-hover:hidden break-words whitespace-pre-line">
+            <p className="text-sm md:text-base group-hover:hidden break-words whitespace-pre-line w-2/3">
               {shortDesc}
             </p>
           )}
