@@ -585,20 +585,6 @@ export interface OurPerson {
  */
 export interface ConcertsLanding {
   id: string;
-  header: {
-    title: string;
-    description: string;
-  };
-  matinee?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-  };
-  concert?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-  };
   upcomingCard: {
     "background-image": string | Media;
   };
@@ -621,13 +607,31 @@ export interface UpcomingConcert {
     description1?: string | null;
     description2?: string | null;
   };
-  eventOne?: {
+  semOneEventOne?: {
     title?: string | null;
     date?: string | null;
     location?: string | null;
     ticketUrl?: string | null;
   };
-  eventTwo?: {
+  semOneEventTwo?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  upcomingConcertTwo?: {
+    title?: string | null;
+    poster?: (string | null) | Media;
+    description1?: string | null;
+    description2?: string | null;
+  };
+  semTwoEventOne?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  semTwoEventTwo?: {
     title?: string | null;
     date?: string | null;
     location?: string | null;
@@ -944,26 +948,6 @@ export interface OurPeopleSelect<T extends boolean = true> {
  * via the `definition` "concerts-landing_select".
  */
 export interface ConcertsLandingSelect<T extends boolean = true> {
-  header?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-      };
-  matinee?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-      };
-  concert?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-      };
   upcomingCard?:
     | T
     | {
@@ -992,7 +976,7 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
         description1?: T;
         description2?: T;
       };
-  eventOne?:
+  semOneEventOne?:
     | T
     | {
         title?: T;
@@ -1000,7 +984,31 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
         location?: T;
         ticketUrl?: T;
       };
-  eventTwo?:
+  semOneEventTwo?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  upcomingConcertTwo?:
+    | T
+    | {
+        title?: T;
+        poster?: T;
+        description1?: T;
+        description2?: T;
+      };
+  semTwoEventOne?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  semTwoEventTwo?:
     | T
     | {
         title?: T;
