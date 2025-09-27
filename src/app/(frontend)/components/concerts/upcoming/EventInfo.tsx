@@ -12,16 +12,16 @@ interface EventInfoProps {
 //event info and icon rendering
 //ticket button rendered if ticketUrl is provided
 const EventInfo = ({ title, date, location, ticketUrl }: EventInfoProps) => (
-  <div className="flex-1 flex flex-col">
+  <div className="flex-1 flex flex-col min-w-0">
     {/*event title, date, location + respective icons*/}
-    <div className="font-bold mb-2">{title}</div>
-    <div className="flex items-center gap-2 mb-1">
-      <Calendar size={18} className="stroke-[var(--brown)] stroke-[3px]" />
-      <span>{date}</span>
+    <div className="font-bold mb-2 truncate">{title}</div>
+    <div className="flex items-center gap-2 mb-1 min-w-0">
+      <Calendar size={18} className="stroke-[var(--brown)] stroke-[3px] flex-shrink-0" />
+      <span className="truncate">{date}</span>
     </div>
-    <div className="flex items-center gap-2 mb-2 md:mb-3 text-[var(--brown)]">
-      <MapPin size={18} className="stroke-[var(--brown)] stroke-[3px]" />
-      <span>{location}</span>
+    <div className="flex items-center gap-2 mb-2 md:mb-3 text-[var(--brown)] min-w-0">
+      <MapPin size={18} className="stroke-[var(--brown)] stroke-[3px] flex-shrink-0" />
+      <span className="truncate">{location}</span>
     </div>
     {/*optional ticket button*/}
     {ticketUrl && (

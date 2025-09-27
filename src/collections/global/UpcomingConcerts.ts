@@ -14,21 +14,11 @@ export const UpcomingConcerts: GlobalConfig = {
     },
     {
       name: "upcomingConcert",
-      label: "Upcoming Concert",
+      label: "Upcoming Concert (Semester 1)",
       type: "group",
       fields: [
-        {
-          name: "title",
-          label: "Title",
-          type: "text",
-          defaultValue: "Till Death do us \‘Part",
-        },
-        {
-          name: "poster",
-          label: "Poster",
-          type: "upload",
-          relationTo: "media",
-        },
+        { name: "title", label: "Title", type: "text", defaultValue: "Till Death do us ‘Part" },
+        { name: "poster", label: "Poster", type: "upload", relationTo: "media" },
         {
           name: "description1",
           label: "Description One",
@@ -41,70 +31,76 @@ export const UpcomingConcerts: GlobalConfig = {
           label: "Description Two",
           type: "text",
           defaultValue:
-            "That\'s why we\'ve partnered with Tōtara Hospice, in support of providing accessible, quality, and compassionate palliative care to those in their last moments.  All concert proceeds will go towards this cause.  Join us at one of our two concerts!",
+            "That's why we've partnered with Tōtara Hospice, in support of providing accessible, quality, and compassionate palliative care to those in their last moments.  All concert proceeds will go towards this cause.  Join us at one of our two concerts!",
         },
       ],
     },
     {
-      name: "eventOne",
-      label: "Event One",
+      name: "semOneEventOne",
+      label: "Event One (Semester 1)",
       type: "group",
       fields: [
+        { name: "title", label: "Event Title", type: "text", defaultValue: "Matinee" },
+        { name: "date", label: "Event Date", type: "text", defaultValue: "Date TBC" },
+        { name: "location", label: "Event Location", type: "text", defaultValue: "Location TBC" },
+        { name: "ticketUrl", label: "Ticket Purchase URL", type: "text", required: false },
+      ],
+    },
+    {
+      name: "semOneEventTwo",
+      label: "Event Two (Semester 1)",
+      type: "group",
+      fields: [
+        { name: "title", label: "Event Title", type: "text", defaultValue: "Concert" },
+        { name: "date", label: "Event Date", type: "text", defaultValue: "Date TBC" },
+        { name: "location", label: "Event Location", type: "text", defaultValue: "Location TBC" },
+        { name: "ticketUrl", label: "Ticket Purchase URL", type: "text", required: false },
+      ],
+    },
+
+    {
+      name: "upcomingConcertTwo",
+      label: "Upcoming Concert (Semester 2)",
+      type: "group",
+      fields: [
+        { name: "title", label: "Title", type: "text" },
+        { name: "poster", label: "Poster", type: "upload", relationTo: "media" },
         {
-          name: "title",
-          label: "Event Title",
+          name: "description1",
+          label: "Description One",
           type: "text",
-          defaultValue: "Matinee",
+          defaultValue:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         },
         {
-          name: "date",
-          label: "Event Date",
+          name: "description2",
+          label: "Description Two",
           type: "text",
-          defaultValue: "Date TBC",
-        },
-        {
-          name: "location",
-          label: "Event Location",
-          type: "text",
-          defaultValue: "Location TBC",
-        },
-        {
-          name: "ticketUrl",
-          label: "Ticket Purchase URL",
-          type: "text",
-          required: false,
+          defaultValue:
+            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         },
       ],
     },
     {
-      name: "eventTwo",
-      label: "Event Two",
+      name: "semTwoEventOne",
+      label: "Event One (Semester 2)",
       type: "group",
       fields: [
-        {
-          name: "title",
-          label: "Event Title",
-          type: "text",
-          defaultValue: "Concert",
-        },
-        {
-          name: "date",
-          label: "Event Date",
-          type: "text",
-          defaultValue: "Date TBC",
-        },
-        {
-          name: "location",
-          label: "Event Location",
-          type: "text",
-          defaultValue: "Location TBC",
-        },
-        {
-          name: "ticketUrl",
-          label: "Ticket Purchase URL",
-          type: "text",
-          required: false,
-        },
+        { name: "title", label: "Event Title", type: "text", defaultValue: "Matinee" },
+        { name: "date", label: "Event Date", type: "text", defaultValue: "Date TBC" },
+        { name: "location", label: "Event Location", type: "text", defaultValue: "Location TBC" },
+        { name: "ticketUrl", label: "Ticket Purchase URL", type: "text", required: false },
+      ],
+    },
+    {
+      name: "semTwoEventTwo",
+      label: "Event Two (Semester 2)",
+      type: "group",
+      fields: [
+        { name: "title", label: "Event Title", type: "text", defaultValue: "Concert" },
+        { name: "date", label: "Event Date", type: "text", defaultValue: "Date TBC" },
+        { name: "location", label: "Event Location", type: "text", defaultValue: "Location TBC" },
+        { name: "ticketUrl", label: "Ticket Purchase URL", type: "text", required: false },
       ],
     },
   ],
