@@ -1,4 +1,4 @@
-import { getConcertsLanding } from "@/actions/getConcertsLanding";
+import { getConcertsLanding } from "@/actions/concertsActions";
 import { Media } from "@/payload-types";
 import { ArrowUpRight } from "lucide-react";
 import { Archive } from "lucide-react";

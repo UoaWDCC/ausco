@@ -1,5 +1,5 @@
 //component displays semester one concert info (title, poster, descriptions, performances)
-import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
+import { getUpcomingConcerts } from "@/actions/concertsActions";
 import Image from "next/image";
 import EventInfo from "./EventInfo";
 

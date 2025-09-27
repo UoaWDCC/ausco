@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Media } from "@/payload-types";
-import { getAboutHeroSection } from "@/actions/getAboutHeroSection";
+import { getAboutHeroSection } from "@/actions/aboutUsActions";
 
 const HeroSection = async () => {
   const content = await getAboutHeroSection();

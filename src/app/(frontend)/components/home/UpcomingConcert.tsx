@@ -1,4 +1,4 @@
-import { getLandingPage } from "@/actions/getLandingPage";
+import { getLandingPage } from "@/actions/homeActions";
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import Ticket from "./Ticket";

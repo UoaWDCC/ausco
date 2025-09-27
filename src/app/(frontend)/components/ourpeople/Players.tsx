@@ -1,4 +1,4 @@
-import { getOurPeople } from "@/actions/getOurPeople";
+import { getOurPeople } from "@/actions/ourPeopleActions";
 
 const Players = async () => {
   const [content] = await Promise.all([getOurPeople()]);

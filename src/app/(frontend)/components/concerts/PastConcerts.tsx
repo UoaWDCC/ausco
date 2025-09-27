@@ -1,4 +1,4 @@
-import { getPastConcerts } from "@/actions/getPastConcerts";
+import { getPastConcerts } from "@/actions/concertsActions";
 import { Media } from "@/payload-types";
 import { Youtube, ArrowUpRight } from "lucide-react";
 import { Button } from "../ui/button";

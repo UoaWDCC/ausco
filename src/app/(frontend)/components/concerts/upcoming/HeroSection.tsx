@@ -1,5 +1,5 @@
 //component for upcoming concerts page heading + short description
-import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
+import { getUpcomingConcerts } from "@/actions/concertsActions";
 
 const HeroSection = async () => {
   //fetch description from payload

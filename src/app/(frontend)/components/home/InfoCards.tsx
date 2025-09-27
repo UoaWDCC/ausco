@@ -1,6 +1,6 @@
 //importing icons for contacts list, allows user to add more icons in the future
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
-import { getLandingPage } from "@/actions/getLandingPage";
+import { getLandingPage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
 
