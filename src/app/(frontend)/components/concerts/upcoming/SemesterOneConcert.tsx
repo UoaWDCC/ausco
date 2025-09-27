@@ -1,5 +1,5 @@
 //component displays semester one concert info (title, poster, descriptions, performances)
-import { getUpcomingConcerts } from "@/actions/getUpcomingConcerts";
+import { getUpcomingConcerts } from "@/actions/concertsActions";
 import Image from "next/image";
 import EventInfo from "./EventInfo";
 
@@ -7,8 +7,8 @@ const SemesterOneConcert = async () => {
   //fetch upcoming concert data from payload
   const concerts = await getUpcomingConcerts();
   const concert = concerts.upcomingConcert;
-  const eventOne = concerts.eventOne;
-  const eventTwo = concerts.eventTwo;
+  const eventOne = concerts.semOneEventOne;
+  const eventTwo = concerts.semOneEventTwo;
 
   //extract poster image from object
   const posterMedia =
@@ -38,11 +38,11 @@ const SemesterOneConcert = async () => {
           {/*card text + event info*/}
           <div className="flex-1 flex flex-col w-full md:max-w-lg gap-3 sm:gap-4">
             {/*row for semester tag + title*/}
-            <div className="flex flex-col lg:flex-row  gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:justify-center lg:items-center">
-              <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit mb-1 sm:mb-2 whitespace-nowrap">
+            <div className="flex flex-col lg:flex-row  gap-2 lg:gap-8 mb-2 md:mb-6 flex-nowrap items-start lg:justify-center lg:items-center min-w-0">
+              <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit whitespace-nowrap flex-shrink-0">
                 Semester 1
               </span>
-              <h2 className="italic text-2xl sm:text-3xl md:text-4xl font-bold">{title}</h2>
+              <h2 className="italic text-2xl sm:text-3xl md:text-4xl font-bold truncate min-w-0">{title}</h2>
             </div>
 
             {/*mapping text descriptions*/}

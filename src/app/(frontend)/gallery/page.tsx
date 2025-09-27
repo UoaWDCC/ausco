@@ -1,7 +1,7 @@
 import Header from "@components/home/Header";
 import { getHeader } from "@/actions/getHeader";
 
-import { getGalleryLanding } from "@/actions/getGalleryLanding";
+import { getGalleryLanding } from "@/actions/galleryActions";
 import { Media } from "@/payload-types";
 import Link from "next/link";
 
