@@ -99,6 +99,7 @@ export interface Config {
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
     'gallery-landing': GalleryLanding;
+    'our-story': OurStory;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -111,6 +112,7 @@ export interface Config {
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
   user: User & {
@@ -154,6 +156,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -277,6 +286,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -692,6 +708,45 @@ export interface GalleryLanding {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story".
+ */
+export interface OurStory {
+  id: string;
+  OurStoryTitle: string;
+  OurStoryDescription: string;
+  timeline?:
+    | {
+        year: string;
+        title?: string | null;
+        dateInfo?: string | null;
+        presidents?:
+          | {
+              president: string;
+              id?: string | null;
+            }[]
+          | null;
+        vicePresidents?:
+          | {
+              vicePresident: string;
+              id?: string | null;
+            }[]
+          | null;
+        conductors?:
+          | {
+              conductor: string;
+              id?: string | null;
+            }[]
+          | null;
+        description: string;
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1085,6 +1140,45 @@ export interface GalleryLandingSelect<T extends boolean = true> {
     | T
     | {
         'background-image'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  OurStoryTitle?: T;
+  OurStoryDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        dateInfo?: T;
+        presidents?:
+          | T
+          | {
+              president?: T;
+              id?: T;
+            };
+        vicePresidents?:
+          | T
+          | {
+              vicePresident?: T;
+              id?: T;
+            };
+        conductors?:
+          | T
+          | {
+              conductor?: T;
+              id?: T;
+            };
+        description?: T;
+        image?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

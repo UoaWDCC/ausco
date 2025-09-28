@@ -26,6 +26,8 @@ import { PastConcerts } from "./collections/global/PastConcerts";
 
 import { GalleryLanding } from "./collections/global/GalleryLanding";
 
+import { OurStory } from "./collections/global/OurStory";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -48,6 +50,7 @@ export default buildConfig({
     UpcomingConcerts,
     PastConcerts,
     GalleryLanding,
+    OurStory,
   ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",
