@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import { inView } from "motion";
 import { motion, useScroll, useTransform } from "motion/react";
-import { Volume2, VolumeX } from "lucide-react";
 
 declare global {
   interface Window {
@@ -16,8 +15,6 @@ const PastConcert = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoContainerRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<{
-    mute: () => void;
-    unMute: () => void;
     playVideo: () => void;
     seekTo: (seconds: number) => void;
   } | null>(null);
@@ -25,8 +22,6 @@ const PastConcert = () => {
   const [playerReady, setPlayerReady] = useState(false);
   const [hasAutoplayed, setHasAutoplayed] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
   const [maxScale, setMaxScale] = useState<number>(3);
   const [sectionHeight, setSectionHeight] = useState<string>("100vh");
 
@@ -104,29 +99,24 @@ const PastConcert = () => {
           elementId: string,
           options: unknown,
         ) => {
-          mute: () => void;
-          unMute: () => void;
           playVideo: () => void;
           seekTo: (seconds: number) => void;
         })("youtube-player", {
           videoId: videoId,
           playerVars: {
-            autoplay: 0,
+            autoplay: 1,
+            mute: 1,
             controls: 1,
             enablejsapi: 1,
-            mute: 1,
             modestbranding: 1,
             rel: 0,
             showinfo: 0,
             iv_load_policy: 3,
             cc_load_policy: 0,
-            fs: 0,
+            fs: 1,
           },
           events: {
-            //checks if mute state is correct
-            onReady: (event: { target: { mute: () => void; unMute: () => void } }) => {
-              if (isMuted) event.target.mute();
-              else event.target.unMute();
+            onReady: () => {
               setPlayerReady(true);
             },
             //restarts video when finished
@@ -154,7 +144,7 @@ const PastConcert = () => {
       document.body.appendChild(tag);
       window.onYouTubeIframeAPIReady = createPlayerWhenReady;
     }
-  }, [videoId, isMuted]);
+  }, [videoId]);
 
   //autoplays when 60% of the video frame is in view
   useEffect(() => {
@@ -170,15 +160,6 @@ const PastConcert = () => {
       { amount: 0.6 },
     );
   }, [playerReady, hasAutoplayed]);
-
-  const handleMute = () => {
-    if (!playerRef.current) return;
-    const newState = !isMuted;
-    playerRef.current[newState ? "mute" : "unMute"]();
-    setIsMuted(newState);
-  };
-
-  const MuteIcon = isMuted ? VolumeX : Volume2;
 
   return (
     <motion.section
@@ -203,23 +184,8 @@ const PastConcert = () => {
         ref={videoContainerRef}
         className="flex items-center justify-center mx-auto bg-black text-[1.2rem] relative overflow-hidden w-[180px] sm:w-[420px] md:w-[660px] max-w-[100vw] aspect-video z-10"
         style={{ scale: scaleValue }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <div id="youtube-player" className="w-full h-full aspect-video" />
-
-        <button
-          type="button"
-          onClick={handleMute}
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-250 ${
-            isHovered ? "opacity-100" : "opacity-0"
-          }`}
-          style={{ background: "transparent" }}
-        >
-          <span className="rounded-full bg-black/50 p-2">
-            <MuteIcon className="w-7 h-7 text-[var(--blue)]" />
-          </span>
-        </button>
       </motion.div>
     </motion.section>
   );
