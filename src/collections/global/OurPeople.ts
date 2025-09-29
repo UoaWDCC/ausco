@@ -5,6 +5,17 @@ export const OurPeople: GlobalConfig = {
   label: "Our People Page",
   fields: [
     {
+        name: "image",
+        label: "Our People Image",
+        type: "upload",
+        relationTo: "media",
+    },
+    {
+        name: "description",
+        label: "description of Our People Page",
+        type: "text",
+    },
+    {
       name: "generalDescription",
       label: "Short Description of Executive Committee",
       type: "text",
