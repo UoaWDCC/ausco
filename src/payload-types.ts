@@ -576,6 +576,27 @@ export interface OurPerson {
           }
       )[]
     | null;
+  hallOfFame?:
+    | {
+        pastPresidents?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        founders?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -940,6 +961,27 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  hallOfFame?:
+    | T
+    | {
+        pastPresidents?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        founders?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
