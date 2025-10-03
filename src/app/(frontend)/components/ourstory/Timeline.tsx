@@ -20,13 +20,21 @@ const Timeline = async () => {
               }`}
             >
               {/* Image */}
-              {item.image?.url && (
+              {item.image && (
                 <div className={`w-1/2 flex justify-center pb-24 ${isLeft ? "pr-24" : "pl-24"}`}>
-                  <img
-                    src={item.image.url}
-                    alt={item.title || item.year}
-                    className="rounded-lg shadow max-w-sm"
-                  />
+                  {/* choose correct src whether item.image is a string or an object */}
+                  {(() => {
+                    const imageSrc = typeof item.image === "string" ? item.image : item.image?.url;
+                    if (!imageSrc) return null;
+
+                    return (
+                      <img
+                        src={imageSrc}
+                        alt={item.title || item.year}
+                        className="rounded-lg shadow max-w-sm w-full h-auto object-cover"
+                      />
+                    );
+                  })()}
                 </div>
               )}
 
@@ -49,24 +57,26 @@ const Timeline = async () => {
                 <div
                   className={`mt-4 space-y-1 text-sm text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}
                 >
-                  {item.presidents?.length > 0 && (
+                  {item.presidents?.length ? (
                     <p>
                       <strong>Presidents:</strong>{" "}
-                      {item.presidents.map((p) => p.president).join(", ")}
+                      {item.presidents?.map((p) => p.president).join(", ")}
                     </p>
-                  )}
-                  {item.vicePresidents?.length > 0 && (
+                  ) : null}
+
+                  {item.vicePresidents?.length ? (
                     <p>
                       <strong>Vice Presidents:</strong>{" "}
-                      {item.vicePresidents.map((vp) => vp.vicePresident).join(", ")}
+                      {item.vicePresidents?.map((vp) => vp.vicePresident).join(", ")}
                     </p>
-                  )}
-                  {item.conductors?.length > 0 && (
+                  ) : null}
+
+                  {item.conductors?.length ? (
                     <p>
                       <strong>Conductors:</strong>{" "}
-                      {item.conductors.map((c) => c.conductor).join(", ")}
+                      {item.conductors?.map((c) => c.conductor).join(", ")}
                     </p>
-                  )}
+                  ) : null}
                 </div>
                 <p className={`mt-4 space-y-1 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}>
                   {item.description}
