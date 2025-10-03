@@ -1,5 +1,83 @@
-const Timeline = () => {
-  return <div   ></div>;
+import { getOurStory } from "@/actions/ourStoryActions";
+
+const Timeline = async () => {
+  const ourStoryData = await getOurStory();
+
+  if (!ourStoryData?.timeline) return null;
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 py-8">
+      {/* Timeline */}
+      <div>
+        {ourStoryData.timeline.map((item, index) => {
+          const isLeft = index % 2 === 0;
+
+          return (
+            <div
+              key={index}
+              className={`relative flex w-full h-full ${
+                isLeft ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
+            >
+              {/* Image */}
+              {item.image?.url && (
+                <div className={`w-1/2 flex justify-center pb-24 ${isLeft ? "pr-24" : "pl-24"}`}>
+                  <img
+                    src={item.image.url}
+                    alt={item.title || item.year}
+                    className="rounded-lg shadow max-w-sm"
+                  />
+                </div>
+              )}
+
+              {/* vertical line */}
+              <div className="w-0.5 bg-[var(--navy)] self-stretch"></div>
+
+              {/* Text Content */}
+              <div className="w-1/2">
+                <div className={`flex gap-2 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                  <div
+                    className={`h-0.5 bg-[var(--navy)] flex-grow ${isLeft ? "w-27" : "w-full"}`}
+                  ></div>
+                  <div
+                    className={`text-[var(--navy)] text-2xl font-bold -mt-4 ${isLeft ? "w-full" : "w-auto flex-shrink-0"}`}
+                  >
+                    {item.year}: {item.title}
+                  </div>
+                </div>
+                {item.dateInfo && <p className="text-sm text-[var(--navy)] ">{item.dateInfo}</p>}
+                <div
+                  className={`mt-4 space-y-1 text-sm text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}
+                >
+                  {item.presidents?.length > 0 && (
+                    <p>
+                      <strong>Presidents:</strong>{" "}
+                      {item.presidents.map((p) => p.president).join(", ")}
+                    </p>
+                  )}
+                  {item.vicePresidents?.length > 0 && (
+                    <p>
+                      <strong>Vice Presidents:</strong>{" "}
+                      {item.vicePresidents.map((vp) => vp.vicePresident).join(", ")}
+                    </p>
+                  )}
+                  {item.conductors?.length > 0 && (
+                    <p>
+                      <strong>Conductors:</strong>{" "}
+                      {item.conductors.map((c) => c.conductor).join(", ")}
+                    </p>
+                  )}
+                </div>
+                <p className={`mt-4 space-y-1 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}>
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Timeline;
