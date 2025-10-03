@@ -53,10 +53,12 @@ const Timeline = async () => {
                     {item.year}: {item.title}
                   </div>
                 </div>
-                {item.dateInfo && <p className="text-sm text-[var(--navy)] ">{item.dateInfo}</p>}
                 <div
                   className={`mt-4 space-y-1 text-sm text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}
                 >
+                  {item.dateInfo && (
+                    <p className="text-sm font-bold text-[var(--navy)] mb-2">{item.dateInfo}</p>
+                  )}
                   {item.presidents?.length ? (
                     <p>
                       <strong>Presidents:</strong>{" "}
