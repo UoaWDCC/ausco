@@ -10,7 +10,7 @@ const Timeline = async () => {
       {/* Timeline */}
       <div>
         {ourStoryData.timeline.map((item, index) => {
-          const isLeft = index % 2 === 0;
+          const isLeft = index % 2 === 1;
 
           return (
             <div
@@ -21,7 +21,9 @@ const Timeline = async () => {
             >
               {/* Image */}
               {item.image && (
-                <div className={`w-1/2 flex justify-center pb-24 ${isLeft ? "pr-24" : "pl-24"}`}>
+                <div
+                  className={`w-1/2 flex justify-center items-center pb-24 ${isLeft ? "pr-24" : "pl-24"}`}
+                >
                   {/* choose correct src whether item.image is a string or an object */}
                   {(() => {
                     const imageSrc = typeof item.image === "string" ? item.image : item.image?.url;
