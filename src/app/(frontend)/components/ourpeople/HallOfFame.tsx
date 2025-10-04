@@ -1,105 +1,194 @@
-import { getOurPeople } from "@/actions/getOurPeople";
-import Image from "next/image";
+"use client";
 
-//define frame structure
-type FrameStructure = {
+import { getOurPeople } from "@/actions/getOurPeople";
+import { Media } from "@/payload-types";
+import Image from "next/image";
+import pastPresidentsFrame from "../../assets/pastPresidentsFrame.png";
+import foundersFrame from "../../assets/foundersFrame.png";
+import { useEffect, useState } from "react";
+
+// Define cards structure
+type CardStructure = {
   name: string;
+  image?: string | Media;
   description: string;
-  image?: string | null;
+  index: number;
 };
 
-// past presidents frame feature component
-const PastPresidentsFrame = ({ name, description, image }: FrameStructure) => {
-    return (
-        <div className="text-center justify-center items-center">
-                {image && typeof image !== "string" ? (
-                    <Image 
-                        src={image ?? ""}
-                        alt={name ?? "Profile Picture"}
-                        width={400}
-                        height={300}
-                        className="hover:opacity-0 transition-opacity duration-500"
-                    />
-                ) : null}
-            <div className="bg-[var(--blue)] flex flex-col justify-center items-center w-[200px] h-[300px] rounded-full opacity-0 hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-l md:text-xl">
-                    {name}
-                </h3>
-                <p className="text-m md:text-l">
-                    {description}
-                </p>
-            </div>
-        </div>
-    )
-}
-
-// founders frame feature component
-const FoundersFrame = ({ name, description, image }: FrameStructure) => {
-    return (
-        <div className="text-center justify-center items-center">
-                {image && typeof image !== "string" ? (
-                    <Image 
-                        src={image ?? ""}
-                        alt={name ?? "Profile Picture"}
-                        width={400}
-                        height={300}
-                        className="hover:opacity-0 transition-opacity duration-500"
-                    />
-                ) : null}
-            <div className="bg-[var(--blue)] flex flex-col justify-center items-center w-[200px] h-[300px] opacity-0 hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-l md:text-xl">
-                    {name}
-                </h3>
-                <p className="text-m md:text-l">
-                    {description}
-                </p>
-            </div>
-        </div>
-    )
-}
-
-const HallOfFame = async () => {
-    const { hallOfFame } = await getOurPeople();
-    // checks if hallOfFame is an array and has at least one element, then destructures pastPresidents and founders from the first element; otherwise, assigns empty arrays
-    const { pastPresidents = [], founders = [] } = Array.isArray(hallOfFame) && hallOfFame.length > 0 ? hallOfFame[0] : {};
+const PastPresidentsCard = ({ name, image, description, index }: CardStructure) => {
+  const imageUrl = typeof image === "string" ? image : image?.url;
+  const imageALT = typeof image == "string" ? image : image?.alt;
+  const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <div className="text-center bg-[var(--cream)] text-[var(--navy)] gap-16 justify-center items-center mx-auto py-9 px-4">
-        
-        <h1 className="font-bold text-2xl md:text-5xl mt-10 mb-4">
-            Hall of Fame
-        </h1>
-        <br />
-        <hr className="w-full border-t-[1.5px] border-[var(--navy)]" />
+    <div className="flex flex-col items-center justify-center w-[220px] h-[260px] text-center text-[var(--navy)] rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
+      onMouseEnter={() => setHovered(index)}
+      onMouseLeave={() => setHovered(null)}
+    >
+  
+      {/* Frame as background */}
+      <div className="absolute w-[480px] h-[640px] z-30 pointer-events-none"> 
+        <Image
+          src={pastPresidentsFrame.src}
+          alt="Frame"
+          fill
+          className="absolute rounded-[50%] w-full h-full object-cover pointer-events-none"
+          priority={index === 0}
+        />
+      </div>
 
-        <h3 className="text-l md:text-2xl mt-4">
-            Past Presidents
-        </h3>
-        <div className="flex flex-wrap justify-center items-center gap-10 mt-6 mb-10">
-            {(pastPresidents ?? []).map((frame, i) => (
-                <PastPresidentsFrame
-                    key={i}
-                    name={frame.name ?? ""}
-                    description={frame.description ?? ""}
-                />
-            ))}
+      {/* hovered state - past president's name and description */}
+      {hovered === index ? (
+        <div className="relative flex flex-col space-y-5 lg:space-y-6 items-center justify-center z-20 pointer-events-none px-4 w-[220px] h-[280px] rounded-[50%] bg-[#c6d5e8] transition-all duration-300">
+          <span className="text-center text-md sm:text-l lg:text-xl">
+            {name}
+          </span>
+          <span className="text-center text-xs sm:xs leading-relaxed">
+            {description}
+          </span>
         </div>
-
-        <hr className="w-full border-t-[1.5px] border-[var(--navy)]" />
-
-        <h3 className="text-l md:text-2xl mt-4">
-            Founders
-        </h3>
-        <div className="flex flex-wrap justify-center items-center gap-10 mt-6 mb-10">
-            {(founders ?? []).map((frame, i) => (
-                <FoundersFrame
-                    key={i}
-                    name={frame.name ?? ""}
-                    description={frame.description ?? ""}
-                />
-            ))}
+      ) : imageUrl ? ( 
+        <div className="relative w-[220px] h-[260px] rounded-[50%]"> 
+          {/* unhovered state - past president's image */}
+          <Image
+            src={imageUrl}
+            alt={imageALT ?? "Image"}
+            fill
+            className="object-cover absolute rounded-[50%] z-10 transition-all duration-300"
+            priority={index === 0}
+          />
         </div>
+      ) : (
+        // unhovered state when there's no image uploaded 
+        <div className="flex flex-col w-[220px] h-[260px] items-center justify-center rounded-[50%] px-4 transition-all duration-300 z-10" > 
+          <span className="text-center text-xs sm:xs leading-relaxed">
+            image placeholder
+          </span>
+        </div>
+      )}
     </div>
   );
 };
 
+const FoundersCard = ({ name, image, description, index }: CardStructure) => {
+  const imageUrl = typeof image === "string" ? image : image?.url;
+  const imageALT = typeof image == "string" ? image : image?.alt;
+  const [hovered, setHovered] = useState<number | null>(null);
+  return (
+    <div className="flex flex-col items-center justify-center w-[220px] h-[280px] bg-[var(--cream)] text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm cursor-pointer transition-all duration-300"
+      onMouseEnter={() => setHovered(index)}
+      onMouseLeave={() => setHovered(null)}
+    >
+      {/* Frame as background */}
+      <div className="absolute w-[320px] h-[380px] z-30 pointer-events-none"> 
+        <Image
+          src={foundersFrame.src}
+          alt="Frame"
+          fill
+          className="absolute w-full h-full object-cover pointer-events-none -translate-y-[-20px]"
+          priority={index === 0}
+        />
+      </div>
+
+      {/* hovered state - founder's name and description */}
+      {hovered === index ? (
+        <div className="flex flex-col items-center justify-center z-20 pointer-events-none px-4 w-[220px] h-[280px] bg-[#EEE5D8] transition-all duration-300">
+          <span className="text-center text-md sm:text-l lg:text-xl">
+            {name}
+          </span>
+          <span className="text-center text-xs sm:xs leading-relaxed">
+            {description}
+          </span>
+        </div>
+      ) : imageUrl ? (
+        <div className="relative w-[220px] h-[280px]"> 
+          {/* unhovered state - founder's image */}
+          <Image
+            src={imageUrl}
+            alt={imageALT ?? "Image"}
+            fill
+            className="object-cover z-10 transition-all duration-300"
+            priority={index === 0}
+          />
+        </div>
+      ) : (
+        // unhovered state when there's no image uploaded 
+        <div className="flex flex-col w-[220px] h-[280px] items-center justify-center px-4 transition-all duration-300 z-10" > 
+          <span className="text-center text-xs sm:xs leading-relaxed">
+            image placeholder
+          </span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const HallOfFame = () => {
+  const [pastPresidents, setPastPresidents] = useState<CardStructure[]>([]);
+  const [founders, setFounders] = useState<CardStructure[]>([]);
+    
+  useEffect(() => {
+    const fetchData = async () => {
+      const [content] = await Promise.all([getOurPeople()]);
+      const hallOfFameData = Array.isArray(content.hallOfFame) ? content.hallOfFame[0] : content.hallOfFame;
+      const pp = hallOfFameData?.pastPresidents || [];
+      const fd = hallOfFameData?.founders || [];
+      console.log("PastPresidents:", pp);
+      console.log("Founders:", fd); 
+      setPastPresidents(
+        pp.map((person: any, index: number) => ({
+          ...person,
+          index,
+          image: (person.image as Media)?.url || "",
+        }))
+      );
+      setFounders(
+        fd.map((person: any, index: number) => ({
+          ...person,
+          index,
+          image: (person.image as Media)?.url || "",
+        }))
+      );
+    };
+    fetchData();
+  }, []);
+  return(
+    <div className="bg-[var(--cream)] text-[var(--navy)] justify-center text-center items-center mx-auto py-9 px-4">
+      {/* Title of section is Hall of Fame */}
+      <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"> Hall of Fame </h2>
+      <hr className="border-t-[1.5px] border-[#042b50] mt-12"/>
+      {/* Past Presidents */}
+      <div>
+          <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Past Presidents </h5>
+          <div className="flex flex-wrap justify-center gap-16 py-9">
+              {pastPresidents.map(({ name, image, description }, i) => (
+                  <PastPresidentsCard
+                      key={name}
+                      name={name}
+                      image={image}
+                      description={description}
+                      index={i}
+                  />
+              ))}
+          </div>
+          
+      </div>
+      <hr className="border-t-[1.5px] border-[#042b50] mt-12"/>
+      {/* Founders */}
+      <div>
+          <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Founders </h5>
+          <div className="flex flex-wrap justify-center gap-16 py-9">
+              {founders.map(({ name, image, description }, i) => (
+                  <FoundersCard
+                  key={name}
+                  name={name}
+                  image={image}
+                  description={description}
+                  index={i}
+                  />
+              ))}
+          </div>
+      </div>
+    </div>
+  );
+}
 export default HallOfFame;
