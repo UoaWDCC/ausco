@@ -80,9 +80,12 @@ const InfoCard = ({
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
           <div className="flex justify-center w-full">
-            <Button variant="link" asChild>
-              <a href={linkHref || "#"}>{linkText}</a>
-            </Button>
+            <a
+              href={linkHref || "#"}
+              className="border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline"
+            >
+              {linkText}
+            </a>
           </div>
         )}
 
