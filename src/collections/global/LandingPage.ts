@@ -48,66 +48,63 @@ export const LandingPage: GlobalConfig = {
       label: "Matinee Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Matinee"
-
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Matinee",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
-  {
+    },
+    {
       name: "concert",
       label: "Concert Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Concert",
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Concert",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
+    },
 
     {
       name: "infoCards",
@@ -128,7 +125,6 @@ export const LandingPage: GlobalConfig = {
               title: "About Us",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
               linkText: "Read more↗",
               linkHref: "",
             },
@@ -136,7 +132,6 @@ export const LandingPage: GlobalConfig = {
               title: "Our People",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
               linkText: "Read more↗",
               linkHref: "",
             },
@@ -157,8 +152,9 @@ export const LandingPage: GlobalConfig = {
             {
               name: "image",
               label: "Card Image",
-              type: "text",
-              required: true,
+              type: "upload",
+              relationTo: "media",
+              required: false,
             },
             {
               name: "linkText",
@@ -196,15 +192,15 @@ export const LandingPage: GlobalConfig = {
             {
               name: "image",
               label: "Card Image",
-              type: "text",
-              required: true,
-              defaultValue: "PLACEHOLDER",
+              type: "upload",
+              relationTo: "media",
+              required: false,
             },
             {
               name: "linkText",
               label: "Link Text",
               type: "text",
-              required: true,
+              required: false,
               defaultValue: "Feedback Form↗",
             },
             {
@@ -218,7 +214,7 @@ export const LandingPage: GlobalConfig = {
               name: "contacts",
               label: "Contact Information",
               type: "array",
-              required: true,
+              required: false,
               defaultValue: [
                 {
                   text: "chamberorchestra.ausa@gmail.com↗",

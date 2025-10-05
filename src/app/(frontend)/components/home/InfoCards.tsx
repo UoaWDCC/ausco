@@ -1,8 +1,10 @@
 //importing icons for contacts list, allows user to add more icons in the future
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/getLandingPage";
+import { Media } from "@/payload-types";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
+import Image from "next/image";
 
 //define icon mapping type
 type IconMapping = {
@@ -16,6 +18,17 @@ const iconMapping: IconMapping = {
   facebook: Facebook,
 };
 
+// check if image is a Media object
+function isMedia(image: string | Media | null | undefined): image is Media {
+  return (
+    typeof image === "object" &&
+    image !== null &&
+    "url" in image &&
+    typeof image.url === "string" &&
+    image.url.length > 0
+  );
+}
+
 //define contact structure
 type Contact = {
   icon: string;
@@ -27,6 +40,7 @@ type Contact = {
 type InfoCardProp = {
   title: string;
   description: string;
+  image?: string | Media | null;
   linkText?: string | null;
   linkHref?: string | null;
   contacts?: Contact[];
@@ -34,11 +48,29 @@ type InfoCardProp = {
 };
 
 //infocard component for all shared card features
-const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
+const InfoCard = ({
+  title,
+  description,
+  image,
+  linkText,
+  linkHref,
+  contacts,
+  getIcon,
+}: InfoCardProp) => {
   return (
     <div className="flex flex-col justify-start bg-[var(--beige)] w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
-      {/*card image placeholder*/}
-      <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
+      {/*card image*/}
+      {isMedia(image) && (
+        <div className="flex justify-center items-center p-6 lg:p-8 pt-12 lg:pt-14">
+          <Image
+            src={image.url ?? ""}
+            alt={image.alt ?? "Card illustration"}
+            width={200}
+            height={110}
+            className="rounded-lg object-cover"
+          />
+        </div>
+      )}
 
       {/*card title*/}
       <h2 className="text-2xl sm:text-3xl lg:text-5xl">{title}</h2>
@@ -92,23 +124,26 @@ const InfoCards = async () => {
     <section className="bg-[var(--cream)] py-24 lg:py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
-        {regularCards.map((card, i) => (
-          <InfoCard
-            key={i}
-            title={card.title}
-            description={card.description}
-            linkText={card.linkText}
-            linkHref={card.linkHref}
-          />
-        ))}
+        {regularCards &&
+          regularCards.map((card, i) => (
+            <InfoCard
+              key={i}
+              title={card.title}
+              description={card.description}
+              image={card.image}
+              linkText={card.linkText}
+              linkHref={card.linkHref}
+            />
+          ))}
 
         {/*contact card*/}
         <InfoCard
           title={contactsCard.title}
           description={contactsCard.description}
+          image={contactsCard.image}
           linkText={contactsCard.linkText}
           linkHref={contactsCard.linkHref}
-          contacts={contactsCard.contacts}
+          contacts={contactsCard.contacts || undefined}
           getIcon={getIcon}
         />
       </div>
