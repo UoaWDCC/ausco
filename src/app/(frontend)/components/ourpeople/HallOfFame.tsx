@@ -132,8 +132,7 @@ const HallOfFame = () => {
       const hallOfFameData = Array.isArray(content.hallOfFame) ? content.hallOfFame[0] : content.hallOfFame;
       const pp = hallOfFameData?.pastPresidents || [];
       const fd = hallOfFameData?.founders || [];
-      console.log("PastPresidents:", pp);
-      console.log("Founders:", fd); 
+
       setPastPresidents(
         pp.map((person: any, index: number) => ({
           ...person,
