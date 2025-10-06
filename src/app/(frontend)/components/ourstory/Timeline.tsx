@@ -94,17 +94,15 @@ const Timeline = async () => {
         </div>
       </div>
       {/*NARROW TIMELINE*/}
-      <div className="md:hidden flex flex-col justify-center items-center my-10">
+      <div className="md:hidden relative flex flex-col items-center my-10 w-full">
+        <div className="absolute left-[8.3%] w-0.5 bg-[var(--navy)] h-full"></div>
         {ourStoryData.timeline.map((item, index) => {
           return (
             <div key={index} className="relative flex w-5/6 h-full">
-              {/* vertical line */}
-              <div className="w-0.5 bg-[var(--navy)] self-stretch"></div>
-
               {/* year content */}
               <div className="flex flex-col">
                 <div className="flex gap-2">
-                  <div className="bg-[var(--navy)] w-3 h-3 rounded-full -ml-1.5 mb-2"></div>
+                  <div className="bg-[var(--navy)] w-3 h-3 rounded-full -ml-1.25 mb-2"></div>
                   <div className="text-[var(--navy)] text-2xl font-bold -mt-3 ml-2">
                     {item.year}: {item.title}
                   </div>
