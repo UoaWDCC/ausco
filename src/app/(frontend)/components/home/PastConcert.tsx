@@ -31,7 +31,8 @@ const PastConcert = () => {
   });
 
   //scaling animation
-  const unclampedScale = useTransform(scrollYProgress, [0.35, 0.6], [1, maxScale]);
+  //reaches maxScale early
+  const unclampedScale = useTransform(scrollYProgress, [0.25, 0.45], [1, maxScale]);
   const scaleValue = useTransform(unclampedScale, (v) => Math.max(1, Math.min(maxScale, v)));
 
   //bg colour transform
