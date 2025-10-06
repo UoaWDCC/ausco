@@ -94,7 +94,7 @@ const Timeline = async () => {
         </div>
       </div>
       {/*NARROW TIMELINE*/}
-      <div className="md:hidden flex flex-col justify-center items-center mt-10">
+      <div className="md:hidden flex flex-col justify-center items-center my-10">
         {ourStoryData.timeline.map((item, index) => {
           return (
             <div key={index} className="relative flex w-5/6 h-full">
@@ -104,15 +104,15 @@ const Timeline = async () => {
               {/* year content */}
               <div className="flex flex-col">
                 <div className="flex gap-2">
-                  <div className="h-0.5 bg-[var(--navy)] flex-grow"></div>
-                  <div className="text-[var(--navy)] text-2xl font-bold -mt-4">
+                  <div className="bg-[var(--navy)] w-3 h-3 rounded-full -ml-1.5 mb-2"></div>
+                  <div className="text-[var(--navy)] text-2xl font-bold -mt-3 ml-2">
                     {item.year}: {item.title}
                   </div>
                 </div>
                 {/* Image */}
-                <div className="ml-8 py-8">
+                <div className="ml-8 pb-8 pt-6">
                   {item.image && (
-                    <div className="w-1/2 flex justify-center items-center pb-24">
+                    <div className="w-1/2 flex justify-center items-center">
                       {/* choose correct src whether item.image is a string or an object */}
                       {(() => {
                         const imageSrc =
@@ -156,7 +156,7 @@ const Timeline = async () => {
                         </p>
                       ) : null}
                     </div>
-                    <p className="mt-4 space-y-1 text-[var(--navy)]">{item.description}</p>
+                    <p className="pt-6 space-y-1 text-[var(--navy)]">{item.description}</p>
                   </div>
                 </div>
               </div>
