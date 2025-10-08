@@ -51,7 +51,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
                     <img
                       src={image.src}
                       alt={image.alt ?? "Carousel Image"}
-                      className="aspect-[3/4] h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+                      className="aspect-[3/4] h-full w-full object-cover transition-transform duration-300 ease-in-out"
                       loading="lazy"
                     />
                   </div>
