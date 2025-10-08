@@ -4,7 +4,7 @@ import Image from "next/image";
 const OurPeople = async () => {
   const [content] = await Promise.all([getOurPeople()]);
   return (
-    <div className="bg-[var(--cream)] text-[var(--navy)] flex flex-col gap-16 justify-center items-center mx-auto py-9 px-4 lg:flex-row">
+    <div className="bg-[var(--cream)] text-[var(--navy)] flex flex-col gap-16 justify-center items-center mx-auto pt-40 pb-9 px-4 lg:flex-row">
       {content.image && typeof content.image !== "string" ? (
         <Image 
           src={content.image.url ?? ""}
