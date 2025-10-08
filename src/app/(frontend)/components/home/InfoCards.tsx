@@ -3,7 +3,6 @@ import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/getLandingPage";
 import { Media } from "@/payload-types";
 import { ReactNode } from "react";
-import { Button } from "@components/ui/button";
 import Image from "next/image";
 
 //define icon mapping type
@@ -58,10 +57,10 @@ const InfoCard = ({
   getIcon,
 }: InfoCardProp) => {
   return (
-    <div className="flex flex-col justify-start bg-[var(--beige)] w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
+    <div className="flex flex-col bg-[var(--beige)] w-[75%] md:w-[30%] h-[750px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] shadow-sm">
       {/*card image*/}
-      {isMedia(image) && (
-        <div className="flex justify-center items-center p-6 lg:p-8 pt-12 lg:pt-14">
+      <div className="flex justify-center items-center h-[140px] pt-20 mb-26">
+        {isMedia(image) && (
           <Image
             src={image.url ?? ""}
             alt={image.alt ?? "Card illustration"}
@@ -69,41 +68,50 @@ const InfoCard = ({
             height={110}
             className="rounded-lg object-cover"
           />
-        </div>
-      )}
+        )}
+      </div>
 
       {/*card title*/}
-      <h2 className="text-2xl sm:text-3xl lg:text-5xl">{title}</h2>
+      <h2 className="text-2xl sm:text-3xl lg:text-5xl mb-6">{title}</h2>
 
       {/*card description and links*/}
-      <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
-        <p className="text-sm sm:text-base leading-relaxed">{description}</p>
-        {linkText && (
-          <div className="flex justify-center w-full">
-            <a
-              href={linkHref || "#"}
-              className="border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline"
-            >
-              {linkText}
-            </a>
-          </div>
-        )}
+      <div className="flex flex-col gap-4 flex-1 justify-between">
+        <div className="flex-1">
+          <p className="text-sm sm:text-base leading-relaxed mb-6">{description}</p>
+        </div>
 
-        {/*displays contact information as a list if contacts exist*/}
-        {contacts && contacts.length > 0 && (
-          <ul className="sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
-            {contacts.map((contact, j) => (
-              <li key={j} className="w-full flex justify-center">
-                <div className="flex items-center gap-2">
-                  {getIcon && getIcon(contact.icon)}
-                  <Button variant="link" asChild>
-                    <a href={contact.href || "#"}>{contact.text}</a>
-                  </Button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+        <div className="mt-auto">
+          {linkText && (
+            <div className="flex justify-center w-full mb-4">
+              <a
+                href={linkHref || "#"}
+                className="border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline"
+              >
+                {linkText}
+              </a>
+            </div>
+          )}
+
+          {/*displays contact information as a list if contacts exist*/}
+          {contacts && contacts.length > 0 && (
+            <div className="sm:text-base font-semibold">
+              <div className="flex flex-wrap justify-center gap-2 max-w-md mx-auto">
+                {contacts.map((contact, j) => (
+                  <a
+                    key={j}
+                    href={contact.href || "#"}
+                    className={`border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline flex items-center gap-2 min-w-0 flex-1 justify-center ${
+                      j < 2 ? "basis-[calc(50%-4px)]" : "basis-full"
+                    }`}
+                  >
+                    {getIcon && getIcon(contact.icon)}
+                    <span className="truncate">{contact.text}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
