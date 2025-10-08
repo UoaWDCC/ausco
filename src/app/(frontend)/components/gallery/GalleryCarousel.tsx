@@ -37,20 +37,21 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
       </h3>
 
       {/*infinite carousel, 3/4 ratio images, chevron arrows + touch controls*/}
-      <div className="w-full py-18 mb-6 px-12 flex justify-center">
+      <div className="w-full h-85 mb-6 px-12 flex justify-center items-center overflow-hidden">
         <Carousel opts={{ align: "start", loop: true }} className="w-full">
-          <CarouselContent>
+          <CarouselContent className="items-center">
             {items.map((image, index) => (
+              /*image increases in size on hover, pushes others to the side to accomodate*/
               <CarouselItem
                 key={`${image.src}-${index}`}
-                className="basis-1/3 md:basis-1/5 lg:basis-[10%]"
+                className="basis-1/3 md:basis-1/5 lg:basis-[10%] transition-all duration-300 ease-in-out hover:basis-[40%] hover:md:basis-[25%] hover:lg:basis-[12%] flex items-center"
               >
-                <div className="p-1">
+                <div className="p-1 w-full">
                   <div className="flex items-center justify-center overflow-hidden">
                     <img
                       src={image.src}
                       alt={image.alt ?? "Carousel Image"}
-                      className="aspect-[3/4] h-full w-full object-cover"
+                      className="aspect-[3/4] h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
                       loading="lazy"
                     />
                   </div>
