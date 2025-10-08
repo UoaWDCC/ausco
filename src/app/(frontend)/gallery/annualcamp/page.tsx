@@ -1,3 +1,9 @@
+import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
+
 export default function AnnualCampGallery() {
-  return <div>Annual Camp Gallery Page coming soon.</div>;
+  return (
+    <>
+      <GalleryHero title="Annual Camp Photos" />
+    </>
+  );
 }

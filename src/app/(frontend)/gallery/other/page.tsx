@@ -1,3 +1,9 @@
+import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
+
 export default function OtherGallery() {
-  return <div>Other Photos Gallery Page coming soon.</div>;
+  return (
+    <>
+      <GalleryHero title="Other Photos" />
+    </>
+  );
 }

@@ -1,3 +1,9 @@
+import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
+
 export default function ExecutiveCampGallery() {
-  return <div>Executive Camp Photos Gallery Page coming soon.</div>;
+  return (
+    <>
+      <GalleryHero title="Executive Camp Photos" />
+    </>
+  );
 }
