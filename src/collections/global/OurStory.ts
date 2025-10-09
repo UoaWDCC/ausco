@@ -49,11 +49,23 @@ export const OurStory: GlobalConfig = {
           type: "array",
           fields: [
             {
+              name: "termType",
+              label: "Term",
+              type: "select",
+              options: [
+                { label: "Semester 1", value: "sem1" },
+                { label: "Semester 2", value: "sem2" },
+                { label: "Full Year", value: "full" },
+                { label: "Co-President", value: "co" },
+              ],
+              required: true,
+              defaultValue: "full",
+            },
+            {
               name: "president",
-              label: "President",
+              label: "President Name",
               type: "text",
               required: true,
-              defaultValue: "John Doe",
             },
           ],
         },
@@ -63,11 +75,23 @@ export const OurStory: GlobalConfig = {
           type: "array",
           fields: [
             {
+              name: "termType",
+              label: "Term",
+              type: "select",
+              options: [
+                { label: "Semester 1", value: "sem1" },
+                { label: "Semester 2", value: "sem2" },
+                { label: "Full Year", value: "full" },
+                { label: "Co-Vice President", value: "co" },
+              ],
+              required: true,
+              defaultValue: "full",
+            },
+            {
               name: "vicePresident",
-              label: "Vice President",
+              label: "Vice President Name",
               type: "text",
               required: true,
-              defaultValue: "John Doe",
             },
           ],
         },
@@ -77,11 +101,23 @@ export const OurStory: GlobalConfig = {
           type: "array",
           fields: [
             {
+              name: "termType",
+              label: "Term",
+              type: "select",
+              options: [
+                { label: "Semester 1", value: "sem1" },
+                { label: "Semester 2", value: "sem2" },
+                { label: "Full Year", value: "full" },
+                { label: "Co-Conductor", value: "co" },
+              ],
+              required: true,
+              defaultValue: "full",
+            },
+            {
               name: "conductor",
-              label: "Conductor",
+              label: "Conductor Name",
               type: "text",
               required: true,
-              defaultValue: "John Doe",
             },
           ],
         },

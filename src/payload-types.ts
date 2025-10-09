@@ -721,18 +721,21 @@ export interface OurStory {
         dateInfo?: string | null;
         presidents?:
           | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               president: string;
               id?: string | null;
             }[]
           | null;
         vicePresidents?:
           | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               vicePresident: string;
               id?: string | null;
             }[]
           | null;
         conductors?:
           | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               conductor: string;
               id?: string | null;
             }[]
@@ -1161,18 +1164,21 @@ export interface OurStorySelect<T extends boolean = true> {
         presidents?:
           | T
           | {
+              termType?: T;
               president?: T;
               id?: T;
             };
         vicePresidents?:
           | T
           | {
+              termType?: T;
               vicePresident?: T;
               id?: T;
             };
         conductors?:
           | T
           | {
+              termType?: T;
               conductor?: T;
               id?: T;
             };

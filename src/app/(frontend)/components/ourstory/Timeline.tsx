@@ -1,16 +1,24 @@
 import { getOurStory } from "@/actions/ourStoryActions";
+import RoleSection from "./RoleSection";
 
 const Timeline = async () => {
   const ourStoryData = await getOurStory();
 
   if (!ourStoryData?.timeline) return null;
 
+  // Sort by year (ascending)
+  const timeline = [...ourStoryData.timeline].sort((a, b) => {
+    const yearA = parseInt(a.year, 10);
+    const yearB = parseInt(b.year, 10);
+    return yearA - yearB;
+  });
+
   return (
     <div>
       <div className="max-w-5xl mx-auto px-4 py-8 hidden md:block">
         {/* Timeline */}
         <div>
-          {ourStoryData.timeline.map((item, index) => {
+          {timeline.map((item, index) => {
             const isLeft = index % 2 === 1;
 
             return (
@@ -63,28 +71,25 @@ const Timeline = async () => {
                     {item.dateInfo && (
                       <p className="text-sm font-bold text-[var(--navy)] mb-2">{item.dateInfo}</p>
                     )}
-                    {item.presidents?.length ? (
-                      <p>
-                        <strong>Presidents:</strong>{" "}
-                        {item.presidents?.map((p) => p.president).join(", ")}
-                      </p>
-                    ) : null}
-
-                    {item.vicePresidents?.length ? (
-                      <p>
-                        <strong>Vice Presidents:</strong>{" "}
-                        {item.vicePresidents?.map((vp) => vp.vicePresident).join(", ")}
-                      </p>
-                    ) : null}
-
-                    {item.conductors?.length ? (
-                      <p>
-                        <strong>Conductors:</strong>{" "}
-                        {item.conductors?.map((c) => c.conductor).join(", ")}
-                      </p>
-                    ) : null}
+                    <RoleSection
+                      title="Presidents"
+                      people={item.presidents ?? []}
+                      roleKey="president"
+                    />
+                    <RoleSection
+                      title="Vice Presidents"
+                      people={item.vicePresidents ?? []}
+                      roleKey="vicePresident"
+                    />
+                    <RoleSection
+                      title="Conductors"
+                      people={item.conductors ?? []}
+                      roleKey="conductor"
+                    />
                   </div>
-                  <p className={`mt-4 space-y-1 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}>
+                  <p
+                    className={`mt-4 space-y-1 pb-4 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}
+                  >
                     {item.description}
                   </p>
                 </div>
@@ -96,7 +101,7 @@ const Timeline = async () => {
       {/*NARROW TIMELINE*/}
       <div className="md:hidden relative flex flex-col items-center my-10 w-full">
         <div className="absolute left-[8.3%] w-0.5 bg-[var(--navy)] h-full"></div>
-        {ourStoryData.timeline.map((item, index) => {
+        {timeline.map((item, index) => {
           return (
             <div key={index} className="relative flex w-5/6 h-full">
               {/* year content */}
@@ -133,26 +138,21 @@ const Timeline = async () => {
                       {item.dateInfo && (
                         <p className="text-sm font-bold text-[var(--navy)] mb-2">{item.dateInfo}</p>
                       )}
-                      {item.presidents?.length ? (
-                        <p>
-                          <strong>Presidents:</strong>{" "}
-                          {item.presidents?.map((p) => p.president).join(", ")}
-                        </p>
-                      ) : null}
-
-                      {item.vicePresidents?.length ? (
-                        <p>
-                          <strong>Vice Presidents:</strong>{" "}
-                          {item.vicePresidents?.map((vp) => vp.vicePresident).join(", ")}
-                        </p>
-                      ) : null}
-
-                      {item.conductors?.length ? (
-                        <p>
-                          <strong>Conductors:</strong>{" "}
-                          {item.conductors?.map((c) => c.conductor).join(", ")}
-                        </p>
-                      ) : null}
+                      <RoleSection
+                        title="Presidents"
+                        people={item.presidents ?? []}
+                        roleKey="president"
+                      />
+                      <RoleSection
+                        title="Vice Presidents"
+                        people={item.vicePresidents ?? []}
+                        roleKey="vicePresident"
+                      />
+                      <RoleSection
+                        title="Conductors"
+                        people={item.conductors ?? []}
+                        roleKey="conductor"
+                      />
                     </div>
                     <p className="pt-6 space-y-1 text-[var(--navy)]">{item.description}</p>
                   </div>
