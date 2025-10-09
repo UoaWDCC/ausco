@@ -94,8 +94,8 @@ const InfoCard = ({
 
           {/*displays contact information as a list if contacts exist*/}
           {contacts && contacts.length > 0 && (
-            <div className="sm:text-base font-semibold">
-              <div className="flex flex-wrap justify-center gap-2 max-w-md mx-auto">
+            <div className="sm:text-base">
+              <div className="flex flex-wrap justify-center gap-3 max-w-md mx-auto">
                 {contacts.map((contact, j) => (
                   <a
                     key={j}
