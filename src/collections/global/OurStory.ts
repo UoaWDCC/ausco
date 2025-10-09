@@ -123,10 +123,21 @@ export const OurStory: GlobalConfig = {
         },
         {
           name: "description",
-          label: "Description of the year's events.",
-          type: "text",
+          label: "Description of the year's events",
+          type: "array",
+          labels: {
+            singular: "Paragraph",
+            plural: "Paragraphs",
+          },
           required: true,
-          defaultValue: "this is a desciption of the nevents for the year",
+          fields: [
+            {
+              name: "paragraph",
+              type: "textarea",
+              label: "Paragraph Text",
+              required: true,
+            },
+          ],
         },
         {
           name: "image",

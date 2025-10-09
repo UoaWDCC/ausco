@@ -740,7 +740,10 @@ export interface OurStory {
               id?: string | null;
             }[]
           | null;
-        description: string;
+        description: {
+          paragraph: string;
+          id?: string | null;
+        }[];
         image: string | Media;
         id?: string | null;
       }[]
@@ -1182,7 +1185,12 @@ export interface OurStorySelect<T extends boolean = true> {
               conductor?: T;
               id?: T;
             };
-        description?: T;
+        description?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+            };
         image?: T;
         id?: T;
       };

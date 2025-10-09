@@ -43,7 +43,7 @@ const Timeline = async () => {
                         <img
                           src={imageSrc}
                           alt={item.title || item.year}
-                          className="rounded-lg shadow max-w-sm w-full h-auto object-cover"
+                          className="shadow max-w-sm w-full h-auto object-cover"
                         />
                       );
                     })()}
@@ -87,11 +87,16 @@ const Timeline = async () => {
                       roleKey="conductor"
                     />
                   </div>
-                  <p
-                    className={`mt-4 space-y-1 pb-4 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"}`}
+                  <div
+                    className={`mt-4 pb-8 flex flex-col leading-5 text-[var(--navy)] ${isLeft ? "pl-24" : "pr-24"} gap-2`}
                   >
-                    {item.description}
-                  </p>
+                    {item.description?.length > 0 &&
+                      item.description.map((p: any, idx: number) => (
+                        <p key={idx} className="text-sm">
+                          {p.paragraph}
+                        </p>
+                      ))}
+                  </div>
                 </div>
               </div>
             );
@@ -126,7 +131,7 @@ const Timeline = async () => {
                           <img
                             src={imageSrc}
                             alt={item.title || item.year}
-                            className="rounded-lg shadow max-w-sm w-full h-auto object-cover"
+                            className="shadow max-w-sm w-full h-auto object-cover"
                           />
                         );
                       })()}
@@ -154,7 +159,14 @@ const Timeline = async () => {
                         roleKey="conductor"
                       />
                     </div>
-                    <p className="pt-6 space-y-1 text-[var(--navy)]">{item.description}</p>
+                    <div className={`mt-4 pb-4 leading-5 text-[var(--navy)] space-y-8`}>
+                      {item.description?.length > 0 &&
+                        item.description.map((p: any, idx: number) => (
+                          <p key={idx} className="text-sm">
+                            {p.paragraph}
+                          </p>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
