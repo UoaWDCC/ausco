@@ -35,7 +35,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
   const router = useRouter();
 
   const textColor = clsx(scrolled || !isHomePage ? "text-[var(--navy)]" : "text-white");
-  
+
   const navBg = clsx(
     scrolled ? (isHomePage ? "bg-[var(--beige)]" : "bg-[var(--headerblue)]") : "bg-transparent",
   );
@@ -64,7 +64,10 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             className="flex items-center space-x-4 cursor-pointer"
             onClick={() => router.push("/")}
           >
-            {typeof content.logo === "object" && content.logo !== null && "url" in content.logo ? (
+            {typeof content.logo === "object" &&
+            content.logo !== null &&
+            "url" in content.logo &&
+            content.logo.url ? (
               <Image
                 src={content.logo.url}
                 alt={content.logo.alt || "Logo"}
@@ -97,34 +100,27 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
               onMouseLeave={() => setHoveredItem(null)}
             >
               <Button variant="link" asChild>
-                <a
-                  className={clsx("text-sm", textColor)}
-                  href={link.url || "#"}
-                >
+                <a className={clsx("text-sm", textColor)} href={link.url || "#"}>
                   <span className="flex items-center gap-1">
                     {link.label}
-                    {link.subItem && link.subItem.length > 0 && (
-                      <ChevronDown size={16} />
-                    )}
+                    {link.subItem && link.subItem.length > 0 && <ChevronDown size={16} />}
                   </span>
                 </a>
               </Button>
-              {link.subItem &&
-                link.subItem.length > 0 &&
-                hoveredItem === i && (
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[#F6F4EC] rounded-lg shadow-lg border border-gray-200 py-2 z-40 text-[#264C84]">
-                    <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
-                    {link.subItem.map((subLink, subIndex) => (
-                      <a
-                        key={subIndex}
-                        href={subLink.url || "#"}
-                        className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors duration-200"
-                      >
-                        {subLink.label}
-                      </a>
-                    ))}
-                  </div>
-                )}
+              {link.subItem && link.subItem.length > 0 && hoveredItem === i && (
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[#F6F4EC] rounded-lg shadow-lg border border-gray-200 py-2 z-40 text-[#264C84]">
+                  <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
+                  {link.subItem.map((subLink, subIndex) => (
+                    <a
+                      key={subIndex}
+                      href={subLink.url || "#"}
+                      className="block px-4 py-2 text-sm hover:bg-gray-50 transition-colors duration-200"
+                    >
+                      {subLink.label}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
         </div>
