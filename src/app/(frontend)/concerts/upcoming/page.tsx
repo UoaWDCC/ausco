@@ -1,15 +1,22 @@
-import { getComingSoon } from "@/actions/getComingSoon";
-import ComingSoon from "@/app/(frontend)/components/concerts/ComingSoon";
+import HeroSection from "@components/concerts/upcoming/HeroSection";
+import SemesterOneConcert from "@components/concerts/upcoming/SemesterOneConcert";
+import SemesterTwoConcert from "@components/concerts/upcoming/SemesterTwoConcert";
+import Calendar from "@components/concerts/upcoming/Calendar";
+import Header from "@components/home/Header";
+import Footer from "@components/home/Footer";
+import { getHeader } from "@/actions/getHeader";
 
 export default async function Upcoming() {
-  const data = await getComingSoon();
-  
+  const headerContent = await getHeader();
+
   return (
-    <ComingSoon
-      title={data.header?.title}
-      description={data.header?.description}
-      matineeData={data.matinee}
-      concertData={data.concert}
-    />
+    <>
+      <Header content={headerContent} />
+      <HeroSection />
+      <SemesterOneConcert />
+      <SemesterTwoConcert />
+      <Calendar />
+      <Footer />
+    </>
   );
 }

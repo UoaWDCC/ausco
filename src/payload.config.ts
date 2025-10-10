@@ -14,12 +14,17 @@ import { Footer } from "./collections/global/Footer";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
-import SecondTwoCard from "./collections/global/SecondTwoCard";
 
-import AboutFirstCards from "./collections/global/AboutFirstCards";
+import AboutHeroSection from "./collections/global/AboutHeroSection";
+import AboutUsCards from "./collections/global/AboutUsCards";
+
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
 import { OurPeople } from "./collections/global/OurPeople";
+import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
+import { PastConcerts } from "./collections/global/PastConcerts";
+
+import { GalleryLanding } from "./collections/global/GalleryLanding";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -36,10 +41,13 @@ export default buildConfig({
     LandingPage,
     Footer,
     Header,
-    AboutFirstCards,
-    SecondTwoCard,
+    AboutHeroSection,
+    AboutUsCards,
     OurPeople,
     ConcertsLanding,
+    UpcomingConcerts,
+    PastConcerts,
+    GalleryLanding,
   ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",

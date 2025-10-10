@@ -12,7 +12,7 @@ AUSCO-
 
 <!-- To complete an item, type "x" inside the brackets like this: [x] -->
 
-- [ ] All Next.js build checks are passing. (This can be technical - if you've tried to fix build errors but they persist, it's okay to leave this unchecked)
+- [ ] All Next.js build checks are passing.
 - [ ] I have performed a self-review of my code.
 - [ ] I have commented my code in hard-to-understand areas.
 - [ ] I have moved my Jira ticket from IN PROGRESS to READY TO REVIEW.

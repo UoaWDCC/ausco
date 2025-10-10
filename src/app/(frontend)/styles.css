@@ -43,6 +43,24 @@
   --brown: oklch(0.359 0.0856 46.62); /*#602C0F*/
   --beige: oklch(0.9255 0.02 77.31); /*#EEE5D8*/
   --blue: oklch(0.6648 0.0945 255.48); /*#6C96CD*/
+  --headerblue: oklch(89.36% 0.048 256.37) /*#C7D5E8*/;
+  --concertblue: oklch(0.3004 0.0775 250.91) /*#082f53*/;
+  --hovercardblue: oklch(0.415 0.1024 258.39) /*#264b82*/;
+}
+
+/* custom wiggle animation */
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.wiggle-hover:hover {
+  animation: wiggle 0.3s ease-in-out;
 }
 
 * {
@@ -61,6 +79,7 @@ html,
 body,
 #app {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {

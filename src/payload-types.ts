@@ -92,19 +92,25 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
-    'about-first-cards': AboutFirstCard;
-    'second-two-card': SecondTwoCard;
+    'about-hero-section': AboutHeroSection;
+    'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
+    'upcoming-concerts': UpcomingConcert;
+    'past-concerts': PastConcert;
+    'gallery-landing': GalleryLanding;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-first-cards': AboutFirstCardsSelect<false> | AboutFirstCardsSelect<true>;
-    'second-two-card': SecondTwoCardSelect<false> | SecondTwoCardSelect<true>;
+    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
+    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
+    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
   };
   locale: null;
   user: User & {
@@ -148,13 +154,6 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
   password?: string | null;
 }
 /**
@@ -278,13 +277,6 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -473,9 +465,26 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards".
+ * via the `definition` "about-hero-section".
  */
-export interface AboutFirstCard {
+export interface AboutHeroSection {
+  id: string;
+  aboutUsStickers?:
+    | {
+        'sticker-image': string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  AboutUsHeader?: string | null;
+  AboutUsDescription?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-cards".
+ */
+export interface AboutUsCard {
   id: string;
   visionCard: {
     'background-image': string | Media;
@@ -489,15 +498,6 @@ export interface AboutFirstCard {
     'short-desc': string;
     'full-desc': string;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card".
- */
-export interface SecondTwoCard {
-  id: string;
   leftBox: {
     title: string;
     shortDescription: string;
@@ -536,6 +536,37 @@ export interface OurPerson {
         id?: string | null;
       }[]
     | null;
+  playerDescription?: string | null;
+  sections?:
+    | (
+        | {
+            sectionTitle: string;
+            photo: string | Media;
+            players?:
+              | {
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'large-group';
+          }
+        | {
+            sectionTitle: string;
+            photo: string | Media;
+            players?:
+              | {
+                  name?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'small-group';
+          }
+      )[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -545,24 +576,122 @@ export interface OurPerson {
  */
 export interface ConcertsLanding {
   id: string;
-  header: {
-    title: string;
-    description: string;
-  };
-  matinee?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-  };
-  concert?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-  };
   upcomingCard: {
     'background-image': string | Media;
   };
   pastCard: {
+    'background-image': string | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "upcoming-concerts".
+ */
+export interface UpcomingConcert {
+  id: string;
+  hero: string;
+  upcomingConcert?: {
+    title?: string | null;
+    poster?: (string | null) | Media;
+    description1?: string | null;
+    description2?: string | null;
+  };
+  semOneEventOne?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  semOneEventTwo?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  upcomingConcertTwo?: {
+    title?: string | null;
+    poster?: (string | null) | Media;
+    description1?: string | null;
+    description2?: string | null;
+  };
+  semTwoEventOne?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  semTwoEventTwo?: {
+    title?: string | null;
+    date?: string | null;
+    location?: string | null;
+    ticketUrl?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "past-concerts".
+ */
+export interface PastConcert {
+  id: string;
+  headerSection: {
+    title: string;
+    'short-desc': string;
+  };
+  years?:
+    | {
+        year: string;
+        concerts: {
+          semester1: {
+            poster: string | Media;
+            semester: string;
+            concertTitle: string;
+            desc: string;
+            videoUrl: string;
+            charity: {
+              name: string;
+              websiteURL: string;
+              donationAmount: number;
+            };
+          };
+          semester2: {
+            poster: string | Media;
+            semester: string;
+            concertTitle: string;
+            desc: string;
+            videoUrl: string;
+            charity: {
+              name: string;
+              websiteURL: string;
+              donationAmount: number;
+            };
+          };
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing".
+ */
+export interface GalleryLanding {
+  id: string;
+  concertPhotosCard: {
+    'background-image': string | Media;
+  };
+  annCampCard: {
+    'background-image': string | Media;
+  };
+  execCampCard: {
+    'background-image': string | Media;
+  };
+  otherPhotosCard: {
     'background-image': string | Media;
   };
   updatedAt?: string | null;
@@ -697,9 +826,26 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-first-cards_select".
+ * via the `definition` "about-hero-section_select".
  */
-export interface AboutFirstCardsSelect<T extends boolean = true> {
+export interface AboutHeroSectionSelect<T extends boolean = true> {
+  aboutUsStickers?:
+    | T
+    | {
+        'sticker-image'?: T;
+        id?: T;
+      };
+  AboutUsHeader?: T;
+  AboutUsDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-cards_select".
+ */
+export interface AboutUsCardsSelect<T extends boolean = true> {
   visionCard?:
     | T
     | {
@@ -716,15 +862,6 @@ export interface AboutFirstCardsSelect<T extends boolean = true> {
         'short-desc'?: T;
         'full-desc'?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second-two-card_select".
- */
-export interface SecondTwoCardSelect<T extends boolean = true> {
   leftBox?:
     | T
     | {
@@ -767,6 +904,39 @@ export interface OurPeopleSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
+  playerDescription?: T;
+  sections?:
+    | T
+    | {
+        'large-group'?:
+          | T
+          | {
+              sectionTitle?: T;
+              photo?: T;
+              players?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'small-group'?:
+          | T
+          | {
+              sectionTitle?: T;
+              photo?: T;
+              players?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -776,32 +946,156 @@ export interface OurPeopleSelect<T extends boolean = true> {
  * via the `definition` "concerts-landing_select".
  */
 export interface ConcertsLandingSelect<T extends boolean = true> {
-  header?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-      };
-  matinee?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-      };
-  concert?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-      };
   upcomingCard?:
     | T
     | {
         'background-image'?: T;
       };
   pastCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "upcoming-concerts_select".
+ */
+export interface UpcomingConcertsSelect<T extends boolean = true> {
+  hero?: T;
+  upcomingConcert?:
+    | T
+    | {
+        title?: T;
+        poster?: T;
+        description1?: T;
+        description2?: T;
+      };
+  semOneEventOne?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  semOneEventTwo?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  upcomingConcertTwo?:
+    | T
+    | {
+        title?: T;
+        poster?: T;
+        description1?: T;
+        description2?: T;
+      };
+  semTwoEventOne?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  semTwoEventTwo?:
+    | T
+    | {
+        title?: T;
+        date?: T;
+        location?: T;
+        ticketUrl?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "past-concerts_select".
+ */
+export interface PastConcertsSelect<T extends boolean = true> {
+  headerSection?:
+    | T
+    | {
+        title?: T;
+        'short-desc'?: T;
+      };
+  years?:
+    | T
+    | {
+        year?: T;
+        concerts?:
+          | T
+          | {
+              semester1?:
+                | T
+                | {
+                    poster?: T;
+                    semester?: T;
+                    concertTitle?: T;
+                    desc?: T;
+                    videoUrl?: T;
+                    charity?:
+                      | T
+                      | {
+                          name?: T;
+                          websiteURL?: T;
+                          donationAmount?: T;
+                        };
+                  };
+              semester2?:
+                | T
+                | {
+                    poster?: T;
+                    semester?: T;
+                    concertTitle?: T;
+                    desc?: T;
+                    videoUrl?: T;
+                    charity?:
+                      | T
+                      | {
+                          name?: T;
+                          websiteURL?: T;
+                          donationAmount?: T;
+                        };
+                  };
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-landing_select".
+ */
+export interface GalleryLandingSelect<T extends boolean = true> {
+  concertPhotosCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  annCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  execCampCard?:
+    | T
+    | {
+        'background-image'?: T;
+      };
+  otherPhotosCard?:
     | T
     | {
         'background-image'?: T;
