@@ -29,22 +29,17 @@ type HeaderProps = {
 };
 
 const Header = ({ content, isHomePage = false }: HeaderProps) => {
-  const logoData =
-    typeof content.logo === "object" &&
-    content.logo !== null &&
-    "url" in content.logo
-      ? content.logo
-      : null;
-
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-// merged
   const router = useRouter();
+
   const textColor = clsx(scrolled || !isHomePage ? "text-[var(--navy)]" : "text-white");
+  
   const navBg = clsx(
     scrolled ? (isHomePage ? "bg-[var(--beige)]" : "bg-[var(--headerblue)]") : "bg-transparent",
   );
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 35);
@@ -65,19 +60,20 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
         )}
       >
         <div className="flex items-center justify-between w-full xl:w-auto mb-4 xl:mb-0">
-        <div
+          <div
             className="flex items-center space-x-4 cursor-pointer"
             onClick={() => router.push("/")}
           >
-            {logo?.url && (
+            {typeof content.logo === "object" && content.logo !== null && "url" in content.logo ? (
               <Image
-                src={logo.url}
-                alt={logo.alt || "Logo"}
+                src={content.logo.url}
+                alt={content.logo.alt || "Logo"}
                 width={60}
                 height={60}
               />
+            ) : (
+              <Image src={logo} alt="AUSCO logo" width={60} height={60} />
             )}
-            <img src={logo.src} alt="AUSCO logo" className="w-14" />
             <span
               className={clsx("text:md md:text-lg font-medium", textColor)}
               dangerouslySetInnerHTML={{ __html: content.title || "" }}
@@ -91,6 +87,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
+
         <div className={clsx("hidden xl:flex flex-wrap items-center gap-4 sm:gap-12", textColor)}>
           {content.navLinks?.map((link, i) => (
             <div
@@ -101,10 +98,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             >
               <Button variant="link" asChild>
                 <a
-                  className={clsx(
-                    "text-sm",
-                    scrolled ? "text-[#264C84]" : "text-white",
-                  )}
+                  className={clsx("text-sm", textColor)}
                   href={link.url || "#"}
                 >
                   <span className="flex items-center gap-1">
@@ -136,33 +130,29 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
         </div>
 
         {isOpen && (
-        <div className={clsx("xl:hidden absolute flex flex-col gap-2 w-full pt-20", textColor)}>
+          <div className={clsx("xl:hidden absolute flex flex-col gap-2 w-full pt-20", textColor)}>
             {content.navLinks?.map((link, i) => (
-                  
               <div key={i}>
-                  <a
+                <a
                   href={link.url || "#"}
                   className={clsx("text-sm hover:underline block", textColor)}
-              >
-                {link.label}
-                    </a>
+                >
+                  {link.label}
+                </a>
                 {link.subItem && link.subItem.length > 0 && (
                   <div className="ml-4 mt-2 space-y-1">
                     {link.subItem.map((subLink, subIndex) => (
                       <a
                         key={subIndex}
                         href={subLink.url || "#"}
-                        className={clsx(
-                          "text-xs block py-1",
-                          scrolled ? "text-[#264C84]" : "text-white",
-                        )}
+                        className={clsx("text-xs block py-1", textColor)}
                       >
                         {subLink.label}
                       </a>
                     ))}
                   </div>
                 )}
-              </div> 
+              </div>
             ))}
             <a href="#footer" className={clsx("text-sm hover:underline block", textColor)}>
               Contact Us
