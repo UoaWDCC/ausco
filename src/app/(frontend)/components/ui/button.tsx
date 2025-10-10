@@ -17,6 +17,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "relative inline-block w-fit !whitespace-normal !p-0 !h-auto after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full",
+        beige:
+          "bg-transparent text-[var(--cream)] border border-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--brown)] flex gap-2 transition",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
