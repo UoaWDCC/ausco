@@ -5,6 +5,17 @@ export const OurPeople: GlobalConfig = {
   label: "Our People Page",
   fields: [
     {
+        name: "image",
+        label: "Our People Image",
+        type: "upload",
+        relationTo: "media",
+    },
+    {
+        name: "description",
+        label: "description of Our People Page",
+        type: "text",
+    },
+    {
       name: "generalDescription",
       label: "Short Description of Executive Committee",
       type: "text",
@@ -124,6 +135,59 @@ export const OurPeople: GlobalConfig = {
               ],
             },
           ],
+        },
+      ],
+    },
+    {
+      name: "hallOfFame",
+      type: "array",
+      label: "Hall Of Fame",
+      fields: [
+        {
+          name: "pastPresidents",
+          label: "Past Presidents",
+          type: "array",
+          fields: [
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "text",
+            },
+            {
+              name: "image",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+            },
+          ]
+        },
+        {
+          name: "founders",
+          label: "Founders",
+          type: "array",
+          fields: [
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+            },
+            {
+              name: "description",
+              label: "Description",
+              type: "text",
+            },
+            {
+              name: "image",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+            },
+          ]
         },
       ],
     },
