@@ -77,10 +77,14 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             ) : (
               <Image src={logo} alt="AUSCO logo" width={60} height={60} />
             )}
-            <span
-              className={clsx("text:md md:text-lg font-medium", textColor)}
-              dangerouslySetInnerHTML={{ __html: content.title || "" }}
-            />
+            <span className={clsx("text:md md:text-lg font-medium", textColor)}>
+              {(content.title || "").split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </span>
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}

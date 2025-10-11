@@ -13,7 +13,7 @@ const Header: GlobalConfig = {
     {
       name: "title",
       label: "Header Title",
-      type: "text",
+      type: "textarea",
     },
     {
       name: "navLinks",
