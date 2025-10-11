@@ -30,8 +30,8 @@ const Ticket = ({ matineeData, concertData }: TicketProps) => {
             <span>{matineeData?.location}</span>
           </div>
         </div>
-        <Button className="mt-6 -ml-2 lg:ml-0 h-10 lg:h-12 w-24 lg:w-28 bg-transparent text-[var(--brown)] border border-[#602C0F] hover:bg-[var(--brown)] hover:text-[var(--beige)] py-4 rounded-lg flex items-center gap-2">
-          Tickets <ArrowUpRight size={20} />
+        <Button variant="brown" size="lg" className="mt-6">
+          Tickets <ArrowUpRight size={18} />
         </Button>
       </div>
 
@@ -48,8 +48,8 @@ const Ticket = ({ matineeData, concertData }: TicketProps) => {
             <span>{concertData?.location}</span>
           </div>
         </div>
-        <Button className="mt-6 -ml-2 lg:ml-0 h-10 lg:h-12 w-24 lg:w-28 bg-transparent text-[var(--brown)] border hover:bg-[var(--brown)] hover:text-[var(--beige)] border-[#602C0F] px-8 py-4 rounded-lg flex items-center gap-2">
-          Tickets <ArrowUpRight size={20} />
+        <Button variant="brown" size="lg" className="mt-6">
+          Tickets <ArrowUpRight size={18} />
         </Button>
       </div>
     </section>
