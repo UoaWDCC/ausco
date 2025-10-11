@@ -85,7 +85,7 @@ const InfoCard = ({
             <div className="flex justify-center w-full mb-4">
               <a
                 href={linkHref || "#"}
-                className="border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline"
+                className="border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline hover:bg-[var(--navy)] hover:!text-white transition-colors"
               >
                 {linkText}
               </a>
@@ -100,7 +100,7 @@ const InfoCard = ({
                   <a
                     key={j}
                     href={contact.href || "#"}
-                    className={`border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline flex items-center gap-2 min-w-0 flex-1 justify-center ${
+                    className={`border-2 border-[var(--navy)] px-8 py-2 rounded-md text-[var(--navy)] no-underline flex items-center gap-2 min-w-0 flex-1 justify-center hover:bg-[var(--navy)] hover:!text-white transition-colors ${
                       j < 2 ? "basis-[calc(50%-4px)]" : "basis-full"
                     }`}
                   >
