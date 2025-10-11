@@ -53,10 +53,14 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
             onClick={() => router.push("/")}
           >
             <img src={logo.src} alt="AUSCO logo" className="w-14" />
-            <span
-              className={clsx("text:md md:text-lg font-medium", textColor)}
-              dangerouslySetInnerHTML={{ __html: content.title || "" }}
-            />
+            <span className={clsx("text:md md:text-lg font-medium", textColor)}>
+              {(content.title || "").split("\n").map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </span>
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
