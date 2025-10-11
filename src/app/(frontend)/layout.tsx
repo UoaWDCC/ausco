@@ -1,4 +1,6 @@
 import React from "react";
+import Header from "@components/home/Header";
+import { getHeader } from "@/actions/getHeader";
 import "./styles.css";
 
 export const metadata = {
@@ -8,10 +10,12 @@ export const metadata = {
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props;
+  const headerContent = await getHeader();
 
   return (
     <html lang="en">
       <body>
+        <Header content={headerContent} />
         <main>{children}</main>
       </body>
     </html>
