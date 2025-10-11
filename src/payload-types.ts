@@ -154,6 +154,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -277,6 +284,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -529,6 +543,24 @@ export interface OurPerson {
         id?: string | null;
       }[]
     | null;
+  conductorsSection?: {
+    conductorFrame?: (string | null) | Media;
+    conductor1?: {
+      name?: string | null;
+      description?: string | null;
+      image?: (string | null) | Media;
+    };
+    conductor2?: {
+      name?: string | null;
+      description?: string | null;
+      image?: (string | null) | Media;
+    };
+    conductor3?: {
+      name?: string | null;
+      description?: string | null;
+      image?: (string | null) | Media;
+    };
+  };
   playerDescription?: string | null;
   sections?:
     | (
@@ -889,6 +921,32 @@ export interface OurPeopleSelect<T extends boolean = true> {
         description?: T;
         image?: T;
         id?: T;
+      };
+  conductorsSection?:
+    | T
+    | {
+        conductorFrame?: T;
+        conductor1?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+            };
+        conductor2?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+            };
+        conductor3?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+            };
       };
   playerDescription?: T;
   sections?:
