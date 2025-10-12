@@ -2,7 +2,6 @@
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getLandingPage } from "@/actions/homeActions";
 import { ReactNode } from "react";
-import { Button } from "@components/ui/button";
 import { AnimatedCard } from "./AnimatedCard";
 import Image from "next/image";
 import { Media } from "@/payload-types";
@@ -72,9 +71,12 @@ const InfoCard = ({
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
           <div className="flex justify-center">
-            <Button variant="link" asChild>
-              <a href={linkHref || "#"}>{linkText}</a>
-            </Button>
+            <a
+              href={linkHref || "#"}
+              className="inline-flex items-center justify-center px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white"
+            >
+              {linkText}
+            </a>
           </div>
         )}
 
@@ -83,12 +85,13 @@ const InfoCard = ({
           <ul className="sm:text-base flex flex-col items-center font-semibold p-2 lg:p-4 space-y-2">
             {contacts.map((contact, j) => (
               <li key={j} className="w-full flex justify-center">
-                <div className="flex items-center gap-2">
+                <a
+                  href={contact.href || "#"}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:hover:!text-white"
+                >
                   {getIcon && getIcon(contact.icon)}
-                  <Button variant="link" asChild>
-                    <a href={contact.href || "#"}>{contact.text}</a>
-                  </Button>
-                </div>
+                  <span>{contact.text}</span>
+                </a>
               </li>
             ))}
           </ul>
