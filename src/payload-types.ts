@@ -398,16 +398,16 @@ export interface LandingPage {
     regularCards: {
       title: string;
       description: string;
-      image: string;
+      image?: (string | null) | Media;
       linkText: string;
       linkHref?: string | null;
       id?: string | null;
     }[];
-    contactsCard: {
+    contactCards: {
       title: string;
       description: string;
-      image: string;
-      linkText: string;
+      image?: (string | null) | Media;
+      linkText?: string | null;
       linkHref?: string | null;
       contacts: {
         text: string;
@@ -415,7 +415,8 @@ export interface LandingPage {
         icon: 'mail' | 'instagram' | 'facebook';
         id?: string | null;
       }[];
-    };
+      id?: string | null;
+    }[];
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -752,7 +753,7 @@ export interface LandingPageSelect<T extends boolean = true> {
               linkHref?: T;
               id?: T;
             };
-        contactsCard?:
+        contactCards?:
           | T
           | {
               title?: T;
@@ -768,6 +769,7 @@ export interface LandingPageSelect<T extends boolean = true> {
                     icon?: T;
                     id?: T;
                   };
+              id?: T;
             };
       };
   updatedAt?: T;

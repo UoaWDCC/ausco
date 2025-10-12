@@ -128,7 +128,6 @@ export const LandingPage: GlobalConfig = {
               title: "About Us",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
               linkText: "Read more↗",
               linkHref: "",
             },
@@ -136,7 +135,6 @@ export const LandingPage: GlobalConfig = {
               title: "Our People",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
               linkText: "Read more↗",
               linkHref: "",
             },
@@ -157,8 +155,9 @@ export const LandingPage: GlobalConfig = {
             {
               name: "image",
               label: "Card Image",
-              type: "text",
-              required: true,
+              type: "upload",
+              relationTo: "media",
+              required: false,
             },
             {
               name: "linkText",
@@ -175,51 +174,17 @@ export const LandingPage: GlobalConfig = {
           ],
         },
         {
-          name: "contactsCard",
-          label: "Contacts Card",
-          type: "group",
-          fields: [
+          name: "contactCards",
+          label: "Contact Cards",
+          type: "array",
+          required: true,
+          defaultValue: [
             {
-              name: "title",
-              label: "Card Title",
-              type: "text",
-              required: true,
-              defaultValue: "Reach Out",
-            },
-            {
-              name: "description",
-              label: "Card Description",
-              type: "textarea",
-              required: true,
-              defaultValue: "Here are a few ways you can reach out to us:",
-            },
-            {
-              name: "image",
-              label: "Card Image",
-              type: "text",
-              required: true,
-              defaultValue: "PLACEHOLDER",
-            },
-            {
-              name: "linkText",
-              label: "Link Text",
-              type: "text",
-              required: true,
-              defaultValue: "Feedback Form↗",
-            },
-            {
-              name: "linkHref",
-              label: "Link URL",
-              type: "text",
-              required: false,
-              defaultValue: "",
-            },
-            {
-              name: "contacts",
-              label: "Contact Information",
-              type: "array",
-              required: true,
-              defaultValue: [
+              title: "Reach Out",
+              description: "Here are a few ways you can reach out to us:",
+              linkText: "Feedback Form↗",
+              linkHref: "",
+              contacts: [
                 {
                   text: "chamberorchestra.ausa@gmail.com↗",
                   href: "",
@@ -236,6 +201,45 @@ export const LandingPage: GlobalConfig = {
                   icon: "facebook",
                 },
               ],
+            },
+          ],
+          fields: [
+            {
+              name: "title",
+              label: "Card Title",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "description",
+              label: "Card Description",
+              type: "textarea",
+              required: true,
+            },
+            {
+              name: "image",
+              label: "Card Image",
+              type: "upload",
+              relationTo: "media",
+              required: false,
+            },
+            {
+              name: "linkText",
+              label: "Link Text",
+              type: "text",
+              required: false,
+            },
+            {
+              name: "linkHref",
+              label: "Link URL",
+              type: "text",
+              required: false,
+            },
+            {
+              name: "contacts",
+              label: "Contact Information",
+              type: "array",
+              required: true,
               fields: [
                 {
                   name: "text",
