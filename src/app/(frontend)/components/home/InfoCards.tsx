@@ -101,6 +101,82 @@ const InfoCard = ({
   );
 };
 
+//mobile card component
+const MobileInfoCard = ({
+  title,
+  image,
+  href,
+}: {
+  title: string;
+  image?: string | Media | null;
+  href: string;
+}) => {
+  return (
+    <a
+      href={href}
+      className="flex items-center gap-4 py-4 cursor-pointer hover:opacity-80 transition-opacity"
+    >
+      {/*image container*/}
+      <div className="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-[var(--navy)]/5">
+        {image && typeof image === "object" && image.url ? (
+          <Image src={image.url} alt={image.alt || title} fill className="object-contain" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-xs text-[var(--navy)]/50">
+            Image
+          </div>
+        )}
+      </div>
+      {/*title*/}
+      <h3 className="text-3xl font-bold text-[var(--navy)] font-fraunces">{title}</h3>
+    </a>
+  );
+};
+
+//mobile contact card component
+const MobileContactCard = ({
+  title,
+  image,
+  contacts,
+  getIcon,
+}: {
+  title: string;
+  image?: string | Media | null;
+  contacts: { icon: string; text: string; href?: string | null }[];
+  getIcon?: (iconType: string) => ReactNode;
+}) => {
+  return (
+    <div className="py-4">
+      {/*header with image and title*/}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-[var(--navy)]/5">
+          {image && typeof image === "object" && image.url ? (
+            <Image src={image.url} alt={image.alt || title} fill className="object-contain" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-xs text-[var(--navy)]/50">
+              Image
+            </div>
+          )}
+        </div>
+        <h3 className="text-3xl font-bold text-[var(--navy)] font-fraunces">{title}</h3>
+      </div>
+
+      {/*contact list*/}
+      <div className="flex flex-col gap-2 ml-28">
+        {contacts.map((contact, i) => (
+          <a
+            key={i}
+            href={contact.href || "#"}
+            className="flex items-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] !text-[var(--navy)] hover:bg-[var(--navy)] hover:!text-white transition-all duration-300 font-fraunces w-fit [&_svg]:!text-[var(--navy)] [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+          >
+            {getIcon && getIcon(contact.icon)}
+            <span className="text-lg font-semibold">{contact.text}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 //async component fetches/extracts card data from payload
 const InfoCards = async () => {
   const {
@@ -117,7 +193,32 @@ const InfoCards = async () => {
   //card rendering
   return (
     <section className="bg-[var(--cream)] py-24 lg:py-40 px-6">
-      <div className="max-w-[93rem] mx-auto flex flex-col md:flex-row items-stretch justify-center gap-8 lg:gap-10">
+      {/*mobile view*/}
+      <div className="md:hidden max-w-2xl mx-auto">
+        {regularCards.map((card, i) => (
+          <div key={i}>
+            <MobileInfoCard title={card.title} image={card.image} href="#" />
+            {/*horizontal line after each card*/}
+            <hr className="border-t border-[var(--navy)]/20" />
+          </div>
+        ))}
+
+        {contactCards.map((card, i) => (
+          <div key={`contact-${i}`}>
+            <MobileContactCard
+              title={card.title}
+              image={card.image}
+              contacts={card.contacts}
+              getIcon={getIcon}
+            />
+            {/*horizontal line after each card except the last*/}
+            {i < contactCards.length - 1 && <hr className="border-t border-[var(--navy)]/20" />}
+          </div>
+        ))}
+      </div>
+
+      {/*desktop view*/}
+      <div className="hidden md:flex max-w-[93rem] mx-auto flex-col md:flex-row items-stretch justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
           <AnimatedCard
