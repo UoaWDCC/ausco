@@ -35,13 +35,13 @@ const UpcomingConcert = async () => {
         )}
 
         <div className="flex flex-col">
-          <div className="lg:w-96 w-64 flex flex-col gap-6 text-xs text-left mt-0 pt-0">
+          <div className="lg:w-96 w-64 flex flex-col gap-6 text-base text-left mt-0 pt-0">
             {/* description for the upcoming concert*/}
             <p className="mt-0 pt-0"> {content.upcomingConcert?.description1} </p>
             <p className="mt-0 pt-0"> {content.upcomingConcert?.description2} </p>
-            <hr className="border-t-[1.5px] border-[var(--brown)] lg:mt-6 mt-3" />
+            <hr className="border-t-[1.5px] border-[var(--brown)] lg:mt-3 mt-2" />
           </div>
-          <div className="lg:pt-9 pt-4">
+          <div className="lg:pt-6 pt-3">
             <Ticket matineeData={content.matinee} concertData={content.concert} />
           </div>
         </div>
