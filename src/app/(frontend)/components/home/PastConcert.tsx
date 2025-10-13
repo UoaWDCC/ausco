@@ -73,7 +73,7 @@ const PastConcert = () => {
 
   //scroll-based header visibility
   useEffect(() => {
-    return scrollYProgress.on("change", (v) => setShowHeader(v < 0.7));
+    return scrollYProgress.on("change", (v) => setShowHeader(v < 0.3));
   }, [scrollYProgress]);
 
   // Fetch YouTube video ID from API
