@@ -462,8 +462,15 @@ export interface Header {
   title?: string | null;
   navLinks?:
     | {
-        label?: string | null;
-        url?: string | null;
+        label: string;
+        url: string;
+        subItem?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -818,6 +825,13 @@ export interface HeaderSelect<T extends boolean = true> {
     | {
         label?: T;
         url?: T;
+        subItem?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
         id?: T;
       };
   updatedAt?: T;
