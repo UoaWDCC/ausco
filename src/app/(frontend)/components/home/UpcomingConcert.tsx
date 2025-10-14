@@ -39,6 +39,9 @@ const UpcomingConcert = async () => {
             <p>{content.upcomingConcert?.description1}</p>
             <p>{content.upcomingConcert?.description2}</p>
           </div>
+
+          <div className="h-[1.5px] bg-[var(--brown)] w-full" />
+
           <div>
             <Ticket matineeData={content.matinee} concertData={content.concert} />
           </div>
