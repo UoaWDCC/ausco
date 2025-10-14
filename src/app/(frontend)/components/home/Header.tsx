@@ -31,12 +31,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
 
   useEffect(() => {
     const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = scrollTop / documentHeight;
-      
-      // Show background between 35px and 70% of page
-      setScrolled(scrollTop > 35 && scrollPercent < 0.85);
+      setScrolled(window.scrollY > 35);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);

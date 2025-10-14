@@ -31,16 +31,16 @@ const PastConcert = () => {
   });
 
   //scaling animation
-  //reaches maxScale early
   const unclampedScale = useTransform(scrollYProgress, [0.25, 0.45], [1, maxScale]);
-  const scaleValue = useTransform(unclampedScale, (v) => Math.max(1, Math.min(maxScale, v)));
+  const scaleValue = useTransform(unclampedScale, (v) => Math.max(0.75, Math.min(maxScale, v)));
 
   //bg colour transform
   //when i use the css style vars it does not smoothly transition the colours
   const bgColor = useTransform(scrollYProgress, [0.2, 0.5], ["#c7d5e8", "#264c84"]);
 
   //header opacity animation
-  const headerOpacity = useTransform(scrollYProgress, [0.3, 0.5], [1, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0.2, 0.4], [1, 0]);
+  const headerY = useTransform(scrollYProgress, [0.2, 0.6], [0, -50]);
 
   //calc max scale + section height
   useEffect(() => {
@@ -51,8 +51,8 @@ const PastConcert = () => {
       const height = videoContainerRef.current.offsetHeight;
       if (!width) return;
 
-      //makes sure video can only scale to 90% of vw, between 1x and 3x scale
-      const scale = Math.min(3, Math.max(1, (window.innerWidth * 0.9) / width));
+      //makes sure video can only scale to 90% of vw, between 1x and 1.6x scale
+      const scale = Math.min(1.6, Math.max(1, (window.innerWidth * 0.8) / width));
       setMaxScale(scale);
       setSectionHeight(
         `${Math.max(height * scale + (showHeader ? 296 : 196), window.innerHeight)}px`,
@@ -70,11 +70,6 @@ const PastConcert = () => {
       resizeObserver.disconnect();
     };
   }, [showHeader]);
-
-  //scroll-based header visibility
-  useEffect(() => {
-    return scrollYProgress.on("change", (v) => setShowHeader(v < 0.3));
-  }, [scrollYProgress]);
 
   // Fetch YouTube video ID from API
   useEffect(() => {
@@ -168,18 +163,17 @@ const PastConcert = () => {
       className="relative flex flex-col items-center justify-center py-8 gap-8 w-full"
       style={{ backgroundColor: bgColor, minHeight: sectionHeight }}
     >
-      {showHeader && (
-        <motion.h2
-          className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
-          style={{
-            color: "var(--concertblue)",
-            opacity: headerOpacity,
-            top: "-140px",
-          }}
-        >
-          From our last concert
-        </motion.h2>
-      )}
+      <motion.h2
+        className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight mb-2 leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
+        style={{
+          color: "var(--concertblue)",
+          opacity: headerOpacity,
+          top: "0px",
+          y: headerY,
+        }}
+      >
+        From our last concert
+      </motion.h2>
 
       <motion.div
         ref={videoContainerRef}
