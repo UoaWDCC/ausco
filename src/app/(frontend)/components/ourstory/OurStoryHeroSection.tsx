@@ -5,8 +5,10 @@ const OurStoryHeroSection = async () => {
 
   return (
     <div className="flex flex-col items-center gap-4 pt-40">
-      <div className="text-[var(--navy)] text-4xl">{content.OurStoryTitle}</div>
-      <div className="text-[var(--navy)] text-md">{content.OurStoryDescription}</div>
+      <div className="text-[var(--navy)] md:text-4xl text-xl">{content.OurStoryTitle}</div>
+      <div className="text-[var(--navy)] md:text-md text-xs w-7/8 text-center">
+        {content.OurStoryDescription}
+      </div>
     </div>
   );
 };
