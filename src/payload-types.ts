@@ -745,6 +745,18 @@ export interface OurStory {
           id?: string | null;
         }[];
         image: string | Media;
+        meetingMinutes?:
+          | {
+              meetingRecords: {
+                title: string;
+                content: string;
+                id?: string | null;
+              }[];
+              establishmentText: string;
+              establishmentQuote: string;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;
@@ -1192,6 +1204,20 @@ export interface OurStorySelect<T extends boolean = true> {
               id?: T;
             };
         image?: T;
+        meetingMinutes?:
+          | T
+          | {
+              meetingRecords?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              establishmentText?: T;
+              establishmentQuote?: T;
+              id?: T;
+            };
         id?: T;
       };
   updatedAt?: T;

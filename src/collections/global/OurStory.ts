@@ -147,6 +147,50 @@ export const OurStory: GlobalConfig = {
           required: true,
           defaultValue: "68716e81b0bf6c59846349f1",
         },
+        {
+          name: "meetingMinutes",
+          label: "Meeting Section",
+          type: "array",
+          required: false,
+          fields: [
+            {
+              name: "meetingRecords",
+              label: "Meeting records",
+              type: "array",
+              labels: {
+                singular: "Meeting Records",
+                plural: "Meeting Record",
+              },
+              required: true,
+              fields: [
+                {
+                  name: "title",
+                  type: "textarea",
+                  label: "Title (e.g., PRESENT, APOLOGIES, MEETING OPENED)",
+                  required: true,
+                },
+                {
+                  name: "content",
+                  type: "textarea",
+                  label: "Content",
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: "establishmentText",
+              label: "Establishment Text",
+              type: "textarea",
+              required: true,
+            },
+            {
+              name: "establishmentQuote",
+              label: "Establishment Quote",
+              type: "textarea",
+              required: true,
+            },
+          ],
+        },
       ],
     },
   ],
