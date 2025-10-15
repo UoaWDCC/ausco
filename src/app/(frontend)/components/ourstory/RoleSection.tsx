@@ -25,7 +25,7 @@ const RoleSection = ({ title, people, roleKey }: RoleSectionProps) => {
   const getName = (p: RoleEntry) => p[roleKey];
 
   return (
-    <div className="text-sm text-[var(--navy)] mb-2">
+    <div className="md:text-sm text-xs text-[var(--navy)] mb-2">
       {hasSemesterSplit ? (
         <>
           <strong>{title}:</strong>
