@@ -38,7 +38,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
         {title}
       </h3>
 
-      <div className="w-full mb-20 mt-8 sm:mt-12 px-4 sm:px-8 md:px-12 py-6 sm:py-8 relative">
+      <div className="w-full px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 lg:py-8 md:mb-4 lg:mb-8 relative">
         {/*custom arrow buttons*/}
         <button
           ref={prevRef}
