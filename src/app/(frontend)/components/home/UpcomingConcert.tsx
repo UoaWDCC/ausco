@@ -15,7 +15,7 @@ const UpcomingConcert = async () => {
     <section className="bg-[var(--beige)] text-[var(--brown)] mx-auto pt-30 pb-20">
       {/* name of the upcoming concert */}
       <div className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-        <p className="inline-block mr-4">Our Upcoming Concert,&nbsp;</p>
+        <p className="inline-block mr-4 font-bold" style={{ fontFamily: '"Georgia", "Times New Roman", serif' }}>Our Upcoming Concert,&nbsp;</p>
         <p className="inline-block italic"> {content.upcomingConcert?.title} </p>
       </div>
 
