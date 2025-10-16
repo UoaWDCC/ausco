@@ -66,7 +66,7 @@ const Card = ({
         <div className="flex-1 flex flex-col items-center justify-center">
           <h3 className="text-3xl lg:text-5xl font-bold mb-6 group-hover:hidden">{title}</h3>
           {shortDesc && (
-            <p className="text-sm md:text-base group-hover:hidden break-words whitespace-pre-line w-2/3">
+            <p className="text-[clamp(0.8rem,1vw,1rem)] leading-snug group-hover:hidden break-words whitespace-pre-line w-2/3">
               {shortDesc}
             </p>
           )}
@@ -90,7 +90,7 @@ const Card = ({
           )}
           {fullDesc && (
             <p
-              className={`${isSmallCard ? "text-4xl" : "text-sm md:text-base"} hidden group-hover:flex break-words whitespace-pre-line`}
+              className={`${isSmallCard ? "text-4xl" : "text-[clamp(0.8rem,1vw,1rem)]"} hidden group-hover:flex break-words leading-snug whitespace-pre-line`}
             >
               {fullDesc}
             </p>
