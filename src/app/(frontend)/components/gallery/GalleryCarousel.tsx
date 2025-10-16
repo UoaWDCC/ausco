@@ -42,13 +42,13 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
         {/*custom arrow buttons*/}
         <button
           ref={prevRef}
-          className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full sm:rounded-none p-1 sm:p-0 hover:bg-white/90 sm:hover:bg-transparent active:bg-white/95 sm:active:bg-transparent border-none text-[var(--navy)] focus:outline-none focus-visible:outline-none"
+          className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full p-1 sm:p-0 border-none text-[var(--navy)] hover:bg-[var(--blue)]/15 active:bg-[var(--blue)]/25 hover:text-[var(--blue)] active:text-[var(--concertblue)] focus:outline-none"
         >
           <ChevronLeft size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
         </button>
         <button
           ref={nextRef}
-          className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full sm:rounded-none p-1 sm:p-0 hover:bg-white/90 sm:hover:bg-transparent active:bg-white/95 sm:active:bg-transparent border-none text-[var(--navy)] focus:outline-none focus-visible:outline-none"
+          className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full p-1 sm:p-0 border-none text-[var(--navy)] hover:bg-[var(--blue)]/15 active:bg-[var(--blue)]/25 hover:text-[var(--blue)] active:text-[var(--concertblue)] focus:outline-none"
         >
           <ChevronRight size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
         </button>
