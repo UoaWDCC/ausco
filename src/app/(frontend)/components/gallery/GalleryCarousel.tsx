@@ -1,14 +1,13 @@
 "use client";
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/app/(frontend)/components/ui/carousel";
+import { useMemo, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import type { NavigationOptions } from "swiper/types";
+import "swiper/css";
+import "swiper/css/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-//DEL:remove placeholder once payload integrated
 import placeholderImg from "../../../../../media/pfp.jpg";
 
 interface GalleryImage {
@@ -21,50 +20,85 @@ interface GalleryCarouselProps {
   images?: GalleryImage[];
 }
 
-//reusable button classes
-const BUTTON_CLASSES =
-  "bg-transparent hover:bg-transparent active:bg-transparent border-none text-[var(--navy)] hover:text-[var(--navy)] active:text-[var(--navy)] shadow-none";
-
 export default function GalleryCarousel({ title, images = [] }: GalleryCarouselProps) {
   //20 images, placeholder for testing
-  const items: GalleryImage[] =
-    images.length > 0 ? images : Array.from({ length: 20 }, () => ({ src: placeholderImg.src }));
+  const items = useMemo<GalleryImage[]>(
+    () =>
+      images.length > 0 ? images : Array.from({ length: 20 }, () => ({ src: placeholderImg.src })),
+    [images],
+  );
+  //nav button refs
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
     <section className="pt-18">
-      <h3 className="px-12 text-2xl text-[var(--navy)] font-semibold tracking-tight sm:text-3xl">
+      {/*carousel heading*/}
+      <h3 className="px-4 sm:px-8 md:px-12 text-xl sm:text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl">
         {title}
       </h3>
 
-      {/*infinite carousel, 3/4 ratio images, chevron arrows + touch controls*/}
-      <div className="w-full h-85 mb-6 px-12 flex justify-center items-center overflow-hidden">
-        <Carousel opts={{ align: "start", loop: true }} className="w-full">
-          <CarouselContent className="items-center">
-            {items.map((image, index) => (
-              /*image increases in size on hover, pushes others to the side to accomodate*/
-              <CarouselItem
-                key={`${image.src}-${index}`}
-                className="basis-1/3 md:basis-1/5 lg:basis-[10%] transition-all duration-300 ease-in-out hover:basis-[40%] hover:md:basis-[25%] hover:lg:basis-[12%] flex items-center"
-              >
-                <div className="p-1 w-full">
-                  <div className="flex items-center justify-center overflow-hidden">
-                    <img
-                      src={image.src}
-                      alt={image.alt ?? "Carousel Image"}
-                      className="aspect-[3/4] h-full w-full object-cover transition-transform duration-300 ease-in-out"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious variant="ghost" className={BUTTON_CLASSES} />
-          <CarouselNext variant="ghost" className={BUTTON_CLASSES} />
-        </Carousel>
+      <div className="w-full mb-20 mt-8 sm:mt-12 px-4 sm:px-8 md:px-12 py-6 sm:py-8 relative">
+        {/*custom arrow buttons*/}
+        <button
+          ref={prevRef}
+          className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full sm:rounded-none p-1 sm:p-0 hover:bg-white/90 sm:hover:bg-transparent active:bg-white/95 sm:active:bg-transparent border-none text-[var(--navy)] focus:outline-none focus-visible:outline-none"
+        >
+          <ChevronLeft size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
+        </button>
+        <button
+          ref={nextRef}
+          className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full sm:rounded-none p-1 sm:p-0 hover:bg-white/90 sm:hover:bg-transparent active:bg-white/95 sm:active:bg-transparent border-none text-[var(--navy)] focus:outline-none focus-visible:outline-none"
+        >
+          <ChevronRight size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
+        </button>
+
+        <Swiper
+          modules={[Navigation]}
+          //link custom buttons to carousel nav
+          navigation={{ enabled: true, prevEl: prevRef.current, nextEl: nextRef.current }}
+          onBeforeInit={(swiper) => {
+            //check for object, assign refs
+            if (!swiper.params.navigation || typeof swiper.params.navigation === "boolean") {
+              swiper.params.navigation = { enabled: true } as NavigationOptions;
+            }
+            const nav = swiper.params.navigation as NavigationOptions;
+            nav.prevEl = prevRef.current;
+            nav.nextEl = nextRef.current;
+          }}
+          //infinite carousel + extra clone images for smoothness
+          loop={true}
+          loopAdditionalSlides={10}
+          //disable nav when not enough images
+          watchOverflow={true}
+          //default image count + spacing (large screens)
+          spaceBetween={20}
+          slidesPerView={5}
+          //responsive image count + spacing
+          breakpoints={{
+            320: { slidesPerView: 2, spaceBetween: 16 },
+            640: { slidesPerView: 3, spaceBetween: 16 },
+            768: { slidesPerView: 4, spaceBetween: 18 },
+            1024: { slidesPerView: 5, spaceBetween: 20 },
+          }}
+          className="gallery-swiper"
+        >
+          {/*map images to slides, fixed height + preserves aspect ratio*/}
+          {items.map((image, index) => (
+            <SwiperSlide key={`${image.src}-${index}`}>
+              <div className="hover-scale-target flex items-center justify-center h-56 sm:h-64 md:h-72 lg:h-80 overflow-x-hidden overflow-y-visible">
+                <img
+                  src={image.src}
+                  alt={image.alt ?? `Carousel Image ${index + 1}`}
+                  className="max-h-full w-auto object-contain block"
+                  loading="lazy"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
-      {/*Divider*/}
       <hr className="border-t-[2px] border-[var(--navy)]" />
     </section>
   );
