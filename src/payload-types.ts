@@ -99,6 +99,7 @@ export interface Config {
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
     'gallery-landing': GalleryLanding;
+    'our-story': OurStory;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -111,6 +112,7 @@ export interface Config {
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
   user: User & {
@@ -713,6 +715,63 @@ export interface GalleryLanding {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story".
+ */
+export interface OurStory {
+  id: string;
+  OurStoryTitle: string;
+  OurStoryDescription: string;
+  timeline?:
+    | {
+        year: string;
+        title?: string | null;
+        dateInfo?: string | null;
+        presidents?:
+          | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
+              president: string;
+              id?: string | null;
+            }[]
+          | null;
+        vicePresidents?:
+          | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
+              vicePresident: string;
+              id?: string | null;
+            }[]
+          | null;
+        conductors?:
+          | {
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
+              conductor: string;
+              id?: string | null;
+            }[]
+          | null;
+        description: {
+          paragraph: string;
+          id?: string | null;
+        }[];
+        image: string | Media;
+        meetingMinutes?:
+          | {
+              meetingRecords: {
+                title: string;
+                content: string;
+                id?: string | null;
+              }[];
+              establishmentText: string;
+              establishmentQuote: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1113,6 +1172,67 @@ export interface GalleryLandingSelect<T extends boolean = true> {
     | T
     | {
         'background-image'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  OurStoryTitle?: T;
+  OurStoryDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        dateInfo?: T;
+        presidents?:
+          | T
+          | {
+              termType?: T;
+              president?: T;
+              id?: T;
+            };
+        vicePresidents?:
+          | T
+          | {
+              termType?: T;
+              vicePresident?: T;
+              id?: T;
+            };
+        conductors?:
+          | T
+          | {
+              termType?: T;
+              conductor?: T;
+              id?: T;
+            };
+        description?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+            };
+        image?: T;
+        meetingMinutes?:
+          | T
+          | {
+              meetingRecords?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              establishmentText?: T;
+              establishmentQuote?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
