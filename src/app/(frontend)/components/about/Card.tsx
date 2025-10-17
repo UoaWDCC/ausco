@@ -52,7 +52,6 @@ const Card = ({
         />
       )}
       {/* overlays */}
-      <div className="absolute inset-0 bg-black/70 group-hover:bg-black/0 transition-colors duration-300" />
       <div className="absolute inset-0 group-hover:bg-[var(--hovercardblue)] transition-colors duration-300" />
 
       {/* content */}

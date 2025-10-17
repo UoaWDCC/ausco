@@ -45,7 +45,6 @@ export default async function Gallery() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             )}
-            <div className="absolute inset-0 bg-black opacity-70"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <h3 className="text-3xl lg:text-4xl font-bold my-4">Concert Photos</h3>
@@ -69,7 +68,6 @@ export default async function Gallery() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             )}
-            <div className="absolute inset-0 bg-black opacity-70"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <h3 className="text-3xl lg:text-4xl font-bold mb-2 md:mb-4">Annual Camp</h3>
@@ -96,7 +94,6 @@ export default async function Gallery() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             )}
-            <div className="absolute inset-0 bg-black opacity-70"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <h3 className="text-3xl lg:text-4xl font-bold mb-2 md:mb-4">Executive Camp</h3>
@@ -123,7 +120,6 @@ export default async function Gallery() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
             )}
-            <div className="absolute inset-0 bg-black opacity-70"></div>
 
             <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <h3 className="text-3xl lg:text-4xl font-bold my-4">Other Photos</h3>
