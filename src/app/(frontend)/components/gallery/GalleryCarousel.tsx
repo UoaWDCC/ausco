@@ -34,7 +34,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
   return (
     <section className="pt-18">
       {/*carousel heading*/}
-      <h3 className="px-4 sm:px-8 md:px-12 text-xl sm:text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl">
+      <h3 className="px-4 sm:px-8 md:px-12 text-2xl sm:text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl text-center sm:text-left">
         {title}
       </h3>
 
@@ -99,7 +99,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
         </Swiper>
       </div>
 
-      <hr className="border-t-[2px] border-[var(--navy)]" />
+      <hr className="border-t-[2px] border-[var(--navy)] hidden sm:block" />
     </section>
   );
 }
