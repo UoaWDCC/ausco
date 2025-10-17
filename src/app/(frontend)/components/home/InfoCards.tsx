@@ -1,5 +1,5 @@
 //importing icons for contacts list, allows user to add more icons in the future
-import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
+import { Mail, Instagram, Facebook, LucideIcon, Calendar, ArrowUpRight } from "lucide-react";
 import { getLandingPage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { AnimatedCard } from "./AnimatedCard";
@@ -28,12 +28,14 @@ type Contact = {
 //define infocard structure
 type InfoCardProp = {
   title: string;
-  description: string;
+  description?: string;
   linkText?: string | null;
   linkHref?: string | null;
   contacts?: Contact[];
   getIcon?: (iconType: string) => ReactNode;
   image?: string | Media | null;
+  isRegularCard?: boolean;
+  cardIndex?: number;
 };
 
 //infocard component for all shared card features
@@ -45,6 +47,8 @@ const InfoCard = ({
   contacts,
   getIcon,
   image,
+  isRegularCard = false,
+  cardIndex = 0,
 }: InfoCardProp) => {
   return (
     <div className="flex flex-col justify-start w-full h-full rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-6">
@@ -68,7 +72,7 @@ const InfoCard = ({
 
       {/*card description and links*/}
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
-        <p className="text-sm sm:text-base leading-relaxed">{description}</p>
+        {description && <p className="text-sm sm:text-base leading-relaxed">{description}</p>}
         {linkText && (
           <div className="flex justify-center">
             <a
@@ -95,6 +99,64 @@ const InfoCard = ({
               </li>
             ))}
           </ul>
+        )}
+
+        {/*Read More button for regular cards*/}
+        {isRegularCard && (
+          <div className="flex justify-center">
+            <a
+              href={cardIndex === 0 ? "/about" : cardIndex === 1 ? "/ourpeople" : linkHref || "#"}
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+            >
+              Read More
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+        )}
+
+        {/*Feedback Form button for contact cards*/}
+        {!isRegularCard && (
+          <div className="flex flex-col gap-3 items-center">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfSVuVuaqbT4eyQiHUKv9_7Ic9Oa0FEDRmGEdS-ZPY-wpCMZg/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+            >
+              <Calendar className="w-4 h-4" />
+              Feedback Form
+            </a>
+
+            {/*Social Media and Contact buttons*/}
+            <div className="flex gap-3">
+              <a
+                href="https://www.instagram.com/ausco.uoa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+              >
+                <Instagram className="w-4 h-4" />
+                Instagram
+              </a>
+              <a
+                href="https://www.facebook.com/ausco.ausa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+              >
+                <Facebook className="w-4 h-4" />
+                Facebook
+              </a>
+            </div>
+
+            <a
+              href="mailto:chamberorchestra.ausa@gmail.com"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] text-[var(--navy)] font-medium transition-all duration-300 hover:bg-[var(--navy)] hover:!text-white [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
+            >
+              <Mail className="w-4 h-4" />
+              Email
+            </a>
+          </div>
         )}
       </div>
     </div>
@@ -136,44 +198,30 @@ const MobileInfoCard = ({
 const MobileContactCard = ({
   title,
   image,
-  contacts,
-  getIcon,
+  linkHref,
 }: {
   title: string;
   image?: string | Media | null;
-  contacts: { icon: string; text: string; href?: string | null }[];
-  getIcon?: (iconType: string) => ReactNode;
+  linkHref?: string | null;
 }) => {
   return (
-    <div className="py-4">
-      {/*header with image and title*/}
-      <div className="flex items-center gap-4 mb-4">
-        <div className="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-[var(--navy)]/5">
-          {image && typeof image === "object" && image.url ? (
-            <Image src={image.url} alt={image.alt || title} fill className="object-contain" />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-xs text-[var(--navy)]/50">
-              Image
-            </div>
-          )}
-        </div>
-        <h3 className="text-3xl font-bold text-[var(--navy)] font-fraunces">{title}</h3>
+    <a
+      href={linkHref || "#"}
+      className="flex items-center gap-4 py-4 cursor-pointer hover:opacity-80 transition-opacity"
+    >
+      {/*image container*/}
+      <div className="relative w-24 h-24 flex-shrink-0 rounded-md overflow-hidden bg-[var(--navy)]/5">
+        {image && typeof image === "object" && image.url ? (
+          <Image src={image.url} alt={image.alt || title} fill className="object-contain" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-xs text-[var(--navy)]/50">
+            Image
+          </div>
+        )}
       </div>
-
-      {/*contact list*/}
-      <div className="flex flex-col gap-2 ml-28">
-        {contacts.map((contact, i) => (
-          <a
-            key={i}
-            href={contact.href || "#"}
-            className="flex items-center gap-2 px-4 py-2 rounded-md border-2 border-[var(--navy)] !text-[var(--navy)] hover:bg-[var(--navy)] hover:!text-white transition-all duration-300 font-fraunces w-fit [&_svg]:!text-[var(--navy)] [&_svg]:transition-colors [&_svg]:duration-300 hover:[&_svg]:!text-white"
-          >
-            {getIcon && getIcon(contact.icon)}
-            <span className="text-lg font-semibold">{contact.text}</span>
-          </a>
-        ))}
-      </div>
-    </div>
+      {/*title*/}
+      <h3 className="text-3xl font-bold text-[var(--navy)] font-fraunces">{title}</h3>
+    </a>
   );
 };
 
@@ -205,12 +253,7 @@ const InfoCards = async () => {
 
         {contactCards.map((card, i) => (
           <div key={`contact-${i}`}>
-            <MobileContactCard
-              title={card.title}
-              image={card.image}
-              contacts={card.contacts}
-              getIcon={getIcon}
-            />
+            <MobileContactCard title={card.title} image={card.image} linkHref={card.linkHref} />
             {/*horizontal line after each card except the last*/}
             {i < contactCards.length - 1 && <hr className="border-t border-[var(--navy)]/20" />}
           </div>
@@ -230,9 +273,10 @@ const InfoCards = async () => {
               key={i}
               title={card.title}
               description={card.description}
-              linkText={card.linkText}
               linkHref={card.linkHref}
               image={card.image}
+              isRegularCard={true}
+              cardIndex={i}
             />
           </AnimatedCard>
         ))}
@@ -244,15 +288,7 @@ const InfoCards = async () => {
             index={regularCards.length + i}
             className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex"
           >
-            <InfoCard
-              title={card.title}
-              description={card.description}
-              linkText={card.linkText}
-              linkHref={card.linkHref}
-              contacts={card.contacts}
-              getIcon={getIcon}
-              image={card.image}
-            />
+            <InfoCard title={card.title} linkHref={card.linkHref} image={card.image} />
           </AnimatedCard>
         ))}
       </div>

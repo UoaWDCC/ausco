@@ -48,66 +48,63 @@ export const LandingPage: GlobalConfig = {
       label: "Matinee Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Matinee"
-
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Matinee",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
-  {
+    },
+    {
       name: "concert",
       label: "Concert Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Concert",
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Concert",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
+    },
 
     {
       name: "infoCards",
@@ -128,14 +125,12 @@ export const LandingPage: GlobalConfig = {
               title: "About Us",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              linkText: "Read more↗",
               linkHref: "",
             },
             {
               title: "Our People",
               description:
                 "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              linkText: "Read more↗",
               linkHref: "",
             },
           ],
@@ -158,12 +153,6 @@ export const LandingPage: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: false,
-            },
-            {
-              name: "linkText",
-              label: "Link Text",
-              type: "text",
-              required: true,
             },
             {
               name: "linkHref",
@@ -181,26 +170,7 @@ export const LandingPage: GlobalConfig = {
           defaultValue: [
             {
               title: "Reach Out",
-              description: "Here are a few ways you can reach out to us:",
-              linkText: "Feedback Form↗",
               linkHref: "",
-              contacts: [
-                {
-                  text: "chamberorchestra.ausa@gmail.com↗",
-                  href: "",
-                  icon: "mail",
-                },
-                {
-                  text: "@ausco.uoa↗",
-                  href: "",
-                  icon: "instagram",
-                },
-                {
-                  text: "@ausco.ausa↗",
-                  href: "",
-                  icon: "facebook",
-                },
-              ],
             },
           ],
           fields: [
@@ -211,12 +181,6 @@ export const LandingPage: GlobalConfig = {
               required: true,
             },
             {
-              name: "description",
-              label: "Card Description",
-              type: "textarea",
-              required: true,
-            },
-            {
               name: "image",
               label: "Card Image",
               type: "upload",
@@ -224,47 +188,10 @@ export const LandingPage: GlobalConfig = {
               required: false,
             },
             {
-              name: "linkText",
-              label: "Link Text",
-              type: "text",
-              required: false,
-            },
-            {
               name: "linkHref",
               label: "Link URL",
               type: "text",
               required: false,
-            },
-            {
-              name: "contacts",
-              label: "Contact Information",
-              type: "array",
-              required: true,
-              fields: [
-                {
-                  name: "text",
-                  label: "Contact Text",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "href",
-                  label: "Contact URL",
-                  type: "text",
-                  required: false,
-                },
-                {
-                  name: "icon",
-                  label: "Icon",
-                  type: "select",
-                  required: true,
-                  options: [
-                    { label: "Mail", value: "mail" },
-                    { label: "Instagram", value: "instagram" },
-                    { label: "Facebook", value: "facebook" },
-                  ],
-                },
-              ],
             },
           ],
         },

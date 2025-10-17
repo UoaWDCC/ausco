@@ -399,22 +399,13 @@ export interface LandingPage {
       title: string;
       description: string;
       image?: (string | null) | Media;
-      linkText: string;
       linkHref?: string | null;
       id?: string | null;
     }[];
     contactCards: {
       title: string;
-      description: string;
       image?: (string | null) | Media;
-      linkText?: string | null;
       linkHref?: string | null;
-      contacts: {
-        text: string;
-        href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
-        id?: string | null;
-      }[];
       id?: string | null;
     }[];
   };
@@ -749,7 +740,6 @@ export interface LandingPageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               image?: T;
-              linkText?: T;
               linkHref?: T;
               id?: T;
             };
@@ -757,18 +747,8 @@ export interface LandingPageSelect<T extends boolean = true> {
           | T
           | {
               title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
               linkHref?: T;
-              contacts?:
-                | T
-                | {
-                    text?: T;
-                    href?: T;
-                    icon?: T;
-                    id?: T;
-                  };
               id?: T;
             };
       };
