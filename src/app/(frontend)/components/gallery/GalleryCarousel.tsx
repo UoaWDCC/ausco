@@ -32,13 +32,13 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <section className="pt-18">
+    <section className="pt-8 sm:pt-18">
       {/*carousel heading*/}
       <h3 className="px-4 sm:px-8 md:px-12 text-2xl sm:text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl text-center sm:text-left">
         {title}
       </h3>
 
-      <div className="w-full px-4 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 lg:py-8 md:mb-4 lg:mb-8 relative">
+      <div className="w-full px-4 sm:px-8 md:px-12  sm:py-2 md:py-3 lg:py-8 md:mb-4 lg:mb-8 relative">
         {/*custom arrow buttons*/}
         <button
           ref={prevRef}
@@ -76,17 +76,17 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
           slidesPerView={5}
           //responsive image count + spacing
           breakpoints={{
-            320: { slidesPerView: 2, spaceBetween: 16 },
-            640: { slidesPerView: 3, spaceBetween: 16 },
-            768: { slidesPerView: 4, spaceBetween: 18 },
-            1024: { slidesPerView: 5, spaceBetween: 20 },
+            320: { slidesPerView: 1.5, spaceBetween: 16 },
+            640: { slidesPerView: 2, spaceBetween: 16 },
+            768: { slidesPerView: 2.5, spaceBetween: 18 },
+            1200: { slidesPerView: 5, spaceBetween: 20 },
           }}
           className="gallery-swiper"
         >
           {/*map images to slides, fixed height + preserves aspect ratio*/}
           {items.map((image, index) => (
             <SwiperSlide key={`${image.src}-${index}`}>
-              <div className="hover-scale-target flex items-center justify-center h-56 sm:h-64 md:h-72 lg:h-80 overflow-x-hidden overflow-y-visible">
+              <div className="hover-scale-target flex items-center justify-center h-48 sm:h-52 md:h-56 lg:h-80 overflow-x-hidden overflow-y-visible">
                 <img
                   src={image.src}
                   alt={image.alt ?? `Carousel Image ${index + 1}`}
