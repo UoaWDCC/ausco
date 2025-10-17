@@ -25,6 +25,10 @@ import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 import { PastConcerts } from "./collections/global/PastConcerts";
 
 import { GalleryLanding } from "./collections/global/GalleryLanding";
+import { ConcertsGallery } from "./collections/global/ConcertsGallery";
+import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
+import { ExecutiveCampGallery } from "./collections/global/ExecutiveCampGallery";
+import { OtherGallery } from "./collections/global/OtherGallery";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -48,6 +52,10 @@ export default buildConfig({
     UpcomingConcerts,
     PastConcerts,
     GalleryLanding,
+    ConcertsGallery,
+    AnnualCampGallery,
+    ExecutiveCampGallery,
+    OtherGallery,
   ],
   collections: [Users, Media, Item, Videos],
   secret: process.env.PAYLOAD_SECRET || "",

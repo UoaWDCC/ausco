@@ -1,11 +1,23 @@
 import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
 import GalleryCarousel from "@/app/(frontend)/components/gallery/GalleryCarousel";
+import { getExecutiveCampGallery } from "@/actions/galleryActions";
+import type { Media } from "@/payload-types";
 
-export default function ExecutiveCampGallery() {
+export default async function ExecutiveCampGallery() {
+  const gallery = await getExecutiveCampGallery();
   return (
     <>
       <GalleryHero title="Executive Camp Photos" />
-      <GalleryCarousel title="2025 Executive Camp" images={[]} />
+      {(gallery?.albums || []).map((c, i) => (
+        <GalleryCarousel
+          key={`${c.title}-${i}`}
+          title={c.title}
+          images={(c.images || []).map(({ image, alt }) => {
+            const img = image as Media;
+            return { src: img?.url || "", alt: alt || img?.alt };
+          })}
+        />
+      ))}
     </>
   );
 }

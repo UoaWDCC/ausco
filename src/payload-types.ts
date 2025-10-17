@@ -99,6 +99,10 @@ export interface Config {
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
     'gallery-landing': GalleryLanding;
+    'concerts-gallery': ConcertsGallery;
+    'annualcamp-gallery': AnnualcampGallery;
+    'executivecamp-gallery': ExecutivecampGallery;
+    'other-gallery': OtherGallery;
   };
   globalsSelect: {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
@@ -111,6 +115,10 @@ export interface Config {
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
+    'concerts-gallery': ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
+    'annualcamp-gallery': AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
+    'executivecamp-gallery': ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
+    'other-gallery': OtherGallerySelect<false> | OtherGallerySelect<true>;
   };
   locale: null;
   user: User & {
@@ -713,6 +721,98 @@ export interface GalleryLanding {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-gallery".
+ */
+export interface ConcertsGallery {
+  id: string;
+  title: string;
+  albums?:
+    | {
+        title: string;
+        images?:
+          | {
+              image: string | Media;
+              alt?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annualcamp-gallery".
+ */
+export interface AnnualcampGallery {
+  id: string;
+  title: string;
+  albums?:
+    | {
+        title: string;
+        images?:
+          | {
+              image: string | Media;
+              alt?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "executivecamp-gallery".
+ */
+export interface ExecutivecampGallery {
+  id: string;
+  title: string;
+  albums?:
+    | {
+        title: string;
+        images?:
+          | {
+              image: string | Media;
+              alt?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "other-gallery".
+ */
+export interface OtherGallery {
+  id: string;
+  title: string;
+  albums?:
+    | {
+        title: string;
+        images?:
+          | {
+              image: string | Media;
+              alt?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1113,6 +1213,98 @@ export interface GalleryLandingSelect<T extends boolean = true> {
     | T
     | {
         'background-image'?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-gallery_select".
+ */
+export interface ConcertsGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annualcamp-gallery_select".
+ */
+export interface AnnualcampGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "executivecamp-gallery_select".
+ */
+export interface ExecutivecampGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "other-gallery_select".
+ */
+export interface OtherGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
