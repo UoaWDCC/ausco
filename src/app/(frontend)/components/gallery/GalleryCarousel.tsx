@@ -38,7 +38,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
         {title}
       </h3>
 
-      <div className="w-full px-4 sm:px-8 md:px-12  sm:py-2 md:py-3 lg:py-8 md:mb-4 lg:mb-8 relative">
+      <div className="w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8 relative">
         {/*custom arrow buttons*/}
         <button
           ref={prevRef}
@@ -86,13 +86,15 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
           {/*map images to slides, fixed height + preserves aspect ratio*/}
           {items.map((image, index) => (
             <SwiperSlide key={`${image.src}-${index}`}>
-              <div className="hover-scale-target flex items-center justify-center h-48 sm:h-52 md:h-56 lg:h-80 overflow-x-hidden overflow-y-visible">
-                <img
-                  src={image.src}
-                  alt={image.alt ?? `Carousel Image ${index + 1}`}
-                  className="max-h-full w-auto object-contain block"
-                  loading="lazy"
-                />
+              <div className="hover-scale-target flex items-center justify-center overflow-x-hidden overflow-y-visible py-4 w-fit">
+                <div className="h-30 sm:h-40 md:h-40 lg:h-40 w-auto flex items-center justify-center">
+                  <img
+                    src={image.src}
+                    alt={image.alt ?? `Carousel Image ${index + 1}`}
+                    className="max-h-full max-w-full w-auto h-auto object-contain block"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}
