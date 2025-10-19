@@ -13,15 +13,42 @@ const Header: GlobalConfig = {
     {
       name: "title",
       label: "Header Title",
-      type: "text",
+      type: "textarea",
     },
     {
       name: "navLinks",
       label: "Navigation Links",
       type: "array",
       fields: [
-        { name: "label", type: "text" },
-        { name: "url", type: "text" },
+        { 
+          name: "label", 
+          type: "text",
+          required: true,
+        },
+        { 
+          name: "url", 
+          type: "text",
+          required: true,
+        },
+        {
+          name: "subItem",
+          label: "Sub Navigation Items",
+          type: "array",
+          fields: [
+            {
+              name: "label",
+              label: "Sub Item Label",
+              type: "text",
+              required: true,
+            },
+            {
+              name: "url", 
+              label: "Sub Item URL",
+              type: "text",
+              required: true,
+            },
+          ],
+        },
       ],
     },
   ],

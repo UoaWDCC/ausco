@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Media } from "@/payload-types";
-import { getAboutHeroSection } from "@/actions/getAboutHeroSection";
+import { getAboutHeroSection } from "@/actions/aboutUsActions";
 
 const HeroSection = async () => {
   const content = await getAboutHeroSection();
@@ -13,7 +13,7 @@ const HeroSection = async () => {
   };
 
   return (
-    <section className="relative w-full pt-24 bg-[#F6F4EC] flex flex-col items-center">
+    <section className="relative w-full pt-40 pb-4 bg-[#F6F4EC] flex flex-col items-center">
       <div className="z-10 flex flex-col w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex lg:flex-row flex-col items-center lg:items-end justify-between">
           <div className="flex flex-col lg:items-start items-center gap-3 w-2/5">

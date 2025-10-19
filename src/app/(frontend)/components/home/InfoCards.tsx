@@ -1,8 +1,11 @@
 //importing icons for contacts list, allows user to add more icons in the future
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
-import { getLandingPage } from "@/actions/getLandingPage";
+import { getLandingPage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
+import { AnimatedCard } from "./AnimatedCard";
+
+
 
 //define icon mapping type
 type IconMapping = {
@@ -36,10 +39,11 @@ type InfoCardProp = {
 //infocard component for all shared card features
 const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
   return (
-    <div className="flex flex-col justify-start bg-[var(--beige)] w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm">
+    <div className="flex flex-col justify-start w-full min-h-full rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-6">
       {/*card image placeholder*/}
-      <p className="text-sm p-8 lg:p-8 pt-12 lg:pt-14">(illustration)</p>
-
+      <div className="w-full h-40 sm:h-48 rounded-md bg-[var(--navy)]/5 flex items-center justify-center text-[0.7rem] uppercase tracking-wide text-[var(--navy)]/50">
+        Illustration
+      </div>
       {/*card title*/}
       <h2 className="text-2xl sm:text-3xl lg:text-5xl">{title}</h2>
 
@@ -47,7 +51,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
       <div className="flex flex-col gap-4 sm:gap-2 lg:gap-3">
         <p className="text-sm sm:text-base leading-relaxed">{description}</p>
         {linkText && (
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center">
             <Button variant="link" asChild>
               <a href={linkHref || "#"}>{linkText}</a>
             </Button>
@@ -93,24 +97,28 @@ const InfoCards = async () => {
       <div className="max-w-[93rem] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
-          <InfoCard
-            key={i}
-            title={card.title}
-            description={card.description}
-            linkText={card.linkText}
-            linkHref={card.linkHref}
-          />
+          <AnimatedCard key={i} index={i} className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex">
+            <InfoCard
+              key={i}
+              title={card.title}
+              description={card.description}
+              linkText={card.linkText}
+              linkHref={card.linkHref}
+            />
+          </AnimatedCard>
         ))}
 
         {/*contact card*/}
-        <InfoCard
-          title={contactsCard.title}
-          description={contactsCard.description}
-          linkText={contactsCard.linkText}
-          linkHref={contactsCard.linkHref}
-          contacts={contactsCard.contacts}
-          getIcon={getIcon}
-        />
+        <AnimatedCard index={regularCards.length} className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex">
+          <InfoCard
+            title={contactsCard.title}
+            description={contactsCard.description}
+            linkText={contactsCard.linkText}
+            linkHref={contactsCard.linkHref}
+            contacts={contactsCard.contacts}
+            getIcon={getIcon}
+          />
+        </AnimatedCard>
       </div>
     </section>
   );
