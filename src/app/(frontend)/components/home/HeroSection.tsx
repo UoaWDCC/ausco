@@ -8,6 +8,25 @@ import Image from "next/image";
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
 
+  // Function to style specific words
+  const styleWords = (text: string) => {
+    const parts = text.split(/(\s+|[.,!?;:])/);
+    
+    return parts.map((part, index) => {
+      const isWord = /^[a-zA-Z]+$/.test(part);
+      
+      if (isWord && (part.toLowerCase() === 'music' || part.toLowerCase() === 'charity')) {
+        return (
+          <span key={index} className="italic" style={{ fontFamily: '"Lucida Handwriting", "Brush Script MT", cursive' }}>
+            {part}
+          </span>
+        );
+      }
+      
+      return <span key={index}>{part}</span>;
+    });
+  };
+
   return (
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
       {/* Background Image */}
@@ -17,11 +36,11 @@ const HeroSection = async () => {
 
       <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
         <img src={logo.src} alt="AUSCO logo" className="w-35 sm:w-40 md:w-45 mb-6" />
-        <div className="space-y-6 max-w-3xl mx-auto flex flex-col items-center">
+        <div className="space-y-6 max-w-4xl mx-auto flex flex-col items-center">
           {content && (
             <>
               <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-                {content.header.title}
+                {styleWords(content.header.title)}
               </h1>
               <h3 className="text-base md:text-lg">{content.header.content}</h3>
             </>
