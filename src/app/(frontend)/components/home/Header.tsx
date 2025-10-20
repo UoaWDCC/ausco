@@ -1,7 +1,7 @@
 "use client";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import logo from "../../assets/ausco-logo.png";
+import logo from "../../assets/ausco-logo-1.png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";

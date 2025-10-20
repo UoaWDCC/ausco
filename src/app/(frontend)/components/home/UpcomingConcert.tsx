@@ -27,7 +27,7 @@ const UpcomingConcert = async () => {
             height={480}
             src={content.upcomingConcert.poster.url ?? ""}
             alt={content.upcomingConcert.poster.alt ?? "Concert poster"}
-            className="lg:w-80 md:w-94 w-75 h-auto border-2 border-[var(--brown)] rounded-md mt-0"
+            className="lg:w-80 md:w-94 w-75 h-auto border-1 border-[var(--brown)] rounded-md mt-0"
           />
         ) : (
           <p>No valid poster available</p>
@@ -40,7 +40,7 @@ const UpcomingConcert = async () => {
             <p>{content.upcomingConcert?.description2}</p>
           </div>
 
-          <div className="h-[1.5px] bg-[var(--brown)] w-full" />
+          <div className="h-[1px] bg-[var(--brown)] w-full" />
 
           <div>
             <Ticket matineeData={content.matinee} concertData={content.concert} />
