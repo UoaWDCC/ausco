@@ -2,7 +2,7 @@ import { getLandingPage } from "@/actions/homeActions";
 import { Button } from "../ui/button";
 import logo from "../../assets/ausco-logo-1.png";
 import { ArrowUpRight } from "lucide-react";
-import heroImage from "../../assets/homepage-hero.jpg";
+import heroImage from "../../assets/homepage-hero.svg";
 import Image from "next/image";
 
 const HeroSection = async () => {
