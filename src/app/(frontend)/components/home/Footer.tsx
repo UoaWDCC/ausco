@@ -1,7 +1,6 @@
 import { getFooter } from "@/actions/homeActions";
 import Image from "next/image";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import spotifyLogo from "../../assets/spotify-logo.svg";
 import config from "@/payload.config";
 import { JSX } from "react";
 import { Button } from "../ui/button";
@@ -12,7 +11,7 @@ const Footer = async () => {
   const platformIconMap: Record<string, JSX.Element> = {
     facebook: <Facebook width={20} height={20} />,
     youtube: <Youtube width={20} height={20} />,
-    spotify: <Image src={spotifyLogo} alt="spotifyLogo" width={20} height={20} />,
+    spotify: <Image src="/images/spotify-logo.svg" alt="spotifyLogo" width={20} height={20} />,
     instagram: <Instagram width={20} height={20} />,
   };
 

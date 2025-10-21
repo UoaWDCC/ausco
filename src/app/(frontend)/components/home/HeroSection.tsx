@@ -1,8 +1,6 @@
 import { getLandingPage } from "@/actions/homeActions";
 import { Button } from "../ui/button";
-import logo from "../../assets/ausco-logo.png";
 import { ArrowUpRight } from "lucide-react";
-import heroImage from "../../assets/homepage-hero.svg";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
@@ -11,11 +9,15 @@ const HeroSection = async () => {
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img src={heroImage.src} alt="Hero background" className="object-cover w-full h-full" />
+        <img
+          src="/images/homepage-hero.svg"
+          alt="Hero background"
+          className="object-cover w-full h-full"
+        />
       </div>
 
       <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
-        <img src={logo.src} alt="AUSCO logo" className="w-35 sm:w-40 md:w-40 mb-4" />
+        <img src="/images/ausco-logo.png" alt="AUSCO logo" className="w-35 sm:w-40 md:w-40 mb-4" />
         <div className="space-y-6 max-w-[52rem] mx-auto flex flex-col items-center">
           {content && (
             <>
