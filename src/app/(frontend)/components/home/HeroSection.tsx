@@ -3,7 +3,6 @@ import { Button } from "../ui/button";
 import logo from "../../assets/ausco-logo.png";
 import { ArrowUpRight } from "lucide-react";
 import heroImage from "../../assets/homepage-hero.svg";
-import Image from "next/image";
 
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
