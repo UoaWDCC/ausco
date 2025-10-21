@@ -55,6 +55,108 @@ export const OurPeople: GlobalConfig = {
         },
       ],
     },
+    // conductors section
+    {
+      name: "conductorsSection",
+      type: "group",
+      label: "Conductors Section",
+      fields: [
+        {
+          name: "conductorFrame",
+          type: "upload",
+          relationTo: "media",
+          label: "Round Frame Image",
+          required: false,
+        },
+        {
+          name: "conductor1",
+          type: "group",
+          label: "Conductor 1",
+          fields: [
+            {
+              name: "name",
+              type: "text",
+              label: "Conductor 1 Name",
+              required: false,
+              defaultValue: "Conductor 1",
+            },
+            {
+              name: "description",
+              type: "text",
+              label: "Conductor 1 Description",
+              required: false,
+              defaultValue:
+                "Description about them (Developers just put lorem ipsum text for now)",
+            },
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+              label: "Conductor 1 Image",
+              required: false,
+            },
+          ],
+        },
+        {
+          name: "conductor2",
+          type: "group",
+          label: "Conductor 2",
+          fields: [
+            {
+              name: "name",
+              type: "text",
+              label: "Conductor 2 Name",
+              required: false,
+              defaultValue: "Conductor 2",
+            },
+            {
+              name: "description",
+              type: "text",
+              label: "Conductor 2 Description",
+              required: false,
+              defaultValue:
+                "Description about them (Developers just put lorem ipsum text for now)",
+            },
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+              label: "Conductor 2 Image",
+              required: false,
+            },
+          ],
+        },
+        {
+          name: "conductor3",
+          type: "group",
+          label: "Conductor 3",
+          fields: [
+            {
+              name: "name",
+              type: "text",
+              label: "Conductor 3 Name",
+              required: false,
+              defaultValue: "Conductor 3",
+            },
+            {
+              name: "description",
+              type: "text",
+              label: "Conductor 3 Description",
+              required: false,
+              defaultValue:
+                "Description about them (Developers just put lorem ipsum text for now)",
+            },
+            {
+              name: "image",
+              type: "upload",
+              relationTo: "media",
+              label: "Conductor 3 Image",
+              required: false,
+            },
+          ],
+        },
+      ],
+    },
     {
       name: "playerDescription",
       label: "Short Description of Players",
