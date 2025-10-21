@@ -12,7 +12,7 @@ const HeroSection = async () => {
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image src={heroImage} alt="Hero background" fill className="object-cover" priority />
+        <img src={heroImage.src} alt="Hero background" className="object-cover w-full h-full" />
       </div>
 
       <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
