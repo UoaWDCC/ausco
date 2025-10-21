@@ -1,7 +1,6 @@
 "use client";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import logo from "../../assets/ausco-logo-1.png";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
@@ -75,7 +74,7 @@ const Header = ({ content, isHomePage = false }: HeaderProps) => {
                 height={60}
               />
             ) : (
-              <Image src={logo} alt="AUSCO logo" width={60} height={60} />
+              <Image src="/assets/ausco-logo-1.png" alt="AUSCO logo" width={60} height={60} />
             )}
             <span className={clsx("text:md md:text-lg font-medium", textColor)}>
               {(content.title || "").split("\n").map((line, i) => (
