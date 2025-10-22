@@ -400,24 +400,16 @@ export interface LandingPage {
     regularCards: {
       title: string;
       description: string;
-      image: string;
-      linkText: string;
+      image?: (string | null) | Media;
       linkHref?: string | null;
       id?: string | null;
     }[];
-    contactsCard: {
+    contactCards: {
       title: string;
-      description: string;
-      image: string;
-      linkText: string;
+      image?: (string | null) | Media;
       linkHref?: string | null;
-      contacts: {
-        text: string;
-        href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
-        id?: string | null;
-      }[];
-    };
+      id?: string | null;
+    }[];
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -814,26 +806,16 @@ export interface LandingPageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               image?: T;
-              linkText?: T;
               linkHref?: T;
               id?: T;
             };
-        contactsCard?:
+        contactCards?:
           | T
           | {
               title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
               linkHref?: T;
-              contacts?:
-                | T
-                | {
-                    text?: T;
-                    href?: T;
-                    icon?: T;
-                    id?: T;
-                  };
+              id?: T;
             };
       };
   updatedAt?: T;
