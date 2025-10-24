@@ -372,6 +372,10 @@ export interface LandingPage {
   header: {
     title: string;
     content: string;
+    /**
+     * Enter words separated by commas (e.g., music, charity)
+     */
+    styledWords?: string | null;
   };
   upcomingConcert?: {
     title?: string | null;
@@ -399,7 +403,7 @@ export interface LandingPage {
       title: string;
       description: string;
       image: string;
-      linkText: string;
+      linkText?: string | null;
       linkHref?: string | null;
       id?: string | null;
     }[];
@@ -714,6 +718,7 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         content?: T;
+        styledWords?: T;
       };
   upcomingConcert?:
     | T

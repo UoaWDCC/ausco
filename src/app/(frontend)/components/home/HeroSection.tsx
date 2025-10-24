@@ -8,14 +8,20 @@ import Image from "next/image";
 const HeroSection = async () => {
   const [content] = await Promise.all([getLandingPage()]);
 
-  // Function to style specific words
+  // Function to style specific words from Payload
   const styleWords = (text: string) => {
     const parts = text.split(/(\s+|[.,!?;:])/);
+    
+    // Get styled words from Payload...
+    // default to 'music,charity' if not set
+    const styledWordsStr = content?.header?.styledWords || 'music,charity';
+    const styledWords = styledWordsStr.split(',').map(word => word.trim().toLowerCase());
     
     return parts.map((part, index) => {
       const isWord = /^[a-zA-Z]+$/.test(part);
       
-      if (isWord && (part.toLowerCase() === 'music' || part.toLowerCase() === 'charity')) {
+      // Check if this word is in the styled words list from Payload
+      if (isWord && styledWords.includes(part.toLowerCase())) {
         return (
           <span key={index} className="italic" style={{ fontFamily: '"Lucida Handwriting", "Brush Script MT", cursive' }}>
             {part}

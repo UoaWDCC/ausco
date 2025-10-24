@@ -14,6 +14,14 @@ export const LandingPage: GlobalConfig = {
       fields: [
         { name: "title", label: "Title", type: "text", required: true },
         { name: "content", label: "Content", type: "textarea", required: true },
+        { 
+          name: "styledWords", 
+          label: "Words to Style (comma-separated)", 
+          type: "text",
+          admin: {
+            description: "Enter words separated by commas (e.g., music, charity)"
+          }
+        },
       ],
     },
     {
@@ -164,7 +172,7 @@ export const LandingPage: GlobalConfig = {
               name: "linkText",
               label: "Link Text",
               type: "text",
-              required: true,
+              required: false,
             },
             {
               name: "linkHref",
