@@ -1,4 +1,4 @@
-import { getOurPeople } from "@/actions/getOurPeople";
+import { getOurPeople } from "@/actions/ourPeopleActions";
 import Image from "next/image";
 
 const OurPeople = async () => {

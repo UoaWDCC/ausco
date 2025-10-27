@@ -1,6 +1,6 @@
 "use client";
 
-import { getOurPeople } from "@/actions/getOurPeople";
+import { getOurPeople } from "@/actions/ourPeopleActions";
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import pastPresidentsFrame from "../../assets/pastPresidentsFrame.png";
