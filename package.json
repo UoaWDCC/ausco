@@ -36,6 +36,7 @@
     "payload": "^3.38.0",
     "postcss": "^8.5.3",
     "react": "19.1.0",
+    "react-bootstrap-icons": "^1.11.6",
     "react-dom": "19.1.0",
     "sharp": "0.34.1",
     "tailwind-merge": "^3.3.0",

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import { Facebook, Instagram, Spotify, Youtube } from "react-bootstrap-icons";
 import { JSX } from "react";
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
@@ -26,7 +26,7 @@ const Footer = ({ content }: FooterProps) => {
   const platformIconMap: Record<string, JSX.Element> = {
     facebook: <Facebook width={20} height={20} />,
     youtube: <Youtube width={20} height={20} />,
-    spotify: <Image src="/images/spotify-logo.svg" alt="spotifyLogo" width={20} height={20} />,
+    spotify: <Spotify width={20} height={20} />,
     instagram: <Instagram width={20} height={20} />,
   };
 
