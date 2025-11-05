@@ -92,6 +92,7 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    siteSetting: SiteSetting;
     'about-hero-section': AboutHeroSection;
     'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
@@ -105,6 +106,7 @@ export interface Config {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
     'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
@@ -464,6 +466,25 @@ export interface Header {
               id?: string | null;
             }[]
           | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting".
+ */
+export interface SiteSetting {
+  id: string;
+  primaryLogo: string | Media;
+  secondaryLogo: string | Media;
+  tertiaryLogo: string | Media;
+  socialMediaLinks?:
+    | {
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        url: string;
         id?: string | null;
       }[]
     | null;
@@ -873,6 +894,25 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               id?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting_select".
+ */
+export interface SiteSettingSelect<T extends boolean = true> {
+  primaryLogo?: T;
+  secondaryLogo?: T;
+  tertiaryLogo?: T;
+  socialMediaLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;

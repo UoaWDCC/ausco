@@ -1,7 +1,7 @@
 "use server";
 
 import { getPayload } from "@libs/payload";
-import { Header, Footer } from "@/payload-types";
+import { Header, Footer, SiteSetting } from "@/payload-types";
 
 // TODO: Look into next.js caching
 export const getHeader = async (): Promise<Header> => {
@@ -20,4 +20,13 @@ export const getFooter = async (): Promise<Footer> => {
   });
 
   return footer;
+};
+
+export const getSiteSetting = async (): Promise<SiteSetting> => {
+  const payload = await getPayload();
+  const siteSetting = await payload.findGlobal({
+    slug: "siteSetting",
+  });
+
+  return siteSetting;
 };

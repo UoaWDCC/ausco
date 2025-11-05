@@ -36,11 +36,24 @@ export const Footer: GlobalConfig = {
           ],
         },
       ],
-      // Only applies on document creation, not when editing existing docs.
+      // Starter template: only applies on document creation, not when editing existing docs
       defaultValue: [
-        { title: "Documents", options: [] },
-        { title: "Join Us", options: [] },
-        { title: "Reach Out", options: [] },
+        {
+          title: "Documents",
+          options: [
+            { label: "Proof of Registration", url: "" },
+            { label: "Constitution", url: "" },
+          ],
+        },
+        { title: "Join Us", options: [{ label: "Sign Up Form", url: "" }] },
+        {
+          title: "Reach Out",
+          options: [
+            { label: "Email", url: "" },
+            { label: "Feedback Form", url: "" },
+            { label: "Engage Page", url: "" },
+          ],
+        },
       ],
     },
   ],

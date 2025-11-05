@@ -9,8 +9,9 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
-import Header from "./collections/global/Header";
+import { Header } from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
+import { SiteSetting } from "./collections/global/SiteSetting";
 
 import LandingPage from "./collections/global/LandingPage";
 import Videos from "./collections/videos";
@@ -43,6 +44,7 @@ export default buildConfig({
     LandingPage,
     Footer,
     Header,
+    SiteSetting,
     AboutHeroSection,
     AboutUsCards,
     OurPeople,

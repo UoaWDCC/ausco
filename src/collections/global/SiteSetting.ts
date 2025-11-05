@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
-export const SiteSettings: GlobalConfig = {
-  slug: "siteSettings",
-  label: "Site Settings",
+export const SiteSetting: GlobalConfig = {
+  slug: "siteSetting",
+  label: "Site Setting",
   fields: [
     // Logos
     {
@@ -19,12 +19,19 @@ export const SiteSettings: GlobalConfig = {
       relationTo: "media",
       required: true,
     },
-
-    // External Links
     {
-      name: "externalLinks",
+      name: "tertiaryLogo",
+      label: "Tertiary Logo",
+      type: "upload",
+      relationTo: "media",
+      required: true,
+    },
+
+    // Social Media Links
+    {
+      name: "socialMediaLinks",
       type: "array",
-      label: "External Links",
+      label: "Social Media Links",
       fields: [
         {
           name: "platform",
@@ -32,7 +39,6 @@ export const SiteSettings: GlobalConfig = {
           label: "Platform",
           required: true,
           options: [
-            { label: "Email", value: "email" },
             { label: "Facebook", value: "facebook" },
             { label: "Instagram", value: "instagram" },
             { label: "YouTube", value: "youtube" },

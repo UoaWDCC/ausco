@@ -1,13 +1,28 @@
-import { getFooter } from "@/actions/homeActions";
 import Image from "next/image";
 import { Facebook, Instagram, Youtube } from "lucide-react";
-import config from "@/payload.config";
 import { JSX } from "react";
 import { Button } from "../ui/button";
+import type { Media } from "@/payload-types";
 
-const Footer = async () => {
-  const [_payloadConfig, content] = await Promise.all([config, getFooter()]);
+type FooterProps = {
+  content: {
+    title: string;
+    sections:
+      | {
+          title: string;
+          options:
+            | {
+                label: string;
+                url: string;
+              }[]
+            | null;
+        }[]
+      | null;
+    primaryLogo: string | Media;
+  };
+};
 
+const Footer = ({ content }: FooterProps) => {
   const platformIconMap: Record<string, JSX.Element> = {
     facebook: <Facebook width={20} height={20} />,
     youtube: <Youtube width={20} height={20} />,
