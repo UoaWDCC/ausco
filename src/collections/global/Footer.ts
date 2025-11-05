@@ -36,6 +36,7 @@ export const Footer: GlobalConfig = {
           ],
         },
       ],
+      // Only applies on document creation, not when editing existing docs.
       defaultValue: [
         { title: "Documents", options: [] },
         { title: "Join Us", options: [] },
