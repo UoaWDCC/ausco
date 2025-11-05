@@ -10,31 +10,6 @@ export const Footer: GlobalConfig = {
       required: true,
     },
     {
-      name: "socialMedia",
-      type: "array",
-      label: "Social Media",
-      fields: [
-        {
-          name: "platform",
-          type: "select",
-          label: "Platform",
-          required: true,
-          options: [
-            { label: "Facebook", value: "facebook" },
-            { label: "Instagram", value: "instagram" },
-            { label: "YouTube", value: "youtube" },
-            { label: "Spotify", value: "spotify" },
-          ],
-        },
-        {
-          name: "url",
-          type: "text",
-          label: "URL",
-          required: true,
-        },
-      ],
-    },
-    {
       name: "sections",
       type: "array",
       label: "Sections",
@@ -42,28 +17,29 @@ export const Footer: GlobalConfig = {
         {
           name: "title",
           type: "text",
-          label: "Title",
           required: true,
         },
         {
           name: "options",
           type: "array",
-          label: "Options",
           fields: [
             {
               name: "label",
               type: "text",
-              label: "Label",
               required: true,
             },
             {
               name: "url",
               type: "text",
-              label: "URL",
               required: true,
             },
           ],
         },
+      ],
+      defaultValue: [
+        { title: "Documents", options: [] },
+        { title: "Join Us", options: [] },
+        { title: "Reach Out", options: [] },
       ],
     },
   ],

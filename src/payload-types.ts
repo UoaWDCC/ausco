@@ -429,17 +429,10 @@ export interface LandingPage {
 export interface Footer {
   id: string;
   title: string;
-  socialMedia?:
-    | {
-        socialMediaPlatform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
-        scialMediaUrl: string;
-        id?: string | null;
-      }[]
-    | null;
   sections?:
     | {
         title: string;
-        links?:
+        options?:
           | {
               label: string;
               url: string;
@@ -844,18 +837,11 @@ export interface LandingPageSelect<T extends boolean = true> {
  */
 export interface FooterSelect<T extends boolean = true> {
   title?: T;
-  socialMedia?:
-    | T
-    | {
-        socialMediaPlatform?: T;
-        scialMediaUrl?: T;
-        id?: T;
-      };
   sections?:
     | T
     | {
         title?: T;
-        links?:
+        options?:
           | T
           | {
               label?: T;
