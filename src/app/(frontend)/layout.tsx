@@ -18,6 +18,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerContent = await getHeader();
+  // TODO: refactor footer, fetch footer cms data here and parse into footer component
 
   return (
     <html lang="en" className={fraunces.variable}>

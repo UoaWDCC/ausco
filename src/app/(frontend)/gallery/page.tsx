@@ -1,11 +1,7 @@
-import Header from "@components/global/Header";
-import { getHeader } from "@/actions/getHeader";
-
 import { getGalleryLanding } from "@/actions/galleryActions";
 import { Media } from "@/payload-types";
 import Link from "next/link";
 
-const headerContent = await getHeader();
 
 const [content] = await Promise.all([getGalleryLanding()]);
 
@@ -22,7 +18,6 @@ const getImageUrl = (imageField: string | Media | null | undefined): string | un
 export default async function Gallery() {
   return (
     <>
-      <Header content={headerContent} />
       <div className="w-full bg-[var(--cream)] pt-20 md:pt-25 md:h-[max(880px,100dvh)]">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <h1 className="text-[var(--navy)] text-center">Gallery</h1>
