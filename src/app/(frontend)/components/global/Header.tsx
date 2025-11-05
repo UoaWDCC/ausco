@@ -2,7 +2,7 @@
 import { Menu, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
@@ -27,11 +27,14 @@ type HeaderProps = {
   isHomePage?: boolean;
 };
 
-const Header = ({ content, isHomePage = false }: HeaderProps) => {
+const Header = ({ content }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
   const router = useRouter();
+
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const textColor = clsx(scrolled || !isHomePage ? "text-[var(--navy)]" : "text-white");
 

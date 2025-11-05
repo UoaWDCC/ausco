@@ -1,7 +1,8 @@
 import React from "react";
-import Header from "@components/home/Header";
-import { getHeader } from "@/actions/getHeader";
 import { Fraunces } from "next/font/google";
+import { getHeader } from "@/actions/getHeader";
+import Header from "@components/global/Header";
+import Footer from "@components/global/Footer";
 import "./styles.css";
 
 const fraunces = Fraunces({
@@ -11,19 +12,20 @@ const fraunces = Fraunces({
 });
 
 export const metadata = {
-  description: "A blank template using Payload in a Next.js app.",
   title: "Auckland University Student Chamber Orchestra",
+  description: "A blank template using Payload in a Next.js app.",
 };
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props;
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const headerContent = await getHeader();
+  // TODO: refactor footer, fetch footer cms data here and parse into footer component
 
   return (
     <html lang="en" className={fraunces.variable}>
       <body className={fraunces.className}>
         <Header content={headerContent} />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
