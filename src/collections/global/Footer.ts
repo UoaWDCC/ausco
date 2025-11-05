@@ -2,28 +2,22 @@ import { GlobalConfig } from "payload";
 
 export const Footer: GlobalConfig = {
   slug: "footer",
-  label: "Site Footer",
+  label: "Footer",
   fields: [
     {
-      name: "logo",
-      label: "Logo Image",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-    },
-    {
       name: "title",
-      type: "text",
+      type: "textarea",
       required: true,
     },
     {
-      name: "socials",
+      name: "socialMedia",
       type: "array",
-      label: "Social Links",
+      label: "Social Media",
       fields: [
         {
           name: "platform",
           type: "select",
+          label: "Platform",
           required: true,
           options: [
             { label: "Facebook", value: "facebook" },
@@ -35,39 +29,37 @@ export const Footer: GlobalConfig = {
         {
           name: "url",
           type: "text",
+          label: "URL",
           required: true,
-        },
-        {
-          name: "icon",
-          label: "Icon",
-          type: "upload",
-          relationTo: "media",
         },
       ],
     },
     {
       name: "sections",
       type: "array",
-      label: "Footer Sections",
+      label: "Sections",
       fields: [
         {
           name: "title",
           type: "text",
+          label: "Title",
           required: true,
         },
         {
-          name: "links",
+          name: "options",
           type: "array",
-          label: "Section Links",
+          label: "Options",
           fields: [
             {
               name: "label",
               type: "text",
+              label: "Label",
               required: true,
             },
             {
               name: "url",
               type: "text",
+              label: "URL",
               required: true,
             },
           ],

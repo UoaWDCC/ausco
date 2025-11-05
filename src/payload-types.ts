@@ -428,13 +428,11 @@ export interface LandingPage {
  */
 export interface Footer {
   id: string;
-  logo: string | Media;
   title: string;
-  socials?:
+  socialMedia?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
-        url: string;
-        icon?: (string | null) | Media;
+        socialMediaPlatform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        scialMediaUrl: string;
         id?: string | null;
       }[]
     | null;
@@ -845,14 +843,12 @@ export interface LandingPageSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  socials?:
+  socialMedia?:
     | T
     | {
-        platform?: T;
-        url?: T;
-        icon?: T;
+        socialMediaPlatform?: T;
+        scialMediaUrl?: T;
         id?: T;
       };
   sections?:
