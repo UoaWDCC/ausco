@@ -1,4 +1,4 @@
-import Header from "@components/home/Header";
+import Header from "@components/global/Header";
 import LandingPage from "@components/concerts/LandingPage";
 import { getHeader } from "@/actions/getHeader";
 
