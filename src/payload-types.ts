@@ -481,7 +481,7 @@ export interface SiteSetting {
   primaryLogo: string | Media;
   secondaryLogo: string | Media;
   tertiaryLogo: string | Media;
-  socialMediaLinks?:
+  socialMedia?:
     | {
         platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
         url: string;
@@ -908,7 +908,7 @@ export interface SiteSettingSelect<T extends boolean = true> {
   primaryLogo?: T;
   secondaryLogo?: T;
   tertiaryLogo?: T;
-  socialMediaLinks?:
+  socialMedia?:
     | T
     | {
         platform?: T;

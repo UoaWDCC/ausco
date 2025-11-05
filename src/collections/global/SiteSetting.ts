@@ -29,9 +29,9 @@ export const SiteSetting: GlobalConfig = {
 
     // Social Media Links
     {
-      name: "socialMediaLinks",
+      name: "socialMedia",
       type: "array",
-      label: "Social Media Links",
+      label: "Social Media",
       fields: [
         {
           name: "platform",
