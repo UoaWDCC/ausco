@@ -1,6 +1,7 @@
 import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 type HeroProps = {
   content: {
@@ -13,32 +14,42 @@ type HeroProps = {
 
 const HeroSection = async ({ content }: HeroProps) => {
   return (
-    <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">
+    <div className="relative h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/homepage-hero.svg"
-          alt="Hero background"
-          className="object-cover w-full h-full"
-        />
+        {typeof content.background === "object" && content.background?.url && (
+          <Image
+            src={content.background.url}
+            alt={content.background.alt || "Home Page Hero"}
+            fill
+            priority
+            className="object-cover w-full h-full"
+          />
+        )}
       </div>
 
-      <div className="relative pt-32 z-20 flex flex-col items-center justify-center text-white mt-5 px-4 pb-8 md:pb-16 text-center">
-        <img src="/images/ausco-logo.png" alt="AUSCO logo" className="w-35 sm:w-40 md:w-40 mb-4" />
-        <div className="space-y-6 max-w-[52rem] mx-auto flex flex-col items-center">
-          {content && (
-            <>
-              <h1 className="text-3xl md:text-4xl font-bold leading-tight">
-                {content.header.title}
-              </h1>
-              <h3 className="text-base md:text-lg">{content.header.content}</h3>
-            </>
-          )}
-          <Button variant="beige" size="lg" className="mt-3">
-            Join us
-            <ArrowUpRight size={18} />
-          </Button>
-        </div>
+      {/* Foreground Content */}
+      <div className="relative z-10 flex flex-col justify-evenly items-center text-white text-center h-full px-6 py-12">
+        {/* Logo */}
+        {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
+          <Image
+            src={content.secondaryLogo.url}
+            alt={content.secondaryLogo.alt || "Hero Logo"}
+            width={400}
+            height={400}
+          />
+        )}
+
+        {/* Title */}
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight">{content.title}</h1>
+
+        {/* Content */}
+        <h3 className="text-base md:text-lg">{content.content}</h3>
+
+        <Button variant="beige" size="lg" className="">
+          Join us
+          <ArrowUpRight size={18} />
+        </Button>
       </div>
     </div>
   );

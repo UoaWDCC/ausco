@@ -4,6 +4,7 @@ export const HomePage: GlobalConfig = {
   slug: "home-page",
   label: "Home Page",
   fields: [
+    // Hero component
     {
       name: "hero",
       label: "Hero",
