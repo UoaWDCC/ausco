@@ -3,15 +3,19 @@ import { GlobalConfig } from "payload";
 export const HomePage: GlobalConfig = {
   slug: "home-page",
   label: "Home Page",
-  access: {
-    read: () => true,
-  },
   fields: [
     {
-      name: "header",
-      label: "Header",
+      name: "hero",
+      label: "Hero",
       type: "group",
-      fields: [ 
+      fields: [
+        {
+          name: "background",
+          label: "Background",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
         { name: "title", label: "Title", type: "text", required: true },
         { name: "content", label: "Content", type: "textarea", required: true },
       ],
@@ -48,66 +52,63 @@ export const HomePage: GlobalConfig = {
       label: "Matinee Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Matinee"
-
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Matinee",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
-  {
+    },
+    {
       name: "concert",
       label: "Concert Event",
       type: "group",
       fields: [
-          {
-              name: "title",
-              label: "Event Title",
-              type: "text",
-              defaultValue: "Concert",
-          },
-          {
-              name: "date",
-              label: "Event Date",
-              type: "text",
-              defaultValue: "Date TBC",
-
-          },
-          {
-              name: "location",
-              label: "Event Location",
-              type: "text",
-              defaultValue: "Location TBC",
-          },
-          {
-              name: "ticketUrl",
-              label: "Ticket Purchase URL",
-              type: "text",
-              required: false,
-          },
+        {
+          name: "title",
+          label: "Event Title",
+          type: "text",
+          defaultValue: "Concert",
+        },
+        {
+          name: "date",
+          label: "Event Date",
+          type: "text",
+          defaultValue: "Date TBC",
+        },
+        {
+          name: "location",
+          label: "Event Location",
+          type: "text",
+          defaultValue: "Location TBC",
+        },
+        {
+          name: "ticketUrl",
+          label: "Ticket Purchase URL",
+          type: "text",
+          required: false,
+        },
       ],
-  },
+    },
 
     {
       name: "infoCards",

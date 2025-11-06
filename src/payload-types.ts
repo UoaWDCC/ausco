@@ -373,7 +373,8 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface HomePage {
   id: string;
-  header: {
+  hero: {
+    background: string | Media;
     title: string;
     content: string;
   };
@@ -787,9 +788,10 @@ export interface OurStory {
  * via the `definition` "home-page_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
-  header?:
+  hero?:
     | T
     | {
+        background?: T;
         title?: T;
         content?: T;
       };
