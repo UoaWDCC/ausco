@@ -1,9 +1,9 @@
-import { getLandingPage } from "@/actions/homeActions";
+import { getHomePage } from "@/actions/homeActions";
 import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
 
 const HeroSection = async () => {
-  const [content] = await Promise.all([getLandingPage()]);
+  const [content] = await Promise.all([getHomePage()]);
 
   return (
     <div className="relative overflow-hidden md:h-[max(880px,100dvh)]">

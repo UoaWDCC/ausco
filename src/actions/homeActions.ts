@@ -1,13 +1,13 @@
 "use server";
 
 import { getPayload } from "@libs/payload";
-import { LandingPage } from "@/payload-types";
+import { HomePage } from "@/payload-types";
 
-export const getLandingPage = async (): Promise<LandingPage> => {
+export const getHomePage = async (): Promise<HomePage> => {
   const payload = await getPayload();
-  const LandingPage = await payload.findGlobal({
-    slug: "landing-page",
+  const homePage = await payload.findGlobal({
+    slug: "home-page",
   });
 
-  return LandingPage;
+  return homePage;
 };

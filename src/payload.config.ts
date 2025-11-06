@@ -13,7 +13,7 @@ import { Header } from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
 import { SiteSetting } from "./collections/global/SiteSetting";
 
-import LandingPage from "./collections/global/LandingPage";
+import HomePage from "./collections/global/HomePage";
 import Videos from "./collections/videos";
 
 import AboutHeroSection from "./collections/global/AboutHeroSection";
@@ -41,7 +41,7 @@ export default buildConfig({
   },
 
   globals: [
-    LandingPage,
+    HomePage,
     Footer,
     Header,
     SiteSetting,

@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
-export const LandingPage: GlobalConfig = {
-  slug: "landing-page",
-  label: "Landing page",
+export const HomePage: GlobalConfig = {
+  slug: "home-page",
+  label: "Home Page",
   access: {
     read: () => true,
   },
@@ -11,7 +11,7 @@ export const LandingPage: GlobalConfig = {
       name: "header",
       label: "Header",
       type: "group",
-      fields: [
+      fields: [ 
         { name: "title", label: "Title", type: "text", required: true },
         { name: "content", label: "Content", type: "textarea", required: true },
       ],
@@ -269,4 +269,4 @@ export const LandingPage: GlobalConfig = {
   ],
 };
 
-export default LandingPage;
+export default HomePage;
