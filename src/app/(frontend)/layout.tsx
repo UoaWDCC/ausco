@@ -1,6 +1,6 @@
 import React from "react";
 import { Fraunces } from "next/font/google";
-import { getHeader } from "@/actions/getHeader";
+import { getHeader, getFooter, getSiteSetting } from "@/actions/globalActions";
 import Header from "@components/global/Header";
 import Footer from "@components/global/Footer";
 import "./styles.css";
@@ -17,15 +17,24 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const headerContent = await getHeader();
-  // TODO: refactor footer, fetch footer cms data here and parse into footer component
+  const [headerContent, footerContent, siteSettingContent] = await Promise.all([
+    getHeader(),
+    getFooter(),
+    getSiteSetting(),
+  ]);
+
+  const combinedFooterContent = {
+    ...footerContent,
+    primaryLogo: siteSettingContent.primaryLogo,
+    socialMedia: siteSettingContent.socialMedia,
+  };
 
   return (
     <html lang="en" className={fraunces.variable}>
       <body className={fraunces.className}>
         <Header content={headerContent} />
         <main>{children}</main>
-        <Footer />
+        <Footer content={combinedFooterContent} />
       </body>
     </html>
   );

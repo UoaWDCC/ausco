@@ -2,53 +2,17 @@ import { GlobalConfig } from "payload";
 
 export const Footer: GlobalConfig = {
   slug: "footer",
-  label: "Site Footer",
+  label: "Footer",
   fields: [
     {
-      name: "logo",
-      label: "Logo Image",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-    },
-    {
       name: "title",
-      type: "text",
+      type: "textarea",
       required: true,
-    },
-    {
-      name: "socials",
-      type: "array",
-      label: "Social Links",
-      fields: [
-        {
-          name: "platform",
-          type: "select",
-          required: true,
-          options: [
-            { label: "Facebook", value: "facebook" },
-            { label: "Instagram", value: "instagram" },
-            { label: "YouTube", value: "youtube" },
-            { label: "Spotify", value: "spotify" },
-          ],
-        },
-        {
-          name: "url",
-          type: "text",
-          required: true,
-        },
-        {
-          name: "icon",
-          label: "Icon",
-          type: "upload",
-          relationTo: "media",
-        },
-      ],
     },
     {
       name: "sections",
       type: "array",
-      label: "Footer Sections",
+      label: "Sections",
       fields: [
         {
           name: "title",
@@ -56,9 +20,8 @@ export const Footer: GlobalConfig = {
           required: true,
         },
         {
-          name: "links",
+          name: "options",
           type: "array",
-          label: "Section Links",
           fields: [
             {
               name: "label",
@@ -70,6 +33,25 @@ export const Footer: GlobalConfig = {
               type: "text",
               required: true,
             },
+          ],
+        },
+      ],
+      // Starter template: only applies on document creation, not when editing existing docs
+      defaultValue: [
+        {
+          title: "Documents",
+          options: [
+            { label: "Proof of Registration", url: "" },
+            { label: "Constitution", url: "" },
+          ],
+        },
+        { title: "Join Us", options: [{ label: "Sign Up Form", url: "" }] },
+        {
+          title: "Reach Out",
+          options: [
+            { label: "Email", url: "" },
+            { label: "Feedback Form", url: "" },
+            { label: "Engage Page", url: "" },
           ],
         },
       ],

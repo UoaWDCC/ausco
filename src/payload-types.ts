@@ -92,6 +92,7 @@ export interface Config {
     'landing-page': LandingPage;
     footer: Footer;
     header: Header;
+    siteSetting: SiteSetting;
     'about-hero-section': AboutHeroSection;
     'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
@@ -105,6 +106,7 @@ export interface Config {
     'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
+    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
     'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
@@ -428,20 +430,11 @@ export interface LandingPage {
  */
 export interface Footer {
   id: string;
-  logo: string | Media;
   title: string;
-  socials?:
-    | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
-        url: string;
-        icon?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
   sections?:
     | {
         title: string;
-        links?:
+        options?:
           | {
               label: string;
               url: string;
@@ -473,6 +466,25 @@ export interface Header {
               id?: string | null;
             }[]
           | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting".
+ */
+export interface SiteSetting {
+  id: string;
+  primaryLogo: string | Media;
+  secondaryLogo: string | Media;
+  tertiaryLogo: string | Media;
+  socialMedia?:
+    | {
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        url: string;
         id?: string | null;
       }[]
     | null;
@@ -845,21 +857,12 @@ export interface LandingPageSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  socials?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        icon?: T;
-        id?: T;
-      };
   sections?:
     | T
     | {
         title?: T;
-        links?:
+        options?:
           | T
           | {
               label?: T;
@@ -891,6 +894,25 @@ export interface HeaderSelect<T extends boolean = true> {
               url?: T;
               id?: T;
             };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting_select".
+ */
+export interface SiteSettingSelect<T extends boolean = true> {
+  primaryLogo?: T;
+  secondaryLogo?: T;
+  tertiaryLogo?: T;
+  socialMedia?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;
