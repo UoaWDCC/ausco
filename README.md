@@ -6,6 +6,10 @@
 2. look into next.js caching for actions/api calls
 3. clean data/content types (required fields cannot be null but add anyway for type safety)
 
+### BUGS
+
+1. [MINOR] when home page/hero renders, there is a pause/delay for the header's height to be accounted. potential cause: useEffect in header is updating too slow or hero/header is rendering too slow
+
 ## Project Setup
 
 ### Installaion Requirements / Recommendations

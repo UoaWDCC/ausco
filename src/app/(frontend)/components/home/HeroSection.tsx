@@ -14,7 +14,7 @@ type HeroProps = {
 
 const HeroSection = async ({ content }: HeroProps) => {
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {typeof content.background === "object" && content.background?.url && (
@@ -30,7 +30,7 @@ const HeroSection = async ({ content }: HeroProps) => {
 
       {/* Foreground Content */}
       <div
-        className="relative z-10 flex flex-col justify-evenly items-center text-center text-white h-full px-6 py-15"
+        className="relative z-10 flex flex-col items-center text-center text-white h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
         style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
       >
         {/* Logo */}
@@ -44,14 +44,14 @@ const HeroSection = async ({ content }: HeroProps) => {
         )}
 
         {/* Title */}
-        <h1 className="text-2xl md:text-4xl font-light leading-tight !mt-5 !mb-2.5">
+        <h1 className="text-2xl md:text-4xl !font-semibold leading-tight !mt-4 !mb-1.5">
           {content.title}
         </h1>
 
         {/* Content */}
-        <h3 className="text-base md:text-lg w-[60%]">{content.content}</h3>
+        <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-[52rem]">{content.content}</h3>
 
-        <Button variant="beige" size="lg" className="mt-5">
+        <Button variant="beige" size="lg" className="mt-2.5">
           Join us
           <ArrowUpRight size={18} />
         </Button>
