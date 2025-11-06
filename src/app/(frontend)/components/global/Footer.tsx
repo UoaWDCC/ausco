@@ -7,18 +7,24 @@ import type { Media } from "@/payload-types";
 type FooterProps = {
   content: {
     title: string;
-    sections: {
-      title: string;
-      options: {
-        label: string;
-        url: string;
-      }[];
-    }[];
-    primaryLogo: Media;
-    socialMedia?: {
-      platform: string;
-      url: string;
-    }[];
+    sections?:
+      | {
+          title: string;
+          options?:
+            | {
+                label: string;
+                url: string;
+              }[]
+            | null;
+        }[]
+      | null;
+    primaryLogo?: Media | string | null;
+    socialMedia?:
+      | {
+          platform: string;
+          url: string;
+        }[]
+      | null;
   };
 };
 
@@ -37,7 +43,7 @@ const Footer = ({ content }: FooterProps) => {
         <div className="flex items-stretch gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {content.primaryLogo?.url && (
+            {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
               <Image
                 src={content.primaryLogo.url}
                 alt={content.primaryLogo.alt || "Footer Logo"}
