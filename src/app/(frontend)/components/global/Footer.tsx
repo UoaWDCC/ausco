@@ -38,57 +38,58 @@ const iconMap: Record<string, JSX.Element> = {
 
 const Footer = ({ content }: FooterProps) => {
   return (
-    <footer id="footer">
-      <div className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-[5.5rem]">
-        {/* LEFT: Logo + Title + Social Media Icons */}
-        <div className="flex items-stretch gap-4">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
-              <Image
-                src={content.primaryLogo.url}
-                alt={content.primaryLogo.alt || "Footer Logo"}
-                width={136}
-                height={136}
-              />
-            )}
-          </div>
-
-          <div className="flex flex-col flex-1 justify-between">
-            {/* Title */}
-            <div className="w-60 font-bold text-xl lg:text-xl">{content.title}</div>
-
-            {/* Social Media Icons */}
-            <div className="flex gap-4">
-              {content.socialMedia?.map((social, index) => {
-                const icon = iconMap[social.platform.toLowerCase()];
-
-                return (
-                  <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
-                    {icon}
-                  </a>
-                );
-              })}
-            </div>
-          </div>
+    <footer
+      id="footer"
+      className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-[5.5rem]"
+    >
+      {/* LEFT: Logo + Title + Social Media Icons */}
+      <div className="flex items-stretch gap-4">
+        {/* Logo */}
+        <div className="flex-shrink-0">
+          {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
+            <Image
+              src={content.primaryLogo.url}
+              alt={content.primaryLogo.alt || "Footer Logo"}
+              width={136}
+              height={136}
+            />
+          )}
         </div>
 
-        {/* RIGHT: Columns */}
-        <div className="flex flex-col md:flex-row items-start gap-24">
-          {content.sections?.map((section, index) => (
-            <div key={index} className="flex flex-col w-auto">
-              {/* Column Header */}
-              <h3 className="font-bold mb-2">{section.title}</h3>
+        <div className="flex flex-col flex-1 justify-between">
+          {/* Title */}
+          <div className="w-60 font-bold text-xl lg:text-xl">{content.title}</div>
 
-              {/* Column Options */}
-              {section.options?.map((option, index) => (
-                <Button key={index} variant="link" asChild className="mb-1">
-                  <a href={option.url}>{option.label}</a>
-                </Button>
-              ))}
-            </div>
-          ))}
+          {/* Social Media Icons */}
+          <div className="flex gap-4">
+            {content.socialMedia?.map((social, index) => {
+              const icon = iconMap[social.platform.toLowerCase()];
+
+              return (
+                <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                  {icon}
+                </a>
+              );
+            })}
+          </div>
         </div>
+      </div>
+
+      {/* RIGHT: Columns */}
+      <div className="flex flex-col md:flex-row items-start gap-24">
+        {content.sections?.map((section, index) => (
+          <div key={index} className="flex flex-col w-auto">
+            {/* Column Header */}
+            <h3 className="font-bold mb-2">{section.title}</h3>
+
+            {/* Column Options */}
+            {section.options?.map((option, index) => (
+              <Button key={index} variant="link" asChild className="mb-1">
+                <a href={option.url}>{option.label}</a>
+              </Button>
+            ))}
+          </div>
+        ))}
       </div>
     </footer>
   );
