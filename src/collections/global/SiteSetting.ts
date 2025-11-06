@@ -27,7 +27,7 @@ export const SiteSetting: GlobalConfig = {
       required: true,
     },
 
-    // Social Media Links
+    // Social Media
     {
       name: "socialMedia",
       type: "array",

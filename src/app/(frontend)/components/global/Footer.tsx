@@ -32,8 +32,8 @@ const Footer = ({ content }: FooterProps) => {
 
   return (
     <footer id="footer">
-      <div className="flex flex-col lg:flex-row justify-between px-8 pt-16 lg:px-16 items-start h-auto lg:h-56 gap-20 lg:gap-0">
-        {/* Logo + Title + Social Media Icons */}
+      <div className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-22">
+        {/* LEFT: Logo + Title + Social Media Icons */}
         <div className="flex items-stretch gap-4">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -66,14 +66,17 @@ const Footer = ({ content }: FooterProps) => {
           </div>
         </div>
 
-        {/* 3 column sections */}
-        <div className="flex flex-col md:flex-row items-start justify-between gap-4 lg:gap-8">
-          {content.sections?.map((section, secId) => (
-            <div key={secId} className="w-full md:w-48 lg:w-60 flex flex-col">
-              <h3 className="font-bold mb-1.5">{section.title}</h3>
-              {section.links?.map((link, linkId) => (
-                <Button key={linkId} variant="link" asChild className="mb-1.5">
-                  <a href={link.url}>{link.label}</a>
+        {/* RIGHT: Columns */}
+        <div className="flex flex-col md:flex-row items-start gap-24">
+          {content.sections?.map((section, index) => (
+            <div key={index} className="flex flex-col w-auto">
+              {/* Column Header */}
+              <h3 className="font-bold mb-2">{section.title}</h3>
+
+              {/* Column Options */}
+              {section.options?.map((option, index) => (
+                <Button key={index} variant="link" asChild className="mb-1">
+                  <a href={option.url}>{option.label}</a>
                 </Button>
               ))}
             </div>

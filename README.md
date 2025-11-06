@@ -1,5 +1,10 @@
 # AUSCO Project
 
+### TODOs
+
+1. verify <a> or <Link> usage for internal/external navigation
+2. look into next.js caching for actions/api calls
+
 ## Project Setup
 
 ### Installaion Requirements / Recommendations
