@@ -1,8 +1,9 @@
+import { JSX } from "react";
 import Image from "next/image";
 import { Facebook, Instagram, Spotify, Youtube } from "react-bootstrap-icons";
-import { JSX } from "react";
-import { Button } from "../ui/button";
+
 import type { Media } from "@/payload-types";
+import { Button } from "../ui/button";
 
 type FooterProps = {
   content: {
@@ -28,17 +29,17 @@ type FooterProps = {
   };
 };
 
-const Footer = ({ content }: FooterProps) => {
-  const iconMap: Record<string, JSX.Element> = {
-    facebook: <Facebook width={20} height={20} />,
-    youtube: <Youtube width={20} height={20} />,
-    spotify: <Spotify width={20} height={20} />,
-    instagram: <Instagram width={20} height={20} />,
-  };
+const iconMap: Record<string, JSX.Element> = {
+  facebook: <Facebook width={20} height={20} />,
+  youtube: <Youtube width={20} height={20} />,
+  spotify: <Spotify width={20} height={20} />,
+  instagram: <Instagram width={20} height={20} />,
+};
 
+const Footer = ({ content }: FooterProps) => {
   return (
     <footer id="footer">
-      <div className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-22">
+      <div className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-[5.5rem]">
         {/* LEFT: Logo + Title + Social Media Icons */}
         <div className="flex items-stretch gap-4">
           {/* Logo */}
