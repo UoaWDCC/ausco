@@ -1,8 +1,14 @@
+import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
 import { ArrowUpRight } from "lucide-react";
 
 type HeroProps = {
-  content: {};
+  content: {
+    secondaryLogo: Media | string | null;
+    background: Media | string | null;
+    title: string;
+    content: string;
+  };
 };
 
 const HeroSection = async ({ content }: HeroProps) => {
