@@ -29,24 +29,29 @@ const HeroSection = async ({ content }: HeroProps) => {
       </div>
 
       {/* Foreground Content */}
-      <div className="relative z-10 flex flex-col justify-evenly items-center text-white text-center h-full px-6 py-12">
+      <div
+        className="relative z-10 flex flex-col justify-evenly items-center text-center text-white h-full px-6 py-15"
+        style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
+      >
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
             src={content.secondaryLogo.url}
             alt={content.secondaryLogo.alt || "Hero Logo"}
-            width={400}
-            height={400}
+            width={280}
+            height={280}
           />
         )}
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold leading-tight">{content.title}</h1>
+        <h1 className="text-2xl md:text-4xl font-light leading-tight !mt-5 !mb-2.5">
+          {content.title}
+        </h1>
 
         {/* Content */}
-        <h3 className="text-base md:text-lg">{content.content}</h3>
+        <h3 className="text-base md:text-lg w-[60%]">{content.content}</h3>
 
-        <Button variant="beige" size="lg" className="">
+        <Button variant="beige" size="lg" className="mt-5">
           Join us
           <ArrowUpRight size={18} />
         </Button>
