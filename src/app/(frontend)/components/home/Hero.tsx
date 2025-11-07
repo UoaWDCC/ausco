@@ -12,7 +12,7 @@ type HeroProps = {
   };
 };
 
-const HeroSection = async ({ content }: HeroProps) => {
+const Hero = ({ content }: HeroProps) => {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
@@ -52,7 +52,7 @@ const HeroSection = async ({ content }: HeroProps) => {
         <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-[52rem]">{content.content}</h3>
 
         <Button variant="beige" size="lg" className="mt-2.5">
-          Join us
+          Join Us
           <ArrowUpRight size={18} />
         </Button>
       </div>
@@ -60,4 +60,4 @@ const HeroSection = async ({ content }: HeroProps) => {
   );
 };
 
-export default HeroSection;
+export default Hero;

@@ -1,4 +1,4 @@
-import HeroSection from "@components/home/HeroSection";
+import Hero from "@components/home/Hero";
 import UpcomingConcert from "@components/home/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import PastConcert from "@components/home/PastConcert";
@@ -15,7 +15,7 @@ export default async function HomePage() {
   // TODO: sort imports for this file and layout.tsx
   return (
     <>
-      <HeroSection content={heroContent} />
+      <Hero content={heroContent} />
       <UpcomingConcert />
       <InfoCards />
       <PastConcert />
