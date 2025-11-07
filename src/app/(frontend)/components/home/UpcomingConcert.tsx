@@ -3,11 +3,6 @@ import { Media } from "@/payload-types";
 import Image from "next/image";
 import Ticket from "./Ticket";
 
-// Type guard to check if poster is a Media object
-function isMedia(poster: string | Media | null | undefined): poster is Media {
-  return typeof poster === "object" && poster !== null && "url" in poster;
-}
-
 type UpcomingConcertProps = {
   content: {
     title: string;
@@ -33,8 +28,8 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
           <Image
             src={content.poster.url}
             alt={content.poster.alt || "Poster"}
-            width={400}
-            height={566}
+            width={376}
+            height={532}
             className="border border-[var(--brown)] rounded-md"
           />
         )}
