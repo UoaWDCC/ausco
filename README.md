@@ -5,6 +5,7 @@
 1. verify <a> or <Link> usage for internal/external navigation
 2. look into next.js caching for actions/api calls
 3. clean data/content types (required fields cannot be null but add anyway for type safety)
+4. make colours/colour variables consistent across website (including logos)
 
 ### BUGS
 

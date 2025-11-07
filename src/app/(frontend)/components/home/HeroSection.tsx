@@ -30,7 +30,7 @@ const HeroSection = async ({ content }: HeroProps) => {
 
       {/* Foreground Content */}
       <div
-        className="relative z-10 flex flex-col items-center text-center text-white h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
+        className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
         style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
       >
         {/* Logo */}
