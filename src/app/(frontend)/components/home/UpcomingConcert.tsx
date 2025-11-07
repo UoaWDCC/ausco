@@ -20,32 +20,41 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
   const [temp] = await Promise.all([getHomePage()]);
 
   return (
-    <section className="bg-[var(--beige)] text-[var(--brown)] mx-auto pt-30 pb-20">
-      {/* name of the upcoming concert */}
-      <div className="text-center text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
-        <p className="inline-block mr-4">Our Upcoming Concert,&nbsp;</p>
-        <p className="inline-block italic"> {content.title} </p>
+    <section className="bg-[var(--beige)] text-[var(--brown)] px-30">
+      {/* Upcoming Concert Title */}
+      <div className="flex justify-center">
+        <h1 className="!font-semibold !text-4xl !m-0">Our Upcoming Concert,&nbsp;</h1>
+        <h1 className="!font-light !text-4xl !m-0 italic">{content.title}</h1>
       </div>
 
-      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center my-9">
-        {/* Poster */}
-        {isMedia(content.poster) ? (
+      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center pt-4">
+        {/* LEFT: Poster */}
+        {/* {isMedia(content.poster) ? (
           <Image
             width={320}
-            height={480}
+            height={453}
             src={content.poster.url ?? ""}
             alt={content.poster.alt ?? "Concert poster"}
-            className="lg:w-80 md:w-94 w-75 h-auto border-1 border-[var(--brown)] rounded-md mt-0"
+            className="lg:w-80 md:w-94 w-75 h-auto border-1 border-[var(--brown)] rounded-md"
           />
         ) : (
           <p>No valid poster available</p>
+        )} */}
+
+        {typeof content.poster === "object" && content.poster?.url && (
+          <Image
+            src={content.poster.url}
+            alt={content.poster.alt || "Footer Logo"}
+            width={136}
+            height={136}
+            className="border-1 border-[var(--brown)] rounded-md"
+          />
         )}
 
-        {/* Right column */}
+        {/* RIGHT: Text + Tickets */}
         <div className="flex flex-col justify-between lg:w-[28rem] w-72">
-          <div className="flex flex-col gap-6 text-base text-left">
-            <p>{content.description}</p>
-            <p>{content.description}</p>
+          <div className="flex flex-col gap-6 text-base text-left whitespace-pre-line">
+            {content.description}
           </div>
 
           <div className="h-[1px] bg-[var(--brown)] w-full" />

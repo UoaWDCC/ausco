@@ -14,7 +14,7 @@ type HeroProps = {
 
 const Hero = ({ content }: HeroProps) => {
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {typeof content.background === "object" && content.background?.url && (
@@ -56,7 +56,7 @@ const Hero = ({ content }: HeroProps) => {
           <ArrowUpRight size={18} />
         </Button>
       </div>
-    </div>
+    </section>
   );
 };
 

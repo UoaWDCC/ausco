@@ -6,10 +6,14 @@
 2. look into next.js caching for actions/api calls
 3. clean data/content types (required fields cannot be null but add anyway for type safety)
 4. make colours/colour variables consistent across website (including logos)
+5. helper text in payload for clients? (e.g. poster should be a4 size ideally)
+6. check text uses <p>, <h1>, etc. tags for seo
+7. add secondary global font to repo
 
 ### BUGS
 
 1. [MINOR] when home page/hero renders, there is a pause/delay for the header's height to be accounted. potential cause: useEffect in header is updating too slow or hero/header is rendering too slow
+2. font (fraunces) not being applied globally
 
 ## Project Setup
 
