@@ -21,6 +21,7 @@ export const HomePage: GlobalConfig = {
         { name: "content", label: "Content", type: "textarea", required: true },
       ],
     },
+    // TODO: might need to move to SiteSetting.ts as these values are used in 2 places on the website
     // Upcoming Concert Component
     {
       name: "upcomingConcert",

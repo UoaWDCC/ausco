@@ -12,11 +12,12 @@ export default async function HomePage() {
     secondaryLogo: siteSettingContent.secondaryLogo,
     ...homeContent.hero,
   };
+
   // TODO: sort imports for this file and layout.tsx
   return (
     <>
       <Hero content={heroContent} />
-      <UpcomingConcert />
+      <UpcomingConcert content={homeContent.upcomingConcert} />
       <InfoCards />
       <PastConcert />
     </>
