@@ -36,8 +36,8 @@ const UpcomingConcert = async () => {
         {/* Right column */}
         <div className="flex flex-col justify-between lg:w-[28rem] w-72">
           <div className="flex flex-col gap-6 text-base text-left">
-            <p>{content.upcomingConcert?.description1}</p>
-            <p>{content.upcomingConcert?.description2}</p>
+            <p>{content.upcomingConcert?.description}</p>
+            <p>{content.upcomingConcert?.description}</p>
           </div>
 
           <div className="h-[1px] bg-[var(--brown)] w-full" />

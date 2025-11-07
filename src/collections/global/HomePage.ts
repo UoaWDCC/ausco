@@ -4,7 +4,7 @@ export const HomePage: GlobalConfig = {
   slug: "home-page",
   label: "Home Page",
   fields: [
-    // Hero component
+    // Hero Component
     {
       name: "hero",
       label: "Hero",
@@ -21,6 +21,7 @@ export const HomePage: GlobalConfig = {
         { name: "content", label: "Content", type: "textarea", required: true },
       ],
     },
+    // Upcoming Concert Component
     {
       name: "upcomingConcert",
       label: "Upcoming Concert",
@@ -30,21 +31,20 @@ export const HomePage: GlobalConfig = {
           name: "title",
           label: "Title",
           type: "text",
+          required: true,
         },
         {
           name: "poster",
+          label: "Poster",
           type: "upload",
           relationTo: "media",
+          required: true,
         },
         {
-          name: "description1",
-          label: "description 1",
-          type: "text",
-        },
-        {
-          name: "description2",
-          label: "description 2",
-          type: "text",
+          name: "description",
+          label: "Description",
+          type: "textarea",
+          required: true,
         },
       ],
     },
