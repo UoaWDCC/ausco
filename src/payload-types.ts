@@ -89,7 +89,7 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    'landing-page': LandingPage;
+    'home-page': HomePage;
     footer: Footer;
     header: Header;
     siteSetting: SiteSetting;
@@ -103,7 +103,7 @@ export interface Config {
     'our-story': OurStory;
   };
   globalsSelect: {
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
@@ -369,11 +369,12 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page".
+ * via the `definition` "home-page".
  */
-export interface LandingPage {
+export interface HomePage {
   id: string;
-  header: {
+  hero: {
+    background: string | Media;
     title: string;
     content: string;
   };
@@ -784,12 +785,13 @@ export interface OurStory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page_select".
+ * via the `definition` "home-page_select".
  */
-export interface LandingPageSelect<T extends boolean = true> {
-  header?:
+export interface HomePageSelect<T extends boolean = true> {
+  hero?:
     | T
     | {
+        background?: T;
         title?: T;
         content?: T;
       };

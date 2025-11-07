@@ -2,7 +2,7 @@ import { JSX } from "react";
 import Image from "next/image";
 import { Facebook, Instagram, Spotify, Youtube } from "react-bootstrap-icons";
 
-import type { Media } from "@/payload-types";
+import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
 
 type FooterProps = {

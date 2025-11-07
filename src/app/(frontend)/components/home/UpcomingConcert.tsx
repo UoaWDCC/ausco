@@ -1,4 +1,4 @@
-import { getLandingPage } from "@/actions/homeActions";
+import { getHomePage } from "@/actions/homeActions";
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import Ticket from "./Ticket";
@@ -9,7 +9,7 @@ function isMedia(poster: string | Media | null | undefined): poster is Media {
 }
 
 const UpcomingConcert = async () => {
-  const [content] = await Promise.all([getLandingPage()]);
+  const [content] = await Promise.all([getHomePage()]);
 
   return (
     <section className="bg-[var(--beige)] text-[var(--brown)] mx-auto pt-30 pb-20">

@@ -1,11 +1,9 @@
 //importing icons for contacts list, allows user to add more icons in the future
 import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
-import { getLandingPage } from "@/actions/homeActions";
+import { getHomePage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
 import { AnimatedCard } from "./AnimatedCard";
-
-
 
 //define icon mapping type
 type IconMapping = {
@@ -82,7 +80,7 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
 const InfoCards = async () => {
   const {
     infoCards: { regularCards, contactsCard },
-  } = await getLandingPage();
+  } = await getHomePage();
 
   //function to fetch icon component
   //mail icon set as default/fallback
@@ -97,7 +95,11 @@ const InfoCards = async () => {
       <div className="max-w-[93rem] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
-          <AnimatedCard key={i} index={i} className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex">
+          <AnimatedCard
+            key={i}
+            index={i}
+            className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex"
+          >
             <InfoCard
               key={i}
               title={card.title}
@@ -109,7 +111,10 @@ const InfoCards = async () => {
         ))}
 
         {/*contact card*/}
-        <AnimatedCard index={regularCards.length} className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex">
+        <AnimatedCard
+          index={regularCards.length}
+          className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex"
+        >
           <InfoCard
             title={contactsCard.title}
             description={contactsCard.description}

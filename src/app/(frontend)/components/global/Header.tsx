@@ -51,6 +51,21 @@ const Header = ({ content }: HeaderProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // VINCENT'S HEADER HEIGHT FUNCTION (leave for now)
+  useEffect(() => {
+    const nav = document.querySelector("nav");
+    if (!nav) return;
+
+    const updateHeight = () => {
+      document.documentElement.style.setProperty("--header-height", `${nav.offsetHeight}px`);
+    };
+
+    updateHeight(); // set initial value
+    window.addEventListener("resize", updateHeight);
+
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
+
   return (
     <header>
       <nav
