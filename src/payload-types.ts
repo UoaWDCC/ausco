@@ -378,11 +378,10 @@ export interface HomePage {
     title: string;
     content: string;
   };
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
+  upcomingConcert: {
+    title: string;
+    poster: string | Media;
+    description: string;
   };
   matinee?: {
     title?: string | null;
@@ -800,8 +799,7 @@ export interface HomePageSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
+        description?: T;
       };
   matinee?:
     | T
