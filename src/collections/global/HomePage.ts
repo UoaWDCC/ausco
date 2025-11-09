@@ -58,22 +58,16 @@ export const HomePage: GlobalConfig = {
               type: "group",
               fields: [
                 {
-                  name: "matineeTitle",
-                  label: "Matinee Title",
-                  type: "text",
-                  defaultValue: "Matinee",
-                },
-                {
                   name: "matineeDate",
                   label: "Matinee Date",
                   type: "text",
-                  defaultValue: "Date TBC",
+                  required: true,
                 },
                 {
                   name: "matineeLocation",
                   label: "Matinee Location",
                   type: "text",
-                  defaultValue: "Location TBC",
+                  required: true,
                 },
                 {
                   name: "matineeTicketUrl",
@@ -89,22 +83,16 @@ export const HomePage: GlobalConfig = {
               type: "group",
               fields: [
                 {
-                  name: "concertTitle",
-                  label: "Concert Title",
-                  type: "text",
-                  defaultValue: "Concert",
-                },
-                {
                   name: "concertDate",
                   label: "Concert Date",
                   type: "text",
-                  defaultValue: "Date TBC",
+                  required: true,
                 },
                 {
                   name: "concertLocation",
                   label: "Concert Location",
                   type: "text",
-                  defaultValue: "Location TBC",
+                  required: true,
                 },
                 {
                   name: "concertTicketUrl",
@@ -118,7 +106,7 @@ export const HomePage: GlobalConfig = {
         },
       ],
     },
-    
+
     {
       name: "infoCards",
       label: "Info Cards",
