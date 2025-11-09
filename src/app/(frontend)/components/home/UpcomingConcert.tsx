@@ -1,7 +1,8 @@
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import { GeoAltFill, Calendar2EventFill } from "react-bootstrap-icons";
 
 type UpcomingConcertProps = {
   content: {
@@ -57,11 +58,11 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
 
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2">
-                  <Calendar size={18} className="shrink-0" />
+                  <Calendar2EventFill size={18} className="shrink-0" />
                   <div>{content.tickets.matinee.date}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size={18} className="shrink-0" />
+                  <GeoAltFill size={18} className="shrink-0" />
                   <div>{content.tickets.matinee.location}</div>
                 </div>
               </div>
@@ -84,11 +85,11 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
 
               <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2">
-                  <Calendar size={18} className="shrink-0" />
+                  <Calendar2EventFill size={18} className="shrink-0" />
                   <div>{content.tickets.concert.date}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size={18} className="shrink-0" />
+                  <GeoAltFill size={18} className="shrink-0" />
                   <div>{content.tickets.concert.location}</div>
                 </div>
               </div>
