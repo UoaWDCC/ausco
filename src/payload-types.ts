@@ -384,14 +384,14 @@ export interface HomePage {
     description: string;
     tickets: {
       matinee: {
-        matineeDate: string;
-        matineeLocation: string;
-        matineeTicketUrl: string;
+        date: string;
+        location: string;
+        ticketUrl: string;
       };
       concert: {
-        concertDate: string;
-        concertLocation: string;
-        concertTicketUrl: string;
+        date: string;
+        location: string;
+        ticketUrl: string;
       };
     };
   };
@@ -806,16 +806,16 @@ export interface HomePageSelect<T extends boolean = true> {
               matinee?:
                 | T
                 | {
-                    matineeDate?: T;
-                    matineeLocation?: T;
-                    matineeTicketUrl?: T;
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
                   };
               concert?:
                 | T
                 | {
-                    concertDate?: T;
-                    concertLocation?: T;
-                    concertTicketUrl?: T;
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
                   };
             };
       };

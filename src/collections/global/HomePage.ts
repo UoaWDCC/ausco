@@ -58,19 +58,19 @@ export const HomePage: GlobalConfig = {
               type: "group",
               fields: [
                 {
-                  name: "matineeDate",
+                  name: "date",
                   label: "Matinee Date",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "matineeLocation",
+                  name: "location",
                   label: "Matinee Location",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "matineeTicketUrl",
+                  name: "ticketUrl",
                   label: "Matinee Ticket Purchase URL",
                   type: "text",
                   required: true,
@@ -83,19 +83,19 @@ export const HomePage: GlobalConfig = {
               type: "group",
               fields: [
                 {
-                  name: "concertDate",
+                  name: "date",
                   label: "Concert Date",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "concertLocation",
+                  name: "location",
                   label: "Concert Location",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "concertTicketUrl",
+                  name: "ticketUrl",
                   label: "Concert Ticket Purchase URL",
                   type: "text",
                   required: true,

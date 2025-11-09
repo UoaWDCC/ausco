@@ -1,6 +1,5 @@
 import { Media } from "@/payload-types";
 import Image from "next/image";
-import Ticket from "./Ticket";
 import { Button } from "../ui/button";
 import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
 
@@ -11,14 +10,14 @@ type UpcomingConcertProps = {
     description: string;
     tickets: {
       matinee: {
-        matineeDate: string;
-        matineeLocation: string;
-        matineeTicketUrl: string;
+        date: string;
+        location: string;
+        ticketUrl: string;
       };
       concert: {
-        concertDate: string;
-        concertLocation: string;
-        concertTicketUrl: string;
+        date: string;
+        location: string;
+        ticketUrl: string;
       };
     };
   };
@@ -46,48 +45,65 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
         )}
 
         {/* RIGHT: Text + Tickets */}
-        {/* TODO: combine into one file/component*/}
-        <div className="flex flex-col justify-between lg:w-[28rem] w-72">
+        <div className="flex flex-col justify-between lg:w-[32rem] w-72">
           <div className="flex flex-col gap-6 text-base text-left whitespace-pre-line">
             {content.description}
           </div>
 
           <div className="h-px bg-[var(--brown)] w-full" />
 
-          <div>
-            {/* Matinee Section */}
-            <div className="ticket-section bg-[#EEE5D8] rounded w-1/3">
-              <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Matinee</h2>
-              <div className="details text-[#602C0F]">
+          <div className="flex flex-row gap-10 items-stretch">
+            {/* Matinee */}
+            <div className="flex flex-col gap-4 flex-1 justify-between">
+              <h2 className="text-base font-bold">Matinee</h2>
+
+              <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2">
-                  <Calendar size={20} className="stroke-[#602C0F]" />
-                  <span>{content.tickets.matinee.matineeDate}</span>
+                  <Calendar size={18} className="shrink-0" />
+                  <div className="text-base">{content.tickets.matinee.date}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size={20} className="stroke-[#602C0F]" />
-                  <span>{content.tickets.matinee.matineeLocation}</span>
+                  <MapPin size={18} className="shrink-0" />
+                  <div className="text-base">{content.tickets.matinee.location}</div>
                 </div>
               </div>
-              <Button variant="brown" size="lg" className="mt-6">
-                Tickets <ArrowUpRight size={18} />
+
+              <Button asChild variant="brown" size="lg" className="">
+                <a
+                  href={content.tickets.matinee.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tickets
+                  <ArrowUpRight size={18} />
+                </a>
               </Button>
             </div>
 
-            {/* Concert Section */}
-            <div className="ticket-section bg-[#EEE5D8] rounded w-1/3">
-              <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Concert</h2>
-              <div className="details text-[#602C0F]">
+            {/* Concert */}
+            <div className="flex flex-col gap-4 flex-1 justify-between">
+              <h2 className="text-base font-bold">Concert</h2>
+
+              <div className="flex flex-col gap-1.5">
                 <div className="flex items-center gap-2">
-                  <Calendar size={20} className="stroke-[#602C0F]" />
-                  <span>{content.tickets.concert.concertDate}</span>
+                  <Calendar size={18} className="shrink-0" />
+                  <div className="text-base">{content.tickets.concert.date}</div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin size={20} className="stroke-[#602C0F]" />
-                  <span>{content.tickets.concert.concertLocation}</span>
+                  <MapPin size={18} className="shrink-0" />
+                  <div className="text-base">{content.tickets.concert.location}</div>
                 </div>
               </div>
-              <Button variant="brown" size="lg" className="mt-6">
-                Tickets <ArrowUpRight size={18} />
+
+              <Button asChild variant="brown" size="lg" className="">
+                <a
+                  href={content.tickets.concert.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tickets
+                  <ArrowUpRight size={18} />
+                </a>
               </Button>
             </div>
           </div>
