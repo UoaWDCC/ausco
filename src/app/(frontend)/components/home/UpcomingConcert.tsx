@@ -8,12 +8,24 @@ type UpcomingConcertProps = {
     title: string;
     poster: Media | string | null;
     description: string;
+    tickets: {
+      matinee: {
+        matineeTitle: string;
+        matineeDate: string;
+        matineeLocation: string;
+        matineeTicketUrl: string;
+      };
+      concert: {
+        concertTitle: string;
+        concertDate: string;
+        concertLocation: string;
+        concertTicketUrl: string;
+      };
+    };
   };
 };
 
 const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
-  const [temp] = await Promise.all([getHomePage()]);
-
   return (
     <section className="bg-[var(--beige)] text-[var(--brown)] pt-28 pb-32">
       {/* Upcoming Concert Title */}
@@ -44,7 +56,7 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
           <div className="h-px bg-[var(--brown)] w-full" />
 
           <div>
-            <Ticket matineeData={temp.matinee} concertData={temp.concert} />
+            <Ticket matineeData={content.tickets.matinee} concertData={content.tickets.concert} />
           </div>
         </div>
       </div>

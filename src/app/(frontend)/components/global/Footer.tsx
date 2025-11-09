@@ -35,7 +35,7 @@ const iconMap: Record<string, JSX.Element> = {
   spotify: <Spotify width={20} height={20} />,
   instagram: <Instagram width={20} height={20} />,
 };
-
+ 
 const Footer = ({ content }: FooterProps) => {
   return (
     <footer

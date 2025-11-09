@@ -83,7 +83,6 @@ export const HomePage: GlobalConfig = {
                 },
               ],
             },
-
             {
               name: "concert",
               label: "Concert",
@@ -119,6 +118,7 @@ export const HomePage: GlobalConfig = {
         },
       ],
     },
+    
     {
       name: "infoCards",
       label: "Info Cards",
