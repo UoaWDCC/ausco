@@ -1,7 +1,8 @@
-import { getHomePage } from "@/actions/homeActions";
 import { Media } from "@/payload-types";
 import Image from "next/image";
 import Ticket from "./Ticket";
+import { Button } from "../ui/button";
+import { Calendar, MapPin, ArrowUpRight } from "lucide-react";
 
 type UpcomingConcertProps = {
   content: {
@@ -10,13 +11,11 @@ type UpcomingConcertProps = {
     description: string;
     tickets: {
       matinee: {
-        matineeTitle: string;
         matineeDate: string;
         matineeLocation: string;
         matineeTicketUrl: string;
       };
       concert: {
-        concertTitle: string;
         concertDate: string;
         concertLocation: string;
         concertTicketUrl: string;
@@ -56,7 +55,41 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
           <div className="h-px bg-[var(--brown)] w-full" />
 
           <div>
-            <Ticket matineeData={content.tickets.matinee} concertData={content.tickets.concert} />
+            {/* Matinee Section */}
+            <div className="ticket-section bg-[#EEE5D8] rounded w-1/3">
+              <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Matinee</h2>
+              <div className="details text-[#602C0F]">
+                <div className="flex items-center gap-2">
+                  <Calendar size={20} className="stroke-[#602C0F]" />
+                  <span>{content.tickets.matinee.matineeDate}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin size={20} className="stroke-[#602C0F]" />
+                  <span>{content.tickets.matinee.matineeLocation}</span>
+                </div>
+              </div>
+              <Button variant="brown" size="lg" className="mt-6">
+                Tickets <ArrowUpRight size={18} />
+              </Button>
+            </div>
+
+            {/* Concert Section */}
+            <div className="ticket-section bg-[#EEE5D8] rounded w-1/3">
+              <h2 className="text-lg font-bold mb-2 text-[#602C0F]">Concert</h2>
+              <div className="details text-[#602C0F]">
+                <div className="flex items-center gap-2">
+                  <Calendar size={20} className="stroke-[#602C0F]" />
+                  <span>{content.tickets.concert.concertDate}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin size={20} className="stroke-[#602C0F]" />
+                  <span>{content.tickets.concert.concertLocation}</span>
+                </div>
+              </div>
+              <Button variant="brown" size="lg" className="mt-6">
+                Tickets <ArrowUpRight size={18} />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
