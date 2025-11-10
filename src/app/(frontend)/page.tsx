@@ -24,7 +24,7 @@ export default async function HomePage() {
       <Hero content={heroContent} />
       <UpcomingConcert content={homeContent.upcomingConcert} />
       <InfoCards content={infoCardsContent} />
-      <PastConcert />
+      <PastConcert content={homeContent.featureVideoUrl} />
     </>
   );
 }
