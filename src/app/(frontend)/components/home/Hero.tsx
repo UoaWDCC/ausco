@@ -1,7 +1,8 @@
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
+
 import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
-import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 
 type HeroProps = {
   content: {
