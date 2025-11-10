@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const combinedFooterContent = {
     ...footerContent,
     primaryLogo: siteSettingContent.primaryLogo,
-    socialMedia: siteSettingContent.socialMedia,
+    socialMedia: siteSettingContent.links,
   };
 
   return (

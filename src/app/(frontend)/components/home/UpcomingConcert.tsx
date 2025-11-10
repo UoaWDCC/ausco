@@ -25,7 +25,7 @@ type UpcomingConcertProps = {
   };
 };
 
-const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
+const UpcomingConcert = ({ content }: UpcomingConcertProps) => {
   // Normalise dates to ignore time component for accurate comparison
   const normaliseDate = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());

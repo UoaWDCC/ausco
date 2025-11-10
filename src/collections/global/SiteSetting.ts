@@ -27,11 +27,11 @@ export const SiteSetting: GlobalConfig = {
       required: true,
     },
 
-    // Social Media
+    // Links
     {
-      name: "socialMedia",
+      name: "links",
       type: "array",
-      label: "Social Media",
+      label: "Links",
       fields: [
         {
           name: "platform",
@@ -43,10 +43,13 @@ export const SiteSetting: GlobalConfig = {
             { label: "Instagram", value: "instagram" },
             { label: "YouTube", value: "youtube" },
             { label: "Spotify", value: "spotify" },
+            { label: "Feedback Form", value: "feedbackForm" },
+            { label: "Email", value: "email" },
           ],
         },
         {
           name: "url",
+          label: "URL",
           type: "text",
           required: true,
         },

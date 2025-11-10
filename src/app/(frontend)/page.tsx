@@ -14,11 +14,16 @@ export default async function HomePage() {
     ...homeContent.hero,
   };
 
+  const infoCardsContent = {
+    ...homeContent.infoCards,
+    links: siteSettingContent.links,
+  };
+
   return (
     <>
       <Hero content={heroContent} />
       <UpcomingConcert content={homeContent.upcomingConcert} />
-      <InfoCards />
+      <InfoCards content={infoCardsContent} />
       <PastConcert />
     </>
   );

@@ -21,6 +21,8 @@ const buttonVariants = cva(
           "bg-transparent text-[var(--cream)] border border-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--brown)] flex gap-2 transition",
         brown:
           "bg-transparent text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--cream)] flex gap-2 transition",
+        navy:
+          "bg-transparent text-[var(--navy)] border border-[var(--navy)] hover:bg-[var(--navy)] hover:text-[var(--cream)] flex gap-2 transition",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
