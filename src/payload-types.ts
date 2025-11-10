@@ -399,12 +399,10 @@ export interface HomePage {
     aboutUs: {
       image: string | Media;
       description: string;
-      url: string;
     };
     ourPeople: {
       image: string | Media;
       description: string;
-      url: string;
     };
     contact: {
       image: string | Media;
@@ -816,14 +814,12 @@ export interface HomePageSelect<T extends boolean = true> {
           | {
               image?: T;
               description?: T;
-              url?: T;
             };
         ourPeople?:
           | T
           | {
               image?: T;
               description?: T;
-              url?: T;
             };
         contact?:
           | T

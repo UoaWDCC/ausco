@@ -130,12 +130,6 @@ export const HomePage: GlobalConfig = {
               type: "textarea",
               required: true,
             },
-            {
-              name: "url",
-              label: "URL",
-              type: "text",
-              required: true,
-            },
           ],
         },
         {
@@ -154,12 +148,6 @@ export const HomePage: GlobalConfig = {
               name: "description",
               label: "Description",
               type: "textarea",
-              required: true,
-            },
-            {
-              name: "url",
-              label: "URL",
-              type: "text",
               required: true,
             },
           ],

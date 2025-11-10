@@ -11,12 +11,10 @@ type InfoCardsProps = {
     aboutUs: {
       image: Media | string | null;
       description: string;
-      url: string;
     };
     ourPeople: {
       image: Media | string | null;
       description: string;
-      url: string;
     };
     contact: {
       image: Media | string | null;
