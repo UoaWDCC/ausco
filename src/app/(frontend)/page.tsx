@@ -1,7 +1,7 @@
 import Hero from "@components/home/Hero";
 import UpcomingConcert from "@components/home/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
-import PastConcert from "@components/home/PastConcert";
+import PastConcert from "@components/home/FeatureVideo";
 
 import { getHomePage } from "@/actions/homeActions";
 import { getSiteSetting } from "@/actions/globalActions";
