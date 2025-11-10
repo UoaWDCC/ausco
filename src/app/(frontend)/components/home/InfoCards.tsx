@@ -31,10 +31,11 @@ type InfoCardsProps = {
 
 const InfoCards = ({ content }: InfoCardsProps) => {
   //TODO: check x and y padding
+  // TODO: make fixed height?? make justify content div excluding the image. expand innder padding a bit
   return (
     <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-30 px-6 flex items-center justify-center">
       <div className="flex flex-row gap-6">
-        <div className="flex flex-col items-center justify-between h-full gap-6">
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
           {typeof content.aboutUs.image === "object" && content.aboutUs.image?.url && (
             <Image
               src={content.aboutUs.image.url}
@@ -51,7 +52,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           </Button>
         </div>
 
-        <div className="flex flex-col items-center justify-between h-full gap-6">
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
           {typeof content.ourPeople.image === "object" && content.ourPeople.image?.url && (
             <Image
               src={content.ourPeople.image.url}
@@ -68,7 +69,15 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           </Button>
         </div>
 
-        <div className="flex flex-col items-center justify-between h-full gap-6">
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
+          {typeof content.contact.image === "object" && content.contact.image?.url && (
+            <Image
+              src={content.contact.image.url}
+              alt={content.contact.image.alt || "Our People"}
+              width={169}
+              height={239}
+            />
+          )}
           <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
           <div>{content.aboutUs.description}</div>
           <Button size="lg" className="">
