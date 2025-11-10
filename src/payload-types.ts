@@ -395,30 +395,16 @@ export interface HomePage {
       };
     };
   };
-  /**
-   * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
-   */
   infoCards: {
-    regularCards: {
-      title: string;
+    aboutUsCard: {
+      image: string | Media;
       description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      id?: string | null;
-    }[];
-    contactsCard: {
-      title: string;
+      url: string;
+    };
+    ourPeopleCard: {
+      image: string | Media;
       description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      contacts: {
-        text: string;
-        href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
-        id?: string | null;
-      }[];
+      url: string;
     };
   };
   updatedAt?: string | null;
@@ -481,9 +467,9 @@ export interface SiteSetting {
   primaryLogo: string | Media;
   secondaryLogo: string | Media;
   tertiaryLogo: string | Media;
-  socialMedia?:
+  links?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
         url: string;
         id?: string | null;
       }[]
@@ -822,32 +808,19 @@ export interface HomePageSelect<T extends boolean = true> {
   infoCards?:
     | T
     | {
-        regularCards?:
+        aboutUsCard?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              id?: T;
+              description?: T;
+              url?: T;
             };
-        contactsCard?:
+        ourPeopleCard?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              contacts?:
-                | T
-                | {
-                    text?: T;
-                    href?: T;
-                    icon?: T;
-                    id?: T;
-                  };
+              description?: T;
+              url?: T;
             };
       };
   updatedAt?: T;
@@ -910,7 +883,7 @@ export interface SiteSettingSelect<T extends boolean = true> {
   primaryLogo?: T;
   secondaryLogo?: T;
   tertiaryLogo?: T;
-  socialMedia?:
+  links?:
     | T
     | {
         platform?: T;

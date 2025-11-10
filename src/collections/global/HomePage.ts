@@ -106,159 +106,61 @@ export const HomePage: GlobalConfig = {
         },
       ],
     },
-
+    // Information Cards Component
     {
       name: "infoCards",
-      label: "Info Cards",
+      label: "Information Cards",
       type: "group",
-      admin: {
-        description:
-          "Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.",
-      },
       fields: [
         {
-          name: "regularCards",
-          label: "Regular Cards",
-          type: "array",
-          required: true,
-          defaultValue: [
-            {
-              title: "About Us",
-              description:
-                "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
-              linkText: "Read more↗",
-              linkHref: "",
-            },
-            {
-              title: "Our People",
-              description:
-                "This is a description about the page, in a few sentences. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.",
-              image: "PLACEHOLDER",
-              linkText: "Read more↗",
-              linkHref: "",
-            },
-          ],
+          name: "aboutUsCard",
+          label: "About Us Card",
+          type: "group",
           fields: [
             {
-              name: "title",
-              label: "Card Title",
-              type: "text",
+              name: "image",
+              label: "Image",
+              type: "upload",
+              relationTo: "media",
               required: true,
             },
             {
               name: "description",
-              label: "Card Description",
+              label: "Description",
               type: "textarea",
               required: true,
             },
             {
-              name: "image",
-              label: "Card Image",
+              name: "url",
+              label: "URL",
               type: "text",
               required: true,
-            },
-            {
-              name: "linkText",
-              label: "Link Text",
-              type: "text",
-              required: true,
-            },
-            {
-              name: "linkHref",
-              label: "Link URL",
-              type: "text",
-              required: false,
             },
           ],
         },
         {
-          name: "contactsCard",
-          label: "Contacts Card",
+          name: "ourPeopleCard",
+          label: "Our People Card",
           type: "group",
           fields: [
             {
-              name: "title",
-              label: "Card Title",
-              type: "text",
+              name: "image",
+              label: "Image",
+              type: "upload",
+              relationTo: "media",
               required: true,
-              defaultValue: "Reach Out",
             },
             {
               name: "description",
-              label: "Card Description",
+              label: "Description",
               type: "textarea",
               required: true,
-              defaultValue: "Here are a few ways you can reach out to us:",
             },
             {
-              name: "image",
-              label: "Card Image",
+              name: "url",
+              label: "URL",
               type: "text",
               required: true,
-              defaultValue: "PLACEHOLDER",
-            },
-            {
-              name: "linkText",
-              label: "Link Text",
-              type: "text",
-              required: true,
-              defaultValue: "Feedback Form↗",
-            },
-            {
-              name: "linkHref",
-              label: "Link URL",
-              type: "text",
-              required: false,
-              defaultValue: "",
-            },
-            {
-              name: "contacts",
-              label: "Contact Information",
-              type: "array",
-              required: true,
-              defaultValue: [
-                {
-                  text: "chamberorchestra.ausa@gmail.com↗",
-                  href: "",
-                  icon: "mail",
-                },
-                {
-                  text: "@ausco.uoa↗",
-                  href: "",
-                  icon: "instagram",
-                },
-                {
-                  text: "@ausco.ausa↗",
-                  href: "",
-                  icon: "facebook",
-                },
-              ],
-              fields: [
-                {
-                  name: "text",
-                  label: "Contact Text",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "href",
-                  label: "Contact URL",
-                  type: "text",
-                  required: false,
-                },
-                {
-                  name: "icon",
-                  label: "Icon",
-                  type: "select",
-                  required: true,
-                  options: [
-                    { label: "Mail", value: "mail" },
-                    { label: "Instagram", value: "instagram" },
-                    { label: "Facebook", value: "facebook" },
-                  ],
-                },
-              ],
             },
           ],
         },
