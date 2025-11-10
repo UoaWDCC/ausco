@@ -60,7 +60,7 @@ export const HomePage: GlobalConfig = {
                 {
                   name: "date",
                   label: "Matinee Date",
-                  type: "text",
+                  type: "date",
                   required: true,
                 },
                 {
@@ -85,7 +85,7 @@ export const HomePage: GlobalConfig = {
                 {
                   name: "date",
                   label: "Concert Date",
-                  type: "text",
+                  type: "date",
                   required: true,
                 },
                 {

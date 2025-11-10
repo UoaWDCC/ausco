@@ -27,6 +27,13 @@ type UpcomingConcertProps = {
 // TODO: DELETE TICKET.TSX FILE, SORT IMPORTS, FIX "TICKET ->" COMPONENT
 
 const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
+  const noramliseDate = (date: Date) =>
+    new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  const matineeDate = noramliseDate(new Date(content.tickets.matinee.date));
+  const concertDate = noramliseDate(new Date(content.tickets.concert.date));
+  const today = noramliseDate(new Date());
+
   return (
     <section className="bg-[var(--beige)] pt-28 pb-32 text-base">
       {/* Upcoming Concert Title */}
@@ -73,11 +80,21 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
                 </div>
               </div>
 
-              <a href={content.tickets.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="brown" size="lg" className="mt-1">
+              {today > matineeDate ? (
+                <Button variant="brown" size="lg" className="mt-1" disabled>
                   Tickets <ArrowUpRight size={18} />
                 </Button>
-              </a>
+              ) : (
+                <a
+                  href={content.tickets.matinee.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="brown" size="lg" className="mt-1">
+                    Tickets <ArrowUpRight size={18} />
+                  </Button>
+                </a>
+              )}
             </div>
 
             {/* Concert */}
@@ -95,11 +112,21 @@ const UpcomingConcert = async ({ content }: UpcomingConcertProps) => {
                 </div>
               </div>
 
-              <a href={content.tickets.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
-                <Button variant="brown" size="lg" className="mt-1">
+              {today > concertDate ? (
+                <Button variant="brown" size="lg" className="mt-1" disabled>
                   Tickets <ArrowUpRight size={18} />
                 </Button>
-              </a>
+              ) : (
+                <a
+                  href={content.tickets.concert.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="brown" size="lg" className="mt-1">
+                    Tickets <ArrowUpRight size={18} />
+                  </Button>
+                </a>
+              )}
             </div>
           </div>
         </div>
