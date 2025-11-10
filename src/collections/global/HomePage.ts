@@ -47,67 +47,62 @@ export const HomePage: GlobalConfig = {
           type: "textarea",
           required: true,
         },
-      ],
-    },
-    {
-      name: "matinee",
-      label: "Matinee Event",
-      type: "group",
-      fields: [
         {
-          name: "title",
-          label: "Event Title",
-          type: "text",
-          defaultValue: "Matinee",
-        },
-        {
-          name: "date",
-          label: "Event Date",
-          type: "text",
-          defaultValue: "Date TBC",
-        },
-        {
-          name: "location",
-          label: "Event Location",
-          type: "text",
-          defaultValue: "Location TBC",
-        },
-        {
-          name: "ticketUrl",
-          label: "Ticket Purchase URL",
-          type: "text",
-          required: false,
-        },
-      ],
-    },
-    {
-      name: "concert",
-      label: "Concert Event",
-      type: "group",
-      fields: [
-        {
-          name: "title",
-          label: "Event Title",
-          type: "text",
-          defaultValue: "Concert",
-        },
-        {
-          name: "date",
-          label: "Event Date",
-          type: "text",
-          defaultValue: "Date TBC",
-        },
-        {
-          name: "location",
-          label: "Event Location",
-          type: "text",
-          defaultValue: "Location TBC",
-        },
-        {
-          name: "ticketUrl",
-          label: "Ticket Purchase URL",
-          type: "text",
-          required: false,
+          name: "tickets",
+          label: "Tickets",
+          type: "group",
+          fields: [
+            {
+              name: "matinee",
+              label: "Matinee",
+              type: "group",
+              fields: [
+                {
+                  name: "date",
+                  label: "Matinee Date",
+                  type: "date",
+                  required: true,
+                },
+                {
+                  name: "location",
+                  label: "Matinee Location",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "ticketUrl",
+                  label: "Matinee Ticket Purchase URL",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: "concert",
+              label: "Concert",
+              type: "group",
+              fields: [
+                {
+                  name: "date",
+                  label: "Concert Date",
+                  type: "date",
+                  required: true,
+                },
+                {
+                  name: "location",
+                  label: "Concert Location",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "ticketUrl",
+                  label: "Concert Ticket Purchase URL",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
         },
       ],
     },

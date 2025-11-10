@@ -382,18 +382,18 @@ export interface HomePage {
     title: string;
     poster: string | Media;
     description: string;
-  };
-  matinee?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  concert?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
   };
   /**
    * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
@@ -800,22 +800,24 @@ export interface HomePageSelect<T extends boolean = true> {
         title?: T;
         poster?: T;
         description?: T;
-      };
-  matinee?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  concert?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
   infoCards?:
     | T

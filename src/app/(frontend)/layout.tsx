@@ -1,8 +1,11 @@
 import React from "react";
 import { Fraunces } from "next/font/google";
-import { getHeader, getFooter, getSiteSetting } from "@/actions/globalActions";
+
 import Header from "@components/global/Header";
 import Footer from "@components/global/Footer";
+
+import { getHeader, getFooter, getSiteSetting } from "@/actions/globalActions";
+
 import "./styles.css";
 
 const fraunces = Fraunces({
