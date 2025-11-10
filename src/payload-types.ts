@@ -408,6 +408,7 @@ export interface HomePage {
       image: string | Media;
     };
   };
+  featureVideo: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -827,6 +828,7 @@ export interface HomePageSelect<T extends boolean = true> {
               image?: T;
             };
       };
+  featureVideo?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

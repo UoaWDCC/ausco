@@ -168,6 +168,13 @@ export const HomePage: GlobalConfig = {
         },
       ],
     },
+    // Feature Video Component
+    {
+      name: "featureVideo",
+      label: "Feature Video URL",
+      type: "text",
+      required: true,
+    },
   ],
 };
 
