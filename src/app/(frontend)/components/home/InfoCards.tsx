@@ -1,12 +1,10 @@
-//importing icons for contacts list, allows user to add more icons in the future
 import { ArrowUpRight } from "lucide-react";
-import { getHomePage } from "@/actions/homeActions";
-import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
-import { Facebook, Instagram, EnvelopeFill, FileEarmarkTextFill } from "react-bootstrap-icons";
+import { Facebook, Instagram, EnvelopeFill, FileEarmarkText } from "react-bootstrap-icons";
 
 import Image from "next/image";
 import { Media } from "@/payload-types";
+import Link from "next/link";
 
 type InfoCardsProps = {
   content: {
@@ -23,17 +21,20 @@ type InfoCardsProps = {
     contact: {
       image: Media | string | null;
     };
-    links?: {
-      platform: string;
-      url: string;
-    }[];
+    links?:
+      | {
+          platform: string;
+          url: string;
+        }[]
+      | null;
   };
 };
 
 const InfoCards = ({ content }: InfoCardsProps) => {
-  //TODO: check x and y padding
+  const links = Object.fromEntries((content.links || []).map((link) => [link.platform, link.url]));
+
   return (
-    <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-30 px-6 flex items-center justify-center">
+    <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-32 px-10 flex items-center justify-center">
       <div className="flex flex-row gap-7">
         {/* 1/3: About Us Card */}
         <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
@@ -48,10 +49,12 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center text-center gap-5">
             <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
             <div>{content.aboutUs.description}</div>
-            <Button size="lg"  variant="navy">
-              Read More
-              <ArrowUpRight size={18} />
-            </Button>
+            <Link href="/about">
+              <Button size="lg" className="mt-2" variant="navy">
+                Read More
+                <ArrowUpRight size={18} />
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -68,10 +71,12 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center text-center gap-5">
             <h1 className="!font-normal !text-4xl !m-0">Our People</h1>
             <div>{content.ourPeople.description}</div>
-            <Button size="lg"  variant="navy">
-              Read More
-              <ArrowUpRight size={18} />
-            </Button>
+            <Link href="/ourpeople">
+              <Button size="lg" className="mt-2" variant="navy">
+                Read More
+                <ArrowUpRight size={18} />
+              </Button>
+            </Link>
           </div>
         </div>
 
@@ -88,24 +93,32 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center text-center justify-between flex-1">
             <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
             <div className="flex flex-col gap-2 items-center">
-              <Button size="lg" variant="navy">
-                <FileEarmarkTextFill size={18} />
-                Feedback Form
-              </Button>
+              <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="navy">
+                  <FileEarmarkText size={18} />
+                  Feedback Form
+                </Button>
+              </a>
               <div className="flex flex-row gap-2 items-center">
-                <Button size="lg" variant="navy">
-                  <Instagram size={18} />
-                  Instagram
-                </Button>
-                <Button size="lg" variant="navy">
-                  <Facebook size={18} />
-                  Facebook
-                </Button>
+                <a href={links.instagram} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="navy">
+                    <Instagram size={18} />
+                    Instagram
+                  </Button>
+                </a>
+                <a href={links.facebook} target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="navy">
+                    <Facebook size={18} />
+                    Facebook
+                  </Button>
+                </a>
               </div>
-              <Button size="lg" variant="navy">
-                <EnvelopeFill size={18} />
-                Email
-              </Button>
+              <a href={links.email} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="navy">
+                  <EnvelopeFill size={18} />
+                  Email
+                </Button>
+              </a>
             </div>
           </div>
         </div>
