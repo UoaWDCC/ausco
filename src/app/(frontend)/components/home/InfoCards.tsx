@@ -19,6 +19,9 @@ type InfoCardsProps = {
       description: string;
       url: string;
     };
+    contact: {
+      image: Media | string | null;
+    };
     links?: {
       platform: string;
       url: string;
@@ -36,8 +39,8 @@ const InfoCards = ({ content }: InfoCardsProps) => {
             <Image
               src={content.aboutUs.image.url}
               alt={content.aboutUs.image.alt || "About Us"}
-              width={188}
-              height={266}
+              width={169}
+              height={239}
             />
           )}
           <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
@@ -53,8 +56,8 @@ const InfoCards = ({ content }: InfoCardsProps) => {
             <Image
               src={content.ourPeople.image.url}
               alt={content.ourPeople.image.alt || "Our People"}
-              width={188}
-              height={266}
+              width={169}
+              height={239}
             />
           )}
           <h1 className="!font-normal !text-4xl !m-0">Our People</h1>

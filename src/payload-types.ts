@@ -406,6 +406,9 @@ export interface HomePage {
       description: string;
       url: string;
     };
+    contact: {
+      image: string | Media;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -821,6 +824,11 @@ export interface HomePageSelect<T extends boolean = true> {
               image?: T;
               description?: T;
               url?: T;
+            };
+        contact?:
+          | T
+          | {
+              image?: T;
             };
       };
   updatedAt?: T;

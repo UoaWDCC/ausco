@@ -164,6 +164,20 @@ export const HomePage: GlobalConfig = {
             },
           ],
         },
+        {
+          name: "contact",
+          label: "Contact",
+          type: "group",
+          fields: [
+            {
+              name: "image",
+              label: "Image",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
       ],
     },
   ],
