@@ -1,8 +1,9 @@
 //importing icons for contacts list, allows user to add more icons in the future
-import { Mail, Instagram, Facebook, LucideIcon, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { getHomePage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
+import { Facebook, Instagram, EnvelopeFill, FileEarmarkTextFill } from "react-bootstrap-icons";
 
 import Image from "next/image";
 import { Media } from "@/payload-types";
@@ -31,11 +32,11 @@ type InfoCardsProps = {
 
 const InfoCards = ({ content }: InfoCardsProps) => {
   //TODO: check x and y padding
-  // TODO: make fixed height?? make justify content div excluding the image. expand innder padding a bit
   return (
     <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-30 px-6 flex items-center justify-center">
-      <div className="flex flex-row gap-6">
-        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
+      <div className="flex flex-row gap-7">
+        {/* 1/3: About Us Card */}
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl px-8 py-10 flex flex-col items-center justify-start gap-3">
           {typeof content.aboutUs.image === "object" && content.aboutUs.image?.url && (
             <Image
               src={content.aboutUs.image.url}
@@ -44,15 +45,18 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               height={239}
             />
           )}
-          <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
-          <div>{content.aboutUs.description}</div>
-          <Button size="lg" className="">
-            Read More
-            <ArrowUpRight size={18} />
-          </Button>
+          <div className="flex flex-col items-center text-center gap-5">
+            <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
+            <div>{content.aboutUs.description}</div>
+            <Button size="lg" className="">
+              Read More
+              <ArrowUpRight size={18} />
+            </Button>
+          </div>
         </div>
 
-        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
+        {/* 2/3: Our People Card */}
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.ourPeople.image === "object" && content.ourPeople.image?.url && (
             <Image
               src={content.ourPeople.image.url}
@@ -61,15 +65,18 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               height={239}
             />
           )}
-          <h1 className="!font-normal !text-4xl !m-0">Our People</h1>
-          <div>{content.ourPeople.description}</div>
-          <Button size="lg" className="">
-            Read More
-            <ArrowUpRight size={18} />
-          </Button>
+          <div className="flex flex-col items-center text-center gap-5">
+            <h1 className="!font-normal !text-4xl !m-0">Our People</h1>
+            <div>{content.ourPeople.description}</div>
+            <Button size="lg" className="">
+              Read More
+              <ArrowUpRight size={18} />
+            </Button>
+          </div>
         </div>
 
-        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-between gap-6">
+        {/* 3/3: Reach Out To Us Card */}
+        <div className="w-[22rem] bg-[#EEEADE] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.contact.image === "object" && content.contact.image?.url && (
             <Image
               src={content.contact.image.url}
@@ -78,12 +85,29 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               height={239}
             />
           )}
-          <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
-          <div>{content.aboutUs.description}</div>
-          <Button size="lg" className="">
-            Read More
-            <ArrowUpRight size={18} />
-          </Button>
+          <div className="flex flex-col items-center text-center justify-between flex-1">
+            <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
+            <div className="flex flex-col gap-2 items-center">
+              <Button size="lg">
+                <FileEarmarkTextFill size={18} />
+                Feedback Form
+              </Button>
+              <div className="flex flex-row gap-2 items-center">
+                <Button size="lg">
+                  <Instagram size={18} />
+                  Instagram
+                </Button>
+                <Button size="lg">
+                  <Facebook size={18} />
+                  Facebook
+                </Button>
+              </div>
+              <Button size="lg">
+                <EnvelopeFill size={18} />
+                Email
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -91,7 +115,3 @@ const InfoCards = ({ content }: InfoCardsProps) => {
 };
 
 export default InfoCards;
-
-// <div className="bg-[#EEEADE] w-10 h-30 rounded"></div>
-// <div className="bg-[#EEEADE] w-10 h-30 rounded"></div>
-// <div className="bg-[#EEEADE] w-10 h-30 rounded"></div>
