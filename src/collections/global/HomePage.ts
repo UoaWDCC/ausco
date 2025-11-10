@@ -113,8 +113,8 @@ export const HomePage: GlobalConfig = {
       type: "group",
       fields: [
         {
-          name: "aboutUsCard",
-          label: "About Us Card",
+          name: "aboutUs",
+          label: "About Us",
           type: "group",
           fields: [
             {
@@ -139,8 +139,8 @@ export const HomePage: GlobalConfig = {
           ],
         },
         {
-          name: "ourPeopleCard",
-          label: "Our People Card",
+          name: "ourPeople",
+          label: "Our People",
           type: "group",
           fields: [
             {

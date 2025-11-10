@@ -396,12 +396,12 @@ export interface HomePage {
     };
   };
   infoCards: {
-    aboutUsCard: {
+    aboutUs: {
       image: string | Media;
       description: string;
       url: string;
     };
-    ourPeopleCard: {
+    ourPeople: {
       image: string | Media;
       description: string;
       url: string;
@@ -808,14 +808,14 @@ export interface HomePageSelect<T extends boolean = true> {
   infoCards?:
     | T
     | {
-        aboutUsCard?:
+        aboutUs?:
           | T
           | {
               image?: T;
               description?: T;
               url?: T;
             };
-        ourPeopleCard?:
+        ourPeople?:
           | T
           | {
               image?: T;

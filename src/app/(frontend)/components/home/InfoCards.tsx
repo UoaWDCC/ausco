@@ -3,39 +3,33 @@ import { Mail, Instagram, Facebook, LucideIcon } from "lucide-react";
 import { getHomePage } from "@/actions/homeActions";
 import { ReactNode } from "react";
 import { Button } from "@components/ui/button";
-import { AnimatedCard } from "./AnimatedCard";
 
-//define icon mapping type
-type IconMapping = {
-  [key: string]: LucideIcon;
-};
+import Image from "next/image";
+import { Media } from "@/payload-types";
 
-//icon name-component map
-const iconMapping: IconMapping = {
-  mail: Mail,
-  instagram: Instagram,
-  facebook: Facebook,
-};
-
-//define contact structure
-type Contact = {
-  icon: string;
-  text: string;
-  href?: string | null;
-};
-
-//define infocard structure
-type InfoCardProp = {
-  title: string;
-  description: string;
-  linkText?: string | null;
-  linkHref?: string | null;
-  contacts?: Contact[];
-  getIcon?: (iconType: string) => ReactNode;
+type InfoCardsProps = {
+  content: {
+    aboutUs: {
+      image: Media | string | null;
+      description: string;
+      url: string;
+    };
+    ourPeople: {
+      image: Media | string | null;
+      description: string;
+      url: string;
+    };
+    links?:
+      | {
+          platform: string;
+          url: string;
+        }[]
+      | null;
+  };
 };
 
 //infocard component for all shared card features
-const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProp) => {
+const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }: InfoCardProps) => {
   return (
     <div className="flex flex-col justify-start w-full min-h-full rounded-[1rem] p-8 lg:p-10 text-center text-[var(--navy)] space-y-6">
       {/*card image placeholder*/}
@@ -77,57 +71,34 @@ const InfoCard = ({ title, description, linkText, linkHref, contacts, getIcon }:
 };
 
 //async component fetches/extracts card data from payload
-const InfoCards = async () => {
-  const {
-    infoCards: { regularCards, contactsCard },
-  } = await getHomePage();
-
-  //function to fetch icon component
-  //mail icon set as default/fallback
-  const getIcon = (iconType: string): ReactNode => {
-    const IconComponent = iconMapping[iconType] || Mail;
-    return <IconComponent />;
-  };
-
+const InfoCards = ({ content }: InfoCardsProps) => {
   //card rendering
   return (
     <section className="bg-[var(--cream)] py-24 lg:py-40 px-6">
       <div className="max-w-[93rem] mx-auto flex flex-col md:flex-row items-center md:items-start justify-center gap-8 lg:gap-10">
         {/*mapping for non-contact cards*/}
         {regularCards.map((card, i) => (
-          <AnimatedCard
+          <InfoCard
             key={i}
-            index={i}
-            className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex"
-          >
-            <InfoCard
-              key={i}
-              title={card.title}
-              description={card.description}
-              linkText={card.linkText}
-              linkHref={card.linkHref}
-            />
-          </AnimatedCard>
+            title={card.title}
+            description={card.description}
+            linkText={card.linkText}
+            linkHref={card.linkHref}
+          />
         ))}
 
         {/*contact card*/}
-        <AnimatedCard
-          index={regularCards.length}
-          className="w-[75%] md:w-[30%] min-h-[400px] sm:min-h-[680px] flex"
-        >
-          <InfoCard
-            title={contactsCard.title}
-            description={contactsCard.description}
-            linkText={contactsCard.linkText}
-            linkHref={contactsCard.linkHref}
-            contacts={contactsCard.contacts}
-            getIcon={getIcon}
-          />
-        </AnimatedCard>
+        <InfoCard
+          title={contactsCard.title}
+          description={contactsCard.description}
+          linkText={contactsCard.linkText}
+          linkHref={contactsCard.linkHref}
+          contacts={contactsCard.contacts}
+          getIcon={getIcon}
+        />
       </div>
     </section>
   );
 };
 
-//export component
 export default InfoCards;
