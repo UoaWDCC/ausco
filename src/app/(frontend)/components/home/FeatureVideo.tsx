@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { inView } from "motion";
 import { motion, useScroll, useTransform } from "motion/react";
 
