@@ -18,10 +18,14 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
   // Compute embed URL with autoplay, mute, and loop
   const embedUrl = useMemo(() => {
     if (!content) return "";
-    const id = content.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/)?.[1];
+
+    const match = content.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
+    const id = match?.[1];
+
+    const finalId = id ?? "dQw4w9WgXcQ"; // fallback video
+
     return (
-      content.replace("watch?v=", "embed/").replace("youtu.be/", "youtube.com/embed/") +
-      `?autoplay=0&mute=1&loop=1&playlist=${id}`
+      `https://www.youtube.com/embed/${finalId}` + `?autoplay=0&mute=1&loop=1&playlist=${finalId}`
     );
   }, [content]);
 
