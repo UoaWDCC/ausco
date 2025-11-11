@@ -14,7 +14,6 @@ import { Footer } from "./collections/global/Footer";
 import { SiteSetting } from "./collections/global/SiteSetting";
 
 import HomePage from "./collections/global/HomePage";
-import Videos from "./collections/videos";
 
 import AboutHeroSection from "./collections/global/AboutHeroSection";
 import AboutUsCards from "./collections/global/AboutUsCards";
@@ -54,7 +53,7 @@ export default buildConfig({
     GalleryLanding,
     OurStory,
   ],
-  collections: [Users, Media, Item, Videos],
+  collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
