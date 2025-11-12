@@ -23,14 +23,16 @@ export const HomePage: GlobalConfig = {
           relationTo: "media",
           required: true,
         },
-        {
-          name: "title",
-          type: "richText",
-          required: true,
-          editor: lexicalEditor({
-            features: () => [BoldFeature(), ItalicFeature(), UnderlineFeature()],
-          }),
-        },
+        // {
+        //   name: "title",
+        //   label: "Title",
+        //   type: "richText",
+        //   required: true,
+        //   editor: lexicalEditor({
+        //     features: () => [BoldFeature(), ItalicFeature(), UnderlineFeature()],
+        //   }),
+        // },
+        { name: "title", label: "Title", type: "text", required: true },
         { name: "content", label: "Content", type: "textarea", required: true },
       ],
     },
