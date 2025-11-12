@@ -9,12 +9,14 @@ type HeroProps = {
   content: {
     secondaryLogo: Media | string | null;
     background: Media | string | null;
-    title: any;
+    header: any;
     content: string;
   };
 };
 
 const Hero = ({ content }: HeroProps) => {
+  console.log("header content:", content.header);
+
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
@@ -45,9 +47,9 @@ const Hero = ({ content }: HeroProps) => {
           />
         )}
 
-        {/* Title */}
+        {/* Header */}
         <h1 className="text-2xl md:text-4xl !font-semibold leading-tight !mt-4 !mb-1.5">
-          <RichText data={content.title.root} />
+          <RichText data={content.header} />
         </h1>
 
         {/* Content */}

@@ -1,4 +1,11 @@
-import { lexicalEditor, BoldFeature, ItalicFeature } from "@payloadcms/richtext-lexical";
+import {
+  lexicalEditor,
+  ParagraphFeature,
+  BoldFeature,
+  ItalicFeature,
+  UnderlineFeature,
+  FixedToolbarFeature,
+} from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
 export const HomePage: GlobalConfig = {
@@ -19,12 +26,17 @@ export const HomePage: GlobalConfig = {
           required: true,
         },
         {
-          name: "title",
-          label: "Title",
+          name: "header",
+          label: "Header",
           type: "richText",
           required: true,
           editor: lexicalEditor({
-            features: () => [BoldFeature(), ItalicFeature()],
+            features: () => [
+              BoldFeature(),
+              ItalicFeature(),
+              UnderlineFeature(),
+              FixedToolbarFeature(),
+            ],
           }),
         },
         { name: "content", label: "Content", type: "textarea", required: true },

@@ -375,7 +375,7 @@ export interface HomePage {
   id: string;
   hero: {
     background: string | Media;
-    title: {
+    header: {
       root: {
         type: string;
         children: {
@@ -793,7 +793,7 @@ export interface HomePageSelect<T extends boolean = true> {
     | T
     | {
         background?: T;
-        title?: T;
+        header?: T;
         content?: T;
       };
   upcomingConcert?:
