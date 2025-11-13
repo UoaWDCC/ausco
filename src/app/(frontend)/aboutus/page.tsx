@@ -1,4 +1,4 @@
-import HeroSection from "@components/about/HeroSection";
+import HeroSection from "@components/about/Hero";
 import AboutUsCards from "@components/about/AboutUsCards";
 
 import { getAboutUsPage } from "@/actions/pageActions";

@@ -17,16 +17,17 @@ export const AboutUsPage: GlobalConfig = {
           required: true,
         },
         {
-          name: "stickers-array",
+          name: "stickers",
           label: "Array of Stickers",
           type: "array",
+          maxRows: 7,
           fields: [
             {
               name: "sticker",
               label: "Sticker",
               type: "upload",
               relationTo: "media",
-              required: true,
+              required: false,
             },
           ],
         },

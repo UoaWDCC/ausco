@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { Media } from "@/payload-types";
-import { getAboutHeroSection } from "@/actions/aboutAction";
 
-const HeroSection = async () => {
-  const content = await getAboutHeroSection();
+type HeroProps = {
+  content: {
+    description: string;
+    stickers: { sticker: Media | string | null }[] | null;
+  };
+};
 
+const Hero = async ({ content }: HeroProps) => {
   const getImageUrl = (imageField: string | Media | null | undefined) => {
     if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
       return imageField.url;
@@ -13,18 +17,14 @@ const HeroSection = async () => {
   };
 
   return (
-    <section className="relative w-full pt-40 pb-4 bg-[#F6F4EC] flex flex-col items-center">
+    <section className="relative w-full pt-40 pb-4 bg-(--cream) flex flex-col items-center">
       <div className="z-10 flex flex-col w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex lg:flex-row flex-col items-center lg:items-end justify-between">
           <div className="flex flex-col lg:items-start items-center gap-3 w-2/5">
-            <p className="text-[#264C84] font-bold text-center text-2xl md:text-4xl">
-              {content.AboutUsHeader}
-            </p>
-            <p className="text-[#264C84] lg:text-left text-center leading-relaxed max-w-2xl text-sm md:text-md">
-              {content.AboutUsDescription}
-            </p>
+            <h1 className="text-(--navy) font-semibold! text-4xl! m-0!">About Us</h1>
+            <p className="text-(--navy) text-base">{content.description}</p>
           </div>
-          <div className="flex flex-row flex-wrap md:flex-nowrap justify-center lg:gap-4 gap-8 lg:items-start">
+          {/* <div className="flex flex-row flex-wrap md:flex-nowrap justify-center lg:gap-4 gap-8 lg:items-start">
             {content.aboutUsStickers?.map((sticker, i) => {
               const url = getImageUrl(sticker["sticker-image"]);
               if (!url) return null;
@@ -43,7 +43,7 @@ const HeroSection = async () => {
                 </div>
               );
             })}
-          </div>
+          </div> */}
         </div>
 
         <hr className="mt-8 border-t-[1.5px] border-[var(--navy)]" />
@@ -52,4 +52,4 @@ const HeroSection = async () => {
   );
 };
 
-export default HeroSection;
+export default Hero;

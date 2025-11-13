@@ -501,9 +501,9 @@ export interface AboutUsPage {
   id: string;
   hero: {
     description: string;
-    'stickers-array'?:
+    stickers?:
       | {
-          sticker: string | Media;
+          sticker?: (string | null) | Media;
           id?: string | null;
         }[]
       | null;
@@ -924,7 +924,7 @@ export interface AboutUsPageSelect<T extends boolean = true> {
     | T
     | {
         description?: T;
-        'stickers-array'?:
+        stickers?:
           | T
           | {
               sticker?: T;
