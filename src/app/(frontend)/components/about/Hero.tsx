@@ -4,7 +4,7 @@ import { Media } from "@/payload-types";
 type HeroProps = {
   content: {
     description: string;
-    stickers: { sticker: Media | string | null }[] | null;
+    stickers?: { sticker?: Media | string | null }[] | null;
   };
 };
 
@@ -31,6 +31,8 @@ const Hero = ({ content }: HeroProps) => {
                   width={100}
                   height={100}
                   className={"wiggle-hover"}
+                  priority
+                  loading="eager"
                 />
               ),
           )}
