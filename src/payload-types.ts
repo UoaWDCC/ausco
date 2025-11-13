@@ -503,10 +503,42 @@ export interface AboutUsPage {
     description: string;
     stickers?:
       | {
-          sticker?: (string | null) | Media;
+          sticker: string | Media;
           id?: string | null;
         }[]
       | null;
+  };
+  cards: {
+    vision: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    story: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    constitution: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    sponsorsAndPartnerships: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+      logos?:
+        | {
+            logo: string | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -517,35 +549,35 @@ export interface AboutUsPage {
  */
 export interface AboutUsCard {
   id: string;
-  visionCard: {
-    'background-image': string | Media;
+  vision: {
+    background: string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    summary: string;
+    description: string;
   };
-  historyCard: {
-    'background-image': string | Media;
+  story: {
+    background: string | Media;
     title: string;
-    'short-desc': string;
-    'full-desc': string;
+    summary: string;
+    description: string;
   };
-  leftBox: {
+  constitution: {
+    background: string | Media;
     title: string;
-    shortDescription: string;
-    fullText: string;
-    backgroundImage?: (string | null) | Media;
+    summary: string;
+    description: string;
   };
-  rightBox: {
+  sponsorsAndPartnerships: {
+    background: string | Media;
     title: string;
-    shortDescription: string;
-    fullText: string;
-    sponsorLogos?:
+    summary: string;
+    description: string;
+    logos?:
       | {
           logo: string | Media;
           id?: string | null;
         }[]
       | null;
-    backgroundImage?: (string | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -931,6 +963,48 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               id?: T;
             };
       };
+  cards?:
+    | T
+    | {
+        vision?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+            };
+        story?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+            };
+        constitution?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+            };
+        sponsorsAndPartnerships?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+              logos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -940,43 +1014,43 @@ export interface AboutUsPageSelect<T extends boolean = true> {
  * via the `definition` "about-us-cards_select".
  */
 export interface AboutUsCardsSelect<T extends boolean = true> {
-  visionCard?:
+  vision?:
     | T
     | {
-        'background-image'?: T;
+        background?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        summary?: T;
+        description?: T;
       };
-  historyCard?:
+  story?:
     | T
     | {
-        'background-image'?: T;
+        background?: T;
         title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
+        summary?: T;
+        description?: T;
       };
-  leftBox?:
+  constitution?:
     | T
     | {
+        background?: T;
         title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        backgroundImage?: T;
+        summary?: T;
+        description?: T;
       };
-  rightBox?:
+  sponsorsAndPartnerships?:
     | T
     | {
+        background?: T;
         title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        sponsorLogos?:
+        summary?: T;
+        description?: T;
+        logos?:
           | T
           | {
               logo?: T;
               id?: T;
             };
-        backgroundImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;
