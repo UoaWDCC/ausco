@@ -20,7 +20,7 @@ export const AboutUsPage: GlobalConfig = {
           name: "stickers",
           label: "Array of Stickers",
           type: "array",
-          maxRows: 7,
+          maxRows: 6,
           fields: [
             {
               name: "sticker",

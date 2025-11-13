@@ -1,4 +1,4 @@
-import HeroSection from "@components/about/Hero";
+import Hero from "@components/about/Hero";
 import AboutUsCards from "@components/about/AboutUsCards";
 
 import { getAboutUsPage } from "@/actions/pageActions";
@@ -8,7 +8,7 @@ export default async function AboutPage() {
   
   return (
     <>
-      <HeroSection content={aboutUsContent.hero} />
+      <Hero content={aboutUsContent.hero} />
       <AboutUsCards />
     </>
   );

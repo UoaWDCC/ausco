@@ -15,8 +15,6 @@ type HeroProps = {
 };
 
 const Hero = ({ content }: HeroProps) => {
-  console.log("header content:", content.header);
-
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
