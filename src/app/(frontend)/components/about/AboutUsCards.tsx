@@ -1,11 +1,18 @@
 import { Media } from "@/payload-types";
 import { Eye, History, BookText, Handshake } from "lucide-react";
-import { getAboutUsCards } from "@/actions/aboutAction";
+import type { CardProps } from "./Card";
 import Card from "./Card";
 
-const AboutUsCards = async () => {
-  const content = await getAboutUsCards();
+type AboutUsCardsProp = {
+  content: {
+    vision: CardProps;
+    story: CardProps;
+    constitution: CardProps;
+    sponsorsAndPartnerships: CardProps;
+  };
+};
 
+const AboutUsCards = ({ content }: AboutUsCardsProp) => {
   const getImageUrl = (imageField: string | Media | null | undefined): string | undefined => {
     if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
       return imageField.url ?? undefined;
@@ -16,12 +23,12 @@ const AboutUsCards = async () => {
     return undefined;
   };
 
+  // TODO: abstract common classNames to the about us page (parent page)
   return (
-    <div className="w-full bg-[#F6F4EC] pb-8">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        {/* first row */}
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8">
-          <Card
+    <section className="bg-(--cream) flex flex-col items-center px-6 pb-16 w-full max-w-6xl mx-auto gap-6">
+      {/* First Row */}
+      <div className="flex flex-row justify-between items-center gap-6">
+        {/* <Card
             image={getImageUrl(content.visionCard?.["background-image"])}
             alt={
               typeof content.visionCard?.["background-image"] === "object"
@@ -48,12 +55,12 @@ const AboutUsCards = async () => {
             fullDesc={content.historyCard?.["full-desc"]}
             size="md:w-2/5 lg:w-2/5"
             link="/"
-          />
-        </div>
+          /> */}
+      </div>
 
-        {/* second row */}
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8">
-          <Card
+      {/* Second Row */}
+      <div className="flex flex-row justify-between items-center gap-6">
+        {/* <Card
             image={getImageUrl(content.leftBox?.backgroundImage)}
             alt={
               typeof content.leftBox?.backgroundImage === "object"
@@ -81,10 +88,9 @@ const AboutUsCards = async () => {
             fullDesc={content.rightBox?.fullText}
             sponsorLogos={content.rightBox?.sponsorLogos || []}
             size="md:w-3/5 lg:w-3/5"
-          />
-        </div>
+          /> */}
       </div>
-    </div>
+    </section>
   );
 };
 

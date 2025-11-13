@@ -9,7 +9,7 @@ export default async function AboutPage() {
   return (
     <>
       <Hero content={aboutUsContent.hero} />
-      <AboutUsCards />
+      <AboutUsCards content={aboutUsContent.cards}/>
     </>
   );
 }

@@ -1,20 +1,29 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import { Media } from "@/payload-types";
 
-interface CardProps {
-  image?: string;
-  alt: string;
-  icon: React.ReactNode;
+export type CardProps = {
+  background: Media | string | null;
   title: string;
-  shortDesc?: string;
-  fullDesc?: string;
-  sponsorLogos?: { logo: string | Media; id?: string | null }[] | null;
-  size?: string;
-  link?: string;
-}
+  summary: string;
+  description: string;
+  logos?: {
+    logo: Media | string | null;
+  }[];
+};
+
+// interface CardProps {
+//   image?: string;
+//   alt: string;
+//   icon: React.ReactNode;
+//   title: string;
+//   shortDesc?: string;
+//   fullDesc?: string;
+//   sponsorLogos?: { logo: string | Media; id?: string | null }[] | null;
+//   size?: string;
+//   link?: string;
+// }
 
 const Card = ({
   image,
