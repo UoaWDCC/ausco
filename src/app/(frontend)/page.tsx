@@ -3,7 +3,7 @@ import UpcomingConcert from "@components/home/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import FeatureVideo from "@components/home/FeatureVideo";
 
-import { getHomePage } from "@/actions/homeActions";
+import { getHomePage } from "@/actions/pageActions";
 import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function HomePage() {

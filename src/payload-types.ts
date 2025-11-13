@@ -93,7 +93,7 @@ export interface Config {
     footer: Footer;
     header: Header;
     siteSetting: SiteSetting;
-    'about-hero-section': AboutHeroSection;
+    'about-us-page': AboutUsPage;
     'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
@@ -107,7 +107,7 @@ export interface Config {
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
-    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
+    'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
     'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
@@ -495,18 +495,19 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section".
+ * via the `definition` "about-us-page".
  */
-export interface AboutHeroSection {
+export interface AboutUsPage {
   id: string;
-  aboutUsStickers?:
-    | {
-        'sticker-image': string | Media;
-        id?: string | null;
-      }[]
-    | null;
-  AboutUsHeader?: string | null;
-  AboutUsDescription?: string | null;
+  hero: {
+    description: string;
+    'stickers-array'?:
+      | {
+          sticker: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -916,17 +917,20 @@ export interface SiteSettingSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section_select".
+ * via the `definition` "about-us-page_select".
  */
-export interface AboutHeroSectionSelect<T extends boolean = true> {
-  aboutUsStickers?:
+export interface AboutUsPageSelect<T extends boolean = true> {
+  hero?:
     | T
     | {
-        'sticker-image'?: T;
-        id?: T;
+        description?: T;
+        'stickers-array'?:
+          | T
+          | {
+              sticker?: T;
+              id?: T;
+            };
       };
-  AboutUsHeader?: T;
-  AboutUsDescription?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
