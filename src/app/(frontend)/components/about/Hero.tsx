@@ -10,10 +10,7 @@ type HeroProps = {
 
 const Hero = ({ content }: HeroProps) => {
   return (
-    <section
-      className="px-6 pb-16 bg-(--cream) flex flex-col items-center"
-      style={{ paddingTop: `calc(var(--header-height) + 4rem)` }} // 4rem = pt-16
-    >
+    <section className="pt-[calc(var(--header-height)+4rem)] pb-16 px-6 bg-(--cream) flex flex-col items-center">
       <div className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between">
         {/* Text */}
         <div className="flex flex-col gap-4 w-2/5">
