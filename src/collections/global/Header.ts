@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-const Header: GlobalConfig = {
+export const Header: GlobalConfig = {
   slug: "header",
   label: "Site Header",
   fields: [
@@ -20,13 +20,13 @@ const Header: GlobalConfig = {
       label: "Navigation Links",
       type: "array",
       fields: [
-        { 
-          name: "label", 
+        {
+          name: "label",
           type: "text",
           required: true,
         },
-        { 
-          name: "url", 
+        {
+          name: "url",
           type: "text",
           required: true,
         },
@@ -42,7 +42,7 @@ const Header: GlobalConfig = {
               required: true,
             },
             {
-              name: "url", 
+              name: "url",
               label: "Sub Item URL",
               type: "text",
               required: true,

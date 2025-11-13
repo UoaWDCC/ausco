@@ -1,24 +1,30 @@
-import Header from "@components/home/Header";
-import HeroSection from "@components/home/HeroSection";
+import Hero from "@components/home/Hero";
 import UpcomingConcert from "@components/home/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
-import PastConcert from "@components/home/PastConcert";
-import Footer from "@components/home/Footer";
-import { getHeader } from "@/actions/getHeader";
+import FeatureVideo from "@components/home/FeatureVideo";
 
-const headerContent = await getHeader();
+import { getHomePage } from "@/actions/pageActions";
+import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function HomePage() {
-  // const landingPageData = await getLandingPage();
+  const [homeContent, siteSettingContent] = await Promise.all([getHomePage(), getSiteSetting()]);
+
+  const heroContent = {
+    secondaryLogo: siteSettingContent.secondaryLogo,
+    ...homeContent.hero,
+  };
+
+  const infoCardsContent = {
+    ...homeContent.infoCards,
+    links: siteSettingContent.links,
+  };
 
   return (
     <>
-      <Header content={headerContent} isHomePage={true} />
-      <HeroSection />
-      <UpcomingConcert />
-      <InfoCards />
-      <PastConcert />
-      <Footer />
+      <Hero content={heroContent} />
+      <UpcomingConcert content={homeContent.upcomingConcert} />
+      <InfoCards content={infoCardsContent} />
+      <FeatureVideo content={homeContent.featureVideoUrl} />
     </>
   );
 }

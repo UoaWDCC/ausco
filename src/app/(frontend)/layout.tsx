@@ -1,22 +1,43 @@
 import React from "react";
-import Header from "@components/home/Header";
-import { getHeader } from "@/actions/getHeader";
+import { Fraunces } from "next/font/google";
+
+import Header from "@components/global/Header";
+import Footer from "@components/global/Footer";
+
+import { getHeader, getFooter, getSiteSetting } from "@/actions/globalActions";
+
 import "./styles.css";
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-fraunces",
+});
+
 export const metadata = {
-  description: "A blank template using Payload in a Next.js app.",
   title: "Auckland University Student Chamber Orchestra",
+  description: "A blank template using Payload in a Next.js app.",
 };
 
-export default async function RootLayout(props: { children: React.ReactNode }) {
-  const { children } = props;
-  const headerContent = await getHeader();
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const [headerContent, footerContent, siteSettingContent] = await Promise.all([
+    getHeader(),
+    getFooter(),
+    getSiteSetting(),
+  ]);
+
+  const combinedFooterContent = {
+    ...footerContent,
+    primaryLogo: siteSettingContent.primaryLogo,
+    socialMedia: siteSettingContent.links,
+  };
 
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={fraunces.variable}>
+      <body className={fraunces.className}>
         <Header content={headerContent} />
         <main>{children}</main>
+        <Footer content={combinedFooterContent} />
       </body>
     </html>
   );

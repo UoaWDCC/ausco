@@ -70,7 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     test: Test;
-    Videos: Video;
+    'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -80,7 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
-    Videos: VideosSelect<false> | VideosSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -89,10 +89,11 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    'landing-page': LandingPage;
+    'home-page': HomePage;
     footer: Footer;
     header: Header;
-    'about-hero-section': AboutHeroSection;
+    siteSetting: SiteSetting;
+    'about-us-page': AboutUsPage;
     'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
@@ -102,10 +103,11 @@ export interface Config {
     'our-story': OurStory;
   };
   globalsSelect: {
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
+    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
+    'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
     'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
@@ -198,14 +200,20 @@ export interface Test {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Videos".
+ * via the `definition` "payload-kv".
  */
-export interface Video {
+export interface PayloadKv {
   id: string;
-  title: string;
-  youtubeUrl: string;
-  updatedAt: string;
-  createdAt: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -225,10 +233,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'test';
         value: string | Test;
-      } | null)
-    | ({
-        relationTo: 'Videos';
-        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -325,13 +329,11 @@ export interface TestSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Videos_select".
+ * via the `definition` "payload-kv_select".
  */
-export interface VideosSelect<T extends boolean = true> {
-  title?: T;
-  youtubeUrl?: T;
-  updatedAt?: T;
-  createdAt?: T;
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -367,58 +369,60 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page".
+ * via the `definition` "home-page".
  */
-export interface LandingPage {
+export interface HomePage {
   id: string;
-  header: {
-    title: string;
+  hero: {
+    background: string | Media;
+    header: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     content: string;
   };
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  matinee?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  concert?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  /**
-   * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
-   */
-  infoCards: {
-    regularCards: {
-      title: string;
-      description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      id?: string | null;
-    }[];
-    contactsCard: {
-      title: string;
-      description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      contacts: {
-        text: string;
-        href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
-        id?: string | null;
-      }[];
+  upcomingConcert: {
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
     };
   };
+  infoCards: {
+    aboutUs: {
+      image: string | Media;
+      description: string;
+    };
+    ourPeople: {
+      image: string | Media;
+      description: string;
+    };
+    contact: {
+      image: string | Media;
+    };
+  };
+  featureVideoUrl: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -428,20 +432,11 @@ export interface LandingPage {
  */
 export interface Footer {
   id: string;
-  logo: string | Media;
   title: string;
-  socials?:
-    | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
-        url: string;
-        icon?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
   sections?:
     | {
         title: string;
-        links?:
+        options?:
           | {
               label: string;
               url: string;
@@ -481,18 +476,38 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section".
+ * via the `definition` "siteSetting".
  */
-export interface AboutHeroSection {
+export interface SiteSetting {
   id: string;
-  aboutUsStickers?:
+  primaryLogo: string | Media;
+  secondaryLogo: string | Media;
+  tertiaryLogo: string | Media;
+  links?:
     | {
-        'sticker-image': string | Media;
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
+        url: string;
         id?: string | null;
       }[]
     | null;
-  AboutUsHeader?: string | null;
-  AboutUsDescription?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-page".
+ */
+export interface AboutUsPage {
+  id: string;
+  hero: {
+    description: string;
+    stickers?:
+      | {
+          sticker?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -795,13 +810,14 @@ export interface OurStory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page_select".
+ * via the `definition` "home-page_select".
  */
-export interface LandingPageSelect<T extends boolean = true> {
-  header?:
+export interface HomePageSelect<T extends boolean = true> {
+  hero?:
     | T
     | {
-        title?: T;
+        background?: T;
+        header?: T;
         content?: T;
       };
   upcomingConcert?:
@@ -809,56 +825,48 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
-      };
-  matinee?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  concert?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
   infoCards?:
     | T
     | {
-        regularCards?:
+        aboutUs?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              id?: T;
+              description?: T;
             };
-        contactsCard?:
+        ourPeople?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              contacts?:
-                | T
-                | {
-                    text?: T;
-                    href?: T;
-                    icon?: T;
-                    id?: T;
-                  };
+              description?: T;
+            };
+        contact?:
+          | T
+          | {
+              image?: T;
             };
       };
+  featureVideoUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -868,21 +876,12 @@ export interface LandingPageSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  socials?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        icon?: T;
-        id?: T;
-      };
   sections?:
     | T
     | {
         title?: T;
-        links?:
+        options?:
           | T
           | {
               label?: T;
@@ -922,17 +921,39 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section_select".
+ * via the `definition` "siteSetting_select".
  */
-export interface AboutHeroSectionSelect<T extends boolean = true> {
-  aboutUsStickers?:
+export interface SiteSettingSelect<T extends boolean = true> {
+  primaryLogo?: T;
+  secondaryLogo?: T;
+  tertiaryLogo?: T;
+  links?:
     | T
     | {
-        'sticker-image'?: T;
+        platform?: T;
+        url?: T;
         id?: T;
       };
-  AboutUsHeader?: T;
-  AboutUsDescription?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us-page_select".
+ */
+export interface AboutUsPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        description?: T;
+        stickers?:
+          | T
+          | {
+              sticker?: T;
+              id?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -9,13 +9,13 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
-import Header from "./collections/global/Header";
+import { Header } from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
+import { SiteSetting } from "./collections/global/SiteSetting";
 
-import LandingPage from "./collections/global/LandingPage";
-import Videos from "./collections/videos";
+import HomePage from "./collections/global/HomePage";
 
-import AboutHeroSection from "./collections/global/AboutHeroSection";
+import AboutHeroSection from "./collections/global/AboutUsPage";
 import AboutUsCards from "./collections/global/AboutUsCards";
 
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
@@ -40,9 +40,10 @@ export default buildConfig({
   },
 
   globals: [
-    LandingPage,
+    HomePage,
     Footer,
     Header,
+    SiteSetting,
     AboutHeroSection,
     AboutUsCards,
     OurPeople,
@@ -52,7 +53,7 @@ export default buildConfig({
     GalleryLanding,
     OurStory,
   ],
-  collections: [Users, Media, Item, Videos],
+  collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
