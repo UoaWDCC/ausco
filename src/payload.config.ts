@@ -15,7 +15,7 @@ import { SiteSetting } from "./collections/global/SiteSetting";
 
 import HomePage from "./collections/global/HomePage";
 
-import AboutHeroSection from "./collections/global/AboutHeroSection";
+import AboutHeroSection from "./collections/global/AboutUsPage";
 import AboutUsCards from "./collections/global/AboutUsCards";
 
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";

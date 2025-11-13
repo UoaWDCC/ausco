@@ -1,6 +1,5 @@
 import {
   lexicalEditor,
-  ParagraphFeature,
   BoldFeature,
   ItalicFeature,
   UnderlineFeature,
