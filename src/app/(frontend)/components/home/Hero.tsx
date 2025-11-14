@@ -22,10 +22,10 @@ const Hero = ({ content }: HeroProps) => {
 
   const { scrollY } = useScroll();
 
-  // Parallax: image moves more slowly than the page scroll
-  const rawY = useTransform(scrollY, [0, 800], [0, 150]); // adjust ranges to taste
+  // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
+  const rawY = useTransform(scrollY, [0, 800], [0, 150]);  
 
-  // Optional: smooth the motion for a nicer feel
+  // smooth the motion for a nicer feel
   const y = useSpring(rawY, { damping: 20, stiffness: 120 });
 
   return (
