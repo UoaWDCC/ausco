@@ -8,9 +8,7 @@ export type CardProps = {
   title: string;
   summary: string;
   description: string;
-  logos?: {
-    logo: Media | string | null;
-  }[];
+  logos?: { logo: Media | string | null }[] | null;
 };
 
 // interface CardProps {

@@ -25,37 +25,37 @@ const AboutUsCards = ({ content }: AboutUsCardsProp) => {
 
   // TODO: abstract common classNames to the about us page (parent page)
   return (
-    <section className="bg-(--cream) flex flex-col items-center px-6 pb-16 w-full max-w-6xl mx-auto gap-6">
+    <section className="flex flex-col items-center px-6 pb-16 w-full max-w-6xl mx-auto gap-6">
       {/* First Row */}
       <div className="flex flex-row justify-between items-center gap-6">
-        {/* <Card
-            image={getImageUrl(content.visionCard?.["background-image"])}
-            alt={
-              typeof content.visionCard?.["background-image"] === "object"
-                ? content.visionCard["background-image"].alt
-                : "Vision Background"
-            }
-            icon={<Eye className="h-12 w-12" />}
-            title={content.visionCard?.title || ""}
-            shortDesc={content.visionCard?.["short-desc"]}
-            fullDesc={content.visionCard?.["full-desc"]}
-            size="md:w-3/5 lg:w-3/5"
-          />
+        <Card
+          image={getImageUrl(content.visionCard?.["background-image"])}
+          alt={
+            typeof content.visionCard?.["background-image"] === "object"
+              ? content.visionCard["background-image"].alt
+              : "Vision Background"
+          }
+          icon={<Eye className="h-12 w-12" />}
+          title={content.visionCard?.title || ""}
+          shortDesc={content.visionCard?.["short-desc"]}
+          fullDesc={content.visionCard?.["full-desc"]}
+          size="md:w-3/5 lg:w-3/5"
+        />
 
-          <Card
-            image={getImageUrl(content.historyCard?.["background-image"])}
-            alt={
-              typeof content.historyCard?.["background-image"] === "object"
-                ? content.historyCard["background-image"].alt
-                : "History Background"
-            }
-            icon={<History className="h-12 w-12" />}
-            title={content.historyCard?.title || ""}
-            shortDesc={content.historyCard?.["short-desc"]}
-            fullDesc={content.historyCard?.["full-desc"]}
-            size="md:w-2/5 lg:w-2/5"
-            link="/"
-          /> */}
+        <Card
+          image={getImageUrl(content.historyCard?.["background-image"])}
+          alt={
+            typeof content.historyCard?.["background-image"] === "object"
+              ? content.historyCard["background-image"].alt
+              : "History Background"
+          }
+          icon={<History className="h-12 w-12" />}
+          title={content.historyCard?.title || ""}
+          shortDesc={content.historyCard?.["short-desc"]}
+          fullDesc={content.historyCard?.["full-desc"]}
+          size="md:w-2/5 lg:w-2/5"
+          link="/"
+        />
       </div>
 
       {/* Second Row */}
