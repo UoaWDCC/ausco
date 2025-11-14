@@ -12,7 +12,6 @@ export default async function OurPeoplePage() {
       <Conductors />
       <Players />
       <HallOfFame />
-      <Footer />
     </>
   );
 }
