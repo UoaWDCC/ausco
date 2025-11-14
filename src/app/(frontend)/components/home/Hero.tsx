@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { Media } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Button } from "../ui/button";
+
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
 
 type HeroProps = {
   content: {
@@ -15,10 +19,19 @@ type HeroProps = {
 };
 
 const Hero = ({ content }: HeroProps) => {
+
+  const { scrollY } = useScroll();
+
+  // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
+  const rawY = useTransform(scrollY, [0, 800], [0, 150]);  
+
+  // smooth the motion for a nicer feel
+  const y = useSpring(rawY, { damping: 20, stiffness: 120 });
+
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      <motion.div className="absolute inset-0 z-0" style={{y}}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
@@ -28,7 +41,7 @@ const Hero = ({ content }: HeroProps) => {
             className="object-cover w-full h-full"
           />
         )}
-      </div>
+      </motion.div>
 
       {/* Foreground Content */}
       <div
