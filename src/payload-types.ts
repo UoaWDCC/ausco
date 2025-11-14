@@ -556,6 +556,8 @@ export interface AboutUsCard {
  */
 export interface OurPerson {
   id: string;
+  image?: (string | null) | Media;
+  description?: string | null;
   generalDescription?: string | null;
   execs?:
     | {
@@ -597,6 +599,27 @@ export interface OurPerson {
             blockType: 'small-group';
           }
       )[]
+    | null;
+  hallOfFame?:
+    | {
+        pastPresidents?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        founders?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -987,6 +1010,8 @@ export interface AboutUsCardsSelect<T extends boolean = true> {
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
+  image?: T;
+  description?: T;
   generalDescription?: T;
   execs?:
     | T
@@ -1030,6 +1055,27 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  hallOfFame?:
+    | T
+    | {
+        pastPresidents?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        founders?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
