@@ -1,49 +1,18 @@
-"use client";
-
 import React from "react";
 import { Media } from "@/payload-types";
 
 export type CardProps = {
-  background: Media | string | null;
+  icon: React.ReactNode;
+  background: string | null;
+  alt: string;
   title: string;
   summary: string;
   description: string;
   logos?: { logo: Media | string | null }[] | null;
+  link?: string | null;
 };
 
-// interface CardProps {
-//   image?: string;
-//   alt: string;
-//   icon: React.ReactNode;
-//   title: string;
-//   shortDesc?: string;
-//   fullDesc?: string;
-//   sponsorLogos?: { logo: string | Media; id?: string | null }[] | null;
-//   size?: string;
-//   link?: string;
-// }
-
-const Card = ({
-  image,
-  alt,
-  icon,
-  title,
-  shortDesc,
-  fullDesc,
-  sponsorLogos,
-  size = "md:w-1/2 lg:w-1/2",
-  link,
-}: {
-  image: string | undefined;
-  alt: string;
-  icon: React.ReactNode;
-  title: string;
-  shortDesc?: string;
-  fullDesc?: string;
-  sponsorLogos?: { logo: string | Media; id?: string | null }[] | null;
-  size?: string;
-  link?: string;
-}) => {
+const Card = ({ icon, background, alt, title, summary, description, logos, link }: CardProps) => {
   const Wrapper = link ? "a" : "div"; // use <a> if link exists, else <div>
   const isSmallCard = size === "md:w-2/5 lg:w-2/5";
 

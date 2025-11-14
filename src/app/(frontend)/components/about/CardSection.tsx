@@ -1,26 +1,36 @@
 import { Media } from "@/payload-types";
 import { Eye, History, BookText, Handshake } from "lucide-react";
-import type { CardProps } from "./Card";
 import Card from "./Card";
 
-type AboutUsCardsProp = {
+type CMSCard = {
+  background: Media | string | null;
+  title: string;
+  summary: string;
+  description: string;
+  sponsorLogos?: (Media | string | null)[] | null;
+};
+
+type CardSectionProp = {
   content: {
-    vision: CardProps;
-    story: CardProps;
-    constitution: CardProps;
-    sponsorsAndPartnerships: CardProps;
+    vision: CMSCard;
+    story: CMSCard;
+    constitution: CMSCard;
+    sponsorsAndPartnerships: CMSCard;
   };
 };
 
-const AboutUsCards = ({ content }: AboutUsCardsProp) => {
-  const getImageUrl = (imageField: string | Media | null | undefined): string | undefined => {
-    if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
-      return imageField.url ?? undefined;
-    }
-    if (typeof imageField === "string") {
-      return imageField;
-    }
-    return undefined;
+const CardSection = ({ content }: CardSectionProp) => {
+  const getImageUrl = (image: Media | string | null | undefined): string | null => {
+    if (!image) return null; // handle undefined or null
+    if (typeof image === "string") return image; // if it's already a string URL
+    if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
+    return null;
+  };
+
+  const getImageAlt = (image: Media | string | null | undefined, fallback: string): string => {
+    if (!image) return fallback; // handle undefined or null
+    if (typeof image === "object" && image?.alt) return image.alt; // if it's a Media object, extract the alt text
+    return fallback;
   };
 
   // TODO: abstract common classNames to the about us page (parent page)
@@ -28,34 +38,29 @@ const AboutUsCards = ({ content }: AboutUsCardsProp) => {
     <section className="flex flex-col items-center px-6 pb-16 w-full max-w-6xl mx-auto gap-6">
       {/* First Row */}
       <div className="flex flex-row justify-between items-center gap-6">
-        <Card
-          image={getImageUrl(content.visionCard?.["background-image"])}
-          alt={
-            typeof content.visionCard?.["background-image"] === "object"
-              ? content.visionCard["background-image"].alt
-              : "Vision Background"
-          }
-          icon={<Eye className="h-12 w-12" />}
-          title={content.visionCard?.title || ""}
-          shortDesc={content.visionCard?.["short-desc"]}
-          fullDesc={content.visionCard?.["full-desc"]}
-          size="md:w-3/5 lg:w-3/5"
-        />
+        <div className="basis-3/5">
+          <Card
+            icon={<Eye className="h-12 w-12" />}
+            background={getImageUrl(content.vision.background)}
+            alt={getImageAlt(content.vision.background, "Vision Background")}
+            title={content.vision.title}
+            summary={content.vision.summary}
+            description={content.vision.description}
+            link={""}
+          />
+        </div>
 
-        <Card
-          image={getImageUrl(content.historyCard?.["background-image"])}
-          alt={
-            typeof content.historyCard?.["background-image"] === "object"
-              ? content.historyCard["background-image"].alt
-              : "History Background"
-          }
-          icon={<History className="h-12 w-12" />}
-          title={content.historyCard?.title || ""}
-          shortDesc={content.historyCard?.["short-desc"]}
-          fullDesc={content.historyCard?.["full-desc"]}
-          size="md:w-2/5 lg:w-2/5"
-          link="/"
-        />
+        <div className="basis-2/5">
+          <Card
+            icon={<History className="h-12 w-12" />}
+            background={getImageUrl(content.story.background)}
+            alt={getImageAlt(content.story.background, "Story Background")}
+            title={content.background.title}
+            summary={content.background.summary}
+            description={content.background.description}
+            link={""}
+          />
+        </div>
       </div>
 
       {/* Second Row */}
@@ -94,4 +99,4 @@ const AboutUsCards = ({ content }: AboutUsCardsProp) => {
   );
 };
 
-export default AboutUsCards;
+export default CardSection;

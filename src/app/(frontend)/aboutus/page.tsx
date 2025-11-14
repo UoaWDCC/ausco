@@ -1,5 +1,5 @@
 import Hero from "@components/about/Hero";
-import AboutUsCards from "@components/about/AboutUsCards";
+import AboutUsCards from "@components/about/CardSection";
 
 import { getAboutUsPage } from "@/actions/pageActions";
 
