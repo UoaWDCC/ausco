@@ -55,9 +55,9 @@ const CardSection = ({ content }: CardSectionProp) => {
             icon={<History className="h-12 w-12" />}
             background={getImageUrl(content.story.background)}
             alt={getImageAlt(content.story.background, "Story Background")}
-            title={content.background.title}
-            summary={content.background.summary}
-            description={content.background.description}
+            title={content.story.title}
+            summary={content.story.summary}
+            description={content.story.description}
             link={""}
           />
         </div>
@@ -65,35 +65,29 @@ const CardSection = ({ content }: CardSectionProp) => {
 
       {/* Second Row */}
       <div className="flex flex-row justify-between items-center gap-6">
-        {/* <Card
-            image={getImageUrl(content.leftBox?.backgroundImage)}
-            alt={
-              typeof content.leftBox?.backgroundImage === "object"
-                ? (content.leftBox.backgroundImage?.alt ?? "Constitution Background")
-                : "Constitution Background"
-            }
-            icon={<BookText className="h-12 w-12" />}
-            title={content.leftBox?.title || ""}
-            shortDesc={content.leftBox?.shortDescription}
-            fullDesc={content.leftBox?.fullText}
-            size="md:w-2/5 lg:w-2/5"
-            link="https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
-          />
+        <Card
+          icon={<BookText className="h-12 w-12" />}
+          background={getImageUrl(content.constitution.background)}
+          alt={getImageAlt(content.constitution.background, "Constitution Background")}
+          title={content.constitution.title}
+          summary={content.constitution.summary}
+          description={content.constitution.description}
+          link={
+            "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
+          }
+        />
 
-          <Card
-            image={getImageUrl(content.rightBox?.backgroundImage)}
-            alt={
-              typeof content.rightBox?.backgroundImage === "object"
-                ? (content.rightBox.backgroundImage?.alt ?? "Sponsorship Background")
-                : "Sponsorship Background"
-            }
-            icon={<Handshake className="h-12 w-12" />}
-            title={content.rightBox?.title || ""}
-            shortDesc={content.rightBox?.shortDescription}
-            fullDesc={content.rightBox?.fullText}
-            sponsorLogos={content.rightBox?.sponsorLogos || []}
-            size="md:w-3/5 lg:w-3/5"
-          /> */}
+        <Card
+          icon={<Handshake className="h-12 w-12" />}
+          background={getImageUrl(content.sponsorsAndPartnerships.background)}
+          alt={getImageAlt(
+            content.sponsorsAndPartnerships.background,
+            "Sponsors and Partnerships Background")}
+          title={content.sponsorsAndPartnerships.title}
+          summary={content.sponsorsAndPartnerships.summary}
+          description={content.sponsorsAndPartnerships.description}
+          link={""}
+        />
       </div>
     </section>
   );
