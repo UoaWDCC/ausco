@@ -8,7 +8,7 @@ const OurPeople = async () => {
       {/* mobile view */}
       <div className="relative justify-center items-center mx-0 p-0 lg:hidden text-[var(--white)]">
         {content.image && typeof content.image !== "string" ? (
-          <Image 
+          <Image
             src={content.image.url ?? ""}
             alt={content.image.alt ?? "Concert poster"}
             width={500}
@@ -16,13 +16,16 @@ const OurPeople = async () => {
             className="relative w-full h-auto mx-0 my-0 py-0 px-0 object-cover"
           />
         ) : null}
-        <h1 className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl"> Our People </h1>
+        <h1 className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl">
+          {" "}
+          Our People{" "}
+        </h1>
       </div>
 
       {/* desktop view */}
       <div className="text-[var(--navy)] hidden lg:flex flex-col gap-16 justify-center items-center mx-auto px-4 lg:flex-row">
         {content.image && typeof content.image !== "string" ? (
-          <Image 
+          <Image
             src={content.image.url ?? ""}
             alt={content.image.alt ?? "Concert poster"}
             width={658}
@@ -36,7 +39,6 @@ const OurPeople = async () => {
         </div>
       </div>
     </div>
-    
   );
 };
 

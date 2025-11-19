@@ -94,7 +94,7 @@ const Header = ({ content }: HeaderProps) => {
             ) : (
               <Image src="/assets/ausco-logo-1.png" alt="AUSCO logo" width={60} height={60} />
             )}
-            <span className={clsx("text:md md:text-lg font-medium", textColor)}>
+            <span className={clsx("text:md md:text-lg font-heading font-medium", textColor)}>
               {(content.title || "").split("\n").map((line, i) => (
                 <span key={i}>
                   {line}

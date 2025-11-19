@@ -43,11 +43,11 @@ const LandingPage = async () => {
             )}
             <div className="absolute inset-0 bg-black opacity-70"></div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full font-heading text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <CalendarClock className="size-[40px] sm:size-[40px]" />
-              <h3 className="text-3xl lg:text-4xl font-bold my-4">Upcoming</h3>
+              <h3 className="text-3xl lg:text-4xl my-4">Upcoming</h3>
               <span className="flex items-center justify-center">
-                <h3 className="text-3xl lg:text-4xl font-bold">Concerts</h3>
+                <h3 className="text-3xl lg:text-4xl">Concerts</h3>
                 <ArrowUpRight className="size-[35px] ml-2 translate-y-[5px]" />
               </span>
             </div>
@@ -72,11 +72,11 @@ const LandingPage = async () => {
             )}
             <div className="absolute inset-0 bg-black opacity-70"></div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
+            <div className="relative z-10 flex flex-col items-center justify-center h-full font-heading text-center text-[var(--cream)] px-2 py-4 lg:p-16">
               <Archive className="size-[40px] sm:size-[40px]" />
-              <h3 className="text-3xl lg:text-4xl font-bold my-4">Past</h3>
+              <h3 className="text-3xl lg:text-4xl my-4">Past</h3>
               <span className="flex items-center justify-center">
-                <h3 className="text-3xl lg:text-4xl font-bold">Concerts</h3>
+                <h3 className="text-3xl lg:text-4xl">Concerts</h3>
                 <ArrowUpRight className="size-[35px] ml-2 translate-y-[5px]" />
               </span>
             </div>
