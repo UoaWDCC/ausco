@@ -28,7 +28,7 @@ const SemesterTwoConcert = async () => {
               <span className="bg-[var(--brown)] text-[var(--cream)] px-4 sm:px-6 py-2 sm:py-3 rounded-lg text-xs font-semibold w-fit whitespace-nowrap flex-shrink-0">
                 Semester 2
               </span>
-              <h2 className="italic text-2xl sm:text-3xl md:text-4xl font-bold truncate min-w-0">
+              <h2 className="italic text-2xl sm:text-3xl md:text-4xl font-heading font-light truncate min-w-0">
                 {title || "Coming soon!"}
               </h2>
             </div>
