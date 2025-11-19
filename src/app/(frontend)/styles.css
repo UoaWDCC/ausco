@@ -126,6 +126,10 @@ h1 {
   }
 }
 
+.font-heading {
+  font-family: var(--font-fraunces, system-ui);
+}
+
 p {
   margin: 0;
 

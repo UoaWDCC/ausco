@@ -86,7 +86,7 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
     >
       {/* Header */}
       <motion.h2
-        className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
+        className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-heading font-bold text-center tracking-tight leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
         style={{
           color: "var(--concertblue)",
           opacity: headerOpacity,

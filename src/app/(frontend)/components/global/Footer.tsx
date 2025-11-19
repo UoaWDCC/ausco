@@ -35,7 +35,7 @@ const iconMap: Record<string, JSX.Element> = {
   spotify: <Spotify width={20} height={20} />,
   instagram: <Instagram width={20} height={20} />,
 };
- 
+
 const Footer = ({ content }: FooterProps) => {
   return (
     <footer
@@ -58,7 +58,7 @@ const Footer = ({ content }: FooterProps) => {
 
         <div className="flex flex-col flex-1 justify-between">
           {/* Title */}
-          <div className="w-60 font-bold text-xl lg:text-xl">{content.title}</div>
+          <div className="w-60 font-heading font-bold text-xl lg:text-xl">{content.title}</div>
 
           {/* Social Media Icons */}
           <div className="flex gap-4">
@@ -80,7 +80,7 @@ const Footer = ({ content }: FooterProps) => {
         {content.sections?.map((section, index) => (
           <div key={index} className="flex flex-col w-auto">
             {/* Column Header */}
-            <h3 className="font-bold mb-2">{section.title}</h3>
+            <h3 className="font-heading font-bold mb-2">{section.title}</h3>
 
             {/* Column Options */}
             {section.options?.map((option, index) => (
