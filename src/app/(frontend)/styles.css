@@ -103,6 +103,7 @@ img {
 }
 
 h1 {
+  font-family: var(--font-fraunces, system-ui);
   margin: 40px 0;
   font-size: 64px;
   line-height: 70px;
