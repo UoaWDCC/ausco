@@ -13,9 +13,21 @@ interface PayloadImage {
 }
 
 const conductorPhotos = [
-  { filename: "Conductor_1.PNG", title: "Conductor 1", text: "Description about them (Developers just put lorem ipsum text for now)" },
-  { filename: "Conductor_2.PNG", title: "Conductor 2", text: "Description about them (Developers just put lorem ipsum text for now)" },
-  { filename: "Conductor_3.PNG", title: "Conductor 3", text: "Description about them (Developers just put lorem ipsum text for now)" },
+  {
+    filename: "Conductor_1.PNG",
+    title: "Conductor 1",
+    text: "Description about them (Developers just put lorem ipsum text for now)",
+  },
+  {
+    filename: "Conductor_2.PNG",
+    title: "Conductor 2",
+    text: "Description about them (Developers just put lorem ipsum text for now)",
+  },
+  {
+    filename: "Conductor_3.PNG",
+    title: "Conductor 3",
+    text: "Description about them (Developers just put lorem ipsum text for now)",
+  },
 ];
 
 const Conductors = () => {
@@ -35,7 +47,8 @@ const Conductors = () => {
       if (data.docs && data.docs.length > 0) {
         // Find frame if not already found
         if (!foundFrame) {
-          foundFrame = data.docs.find((doc: PayloadImage) => doc.filename === "ROUND_FRAME_1.PNG") || null;
+          foundFrame =
+            data.docs.find((doc: PayloadImage) => doc.filename === "ROUND_FRAME_1.PNG") || null;
         }
         // Find conductors by allowedNames, keep null if not found
         allowedNames.forEach((filename, idx) => {
@@ -104,15 +117,13 @@ const Conductors = () => {
                   priority={i === 0}
                 />
               )
-            ) : (
-              hovered === i ? (
-                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                  <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
-                    Conductor doesn&apos;t exist
-                  </span>
-                </div>
-              ) : null
-            )}
+            ) : hovered === i ? (
+              <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
+                <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
+                  Conductor doesn&apos;t exist
+                </span>
+              </div>
+            ) : null}
           </div>
         ))}
       </div>
