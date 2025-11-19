@@ -83,7 +83,7 @@ body,
 }
 
 body {
-  font-family: var(--font-fraunces, system-ui);
+  font-family: var(--font-shibsted, var(--font-fraunces, system-ui));
   font-size: 18px;
   line-height: 32px;
 
