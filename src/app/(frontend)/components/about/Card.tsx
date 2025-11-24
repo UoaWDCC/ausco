@@ -4,6 +4,9 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { Media } from "@/payload-types";
 
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import parallaxConfig from "@/config/parallax";
+
 interface CardProps {
   image?: string;
   alt: string;
@@ -40,15 +43,22 @@ const Card = ({
   const Wrapper = link ? "a" : "div"; // use <a> if link exists, else <div>
   const isSmallCard = size === "md:w-2/5 lg:w-2/5";
 
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
+  const { scrollY } = useScroll();
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
+  // smooth motion
+  const y = useSpring(rawY, spring);
+
   return (
     <Wrapper
       href={link}
       className={`group relative w-full ${size} h-[400px] rounded-lg overflow-hidden shadow-sm ${link ? "cursor-pointer" : ""}`}
     >
       {image && (
-        <div
+        <motion.div
           className="absolute inset-0 bg-center bg-cover"
-          style={{ backgroundImage: `url(${image})` }}
+          style={{ backgroundImage: `url(${image})`, y, scale: 1.4}}
         />
       )}
       {/* overlays */}
