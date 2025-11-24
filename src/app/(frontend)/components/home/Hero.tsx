@@ -8,6 +8,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Button } from "../ui/button";
 
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import parallaxConfig from "@/config/parallax";
 
 type HeroProps = {
   content: {
@@ -20,13 +21,14 @@ type HeroProps = {
 
 const Hero = ({ content }: HeroProps) => {
 
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
 
-  // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
-  const rawY = useTransform(scrollY, [0, 800], [0, 75]);  
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
 
-  // smooth the motion for a nicer feel
-  const y = useSpring(rawY, { damping: 20, stiffness: 120 });
+  // smooth motion
+  const y = useSpring(rawY, spring);
 
   return (
     <section className="relative min-h-screen overflow-hidden">

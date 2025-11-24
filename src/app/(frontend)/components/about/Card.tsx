@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Media } from "@/payload-types";
 
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import parallaxConfig from "@/config/parallax";
 
 interface CardProps {
   image?: string;
@@ -42,11 +43,12 @@ const Card = ({
   const Wrapper = link ? "a" : "div"; // use <a> if link exists, else <div>
   const isSmallCard = size === "md:w-2/5 lg:w-2/5";
 
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
-  // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
-  const rawY = useTransform(scrollY, [0, 800], [0, 75]);  
-  // smooth the motion for a nicer feel
-  const y = useSpring(rawY, { damping: 20, stiffness: 120 });
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
+  // smooth motion
+  const y = useSpring(rawY, spring);
 
   return (
     <Wrapper
