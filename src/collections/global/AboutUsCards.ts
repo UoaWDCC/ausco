@@ -129,7 +129,7 @@ const AboutUsCards: GlobalConfig = {
         },
         {
           name: "description",
-          label: "Full Description (on hover)",
+          label: "Description (on hover)",
           type: "textarea",
           required: true,
         },

@@ -2,7 +2,7 @@ import { Media } from "@/payload-types";
 import { Eye, History, BookText, Handshake } from "lucide-react";
 import Card from "./Card";
 
-type CMSCard = {
+type CardTileProps = {
   background: Media | string | null;
   title: string;
   summary: string;
@@ -10,16 +10,16 @@ type CMSCard = {
   sponsorLogos?: (Media | string | null)[] | null;
 };
 
-type CardSectionProp = {
+type CardSectionProps = {
   content: {
-    vision: CMSCard;
-    story: CMSCard;
-    constitution: CMSCard;
-    sponsorsAndPartnerships: CMSCard;
+    vision: CardTileProps;
+    story: CardTileProps;
+    constitution: CardTileProps;
+    sponsorsAndPartnerships: CardTileProps;
   };
 };
 
-const CardSection = ({ content }: CardSectionProp) => {
+const CardSection = ({ content }: CardSectionProps) => {
   const getImageUrl = (image: Media | string | null | undefined): string | null => {
     if (!image) return null; // handle undefined or null
     if (typeof image === "string") return image; // if it's already a string URL
@@ -58,36 +58,41 @@ const CardSection = ({ content }: CardSectionProp) => {
             title={content.story.title}
             summary={content.story.summary}
             description={content.story.description}
-            link={""}
+            link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
           />
         </div>
       </div>
 
       {/* Second Row */}
       <div className="flex flex-row justify-between items-center gap-6">
-        <Card
-          icon={<BookText className="h-12 w-12" />}
-          background={getImageUrl(content.constitution.background)}
-          alt={getImageAlt(content.constitution.background, "Constitution Background")}
-          title={content.constitution.title}
-          summary={content.constitution.summary}
-          description={content.constitution.description}
-          link={
-            "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
-          }
-        />
+        <div className="basis-2/5">
+          <Card
+            icon={<BookText className="h-12 w-12" />}
+            background={getImageUrl(content.constitution.background)}
+            alt={getImageAlt(content.constitution.background, "Constitution Background")}
+            title={content.constitution.title}
+            summary={content.constitution.summary}
+            description={content.constitution.description}
+            link={
+              "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
+            }
+          />
+        </div>
 
-        <Card
-          icon={<Handshake className="h-12 w-12" />}
-          background={getImageUrl(content.sponsorsAndPartnerships.background)}
-          alt={getImageAlt(
-            content.sponsorsAndPartnerships.background,
-            "Sponsors and Partnerships Background")}
-          title={content.sponsorsAndPartnerships.title}
-          summary={content.sponsorsAndPartnerships.summary}
-          description={content.sponsorsAndPartnerships.description}
-          link={""}
-        />
+        <div className="basis-3/5">
+          <Card
+            icon={<Handshake className="h-12 w-12" />}
+            background={getImageUrl(content.sponsorsAndPartnerships.background)}
+            alt={getImageAlt(
+              content.sponsorsAndPartnerships.background,
+              "Sponsors and Partnerships Background",
+            )}
+            title={content.sponsorsAndPartnerships.title}
+            summary={content.sponsorsAndPartnerships.summary}
+            description={content.sponsorsAndPartnerships.description}
+            link={""}
+          />
+        </div>
       </div>
     </section>
   );
