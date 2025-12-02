@@ -95,12 +95,6 @@ export const AboutUsPage: GlobalConfig = {
               type: "textarea",
               required: true,
             },
-            {
-              name: "description",
-              label: "Description (on hover)",
-              type: "textarea",
-              required: true,
-            },
           ],
         },
         {
@@ -124,12 +118,6 @@ export const AboutUsPage: GlobalConfig = {
             {
               name: "summary",
               label: "Summary",
-              type: "textarea",
-              required: true,
-            },
-            {
-              name: "description",
-              label: "Description (on hover)",
               type: "textarea",
               required: true,
             },

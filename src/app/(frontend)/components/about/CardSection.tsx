@@ -6,7 +6,7 @@ type CardTileProps = {
   background: Media | string | null;
   title: string;
   summary: string;
-  description: string;
+  description?: string;
   sponsorLogos?: (Media | string | null)[] | null;
 };
 
@@ -44,7 +44,7 @@ const CardSection = ({ content }: CardSectionProps) => {
           alt={getImageAlt(content.vision.background, "Vision Background")}
           title={content.vision.title}
           summary={content.vision.summary}
-          description={content.vision.description}
+          description={content.vision.description ?? "Vision Description"}
           link={""}
         />
 
@@ -54,7 +54,7 @@ const CardSection = ({ content }: CardSectionProps) => {
           alt={getImageAlt(content.story.background, "Story Background")}
           title={content.story.title}
           summary={content.story.summary}
-          description={content.story.description}
+          description={`View ${content.story.summary}`}
           link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
         />
       </div>
@@ -68,7 +68,7 @@ const CardSection = ({ content }: CardSectionProps) => {
             alt={getImageAlt(content.constitution.background, "Constitution Background")}
             title={content.constitution.title}
             summary={content.constitution.summary}
-            description={content.constitution.description}
+            description={`View ${content.story.summary}`}
             link={
               "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
             }
@@ -85,7 +85,7 @@ const CardSection = ({ content }: CardSectionProps) => {
             )}
             title={content.sponsorsAndPartnerships.title}
             summary={content.sponsorsAndPartnerships.summary}
-            description={content.sponsorsAndPartnerships.description}
+            description={content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"}
             link={""}
           />
         </div>

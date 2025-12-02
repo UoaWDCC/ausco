@@ -519,13 +519,11 @@ export interface AboutUsPage {
       background: string | Media;
       title: string;
       summary: string;
-      description: string;
     };
     constitution: {
       background: string | Media;
       title: string;
       summary: string;
-      description: string;
     };
     sponsorsAndPartnerships: {
       background: string | Media;
@@ -980,7 +978,6 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               background?: T;
               title?: T;
               summary?: T;
-              description?: T;
             };
         constitution?:
           | T
@@ -988,7 +985,6 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               background?: T;
               title?: T;
               summary?: T;
-              description?: T;
             };
         sponsorsAndPartnerships?:
           | T

@@ -23,7 +23,6 @@ const Card = ({
   sponsorLogos,
 }: CardProps) => {
   const isLinked = link ? link.trim() !== "" : false;
-  const Wrapper: React.ElementType = isLinked ? "a" : "div"; // use <a> if link exists, else <div>
 
   // TODO: check css colour style on "headerblue"
   //       {...(isLinked && { href: link, target: "_blank", rel: "noopener noreferrer" })}
@@ -53,8 +52,10 @@ const Card = ({
         </div>
       </div>
 
-      {/* Hovered Background Colour */}
+      {/* On Hover: Background Colour */}
       <div className="absolute inset-0 group-hover:bg-(--navy) transition-colors duration-500" />
+
+      {/* On Hover: Content */}
     </div>
   );
 };
