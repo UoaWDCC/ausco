@@ -29,7 +29,7 @@ const Card = ({
   //       {...(isLinked && { href: link, target: "_blank", rel: "noopener noreferrer" })}
 
   return (
-    <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--headerblue) py-18 px-14">
+    <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--headerblue) py-18 px-18">
       {/* On Display: Background Image */}
       <div
         className="absolute inset-0 bg-center bg-cover"
@@ -37,12 +37,20 @@ const Card = ({
       />
 
       {/* On Display: Content */}
-      <div className="relative z-10 h-full grid grid-rows-[auto,auto,1fr] items-start text-center gap-3">
-        <div className="flex justify-center">{icon}</div>
+      <div className="relative z-10 h-full flex flex-col items-center text-center">
+        <div className="flex flex-col justify-between items-center h-1/2 w-full">
+          <div className="flex justify-center">{icon}</div>
 
-        <h1 className="font-semibold! text-4xl! m-0!">{title}</h1>
+          <h1 className="font-semibold! text-4xl! m-0!">{title}</h1>
+        </div>
 
-        {isLinked ? <p className="text-base">{summary}</p> : <p className="text-base">{summary}</p>}
+        <div className="h-1/2 w-full flex items-start mt-4">
+          {isLinked ? (
+            <p className="text-base">{summary}</p>
+          ) : (
+            <p className="text-base">{summary}</p>
+          )}
+        </div>
       </div>
 
       {/* Hovered Background Colour */}

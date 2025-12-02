@@ -35,32 +35,28 @@ const CardSection = ({ content }: CardSectionProps) => {
 
   // TODO: abstract common classNames to the about us page (parent page)
   return (
-    <section className="flex flex-col items-center px-6 pb-16 w-full max-w-6xl mx-auto gap-6">
+    <section className="flex flex-col items-center pb-16 w-full max-w-6xl mx-auto gap-6">
       {/* First Row */}
       <div className="flex flex-row justify-between items-center gap-6">
-        <div className="basis-3/5">
-          <Card
-            icon={<Eye className="h-12 w-12" />}
-            background={getImageUrl(content.vision.background)}
-            alt={getImageAlt(content.vision.background, "Vision Background")}
-            title={content.vision.title}
-            summary={content.vision.summary}
-            description={content.vision.description}
-            link={""}
-          />
-        </div>
+        <Card
+          icon={<Eye className="h-12 w-12" />}
+          background={getImageUrl(content.vision.background)}
+          alt={getImageAlt(content.vision.background, "Vision Background")}
+          title={content.vision.title}
+          summary={content.vision.summary}
+          description={content.vision.description}
+          link={""}
+        />
 
-        <div className="basis-2/5">
-          <Card
-            icon={<History className="h-12 w-12" />}
-            background={getImageUrl(content.story.background)}
-            alt={getImageAlt(content.story.background, "Story Background")}
-            title={content.story.title}
-            summary={content.story.summary}
-            description={content.story.description}
-            link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
-          />
-        </div>
+        <Card
+          icon={<History className="h-12 w-12" />}
+          background={getImageUrl(content.story.background)}
+          alt={getImageAlt(content.story.background, "Story Background")}
+          title={content.story.title}
+          summary={content.story.summary}
+          description={content.story.description}
+          link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
+        />
       </div>
 
       {/* Second Row */}
