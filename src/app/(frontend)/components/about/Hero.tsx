@@ -27,7 +27,7 @@ const Hero = ({ content }: HeroProps) => {
                 <Image
                   key={index}
                   src={item.sticker.url}
-                  alt={item.sticker.alt || `sticker ${index}`}
+                  alt={item.sticker.alt || `sticker ${index + 1}`}
                   width={100}
                   height={100}
                   className={"wiggle-hover"}

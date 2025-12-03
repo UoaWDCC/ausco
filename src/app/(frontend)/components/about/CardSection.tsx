@@ -7,7 +7,7 @@ type CardTileProps = {
   title: string;
   summary: string;
   description?: string;
-  sponsorLogos?: (Media | string | null)[] | null;
+  logos?: { logo: Media | string | null }[] | null;
 };
 
 type CardSectionProps = {
@@ -89,6 +89,7 @@ const CardSection = ({ content }: CardSectionProps) => {
               content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"
             }
             link={""}
+            sponsorLogos={content.sponsorsAndPartnerships.logos}
           />
         </div>
       </div>
