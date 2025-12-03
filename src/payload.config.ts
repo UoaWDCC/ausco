@@ -16,7 +16,6 @@ import { SiteSetting } from "./collections/global/SiteSetting";
 import HomePage from "./collections/global/HomePage";
 
 import AboutHeroSection from "./collections/global/AboutUsPage";
-import AboutUsCards from "./collections/global/AboutUsCards";
 
 import { ConcertsLanding } from "./collections/global/ConcertsLanding";
 
@@ -45,7 +44,6 @@ export default buildConfig({
     Header,
     SiteSetting,
     AboutHeroSection,
-    AboutUsCards,
     OurPeople,
     ConcertsLanding,
     UpcomingConcerts,

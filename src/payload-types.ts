@@ -94,7 +94,6 @@ export interface Config {
     header: Header;
     siteSetting: SiteSetting;
     'about-us-page': AboutUsPage;
-    'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
     'upcoming-concerts': UpcomingConcert;
@@ -108,7 +107,6 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
-    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
@@ -543,45 +541,6 @@ export interface AboutUsPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards".
- */
-export interface AboutUsCard {
-  id: string;
-  vision: {
-    background: string | Media;
-    title: string;
-    summary: string;
-    description: string;
-  };
-  story: {
-    background: string | Media;
-    title: string;
-    summary: string;
-    description: string;
-  };
-  constitution: {
-    background: string | Media;
-    title: string;
-    summary: string;
-    description: string;
-  };
-  sponsorsAndPartnerships: {
-    background: string | Media;
-    title: string;
-    summary: string;
-    description: string;
-    logos?:
-      | {
-          logo: string | Media;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-people".
  */
 export interface OurPerson {
@@ -999,53 +958,6 @@ export interface AboutUsPageSelect<T extends boolean = true> {
                     logo?: T;
                     id?: T;
                   };
-            };
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards_select".
- */
-export interface AboutUsCardsSelect<T extends boolean = true> {
-  vision?:
-    | T
-    | {
-        background?: T;
-        title?: T;
-        summary?: T;
-        description?: T;
-      };
-  story?:
-    | T
-    | {
-        background?: T;
-        title?: T;
-        summary?: T;
-        description?: T;
-      };
-  constitution?:
-    | T
-    | {
-        background?: T;
-        title?: T;
-        summary?: T;
-        description?: T;
-      };
-  sponsorsAndPartnerships?:
-    | T
-    | {
-        background?: T;
-        title?: T;
-        summary?: T;
-        description?: T;
-        logos?:
-          | T
-          | {
-              logo?: T;
-              id?: T;
             };
       };
   updatedAt?: T;
