@@ -154,7 +154,7 @@ export const AboutUsPage: GlobalConfig = {
               required: true,
             },
             {
-              name: "logos",
+              name: "sponsorLogos",
               label: "Sponsor and Partnership Logos",
               type: "array",
               fields: [

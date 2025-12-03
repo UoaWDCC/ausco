@@ -1,5 +1,6 @@
-import { Media } from "@/payload-types";
 import { Eye, History, BookText, Handshake } from "lucide-react";
+
+import { Media } from "@/payload-types";
 import Card from "./Card";
 
 type CardTileProps = {
@@ -7,7 +8,7 @@ type CardTileProps = {
   title: string;
   summary: string;
   description?: string;
-  logos?: { logo: Media | string | null }[] | null;
+  sponsorLogos?: { logo: Media | string | null }[] | null;
 };
 
 type CardSectionProps = {
@@ -33,7 +34,6 @@ const CardSection = ({ content }: CardSectionProps) => {
     return fallback;
   };
 
-  // TODO: abstract common classNames to the about us page (parent page)
   return (
     <section className="flex flex-col items-center pb-16 w-full max-w-6xl mx-auto gap-6">
       {/* First Row */}
@@ -54,8 +54,8 @@ const CardSection = ({ content }: CardSectionProps) => {
           alt={getImageAlt(content.story.background, "Story Background")}
           title={content.story.title}
           summary={content.story.summary}
-          description={`View Our Story`}
-          link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
+          description={`View ${content.story.title}`}
+          link={"https://ausco.wdcc.co.nz/"} // TODO: update to /ourstory when page is live
         />
       </div>
 
@@ -68,7 +68,7 @@ const CardSection = ({ content }: CardSectionProps) => {
             alt={getImageAlt(content.constitution.background, "Constitution Background")}
             title={content.constitution.title}
             summary={content.constitution.summary}
-            description={`View Constitution`}
+            description={`View ${content.constitution.title}`}
             link={
               "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
             }
@@ -89,7 +89,7 @@ const CardSection = ({ content }: CardSectionProps) => {
               content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"
             }
             link={""}
-            sponsorLogos={content.sponsorsAndPartnerships.logos}
+            sponsorLogos={content.sponsorsAndPartnerships.sponsorLogos}
           />
         </div>
       </div>

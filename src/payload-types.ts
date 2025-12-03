@@ -530,7 +530,7 @@ export interface AboutUsPage {
       title: string;
       summary: string;
       description: string;
-      logos?:
+      sponsorLogos?:
         | {
             logo: string | Media;
             id?: string | null;
@@ -993,7 +993,7 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               title?: T;
               summary?: T;
               description?: T;
-              logos?:
+              sponsorLogos?:
                 | T
                 | {
                     logo?: T;

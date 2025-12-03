@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
+
 import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
-import Image from "next/image";
 
 export type CardProps = {
   icon: React.ReactNode;
@@ -27,11 +28,8 @@ const Card = ({
   const isLinked = link ? link.trim() !== "" : false;
   const isSponsored = sponsorLogos && sponsorLogos.length > 0;
 
-  console.log("sponsorLogos: ", isSponsored);
-
-  // TODO: check css colour style on "headerblue"
   return (
-    <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--headerblue) py-18 px-18">
+    <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
       {/* On Display: Background Image */}
       <Image
         src={background!}
@@ -63,7 +61,7 @@ const Card = ({
         <div className="flex justify-center mb-4">{icon}</div>
 
         {isSponsored && (
-          <div className="bg-(--headerblue) py-3 px-6 mb-4 rounded-md gap-6 flex flex-wrap justify-center items-center">
+          <div className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md gap-6 flex flex-wrap justify-center items-center">
             {sponsorLogos?.map(
               (item, index) =>
                 typeof item.logo === "object" &&

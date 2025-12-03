@@ -39,11 +39,10 @@
 
   /*custom colour variables*/
   --navy: oklch(0.4187 0.1033 258.11); /*#264C84*/
+  --lightblue: oklch(89.36% 0.048 256.37) /*#C7D5E8*/;
   --cream: oklch(0.9665 0.0108 95.16); /*#F6F4EC*/
   --brown: oklch(0.359 0.0856 46.62); /*#602C0F*/
   --beige: oklch(0.9255 0.02 77.31); /*#EEE5D8 - TODO: check if being used*/
-  --blue: oklch(0.6648 0.0945 255.48); /*#6C96CD*/
-  --headerblue: oklch(89.36% 0.048 256.37) /*#C7D5E8*/;
   --concertblue: oklch(0.3004 0.0775 250.91) /*#082f53*/;
 }
 
