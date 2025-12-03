@@ -1,5 +1,5 @@
 import Hero from "@components/about/Hero";
-import AboutUsCards from "@components/about/CardSection";
+import CardsSection from "@components/about/CardsSection";
 
 import { getAboutUsPage } from "@/actions/pageActions";
 
@@ -9,7 +9,7 @@ export default async function AboutPage() {
   return (
     <div className="bg-(--cream)">
       <Hero content={aboutUsContent.hero} />
-      <AboutUsCards content={aboutUsContent.cards} />
+      <CardsSection content={aboutUsContent.cards} />
     </div>
   );
 }

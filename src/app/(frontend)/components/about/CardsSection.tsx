@@ -11,7 +11,7 @@ type CardTileProps = {
   sponsorLogos?: { logo: Media | string | null }[] | null;
 };
 
-type CardSectionProps = {
+type CardsSectionProps = {
   content: {
     vision: CardTileProps;
     story: CardTileProps;
@@ -20,7 +20,7 @@ type CardSectionProps = {
   };
 };
 
-const CardSection = ({ content }: CardSectionProps) => {
+const CardsSection = ({ content }: CardsSectionProps) => {
   const getImageUrl = (image: Media | string | null | undefined): string | null => {
     if (!image) return null; // handle undefined or null
     if (typeof image === "string") return image; // if it's already a string URL
@@ -97,4 +97,4 @@ const CardSection = ({ content }: CardSectionProps) => {
   );
 };
 
-export default CardSection;
+export default CardsSection;

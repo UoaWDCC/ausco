@@ -17,6 +17,9 @@ const fraunces = Fraunces({
 export const metadata = {
   title: "Auckland University Student Chamber Orchestra",
   description: "A blank template using Payload in a Next.js app.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

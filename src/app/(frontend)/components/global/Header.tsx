@@ -129,7 +129,7 @@ const Header = ({ content }: HeaderProps) => {
                 </a>
               </Button>
               {link.subItem && link.subItem.length > 0 && hoveredItem === i && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[#F6F4EC] rounded-lg shadow-lg border border-gray-200 py-2 z-40 text-[#264C84]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-56 bg-[var(--cream)] rounded-lg shadow-lg border border-gray-200 py-2 z-40 text-[var(--navy)]">
                   <div className="absolute -top-2 left-0 right-0 h-2 bg-transparent" />
                   {link.subItem.map((subLink, subIndex) => (
                     <a
