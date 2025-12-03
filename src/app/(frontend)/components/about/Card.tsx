@@ -30,14 +30,15 @@ const Card = ({
   console.log("sponsorLogos: ", isSponsored);
 
   // TODO: check css colour style on "headerblue"
-  //       {...(isLinked && { href: link, target: "_blank", rel: "noopener noreferrer" })}
-
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--headerblue) py-18 px-18">
       {/* On Display: Background Image */}
-      <div
+      <Image
+        src={`url(${background})`}
+        alt={alt}
+        priority
+        loading="eager"
         className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: `url(${background})` }}
       />
 
       {/* On Display: Content */}
@@ -82,7 +83,7 @@ const Card = ({
 
         {isLinked ? (
           <Button variant="link" asChild className="mt-7">
-            <a href={link}>
+            <a href={link} target="_blank" rel="noopener noreferrer">
               <h1 className="font-semibold! text-3xl! m-0!">{description}</h1>
             </a>
           </Button>
@@ -96,4 +97,4 @@ const Card = ({
 
 export default Card;
 
-// TODO: IMPLEMENT LINKS, BG IMAGE TO USE NEXT.JS IMAGE, CHECK OVERALL ABOUT US PAGE, CHECK REMAINING TODOS, DONE
+// BG IMAGE TO USE NEXT.JS IMAGE, CHECK OVERALL ABOUT US PAGE, CHECK REMAINING TODOS, DONE

@@ -68,7 +68,7 @@ const CardSection = ({ content }: CardSectionProps) => {
             alt={getImageAlt(content.constitution.background, "Constitution Background")}
             title={content.constitution.title}
             summary={content.constitution.summary}
-            description={`View Our Constitution`}
+            description={`View Constitution`}
             link={
               "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
             }
