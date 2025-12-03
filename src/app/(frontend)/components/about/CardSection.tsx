@@ -54,7 +54,7 @@ const CardSection = ({ content }: CardSectionProps) => {
           alt={getImageAlt(content.story.background, "Story Background")}
           title={content.story.title}
           summary={content.story.summary}
-          description={`View ${content.story.summary}`}
+          description={`View Our Story`}
           link={"https://ausco.wdcc.co.nz/"} // TODO: change to our story page link - see if it tag needs to be changed.
         />
       </div>
@@ -68,7 +68,7 @@ const CardSection = ({ content }: CardSectionProps) => {
             alt={getImageAlt(content.constitution.background, "Constitution Background")}
             title={content.constitution.title}
             summary={content.constitution.summary}
-            description={`View ${content.story.summary}`}
+            description={`View Our Constitution`}
             link={
               "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
             }
@@ -85,7 +85,9 @@ const CardSection = ({ content }: CardSectionProps) => {
             )}
             title={content.sponsorsAndPartnerships.title}
             summary={content.sponsorsAndPartnerships.summary}
-            description={content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"}
+            description={
+              content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"
+            }
             link={""}
           />
         </div>
