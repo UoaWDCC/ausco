@@ -34,11 +34,12 @@ const Card = ({
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--headerblue) py-18 px-18">
       {/* On Display: Background Image */}
       <Image
-        src={`url(${background})`}
+        src={background!}
         alt={alt}
+        fill
         priority
         loading="eager"
-        className="absolute inset-0 bg-center bg-cover"
+        className="object-cover object-center"
       />
 
       {/* On Display: Content */}
@@ -96,5 +97,3 @@ const Card = ({
 };
 
 export default Card;
-
-// BG IMAGE TO USE NEXT.JS IMAGE, CHECK OVERALL ABOUT US PAGE, CHECK REMAINING TODOS, DONE
