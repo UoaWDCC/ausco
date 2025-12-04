@@ -8,6 +8,15 @@ import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
 import Link from "next/link";
 
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
+} from "../ui/navigation-menu";
+
 type HeaderProps = {
   content: {
     title: string;
@@ -15,30 +24,7 @@ type HeaderProps = {
   };
 };
 
-type NavProps = {
-  href: string;
-  label: string;
-  hasDropdown?: boolean;
-};
-
-const navMap = [
-  { href: "/aboutus", label: "About Us", hasDropdown: true },
-  { href: "/ourpeople", label: "Our People" },
-  { href: "/concerts", label: "Concerts", hasDropdown: true },
-  { href: "/gallery", label: "Gallery" },
-  { href: "#footer", label: "Contact Us" },
-];
-
 const Header = ({ content }: HeaderProps) => {
-  const NavButton = ({ href, label, hasDropdown = false }: NavProps) => (
-    <Button variant="link" asChild className="inline-flex">
-      <Link href={href} className="flex flex-row items-center font-medium text-base">
-        {label}
-        {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
-      </Link>
-    </Button>
-  );
-
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -79,6 +65,7 @@ const Header = ({ content }: HeaderProps) => {
 
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
+  // TODO: add appropriate links into header options
   return (
     <header className="w-full bg-(--beige) text-(--navy) h-28 px-6 flex justify-between items-center">
       <div className="flex flex-row items-center">
@@ -95,17 +82,89 @@ const Header = ({ content }: HeaderProps) => {
         </Link>
       </div>
 
+      {/* <NavigationMenuList className="flex gap-20 pr-6 font-medium text-base"> */}
       {/* Navigation Links */}
-      <div className="flex flex-row gap-20 pr-6">
-        {navMap.map((item, index) => (
-          <NavButton
-            key={index}
-            href={item.href}
-            label={item.label}
-            hasDropdown={item.hasDropdown}
-          />
-        ))}
-      </div>
+      <NavigationMenu>
+        <NavigationMenuList>
+          {/* 1/5: About Us */}
+          <NavigationMenuItem className="relative">
+            <NavigationMenuTrigger className="px-0">About Us</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-2 w-48 p-4">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link href="/aboutus/ourstory">Our Story</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                      Constitution
+                    </a>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                      Proof of Registration
+                    </a>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* 2/5: Our People */}
+          <NavigationMenuItem className="relative">
+            <NavigationMenuLink asChild>
+              <Link href="/ourpeople">Our People</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          {/* 3/5: Concerts */}
+          <NavigationMenuItem className="relative">
+            <NavigationMenuTrigger className="px-0">Concerts</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-2 w-48 p-4">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link href="/concerts/upcoming">Upcoming Concerts</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="/concerts/past">Past Concerts</Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* 4/5: Gallery */}
+          <NavigationMenuItem className="relative">
+            <NavigationMenuTrigger className="px-0">Gallery</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-2 w-48 p-4">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link href="/gallery/concert">Concert Photos</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link href="/gallery/other">Other Photos</Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+
+          {/* 5/5: Contact Us */}
+          <NavigationMenuItem className="relative">
+            <NavigationMenuLink asChild>
+              <Link href="#footer">Contact Us</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </header>
   );
 };
