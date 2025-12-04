@@ -83,7 +83,7 @@ const Header = ({ content }: HeaderProps) => {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex flex-row gap-20 pr-6 font-medium text-base">
+      <nav className="flex flex-row gap-20 pr-6 items-center font-medium text-base">
         {/* 1/5: About Us */}
         <NavigationMenu>
           <NavigationMenuList>
@@ -113,11 +113,9 @@ const Header = ({ content }: HeaderProps) => {
         </NavigationMenu>
 
         {/* 2/5: Our People */}
-        <Link href="/ourpeople">
-          <Button asChild variant="link">
-            Our People
-          </Button>
-        </Link>
+        <Button variant="link" asChild>
+          <Link href="/ourpeople">Our People</Link>
+        </Button>
 
         {/* 3/5: Concerts */}
         <NavigationMenu>
@@ -168,16 +166,9 @@ const Header = ({ content }: HeaderProps) => {
         </NavigationMenu>
 
         {/* 5/5: Contact Us */}
-
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem className="relative">
-              <NavigationMenuLink asChild>
-                <Link href="#footer">Contact Us</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Button variant="link" asChild>
+          <Link href="#footer">Contact Us</Link>
+        </Button>
       </nav>
     </header>
   );
