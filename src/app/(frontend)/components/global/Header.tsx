@@ -82,89 +82,103 @@ const Header = ({ content }: HeaderProps) => {
         </Link>
       </div>
 
-      {/* <NavigationMenuList className="flex gap-20 pr-6 font-medium text-base"> */}
       {/* Navigation Links */}
-      <NavigationMenu>
-        <NavigationMenuList>
-          {/* 1/5: About Us */}
-          <NavigationMenuItem className="relative">
-            <NavigationMenuTrigger className="px-0">About Us</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-2 w-48 p-4">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link href="/aboutus/ourstory">Our Story</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-                      Constitution
-                    </a>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-                      Proof of Registration
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+      <nav className="flex flex-row gap-20 pr-6 font-medium text-base">
+        {/* 1/5: About Us */}
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="px-0">About Us</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 w-48 p-4">
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link href="/aboutus/ourstory">Our Story</Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                        Constitution
+                      </a>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+                        Proof of Registration
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* 2/5: Our People */}
-          <NavigationMenuItem className="relative">
-            <NavigationMenuLink asChild>
-              <Link href="/ourpeople">Our People</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+        {/* 2/5: Our People */}
+        <Link href="/ourpeople">
+          <Button asChild variant="link">
+            Our People
+          </Button>
+        </Link>
 
-          {/* 3/5: Concerts */}
-          <NavigationMenuItem className="relative">
-            <NavigationMenuTrigger className="px-0">Concerts</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-2 w-48 p-4">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link href="/concerts/upcoming">Upcoming Concerts</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/concerts/past">Past Concerts</Link>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+        {/* 3/5: Concerts */}
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="px-0">Concerts</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 w-48 p-4">
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link href="/concerts/upcoming">Upcoming Concerts</Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link href="/concerts/past">Past Concerts</Link>
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* 4/5: Gallery */}
-          <NavigationMenuItem className="relative">
-            <NavigationMenuTrigger className="px-0">Gallery</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-2 w-48 p-4">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link href="/gallery/concert">Concert Photos</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link href="/gallery/other">Other Photos</Link>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+        {/* 4/5: Gallery */}
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="px-0">Gallery</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-2 w-48 p-4">
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link href="/gallery/concert">Concert Photos</Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
+                    </NavigationMenuLink>
+                    <NavigationMenuLink asChild>
+                      <Link href="/gallery/other">Other Photos</Link>
+                    </NavigationMenuLink>
+                  </li>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          {/* 5/5: Contact Us */}
-          <NavigationMenuItem className="relative">
-            <NavigationMenuLink asChild>
-              <Link href="#footer">Contact Us</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+        {/* 5/5: Contact Us */}
+
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem className="relative">
+              <NavigationMenuLink asChild>
+                <Link href="#footer">Contact Us</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </nav>
     </header>
   );
 };
