@@ -29,6 +29,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     getSiteSetting(),
   ]);
 
+  const combinedHeaderContent = {
+    ...headerContent,
+    primaryLogo: siteSettingContent.primaryLogo,
+  };
   const combinedFooterContent = {
     ...footerContent,
     primaryLogo: siteSettingContent.primaryLogo,
@@ -38,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={fraunces.variable}>
       <body className={fraunces.className}>
-        <Header content={headerContent} />
+        <Header content={combinedHeaderContent} />
         <main>{children}</main>
         <Footer content={combinedFooterContent} />
       </body>
