@@ -67,7 +67,7 @@ const Header = ({ content }: HeaderProps) => {
   // TODO: add comment re. header height being fixed - future work might need to know
   // TODO: add appropriate links into header options
   return (
-    <header className="w-full bg-(--beige) text-(--navy) h-28 px-6 flex justify-between items-center">
+    <header className="w-full bg-(--cream) text-(--navy) h-28 px-6 flex justify-between items-center">
       <div className="flex flex-row items-center">
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
@@ -90,7 +90,7 @@ const Header = ({ content }: HeaderProps) => {
             <NavigationMenuItem>
               <NavigationMenuTrigger className="px-0">About Us</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-4">
+                <ul className="grid gap-2 w-48 p-2">
                   <li>
                     <NavigationMenuLink asChild>
                       <Link href="/aboutus/ourstory">Our Story</Link>
@@ -123,7 +123,7 @@ const Header = ({ content }: HeaderProps) => {
             <NavigationMenuItem>
               <NavigationMenuTrigger className="px-0">Concerts</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-4">
+                <ul className="grid gap-2 w-48 p-2">
                   <li>
                     <NavigationMenuLink asChild>
                       <Link href="/concerts/upcoming">Upcoming Concerts</Link>
@@ -144,7 +144,7 @@ const Header = ({ content }: HeaderProps) => {
             <NavigationMenuItem>
               <NavigationMenuTrigger className="px-0">Gallery</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-4">
+                <ul className="grid gap-2 w-48 p-2">
                   <li>
                     <NavigationMenuLink asChild>
                       <Link href="/gallery/concert">Concert Photos</Link>
