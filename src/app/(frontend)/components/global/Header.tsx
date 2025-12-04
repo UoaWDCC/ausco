@@ -83,7 +83,7 @@ const Header = ({ content }: HeaderProps) => {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex flex-row gap-20 pr-6 items-center font-medium text-base">
+      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
         {/* 1/5: About Us */}
         <NavigationMenu>
           <NavigationMenuList>
