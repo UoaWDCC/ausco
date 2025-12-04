@@ -15,7 +15,30 @@ type HeaderProps = {
   };
 };
 
+type NavProps = {
+  href: string;
+  label: string;
+  hasDropdown?: boolean;
+};
+
+const navMap = [
+  { href: "/aboutus", label: "About Us", hasDropdown: true },
+  { href: "/ourpeople", label: "Our People" },
+  { href: "/concerts", label: "Concerts", hasDropdown: true },
+  { href: "/gallery", label: "Gallery" },
+  { href: "#footer", label: "Contact Us" },
+];
+
 const Header = ({ content }: HeaderProps) => {
+  const NavButton = ({ href, label, hasDropdown = false }: NavProps) => (
+    <Button variant="link" asChild className="inline-flex">
+      <Link href={href} className="flex flex-row items-center font-medium text-base">
+        {label}
+        {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
+      </Link>
+    </Button>
+  );
+
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -73,24 +96,15 @@ const Header = ({ content }: HeaderProps) => {
       </div>
 
       {/* Navigation Links */}
-      <div className="flex flex-row gap-14 pr-6">
-        <Link href="/aboutus" className="flex flex-row gap-1 items-center">
-          <div className="font-medium text-base">About Us</div>
-          <ChevronDown size={20} strokeWidth={2.1} />
-        </Link>
-        <Link href="/ourpeople">
-          <div className="font-medium text-base">Our People</div>
-        </Link>
-        <Link href="/concerts" className="flex flex-row gap-1 items-center">
-          <div className="font-medium text-base">Concerts</div>
-          <ChevronDown size={20} strokeWidth={2.1} />
-        </Link>
-        <Link href="/gallery">
-          <div className="font-medium text-base">Gallery</div>
-        </Link>
-        <Link href="#footer">
-          <div className="font-medium text-base">Contact Us</div>
-        </Link>
+      <div className="flex flex-row gap-20 pr-6">
+        {navMap.map((item, index) => (
+          <NavButton
+            key={index}
+            href={item.href}
+            label={item.label}
+            hasDropdown={item.hasDropdown}
+          />
+        ))}
       </div>
     </header>
   );
