@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import clsx from "clsx";
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
+import Link from "next/link";
 
 type HeaderProps = {
   content: {
@@ -56,17 +57,40 @@ const Header = ({ content }: HeaderProps) => {
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
   return (
-    <header className="w-full bg-(--beige) text-(--navy) h-34 px-6 flex justify-between items-center">
-      <div className="flex flex-row items-center gap-4">
+    <header className="w-full bg-(--beige) text-(--navy) h-28 px-6 flex justify-between items-center">
+      <div className="flex flex-row items-center">
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
             src={content.primaryLogo.url}
             alt={content.primaryLogo.alt || "Header Logo"}
-            width={100}
-            height={100}
+            width={85}
+            height={85}
           />
         )}
-        <div className="font-semibold text-xl whitespace-pre-line">{content.title}</div>
+        <Link href="/">
+          <div className="font-semibold text-lg whitespace-pre-line">{content.title}</div>
+        </Link>
+      </div>
+
+      {/* Navigation Links */}
+      <div className="flex flex-row gap-14 pr-6">
+        <Link href="/aboutus" className="flex flex-row gap-1 items-center">
+          <div className="font-medium text-base">About Us</div>
+          <ChevronDown size={20} strokeWidth={2.1} />
+        </Link>
+        <Link href="/ourpeople">
+          <div className="font-medium text-base">Our People</div>
+        </Link>
+        <Link href="/concerts" className="flex flex-row gap-1 items-center">
+          <div className="font-medium text-base">Concerts</div>
+          <ChevronDown size={20} strokeWidth={2.1} />
+        </Link>
+        <Link href="/gallery">
+          <div className="font-medium text-base">Gallery</div>
+        </Link>
+        <Link href="#footer">
+          <div className="font-medium text-base">Contact Us</div>
+        </Link>
       </div>
     </header>
   );

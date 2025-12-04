@@ -18,12 +18,12 @@ type HeroProps = {
   };
 };
 
+// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
-
   const { scrollY } = useScroll();
 
   // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
-  const rawY = useTransform(scrollY, [0, 800], [0, 150]);  
+  const rawY = useTransform(scrollY, [0, 800], [0, 150]);
 
   // smooth the motion for a nicer feel
   const y = useSpring(rawY, { damping: 20, stiffness: 120 });
@@ -31,7 +31,7 @@ const Hero = ({ content }: HeroProps) => {
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{y}}>
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
