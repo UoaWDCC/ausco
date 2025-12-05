@@ -96,7 +96,9 @@ const Header = ({ content }: HeaderProps) => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  const [open, setOpen] = useState(false);
+  const [openAboutUs, setOpenAboutUs] = useState(false);
+  const [openConcerts, setOpenConcerts] = useState(false);
+  const [openGallery, setOpenGallery] = useState(false);
 
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
@@ -121,8 +123,8 @@ const Header = ({ content }: HeaderProps) => {
       <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
         <div
           className="relative"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
+          onMouseEnter={() => setOpenAboutUs(true)}
+          onMouseLeave={() => setOpenAboutUs(false)}
         >
           {/* 1/5: About Us */}
           <div className="relative group">
@@ -134,21 +136,16 @@ const Header = ({ content }: HeaderProps) => {
             </Button>
 
             {/* Dropdown */}
+            <div className="absolute left-0 top-full h-2 w-full"></div>
             <div
-              className={`
-          absolute left-0 top-full w-52 bg-[var(--cream)]
-          shadow-lg rounded-lg z-50 transition-opacity duration-150
-          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
-        `}
+              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openAboutUs ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
             >
               {(navBar[0]?.dropdown || []).map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.href}
-                  className="block p-4 text-gray-700 hover:bg-gray-100"
-                >
-                  {item.label}
-                </Link>
+                <div className="w-full text-left py-1" key={index}>
+                  <Button variant="link" asChild>
+                    <Link href={item.href}>{item.label}</Link>
+                  </Button>
+                </div>
               ))}
             </div>
           </div>
@@ -162,20 +159,64 @@ const Header = ({ content }: HeaderProps) => {
         </Button>
 
         {/* 3/5: Concerts */}
-        <Button variant="link" asChild className="flex items-center gap-1">
-          <Link href={navBar[2].href}>
-            <div className="font-medium text-base">{navBar[2].label}</div>
-            <ChevronDown size={20} strokeWidth={2.1} />
-          </Link>
-        </Button>
+        <div
+          className="relative"
+          onMouseEnter={() => setOpenConcerts(true)}
+          onMouseLeave={() => setOpenConcerts(false)}
+        >
+          <div className="relative group">
+            <Button variant="link" asChild className="flex items-center gap-1">
+              <Link href={navBar[2].href}>
+                <div className="font-medium text-base">{navBar[2].label}</div>
+                <ChevronDown size={20} strokeWidth={2.1} />
+              </Link>
+            </Button>
+
+            {/* Dropdown */}
+            <div className="absolute left-0 top-full h-2 w-full"></div>
+            <div
+              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openConcerts ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            >
+              {(navBar[2]?.dropdown || []).map((item, index) => (
+                <div className="w-full text-left py-1" key={index}>
+                  <Button variant="link" asChild>
+                    <Link href={item.href}>{item.label}</Link>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* 4/5: Gallery */}
-        <Button variant="link" asChild className="flex items-center gap-1">
-          <Link href={navBar[3].href}>
-            <div className="font-medium text-base">{navBar[3].label}</div>
-            <ChevronDown size={20} strokeWidth={2.1} />
-          </Link>
-        </Button>
+        <div
+          className="relative"
+          onMouseEnter={() => setOpenGallery(true)}
+          onMouseLeave={() => setOpenGallery(false)}
+        >
+          <div className="relative group">
+            <Button variant="link" asChild className="flex items-center gap-1">
+              <Link href={navBar[3].href}>
+                <div className="font-medium text-base">{navBar[3].label}</div>
+                <ChevronDown size={20} strokeWidth={2.1} />
+              </Link>
+            </Button>
+
+            {/* Dropdown */}
+            <div className="absolute left-0 top-full h-2 w-full"></div>
+            <div
+              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openGallery ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            >
+              {(navBar[3]?.dropdown || []).map((item, index) => (
+                <div className="w-full text-left py-1" key={index}>
+                  <Button variant="link" asChild>
+                    <Link href={item.href}>{item.label}</Link>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* 5/5: Contact Us */}
         <Button variant="link" asChild>
