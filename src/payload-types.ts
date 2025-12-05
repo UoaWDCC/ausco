@@ -95,7 +95,6 @@ export interface Config {
     header: Header;
     siteSetting: SiteSetting;
     'about-us-page': AboutUsPage;
-    'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
     'concerts-landing': ConcertsLanding;
     'upcoming-concerts': UpcomingConcert;
@@ -109,7 +108,6 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
-    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
@@ -489,49 +487,40 @@ export interface AboutUsPage {
     description: string;
     stickers?:
       | {
-          sticker?: (string | null) | Media;
+          sticker: string | Media;
           id?: string | null;
         }[]
       | null;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards".
- */
-export interface AboutUsCard {
-  id: string;
-  visionCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  historyCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  leftBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    backgroundImage?: (string | null) | Media;
-  };
-  rightBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    sponsorLogos?:
-      | {
-          logo: string | Media;
-          id?: string | null;
-        }[]
-      | null;
-    backgroundImage?: (string | null) | Media;
+  cards: {
+    vision: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    story: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    constitution: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    sponsorsAndPartnerships: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+      sponsorLogos?:
+        | {
+            logo: string | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -925,52 +914,45 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               id?: T;
             };
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards_select".
- */
-export interface AboutUsCardsSelect<T extends boolean = true> {
-  visionCard?:
+  cards?:
     | T
     | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  historyCard?:
-    | T
-    | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  leftBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        backgroundImage?: T;
-      };
-  rightBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        sponsorLogos?:
+        vision?:
           | T
           | {
-              logo?: T;
-              id?: T;
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
             };
-        backgroundImage?: T;
+        story?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        constitution?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        sponsorsAndPartnerships?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+              sponsorLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+            };
       };
   updatedAt?: T;
   createdAt?: T;

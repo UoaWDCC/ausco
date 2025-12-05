@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
 import Link from "next/link";
 
+// TODO: add appropriate links into header options
 const navBar = [
   {
     href: "/aboutus",
@@ -45,9 +46,10 @@ type NavItemProps = {
   index: number;
   hoveredItem: number | null;
   setHoveredItem: (index: number | null) => void;
+  scrolled: boolean;
 };
 
-const NavItem = ({ item, index, hoveredItem, setHoveredItem }: NavItemProps) => {
+const NavItem = ({ item, index, hoveredItem, setHoveredItem, scrolled }: NavItemProps) => {
   const hasDropdown = Boolean(item.dropdown);
 
   return (
@@ -55,6 +57,9 @@ const NavItem = ({ item, index, hoveredItem, setHoveredItem }: NavItemProps) => 
       className="relative"
       onMouseEnter={() => setHoveredItem(index)}
       onMouseLeave={() => setHoveredItem(null)}
+      style={{
+        color: scrolled ? "var(--navy)" : "var(--cream)",
+      }}
     >
       <div className="relative group">
         <Button variant="link" asChild className="flex items-center gap-1">
@@ -71,7 +76,7 @@ const NavItem = ({ item, index, hoveredItem, setHoveredItem }: NavItemProps) => 
 
             <div
               className={clsx(
-                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-[var(--cream)] z-50 transition-opacity duration-200",
+                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-[var(--cream)] z-50 transition-opacity duration-400",
                 hoveredItem === index
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none",
@@ -109,7 +114,7 @@ const Header = ({ content }: HeaderProps) => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
-  const textColor = clsx(scrolled || !isHomePage ? "text-[var(--navy)]" : "text-white");
+  const textColor = scrolled ? "text-[var(--navy)]" : "text-[var(--cream)]";
 
   const navBg = clsx(
     scrolled ? (isHomePage ? "bg-[var(--beige)]" : "bg-[var(--lightblue)]") : "bg-transparent",
@@ -145,25 +150,53 @@ const Header = ({ content }: HeaderProps) => {
 
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
-  // TODO: add appropriate links into header options
   return (
-    <header className="w-full bg-(--cream) text-(--navy) h-28 px-6 flex justify-between items-center">
-      <div className="flex flex-row items-center">
+    <header
+      className={clsx(
+        "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400",
+        scrolled ? "bg-[var(--cream)]" : "bg-transparent",
+      )}
+    >
+      <Link href="/" className="flex flex-row items-center">
+        {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
             src={content.primaryLogo.url}
-            alt={content.primaryLogo.alt || "Header Logo"}
+            alt={content.primaryLogo.alt || "Primary Logo"}
             width={85}
             height={85}
+            className={clsx(
+              "absolute transition-opacity duration-400 ease-in-out",
+              scrolled ? "opacity-100" : "opacity-0",
+            )}
           />
         )}
-        <Link href="/">
-          <div className="font-semibold text-lg whitespace-pre-line">{content.title}</div>
-        </Link>
-      </div>
 
-      {/* Navigation Links */}
-      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
+        {/* Secondary Logo */}
+        {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
+          <Image
+            src={content.secondaryLogo.url}
+            alt={content.secondaryLogo.alt || "Secondary Logo"}
+            width={85}
+            height={85}
+            className={clsx(
+              "absolute transition-opacity duration-400 ease-in-out",
+              scrolled ? "opacity-0" : "opacity-100",
+            )}
+          />
+        )}
+        <h1
+          className="!ml-20 !font-semibold !text-lg whitespace-pre-line transition-colors duration-400"
+          style={{ color: scrolled ? "var(--navy)" : "var(--cream)" }}
+        >
+          {content.title}
+        </h1>
+      </Link>
+
+      <nav
+        className="flex flex-row gap-16 pr-6 items-center font-medium text-base transition-colors duration-400"
+        style={{ color: scrolled ? "var(--navy)" : "var(--cream)" }}
+      >
         {navBar.map((item, index) => (
           <NavItem
             key={index}
@@ -171,6 +204,7 @@ const Header = ({ content }: HeaderProps) => {
             index={index}
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
+            scrolled={scrolled}
           />
         ))}
       </nav>
