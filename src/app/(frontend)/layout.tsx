@@ -32,6 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const combinedHeaderContent = {
     ...headerContent,
     primaryLogo: siteSettingContent.primaryLogo,
+    secondaryLogo: siteSettingContent.secondaryLogo,
   };
   const combinedFooterContent = {
     ...footerContent,

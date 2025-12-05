@@ -21,8 +21,41 @@ type HeaderProps = {
   content: {
     title: string;
     primaryLogo?: Media | string | null;
+    secondaryLogo?: Media | string | null;
   };
 };
+
+const navBar = [
+  {
+    href: "/aboutus",
+    label: "About Us",
+    dropdown: [
+      { href: "/ourstory", label: "Our Story" },
+      { href: "https://www.google.com/", label: "Constitution" },
+      { href: "https://www.google.com/", label: "Proof of Registration" },
+    ],
+  },
+  { href: "/ourpeople", label: "Our People" },
+  {
+    href: "/concerts",
+    label: "Concerts",
+    dropdown: [
+      { href: "/concerts/upcoming", label: "Upcoming Concerts" },
+      { href: "/concerts/past", label: "Past Concerts" },
+    ],
+  },
+  {
+    href: "/gallery",
+    label: "Gallery",
+    dropdown: [
+      { href: "/gallery/concert", label: "Concert Photos" },
+      { href: "/gallery/annualcamp", label: "Annual Camp Photos" },
+      { href: "/gallery/executivecamp", label: "Executive Camp Photos" },
+      { href: "/gallery/other", label: "Other Photos" },
+    ],
+  },
+  { href: "#footer", label: "Contact Us" },
+];
 
 const Header = ({ content }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,6 +96,8 @@ const Header = ({ content }: HeaderProps) => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
+  const [open, setOpen] = useState(false);
+
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
   // TODO: add appropriate links into header options
@@ -84,90 +119,69 @@ const Header = ({ content }: HeaderProps) => {
 
       {/* Navigation Links */}
       <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
-        {/* 1/5: About Us */}
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="px-0">About Us</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-2">
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="/aboutus/ourstory">Our Story</Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-                        Constitution
-                      </a>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-                        Proof of Registration
-                      </a>
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <div
+          className="relative"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
+          {/* 1/5: About Us */}
+          <div className="relative group">
+            <Button variant="link" asChild className="flex items-center gap-1">
+              <Link href={navBar[0].href}>
+                {navBar[0].label}
+                <ChevronDown size={20} strokeWidth={2.1} />
+              </Link>
+            </Button>
+
+            {/* Dropdown */}
+            <div
+              className={`
+          absolute left-0 top-full w-52 bg-[var(--cream)]
+          shadow-lg rounded-lg z-50 transition-opacity duration-150
+          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+        `}
+            >
+              {(navBar[0]?.dropdown || []).map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.href}
+                  className="block p-4 text-gray-700 hover:bg-gray-100"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
 
         {/* 2/5: Our People */}
         <Button variant="link" asChild>
-          <Link href="/ourpeople">Our People</Link>
+          <Link href={navBar[1].href}>
+            <div className="font-medium text-base">{navBar[1].label}</div>
+          </Link>
         </Button>
 
         {/* 3/5: Concerts */}
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="px-0">Concerts</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-2">
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="/concerts/upcoming">Upcoming Concerts</Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link href="/concerts/past">Past Concerts</Link>
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Button variant="link" asChild className="flex items-center gap-1">
+          <Link href={navBar[2].href}>
+            <div className="font-medium text-base">{navBar[2].label}</div>
+            <ChevronDown size={20} strokeWidth={2.1} />
+          </Link>
+        </Button>
 
         {/* 4/5: Gallery */}
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="px-0">Gallery</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 w-48 p-2">
-                  <li>
-                    <NavigationMenuLink asChild>
-                      <Link href="/gallery/concert">Concert Photos</Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
-                    </NavigationMenuLink>
-                    <NavigationMenuLink asChild>
-                      <Link href="/gallery/other">Other Photos</Link>
-                    </NavigationMenuLink>
-                  </li>
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Button variant="link" asChild className="flex items-center gap-1">
+          <Link href={navBar[3].href}>
+            <div className="font-medium text-base">{navBar[3].label}</div>
+            <ChevronDown size={20} strokeWidth={2.1} />
+          </Link>
+        </Button>
 
         {/* 5/5: Contact Us */}
         <Button variant="link" asChild>
-          <Link href="#footer">Contact Us</Link>
+          <Link href={navBar[4].href}>
+            <div className="font-medium text-base">{navBar[4].label}</div>
+          </Link>
         </Button>
       </nav>
     </header>
@@ -175,6 +189,124 @@ const Header = ({ content }: HeaderProps) => {
 };
 
 export default Header;
+
+// TODO: REMOVE UNUSED IMPORTS/UPDATES FROM NAVBAR IMPORT WHICH IS NO LONGER USED.
+
+// {/* 1/5: About Us */}
+//         <NavigationMenu>
+//           <NavigationMenuList>
+//             <NavigationMenuItem>
+//               <NavigationMenuTrigger className="px-0">
+//                 <Button variant="link" asChild>
+//                   <Link href="/aboutus">About Us</Link>
+//                 </Button>
+//               </NavigationMenuTrigger>
+//               <NavigationMenuContent>
+//                 <ul className="grid gap-2 w-52 p-2">
+//                   <li className="flex flex-col gap-3">
+//                     <NavigationMenuLink asChild>
+//                       <Link href="/ourstory">Our Story</Link>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+//                           Constitution
+//                         </a>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
+//                           Proof of Registration
+//                         </a>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                   </li>
+//                 </ul>
+//               </NavigationMenuContent>
+//             </NavigationMenuItem>
+//           </NavigationMenuList>
+//         </NavigationMenu>
+
+//         {/* 2/5: Our People */}
+//         <Button variant="link" asChild>
+//           <Link href="/ourpeople">Our People</Link>
+//         </Button>
+
+//         {/* 3/5: Concerts */}
+//         <NavigationMenu>
+//           <NavigationMenuList>
+//             <NavigationMenuItem>
+//               <NavigationMenuTrigger className="px-0">
+//                 <Button variant="link" asChild>
+//                   <Link href="/concerts">Concerts</Link>
+//                 </Button>
+//               </NavigationMenuTrigger>
+//               <NavigationMenuContent>
+//                 <ul className="grid gap-2 w-52 p-2">
+//                   <li className="flex flex-col gap-3">
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/concerts/upcoming">Upcoming Concerts</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/concerts/past">Past Concerts</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                   </li>
+//                 </ul>
+//               </NavigationMenuContent>
+//             </NavigationMenuItem>
+//           </NavigationMenuList>
+//         </NavigationMenu>
+
+//         {/* 4/5: Gallery */}
+//         <NavigationMenu>
+//           <NavigationMenuList>
+//             <NavigationMenuItem>
+//               <NavigationMenuTrigger className="px-0">
+//                 <Button variant="link" asChild>
+//                   <Link href="/gallery">Gallery</Link>
+//                 </Button>
+//               </NavigationMenuTrigger>
+//               <NavigationMenuContent>
+//                 <ul className="grid gap-2 w-52 p-2">
+//                   <li className="flex flex-col gap-3">
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/gallery/concert">Concert Photos</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                     <NavigationMenuLink>
+//                       <Button variant="link" asChild>
+//                         <Link href="/gallery/other">Other Photos</Link>
+//                       </Button>
+//                     </NavigationMenuLink>
+//                   </li>
+//                 </ul>
+//               </NavigationMenuContent>
+//             </NavigationMenuItem>
+//           </NavigationMenuList>
+//         </NavigationMenu>
+
+//         {/* 5/5: Contact Us */}
+//         <Button variant="link" asChild>
+//           <Link href="#footer">Contact Us</Link>
+// </Button>
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 // <header>
 //   <nav
