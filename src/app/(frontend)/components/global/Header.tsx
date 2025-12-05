@@ -8,23 +8,6 @@ import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
 import Link from "next/link";
 
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuLink,
-} from "../ui/navigation-menu";
-
-type HeaderProps = {
-  content: {
-    title: string;
-    primaryLogo?: Media | string | null;
-    secondaryLogo?: Media | string | null;
-  };
-};
-
 const navBar = [
   {
     href: "/aboutus",
@@ -56,6 +39,66 @@ const navBar = [
   },
   { href: "#footer", label: "Contact Us" },
 ];
+
+type NavItemProps = {
+  item: (typeof navBar)[number];
+  index: number;
+  hoveredItem: number | null;
+  setHoveredItem: (index: number | null) => void;
+};
+
+const NavItem = ({ item, index, hoveredItem, setHoveredItem }: NavItemProps) => {
+  const hasDropdown = Boolean(item.dropdown);
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setHoveredItem(index)}
+      onMouseLeave={() => setHoveredItem(null)}
+    >
+      <div className="relative group">
+        <Button variant="link" asChild className="flex items-center gap-1">
+          <Link href={item.href}>
+            {item.label}
+            {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
+          </Link>
+        </Button>
+
+        {hasDropdown && (
+          <>
+            {/* hover buffer so dropdown doesn't flicker */}
+            <div className="absolute left-0 top-full h-2 w-full" />
+
+            <div
+              className={clsx(
+                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-[var(--cream)] z-50 transition-opacity duration-200",
+                hoveredItem === index
+                  ? "opacity-100 pointer-events-auto"
+                  : "opacity-0 pointer-events-none",
+              )}
+            >
+              {item.dropdown!.map((sub, idx) => (
+                <div className="w-full text-left py-1" key={idx}>
+                  <Button variant="link" asChild>
+                    <Link href={sub.href}>{sub.label}</Link>
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+type HeaderProps = {
+  content: {
+    title: string;
+    primaryLogo?: Media | string | null;
+    secondaryLogo?: Media | string | null;
+  };
+};
 
 const Header = ({ content }: HeaderProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -121,109 +164,15 @@ const Header = ({ content }: HeaderProps) => {
 
       {/* Navigation Links */}
       <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
-        <div
-          className="relative"
-          onMouseEnter={() => setOpenAboutUs(true)}
-          onMouseLeave={() => setOpenAboutUs(false)}
-        >
-          {/* 1/5: About Us */}
-          <div className="relative group">
-            <Button variant="link" asChild className="flex items-center gap-1">
-              <Link href={navBar[0].href}>
-                {navBar[0].label}
-                <ChevronDown size={20} strokeWidth={2.1} />
-              </Link>
-            </Button>
-
-            {/* Dropdown */}
-            <div className="absolute left-0 top-full h-2 w-full"></div>
-            <div
-              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openAboutUs ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-            >
-              {(navBar[0]?.dropdown || []).map((item, index) => (
-                <div className="w-full text-left py-1" key={index}>
-                  <Button variant="link" asChild>
-                    <Link href={item.href}>{item.label}</Link>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 2/5: Our People */}
-        <Button variant="link" asChild>
-          <Link href={navBar[1].href}>
-            <div className="font-medium text-base">{navBar[1].label}</div>
-          </Link>
-        </Button>
-
-        {/* 3/5: Concerts */}
-        <div
-          className="relative"
-          onMouseEnter={() => setOpenConcerts(true)}
-          onMouseLeave={() => setOpenConcerts(false)}
-        >
-          <div className="relative group">
-            <Button variant="link" asChild className="flex items-center gap-1">
-              <Link href={navBar[2].href}>
-                <div className="font-medium text-base">{navBar[2].label}</div>
-                <ChevronDown size={20} strokeWidth={2.1} />
-              </Link>
-            </Button>
-
-            {/* Dropdown */}
-            <div className="absolute left-0 top-full h-2 w-full"></div>
-            <div
-              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openConcerts ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-            >
-              {(navBar[2]?.dropdown || []).map((item, index) => (
-                <div className="w-full text-left py-1" key={index}>
-                  <Button variant="link" asChild>
-                    <Link href={item.href}>{item.label}</Link>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 4/5: Gallery */}
-        <div
-          className="relative"
-          onMouseEnter={() => setOpenGallery(true)}
-          onMouseLeave={() => setOpenGallery(false)}
-        >
-          <div className="relative group">
-            <Button variant="link" asChild className="flex items-center gap-1">
-              <Link href={navBar[3].href}>
-                <div className="font-medium text-base">{navBar[3].label}</div>
-                <ChevronDown size={20} strokeWidth={2.1} />
-              </Link>
-            </Button>
-
-            {/* Dropdown */}
-            <div className="absolute left-0 top-full h-2 w-full"></div>
-            <div
-              className={`absolute left-0 top-full w-52 mt-2 py-2 px-4 bg-[var(--cream)] z-50 transition-opacity duration-200 ${openGallery ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-            >
-              {(navBar[3]?.dropdown || []).map((item, index) => (
-                <div className="w-full text-left py-1" key={index}>
-                  <Button variant="link" asChild>
-                    <Link href={item.href}>{item.label}</Link>
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 5/5: Contact Us */}
-        <Button variant="link" asChild>
-          <Link href={navBar[4].href}>
-            <div className="font-medium text-base">{navBar[4].label}</div>
-          </Link>
-        </Button>
+        {navBar.map((item, index) => (
+          <NavItem
+            key={index}
+            item={item}
+            index={index}
+            hoveredItem={hoveredItem}
+            setHoveredItem={setHoveredItem}
+          />
+        ))}
       </nav>
     </header>
   );
