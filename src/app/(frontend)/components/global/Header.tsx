@@ -39,7 +39,7 @@ const Header = ({ content }: HeaderProps) => {
   const textColor = clsx(scrolled || !isHomePage ? "text-[var(--navy)]" : "text-white");
 
   const navBg = clsx(
-    scrolled ? (isHomePage ? "bg-[var(--beige)]" : "bg-[var(--headerblue)]") : "bg-transparent",
+    scrolled ? (isHomePage ? "bg-[var(--beige)]" : "bg-[var(--lightblue)]") : "bg-transparent",
   );
 
   useEffect(() => {
