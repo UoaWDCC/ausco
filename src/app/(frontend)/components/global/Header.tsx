@@ -47,9 +47,17 @@ type NavItemProps = {
   hoveredItem: number | null;
   setHoveredItem: (index: number | null) => void;
   scrolled: boolean;
+  isHomePage: boolean;
 };
 
-const NavItem = ({ item, index, hoveredItem, setHoveredItem, scrolled }: NavItemProps) => {
+const NavItem = ({
+  item,
+  index,
+  hoveredItem,
+  setHoveredItem,
+  scrolled,
+  isHomePage,
+}: NavItemProps) => {
   const hasDropdown = Boolean(item.dropdown);
 
   return (
@@ -58,7 +66,7 @@ const NavItem = ({ item, index, hoveredItem, setHoveredItem, scrolled }: NavItem
       onMouseEnter={() => setHoveredItem(index)}
       onMouseLeave={() => setHoveredItem(null)}
       style={{
-        color: scrolled ? "var(--navy)" : "var(--cream)",
+        color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
       }}
     >
       <div className="relative group">
@@ -144,17 +152,13 @@ const Header = ({ content }: HeaderProps) => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  const [openAboutUs, setOpenAboutUs] = useState(false);
-  const [openConcerts, setOpenConcerts] = useState(false);
-  const [openGallery, setOpenGallery] = useState(false);
-
   // TODO: add "whitespace-pre-line" to relevant textarea's className
   // TODO: add comment re. header height being fixed - future work might need to know
   return (
     <header
       className={clsx(
         "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400",
-        scrolled ? "bg-[var(--cream)]" : "bg-transparent",
+        isHomePage ? (scrolled ? "bg-[var(--cream)]" : "bg-transparent") : "bg-[var(--lightblue)]",
       )}
     >
       <Link href="/" className="flex flex-row items-center">
@@ -167,7 +171,7 @@ const Header = ({ content }: HeaderProps) => {
             height={85}
             className={clsx(
               "absolute transition-opacity duration-400 ease-in-out",
-              scrolled ? "opacity-100" : "opacity-0",
+              isHomePage ? (scrolled ? "opacity-100" : "opacity-0") : "opacity-100",
             )}
           />
         )}
@@ -181,22 +185,21 @@ const Header = ({ content }: HeaderProps) => {
             height={85}
             className={clsx(
               "absolute transition-opacity duration-400 ease-in-out",
-              scrolled ? "opacity-0" : "opacity-100",
+              isHomePage ? (scrolled ? "opacity-0" : "opacity-100") : "opacity-0",
             )}
           />
         )}
         <h1
           className="!ml-20 !font-semibold !text-lg whitespace-pre-line transition-colors duration-400"
-          style={{ color: scrolled ? "var(--navy)" : "var(--cream)" }}
+          style={{
+            color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
+          }}
         >
           {content.title}
         </h1>
       </Link>
 
-      <nav
-        className="flex flex-row gap-16 pr-6 items-center font-medium text-base transition-colors duration-400"
-        style={{ color: scrolled ? "var(--navy)" : "var(--cream)" }}
-      >
+      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base transition-colors duration-400">
         {navBar.map((item, index) => (
           <NavItem
             key={index}
@@ -205,6 +208,7 @@ const Header = ({ content }: HeaderProps) => {
             hoveredItem={hoveredItem}
             setHoveredItem={setHoveredItem}
             scrolled={scrolled}
+            isHomePage={isHomePage}
           />
         ))}
       </nav>
@@ -215,122 +219,6 @@ const Header = ({ content }: HeaderProps) => {
 export default Header;
 
 // TODO: REMOVE UNUSED IMPORTS/UPDATES FROM NAVBAR IMPORT WHICH IS NO LONGER USED.
-
-// {/* 1/5: About Us */}
-//         <NavigationMenu>
-//           <NavigationMenuList>
-//             <NavigationMenuItem>
-//               <NavigationMenuTrigger className="px-0">
-//                 <Button variant="link" asChild>
-//                   <Link href="/aboutus">About Us</Link>
-//                 </Button>
-//               </NavigationMenuTrigger>
-//               <NavigationMenuContent>
-//                 <ul className="grid gap-2 w-52 p-2">
-//                   <li className="flex flex-col gap-3">
-//                     <NavigationMenuLink asChild>
-//                       <Link href="/ourstory">Our Story</Link>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-//                           Constitution
-//                         </a>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-//                           Proof of Registration
-//                         </a>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                   </li>
-//                 </ul>
-//               </NavigationMenuContent>
-//             </NavigationMenuItem>
-//           </NavigationMenuList>
-//         </NavigationMenu>
-
-//         {/* 2/5: Our People */}
-//         <Button variant="link" asChild>
-//           <Link href="/ourpeople">Our People</Link>
-//         </Button>
-
-//         {/* 3/5: Concerts */}
-//         <NavigationMenu>
-//           <NavigationMenuList>
-//             <NavigationMenuItem>
-//               <NavigationMenuTrigger className="px-0">
-//                 <Button variant="link" asChild>
-//                   <Link href="/concerts">Concerts</Link>
-//                 </Button>
-//               </NavigationMenuTrigger>
-//               <NavigationMenuContent>
-//                 <ul className="grid gap-2 w-52 p-2">
-//                   <li className="flex flex-col gap-3">
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/concerts/upcoming">Upcoming Concerts</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/concerts/past">Past Concerts</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                   </li>
-//                 </ul>
-//               </NavigationMenuContent>
-//             </NavigationMenuItem>
-//           </NavigationMenuList>
-//         </NavigationMenu>
-
-//         {/* 4/5: Gallery */}
-//         <NavigationMenu>
-//           <NavigationMenuList>
-//             <NavigationMenuItem>
-//               <NavigationMenuTrigger className="px-0">
-//                 <Button variant="link" asChild>
-//                   <Link href="/gallery">Gallery</Link>
-//                 </Button>
-//               </NavigationMenuTrigger>
-//               <NavigationMenuContent>
-//                 <ul className="grid gap-2 w-52 p-2">
-//                   <li className="flex flex-col gap-3">
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/gallery/concert">Concert Photos</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/gallery/annualcamp">Annual Camp Photos</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/gallery/executivecamp">Executive Camp Photos</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                     <NavigationMenuLink>
-//                       <Button variant="link" asChild>
-//                         <Link href="/gallery/other">Other Photos</Link>
-//                       </Button>
-//                     </NavigationMenuLink>
-//                   </li>
-//                 </ul>
-//               </NavigationMenuContent>
-//             </NavigationMenuItem>
-//           </NavigationMenuList>
-//         </NavigationMenu>
-
-//         {/* 5/5: Contact Us */}
-//         <Button variant="link" asChild>
-//           <Link href="#footer">Contact Us</Link>
-// </Button>
-
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 // <header>
 //   <nav
