@@ -40,6 +40,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     socialMedia: siteSettingContent.links,
   };
 
+  // Note: each page is pushed down by the height of the header component (h-28), its height is included in the top padding
   return (
     <html lang="en" className={fraunces.variable}>
       <body className={fraunces.className}>

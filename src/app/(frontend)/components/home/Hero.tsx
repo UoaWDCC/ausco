@@ -43,11 +43,8 @@ const Hero = ({ content }: HeroProps) => {
         )}
       </motion.div>
 
-      {/* Foreground Content */}
-      <div
-        className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
-        style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
-      >
+      {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
+      <div className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full pt-40 pb-12 px-6 gap-10">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
