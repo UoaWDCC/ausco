@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import clsx from "clsx";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
@@ -87,21 +87,29 @@ const NavItem = ({
 
             <div
               className={clsx(
-                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-[var(--cream)] z-50 transition-opacity duration-400",
+                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-(--cream) z-50 tranition-colors duration-400",
                 hoveredItem === index
                   ? "opacity-100 pointer-events-auto"
                   : "opacity-0 pointer-events-none",
-                isHomePage
-                  ? scrolled
-                    ? "bg-[var(--cream)]"
-                    : "bg-transparent"
-                  : "bg-[var(--lightblue)]",
+                isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
               )}
             >
-              {item.dropdown!.map((sub, idx) => (
-                <div className="w-full text-left py-1" key={idx}>
+              {item.dropdown!.map((subitem, index) => (
+                <div className="w-full text-left py-1" key={index}>
                   <Button variant="link" asChild>
-                    <Link href={sub.href}>{sub.label}</Link>
+                    <Link
+                      href={subitem.href}
+                      style={{
+                        color: isHomePage
+                          ? scrolled
+                            ? "var(--navy)"
+                            : "var(--cream)"
+                          : "var(--navy)",
+                        transition: "color 100ms",
+                      }}
+                    >
+                      {subitem.label}
+                    </Link>
                   </Button>
                 </div>
               ))}
@@ -140,7 +148,7 @@ const Header = ({ content }: HeaderProps) => {
     <header
       className={clsx(
         "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400",
-        isHomePage ? (scrolled ? "bg-[var(--cream)]" : "bg-transparent") : "bg-[var(--lightblue)]",
+        isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
       <Link href="/" className="flex flex-row items-center">
@@ -172,7 +180,7 @@ const Header = ({ content }: HeaderProps) => {
           />
         )}
         <h1
-          className="!ml-20 !mt-0 !mb-0 !font-semibold !text-lg whitespace-pre-line transition-colors duration-400"
+          className="ml-20! mt-0! mb-0! font-semibold! text-lg! whitespace-pre-line transition-colors duration-400"
           style={{
             color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
           }}
@@ -181,7 +189,7 @@ const Header = ({ content }: HeaderProps) => {
         </h1>
       </Link>
 
-      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base transition-colors duration-400">
+      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
         {navBar.map((item, index) => (
           <NavItem
             key={index}
@@ -199,5 +207,3 @@ const Header = ({ content }: HeaderProps) => {
 };
 
 export default Header;
-
-// TODO: REMOVE UNUSED IMPORTS/UPDATES FROM NAVBAR IMPORT WHICH IS NO LONGER USED.
