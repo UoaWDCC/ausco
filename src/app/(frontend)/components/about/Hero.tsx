@@ -11,7 +11,7 @@ type HeroProps = {
 
 const Hero = ({ content }: HeroProps) => {
   return (
-    <section className="pt-[calc(var(--header-height)+4rem)] pb-16 px-6 flex flex-col items-center">
+    <section className="pt-44 pb-16 px-6 flex flex-col items-center">
       <div className="w-full max-w-6xl mx-auto flex flex-row items-center justify-between">
         {/* Text */}
         <div className="flex flex-col gap-4 w-2/5 text-(--navy)">

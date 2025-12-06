@@ -18,12 +18,12 @@ type HeroProps = {
   };
 };
 
+// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
-
   const { scrollY } = useScroll();
 
   // Parallax: image moves more slowly than the page scroll, adjust ranges to taste
-  const rawY = useTransform(scrollY, [0, 800], [0, 150]);  
+  const rawY = useTransform(scrollY, [0, 800], [0, 150]);
 
   // smooth the motion for a nicer feel
   const y = useSpring(rawY, { damping: 20, stiffness: 120 });
@@ -31,7 +31,7 @@ const Hero = ({ content }: HeroProps) => {
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{y}}>
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
@@ -43,11 +43,8 @@ const Hero = ({ content }: HeroProps) => {
         )}
       </motion.div>
 
-      {/* Foreground Content */}
-      <div
-        className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
-        style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
-      >
+      {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
+      <div className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full pt-40 pb-12 px-6 gap-10">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
