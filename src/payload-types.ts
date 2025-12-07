@@ -88,6 +88,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {
     'home-page': HomePage;
     footer: Footer;
@@ -453,22 +454,7 @@ export interface Footer {
  */
 export interface Header {
   id: string;
-  logo?: (string | null) | Media;
-  title?: string | null;
-  navLinks?:
-    | {
-        label: string;
-        url: string;
-        subItem?:
-          | {
-              label: string;
-              url: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
+  title: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -888,22 +874,7 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  navLinks?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        subItem?:
-          | T
-          | {
-              label?: T;
-              url?: T;
-              id?: T;
-            };
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
