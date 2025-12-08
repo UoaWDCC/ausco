@@ -3,6 +3,7 @@
 import { getPayload } from "@libs/payload";
 import { HomePage } from "@/payload-types";
 import { AboutUsPage } from "@/payload-types";
+import { Concert } from "@/payload-types";
 
 export const getHomePage = async (): Promise<HomePage> => {
   const payload = await getPayload();
@@ -20,4 +21,13 @@ export const getAboutUsPage = async (): Promise<AboutUsPage> => {
   });
 
   return aboutUsPage;
+};
+
+export const getConcertsPage = async (): Promise<Concert> => {
+  const payload = await getPayload();
+  const concertsPage = await payload.findGlobal({
+    slug: "concerts",
+  });
+
+  return concertsPage;
 };
