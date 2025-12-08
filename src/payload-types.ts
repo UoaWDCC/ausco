@@ -96,7 +96,7 @@ export interface Config {
     siteSetting: SiteSetting;
     'about-us-page': AboutUsPage;
     'our-people': OurPerson;
-    'concerts-landing': ConcertsLanding;
+    concerts: Concert;
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
     'gallery-landing': GalleryLanding;
@@ -109,7 +109,7 @@ export interface Config {
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
-    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
+    concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
@@ -601,16 +601,12 @@ export interface OurPerson {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing".
+ * via the `definition` "concerts".
  */
-export interface ConcertsLanding {
+export interface Concert {
   id: string;
-  upcomingCard: {
-    'background-image': string | Media;
-  };
-  pastCard: {
-    'background-image': string | Media;
-  };
+  upcoming: string | Media;
+  past: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1036,19 +1032,11 @@ export interface OurPeopleSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing_select".
+ * via the `definition` "concerts_select".
  */
-export interface ConcertsLandingSelect<T extends boolean = true> {
-  upcomingCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  pastCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
+export interface ConcertsSelect<T extends boolean = true> {
+  upcoming?: T;
+  past?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

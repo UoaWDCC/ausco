@@ -17,7 +17,7 @@ import HomePage from "./collections/global/HomePage";
 
 import AboutHeroSection from "./collections/global/AboutUsPage";
 
-import { ConcertsLanding } from "./collections/global/ConcertsLanding";
+import { Concerts } from "./collections/global/Concerts";
 
 import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
@@ -45,7 +45,7 @@ export default buildConfig({
     SiteSetting,
     AboutHeroSection,
     OurPeople,
-    ConcertsLanding,
+    Concerts,
     UpcomingConcerts,
     PastConcerts,
     GalleryLanding,
