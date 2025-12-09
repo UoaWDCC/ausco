@@ -1,10 +1,9 @@
-import { getConcertsPage } from "@/actions/pageActions";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ArrowUpRight } from "lucide-react";
-import { Archive } from "lucide-react";
-import { CalendarClock } from "lucide-react";
+import { Archive, ArrowUpRight, CalendarClock } from "lucide-react";
+
+import { getConcertsPage } from "@/actions/pageActions";
 
 export default async function Concerts() {
   const content = await getConcertsPage();
@@ -27,14 +26,16 @@ export default async function Concerts() {
                 fill
                 priority
                 loading="eager"
-                className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
               />
             )}
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
               <CalendarClock size={48} className="mb-4" />
-              <h3 className="text-3xl font-semibold text-center pb-2">Upcoming</h3>
-              <h3 className="flex items-center text-3xl font-semibold text-center">
+              <h3 className="mb-2 text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Upcoming
+              </h3>
+              <h3 className="flex items-center text-3xl font-semibold text-center relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
                 Concerts
                 <ArrowUpRight size={40} className="ml-1" />
               </h3>
@@ -53,14 +54,16 @@ export default async function Concerts() {
                 fill
                 priority
                 loading="eager"
-                className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
               />
             )}
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
               <Archive size={48} className="mb-4" />
-              <h3 className="text-3xl font-semibold text-center pb-2">Past</h3>
-              <h3 className="flex items-center text-3xl font-semibold text-center">
+              <h3 className="mb-2 text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Past
+              </h3>
+              <h3 className="flex items-center text-3xl font-semibold text-center relative after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
                 Concerts
                 <ArrowUpRight size={40} className="ml-1" />
               </h3>
