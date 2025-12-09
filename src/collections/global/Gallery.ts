@@ -12,14 +12,14 @@ export const Gallery: GlobalConfig = {
       required: true,
     },
     {
-      name: "annualCamp",
+      name: "annual",
       label: "Annual Camp Photos Background Image",
       type: "upload",
       relationTo: "media",
       required: true,
     },
     {
-      name: "executiveCamp",
+      name: "executive",
       label: "Executive Camp Photos Background Image",
       type: "upload",
       relationTo: "media",

@@ -708,8 +708,8 @@ export interface PastConcert {
 export interface Gallery {
   id: string;
   concert: string | Media;
-  annualCamp: string | Media;
-  executiveCamp: string | Media;
+  annual: string | Media;
+  executive: string | Media;
   other: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -1154,8 +1154,8 @@ export interface PastConcertsSelect<T extends boolean = true> {
  */
 export interface GallerySelect<T extends boolean = true> {
   concert?: T;
-  annualCamp?: T;
-  executiveCamp?: T;
+  annual?: T;
+  executive?: T;
   other?: T;
   updatedAt?: T;
   createdAt?: T;
