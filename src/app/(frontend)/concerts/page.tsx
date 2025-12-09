@@ -27,16 +27,16 @@ export default async function Concerts() {
                 fill
                 priority
                 loading="eager"
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
             )}
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <CalendarClock size={52} className="pb-8" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <CalendarClock size={48} className="mb-4" />
               <h3 className="text-3xl font-semibold text-center pb-2">Upcoming</h3>
-              <h3 className="text-3xl font-semibold text-center">
+              <h3 className="flex items-center text-3xl font-semibold text-center">
                 Concerts
-                <ArrowUpRight size={40} />
+                <ArrowUpRight size={40} className="ml-1" />
               </h3>
             </div>
           </Link>
@@ -44,7 +44,7 @@ export default async function Concerts() {
           {/* Past Concerts Button */}
           <Link
             href="/concerts/past"
-            className="relative w-1/2 aspect-3/2 overflow-hidden rounded-lg group"
+            className="relative w-1/2 aspect-5/4 overflow-hidden rounded-lg group"
           >
             {typeof content.past === "object" && content.past?.url && (
               <Image
@@ -53,15 +53,16 @@ export default async function Concerts() {
                 fill
                 priority
                 loading="eager"
-                className="object-cover object-center"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
               />
             )}
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white">
-              <Archive size={18} />
-              <h3 className="text-3xl font-semibold whitespace-pre-line">
-                Past{"\n"}Concerts
-                <ArrowUpRight size={18} />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <Archive size={48} className="mb-4" />
+              <h3 className="text-3xl font-semibold text-center pb-2">Past</h3>
+              <h3 className="flex items-center text-3xl font-semibold text-center">
+                Concerts
+                <ArrowUpRight size={40} className="ml-1" />
               </h3>
             </div>
           </Link>
