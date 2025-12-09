@@ -23,7 +23,7 @@ import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 import { PastConcerts } from "./collections/global/PastConcerts";
 
-import { GalleryLanding } from "./collections/global/GalleryLanding";
+import { Gallery } from "./collections/global/Gallery";
 
 import { OurStory } from "./collections/global/OurStory";
 
@@ -48,7 +48,7 @@ export default buildConfig({
     Concerts,
     UpcomingConcerts,
     PastConcerts,
-    GalleryLanding,
+    Gallery,
     OurStory,
   ],
   collections: [Users, Media, Item],

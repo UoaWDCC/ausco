@@ -99,7 +99,7 @@ export interface Config {
     concerts: Concert;
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
-    'gallery-landing': GalleryLanding;
+    gallery: Gallery;
     'our-story': OurStory;
   };
   globalsSelect: {
@@ -112,7 +112,7 @@ export interface Config {
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
-    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
     'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
@@ -703,22 +703,14 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing".
+ * via the `definition` "gallery".
  */
-export interface GalleryLanding {
+export interface Gallery {
   id: string;
-  concertPhotosCard: {
-    'background-image': string | Media;
-  };
-  annCampCard: {
-    'background-image': string | Media;
-  };
-  execCampCard: {
-    'background-image': string | Media;
-  };
-  otherPhotosCard: {
-    'background-image': string | Media;
-  };
+  concert: string | Media;
+  annual: string | Media;
+  executive: string | Media;
+  other: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1158,29 +1150,13 @@ export interface PastConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing_select".
+ * via the `definition` "gallery_select".
  */
-export interface GalleryLandingSelect<T extends boolean = true> {
-  concertPhotosCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  annCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  execCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  otherPhotosCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
+export interface GallerySelect<T extends boolean = true> {
+  concert?: T;
+  annual?: T;
+  executive?: T;
+  other?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

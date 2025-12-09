@@ -1,128 +1,112 @@
-import { getGalleryLanding } from "@/actions/galleryActions";
-import { Media } from "@/payload-types";
+import Image from "next/image";
 import Link from "next/link";
 
-
-const [content] = await Promise.all([getGalleryLanding()]);
-
-const getImageUrl = (imageField: string | Media | null | undefined): string | undefined => {
-  if (typeof imageField === "object" && imageField !== null && "url" in imageField) {
-    return imageField.url ?? undefined;
-  }
-  if (typeof imageField === "string") {
-    return imageField;
-  }
-  return undefined; // Return undefined if no image is found
-};
+import { getGalleryPage } from "@/actions/pageActions";
 
 export default async function Gallery() {
+  const content = await getGalleryPage();
+
   return (
-    <>
-      <div className="w-full bg-[var(--cream)] pt-20 md:pt-25 md:h-[max(880px,100dvh)]">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-[var(--navy)] text-center">Gallery</h1>
+    <section className="bg-(--cream)">
+      <div className="w-full max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center gap-8">
+        <h1 className="font-semibold! text-4xl! m-0! text-(--navy) mb-2">Gallery</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-stretch gap-4 md:gap-6 pt-10 pb-30">
-            {/* CONCERT PHOTOS */}
-            <Link
-              href="" /* to be replaced with actual link */
-              className="group relative aspect-19/7 rounded-lg overflow-hidden shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--navy)]"
-              aria-label="View concert photos"
-            >
-              {content.concertPhotosCard?.["background-image"] && (
-                <img
-                  src={getImageUrl(content.concertPhotosCard["background-image"])}
-                  alt={
-                    typeof content.concertPhotosCard["background-image"] === "object"
-                      ? content.concertPhotosCard["background-image"].alt
-                      : "Concert Photos Background"
-                  }
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              )}
+        <div className="flex flex-row justify-between items-center gap-8 w-full">
+          {/* Concert Photos */}
+          <Link
+            href="/gallery/concert"
+            className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
+          >
+            {typeof content.concert === "object" && content.concert?.url && (
+              <Image
+                src={content.concert.url}
+                alt={content.concert.alt || "Concert Image"}
+                fill
+                priority
+                loading="eager"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
+              />
+            )}
 
-              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
-                <h3 className="text-3xl lg:text-4xl font-bold my-4">Concert Photos</h3>
-              </div>
-            </Link>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <h3 className="text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Concert Photos
+              </h3>
+            </div>
+          </Link>
 
-            {/* ANNUAL CAMP PHOTOS */}
-            <Link
-              href="" /* to be replaced with actual link */
-              className="group relative aspect-19/7 rounded-lg overflow-hidden shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--navy)]"
-              aria-label="View annual camp photos"
-            >
-              {content.annCampCard?.["background-image"] && (
-                <img
-                  src={getImageUrl(content.annCampCard["background-image"])}
-                  alt={
-                    typeof content.annCampCard["background-image"] === "object"
-                      ? content.annCampCard["background-image"].alt
-                      : "Annual Camp Photos Background"
-                  }
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              )}
+          {/* Annual Camp Photos */}
+          <Link
+            href="/gallery/annual"
+            className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
+          >
+            {typeof content.annual === "object" && content.annual?.url && (
+              <Image
+                src={content.annual.url}
+                alt={content.annual.alt || "Concert Image"}
+                fill
+                priority
+                loading="eager"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
+              />
+            )}
 
-              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
-                <h3 className="text-3xl lg:text-4xl font-bold mb-2 md:mb-4">Annual Camp</h3>
-                <span className="flex items-center justify-center">
-                  <h3 className="text-3xl lg:text-4xl font-bold">Photos</h3>
-                </span>
-              </div>
-            </Link>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <h3 className="text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Annual Camp Photos
+              </h3>
+            </div>
+          </Link>
+        </div>
 
-            {/* EXECUTIVE CAMP PHOTOS */}
-            <Link
-              href="" /* to be replaced with actual link */
-              className="group relative aspect-19/7 rounded-lg overflow-hidden shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--navy)]"
-              aria-label="View executive camp photos"
-            >
-              {content.execCampCard?.["background-image"] && (
-                <img
-                  src={getImageUrl(content.execCampCard["background-image"])}
-                  alt={
-                    typeof content.execCampCard["background-image"] === "object"
-                      ? content.execCampCard["background-image"].alt
-                      : "Executive Camp Photos Background"
-                  }
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              )}
+        <div className="flex flex-row justify-between items-center gap-8 w-full">
+          {/* Executive Camp Photos */}
+          <Link
+            href="/gallery/executive"
+            className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
+          >
+            {typeof content.executive === "object" && content.executive?.url && (
+              <Image
+                src={content.executive.url}
+                alt={content.executive.alt || "Executive Image"}
+                fill
+                priority
+                loading="eager"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
+              />
+            )}
 
-              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
-                <h3 className="text-3xl lg:text-4xl font-bold mb-2 md:mb-4">Executive Camp</h3>
-                <span className="flex items-center justify-center">
-                  <h3 className="text-3xl lg:text-4xl font-bold">Photos</h3>
-                </span>
-              </div>
-            </Link>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <h3 className="text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Executive Camp Photos
+              </h3>
+            </div>
+          </Link>
 
-            {/* OTHER PHOTOS */}
-            <Link
-              href="" /* to be replaced with actual link */
-              className="group relative aspect-19/7 rounded-lg overflow-hidden shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--navy)]"
-              aria-label="View other photos"
-            >
-              {content.otherPhotosCard?.["background-image"] && (
-                <img
-                  src={getImageUrl(content.otherPhotosCard["background-image"])}
-                  alt={
-                    typeof content.otherPhotosCard["background-image"] === "object"
-                      ? content.otherPhotosCard["background-image"].alt
-                      : "Other Photos Background"
-                  }
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              )}
+          {/* Other Photos */}
+          <Link
+            href="/gallery/other"
+            className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
+          >
+            {typeof content.other === "object" && content.other?.url && (
+              <Image
+                src={content.other.url}
+                alt={content.other.alt || "Other Image"}
+                fill
+                priority
+                loading="eager"
+                className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
+              />
+            )}
 
-              <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-[var(--cream)] px-2 py-4 lg:p-16">
-                <h3 className="text-3xl lg:text-4xl font-bold my-4">Other Photos</h3>
-              </div>
-            </Link>
-          </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+              <h3 className="text-3xl font-semibold text-center relative inline-block after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full">
+                Other Photos
+              </h3>
+            </div>
+          </Link>
         </div>
       </div>
-    </>
+    </section>
   );
 }
