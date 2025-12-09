@@ -616,43 +616,7 @@ export interface Concert {
  */
 export interface UpcomingConcert {
   id: string;
-  hero: string;
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  semOneEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  semOneEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  upcomingConcertTwo?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  semTwoEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  semTwoEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
+  description: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1038,55 +1002,7 @@ export interface ConcertsSelect<T extends boolean = true> {
  * via the `definition` "upcoming-concerts_select".
  */
 export interface UpcomingConcertsSelect<T extends boolean = true> {
-  hero?: T;
-  upcomingConcert?:
-    | T
-    | {
-        title?: T;
-        poster?: T;
-        description1?: T;
-        description2?: T;
-      };
-  semOneEventOne?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semOneEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  upcomingConcertTwo?:
-    | T
-    | {
-        title?: T;
-        poster?: T;
-        description1?: T;
-        description2?: T;
-      };
-  semTwoEventOne?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semTwoEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

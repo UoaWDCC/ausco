@@ -5,6 +5,7 @@ import { HomePage } from "@/payload-types";
 import { AboutUsPage } from "@/payload-types";
 import { Concert } from "@/payload-types";
 import { Gallery } from "@/payload-types";
+import { ConcertsUpcoming } from "@/payload-types";
 
 export const getHomePage = async (): Promise<HomePage> => {
   const payload = await getPayload();
@@ -31,6 +32,15 @@ export const getConcertsPage = async (): Promise<Concert> => {
   });
 
   return concertsPage;
+};
+
+export const getConcertsUpcoming = async (): Promise<ConcertsUpcoming> => {
+  const payload = await getPayload();
+  const concertsUpcoming = await payload.findGlobal({
+    slug: "upcoming-concerts",
+  });
+
+  return concertsUpcoming;
 };
 
 export const getGalleryPage = async (): Promise<Gallery> => {
