@@ -14,9 +14,11 @@ export default async function Upcoming() {
         <h3 className="text-base w-full px-30">{content.description}</h3>
       </section>
 
+      {/* Semester 1 */}
       <UpcomingConcert1 content={content.concertsUpcoming1} headingVariant="concertsUpcomingPage" />
       <div className="py-9"></div>
 
+      {/* Semester 2 */}
       <UpcomingConcert2 content={content.concertsUpcoming2} headingVariant="concertsUpcomingPage" />
       <div className="py-9"></div>
 

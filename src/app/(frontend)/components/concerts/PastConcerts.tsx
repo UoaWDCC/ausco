@@ -38,7 +38,7 @@ const PastConcerts = async () => {
                   <h1 className="text-[var(--brown)] text-2xl sm:text-3xl md:text-4xl font-bold">{yearData.year}</h1>
                 </div>
 
-                <div className="flex flex-col md:flex-row relative bg-[var(--beige)] w-full mt-10 mb-16 lg:mt-14 lg:mb-20 gap-8 p-6 lg:p-8 lg:aspect-[16/7] rounded-lg overflow-hidden shadow-sm">
+                <div className="flex flex-col md:flex-row relative bg-(--beige) w-full mt-10 mb-16 lg:mt-14 lg:mb-20 gap-8 p-6 lg:p-8 lg:aspect-[16/7] rounded-lg overflow-hidden shadow-sm">
                   {/*Semester 1 concert info*/}
                   <div className="flex flex-col md:flex-row relative w-full md:w-1/2 h-full">
                     <div className="flex w-full md:w-1/2 h-full justify-center items-center p-4">
