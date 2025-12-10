@@ -70,8 +70,8 @@ const UpcomingConcert = ({ content }: UpcomingConcertProps) => {
           {/* Tickets */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 items-start">
             {/* Row 1: Headings */}
-            <h2 className="font-bold !m-0">Matinee</h2>
-            <h2 className="font-bold !m-0">Concert</h2>
+            <h2 className="font-heading font-bold !m-0">Matinee</h2>
+            <h2 className="font-heading font-bold !m-0">Concert</h2>
 
             {/* Row 2+3: Date + Location */}
             <div className="flex flex-col gap-1.5">

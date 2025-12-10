@@ -82,7 +82,7 @@ const Footer = ({ content }: FooterProps) => {
         {content.sections?.map((section, index) => (
           <div key={index} className="flex flex-col w-auto">
             {/* Column Header */}
-            <h3 className="font-bold mb-2">{section.title}</h3>
+            <h3 className="font-heading font-bold mb-2">{section.title}</h3>
 
             {/* Column Options */}
             {section.options?.map((option, index) => (

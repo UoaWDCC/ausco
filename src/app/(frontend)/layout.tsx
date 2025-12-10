@@ -1,5 +1,5 @@
 import React from "react";
-import { Fraunces } from "next/font/google";
+import { Fraunces, Schibsted_Grotesk } from "next/font/google";
 
 import Header from "@components/global/Header";
 import Footer from "@components/global/Footer";
@@ -12,6 +12,12 @@ const fraunces = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-fraunces",
+});
+
+const shibstedGrotesk = Schibsted_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-shibsted",
 });
 
 export const metadata = {
@@ -42,8 +48,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   // Note: each page is pushed down by the height of the header component (h-28), its height is included in the top padding
   return (
-    <html lang="en" className={fraunces.variable}>
-      <body className={fraunces.className}>
+    <html lang="en" className={`${fraunces.variable} ${shibstedGrotesk.variable}`}>
+      <body className={`${shibstedGrotesk.className} ${fraunces.className}`}>
         <Header content={combinedHeaderContent} />
         <main>{children}</main>
         <Footer content={combinedFooterContent} />

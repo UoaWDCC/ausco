@@ -20,7 +20,7 @@ const Players = async () => {
       <div className="w-5/6 rounded-xl bg-[var(--beige)] text-[var(--brown)] pt-20 pb-10 mt-10 mb-20">
         <div className="flex flex-col lg:flex-row items-center lg:items-start">
           <div className="w-1/4 mt-0 mb-10 lg:mb-0 lg:mt-33 lg:ml-10">
-            <div className="text-center lg:text-left text-4xl mb-6">Players</div>
+            <div className="font-heading text-center lg:text-left text-4xl mb-6">Players</div>
             <div className="text-center lg:text-left">{content.playerDescription}</div>
           </div>
 
@@ -33,7 +33,7 @@ const Players = async () => {
                   alt={section.sectionTitle}
                   width={108}
                 />
-                <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
+                <h2 className="mb-6 font-heading text-2xl">{section.sectionTitle}</h2>
                 {section.players.map((player: any, i: number) => (
                   <p className="mb-0 leading-tight" key={i}>
                     {player.name}
@@ -62,7 +62,7 @@ const Players = async () => {
                         alt={section.sectionTitle}
                         width={108}
                       />
-                      <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
+                      <h2 className="mb-6 font-heading text-2xl">{section.sectionTitle}</h2>
                       {section.players.map((player: any, i: number) => (
                         <p className="mb-0 leading-tight" key={i}>
                           {player.name}

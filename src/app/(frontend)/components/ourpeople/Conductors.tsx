@@ -118,8 +118,8 @@ const Conductors = () => {
                 />
               )
             ) : hovered === i ? (
-              <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[var(--beige)] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                <span className="text-center text-m md:text-xl font-bold text-[var(--brown)]">
+              <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
+                <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
                   Conductor doesn&apos;t exist
                 </span>
               </div>

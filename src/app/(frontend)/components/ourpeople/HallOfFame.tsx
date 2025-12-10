@@ -144,11 +144,14 @@ const HallOfFame = () => {
   return (
     <div className="bg-[var(--cream)] text-[var(--navy)] justify-center text-center items-center mx-auto py-9 px-4">
       {/* Title of section is Hall of Fame */}
-      <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"> Hall of Fame </h2>
-      <hr className="border-t-[1.5px] border-[var(--concertblue)] mt-12" />
+      <h2 className="font-heading text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">
+        {" "}
+        Hall of Fame{" "}
+      </h2>
+      <hr className="border-t-[1.5px] border-[#042b50] mt-12" />
       {/* Past Presidents */}
       <div>
-        <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9">
+        <h5 className="font-heading text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9">
           {" "}
           Past Presidents{" "}
         </h5>
@@ -164,10 +167,13 @@ const HallOfFame = () => {
           ))}
         </div>
       </div>
-      <hr className="border-t-[1.5px] border-[var(--concertblue)] mt-12" />
+      <hr className="border-t-[1.5px] border-[#042b50] mt-12" />
       {/* Founders */}
       <div>
-        <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Founders </h5>
+        <h5 className="font-heading text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9">
+          {" "}
+          Founders{" "}
+        </h5>
         <div className="flex flex-wrap justify-center gap-16 py-9">
           {founders.map(({ name, image, description }, i) => (
             <FoundersCard
