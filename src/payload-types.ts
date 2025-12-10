@@ -663,36 +663,31 @@ export interface UpcomingConcert {
  */
 export interface PastConcert {
   id: string;
-  headerSection: {
-    title: string;
-    'short-desc': string;
-  };
-  years?:
+  description: string;
+  pastConcerts?:
     | {
-        year: string;
+        year: number;
         concerts: {
-          semester1: {
+          semesterOne: {
             poster: string | Media;
-            semester: string;
-            concertTitle: string;
-            desc: string;
-            videoUrl: string;
+            title: string;
+            description: string;
+            url: string;
             charity: {
               name: string;
-              websiteURL: string;
-              donationAmount: number;
+              url: string;
+              donation: number;
             };
           };
-          semester2: {
+          semesterTwo: {
             poster: string | Media;
-            semester: string;
-            concertTitle: string;
-            desc: string;
-            videoUrl: string;
+            title: string;
+            description: string;
+            url: string;
             charity: {
               name: string;
-              websiteURL: string;
-              donationAmount: number;
+              url: string;
+              donation: number;
             };
           };
         };
@@ -1102,49 +1097,42 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
  * via the `definition` "past-concerts_select".
  */
 export interface PastConcertsSelect<T extends boolean = true> {
-  headerSection?:
-    | T
-    | {
-        title?: T;
-        'short-desc'?: T;
-      };
-  years?:
+  description?: T;
+  pastConcerts?:
     | T
     | {
         year?: T;
         concerts?:
           | T
           | {
-              semester1?:
+              semesterOne?:
                 | T
                 | {
                     poster?: T;
-                    semester?: T;
-                    concertTitle?: T;
-                    desc?: T;
-                    videoUrl?: T;
+                    title?: T;
+                    description?: T;
+                    url?: T;
                     charity?:
                       | T
                       | {
                           name?: T;
-                          websiteURL?: T;
-                          donationAmount?: T;
+                          url?: T;
+                          donation?: T;
                         };
                   };
-              semester2?:
+              semesterTwo?:
                 | T
                 | {
                     poster?: T;
-                    semester?: T;
-                    concertTitle?: T;
-                    desc?: T;
-                    videoUrl?: T;
+                    title?: T;
+                    description?: T;
+                    url?: T;
                     charity?:
                       | T
                       | {
                           name?: T;
-                          websiteURL?: T;
-                          donationAmount?: T;
+                          url?: T;
+                          donation?: T;
                         };
                   };
             };

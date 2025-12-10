@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const PastConcerts: GlobalConfig = {
+export const ConcertsPast: GlobalConfig = {
   slug: "past-concerts",
   label: "Past Concerts",
   fields: [
@@ -15,7 +15,7 @@ export const PastConcerts: GlobalConfig = {
       label: "Past Concerts",
       type: "array",
       minRows: 1,
-      labels: { singular: "Concert Year", plural: "Concert Years" }, // TODO: check this (also delete upcoming in home schema)
+      labels: { singular: "Concert Year", plural: "Concert Years" }, // TODO: check this
       fields: [
         {
           name: "year",
@@ -151,4 +151,4 @@ export const PastConcerts: GlobalConfig = {
   ],
 };
 
-export default PastConcerts;
+export default ConcertsPast;
