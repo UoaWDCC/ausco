@@ -23,17 +23,13 @@ import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 import { PastConcerts } from "./collections/global/PastConcerts";
 
-<<<<<<< HEAD
-import { GalleryLanding } from "./collections/global/GalleryLanding";
 import { ConcertsGallery } from "./collections/global/ConcertsGallery";
 import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
 import { ExecutiveCampGallery } from "./collections/global/ExecutiveCampGallery";
 import { OtherGallery } from "./collections/global/OtherGallery";
-=======
 import { Gallery } from "./collections/global/Gallery";
 
 import { OurStory } from "./collections/global/OurStory";
->>>>>>> origin/main
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -56,16 +52,12 @@ export default buildConfig({
     Concerts,
     UpcomingConcerts,
     PastConcerts,
-<<<<<<< HEAD
-    GalleryLanding,
     ConcertsGallery,
     AnnualCampGallery,
     ExecutiveCampGallery,
     OtherGallery,
-=======
     Gallery,
     OurStory,
->>>>>>> origin/main
   ],
   collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",
