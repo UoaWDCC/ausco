@@ -1,5 +1,5 @@
 import Hero from "@components/home/Hero";
-import UpcomingConcert from "@components/home/UpcomingConcert";
+import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import FeatureVideo from "@components/home/FeatureVideo";
 

@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { GeoAltFill, Calendar2EventFill } from "react-bootstrap-icons";
 
 import { Media } from "@/payload-types";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 type UpcomingConcertProps = {
   content: {
@@ -44,7 +44,6 @@ const UpcomingConcert = ({ content, headingVariant }: UpcomingConcertProps) => {
     });
 
   return (
-    // <section className="bg-(--beige) text-(--brown) pt-28 pb-32 text-base">
     <section className="bg-(--beige) text-(--brown) py-18 max-w-6xl mx-auto text-base rounded-lg">
       {/* Upcoming Concert Title */}
       {headingVariant === "homePage" && (

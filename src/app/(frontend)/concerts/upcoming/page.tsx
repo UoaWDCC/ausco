@@ -2,7 +2,7 @@ import SemesterOneConcert from "@components/concerts/upcoming/SemesterOneConcert
 import SemesterTwoConcert from "@components/concerts/upcoming/SemesterTwoConcert";
 import Calendar from "@components/concerts/upcoming/Calendar";
 
-import UpcomingConcert from "@components/home/UpcomingConcert";
+import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
 
 import { getConcertsUpcoming } from "@/actions/pageActions";
 import { getSiteSetting } from "@/actions/globalActions";
@@ -17,9 +17,9 @@ export default async function Upcoming() {
         <h3 className="text-base w-full px-30">{content.description}</h3>
       </section>
       <UpcomingConcert content={content.concertsUpcoming1} headingVariant="concertsUpcomingPage" />
-      {/* <UpcomingConcert content={content.concertsUpcoming2} headingVariant="concertsUpcomingPage" /> */}
-      {/* <SemesterTwoConcert /> */}
-      {/* <Calendar /> */}
+      <div className="py-10"></div>
+      <UpcomingConcert content={content.concertsUpcoming2} headingVariant="concertsUpcomingPage" />
+      <Calendar />
     </div>
   );
 }
