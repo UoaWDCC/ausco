@@ -1,6 +1,5 @@
 import UpcomingConcert1 from "@components/concerts/upcoming/UpcomingConcert1";
 import UpcomingConcert2 from "@components/concerts/upcoming/UpcomingConcert2";
-import Calendar from "@components/concerts/upcoming/Calendar";
 
 import { getConcertsUpcoming } from "@/actions/pageActions";
 
