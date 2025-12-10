@@ -667,28 +667,26 @@ export interface PastConcert {
   pastConcerts?:
     | {
         year: number;
-        concerts: {
-          semesterOne: {
-            poster: string | Media;
-            title: string;
-            description: string;
+        semesterOne: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
             url: string;
-            charity: {
-              name: string;
-              url: string;
-              donation: number;
-            };
+            donation: number;
           };
-          semesterTwo: {
-            poster: string | Media;
-            title: string;
-            description: string;
+        };
+        semesterTwo: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
             url: string;
-            charity: {
-              name: string;
-              url: string;
-              donation: number;
-            };
+            donation: number;
           };
         };
         id?: string | null;
@@ -1102,38 +1100,34 @@ export interface PastConcertsSelect<T extends boolean = true> {
     | T
     | {
         year?: T;
-        concerts?:
+        semesterOne?:
           | T
           | {
-              semesterOne?:
+              poster?: T;
+              title?: T;
+              description?: T;
+              url?: T;
+              charity?:
                 | T
                 | {
-                    poster?: T;
-                    title?: T;
-                    description?: T;
+                    name?: T;
                     url?: T;
-                    charity?:
-                      | T
-                      | {
-                          name?: T;
-                          url?: T;
-                          donation?: T;
-                        };
+                    donation?: T;
                   };
-              semesterTwo?:
+            };
+        semesterTwo?:
+          | T
+          | {
+              poster?: T;
+              title?: T;
+              description?: T;
+              url?: T;
+              charity?:
                 | T
                 | {
-                    poster?: T;
-                    title?: T;
-                    description?: T;
+                    name?: T;
                     url?: T;
-                    charity?:
-                      | T
-                      | {
-                          name?: T;
-                          url?: T;
-                          donation?: T;
-                        };
+                    donation?: T;
                   };
             };
         id?: T;
