@@ -3,92 +3,80 @@ import { GlobalConfig } from "payload";
 export const PastConcerts: GlobalConfig = {
   slug: "past-concerts",
   label: "Past Concerts",
-  access: {
-    read: () => true,
-  },
   fields: [
     {
-      name: "headerSection",
-      label: "Header Section",
-      type: "group",
-      fields: [
-        { name: "title", label: "Title", type: "text", required: true },
-        { name: "short-desc", label: "Short Description", type: "textarea", required: true },
-      ],
+      name: "description",
+      label: "Description",
+      type: "text",
+      required: true,
     },
     {
-      name: "years",
-      label: "Concert Years",
+      name: "pastConcerts",
+      label: "Past Concerts",
       type: "array",
       minRows: 1,
-      labels: {singular: "Concert Year", plural: "Concert Years"},
+      labels: { singular: "Concert Year", plural: "Concert Years" }, // TODO: check this (also delete upcoming in home schema)
       fields: [
-        { 
-          name: "year", 
-          label: "Year", 
-          type: "text", 
+        {
+          name: "year",
+          label: "Year",
+          type: "number",
           required: true,
         },
-        { 
-          name: "concerts", 
-          label: "Concerts", 
+        {
+          name: "concerts",
+          label: "Concerts",
           type: "group",
           fields: [
             {
-              name: "semester1",
-              label: "Semester 1 Concert",
+              name: "semesterOne",
+              label: "Semester 1",
               type: "group",
               fields: [
                 {
                   name: "poster",
-                  label: "Concert Poster",
+                  label: "Poster",
                   type: "upload",
                   relationTo: "media",
                   required: true,
                 },
                 {
-                  name: "semester",
-                  label: "Semester",
+                  name: "title",
+                  label: "Title",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "concertTitle",
-                  label: "Concert TItle",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "desc",
-                  label: "Concert Description",
+                  name: "description",
+                  label: "Description",
                   type: "textarea",
                   required: true,
                 },
                 {
-                  name: "videoUrl",
+                  name: "url",
                   label: "Concert Video URL",
                   type: "text",
                   required: true,
                 },
                 {
                   name: "charity",
-                  label: "Charity Information",
+                  label: "Charity",
                   type: "group",
                   fields: [
                     {
                       name: "name",
-                      label: "Charity Name",
+                      label: "Name",
                       type: "text",
                       required: true,
                     },
                     {
-                      name: "websiteURL",
+                      name: "url",
                       label: "Website URL",
                       type: "text",
                       required: true,
                     },
                     {
-                      name: "donationAmount",
+                      name: "donation",
                       label: "Donation Amount",
                       type: "number",
                       min: 0,
@@ -99,60 +87,54 @@ export const PastConcerts: GlobalConfig = {
               ],
             },
             {
-              name: "semester2",
-              label: "Semester 2 Concert",
+              name: "semesterTwo",
+              label: "Semester 2",
               type: "group",
               fields: [
                 {
                   name: "poster",
-                  label: "Concert Poster",
+                  label: "Poster",
                   type: "upload",
                   relationTo: "media",
                   required: true,
                 },
                 {
-                  name: "semester",
-                  label: "Semester",
+                  name: "title",
+                  label: "Title",
                   type: "text",
                   required: true,
                 },
                 {
-                  name: "concertTitle",
-                  label: "Concert TItle",
-                  type: "text",
-                  required: true,
-                },
-                {
-                  name: "desc",
-                  label: "Concert Description",
+                  name: "description",
+                  label: "Description",
                   type: "textarea",
                   required: true,
                 },
                 {
-                  name: "videoUrl",
+                  name: "url",
                   label: "Concert Video URL",
                   type: "text",
                   required: true,
                 },
                 {
                   name: "charity",
-                  label: "Charity Information",
+                  label: "Charity",
                   type: "group",
                   fields: [
                     {
                       name: "name",
-                      label: "Charity Name",
+                      label: "Name",
                       type: "text",
                       required: true,
                     },
                     {
-                      name: "websiteURL",
+                      name: "url",
                       label: "Website URL",
                       type: "text",
                       required: true,
                     },
                     {
-                      name: "donationAmount",
+                      name: "donation",
                       label: "Donation Amount",
                       type: "number",
                       min: 0,
@@ -166,7 +148,7 @@ export const PastConcerts: GlobalConfig = {
         },
       ],
     },
-  ],  
-}
+  ],
+};
 
 export default PastConcerts;
