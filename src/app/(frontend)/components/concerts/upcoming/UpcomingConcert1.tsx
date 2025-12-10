@@ -27,7 +27,7 @@ type UpcomingConcertProps = {
   headingVariant: string;
 };
 
-const UpcomingConcert = ({ content, headingVariant }: UpcomingConcertProps) => {
+const UpcomingConcert1 = ({ content, headingVariant }: UpcomingConcertProps) => {
   // Normalise dates to ignore time component for accurate comparison
   const normaliseDate = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -155,4 +155,4 @@ const UpcomingConcert = ({ content, headingVariant }: UpcomingConcertProps) => {
   );
 };
 
-export default UpcomingConcert;
+export default UpcomingConcert1;

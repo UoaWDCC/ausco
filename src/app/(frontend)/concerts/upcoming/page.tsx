@@ -1,11 +1,8 @@
-import SemesterOneConcert from "@components/concerts/upcoming/SemesterOneConcert";
-import SemesterTwoConcert from "@components/concerts/upcoming/SemesterTwoConcert";
+import UpcomingConcert1 from "@components/concerts/upcoming/UpcomingConcert1";
+import UpcomingConcert2 from "@components/concerts/upcoming/UpcomingConcert2";
 import Calendar from "@components/concerts/upcoming/Calendar";
 
-import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
-
 import { getConcertsUpcoming } from "@/actions/pageActions";
-import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function Upcoming() {
   const content = await getConcertsUpcoming();
@@ -16,9 +13,9 @@ export default async function Upcoming() {
         <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-7">Upcoming Concerts</h1>
         <h3 className="text-base w-full px-30">{content.description}</h3>
       </section>
-      <UpcomingConcert content={content.concertsUpcoming1} headingVariant="concertsUpcomingPage" />
+      <UpcomingConcert1 content={content.concertsUpcoming1} headingVariant="concertsUpcomingPage" />
       <div className="py-10"></div>
-      <UpcomingConcert content={content.concertsUpcoming2} headingVariant="concertsUpcomingPage" />
+      <UpcomingConcert2 content={content.concertsUpcoming2} headingVariant="concertsUpcomingPage" />
       <Calendar />
     </div>
   );
