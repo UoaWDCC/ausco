@@ -88,18 +88,18 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {
     'home-page': HomePage;
     footer: Footer;
     header: Header;
     siteSetting: SiteSetting;
     'about-us-page': AboutUsPage;
-    'about-us-cards': AboutUsCard;
     'our-people': OurPerson;
-    'concerts-landing': ConcertsLanding;
+    concerts: Concert;
     'upcoming-concerts': UpcomingConcert;
     'past-concerts': PastConcert;
-    'gallery-landing': GalleryLanding;
+    gallery: Gallery;
     'our-story': OurStory;
   };
   globalsSelect: {
@@ -108,12 +108,11 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
     'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
-    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
-    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
+    concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
     'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
-    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
     'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
@@ -455,22 +454,7 @@ export interface Footer {
  */
 export interface Header {
   id: string;
-  logo?: (string | null) | Media;
-  title?: string | null;
-  navLinks?:
-    | {
-        label: string;
-        url: string;
-        subItem?:
-          | {
-              label: string;
-              url: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
+  title: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -503,49 +487,40 @@ export interface AboutUsPage {
     description: string;
     stickers?:
       | {
-          sticker?: (string | null) | Media;
+          sticker: string | Media;
           id?: string | null;
         }[]
       | null;
   };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards".
- */
-export interface AboutUsCard {
-  id: string;
-  visionCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  historyCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  leftBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    backgroundImage?: (string | null) | Media;
-  };
-  rightBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    sponsorLogos?:
-      | {
-          logo: string | Media;
-          id?: string | null;
-        }[]
-      | null;
-    backgroundImage?: (string | null) | Media;
+  cards: {
+    vision: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    story: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    constitution: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    sponsorsAndPartnerships: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+      sponsorLogos?:
+        | {
+            logo: string | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -626,16 +601,12 @@ export interface OurPerson {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing".
+ * via the `definition` "concerts".
  */
-export interface ConcertsLanding {
+export interface Concert {
   id: string;
-  upcomingCard: {
-    'background-image': string | Media;
-  };
-  pastCard: {
-    'background-image': string | Media;
-  };
+  upcoming: string | Media;
+  past: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -732,22 +703,14 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing".
+ * via the `definition` "gallery".
  */
-export interface GalleryLanding {
+export interface Gallery {
   id: string;
-  concertPhotosCard: {
-    'background-image': string | Media;
-  };
-  annCampCard: {
-    'background-image': string | Media;
-  };
-  execCampCard: {
-    'background-image': string | Media;
-  };
-  otherPhotosCard: {
-    'background-image': string | Media;
-  };
+  concert: string | Media;
+  annual: string | Media;
+  executive: string | Media;
+  other: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -899,22 +862,7 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  navLinks?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        subItem?:
-          | T
-          | {
-              label?: T;
-              url?: T;
-              id?: T;
-            };
-        id?: T;
-      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -954,52 +902,45 @@ export interface AboutUsPageSelect<T extends boolean = true> {
               id?: T;
             };
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards_select".
- */
-export interface AboutUsCardsSelect<T extends boolean = true> {
-  visionCard?:
+  cards?:
     | T
     | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  historyCard?:
-    | T
-    | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  leftBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        backgroundImage?: T;
-      };
-  rightBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        sponsorLogos?:
+        vision?:
           | T
           | {
-              logo?: T;
-              id?: T;
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
             };
-        backgroundImage?: T;
+        story?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        constitution?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        sponsorsAndPartnerships?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+              sponsorLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1083,19 +1024,11 @@ export interface OurPeopleSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing_select".
+ * via the `definition` "concerts_select".
  */
-export interface ConcertsLandingSelect<T extends boolean = true> {
-  upcomingCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  pastCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
+export interface ConcertsSelect<T extends boolean = true> {
+  upcoming?: T;
+  past?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1217,29 +1150,13 @@ export interface PastConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing_select".
+ * via the `definition` "gallery_select".
  */
-export interface GalleryLandingSelect<T extends boolean = true> {
-  concertPhotosCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  annCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  execCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  otherPhotosCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
+export interface GallerySelect<T extends boolean = true> {
+  concert?: T;
+  annual?: T;
+  executive?: T;
+  other?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

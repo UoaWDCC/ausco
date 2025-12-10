@@ -12,6 +12,7 @@
 8. add permanent header height to the layout.tsx can remove calculated heights in each page
 9. consider max-w-?
 10. routing? (with dashes)
+11. labels in payload schema?
 
 ### BUGS
 

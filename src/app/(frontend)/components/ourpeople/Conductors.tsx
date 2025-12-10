@@ -72,8 +72,8 @@ const Conductors = () => {
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center w-full min-h-screen bg-[#F6F4EC]">
-      <h1 className="text-[#264C84] font-bold text-center text-2xl md:text-5xl mt-10 mb-4">
+    <section className="flex flex-col items-center justify-center w-full min-h-screen bg-[var(--cream)]">
+      <h1 className="text-[var(--navy)] font-bold text-center text-2xl md:text-5xl mt-10 mb-4">
         Conductors
       </h1>
       <div className="flex flex-row items-center justify-center gap-2 md:gap-5 mt-2">
@@ -99,11 +99,11 @@ const Conductors = () => {
             {/* Photo or Description hovering */}
             {img ? (
               hovered === i ? (
-                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[#EEE5D8] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                  <span className="text-center text-m md:text-xl font-bold text-[#602C0F]">
+                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[var(--beige)] z-20 pointer-events-none px-4 rounded-[50%/50%]">
+                  <span className="text-center text-m md:text-xl font-bold text-[var(--brown)]">
                     {conductorPhotos[i]?.title}
                   </span>
-                  <span className="text-center text-s md:text-lg font-medium text-[#602C0F]">
+                  <span className="text-center text-s md:text-lg font-medium text-[var(--brown)]">
                     {conductorPhotos[i]?.text}
                   </span>
                 </div>

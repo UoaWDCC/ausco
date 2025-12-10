@@ -22,7 +22,7 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
     const match = content.match(/(?:v=|\/embed\/|\.be\/)([a-zA-Z0-9_-]{11})/);
     const id = match?.[1];
 
-    const finalId = id ?? "dQw4w9WgXcQ"; // fallback video
+    const finalId = id ?? "VzPMrJ8SxsU"; // fallback video
 
     return (
       `https://www.youtube.com/embed/${finalId}` + `?autoplay=0&mute=1&loop=1&playlist=${finalId}`

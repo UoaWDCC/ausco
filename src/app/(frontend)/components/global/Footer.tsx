@@ -40,7 +40,7 @@ const Footer = ({ content }: FooterProps) => {
   return (
     <footer
       id="footer"
-      className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-[5.5rem]"
+      className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-22"
     >
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
@@ -58,7 +58,9 @@ const Footer = ({ content }: FooterProps) => {
 
         <div className="flex flex-col flex-1 justify-between">
           {/* Title */}
-          <div className="w-60 font-heading font-bold text-xl lg:text-xl">{content.title}</div>
+          <div className="w-80 font-bold text-xl lg:text-xl whitespace-pre-line">
+            {content.title}
+          </div>
 
           {/* Social Media Icons */}
           <div className="flex gap-4">

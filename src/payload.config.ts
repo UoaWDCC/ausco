@@ -16,15 +16,14 @@ import { SiteSetting } from "./collections/global/SiteSetting";
 import HomePage from "./collections/global/HomePage";
 
 import AboutHeroSection from "./collections/global/AboutUsPage";
-import AboutUsCards from "./collections/global/AboutUsCards";
 
-import { ConcertsLanding } from "./collections/global/ConcertsLanding";
+import { Concerts } from "./collections/global/Concerts";
 
 import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 import { PastConcerts } from "./collections/global/PastConcerts";
 
-import { GalleryLanding } from "./collections/global/GalleryLanding";
+import { Gallery } from "./collections/global/Gallery";
 
 import { OurStory } from "./collections/global/OurStory";
 
@@ -45,12 +44,11 @@ export default buildConfig({
     Header,
     SiteSetting,
     AboutHeroSection,
-    AboutUsCards,
     OurPeople,
-    ConcertsLanding,
+    Concerts,
     UpcomingConcerts,
     PastConcerts,
-    GalleryLanding,
+    Gallery,
     OurStory,
   ],
   collections: [Users, Media, Item],

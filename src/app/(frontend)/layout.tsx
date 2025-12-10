@@ -35,16 +35,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     getSiteSetting(),
   ]);
 
+  const combinedHeaderContent = {
+    ...headerContent,
+    primaryLogo: siteSettingContent.primaryLogo,
+    secondaryLogo: siteSettingContent.secondaryLogo,
+  };
   const combinedFooterContent = {
     ...footerContent,
     primaryLogo: siteSettingContent.primaryLogo,
     socialMedia: siteSettingContent.links,
   };
 
+  // Note: each page is pushed down by the height of the header component (h-28), its height is included in the top padding
   return (
     <html lang="en" className={`${fraunces.variable} ${shibstedGrotesk.variable}`}>
       <body className={`${shibstedGrotesk.className} ${fraunces.className}`}>
-        <Header content={headerContent} />
+        <Header content={combinedHeaderContent} />
         <main>{children}</main>
         <Footer content={combinedFooterContent} />
       </body>
