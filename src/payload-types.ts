@@ -653,6 +653,7 @@ export interface UpcomingConcert {
       };
     };
   };
+  googleCalendarEmail: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1091,6 +1092,7 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
                   };
             };
       };
+  googleCalendarEmail?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

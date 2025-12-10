@@ -198,6 +198,13 @@ export const ConcertsUpcoming: GlobalConfig = {
         },
       ],
     },
+    // Embeded Google Calendar
+    {
+      name: "googleCalendarEmail",
+      label: "Embeded Google Calendar Email",
+      type: "text",
+      required: true,
+    },
   ],
 };
 
