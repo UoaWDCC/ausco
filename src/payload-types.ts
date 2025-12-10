@@ -617,6 +617,42 @@ export interface Concert {
 export interface UpcomingConcert {
   id: string;
   description: string;
+  concertsUpcoming1: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
+  };
+  concertsUpcoming2: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1003,6 +1039,58 @@ export interface ConcertsSelect<T extends boolean = true> {
  */
 export interface UpcomingConcertsSelect<T extends boolean = true> {
   description?: T;
+  concertsUpcoming1?:
+    | T
+    | {
+        isComingSoon?: T;
+        title?: T;
+        poster?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
+      };
+  concertsUpcoming2?:
+    | T
+    | {
+        isComingSoon?: T;
+        title?: T;
+        poster?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
