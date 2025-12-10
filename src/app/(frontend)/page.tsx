@@ -22,7 +22,9 @@ export default async function HomePage() {
   return (
     <>
       <Hero content={heroContent} />
-      <UpcomingConcert content={homeContent.upcomingConcert} />
+      <div className="pt-10 pb- 14 bg-(--beige)">
+        <UpcomingConcert content={homeContent.upcomingConcert} headingVariant="homePage" />
+      </div>
       <InfoCards content={infoCardsContent} />
       <FeatureVideo content={homeContent.featureVideoUrl} />
     </>

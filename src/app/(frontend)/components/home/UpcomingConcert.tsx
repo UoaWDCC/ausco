@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 
 type UpcomingConcertProps = {
   content: {
+    checkbox?: boolean;
     title: string;
     poster: Media | string | null;
     description: string;
@@ -23,9 +24,10 @@ type UpcomingConcertProps = {
       };
     };
   };
+  headingVariant: string;
 };
 
-const UpcomingConcert = ({ content }: UpcomingConcertProps) => {
+const UpcomingConcert = ({ content, headingVariant }: UpcomingConcertProps) => {
   // Normalise dates to ignore time component for accurate comparison
   const normaliseDate = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -42,14 +44,17 @@ const UpcomingConcert = ({ content }: UpcomingConcertProps) => {
     });
 
   return (
-    <section className="bg-[var(--beige)] text-[var(--brown)] pt-28 pb-32 text-base">
+    // <section className="bg-(--beige) text-(--brown) pt-28 pb-32 text-base">
+    <section className="bg-(--beige) text-(--brown) py-18 max-w-6xl mx-auto text-base rounded-lg">
       {/* Upcoming Concert Title */}
-      <div className="flex justify-center">
-        <h1 className="!font-semibold !text-4xl !m-0">Our Upcoming Concert,&nbsp;</h1>
-        <h1 className="!font-light !text-4xl !m-0 italic">{content.title}</h1>
-      </div>
+      {headingVariant === "homePage" && (
+        <div className="flex justify-center pb-12">
+          <h1 className="font-semibold! text-4xl! m-0!">Our Upcoming Concert,&nbsp;</h1>
+          <h1 className="font-light! text-4xl! m-0! italic">{content.title}</h1>
+        </div>
+      )}
 
-      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center pt-10">
+      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center ">
         {/* LEFT: Poster */}
         {typeof content.poster === "object" && content.poster?.url && (
           <Image
@@ -57,21 +62,33 @@ const UpcomingConcert = ({ content }: UpcomingConcertProps) => {
             alt={content.poster.alt || "Poster"}
             width={376}
             height={532}
-            className="border border-[var(--brown)] rounded-md"
+            className="border border-(--brown) rounded-md"
           />
         )}
 
         {/* RIGHT: Text + Tickets */}
-        <div className="flex flex-col justify-between lg:w-[32rem] w-72">
-          <div className="flex flex-col gap-6 whitespace-pre-line">{content.description}</div>
+        <div className="flex flex-col justify-between lg:w-lg w-72">
+          <div className="flex flex-col gap-4 whitespace-pre-line pb-2">
+            {headingVariant === "concertsUpcomingPage" && (
+              <div className="flex items-center gap-3">
+                <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
+                  Semester x
+                </div>
+                <h1 className="font-light! text-3xl! m-0! italic truncate w-full">
+                  {content.title}
+                </h1>
+              </div>
+            )}
+            {content.description}
+          </div>
 
-          <div className="h-px bg-[var(--brown)]" />
+          <div className="bg-(--brown) my-2" style={{ height: "0.5px" }} />
 
           {/* Tickets */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 items-start">
             {/* Row 1: Headings */}
-            <h2 className="font-bold !m-0">Matinee</h2>
-            <h2 className="font-bold !m-0">Concert</h2>
+            <h2 className="font-bold m-0!">Matinee</h2>
+            <h2 className="font-bold m-0!">Concert</h2>
 
             {/* Row 2+3: Date + Location */}
             <div className="flex flex-col gap-1.5">
