@@ -43,7 +43,7 @@ export default async function Gallery() {
             {typeof content.annual === "object" && content.annual?.url && (
               <Image
                 src={content.annual.url}
-                alt={content.annual.alt || "Concert Image"}
+                alt={content.annual.alt || "Annual Camp Image"}
                 fill
                 priority
                 loading="eager"
@@ -68,7 +68,7 @@ export default async function Gallery() {
             {typeof content.executive === "object" && content.executive?.url && (
               <Image
                 src={content.executive.url}
-                alt={content.executive.alt || "Executive Image"}
+                alt={content.executive.alt || "Executive Camp Image"}
                 fill
                 priority
                 loading="eager"

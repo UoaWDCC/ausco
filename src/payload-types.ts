@@ -616,43 +616,44 @@ export interface Concert {
  */
 export interface UpcomingConcert {
   id: string;
-  hero: string;
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
+  description: string;
+  concertsUpcoming1: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
   };
-  semOneEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
+  concertsUpcoming2: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
   };
-  semOneEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  upcomingConcertTwo?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  semTwoEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  semTwoEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
+  googleCalendarEmail: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1038,55 +1039,60 @@ export interface ConcertsSelect<T extends boolean = true> {
  * via the `definition` "upcoming-concerts_select".
  */
 export interface UpcomingConcertsSelect<T extends boolean = true> {
-  hero?: T;
-  upcomingConcert?:
+  description?: T;
+  concertsUpcoming1?:
     | T
     | {
+        isComingSoon?: T;
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
-  semOneEventOne?:
+  concertsUpcoming2?:
     | T
     | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semOneEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  upcomingConcertTwo?:
-    | T
-    | {
+        isComingSoon?: T;
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
-  semTwoEventOne?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semTwoEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
+  googleCalendarEmail?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
