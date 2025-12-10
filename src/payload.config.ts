@@ -9,26 +9,31 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
-import Header from "./collections/global/Header";
+import { Header } from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
+import { SiteSetting } from "./collections/global/SiteSetting";
 
-import LandingPage from "./collections/global/LandingPage";
-import Videos from "./collections/videos";
+import HomePage from "./collections/global/HomePage";
 
-import AboutHeroSection from "./collections/global/AboutHeroSection";
-import AboutUsCards from "./collections/global/AboutUsCards";
+import AboutHeroSection from "./collections/global/AboutUsPage";
 
-import { ConcertsLanding } from "./collections/global/ConcertsLanding";
+import { Concerts } from "./collections/global/Concerts";
 
 import { OurPeople } from "./collections/global/OurPeople";
 import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
 import { PastConcerts } from "./collections/global/PastConcerts";
 
+<<<<<<< HEAD
 import { GalleryLanding } from "./collections/global/GalleryLanding";
 import { ConcertsGallery } from "./collections/global/ConcertsGallery";
 import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
 import { ExecutiveCampGallery } from "./collections/global/ExecutiveCampGallery";
 import { OtherGallery } from "./collections/global/OtherGallery";
+=======
+import { Gallery } from "./collections/global/Gallery";
+
+import { OurStory } from "./collections/global/OurStory";
+>>>>>>> origin/main
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,22 +47,27 @@ export default buildConfig({
   },
 
   globals: [
-    LandingPage,
+    HomePage,
     Footer,
     Header,
+    SiteSetting,
     AboutHeroSection,
-    AboutUsCards,
     OurPeople,
-    ConcertsLanding,
+    Concerts,
     UpcomingConcerts,
     PastConcerts,
+<<<<<<< HEAD
     GalleryLanding,
     ConcertsGallery,
     AnnualCampGallery,
     ExecutiveCampGallery,
     OtherGallery,
+=======
+    Gallery,
+    OurStory,
+>>>>>>> origin/main
   ],
-  collections: [Users, Media, Item, Videos],
+  collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

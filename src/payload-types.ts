@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | 'Pacific/Midway'
-  | 'Pacific/Niue'
-  | 'Pacific/Honolulu'
-  | 'Pacific/Rarotonga'
-  | 'America/Anchorage'
-  | 'Pacific/Gambier'
-  | 'America/Los_Angeles'
-  | 'America/Tijuana'
-  | 'America/Denver'
-  | 'America/Phoenix'
-  | 'America/Chicago'
-  | 'America/Guatemala'
-  | 'America/New_York'
-  | 'America/Bogota'
-  | 'America/Caracas'
-  | 'America/Santiago'
-  | 'America/Buenos_Aires'
-  | 'America/Sao_Paulo'
-  | 'Atlantic/South_Georgia'
-  | 'Atlantic/Azores'
-  | 'Atlantic/Cape_Verde'
-  | 'Europe/London'
-  | 'Europe/Berlin'
-  | 'Africa/Lagos'
-  | 'Europe/Athens'
-  | 'Africa/Cairo'
-  | 'Europe/Moscow'
-  | 'Asia/Riyadh'
-  | 'Asia/Dubai'
-  | 'Asia/Baku'
-  | 'Asia/Karachi'
-  | 'Asia/Tashkent'
-  | 'Asia/Calcutta'
-  | 'Asia/Dhaka'
-  | 'Asia/Almaty'
-  | 'Asia/Jakarta'
-  | 'Asia/Bangkok'
-  | 'Asia/Shanghai'
-  | 'Asia/Singapore'
-  | 'Asia/Tokyo'
-  | 'Asia/Seoul'
-  | 'Australia/Brisbane'
-  | 'Australia/Sydney'
-  | 'Pacific/Guam'
-  | 'Pacific/Noumea'
-  | 'Pacific/Auckland'
-  | 'Pacific/Fiji';
+  | "Pacific/Midway"
+  | "Pacific/Niue"
+  | "Pacific/Honolulu"
+  | "Pacific/Rarotonga"
+  | "America/Anchorage"
+  | "Pacific/Gambier"
+  | "America/Los_Angeles"
+  | "America/Tijuana"
+  | "America/Denver"
+  | "America/Phoenix"
+  | "America/Chicago"
+  | "America/Guatemala"
+  | "America/New_York"
+  | "America/Bogota"
+  | "America/Caracas"
+  | "America/Santiago"
+  | "America/Buenos_Aires"
+  | "America/Sao_Paulo"
+  | "Atlantic/South_Georgia"
+  | "Atlantic/Azores"
+  | "Atlantic/Cape_Verde"
+  | "Europe/London"
+  | "Europe/Berlin"
+  | "Africa/Lagos"
+  | "Europe/Athens"
+  | "Africa/Cairo"
+  | "Europe/Moscow"
+  | "Asia/Riyadh"
+  | "Asia/Dubai"
+  | "Asia/Baku"
+  | "Asia/Karachi"
+  | "Asia/Tashkent"
+  | "Asia/Calcutta"
+  | "Asia/Dhaka"
+  | "Asia/Almaty"
+  | "Asia/Jakarta"
+  | "Asia/Bangkok"
+  | "Asia/Shanghai"
+  | "Asia/Singapore"
+  | "Asia/Tokyo"
+  | "Asia/Seoul"
+  | "Australia/Brisbane"
+  | "Australia/Sydney"
+  | "Pacific/Guam"
+  | "Pacific/Noumea"
+  | "Pacific/Auckland"
+  | "Pacific/Fiji";
 
 export interface Config {
   auth: {
@@ -70,59 +70,64 @@ export interface Config {
     users: User;
     media: Media;
     test: Test;
-    Videos: Video;
-    'payload-locked-documents': PayloadLockedDocument;
-    'payload-preferences': PayloadPreference;
-    'payload-migrations': PayloadMigration;
+    "payload-kv": PayloadKv;
+    "payload-locked-documents": PayloadLockedDocument;
+    "payload-preferences": PayloadPreference;
+    "payload-migrations": PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
-    Videos: VideosSelect<false> | VideosSelect<true>;
-    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
-    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
+    "payload-locked-documents":
+      | PayloadLockedDocumentsSelect<false>
+      | PayloadLockedDocumentsSelect<true>;
+    "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {
-    'landing-page': LandingPage;
+    "home-page": HomePage;
     footer: Footer;
     header: Header;
-    'about-hero-section': AboutHeroSection;
-    'about-us-cards': AboutUsCard;
-    'our-people': OurPerson;
-    'concerts-landing': ConcertsLanding;
-    'upcoming-concerts': UpcomingConcert;
-    'past-concerts': PastConcert;
-    'gallery-landing': GalleryLanding;
-    'concerts-gallery': ConcertsGallery;
-    'annualcamp-gallery': AnnualcampGallery;
-    'executivecamp-gallery': ExecutivecampGallery;
-    'other-gallery': OtherGallery;
+    siteSetting: SiteSetting;
+    "about-us-page": AboutUsPage;
+    "our-people": OurPerson;
+    concerts: Concert;
+    "upcoming-concerts": UpcomingConcert;
+    "past-concerts": PastConcert;
+    "concerts-gallery": ConcertsGallery;
+    "annualcamp-gallery": AnnualcampGallery;
+    "executivecamp-gallery": ExecutivecampGallery;
+    "other-gallery": OtherGallery;
+    gallery: Gallery;
+    "our-story": OurStory;
   };
   globalsSelect: {
-    'landing-page': LandingPageSelect<false> | LandingPageSelect<true>;
+    "home-page": HomePageSelect<false> | HomePageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
-    'about-hero-section': AboutHeroSectionSelect<false> | AboutHeroSectionSelect<true>;
-    'about-us-cards': AboutUsCardsSelect<false> | AboutUsCardsSelect<true>;
-    'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
-    'concerts-landing': ConcertsLandingSelect<false> | ConcertsLandingSelect<true>;
-    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
-    'gallery-landing': GalleryLandingSelect<false> | GalleryLandingSelect<true>;
-    'concerts-gallery': ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
-    'annualcamp-gallery': AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
-    'executivecamp-gallery': ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
-    'other-gallery': OtherGallerySelect<false> | OtherGallerySelect<true>;
+    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
+    "about-us-page": AboutUsPageSelect<false> | AboutUsPageSelect<true>;
+    "our-people": OurPeopleSelect<false> | OurPeopleSelect<true>;
+    concerts: ConcertsSelect<false> | ConcertsSelect<true>;
+    "upcoming-concerts": UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    "past-concerts": PastConcertsSelect<false> | PastConcertsSelect<true>;
+    "concerts-gallery": ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
+    "annualcamp-gallery": AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
+    "executivecamp-gallery": ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
+    "other-gallery": OtherGallerySelect<false> | OtherGallerySelect<true>;
+    gallery: GallerySelect<false> | GallerySelect<true>;
+    "our-story": OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
   user: User & {
-    collection: 'users';
+    collection: "users";
   };
   jobs: {
     tasks: unknown;
@@ -204,14 +209,20 @@ export interface Test {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Videos".
+ * via the `definition` "payload-kv".
  */
-export interface Video {
+export interface PayloadKv {
   id: string;
-  title: string;
-  youtubeUrl: string;
-  updatedAt: string;
-  createdAt: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -221,24 +232,20 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
+        relationTo: "users";
         value: string | User;
       } | null)
     | ({
-        relationTo: 'media';
+        relationTo: "media";
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'test';
+        relationTo: "test";
         value: string | Test;
-      } | null)
-    | ({
-        relationTo: 'Videos';
-        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   updatedAt: string;
@@ -251,7 +258,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: 'users';
+    relationTo: "users";
     value: string | User;
   };
   key?: string | null;
@@ -331,13 +338,11 @@ export interface TestSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "Videos_select".
+ * via the `definition` "payload-kv_select".
  */
-export interface VideosSelect<T extends boolean = true> {
-  title?: T;
-  youtubeUrl?: T;
-  updatedAt?: T;
-  createdAt?: T;
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -373,58 +378,60 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page".
+ * via the `definition` "home-page".
  */
-export interface LandingPage {
+export interface HomePage {
   id: string;
-  header: {
-    title: string;
+  hero: {
+    background: string | Media;
+    header: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ("ltr" | "rtl") | null;
+        format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
     content: string;
   };
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  matinee?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  concert?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  /**
-   * Add, edit, or remove cards on the landing page. Each card can have a title, description, image and link.
-   */
-  infoCards: {
-    regularCards: {
-      title: string;
-      description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      id?: string | null;
-    }[];
-    contactsCard: {
-      title: string;
-      description: string;
-      image: string;
-      linkText: string;
-      linkHref?: string | null;
-      contacts: {
-        text: string;
-        href?: string | null;
-        icon: 'mail' | 'instagram' | 'facebook';
-        id?: string | null;
-      }[];
+  upcomingConcert: {
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
     };
   };
+  infoCards: {
+    aboutUs: {
+      image: string | Media;
+      description: string;
+    };
+    ourPeople: {
+      image: string | Media;
+      description: string;
+    };
+    contact: {
+      image: string | Media;
+    };
+  };
+  featureVideoUrl: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -434,20 +441,11 @@ export interface LandingPage {
  */
 export interface Footer {
   id: string;
-  logo: string | Media;
   title: string;
-  socials?:
-    | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify';
-        url: string;
-        icon?: (string | null) | Media;
-        id?: string | null;
-      }[]
-    | null;
   sections?:
     | {
         title: string;
-        links?:
+        options?:
           | {
               label: string;
               url: string;
@@ -466,19 +464,23 @@ export interface Footer {
  */
 export interface Header {
   id: string;
-  logo?: (string | null) | Media;
-  title?: string | null;
-  navLinks?:
+  title: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting".
+ */
+export interface SiteSetting {
+  id: string;
+  primaryLogo: string | Media;
+  secondaryLogo: string | Media;
+  tertiaryLogo: string | Media;
+  links?:
     | {
-        label: string;
+        platform: "facebook" | "instagram" | "youtube" | "spotify" | "feedbackForm" | "email";
         url: string;
-        subItem?:
-          | {
-              label: string;
-              url: string;
-              id?: string | null;
-            }[]
-          | null;
         id?: string | null;
       }[]
     | null;
@@ -487,56 +489,48 @@ export interface Header {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section".
+ * via the `definition` "about-us-page".
  */
-export interface AboutHeroSection {
+export interface AboutUsPage {
   id: string;
-  aboutUsStickers?:
-    | {
-        'sticker-image': string | Media;
-        id?: string | null;
-      }[]
-    | null;
-  AboutUsHeader?: string | null;
-  AboutUsDescription?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards".
- */
-export interface AboutUsCard {
-  id: string;
-  visionCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  historyCard: {
-    'background-image': string | Media;
-    title: string;
-    'short-desc': string;
-    'full-desc': string;
-  };
-  leftBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    backgroundImage?: (string | null) | Media;
-  };
-  rightBox: {
-    title: string;
-    shortDescription: string;
-    fullText: string;
-    sponsorLogos?:
+  hero: {
+    description: string;
+    stickers?:
       | {
-          logo: string | Media;
+          sticker: string | Media;
           id?: string | null;
         }[]
       | null;
-    backgroundImage?: (string | null) | Media;
+  };
+  cards: {
+    vision: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    story: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    constitution: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    sponsorsAndPartnerships: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+      sponsorLogos?:
+        | {
+            logo: string | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -547,6 +541,8 @@ export interface AboutUsCard {
  */
 export interface OurPerson {
   id: string;
+  image?: (string | null) | Media;
+  description?: string | null;
   generalDescription?: string | null;
   execs?:
     | {
@@ -572,7 +568,7 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'large-group';
+            blockType: "large-group";
           }
         | {
             sectionTitle: string;
@@ -585,25 +581,42 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: 'small-group';
+            blockType: "small-group";
           }
       )[]
+    | null;
+  hallOfFame?:
+    | {
+        pastPresidents?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        founders?:
+          | {
+              name?: string | null;
+              description?: string | null;
+              image?: (string | null) | Media;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing".
+ * via the `definition` "concerts".
  */
-export interface ConcertsLanding {
+export interface Concert {
   id: string;
-  upcomingCard: {
-    'background-image': string | Media;
-  };
-  pastCard: {
-    'background-image': string | Media;
-  };
+  upcoming: string | Media;
+  past: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -661,7 +674,7 @@ export interface PastConcert {
   id: string;
   headerSection: {
     title: string;
-    'short-desc': string;
+    "short-desc": string;
   };
   years?:
     | {
@@ -700,27 +713,20 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing".
+ * via the `definition` "gallery".
  */
-export interface GalleryLanding {
+export interface Gallery {
   id: string;
-  concertPhotosCard: {
-    'background-image': string | Media;
-  };
-  annCampCard: {
-    'background-image': string | Media;
-  };
-  execCampCard: {
-    'background-image': string | Media;
-  };
-  otherPhotosCard: {
-    'background-image': string | Media;
-  };
+  concert: string | Media;
+  annual: string | Media;
+  executive: string | Media;
+  other: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+<<<<<<< HEAD
  * via the `definition` "concerts-gallery".
  */
 export interface ConcertsGallery {
@@ -814,12 +820,73 @@ export interface OtherGallery {
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "landing-page_select".
+=======
+ * via the `definition` "our-story".
+>>>>>>> origin/main
  */
-export interface LandingPageSelect<T extends boolean = true> {
-  header?:
+export interface OurStory {
+  id: string;
+  OurStoryTitle: string;
+  OurStoryDescription: string;
+  timeline?:
+    | {
+        year: string;
+        title?: string | null;
+        dateInfo?: string | null;
+        presidents?:
+          | {
+              termType: "sem1" | "sem2" | "full" | "co";
+              president: string;
+              id?: string | null;
+            }[]
+          | null;
+        vicePresidents?:
+          | {
+              termType: "sem1" | "sem2" | "full" | "co";
+              vicePresident: string;
+              id?: string | null;
+            }[]
+          | null;
+        conductors?:
+          | {
+              termType: "sem1" | "sem2" | "full" | "co";
+              conductor: string;
+              id?: string | null;
+            }[]
+          | null;
+        description: {
+          paragraph: string;
+          id?: string | null;
+        }[];
+        image: string | Media;
+        meetingMinutes?:
+          | {
+              meetingRecords: {
+                title: string;
+                content: string;
+                id?: string | null;
+              }[];
+              establishmentText: string;
+              establishmentQuote: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home-page_select".
+ */
+export interface HomePageSelect<T extends boolean = true> {
+  hero?:
     | T
     | {
-        title?: T;
+        background?: T;
+        header?: T;
         content?: T;
       };
   upcomingConcert?:
@@ -827,56 +894,48 @@ export interface LandingPageSelect<T extends boolean = true> {
     | {
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
-      };
-  matinee?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  concert?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
   infoCards?:
     | T
     | {
-        regularCards?:
+        aboutUs?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              id?: T;
+              description?: T;
             };
-        contactsCard?:
+        ourPeople?:
           | T
           | {
-              title?: T;
-              description?: T;
               image?: T;
-              linkText?: T;
-              linkHref?: T;
-              contacts?:
-                | T
-                | {
-                    text?: T;
-                    href?: T;
-                    icon?: T;
-                    id?: T;
-                  };
+              description?: T;
+            };
+        contact?:
+          | T
+          | {
+              image?: T;
             };
       };
+  featureVideoUrl?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -886,21 +945,12 @@ export interface LandingPageSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  socials?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        icon?: T;
-        id?: T;
-      };
   sections?:
     | T
     | {
         title?: T;
-        links?:
+        options?:
           | T
           | {
               label?: T;
@@ -918,20 +968,24 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   title?: T;
-  navLinks?:
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSetting_select".
+ */
+export interface SiteSettingSelect<T extends boolean = true> {
+  primaryLogo?: T;
+  secondaryLogo?: T;
+  tertiaryLogo?: T;
+  links?:
     | T
     | {
-        label?: T;
+        platform?: T;
         url?: T;
-        subItem?:
-          | T
-          | {
-              label?: T;
-              url?: T;
-              id?: T;
-            };
         id?: T;
       };
   updatedAt?: T;
@@ -940,63 +994,59 @@ export interface HeaderSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-hero-section_select".
+ * via the `definition` "about-us-page_select".
  */
-export interface AboutHeroSectionSelect<T extends boolean = true> {
-  aboutUsStickers?:
+export interface AboutUsPageSelect<T extends boolean = true> {
+  hero?:
     | T
     | {
-        'sticker-image'?: T;
-        id?: T;
-      };
-  AboutUsHeader?: T;
-  AboutUsDescription?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-cards_select".
- */
-export interface AboutUsCardsSelect<T extends boolean = true> {
-  visionCard?:
-    | T
-    | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  historyCard?:
-    | T
-    | {
-        'background-image'?: T;
-        title?: T;
-        'short-desc'?: T;
-        'full-desc'?: T;
-      };
-  leftBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        backgroundImage?: T;
-      };
-  rightBox?:
-    | T
-    | {
-        title?: T;
-        shortDescription?: T;
-        fullText?: T;
-        sponsorLogos?:
+        description?: T;
+        stickers?:
           | T
           | {
-              logo?: T;
+              sticker?: T;
               id?: T;
             };
-        backgroundImage?: T;
+      };
+  cards?:
+    | T
+    | {
+        vision?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+            };
+        story?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        constitution?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        sponsorsAndPartnerships?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+              sponsorLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+            };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1007,6 +1057,8 @@ export interface AboutUsCardsSelect<T extends boolean = true> {
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
+  image?: T;
+  description?: T;
   generalDescription?: T;
   execs?:
     | T
@@ -1022,7 +1074,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        'large-group'?:
+        "large-group"?:
           | T
           | {
               sectionTitle?: T;
@@ -1036,7 +1088,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        'small-group'?:
+        "small-group"?:
           | T
           | {
               sectionTitle?: T;
@@ -1050,6 +1102,27 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+      };
+  hallOfFame?:
+    | T
+    | {
+        pastPresidents?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        founders?:
+          | T
+          | {
+              name?: T;
+              description?: T;
+              image?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1057,19 +1130,11 @@ export interface OurPeopleSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-landing_select".
+ * via the `definition` "concerts_select".
  */
-export interface ConcertsLandingSelect<T extends boolean = true> {
-  upcomingCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  pastCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
+export interface ConcertsSelect<T extends boolean = true> {
+  upcoming?: T;
+  past?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1141,7 +1206,7 @@ export interface PastConcertsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        'short-desc'?: T;
+        "short-desc"?: T;
       };
   years?:
     | T
@@ -1191,28 +1256,73 @@ export interface PastConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery-landing_select".
+ * via the `definition` "gallery_select".
  */
-export interface GalleryLandingSelect<T extends boolean = true> {
-  concertPhotosCard?:
+export interface GallerySelect<T extends boolean = true> {
+  concert?: T;
+  annual?: T;
+  executive?: T;
+  other?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  OurStoryTitle?: T;
+  OurStoryDescription?: T;
+  timeline?:
     | T
     | {
-        'background-image'?: T;
-      };
-  annCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  execCampCard?:
-    | T
-    | {
-        'background-image'?: T;
-      };
-  otherPhotosCard?:
-    | T
-    | {
-        'background-image'?: T;
+        year?: T;
+        title?: T;
+        dateInfo?: T;
+        presidents?:
+          | T
+          | {
+              termType?: T;
+              president?: T;
+              id?: T;
+            };
+        vicePresidents?:
+          | T
+          | {
+              termType?: T;
+              vicePresident?: T;
+              id?: T;
+            };
+        conductors?:
+          | T
+          | {
+              termType?: T;
+              conductor?: T;
+              id?: T;
+            };
+        description?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+            };
+        image?: T;
+        meetingMinutes?:
+          | T
+          | {
+              meetingRecords?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              establishmentText?: T;
+              establishmentQuote?: T;
+              id?: T;
+            };
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1318,7 +1428,6 @@ export interface Auth {
   [k: string]: unknown;
 }
 
-
-declare module 'payload' {
+declare module "payload" {
   export interface GeneratedTypes extends Config {}
 }
