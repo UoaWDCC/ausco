@@ -1,5 +1,5 @@
 import Hero from "@components/home/Hero";
-import UpcomingConcert1 from "@components/concerts/upcoming/UpcomingConcert1";
+import UpcomingConcert1 from "@components/concerts/upcoming/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import FeatureVideo from "@components/home/FeatureVideo";
 
@@ -22,7 +22,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero content={heroContent} />
-      <div className="pt-10 pb- 14 bg-(--beige)">
+      <div className="pt-7 pb-14 bg-(--beige)">
         <UpcomingConcert1 content={homeContent.upcomingConcert} headingVariant="homePage" />
       </div>
       <InfoCards content={infoCardsContent} />
