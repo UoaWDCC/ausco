@@ -1,14 +1,8 @@
 "use client";
 
-import { useMemo, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import type { NavigationOptions } from "swiper/types";
-import "swiper/css";
-import "swiper/css/navigation";
+import { useEffect, useCallback, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-import placeholderImg from "../../../../../media/pfp.jpg";
 
 interface GalleryImage {
   src: string;
@@ -21,87 +15,97 @@ interface GalleryCarouselProps {
 }
 
 export default function GalleryCarousel({ title, images = [] }: GalleryCarouselProps) {
-  //20 images, placeholder for testing
-  const items = useMemo<GalleryImage[]>(
-    () =>
-      images.length > 0 ? images : Array.from({ length: 20 }, () => ({ src: placeholderImg.src })),
-    [images],
-  );
-  //nav button refs
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
+  //carousel starts from left side, free drag scrolling
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: "trimSnaps",
+    dragFree: true,
+  });
+
+  //carousel prev/next button visibility state
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  //carousel scroll functions
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  //update button visibility on carousel state change
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  //carousel event listeners
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
+
+    return () => {
+      emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  //empty carousel returns null
+  if (!images || images.length === 0) {
+    return null;
+  }
 
   return (
     <section className="pt-8 sm:pt-18">
-      {/*carousel heading*/}
-      <h3 className="px-4 sm:px-8 md:px-12 text-2xl sm:text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl text-center sm:text-left">
+      {/*carousel title*/}
+      <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl text-center sm:text-left">
         {title}
       </h3>
 
-      <div className="w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8 relative">
-        {/*custom arrow buttons*/}
-        <button
-          ref={prevRef}
-          className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full p-1 sm:p-0 border-none text-[var(--navy)] hover:bg-[var(--blue)]/15 active:bg-[var(--blue)]/25 hover:text-[var(--blue)] active:text-[var(--concertblue)] focus:outline-none"
-        >
-          <ChevronLeft size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
-        </button>
-        <button
-          ref={nextRef}
-          className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-30 bg-white/80 sm:bg-transparent rounded-full p-1 sm:p-0 border-none text-[var(--navy)] hover:bg-[var(--blue)]/15 active:bg-[var(--blue)]/25 hover:text-[var(--blue)] active:text-[var(--concertblue)] focus:outline-none"
-        >
-          <ChevronRight size={24} strokeWidth={2.5} className="sm:w-7 sm:h-7" />
-        </button>
+      <div className="relative w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8">
+        {/*nav buttons*/}
+        {canScrollPrev && (
+          <button
+            onClick={scrollPrev}
+            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
+          >
+            <ChevronLeft size={30} strokeWidth={2.5} />
+          </button>
+        )}
 
-        <Swiper
-          modules={[Navigation]}
-          //link custom buttons to carousel nav
-          navigation={{ enabled: true, prevEl: prevRef.current, nextEl: nextRef.current }}
-          onBeforeInit={(swiper) => {
-            //check for object, assign refs
-            if (!swiper.params.navigation || typeof swiper.params.navigation === "boolean") {
-              swiper.params.navigation = { enabled: true } as NavigationOptions;
-            }
-            const nav = swiper.params.navigation as NavigationOptions;
-            nav.prevEl = prevRef.current;
-            nav.nextEl = nextRef.current;
-          }}
-          //infinite carousel + extra clone images for smoothness
-          loop={true}
-          loopAdditionalSlides={10}
-          //disable nav when not enough images
-          watchOverflow={true}
-          //default image count + spacing (large screens)
-          spaceBetween={20}
-          slidesPerView={5}
-          //responsive image count + spacing
-          breakpoints={{
-            320: { slidesPerView: 1.5, spaceBetween: 16 },
-            640: { slidesPerView: 2, spaceBetween: 16 },
-            768: { slidesPerView: 2.5, spaceBetween: 18 },
-            1200: { slidesPerView: 5, spaceBetween: 20 },
-          }}
-          className="gallery-swiper"
-        >
-          {/*map images to slides, fixed height + preserves aspect ratio*/}
-          {items.map((image, index) => (
-            <SwiperSlide key={`${image.src}-${index}`}>
-              <div className="hover-scale-target flex items-center justify-center overflow-x-hidden overflow-y-visible py-4 w-fit">
-                <div className="h-30 sm:h-40 md:h-40 lg:h-40 w-auto flex items-center justify-center">
-                  <img
-                    src={image.src}
-                    alt={image.alt ?? `Carousel Image ${index + 1}`}
-                    className="max-h-full max-w-full w-auto h-auto object-contain block"
-                    loading="lazy"
-                  />
-                </div>
+        {canScrollNext && (
+          <button
+            onClick={scrollNext}
+            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
+          >
+            <ChevronRight size={30} strokeWidth={2.5} />
+          </button>
+        )}
+
+        {/*carousel container*/}
+        <div ref={emblaRef} className="overflow-hidden">
+          {/*styling + hide scrollbar*/}
+          <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {/*map + render images, scale for consistent height while maintaining aspect ratio*/}
+            {images.map((img, idx) => (
+              <div key={`${img.src}-${idx}`} className="flex-shrink-0 min-w-0">
+                <img
+                  src={img.src}
+                  alt={img.alt ?? `Gallery Image ${idx + 1}`}
+                  className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain"
+                />
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <hr className="border-t-[2px] border-[var(--navy)] hidden sm:block" />
+      <hr className="border-t-2 border-[var(--navy)] hidden sm:block" />
     </section>
   );
 }
