@@ -16,7 +16,6 @@ export default async function Upcoming() {
           content={content.concertsUpcoming1}
           headingVariant="concertsUpcomingPage"
           semester="1"
-          flipLayout={false} // true for semester 1s
         />
         <div className="py-9" />
 
@@ -25,7 +24,6 @@ export default async function Upcoming() {
           content={content.concertsUpcoming2}
           headingVariant="concertsUpcomingPage"
           semester="2"
-          flipLayout={true} // true for semester 2s
         />
         <div className="py-9"></div>
 

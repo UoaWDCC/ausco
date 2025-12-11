@@ -26,15 +26,9 @@ type UpcomingConcertProps = {
   };
   headingVariant: string;
   semester?: string; // optional
-  flipLayout?: boolean; // optional
 };
 
-const UpcomingConcert = ({
-  content,
-  headingVariant,
-  semester,
-  flipLayout,
-}: UpcomingConcertProps) => {
+const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertProps) => {
   const title = content.isComingSoon ? "Coming Soon!" : content.title;
   const description = content.isComingSoon
     ? "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!"
@@ -173,7 +167,7 @@ const UpcomingConcert = ({
 
       {/* Content */}
       <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center">
-        {flipLayout ? (
+        {semester === "2" ? (
           <>
             {textContent}
             {poster}
