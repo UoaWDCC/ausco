@@ -21,7 +21,7 @@ import { Concerts } from "./collections/global/Concerts";
 
 import { OurPeople } from "./collections/global/OurPeople";
 import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
-import { PastConcerts } from "./collections/global/PastConcerts";
+import { ConcertsPast } from "./collections/global/ConcertsPast";
 
 import { Gallery } from "./collections/global/Gallery";
 
@@ -47,7 +47,7 @@ export default buildConfig({
     OurPeople,
     Concerts,
     ConcertsUpcoming,
-    PastConcerts,
+    ConcertsPast,
     Gallery,
     OurStory,
   ],

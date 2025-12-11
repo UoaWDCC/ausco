@@ -6,6 +6,7 @@ import { AboutUsPage } from "@/payload-types";
 import { Concert } from "@/payload-types";
 import { Gallery } from "@/payload-types";
 import { UpcomingConcert } from "@/payload-types";
+import { PastConcert } from "@/payload-types";
 
 export const getHomePage = async (): Promise<HomePage> => {
   const payload = await getPayload();
@@ -41,6 +42,15 @@ export const getConcertsUpcoming = async (): Promise<UpcomingConcert> => {
   });
 
   return concertsUpcoming;
+};
+
+export const getConcertsPast = async (): Promise<PastConcert> => {
+  const payload = await getPayload();
+  const concertsPast = await payload.findGlobal({
+    slug: "past-concerts",
+  });
+
+  return concertsPast;
 };
 
 export const getGalleryPage = async (): Promise<Gallery> => {
