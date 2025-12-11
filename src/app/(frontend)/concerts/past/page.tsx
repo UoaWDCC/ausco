@@ -7,6 +7,7 @@ import { Button } from "@components/ui/button";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Header from "@components/concerts/Header";
 
 export default async function Past() {
   const content = await getConcertsPast();
@@ -14,11 +15,7 @@ export default async function Past() {
   return (
     <div className="bg-(--cream)">
       <div className="max-w-6xl mx-auto">
-        {/* Heading & Description */}
-        <section className="w-full pt-44 pb-18 px-6 flex flex-col items-center text-center text-(--brown)">
-          <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-7">Past Concerts</h1>
-          <h3 className="text-base w-full px-30">{content.description}</h3>
-        </section>
+        <Header title="Past Concerts" description={content.description} />
 
         {/* <PastConcerts /> */}
         <section className="text-left">
