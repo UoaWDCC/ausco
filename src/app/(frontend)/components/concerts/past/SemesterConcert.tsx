@@ -42,12 +42,13 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
               alt={posterAlt}
               width={420}
               height={594}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover border border-(--brown) rounded-md"
             />
           )}
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-(--brown) opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
+            {/* TODO: add real link when page is created (or maybe it needs optional/conditional rendering */}
             <Link href="/">
               <Button variant="link">
                 View the
