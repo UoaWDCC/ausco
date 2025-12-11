@@ -1,3 +1,4 @@
+import Header from "@components/concerts/Header";
 import UpcomingConcert1 from "@components/concerts/upcoming/UpcomingConcert1";
 import UpcomingConcert2 from "@components/concerts/upcoming/UpcomingConcert2";
 
@@ -8,11 +9,7 @@ export default async function Upcoming() {
 
   return (
     <div className="bg-(--cream)">
-      {/* Heading & Description */}
-      <section className="w-full max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center text-center text-(--brown)">
-        <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-7">Upcoming Concerts</h1>
-        <h3 className="text-base w-full px-30">{content.description}</h3>
-      </section>
+      <Header title="Upcoming Concerts" description={content.description} />
 
       {/* Semester 1 */}
       <UpcomingConcert1 content={content.concertsUpcoming1} headingVariant="concertsUpcomingPage" />

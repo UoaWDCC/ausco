@@ -1,4 +1,4 @@
-import PastConcerts from "@components/concerts/PastConcerts";
+import PastConcerts from "@components/concerts/past/PastConcerts";
 
 import { Youtube } from "react-bootstrap-icons";
 

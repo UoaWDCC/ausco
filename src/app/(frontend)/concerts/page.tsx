@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Archive, ArrowUpRight, CalendarClock } from "lucide-react";
 
 import { getConcertsPage } from "@/actions/pageActions";
+import Header from "@components/concerts/Header";
 
 export default async function Concerts() {
   const content = await getConcertsPage();
@@ -11,8 +12,8 @@ export default async function Concerts() {
   return (
     <section className="bg-(--cream)">
       <div className="w-full max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
-        <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-10">Concerts</h1>
-
+        <Header title="Concerts" />
+        
         <div className="flex flex-row justify-between items-center gap-8 w-full">
           {/* Upcoming Concerts Button */}
           <Link
