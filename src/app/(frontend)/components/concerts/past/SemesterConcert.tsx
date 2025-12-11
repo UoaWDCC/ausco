@@ -68,7 +68,7 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
         <h3 className="font-semibold! text-2xl! m-0! italic">{content.title}</h3>
         <p>{content.description}</p>
         <a href={content.url} target="_blank" rel="noopener noreferrer" className="pt-1.5 pb-2.5">
-          <Button size="lg" variant="brown" className="text-base!">
+          <Button size="lg" variant="invertedBrown" className="text-base!">
             <Youtube size={18} />
             Watch the Concert Video
           </Button>

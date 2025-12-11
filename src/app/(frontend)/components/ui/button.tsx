@@ -20,7 +20,9 @@ const buttonVariants = cva(
         beige:
           "bg-transparent text-[var(--cream)] border border-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--brown)] flex gap-2 transition",
         brown:
-          "bg-transparent text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--cream)] flex gap-2 transition",
+          "bg-(--beige) text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--beige)] flex gap-2 transition",
+        invertedBrown:
+          "bg-(--brown) text-(--cream) border border-(--brown) hover:bg-(--beige) hover:text-(--brown) flex gap-2 transition",
         navy: "bg-transparent text-[var(--navy)] border border-[var(--navy)] hover:bg-[var(--navy)] hover:text-[var(--cream)] flex gap-2 transition",
       },
       size: {
