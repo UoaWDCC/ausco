@@ -13,53 +13,53 @@
  * via the `definition` "supportedTimezones".
  */
 export type SupportedTimezones =
-  | "Pacific/Midway"
-  | "Pacific/Niue"
-  | "Pacific/Honolulu"
-  | "Pacific/Rarotonga"
-  | "America/Anchorage"
-  | "Pacific/Gambier"
-  | "America/Los_Angeles"
-  | "America/Tijuana"
-  | "America/Denver"
-  | "America/Phoenix"
-  | "America/Chicago"
-  | "America/Guatemala"
-  | "America/New_York"
-  | "America/Bogota"
-  | "America/Caracas"
-  | "America/Santiago"
-  | "America/Buenos_Aires"
-  | "America/Sao_Paulo"
-  | "Atlantic/South_Georgia"
-  | "Atlantic/Azores"
-  | "Atlantic/Cape_Verde"
-  | "Europe/London"
-  | "Europe/Berlin"
-  | "Africa/Lagos"
-  | "Europe/Athens"
-  | "Africa/Cairo"
-  | "Europe/Moscow"
-  | "Asia/Riyadh"
-  | "Asia/Dubai"
-  | "Asia/Baku"
-  | "Asia/Karachi"
-  | "Asia/Tashkent"
-  | "Asia/Calcutta"
-  | "Asia/Dhaka"
-  | "Asia/Almaty"
-  | "Asia/Jakarta"
-  | "Asia/Bangkok"
-  | "Asia/Shanghai"
-  | "Asia/Singapore"
-  | "Asia/Tokyo"
-  | "Asia/Seoul"
-  | "Australia/Brisbane"
-  | "Australia/Sydney"
-  | "Pacific/Guam"
-  | "Pacific/Noumea"
-  | "Pacific/Auckland"
-  | "Pacific/Fiji";
+  | 'Pacific/Midway'
+  | 'Pacific/Niue'
+  | 'Pacific/Honolulu'
+  | 'Pacific/Rarotonga'
+  | 'America/Anchorage'
+  | 'Pacific/Gambier'
+  | 'America/Los_Angeles'
+  | 'America/Tijuana'
+  | 'America/Denver'
+  | 'America/Phoenix'
+  | 'America/Chicago'
+  | 'America/Guatemala'
+  | 'America/New_York'
+  | 'America/Bogota'
+  | 'America/Caracas'
+  | 'America/Santiago'
+  | 'America/Buenos_Aires'
+  | 'America/Sao_Paulo'
+  | 'Atlantic/South_Georgia'
+  | 'Atlantic/Azores'
+  | 'Atlantic/Cape_Verde'
+  | 'Europe/London'
+  | 'Europe/Berlin'
+  | 'Africa/Lagos'
+  | 'Europe/Athens'
+  | 'Africa/Cairo'
+  | 'Europe/Moscow'
+  | 'Asia/Riyadh'
+  | 'Asia/Dubai'
+  | 'Asia/Baku'
+  | 'Asia/Karachi'
+  | 'Asia/Tashkent'
+  | 'Asia/Calcutta'
+  | 'Asia/Dhaka'
+  | 'Asia/Almaty'
+  | 'Asia/Jakarta'
+  | 'Asia/Bangkok'
+  | 'Asia/Shanghai'
+  | 'Asia/Singapore'
+  | 'Asia/Tokyo'
+  | 'Asia/Seoul'
+  | 'Australia/Brisbane'
+  | 'Australia/Sydney'
+  | 'Pacific/Guam'
+  | 'Pacific/Noumea'
+  | 'Pacific/Auckland'
+  | 'Pacific/Fiji';
 
 export interface Config {
   auth: {
@@ -70,64 +70,61 @@ export interface Config {
     users: User;
     media: Media;
     test: Test;
-    "payload-kv": PayloadKv;
-    "payload-locked-documents": PayloadLockedDocument;
-    "payload-preferences": PayloadPreference;
-    "payload-migrations": PayloadMigration;
+    'payload-kv': PayloadKv;
+    'payload-locked-documents': PayloadLockedDocument;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     test: TestSelect<false> | TestSelect<true>;
-    "payload-kv": PayloadKvSelect<false> | PayloadKvSelect<true>;
-    "payload-locked-documents":
-      | PayloadLockedDocumentsSelect<false>
-      | PayloadLockedDocumentsSelect<true>;
-    "payload-preferences": PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
-    "payload-migrations": PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: string;
   };
-  fallbackLocale: null;
   globals: {
-    "home-page": HomePage;
+    'home-page': HomePage;
     footer: Footer;
     header: Header;
     siteSetting: SiteSetting;
-    "about-us-page": AboutUsPage;
-    "our-people": OurPerson;
+    'about-us-page': AboutUsPage;
+    'our-people': OurPerson;
     concerts: Concert;
-    "upcoming-concerts": UpcomingConcert;
-    "past-concerts": PastConcert;
-    "concerts-gallery": ConcertsGallery;
-    "annualcamp-gallery": AnnualcampGallery;
-    "executivecamp-gallery": ExecutivecampGallery;
-    "other-gallery": OtherGallery;
+    'upcoming-concerts': UpcomingConcert;
+    'past-concerts': PastConcert;
+    'concerts-gallery': ConcertsGallery;
+    'annualcamp-gallery': AnnualcampGallery;
+    'executivecamp-gallery': ExecutivecampGallery;
+    'other-gallery': OtherGallery;
     gallery: Gallery;
-    "our-story": OurStory;
+    'our-story': OurStory;
   };
   globalsSelect: {
-    "home-page": HomePageSelect<false> | HomePageSelect<true>;
+    'home-page': HomePageSelect<false> | HomePageSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
-    "about-us-page": AboutUsPageSelect<false> | AboutUsPageSelect<true>;
-    "our-people": OurPeopleSelect<false> | OurPeopleSelect<true>;
+    'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
+    'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
-    "upcoming-concerts": UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    "past-concerts": PastConcertsSelect<false> | PastConcertsSelect<true>;
-    "concerts-gallery": ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
-    "annualcamp-gallery": AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
-    "executivecamp-gallery": ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
-    "other-gallery": OtherGallerySelect<false> | OtherGallerySelect<true>;
+    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'concerts-gallery': ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
+    'annualcamp-gallery': AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
+    'executivecamp-gallery': ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
+    'other-gallery': OtherGallerySelect<false> | OtherGallerySelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
-    "our-story": OurStorySelect<false> | OurStorySelect<true>;
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
   locale: null;
   user: User & {
-    collection: "users";
+    collection: 'users';
   };
   jobs: {
     tasks: unknown;
@@ -232,20 +229,20 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: "users";
+        relationTo: 'users';
         value: string | User;
       } | null)
     | ({
-        relationTo: "media";
+        relationTo: 'media';
         value: string | Media;
       } | null)
     | ({
-        relationTo: "test";
+        relationTo: 'test';
         value: string | Test;
       } | null);
   globalSlug?: string | null;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   updatedAt: string;
@@ -258,7 +255,7 @@ export interface PayloadLockedDocument {
 export interface PayloadPreference {
   id: string;
   user: {
-    relationTo: "users";
+    relationTo: 'users';
     value: string | User;
   };
   key?: string | null;
@@ -392,8 +389,8 @@ export interface HomePage {
           version: number;
           [k: string]: unknown;
         }[];
-        direction: ("ltr" | "rtl") | null;
-        format: "left" | "start" | "center" | "right" | "end" | "justify" | "";
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
         indent: number;
         version: number;
       };
@@ -479,7 +476,7 @@ export interface SiteSetting {
   tertiaryLogo: string | Media;
   links?:
     | {
-        platform: "facebook" | "instagram" | "youtube" | "spotify" | "feedbackForm" | "email";
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
         url: string;
         id?: string | null;
       }[]
@@ -568,7 +565,7 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: "large-group";
+            blockType: 'large-group';
           }
         | {
             sectionTitle: string;
@@ -581,7 +578,7 @@ export interface OurPerson {
               | null;
             id?: string | null;
             blockName?: string | null;
-            blockType: "small-group";
+            blockType: 'small-group';
           }
       )[]
     | null;
@@ -674,7 +671,7 @@ export interface PastConcert {
   id: string;
   headerSection: {
     title: string;
-    "short-desc": string;
+    'short-desc': string;
   };
   years?:
     | {
@@ -713,20 +710,6 @@ export interface PastConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery".
- */
-export interface Gallery {
-  id: string;
-  concert: string | Media;
-  annual: string | Media;
-  executive: string | Media;
-  other: string | Media;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
-<<<<<<< HEAD
  * via the `definition` "concerts-gallery".
  */
 export interface ConcertsGallery {
@@ -819,10 +802,20 @@ export interface OtherGallery {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "landing-page_select".
-=======
+ * via the `definition` "gallery".
+ */
+export interface Gallery {
+  id: string;
+  concert: string | Media;
+  annual: string | Media;
+  executive: string | Media;
+  other: string | Media;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-story".
->>>>>>> origin/main
  */
 export interface OurStory {
   id: string;
@@ -835,21 +828,21 @@ export interface OurStory {
         dateInfo?: string | null;
         presidents?:
           | {
-              termType: "sem1" | "sem2" | "full" | "co";
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               president: string;
               id?: string | null;
             }[]
           | null;
         vicePresidents?:
           | {
-              termType: "sem1" | "sem2" | "full" | "co";
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               vicePresident: string;
               id?: string | null;
             }[]
           | null;
         conductors?:
           | {
-              termType: "sem1" | "sem2" | "full" | "co";
+              termType: 'sem1' | 'sem2' | 'full' | 'co';
               conductor: string;
               id?: string | null;
             }[]
@@ -1074,7 +1067,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
   sections?:
     | T
     | {
-        "large-group"?:
+        'large-group'?:
           | T
           | {
               sectionTitle?: T;
@@ -1088,7 +1081,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
-        "small-group"?:
+        'small-group'?:
           | T
           | {
               sectionTitle?: T;
@@ -1206,7 +1199,7 @@ export interface PastConcertsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
-        "short-desc"?: T;
+        'short-desc'?: T;
       };
   years?:
     | T
@@ -1247,80 +1240,6 @@ export interface PastConcertsSelect<T extends boolean = true> {
                           donationAmount?: T;
                         };
                   };
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "gallery_select".
- */
-export interface GallerySelect<T extends boolean = true> {
-  concert?: T;
-  annual?: T;
-  executive?: T;
-  other?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "our-story_select".
- */
-export interface OurStorySelect<T extends boolean = true> {
-  OurStoryTitle?: T;
-  OurStoryDescription?: T;
-  timeline?:
-    | T
-    | {
-        year?: T;
-        title?: T;
-        dateInfo?: T;
-        presidents?:
-          | T
-          | {
-              termType?: T;
-              president?: T;
-              id?: T;
-            };
-        vicePresidents?:
-          | T
-          | {
-              termType?: T;
-              vicePresident?: T;
-              id?: T;
-            };
-        conductors?:
-          | T
-          | {
-              termType?: T;
-              conductor?: T;
-              id?: T;
-            };
-        description?:
-          | T
-          | {
-              paragraph?: T;
-              id?: T;
-            };
-        image?: T;
-        meetingMinutes?:
-          | T
-          | {
-              meetingRecords?:
-                | T
-                | {
-                    title?: T;
-                    content?: T;
-                    id?: T;
-                  };
-              establishmentText?: T;
-              establishmentQuote?: T;
-              id?: T;
             };
         id?: T;
       };
@@ -1422,12 +1341,87 @@ export interface OtherGallerySelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery_select".
+ */
+export interface GallerySelect<T extends boolean = true> {
+  concert?: T;
+  annual?: T;
+  executive?: T;
+  other?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  OurStoryTitle?: T;
+  OurStoryDescription?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        dateInfo?: T;
+        presidents?:
+          | T
+          | {
+              termType?: T;
+              president?: T;
+              id?: T;
+            };
+        vicePresidents?:
+          | T
+          | {
+              termType?: T;
+              vicePresident?: T;
+              id?: T;
+            };
+        conductors?:
+          | T
+          | {
+              termType?: T;
+              conductor?: T;
+              id?: T;
+            };
+        description?:
+          | T
+          | {
+              paragraph?: T;
+              id?: T;
+            };
+        image?: T;
+        meetingMinutes?:
+          | T
+          | {
+              meetingRecords?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              establishmentText?: T;
+              establishmentQuote?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "auth".
  */
 export interface Auth {
   [k: string]: unknown;
 }
 
-declare module "payload" {
+
+declare module 'payload' {
   export interface GeneratedTypes extends Config {}
 }
