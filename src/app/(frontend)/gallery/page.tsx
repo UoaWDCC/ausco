@@ -14,7 +14,7 @@ export default async function Gallery() {
         <div className="flex flex-row justify-between items-center gap-8 w-full">
           {/* Concert Photos */}
           <Link
-            href="/gallery/concert"
+            href="/gallery/concerts"
             className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
           >
             {typeof content.concert === "object" && content.concert?.url && (
