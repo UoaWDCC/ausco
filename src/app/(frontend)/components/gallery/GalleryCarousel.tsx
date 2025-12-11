@@ -55,11 +55,6 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
     };
   }, [emblaApi, onSelect]);
 
-  //empty carousel returns null
-  if (!images || images.length === 0) {
-    return null;
-  }
-
   return (
     <section className="pt-8 sm:pt-18">
       {/*carousel title*/}
@@ -67,43 +62,53 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
         {title}
       </h3>
 
-      <div className="relative w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8">
-        {/*nav buttons*/}
-        {canScrollPrev && (
-          <button
-            onClick={scrollPrev}
-            className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
-          >
-            <ChevronLeft size={30} strokeWidth={2.5} />
-          </button>
-        )}
+      {(!images || images.length === 0) && (
+        <div className="px-4 sm:px-8 md:px-12 pt-4 pb-8">
+          <p className="text-lg text-[var(--navy)]">
+            This album has no photos to show right now, check back later!
+          </p>
+        </div>
+      )}
 
-        {canScrollNext && (
-          <button
-            onClick={scrollNext}
-            className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
-          >
-            <ChevronRight size={30} strokeWidth={2.5} />
-          </button>
-        )}
+      {images && images.length > 0 && (
+        <div className="relative w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8">
+          {/*nav buttons*/}
+          {canScrollPrev && (
+            <button
+              onClick={scrollPrev}
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
+            >
+              <ChevronLeft size={30} strokeWidth={2.5} />
+            </button>
+          )}
 
-        {/*carousel container*/}
-        <div ref={emblaRef} className="overflow-hidden">
-          {/*styling + hide scrollbar*/}
-          <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            {/*map + render images, scale for consistent height while maintaining aspect ratio*/}
-            {images.map((img, idx) => (
-              <div key={`${img.src}-${idx}`} className="flex-shrink-0 min-w-0">
-                <img
-                  src={img.src}
-                  alt={img.alt ?? `Gallery Image ${idx + 1}`}
-                  className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain"
-                />
-              </div>
-            ))}
+          {canScrollNext && (
+            <button
+              onClick={scrollNext}
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-[var(--navy)] hover:text-[var(--lightblue)] focus:outline-none transition-colors cursor-pointer"
+            >
+              <ChevronRight size={30} strokeWidth={2.5} />
+            </button>
+          )}
+
+          {/*carousel container*/}
+          <div ref={emblaRef} className="overflow-hidden">
+            {/*styling + hide scrollbar*/}
+            <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              {/*map + render images, scale for consistent height while maintaining aspect ratio*/}
+              {images.map((img, idx) => (
+                <div key={`${img.src}-${idx}`} className="flex-shrink-0 min-w-0">
+                  <img
+                    src={img.src}
+                    alt={img.alt ?? `Gallery Image ${idx + 1}`}
+                    className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <hr className="border-t-2 border-[var(--navy)] hidden sm:block" />
     </section>
