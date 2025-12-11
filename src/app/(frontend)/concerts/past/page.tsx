@@ -6,6 +6,7 @@ import { getConcertsPast } from "@/actions/pageActions";
 import { Button } from "@components/ui/button";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export default async function Past() {
   const content = await getConcertsPast();
@@ -19,44 +20,49 @@ export default async function Past() {
           <h3 className="text-base w-full px-30">{content.description}</h3>
         </section>
 
-        <div className="bg-(--brown)" style={{ height: "0.5px" }} />
-
         {/* <PastConcerts /> */}
-        <section className="py-18 text-left">
-          <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-5">
+        <section className="pb-18 text-left">
+          <div className="bg-(--brown) mb-18" style={{ height: "0.5px" }} />
+
+          <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-7">
             {content.pastConcerts?.[0].year}
           </h1>
 
-          <div className="flex gap-2 items-start bg-(--beige) w-full rounded-lg p-5">
+          <div className="flex gap-9 items-start bg-(--beige) w-full rounded-lg p-9">
             {/* Semester 1 */}
-            <div className="flex w-1/2 gap-4">
+            <div className="flex w-1/2 gap-7">
               {/* Semester 1 Poster */}
-              <div className="w-3/7 relative group overflow-hidden">
-                {typeof content.pastConcerts?.[0].semesterOne.poster === "object" &&
-                  content.pastConcerts?.[0].semesterOne.poster?.url && (
-                    <Image
-                      src={content.pastConcerts?.[0].semesterOne.poster.url}
-                      alt={
-                        content.pastConcerts?.[0].semesterOne.poster.alt ||
-                        "Semester One Concert Poster"
-                      }
-                      width={420}
-                      height={594}
-                      className="w-full h-auto object-cover rounded-md"
-                      // Next.js width/height props are used for image optimisation at build/render time.
-                      // The className (w-full h-auto) overrides the rendered size for responsive layout.
-                    />
-                  )}
+              <div className="w-3/7">
+                <div className="relative group overflow-hidden rounded-md w-full">
+                  {typeof content.pastConcerts?.[0].semesterOne.poster === "object" &&
+                    content.pastConcerts?.[0].semesterOne.poster?.url && (
+                      <Image
+                        src={content.pastConcerts?.[0].semesterOne.poster.url}
+                        alt={
+                          content.pastConcerts?.[0].semesterOne.poster.alt ||
+                          "Semester One Concert Poster"
+                        }
+                        width={420}
+                        height={594}
+                        className="w-full h-auto object-cover"
+                        // Next.js width/height props are used for image optimisation at build/render time.
+                        // The className (w-full h-auto) overrides the rendered size for responsive layout.
+                      />
+                    )}
 
-                {/* Brown Overlay */}
-                <div className="absolute inset-0 bg-(--brown) rounded-md opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
-                  <p className="text-base text-center">
-                    View the
-                    <br />
-                    photos for this
-                    <br />
-                    concert <ArrowUpRight size={18} className="inline-block" />
-                  </p>
+                  {/* Brown Overlay */}
+                  <div className="absolute inset-0 bg-(--brown) opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
+                    {/* TODO: add link once gallery is done */}
+                    <Link href="/">
+                      <Button variant="link">
+                        View the
+                        <br />
+                        photos for this
+                        <br />
+                        concert <ArrowUpRight size={18} className="inline-block" />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
 
@@ -71,7 +77,7 @@ export default async function Past() {
                   href={content.pastConcerts?.[0].semesterOne.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-1.5"
+                  className="pt-1.5 pb-2.5"
                 >
                   <Button size="lg" variant="brown" className="text-base!">
                     <Youtube size={18} />
@@ -93,14 +99,76 @@ export default async function Past() {
               </div>
             </div>
 
-            {/* Pair 2 */}
-            <div className="flex w-1/2 gap-6 ml-8">
-              <div className="w-1/2 bg-gray-200 p-2">Image 2</div>
-              <div className="w-1/2 bg-gray-100 p-2">Text 2</div>
+            {/* Semester 2 */}
+            <div className="flex w-1/2 gap-7">
+              {/* Semester 2 Poster */}
+              <div className="w-3/7">
+                <div className="relative group overflow-hidden rounded-md w-full">
+                  {typeof content.pastConcerts?.[0].semesterTwo.poster === "object" &&
+                    content.pastConcerts?.[0].semesterTwo.poster?.url && (
+                      <Image
+                        src={content.pastConcerts?.[0].semesterTwo.poster.url}
+                        alt={
+                          content.pastConcerts?.[0].semesterTwo.poster.alt ||
+                          "Semester Two Concert Poster"
+                        }
+                        width={420}
+                        height={594}
+                        className="w-full h-auto object-cover"
+                        // Next.js width/height props are used for image optimisation at build/render time.
+                        // The className (w-full h-auto) overrides the rendered size for responsive layout.
+                      />
+                    )}
+
+                  {/* Brown Overlay */}
+                  <div className="absolute inset-0 bg-(--brown) opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
+                    {/* TODO: add link once gallery is done */}
+                    <Link href="/">
+                      <Button variant="link">
+                        View the
+                        <br />
+                        photos for this
+                        <br />
+                        concert <ArrowUpRight size={18} className="inline-block" />
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Semester 2 Text */}
+              <div className="w-4/7 flex flex-col text-(--brown) gap-2">
+                <p>Semester 2</p>
+                <h3 className="font-semibold! text-2xl! m-0! italic">
+                  {content.pastConcerts?.[0].semesterTwo.title}
+                </h3>
+                <p>{content.pastConcerts?.[0].semesterTwo.description}</p>
+                <a
+                  href={content.pastConcerts?.[0].semesterTwo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pt-1.5 pb-2.5"
+                >
+                  <Button size="lg" variant="brown" className="text-base!">
+                    <Youtube size={18} />
+                    Watch the Concert Video
+                  </Button>
+                </a>
+                <p className="italic text-sm font-normal">
+                  ${content.pastConcerts?.[0].semesterTwo.charity.donation} donated to{" "}
+                  <a
+                    href={content.pastConcerts?.[0].semesterTwo.charity.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button variant="link" className="text-sm! font-normal!">
+                      {content.pastConcerts?.[0].semesterTwo.charity.name}
+                    </Button>
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
-
-          <div className="bg-(--brown) mt-18" style={{ height: "0.5px" }} />
         </section>
       </div>
     </div>
