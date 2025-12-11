@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 interface GalleryImage {
   src: string;
@@ -25,6 +25,9 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
   //carousel prev/next button visibility state
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+
+  //lightbox modal open state
+  const [openImageIdx, setOpenImageIdx] = useState<number | null>(null);
 
   //carousel scroll functions
   const scrollPrev = useCallback(() => {
@@ -54,6 +57,27 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
       emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi, onSelect]);
+
+  //lightbox nav functions
+  const openLightbox = useCallback((index: number) => {
+    setOpenImageIdx(index);
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setOpenImageIdx(null);
+  }, []);
+
+  const navigateLightbox = useCallback(
+    (direction: "prev" | "next") => {
+      if (openImageIdx === null || !images) return;
+      if (direction === "prev") {
+        setOpenImageIdx(openImageIdx > 0 ? openImageIdx - 1 : images.length - 1);
+      } else {
+        setOpenImageIdx(openImageIdx < images.length - 1 ? openImageIdx + 1 : 0);
+      }
+    },
+    [openImageIdx, images],
+  );
 
   return (
     <section className="pt-8 sm:pt-18">
@@ -101,7 +125,8 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
                   <img
                     src={img.src}
                     alt={img.alt ?? `Gallery Image ${idx + 1}`}
-                    className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain"
+                    className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => openLightbox(idx)}
                   />
                 </div>
               ))}
@@ -111,6 +136,59 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
       )}
 
       <hr className="border-t-2 border-[var(--navy)] hidden sm:block" />
+
+      {/*lightbox modal*/}
+      {images && openImageIdx !== null && images[openImageIdx] && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={closeLightbox}
+        >
+          {/*close modal*/}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-4 right-4 p-2 text-white hover:text-[var(--navy)] focus:outline-none cursor-pointer"
+          >
+            <X size={32} strokeWidth={2.5} />
+          </button>
+
+          {/*nav buttons*/}
+          {images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateLightbox("prev");
+              }}
+              className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-white hover:text-[var(--navy)] focus:outline-none cursor-pointer"
+            >
+              <ChevronLeft size={32} strokeWidth={2.5} />
+            </button>
+          )}
+
+          {images.length > 1 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateLightbox("next");
+              }}
+              className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-white hover:text-[var(--navy)] focus:outline-none cursor-pointer"
+            >
+              <ChevronRight size={32} strokeWidth={2.5} />
+            </button>
+          )}
+
+          {/*opened image*/}
+          <div
+            className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={images[openImageIdx].src}
+              alt={images[openImageIdx].alt ?? `Gallery Image ${openImageIdx + 1}`}
+              className="max-w-full max-h-[90vh] object-contain"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
