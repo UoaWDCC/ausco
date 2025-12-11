@@ -391,23 +391,7 @@ export interface HomePage {
     };
     content: string;
   };
-  upcomingConcert: {
-    title: string;
-    poster: string | Media;
-    description: string;
-    tickets: {
-      matinee: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-      concert: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-    };
-  };
+  upcomingConcert: 'semesterOne' | 'semesterTwo';
   infoCards: {
     aboutUs: {
       image: string | Media;
@@ -777,31 +761,7 @@ export interface HomePageSelect<T extends boolean = true> {
         header?: T;
         content?: T;
       };
-  upcomingConcert?:
-    | T
-    | {
-        title?: T;
-        poster?: T;
-        description?: T;
-        tickets?:
-          | T
-          | {
-              matinee?:
-                | T
-                | {
-                    date?: T;
-                    location?: T;
-                    ticketUrl?: T;
-                  };
-              concert?:
-                | T
-                | {
-                    date?: T;
-                    location?: T;
-                    ticketUrl?: T;
-                  };
-            };
-      };
+  upcomingConcert?: T;
   infoCards?:
     | T
     | {
