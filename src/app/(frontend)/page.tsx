@@ -19,11 +19,8 @@ export default async function HomePage() {
     ...homeContent.hero,
   };
 
-  const semester = homeContent.homePageUpcomingConcert.select === "concertSemesterOne" ? "1" : "2";
-  const concert =
-    semester === "1"
-      ? concertsUpcomingContent.concertsUpcoming1
-      : concertsUpcomingContent.concertsUpcoming2;
+  const isConcertSemesterOne =
+    homeContent.homePageUpcomingConcert.select === "concertSemesterOne" ? true : false;
 
   const infoCardsContent = {
     ...homeContent.infoCards,
@@ -34,7 +31,15 @@ export default async function HomePage() {
     <>
       <Hero content={heroContent} />
       <div className="pt-7 pb-14 bg-(--beige)">
-        <UpcomingConcert content={concert} headingVariant="homePage" semester={semester} />
+        <UpcomingConcert
+          content={
+            isConcertSemesterOne
+              ? concertsUpcomingContent.concertsUpcoming1
+              : concertsUpcomingContent.concertsUpcoming2
+          }
+          headingVariant="homePage"
+          semester={isConcertSemesterOne ? "1" : "2"}
+        />
       </div>
       <InfoCards content={infoCardsContent} />
       <FeatureVideo content={homeContent.featureVideoUrl} />
