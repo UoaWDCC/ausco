@@ -3,17 +3,17 @@ import Link from "next/link";
 
 import { Media } from "@/payload-types";
 
-type CardProps = {
-  title: keyof typeof cardLinks;
-  background: Media | string | null;
-};
-
 const cardLinks = {
   "Concert Photos": "/gallery/concert",
   "Annual Camp Photos": "/gallery/annual",
   "Executive Camp Photos": "/gallery/executive",
   "Other Photos": "/gallery/other",
 } as const;
+
+type CardProps = {
+  title: keyof typeof cardLinks;
+  background: Media | string | null;
+};
 
 const Card = ({ title, background }: CardProps) => {
   const link = cardLinks[title];
