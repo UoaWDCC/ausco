@@ -43,18 +43,25 @@ export const HomePage: GlobalConfig = {
     },
     // Upcoming Concert Component - On FE, this is connects to \collections\global\ConcertsUpcoming.ts
     {
-      name: "upcomingConcertSelect",
-      label: "Upcoming Concert (Selection)",
-      type: "select",
-      required: true,
-      options: [
+      name: "homePageUpcomingConcert",
+      label: "Upcoming Concert (Select)",
+      type: "group",
+      fields: [
         {
-          label: "Concert in Semester One",
-          value: "concertSemesterOne",
-        },
-        {
-          label: "Concert in Semester Two",
-          value: "concertSemesterTwo",
+          name: "select",
+          label: "Select a Concert",
+          type: "select",
+          required: true,
+          options: [
+            {
+              label: "Concert in Semester One",
+              value: "concertSemesterOne",
+            },
+            {
+              label: "Concert in Semester Two",
+              value: "concertSemesterTwo",
+            },
+          ],
         },
       ],
     },

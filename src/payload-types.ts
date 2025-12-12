@@ -391,7 +391,9 @@ export interface HomePage {
     };
     content: string;
   };
-  upcomingConcertSelect: 'concertSemesterOne' | 'concertSemesterTwo';
+  homePageUpcomingConcert: {
+    select: 'concertSemesterOne' | 'concertSemesterTwo';
+  };
   infoCards: {
     aboutUs: {
       image: string | Media;
@@ -761,7 +763,11 @@ export interface HomePageSelect<T extends boolean = true> {
         header?: T;
         content?: T;
       };
-  upcomingConcertSelect?: T;
+  homePageUpcomingConcert?:
+    | T
+    | {
+        select?: T;
+      };
   infoCards?:
     | T
     | {
