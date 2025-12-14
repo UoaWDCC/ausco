@@ -29,7 +29,7 @@ export const getAboutUsPage = async (): Promise<AboutUsPage> => {
 
 // Payload Globals are single documents, so the generated TS type is singular (OurPerson) even if the slug is plural (our-people).
 // See src\collections\global\OurPeople.ts docs for more information.
-export const getOurStory = async (): Promise<OurPerson> => {
+export const getOurPeople = async (): Promise<OurPerson> => {
   const payload = await getPayload();
   const people = await payload.findGlobal({
     slug: "our-people",
