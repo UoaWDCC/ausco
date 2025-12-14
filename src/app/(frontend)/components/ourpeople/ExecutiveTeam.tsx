@@ -18,7 +18,7 @@ type ExecutiveTeamProps = {
 
 const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
   return (
-    <div className="w-full pb-18 flex flex-col items-center text-(--navy)">
+    <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
       <div className="flex justify-between items-center w-full pb-7">
         <h2 className="font-medium text-3xl m-0 shrink-0">Executive Team</h2>
         {content?.description && <p className="pl-36 flex-1">{content.description}</p>}
@@ -27,11 +27,6 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
       {/* Executive Team Members */}
       <div className="mt-6 pb-18 grid grid-cols-4 gap-8 justify-items-center">
         {content?.members?.map((member, index) => {
-          const imageUrl =
-            typeof member.profilePicture === "string"
-              ? member.profilePicture
-              : member.profilePicture?.url;
-
           return (
             <div key={index} className="flex flex-col items-start w-full">
               {typeof member.profilePicture === "object" && member.profilePicture?.url && (
@@ -56,7 +51,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
       </div>
 
       <div className="w-full bg-(--navy) mb-18" style={{ height: "1px" }} />
-    </div>
+    </section>
   );
 };
 
