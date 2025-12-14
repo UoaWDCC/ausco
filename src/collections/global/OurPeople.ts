@@ -47,7 +47,7 @@ export const OurPeople: GlobalConfig = {
           required: false,
         },
         {
-          name: "team",
+          name: "members",
           type: "array",
           label: "Executive Team Members",
           fields: [

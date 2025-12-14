@@ -523,7 +523,7 @@ export interface OurPerson {
   };
   executive?: {
     description?: string | null;
-    team?:
+    members?:
       | {
           name: string;
           role: string;
@@ -873,7 +873,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
     | T
     | {
         description?: T;
-        team?:
+        members?:
           | T
           | {
               name?: T;
