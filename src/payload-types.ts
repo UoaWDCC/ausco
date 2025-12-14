@@ -517,19 +517,29 @@ export interface AboutUsPage {
  */
 export interface OurPerson {
   id: string;
-  image?: (string | null) | Media;
-  description?: string | null;
-  generalDescription?: string | null;
-  execs?:
-    | {
-        name: string;
-        role: string;
-        degree: string;
-        description: string;
-        image: string | Media;
-        id?: string | null;
-      }[]
-    | null;
+  header: {
+    image: string | Media;
+    description?: string | null;
+  };
+  executive?: {
+    description?: string | null;
+    team?:
+      | {
+          name: string;
+          role: string;
+          degree: string;
+          description: string;
+          profilePicture: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  conductors: {
+    profilePicture: string | Media;
+    name: string;
+    description: string;
+    border: string | Media;
+  };
   playerDescription?: string | null;
   sections?:
     | (
@@ -911,18 +921,34 @@ export interface AboutUsPageSelect<T extends boolean = true> {
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
-  image?: T;
-  description?: T;
-  generalDescription?: T;
-  execs?:
+  header?:
     | T
     | {
-        name?: T;
-        role?: T;
-        degree?: T;
-        description?: T;
         image?: T;
-        id?: T;
+        description?: T;
+      };
+  executive?:
+    | T
+    | {
+        description?: T;
+        team?:
+          | T
+          | {
+              name?: T;
+              role?: T;
+              degree?: T;
+              description?: T;
+              profilePicture?: T;
+              id?: T;
+            };
+      };
+  conductors?:
+    | T
+    | {
+        profilePicture?: T;
+        name?: T;
+        description?: T;
+        border?: T;
       };
   playerDescription?: T;
   sections?:

@@ -1,33 +1,108 @@
 import { GlobalConfig } from "payload";
 
+/**
+ * NOTE:
+ * Payload Globals are single documents.
+ * Even if the slug is plural (`our-people`),
+ * Payload generates a singular TypeScript type (`OurPerson`).
+ * This is expected and types-only.
+ */
 export const OurPeople: GlobalConfig = {
   slug: "our-people",
-  label: "Our People Page",
+  label: "Our People",
   fields: [
+    // Header Component
     {
-        name: "image",
-        label: "Our People Image",
-        type: "upload",
-        relationTo: "media",
-    },
-    {
-        name: "description",
-        label: "description of Our People Page",
-        type: "text",
-    },
-    {
-      name: "generalDescription",
-      label: "Short Description of Executive Committee",
-      type: "text",
-      defaultValue:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      required: false,
-    },
-    {
-      name: "execs",
-      type: "array",
-      label: "Executive Members",
+      name: "header",
+      label: "Header",
+      type: "group",
       fields: [
+        {
+          name: "image",
+          label: "Image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "description",
+          label: "Description",
+          type: "text",
+          required: false,
+        },
+      ],
+    },
+    // Executive Team Component
+    {
+      name: "executive",
+      label: "Executive Team",
+      type: "group",
+      fields: [
+        {
+          name: "description",
+          label: "Executive Team Description",
+          type: "text",
+          defaultValue:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+          required: false,
+        },
+        {
+          name: "team",
+          type: "array",
+          label: "Executive Team Members",
+          fields: [
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+              required: true,
+              defaultValue: "John Doe",
+            },
+            {
+              name: "role",
+              label: "Role",
+              type: "text",
+              required: true,
+              defaultValue: "General Exec",
+            },
+            {
+              name: "degree",
+              label: "Degree",
+              type: "text",
+              required: true,
+              defaultValue: "BSci",
+            },
+            {
+              name: "description",
+              label: "Fun Fact / Description",
+              type: "text",
+              required: true,
+              defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            },
+            {
+              name: "profilePicture",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    // Conductors Component
+    {
+      name: "conductors",
+      label: "Conductors",
+      type: "group",
+      fields: [
+        {
+          name: "profilePicture",
+          label: "Profile Picture",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
         {
           name: "name",
           label: "Name",
@@ -36,36 +111,22 @@ export const OurPeople: GlobalConfig = {
           defaultValue: "John Doe",
         },
         {
-          name: "role",
-          label: "Executive Role",
-          type: "text",
-          required: true,
-          defaultValue: "General Exec",
-        },
-        {
-          name: "degree",
-          label: "Degree",
-          type: "text",
-          required: true,
-          defaultValue: "BSci",
-        },
-        {
           name: "description",
           label: "Fun Fact / Description",
           type: "text",
           required: true,
-          defaultValue: "Lorem Ipsum",
+          defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
         },
         {
-          name: "image",
-          label: "Profile Picture",
+          name: "border",
+          label: "border",
           type: "upload",
           relationTo: "media",
           required: true,
-          defaultValue: "68716e81b0bf6c59846349f1",
         },
       ],
     },
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@
     {
       name: "playerDescription",
       label: "Short Description of Players",
@@ -164,7 +225,7 @@ export const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
             },
-          ]
+          ],
         },
         {
           name: "founders",
@@ -187,7 +248,7 @@ export const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
             },
-          ]
+          ],
         },
       ],
     },
