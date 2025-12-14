@@ -14,6 +14,7 @@
 10. routing? (with dashes)
 11. labels in payload schema?
 12. add type props to files in /actions
+13. blur when image is rendering
 
 ### BUGS
 

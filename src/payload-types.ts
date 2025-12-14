@@ -534,6 +534,17 @@ export interface OurPerson {
         }[]
       | null;
   };
+  conductors: {
+    border: string | Media;
+    members?:
+      | {
+          profilePicture: string | Media;
+          name: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -881,6 +892,19 @@ export interface OurPeopleSelect<T extends boolean = true> {
               degree?: T;
               description?: T;
               profilePicture?: T;
+              id?: T;
+            };
+      };
+  conductors?:
+    | T
+    | {
+        border?: T;
+        members?:
+          | T
+          | {
+              profilePicture?: T;
+              name?: T;
+              description?: T;
               id?: T;
             };
       };

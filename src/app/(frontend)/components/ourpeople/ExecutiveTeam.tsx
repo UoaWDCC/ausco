@@ -50,7 +50,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
         })}
       </div>
 
-      <div className="w-full bg-(--navy) mb-18" style={{ height: "1px" }} />
+      <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
     </section>
   );
 };

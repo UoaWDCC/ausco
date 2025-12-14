@@ -48,8 +48,8 @@ export const OurPeople: GlobalConfig = {
         },
         {
           name: "members",
-          type: "array",
           label: "Executive Team Members",
+          type: "array",
           fields: [
             {
               name: "name",
@@ -90,42 +90,49 @@ export const OurPeople: GlobalConfig = {
         },
       ],
     },
-    // // Conductors Component
-    // {
-    //   name: "conductors",
-    //   label: "Conductors",
-    //   type: "group",
-    //   fields: [
-    //     {
-    //       name: "profilePicture",
-    //       label: "Profile Picture",
-    //       type: "upload",
-    //       relationTo: "media",
-    //       required: true,
-    //     },
-    //     {
-    //       name: "name",
-    //       label: "Name",
-    //       type: "text",
-    //       required: true,
-    //       defaultValue: "John Doe",
-    //     },
-    //     {
-    //       name: "description",
-    //       label: "Fun Fact / Description",
-    //       type: "text",
-    //       required: true,
-    //       defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //     },
-    //     {
-    //       name: "border",
-    //       label: "border",
-    //       type: "upload",
-    //       relationTo: "media",
-    //       required: true,
-    //     },
-    //   ],
-    // },
+    // Conductors Component
+    {
+      name: "conductors",
+      label: "Conductors",
+      type: "group",
+      fields: [
+        {
+          name: "border",
+          label: "Border / Frame",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "members",
+          label: "Conductor Members",
+          type: "array",
+          fields: [
+            {
+              name: "profilePicture",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+              required: true,
+              defaultValue: "John Doe",
+            },
+            {
+              name: "description",
+              label: "Fun Fact / Description",
+              type: "text",
+              required: true,
+              defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            },
+          ],
+        },
+      ],
+    },
     // // @@@@@@@@@@@@@@@@@@@@@@@@@@@@
     // {
     //   name: "playerDescription",
