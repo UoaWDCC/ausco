@@ -1,6 +1,8 @@
 import { Media } from "@/payload-types";
 import Image from "next/image";
 
+import FramedImage from "./FramedImage";
+
 type ConductorsProps = {
   content?: {
     border: Media | string | null;
@@ -21,18 +23,28 @@ const Conductors = ({ content }: ConductorsProps) => {
     if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
     return null;
   };
-  const borderUrl = getImageUrl(content?.border);
-
-  console.log("hello");
-  console.log(content?.members?.[0].profilePicture);
-  console.log("hello1");
+  const frameUrl = getImageUrl(content?.border);
 
   return (
     <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
       <h2 className="font-medium text-3xl text-center m-0 shrink-0 pb-7">Conductors</h2>
       {/* Conductors */}
-      {/* <div className="flex flex-wrap justify-center gap-6"> */}
+      <div className="w-full mt-6 pb-18 grid grid-cols-3 gap-16 justify-items-center">
+        {content?.members?.map((member, index) => {
+          const profileUrl = getImageUrl(member.profilePicture);
 
+          return (
+            <div key={index} className="flex flex-col text-center w-full">
+              {profileUrl && frameUrl && <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} />}
+
+              <div className="flex flex-col text-base w-full gap-1">
+                <p className="font-semibold">{member.name}</p>
+                <p>{member.description}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };
@@ -50,20 +62,12 @@ export default Conductors;
 
 // absolute inset-0 overflow-hidden rounded-[50%]
 
-// @@
-//         {content?.conductors?.map((member, index) => {
-//   const profileUrl = getImageUrl(member.profilePicture);
-//   if (!profileUrl) return null; // skip if no image
+// TODO: consider adding this? to this and all files: "sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw""
+// It tells Next.js:
+// Desktop: image ≈ ⅓ screen width
+// Tablet: ≈ ½ screen width
+// Mobile: full width
+// Without this, Next.js over-downloads images.
 
-//   return (
-//     <div key={index}>
-//       <Image
-//         src={profileUrl}
-//         alt={member.name}
-//         width={200}
-//         height={200}
-//         className="object-cover"
-//       />
-//     </div>
-//   );
-// })}
+// TODO: rename border to frame
+// TODO: make layout flexible / dynamic to the number of conductors
