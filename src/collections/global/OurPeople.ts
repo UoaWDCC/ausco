@@ -33,63 +33,63 @@ export const OurPeople: GlobalConfig = {
       ],
     },
     // Executive Team Component
-    // {
-    //   name: "executive",
-    //   label: "Executive Team",
-    //   type: "group",
-    //   fields: [
-    //     {
-    //       name: "description",
-    //       label: "Executive Team Description",
-    //       type: "text",
-    //       defaultValue:
-    //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-    //       required: false,
-    //     },
-    //     {
-    //       name: "team",
-    //       type: "array",
-    //       label: "Executive Team Members",
-    //       fields: [
-    //         {
-    //           name: "name",
-    //           label: "Name",
-    //           type: "text",
-    //           required: true,
-    //           defaultValue: "John Doe",
-    //         },
-    //         {
-    //           name: "role",
-    //           label: "Role",
-    //           type: "text",
-    //           required: true,
-    //           defaultValue: "General Exec",
-    //         },
-    //         {
-    //           name: "degree",
-    //           label: "Degree",
-    //           type: "text",
-    //           required: true,
-    //           defaultValue: "BSci",
-    //         },
-    //         {
-    //           name: "description",
-    //           label: "Fun Fact / Description",
-    //           type: "text",
-    //           required: true,
-    //           defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    //         },
-    //         {
-    //           name: "profilePicture",
-    //           label: "Profile Picture",
-    //           type: "upload",
-    //           relationTo: "media",
-    //           required: true,
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    {
+      name: "executive",
+      label: "Executive Team",
+      type: "group",
+      fields: [
+        {
+          name: "description",
+          label: "Executive Team Description",
+          type: "text",
+          defaultValue:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+          required: false,
+        },
+        {
+          name: "team",
+          type: "array",
+          label: "Executive Team Members",
+          fields: [
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+              required: true,
+              defaultValue: "John Doe",
+            },
+            {
+              name: "role",
+              label: "Role",
+              type: "text",
+              required: true,
+              defaultValue: "General Exec",
+            },
+            {
+              name: "degree",
+              label: "Degree",
+              type: "text",
+              required: true,
+              defaultValue: "BSci",
+            },
+            {
+              name: "description",
+              label: "Fun Fact / Description",
+              type: "text",
+              required: true,
+              defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            },
+            {
+              name: "profilePicture",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
     // // Conductors Component
     // {
     //   name: "conductors",

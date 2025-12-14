@@ -12,9 +12,11 @@ export default async function OurPeoplePage() {
     <section className="bg-(--cream)">
       <div className="max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
         <Header content={content.header} />
-        {/* <OurPeople />
-        <ExecutiveTeam />
-        <Conductors />
+
+        <div className="bg-(--navy) mb-18" style={{ height: "0.5px" }} />
+
+        <ExecutiveTeam content={content.executive} />
+        {/* <Conductors />
         <Players />
         <HallOfFame /> */}
       </div>
