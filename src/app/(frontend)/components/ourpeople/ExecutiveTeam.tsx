@@ -40,7 +40,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
                   alt={`Profile Picture of ${member.name}`}
                   height={400}
                   width={400}
-                  className="w-full object-cover mb-6"
+                  className="w-full object-cover mb-6 rounded-md"
                 />
               )}
 

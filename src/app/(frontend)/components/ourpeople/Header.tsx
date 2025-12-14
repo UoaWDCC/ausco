@@ -21,7 +21,7 @@ const Header = ({ content }: HeaderProps) => {
               fill
               style={{ objectFit: "cover" }}
               priority
-              sizes="(max-width: 768px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 50vw rounded-lg"
             />
           </div>
         )}
