@@ -7,9 +7,9 @@ type FramedImageProps = {
 
 const FramedImage = ({ imageUrl, frameUrl }: FramedImageProps) => {
   return (
-    <div className="relative w-full aspect-3/4 mb-6">
+    <div className="relative w-full aspect-239/272 mb-6">
       {/* Profile Picture */}
-      <div className="absolute inset-[13%] overflow-hidden rounded-[50%/40%] z-10">
+      <div className="absolute inset-[11%] overflow-hidden rounded-[50%/40%] z-10">
         <Image
           src={imageUrl}
           alt={`Profile Picture for ${imageUrl}`}
