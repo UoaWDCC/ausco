@@ -80,22 +80,23 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
   );
 
   return (
-    <section className="pt-8 sm:pt-18">
-      {/*carousel title*/}
-      <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-bold tracking-tight md:text-3xl text-left">
-        {title}
-      </h3>
+    <section>
+      <div className="flex flex-col gap-8 gap-20 py-8 md:py-20">
+        {/*carousel title*/}
+        <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-bold tracking-tight md:text-3xl">
+          {title}
+        </h3>
 
-      {(!images || images.length === 0) && (
-        <div className="px-4 sm:px-8 md:px-12 pt-4 pb-8">
-          <p className="text-lg text-[var(--navy)]">
-            This album has no photos to show right now, check back later!
-          </p>
-        </div>
-      )}
+        {(!images || images.length === 0) && (
+          <div className="px-4 sm:px-8 md:px-12">
+            <p className="text-lg text-[var(--navy)]">
+              This album has no photos to show right now, check back later!
+            </p>
+          </div>
+        )}
 
-      {images && images.length > 0 && (
-        <div className="relative w-full px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16">
+        {images && images.length > 0 && (
+          <div className="relative w-full px-4 sm:px-8 md:px-12">
           {/*nav buttons*/}
           {canScrollPrev && (
             <button
@@ -134,6 +135,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
           </div>
         </div>
       )}
+      </div>
 
       <hr className="border-t-2 border-[var(--navy)] hidden sm:block" />
 
