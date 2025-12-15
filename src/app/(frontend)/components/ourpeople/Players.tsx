@@ -45,7 +45,7 @@ const Players = ({ content }: PlayersProps) => {
   return (
     <section className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
       {/* LEFT: Title + Dscription */}
-      <div className="text-left w-3/16">
+      <div className="text-left w-3/16 flex flex-col h-full justify-center">
         <h2 className="font-medium text-3xl m-0 shrink-0 pb-7">Players</h2>
         {content?.description && <p className="">{content.description}</p>}
       </div>
@@ -67,21 +67,19 @@ const Players = ({ content }: PlayersProps) => {
 
             <h3 className="text-lg font-semibold">{group.title}</h3>
 
-            <div>
-              <ul className="space-y-0.5">
-                {listOfPlayers(group.players).map((player, index) => (
-                  <li key={index} className="text-sm w-full wrap-break-word hyphens-auto">
-                    {player}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className="space-y-3">
+              {listOfPlayers(group.players).map((player, index) => (
+                <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                  {player}
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
 
         {/* Small Groups - 2 per column */}
         {smallGroups.map((column, columnIndex) => (
-          <div key={columnIndex} className="flex flex-col gap-8">
+          <div key={columnIndex} className="flex flex-col gap-10">
             {column.map((group, index) => (
               <div key={index} className="w-40 flex flex-col gap-4">
                 {typeof group.image === "object" && group.image?.url && (
@@ -97,15 +95,13 @@ const Players = ({ content }: PlayersProps) => {
 
                 <h3 className="text-lg font-semibold">{group.title}</h3>
 
-                <div>
-                  <ul className="space-y-0.5">
-                    {listOfPlayers(group.players).map((player, index) => (
-                      <li key={index} className="text-sm w-full wrap-break-word hyphens-auto">
-                        {player}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="space-y-3">
+                  {listOfPlayers(group.players).map((player, index) => (
+                    <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                      {player}
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
