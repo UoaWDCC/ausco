@@ -74,7 +74,7 @@ const NavItem = ({
     >
       <div className="relative group">
         <Button variant="link" asChild className="flex items-center gap-1">
-          <Link href={item.href}>
+          <Link href={item.href} onMouseUp={(e) => e.currentTarget.blur()}>
             {item.label}
             {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
           </Link>
@@ -107,6 +107,7 @@ const NavItem = ({
                           : "var(--navy)",
                         transition: "color 100ms",
                       }}
+                      onMouseUp={(e) => e.currentTarget.blur()}
                     >
                       {subitem.label}
                     </Link>
