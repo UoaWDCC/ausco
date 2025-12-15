@@ -41,7 +41,6 @@
     "react-bootstrap-icons": "^1.11.6",
     "react-dom": "19.1.0",
     "sharp": "0.34.1",
-    "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.5",
     "tw-animate-css": "^1.3.8"
