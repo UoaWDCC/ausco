@@ -83,7 +83,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
     <section>
       <div className="flex flex-col gap-8 gap-20 py-8 md:py-20">
         {/*carousel title*/}
-        <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-bold tracking-tight md:text-3xl">
+        <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl">
           {title}
         </h3>
 
