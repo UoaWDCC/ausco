@@ -41,7 +41,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
       <h2 className="font-medium text-3xl m-0 shrink-0 pb-13">Hall Of Fame</h2>
       <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
 
-      <h3 className="text-xl font-semibold pt-13 pb-7">Past Presidents</h3>
+      <h3 className="text-xl font-semibold pt-13 pb-3">Past Presidents</h3>
 
       <div className="w-full mt-6 mb-13 grid grid-cols-4 gap-16 justify-items-center">
         {content?.pastPresidents?.members?.map((member, index) => {
@@ -67,7 +67,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
 
       <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
 
-      <h3 className="text-xl font-semibold pt-13 pb-7">Founders</h3>
+      <h3 className="text-xl font-semibold pt-13 pb-3">Founders</h3>
 
       <div className="grid grid-cols-2 gap-16 w-1/2 mx-auto mt-6">
         {content?.founders?.members?.map((member, index) => {
