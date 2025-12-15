@@ -1,8 +1,13 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
 
 import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
+
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import parallaxConfig from "@/config/parallax";
 
 export type CardProps = {
   icon: React.ReactNode;
@@ -28,17 +33,26 @@ const Card = ({
   const isLinked = link ? link.trim() !== "" : false;
   const isSponsored = sponsorLogos && sponsorLogos.length > 0;
 
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
+  const { scrollY } = useScroll();
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
+  // smooth motion
+  const y = useSpring(rawY, spring);
+
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
       {/* On Display: Background Image */}
-      <Image
-        src={background!}
-        alt={alt}
-        fill
-        priority
-        loading="eager"
-        className="object-cover object-center"
-      />
+      <motion.div style={{y, scale:1.4}}>
+        <Image
+          src={background!}
+          alt={alt}
+          fill
+          priority
+          loading="eager"
+          className="object-cover object-center"
+        />
+      </motion.div>
 
       {/* On Display: Content */}
       <div className="relative z-10 h-full flex flex-col items-center text-center">
