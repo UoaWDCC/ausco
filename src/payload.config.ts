@@ -20,8 +20,8 @@ import AboutHeroSection from "./collections/global/AboutUsPage";
 import { Concerts } from "./collections/global/Concerts";
 
 import { OurPeople } from "./collections/global/OurPeople";
-import { UpcomingConcerts } from "./collections/global/UpcomingConcerts";
-import { PastConcerts } from "./collections/global/PastConcerts";
+import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
+import { ConcertsPast } from "./collections/global/ConcertsPast";
 
 import { ConcertsGallery } from "./collections/global/ConcertsGallery";
 import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
@@ -50,12 +50,12 @@ export default buildConfig({
     AboutHeroSection,
     OurPeople,
     Concerts,
-    UpcomingConcerts,
-    PastConcerts,
     ConcertsGallery,
     AnnualCampGallery,
     ExecutiveCampGallery,
     OtherGallery,
+    ConcertsUpcoming,
+    ConcertsPast,
     Gallery,
     OurStory,
   ],

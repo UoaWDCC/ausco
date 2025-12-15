@@ -13,6 +13,7 @@
 9. consider max-w-?
 10. routing? (with dashes)
 11. labels in payload schema?
+12. add type props to files in /actions
 
 ### BUGS
 

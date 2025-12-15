@@ -399,22 +399,8 @@ export interface HomePage {
     };
     content: string;
   };
-  upcomingConcert: {
-    title: string;
-    poster: string | Media;
-    description: string;
-    tickets: {
-      matinee: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-      concert: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-    };
+  homePageUpcomingConcert: {
+    select: 'concertSemesterOne' | 'concertSemesterTwo';
   };
   infoCards: {
     aboutUs: {
@@ -624,43 +610,44 @@ export interface Concert {
  */
 export interface UpcomingConcert {
   id: string;
-  hero: string;
-  upcomingConcert?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
+  description: string;
+  concertsUpcoming1: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
   };
-  semOneEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
+  concertsUpcoming2: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
   };
-  semOneEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  upcomingConcertTwo?: {
-    title?: string | null;
-    poster?: (string | null) | Media;
-    description1?: string | null;
-    description2?: string | null;
-  };
-  semTwoEventOne?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
-  semTwoEventTwo?: {
-    title?: string | null;
-    date?: string | null;
-    location?: string | null;
-    ticketUrl?: string | null;
-  };
+  googleCalendarEmail: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -670,37 +657,30 @@ export interface UpcomingConcert {
  */
 export interface PastConcert {
   id: string;
-  headerSection: {
-    title: string;
-    'short-desc': string;
-  };
-  years?:
+  description: string;
+  pastConcerts?:
     | {
-        year: string;
-        concerts: {
-          semester1: {
-            poster: string | Media;
-            semester: string;
-            concertTitle: string;
-            desc: string;
-            videoUrl: string;
-            charity: {
-              name: string;
-              websiteURL: string;
-              donationAmount: number;
-            };
+        year: number;
+        semesterOne: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
+            url: string;
+            donation: number;
           };
-          semester2: {
-            poster: string | Media;
-            semester: string;
-            concertTitle: string;
-            desc: string;
-            videoUrl: string;
-            charity: {
-              name: string;
-              websiteURL: string;
-              donationAmount: number;
-            };
+        };
+        semesterTwo: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
+            url: string;
+            donation: number;
           };
         };
         id?: string | null;
@@ -883,30 +863,10 @@ export interface HomePageSelect<T extends boolean = true> {
         header?: T;
         content?: T;
       };
-  upcomingConcert?:
+  homePageUpcomingConcert?:
     | T
     | {
-        title?: T;
-        poster?: T;
-        description?: T;
-        tickets?:
-          | T
-          | {
-              matinee?:
-                | T
-                | {
-                    date?: T;
-                    location?: T;
-                    ticketUrl?: T;
-                  };
-              concert?:
-                | T
-                | {
-                    date?: T;
-                    location?: T;
-                    ticketUrl?: T;
-                  };
-            };
+        select?: T;
       };
   infoCards?:
     | T
@@ -1138,55 +1098,60 @@ export interface ConcertsSelect<T extends boolean = true> {
  * via the `definition` "upcoming-concerts_select".
  */
 export interface UpcomingConcertsSelect<T extends boolean = true> {
-  hero?: T;
-  upcomingConcert?:
+  description?: T;
+  concertsUpcoming1?:
     | T
     | {
+        isComingSoon?: T;
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
-  semOneEventOne?:
+  concertsUpcoming2?:
     | T
     | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semOneEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  upcomingConcertTwo?:
-    | T
-    | {
+        isComingSoon?: T;
         title?: T;
         poster?: T;
-        description1?: T;
-        description2?: T;
+        description?: T;
+        tickets?:
+          | T
+          | {
+              matinee?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+              concert?:
+                | T
+                | {
+                    date?: T;
+                    location?: T;
+                    ticketUrl?: T;
+                  };
+            };
       };
-  semTwoEventOne?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
-  semTwoEventTwo?:
-    | T
-    | {
-        title?: T;
-        date?: T;
-        location?: T;
-        ticketUrl?: T;
-      };
+  googleCalendarEmail?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1196,50 +1161,39 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
  * via the `definition` "past-concerts_select".
  */
 export interface PastConcertsSelect<T extends boolean = true> {
-  headerSection?:
-    | T
-    | {
-        title?: T;
-        'short-desc'?: T;
-      };
-  years?:
+  description?: T;
+  pastConcerts?:
     | T
     | {
         year?: T;
-        concerts?:
+        semesterOne?:
           | T
           | {
-              semester1?:
+              poster?: T;
+              title?: T;
+              description?: T;
+              url?: T;
+              charity?:
                 | T
                 | {
-                    poster?: T;
-                    semester?: T;
-                    concertTitle?: T;
-                    desc?: T;
-                    videoUrl?: T;
-                    charity?:
-                      | T
-                      | {
-                          name?: T;
-                          websiteURL?: T;
-                          donationAmount?: T;
-                        };
+                    name?: T;
+                    url?: T;
+                    donation?: T;
                   };
-              semester2?:
+            };
+        semesterTwo?:
+          | T
+          | {
+              poster?: T;
+              title?: T;
+              description?: T;
+              url?: T;
+              charity?:
                 | T
                 | {
-                    poster?: T;
-                    semester?: T;
-                    concertTitle?: T;
-                    desc?: T;
-                    videoUrl?: T;
-                    charity?:
-                      | T
-                      | {
-                          name?: T;
-                          websiteURL?: T;
-                          donationAmount?: T;
-                        };
+                    name?: T;
+                    url?: T;
+                    donation?: T;
                   };
             };
         id?: T;
