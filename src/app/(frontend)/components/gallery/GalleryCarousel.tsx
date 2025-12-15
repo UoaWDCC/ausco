@@ -82,7 +82,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
   return (
     <section className="pt-8 sm:pt-18">
       {/*carousel title*/}
-      <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-semibold tracking-tight md:text-3xl text-center sm:text-left">
+      <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-[var(--navy)] font-bold tracking-tight md:text-3xl text-left">
         {title}
       </h3>
 
@@ -95,7 +95,7 @@ export default function GalleryCarousel({ title, images = [] }: GalleryCarouselP
       )}
 
       {images && images.length > 0 && (
-        <div className="relative w-full px-4 sm:px-8 md:px-12 pt-4 sm:pt-6 md:pt-8 lg:py-8 md:mb-4 lg:mb-8">
+        <div className="relative w-full px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16">
           {/*nav buttons*/}
           {canScrollPrev && (
             <button
