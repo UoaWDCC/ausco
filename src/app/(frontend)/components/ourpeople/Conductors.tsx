@@ -28,7 +28,7 @@ const Conductors = ({ content }: ConductorsProps) => {
     <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
       <h2 className="font-medium text-3xl text-center m-0 shrink-0 pb-7">Conductors</h2>
       {/* Conductors */}
-      <div className="w-full mt-6 pb-18 grid grid-cols-3 gap-16 justify-items-center">
+      <div className="w-full mt-6 grid grid-cols-3 gap-16 justify-items-center">
         {content?.members?.map((member, index) => {
           const profileUrl = getImageUrl(member.profilePicture);
 
