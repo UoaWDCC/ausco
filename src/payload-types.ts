@@ -535,7 +535,7 @@ export interface OurPerson {
       | null;
   };
   conductors: {
-    border: string | Media;
+    frame: string | Media;
     members?:
       | {
           profilePicture: string | Media;
@@ -543,6 +543,29 @@ export interface OurPerson {
           description: string;
           id?: string | null;
         }[]
+      | null;
+  };
+  players?: {
+    description?: string | null;
+    sections?:
+      | (
+          | {
+              title: string;
+              image: string | Media;
+              players: string;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'large-group';
+            }
+          | {
+              title: string;
+              image: string | Media;
+              players: string;
+              id?: string | null;
+              blockName?: string | null;
+              blockType: 'small-group';
+            }
+        )[]
       | null;
   };
   updatedAt?: string | null;
@@ -898,7 +921,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
   conductors?:
     | T
     | {
-        border?: T;
+        frame?: T;
         members?:
           | T
           | {
@@ -906,6 +929,33 @@ export interface OurPeopleSelect<T extends boolean = true> {
               name?: T;
               description?: T;
               id?: T;
+            };
+      };
+  players?:
+    | T
+    | {
+        description?: T;
+        sections?:
+          | T
+          | {
+              'large-group'?:
+                | T
+                | {
+                    title?: T;
+                    image?: T;
+                    players?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
+              'small-group'?:
+                | T
+                | {
+                    title?: T;
+                    image?: T;
+                    players?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
             };
       };
   updatedAt?: T;

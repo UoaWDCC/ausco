@@ -1,11 +1,10 @@
 import { Media } from "@/payload-types";
-import Image from "next/image";
 
 import FramedImage from "./FramedImage";
 
 type ConductorsProps = {
   content?: {
-    border: Media | string | null;
+    frame: Media | string | null;
     members?:
       | {
           profilePicture: Media | string | null;
@@ -23,7 +22,7 @@ const Conductors = ({ content }: ConductorsProps) => {
     if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
     return null;
   };
-  const frameUrl = getImageUrl(content?.border);
+  const frameUrl = getImageUrl(content?.frame);
 
   return (
     <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
@@ -51,17 +50,6 @@ const Conductors = ({ content }: ConductorsProps) => {
 
 export default Conductors;
 
-{
-  /* Border / Frame */
-}
-// {borderUrl && (
-//   <div className="absolute inset-0 pointer-events-none">
-//     <Image src={borderUrl} alt="Conductor border" fill className="object-cover" />
-//   </div>
-// )}
-
-// absolute inset-0 overflow-hidden rounded-[50%]
-
 // TODO: consider adding this? to this and all files: "sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw""
 // It tells Next.js:
 // Desktop: image ≈ ⅓ screen width
@@ -69,5 +57,4 @@ export default Conductors;
 // Mobile: full width
 // Without this, Next.js over-downloads images.
 
-// TODO: rename border to frame
 // TODO: make layout flexible / dynamic to the number of conductors

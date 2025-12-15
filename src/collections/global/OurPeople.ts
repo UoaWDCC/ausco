@@ -97,8 +97,8 @@ export const OurPeople: GlobalConfig = {
       type: "group",
       fields: [
         {
-          name: "border",
-          label: "Border / Frame",
+          name: "frame",
+          label: "Frame",
           type: "upload",
           relationTo: "media",
           required: true,
@@ -133,79 +133,82 @@ export const OurPeople: GlobalConfig = {
         },
       ],
     },
-    // // @@@@@@@@@@@@@@@@@@@@@@@@@@@@
-    // {
-    //   name: "playerDescription",
-    //   label: "Short Description of Players",
-    //   type: "text",
-    //   required: false,
-    // },
-    // {
-    //   name: "sections",
-    //   type: "blocks",
-    //   blocks: [
-    //     {
-    //       slug: "large-group",
-    //       labels: {
-    //         singular: "Large Orchestra Section (full column)",
-    //         plural: "Large Orchestra Sections (full columns)",
-    //       },
-    //       fields: [
-    //         {
-    //           name: "sectionTitle",
-    //           type: "text",
-    //           required: true,
-    //         },
-    //         {
-    //           name: "photo",
-    //           type: "upload",
-    //           relationTo: "media",
-    //           required: true,
-    //         },
-    //         {
-    //           name: "players",
-    //           type: "array",
-    //           fields: [
-    //             {
-    //               name: "name",
-    //               type: "text",
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       slug: "small-group",
-    //       labels: {
-    //         singular: "Small Orchestra Section (half column)",
-    //         plural: "Small Orchestra Sections (half columns)",
-    //       },
-    //       fields: [
-    //         {
-    //           name: "sectionTitle",
-    //           type: "text",
-    //           required: true,
-    //         },
-    //         {
-    //           name: "photo",
-    //           type: "upload",
-    //           relationTo: "media",
-    //           required: true,
-    //         },
-    //         {
-    //           name: "players",
-    //           type: "array",
-    //           fields: [
-    //             {
-    //               name: "name",
-    //               type: "text",
-    //             },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    // Players Component
+    {
+      name: "players",
+      label: "Orchestra Players",
+      type: "group",
+      fields: [
+        {
+          name: "description",
+          label: "Players Description",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "sections",
+          type: "blocks",
+          blocks: [
+            {
+              slug: "large-group",
+              labels: {
+                singular: "Large Orchestra Section (full column)",
+                plural: "Large Orchestra Sections (full columns)",
+              },
+              fields: [
+                {
+                  name: "title",
+                  label: "Section Title",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "image",
+                  label: "Section Image",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "players",
+                  label: "List of Players",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+            {
+              slug: "small-group",
+              labels: {
+                singular: "Small Orchestra Section (half column)",
+                plural: "Small Orchestra Sections (half columns)",
+              },
+              fields: [
+                {
+                  name: "title",
+                  label: "Section Title",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "image",
+                  label: "Section Image",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "players",
+                  label: "List of Section Players",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
     // {
     //   name: "hallOfFame",
     //   type: "array",

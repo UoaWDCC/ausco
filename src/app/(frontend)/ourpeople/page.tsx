@@ -15,8 +15,8 @@ export default async function OurPeoplePage() {
 
         <ExecutiveTeam content={content.executive} />
         <Conductors content={content.conductors} />
-        {/* <Players />
-        <HallOfFame /> */}
+        <Players content={content.players} />
+        {/* <HallOfFame /> */}
       </div>
     </section>
   );

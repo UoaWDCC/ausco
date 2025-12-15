@@ -1,13 +1,13 @@
-import { getOurPeople } from "@/actions/ourPeopleActions";
+import { Media } from "@/collections/Media";
 
-const Players = async () => {
-  const [content] = await Promise.all([getOurPeople()]);
-  const sections = content.sections as {
-    sectionTitle: string;
-    photo: { url: string };
-    players: { name: string }[];
-  }[];
+type PlayersProps = {
+  content: {
+    description?: string | null;
+  };
+};
 
+
+const Players = ({ content }: PlayersProps) => {
   const largeGroups = sections.filter((section: any) => section.blockType === "large-group");
   const smallGroups = sections.filter((section: any) => section.blockType === "small-group");
   const chunkedSmallGroups = []; // this is necessary to map the small groups into columns of length 2.
