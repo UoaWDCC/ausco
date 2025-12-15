@@ -26,7 +26,6 @@ export const SiteSetting: GlobalConfig = {
       relationTo: "media",
       required: true,
     },
-
     // Links
     {
       name: "links",

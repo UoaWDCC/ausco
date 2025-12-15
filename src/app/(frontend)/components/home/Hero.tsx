@@ -19,6 +19,7 @@ type HeroProps = {
   };
 };
 
+// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
 
   const { rangeIn, rangeOut, spring } = parallaxConfig;
@@ -33,7 +34,7 @@ const Hero = ({ content }: HeroProps) => {
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{y}}>
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
@@ -45,11 +46,8 @@ const Hero = ({ content }: HeroProps) => {
         )}
       </motion.div>
 
-      {/* Foreground Content */}
-      <div
-        className="relative z-10 flex flex-col items-center text-center text-[var(--cream)] h-full px-6 py-12 md:py-16 lg:py-20 gap-10"
-        style={{ paddingTop: "calc(var(--header-height) + 3rem)" }}
-      >
+      {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
+      <div className="relative z-10 flex flex-col items-center text-center text-(--cream) h-full pt-40 pb-12 px-6 gap-10">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
@@ -61,12 +59,12 @@ const Hero = ({ content }: HeroProps) => {
         )}
 
         {/* Header */}
-        <h1 className="text-2xl md:text-4xl !font-semibold leading-tight !mt-4 !mb-1.5">
+        <h1 className="text-2xl md:text-4xl font-semibold! leading-tight mt-4! mb-1.5!">
           <RichText data={content.header} />
         </h1>
 
         {/* Content */}
-        <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-[52rem]">{content.content}</h3>
+        <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-208">{content.content}</h3>
 
         <Button variant="beige" size="lg" className="mt-2.5">
           Join Us
