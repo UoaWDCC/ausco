@@ -1,4 +1,5 @@
 import { Media } from "@/payload-types";
+import Image from "next/image";
 
 type PlayersProps = {
   content?: {
@@ -25,12 +26,13 @@ type PlayersProps = {
 const Players = ({ content }: PlayersProps) => {
   const largeGroups =
     content?.sections?.filter((section: any) => section.blockType === "large-group") ?? [];
-  const smallGroups =
+
+  const smallColumns =
     content?.sections?.filter((section: any) => section.blockType === "small-group") ?? [];
   // Map 2 small groups into 1 column
-  const smallGroupColumns: (typeof smallGroups)[] = [];
-  for (let i = 0; i < smallGroups.length; i += 2) {
-    smallGroupColumns.push(smallGroups.slice(i, i + 2));
+  const smallGroups: (typeof smallColumns)[] = [];
+  for (let i = 0; i < smallColumns.length; i += 2) {
+    smallGroups.push(smallColumns.slice(i, i + 2));
   }
 
   // Map players into a list
@@ -49,7 +51,66 @@ const Players = ({ content }: PlayersProps) => {
       </div>
 
       {/* RIGHT: Players Columns */}
-      <div className="flex-1 flex gap-12"></div>
+      <div className="flex-1 flex justify-between text-center">
+        {/* Large Groups - Each gets its own column */}
+        {largeGroups.map((group, index) => (
+          <div key={index} className="w-40 flex flex-col gap-4">
+            {typeof group.image === "object" && group.image?.url && (
+              <Image
+                src={group.image.url}
+                alt={group.image.alt}
+                width={100}
+                height={100}
+                className="mx-auto"
+              />
+            )}
+
+            <h3 className="text-lg font-semibold">{group.title}</h3>
+
+            <div>
+              <ul className="space-y-0.5">
+                {listOfPlayers(group.players).map((player, index) => (
+                  <li key={index} className="text-sm w-full wrap-break-word hyphens-auto">
+                    {player}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+
+        {/* Small Groups - 2 per column */}
+        {smallGroups.map((column, columnIndex) => (
+          <div key={columnIndex} className="flex flex-col gap-8">
+            {column.map((group, index) => (
+              <div key={index} className="w-40 flex flex-col gap-4">
+                {typeof group.image === "object" && group.image?.url && (
+                  <Image
+                    src={group.image.url}
+                    alt={group.image.alt}
+                    width={100}
+                    height={100}
+                    className="mx-auto"
+                    key={index}
+                  />
+                )}
+
+                <h3 className="text-lg font-semibold">{group.title}</h3>
+
+                <div>
+                  <ul className="space-y-0.5">
+                    {listOfPlayers(group.players).map((player, index) => (
+                      <li key={index} className="text-sm w-full wrap-break-word hyphens-auto">
+                        {player}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </section>
   );
 };
