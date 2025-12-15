@@ -37,7 +37,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
   const foundersFrameUrl = getImageUrl(content?.founders?.frame);
 
   return (
-    <section className="text-(--navy) text-center">
+    <section className="text-(--navy) text-center pb-12">
       <h2 className="font-medium text-3xl m-0 shrink-0 pb-13">Hall Of Fame</h2>
       <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
 
@@ -48,9 +48,13 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
           const profileUrl = getImageUrl(member.image);
 
           return (
-            <div key={index} className="flex flex-col w-full">
+            <div key={index} className="flex flex-col flex-1">
               {profileUrl && pastPresidentsFrameUrl && (
-                <FramedImage imageUrl={profileUrl} frameUrl={pastPresidentsFrameUrl} />
+                <FramedImage
+                  imageUrl={profileUrl}
+                  frameUrl={pastPresidentsFrameUrl}
+                  frameType="oval"
+                />
               )}
               <div className="flex flex-col text-base w-full gap-1">
                 <p className="font-semibold">{member.name}</p>
@@ -65,14 +69,18 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
 
       <h3 className="text-xl font-semibold pt-13 pb-7">Founders</h3>
 
-      <div className="flex w-1/2 mx-auto justify-center items-center gap-8 mt-6 mb-18">
+      <div className="grid grid-cols-2 gap-16 w-1/2 mx-auto mt-6">
         {content?.founders?.members?.map((member, index) => {
           const profileUrl = getImageUrl(member.image);
 
           return (
-            <div key={index} className="flex flex-col w-full">
+            <div key={index} className="flex flex-col flex-1">
               {profileUrl && foundersFrameUrl && (
-                <FramedImage imageUrl={profileUrl} frameUrl={foundersFrameUrl} />
+                <FramedImage
+                  imageUrl={profileUrl}
+                  frameUrl={foundersFrameUrl}
+                  frameType="rectangle"
+                />
               )}
               <div className="flex flex-col text-base w-full gap-1">
                 <p className="font-semibold">{member.name}</p>

@@ -34,7 +34,9 @@ const Conductors = ({ content }: ConductorsProps) => {
 
           return (
             <div key={index} className="flex flex-col text-center w-full">
-              {profileUrl && frameUrl && <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} />}
+              {profileUrl && frameUrl && (
+                <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} frameType="oval" />
+              )}
 
               <div className="flex flex-col text-base w-full gap-1">
                 <p className="font-semibold">{member.name}</p>
