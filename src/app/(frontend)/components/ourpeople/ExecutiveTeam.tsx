@@ -29,15 +29,16 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
         {content?.members?.map((member, index) => {
           return (
             <div key={index} className="flex flex-col items-start w-full">
-              {typeof member.image === "object" && member.image?.url && (
-                <Image
-                  src={member.image.url}
-                  alt={`Profile Picture of ${member.name}`}
-                  height={400}
-                  width={400}
-                  className="w-full object-cover mb-6 rounded-md"
-                />
-              )}
+              <div className="relative w-full aspect-square mb-6 overflow-hidden rounded-md">
+                {typeof member.image === "object" && member.image?.url && (
+                  <Image
+                    src={member.image.url}
+                    alt={`Profile Picture of ${member.name}`}
+                    fill
+                    className="w-full object-cover object-center"
+                  />
+                )}
+              </div>
 
               <div className="flex flex-col text-sm w-full gap-1">
                 <p className="font-semibold">{member.name}</p>

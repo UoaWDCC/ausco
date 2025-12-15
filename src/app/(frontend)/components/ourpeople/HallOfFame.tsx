@@ -37,7 +37,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
   const foundersFrameUrl = getImageUrl(content?.founders?.frame);
 
   return (
-    <section className="text-(--navy) text-center pb-12">
+    <section className="text-(--navy) text-center">
       <h2 className="font-medium text-3xl m-0 shrink-0 pb-13">Hall Of Fame</h2>
       <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
 
