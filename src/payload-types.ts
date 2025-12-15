@@ -97,12 +97,12 @@ export interface Config {
     'about-us-page': AboutUsPage;
     'our-people': OurPerson;
     concerts: Concert;
-    'upcoming-concerts': UpcomingConcert;
-    'past-concerts': PastConcert;
     'concerts-gallery': ConcertsGallery;
     'annualcamp-gallery': AnnualcampGallery;
     'executivecamp-gallery': ExecutivecampGallery;
     'other-gallery': OtherGallery;
+    'upcoming-concerts': UpcomingConcert;
+    'past-concerts': PastConcert;
     gallery: Gallery;
     'our-story': OurStory;
   };
@@ -114,12 +114,12 @@ export interface Config {
     'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
-    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     'concerts-gallery': ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
     'annualcamp-gallery': AnnualcampGallerySelect<false> | AnnualcampGallerySelect<true>;
     'executivecamp-gallery': ExecutivecampGallerySelect<false> | ExecutivecampGallerySelect<true>;
     'other-gallery': OtherGallerySelect<false> | OtherGallerySelect<true>;
+    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
+    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     'our-story': OurStorySelect<false> | OurStorySelect<true>;
   };
@@ -606,91 +606,6 @@ export interface Concert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "upcoming-concerts".
- */
-export interface UpcomingConcert {
-  id: string;
-  description: string;
-  concertsUpcoming1: {
-    isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
-    description: string;
-    tickets: {
-      matinee: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-      concert: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-    };
-  };
-  concertsUpcoming2: {
-    isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
-    description: string;
-    tickets: {
-      matinee: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-      concert: {
-        date: string;
-        location: string;
-        ticketUrl: string;
-      };
-    };
-  };
-  googleCalendarEmail: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "past-concerts".
- */
-export interface PastConcert {
-  id: string;
-  description: string;
-  pastConcerts?:
-    | {
-        year: number;
-        semesterOne: {
-          poster: string | Media;
-          title: string;
-          description: string;
-          url: string;
-          charity: {
-            name: string;
-            url: string;
-            donation: number;
-          };
-        };
-        semesterTwo: {
-          poster: string | Media;
-          title: string;
-          description: string;
-          url: string;
-          charity: {
-            name: string;
-            url: string;
-            donation: number;
-          };
-        };
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts-gallery".
  */
 export interface ConcertsGallery {
@@ -775,6 +690,91 @@ export interface OtherGallery {
               id?: string | null;
             }[]
           | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "upcoming-concerts".
+ */
+export interface UpcomingConcert {
+  id: string;
+  description: string;
+  concertsUpcoming1: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
+  };
+  concertsUpcoming2: {
+    isComingSoon?: boolean | null;
+    title: string;
+    poster: string | Media;
+    description: string;
+    tickets: {
+      matinee: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+      concert: {
+        date: string;
+        location: string;
+        ticketUrl: string;
+      };
+    };
+  };
+  googleCalendarEmail: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "past-concerts".
+ */
+export interface PastConcert {
+  id: string;
+  description: string;
+  pastConcerts?:
+    | {
+        year: number;
+        semesterOne: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
+            url: string;
+            donation: number;
+          };
+        };
+        semesterTwo: {
+          poster: string | Media;
+          title: string;
+          description: string;
+          url: string;
+          charity: {
+            name: string;
+            url: string;
+            donation: number;
+          };
+        };
         id?: string | null;
       }[]
     | null;
@@ -1095,6 +1095,98 @@ export interface ConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "concerts-gallery_select".
+ */
+export interface ConcertsGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "annualcamp-gallery_select".
+ */
+export interface AnnualcampGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "executivecamp-gallery_select".
+ */
+export interface ExecutivecampGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "other-gallery_select".
+ */
+export interface OtherGallerySelect<T extends boolean = true> {
+  title?: T;
+  albums?:
+    | T
+    | {
+        title?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              alt?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "upcoming-concerts_select".
  */
 export interface UpcomingConcertsSelect<T extends boolean = true> {
@@ -1195,98 +1287,6 @@ export interface PastConcertsSelect<T extends boolean = true> {
                     url?: T;
                     donation?: T;
                   };
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "concerts-gallery_select".
- */
-export interface ConcertsGallerySelect<T extends boolean = true> {
-  title?: T;
-  albums?:
-    | T
-    | {
-        title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "annualcamp-gallery_select".
- */
-export interface AnnualcampGallerySelect<T extends boolean = true> {
-  title?: T;
-  albums?:
-    | T
-    | {
-        title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "executivecamp-gallery_select".
- */
-export interface ExecutivecampGallerySelect<T extends boolean = true> {
-  title?: T;
-  albums?:
-    | T
-    | {
-        title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "other-gallery_select".
- */
-export interface OtherGallerySelect<T extends boolean = true> {
-  title?: T;
-  albums?:
-    | T
-    | {
-        title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
             };
         id?: T;
       };
