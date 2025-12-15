@@ -10,7 +10,7 @@ type ExecutiveTeamProps = {
           role: string;
           degree: string;
           description: string;
-          profilePicture: Media | string | null;
+          image: Media | string | null;
         }[]
       | null;
   };
@@ -29,9 +29,9 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
         {content?.members?.map((member, index) => {
           return (
             <div key={index} className="flex flex-col items-start w-full">
-              {typeof member.profilePicture === "object" && member.profilePicture?.url && (
+              {typeof member.image === "object" && member.image?.url && (
                 <Image
-                  src={member.profilePicture.url}
+                  src={member.image.url}
                   alt={`Profile Picture of ${member.name}`}
                   height={400}
                   width={400}

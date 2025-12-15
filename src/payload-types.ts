@@ -529,7 +529,7 @@ export interface OurPerson {
           role: string;
           degree: string;
           description: string;
-          profilePicture: string | Media;
+          image: string | Media;
           id?: string | null;
         }[]
       | null;
@@ -538,7 +538,7 @@ export interface OurPerson {
     frame: string | Media;
     members?:
       | {
-          profilePicture: string | Media;
+          image: string | Media;
           name: string;
           description: string;
           id?: string | null;
@@ -567,6 +567,30 @@ export interface OurPerson {
             }
         )[]
       | null;
+  };
+  hallOfFame: {
+    pastPresidents: {
+      frame: string | Media;
+      members?:
+        | {
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    founders: {
+      frame: string | Media;
+      members?:
+        | {
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -914,7 +938,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
               role?: T;
               degree?: T;
               description?: T;
-              profilePicture?: T;
+              image?: T;
               id?: T;
             };
       };
@@ -925,7 +949,7 @@ export interface OurPeopleSelect<T extends boolean = true> {
         members?:
           | T
           | {
-              profilePicture?: T;
+              image?: T;
               name?: T;
               description?: T;
               id?: T;
@@ -955,6 +979,36 @@ export interface OurPeopleSelect<T extends boolean = true> {
                     players?: T;
                     id?: T;
                     blockName?: T;
+                  };
+            };
+      };
+  hallOfFame?:
+    | T
+    | {
+        pastPresidents?:
+          | T
+          | {
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
+                  };
+            };
+        founders?:
+          | T
+          | {
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
                   };
             };
       };

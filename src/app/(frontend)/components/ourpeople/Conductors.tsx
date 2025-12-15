@@ -7,7 +7,7 @@ type ConductorsProps = {
     frame: Media | string | null;
     members?:
       | {
-          profilePicture: Media | string | null;
+          image: Media | string | null;
           name: string;
           description: string;
         }[]
@@ -30,7 +30,7 @@ const Conductors = ({ content }: ConductorsProps) => {
       {/* Conductors */}
       <div className="w-full mt-6 grid grid-cols-3 gap-16 justify-items-center">
         {content?.members?.map((member, index) => {
-          const profileUrl = getImageUrl(member.profilePicture);
+          const profileUrl = getImageUrl(member.image);
 
           return (
             <div key={index} className="flex flex-col text-center w-full">

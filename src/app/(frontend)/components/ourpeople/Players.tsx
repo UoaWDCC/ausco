@@ -43,69 +43,71 @@ const Players = ({ content }: PlayersProps) => {
       .filter(Boolean);
 
   return (
-    <section className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
-      {/* LEFT: Title + Dscription */}
-      <div className="text-left w-3/16 flex flex-col h-full justify-center">
-        <h2 className="font-medium text-3xl m-0 shrink-0 pb-7">Players</h2>
-        {content?.description && <p className="">{content.description}</p>}
-      </div>
+    <section className="pb-16">
+      <div className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
+        {/* LEFT: Title + Dscription */}
+        <div className="text-left w-3/16 flex flex-col h-full justify-center">
+          <h2 className="font-medium text-3xl m-0 shrink-0 pb-7">Players</h2>
+          {content?.description && <p className="">{content.description}</p>}
+        </div>
 
-      {/* RIGHT: Players Columns */}
-      <div className="flex-1 flex justify-between text-center">
-        {/* Large Groups - Each gets its own column */}
-        {largeGroups.map((group, index) => (
-          <div key={index} className="w-40 flex flex-col gap-4">
-            {typeof group.image === "object" && group.image?.url && (
-              <Image
-                src={group.image.url}
-                alt={group.image.alt}
-                width={100}
-                height={100}
-                className="mx-auto"
-              />
-            )}
+        {/* RIGHT: Players Columns */}
+        <div className="flex-1 flex justify-between text-center">
+          {/* Large Groups - Each gets its own column */}
+          {largeGroups.map((group, index) => (
+            <div key={index} className="w-40 flex flex-col gap-4">
+              {typeof group.image === "object" && group.image?.url && (
+                <Image
+                  src={group.image.url}
+                  alt={group.image.alt}
+                  width={110}
+                  height={110}
+                  className="mx-auto"
+                />
+              )}
 
-            <h3 className="text-lg font-semibold">{group.title}</h3>
+              <h3 className="text-lg font-semibold">{group.title}</h3>
 
-            <ul className="space-y-3">
-              {listOfPlayers(group.players).map((player, index) => (
-                <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
-                  {player}
-                </li>
+              <ul className="space-y-3">
+                {listOfPlayers(group.players).map((player, index) => (
+                  <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                    {player}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+          {/* Small Groups - 2 per column */}
+          {smallGroups.map((column, columnIndex) => (
+            <div key={columnIndex} className="flex flex-col gap-10">
+              {column.map((group, index) => (
+                <div key={index} className="w-40 flex flex-col gap-4">
+                  {typeof group.image === "object" && group.image?.url && (
+                    <Image
+                      src={group.image.url}
+                      alt={group.image.alt}
+                      width={110}
+                      height={110}
+                      className="mx-auto"
+                      key={index}
+                    />
+                  )}
+
+                  <h3 className="text-lg font-semibold">{group.title}</h3>
+
+                  <ul className="space-y-3">
+                    {listOfPlayers(group.players).map((player, index) => (
+                      <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                        {player}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </ul>
-          </div>
-        ))}
-
-        {/* Small Groups - 2 per column */}
-        {smallGroups.map((column, columnIndex) => (
-          <div key={columnIndex} className="flex flex-col gap-10">
-            {column.map((group, index) => (
-              <div key={index} className="w-40 flex flex-col gap-4">
-                {typeof group.image === "object" && group.image?.url && (
-                  <Image
-                    src={group.image.url}
-                    alt={group.image.alt}
-                    width={100}
-                    height={100}
-                    className="mx-auto"
-                    key={index}
-                  />
-                )}
-
-                <h3 className="text-lg font-semibold">{group.title}</h3>
-
-                <ul className="space-y-3">
-                  {listOfPlayers(group.players).map((player, index) => (
-                    <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
-                      {player}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

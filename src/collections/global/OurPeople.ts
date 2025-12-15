@@ -80,7 +80,7 @@ export const OurPeople: GlobalConfig = {
               defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
             },
             {
-              name: "profilePicture",
+              name: "image",
               label: "Profile Picture",
               type: "upload",
               relationTo: "media",
@@ -109,7 +109,7 @@ export const OurPeople: GlobalConfig = {
           type: "array",
           fields: [
             {
-              name: "profilePicture",
+              name: "image",
               label: "Profile Picture",
               type: "upload",
               relationTo: "media",
@@ -209,58 +209,93 @@ export const OurPeople: GlobalConfig = {
         },
       ],
     },
-    // {
-    //   name: "hallOfFame",
-    //   type: "array",
-    //   label: "Hall Of Fame",
-    //   fields: [
-    //     {
-    //       name: "pastPresidents",
-    //       label: "Past Presidents",
-    //       type: "array",
-    //       fields: [
-    //         {
-    //           name: "name",
-    //           label: "Name",
-    //           type: "text",
-    //         },
-    //         {
-    //           name: "description",
-    //           label: "Description",
-    //           type: "text",
-    //         },
-    //         {
-    //           name: "image",
-    //           label: "Profile Picture",
-    //           type: "upload",
-    //           relationTo: "media",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       name: "founders",
-    //       label: "Founders",
-    //       type: "array",
-    //       fields: [
-    //         {
-    //           name: "name",
-    //           label: "Name",
-    //           type: "text",
-    //         },
-    //         {
-    //           name: "description",
-    //           label: "Description",
-    //           type: "text",
-    //         },
-    //         {
-    //           name: "image",
-    //           label: "Profile Picture",
-    //           type: "upload",
-    //           relationTo: "media",
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
+    // Hall of Fame Component
+    {
+      name: "hallOfFame",
+      label: "Hall Of Fame",
+      type: "group",
+      fields: [
+        {
+          name: "pastPresidents",
+          label: "Past Presidents",
+          type: "group",
+          fields: [
+            {
+              name: "frame",
+              label: "Frame",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "members",
+              label: "Past President Members",
+              type: "array",
+              fields: [
+                {
+                  name: "image",
+                  label: "Profile Picture",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "name",
+                  label: "Name",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "description",
+                  label: "Description",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "founders",
+          label: "Founders",
+          type: "group",
+          fields: [
+            {
+              name: "frame",
+              label: "Frame",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "members",
+              label: "Founder Members",
+              type: "array",
+              fields: [
+                {
+                  name: "image",
+                  label: "Profile Picture",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "name",
+                  label: "Name",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "description",
+                  label: "Description",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
