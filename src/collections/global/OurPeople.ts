@@ -1,193 +1,299 @@
 import { GlobalConfig } from "payload";
 
+/**
+ * NOTE:
+ * Payload Globals are single documents.
+ * Even if the slug is plural (`our-people`),
+ * Payload generates a singular TypeScript type (`OurPerson`).
+ * This is expected and types-only.
+ */
 export const OurPeople: GlobalConfig = {
   slug: "our-people",
-  label: "Our People Page",
+  label: "Our People",
   fields: [
+    // Header Component
     {
-        name: "image",
-        label: "Our People Image",
-        type: "upload",
-        relationTo: "media",
-    },
-    {
-        name: "description",
-        label: "description of Our People Page",
-        type: "text",
-    },
-    {
-      name: "generalDescription",
-      label: "Short Description of Executive Committee",
-      type: "text",
-      defaultValue:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
-      required: false,
-    },
-    {
-      name: "execs",
-      type: "array",
-      label: "Executive Members",
+      name: "header",
+      label: "Header",
+      type: "group",
       fields: [
         {
-          name: "name",
-          label: "Name",
-          type: "text",
-          required: true,
-          defaultValue: "John Doe",
-        },
-        {
-          name: "role",
-          label: "Executive Role",
-          type: "text",
-          required: true,
-          defaultValue: "General Exec",
-        },
-        {
-          name: "degree",
-          label: "Degree",
-          type: "text",
-          required: true,
-          defaultValue: "BSci",
-        },
-        {
-          name: "description",
-          label: "Fun Fact / Description",
-          type: "text",
-          required: true,
-          defaultValue: "Lorem Ipsum",
-        },
-        {
           name: "image",
-          label: "Profile Picture",
+          label: "Image",
           type: "upload",
           relationTo: "media",
           required: true,
-          defaultValue: "68716e81b0bf6c59846349f1",
+        },
+        {
+          name: "description",
+          label: "Description",
+          type: "text",
+          required: false,
         },
       ],
     },
+    // Executive Team Component
     {
-      name: "playerDescription",
-      label: "Short Description of Players",
-      type: "text",
-      required: false,
-    },
-    {
-      name: "sections",
-      type: "blocks",
-      blocks: [
+      name: "executive",
+      label: "Executive Team",
+      type: "group",
+      fields: [
         {
-          slug: "large-group",
-          labels: {
-            singular: "Large Orchestra Section (full column)",
-            plural: "Large Orchestra Sections (full columns)",
-          },
-          fields: [
-            {
-              name: "sectionTitle",
-              type: "text",
-              required: true,
-            },
-            {
-              name: "photo",
-              type: "upload",
-              relationTo: "media",
-              required: true,
-            },
-            {
-              name: "players",
-              type: "array",
-              fields: [
-                {
-                  name: "name",
-                  type: "text",
-                },
-              ],
-            },
-          ],
+          name: "description",
+          label: "Executive Team Description",
+          type: "text",
+          defaultValue:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+          required: false,
         },
         {
-          slug: "small-group",
-          labels: {
-            singular: "Small Orchestra Section (half column)",
-            plural: "Small Orchestra Sections (half columns)",
-          },
+          name: "members",
+          label: "Executive Team Members",
+          type: "array",
           fields: [
             {
-              name: "sectionTitle",
+              name: "name",
+              label: "Name",
               type: "text",
               required: true,
+              defaultValue: "John Doe",
             },
             {
-              name: "photo",
+              name: "role",
+              label: "Role",
+              type: "text",
+              required: true,
+              defaultValue: "General Exec",
+            },
+            {
+              name: "degree",
+              label: "Degree",
+              type: "text",
+              required: true,
+              defaultValue: "BSci",
+            },
+            {
+              name: "description",
+              label: "Fun Fact / Description",
+              type: "text",
+              required: true,
+              defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            },
+            {
+              name: "image",
+              label: "Profile Picture",
               type: "upload",
               relationTo: "media",
               required: true,
-            },
-            {
-              name: "players",
-              type: "array",
-              fields: [
-                {
-                  name: "name",
-                  type: "text",
-                },
-              ],
             },
           ],
         },
       ],
     },
+    // Conductors Component
+    {
+      name: "conductors",
+      label: "Conductors",
+      type: "group",
+      fields: [
+        {
+          name: "frame",
+          label: "Frame",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "members",
+          label: "Conductor Members",
+          type: "array",
+          fields: [
+            {
+              name: "image",
+              label: "Profile Picture",
+              type: "upload",
+              relationTo: "media",
+              required: true,
+            },
+            {
+              name: "name",
+              label: "Name",
+              type: "text",
+              required: true,
+              defaultValue: "John Doe",
+            },
+            {
+              name: "description",
+              label: "Fun Fact / Description",
+              type: "text",
+              required: true,
+              defaultValue: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            },
+          ],
+        },
+      ],
+    },
+    // Players Component
+    {
+      name: "players",
+      label: "Orchestra Players",
+      type: "group",
+      fields: [
+        {
+          name: "description",
+          label: "Players Description",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "sections",
+          type: "blocks",
+          blocks: [
+            {
+              slug: "large-group",
+              labels: {
+                singular: "Large Orchestra Section (full column)",
+                plural: "Large Orchestra Sections (full columns)",
+              },
+              fields: [
+                {
+                  name: "title",
+                  label: "Section Title",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "image",
+                  label: "Section Image",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "players",
+                  label: "List of Players",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+            {
+              slug: "small-group",
+              labels: {
+                singular: "Small Orchestra Section (half column)",
+                plural: "Small Orchestra Sections (half columns)",
+              },
+              fields: [
+                {
+                  name: "title",
+                  label: "Section Title",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "image",
+                  label: "Section Image",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "players",
+                  label: "List of Section Players",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    // Hall of Fame Component
     {
       name: "hallOfFame",
-      type: "array",
       label: "Hall Of Fame",
+      type: "group",
       fields: [
         {
           name: "pastPresidents",
           label: "Past Presidents",
-          type: "array",
+          type: "group",
           fields: [
             {
-              name: "name",
-              label: "Name",
-              type: "text",
-            },
-            {
-              name: "description",
-              label: "Description",
-              type: "text",
-            },
-            {
-              name: "image",
-              label: "Profile Picture",
+              name: "frame",
+              label: "Frame",
               type: "upload",
               relationTo: "media",
+              required: true,
             },
-          ]
+            {
+              name: "members",
+              label: "Past President Members",
+              type: "array",
+              fields: [
+                {
+                  name: "image",
+                  label: "Profile Picture",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "name",
+                  label: "Name",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "description",
+                  label: "Description",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
         },
         {
           name: "founders",
           label: "Founders",
-          type: "array",
+          type: "group",
           fields: [
             {
-              name: "name",
-              label: "Name",
-              type: "text",
-            },
-            {
-              name: "description",
-              label: "Description",
-              type: "text",
-            },
-            {
-              name: "image",
-              label: "Profile Picture",
+              name: "frame",
+              label: "Frame",
               type: "upload",
               relationTo: "media",
+              required: true,
             },
-          ]
+            {
+              name: "members",
+              label: "Founder Members",
+              type: "array",
+              fields: [
+                {
+                  name: "image",
+                  label: "Profile Picture",
+                  type: "upload",
+                  relationTo: "media",
+                  required: true,
+                },
+                {
+                  name: "name",
+                  label: "Name",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "description",
+                  label: "Description",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
         },
       ],
     },

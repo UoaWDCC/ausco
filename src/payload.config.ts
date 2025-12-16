@@ -17,9 +17,9 @@ import HomePage from "./collections/global/HomePage";
 
 import AboutHeroSection from "./collections/global/AboutUsPage";
 
-import { Concerts } from "./collections/global/Concerts";
-
 import { OurPeople } from "./collections/global/OurPeople";
+
+import { Concerts } from "./collections/global/Concerts";
 import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
 import { ConcertsPast } from "./collections/global/ConcertsPast";
 

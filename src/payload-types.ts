@@ -516,71 +516,81 @@ export interface AboutUsPage {
  */
 export interface OurPerson {
   id: string;
-  image?: (string | null) | Media;
-  description?: string | null;
-  generalDescription?: string | null;
-  execs?:
-    | {
-        name: string;
-        role: string;
-        degree: string;
-        description: string;
-        image: string | Media;
-        id?: string | null;
-      }[]
-    | null;
-  playerDescription?: string | null;
-  sections?:
-    | (
-        | {
-            sectionTitle: string;
-            photo: string | Media;
-            players?:
-              | {
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'large-group';
-          }
-        | {
-            sectionTitle: string;
-            photo: string | Media;
-            players?:
-              | {
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'small-group';
-          }
-      )[]
-    | null;
-  hallOfFame?:
-    | {
-        pastPresidents?:
+  header: {
+    image: string | Media;
+    description?: string | null;
+  };
+  executive?: {
+    description?: string | null;
+    members?:
+      | {
+          name: string;
+          role: string;
+          degree: string;
+          description: string;
+          image: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  conductors: {
+    frame: string | Media;
+    members?:
+      | {
+          image: string | Media;
+          name: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  players?: {
+    description?: string | null;
+    sections?:
+      | (
           | {
-              name?: string | null;
-              description?: string | null;
-              image?: (string | null) | Media;
+              title: string;
+              image: string | Media;
+              players: string;
               id?: string | null;
-            }[]
-          | null;
-        founders?:
+              blockName?: string | null;
+              blockType: 'large-group';
+            }
           | {
-              name?: string | null;
-              description?: string | null;
-              image?: (string | null) | Media;
+              title: string;
+              image: string | Media;
+              players: string;
               id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
+              blockName?: string | null;
+              blockType: 'small-group';
+            }
+        )[]
+      | null;
+  };
+  hallOfFame: {
+    pastPresidents: {
+      frame: string | Media;
+      members?:
+        | {
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    founders: {
+      frame: string | Media;
+      members?:
+        | {
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -910,50 +920,65 @@ export interface AboutUsPageSelect<T extends boolean = true> {
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
-  image?: T;
-  description?: T;
-  generalDescription?: T;
-  execs?:
+  header?:
     | T
     | {
-        name?: T;
-        role?: T;
-        degree?: T;
-        description?: T;
         image?: T;
-        id?: T;
+        description?: T;
       };
-  playerDescription?: T;
-  sections?:
+  executive?:
     | T
     | {
-        'large-group'?:
+        description?: T;
+        members?:
           | T
           | {
-              sectionTitle?: T;
-              photo?: T;
-              players?:
-                | T
-                | {
-                    name?: T;
-                    id?: T;
-                  };
+              name?: T;
+              role?: T;
+              degree?: T;
+              description?: T;
+              image?: T;
               id?: T;
-              blockName?: T;
             };
-        'small-group'?:
+      };
+  conductors?:
+    | T
+    | {
+        frame?: T;
+        members?:
           | T
           | {
-              sectionTitle?: T;
-              photo?: T;
-              players?:
+              image?: T;
+              name?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  players?:
+    | T
+    | {
+        description?: T;
+        sections?:
+          | T
+          | {
+              'large-group'?:
                 | T
                 | {
-                    name?: T;
+                    title?: T;
+                    image?: T;
+                    players?: T;
                     id?: T;
+                    blockName?: T;
                   };
-              id?: T;
-              blockName?: T;
+              'small-group'?:
+                | T
+                | {
+                    title?: T;
+                    image?: T;
+                    players?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
             };
       };
   hallOfFame?:
@@ -962,20 +987,29 @@ export interface OurPeopleSelect<T extends boolean = true> {
         pastPresidents?:
           | T
           | {
-              name?: T;
-              description?: T;
-              image?: T;
-              id?: T;
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
+                  };
             };
         founders?:
           | T
           | {
-              name?: T;
-              description?: T;
-              image?: T;
-              id?: T;
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
+                  };
             };
-        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
