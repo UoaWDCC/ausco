@@ -1,6 +1,5 @@
-import { Media } from "@/payload-types";
-
 import FramedImage from "./FramedImage";
+import { Media } from "@/payload-types";
 
 type ConductorsProps = {
   content?: {

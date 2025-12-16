@@ -1,6 +1,6 @@
-import { Media } from "@/payload-types";
-
 import Image from "next/image";
+
+import { Media } from "@/payload-types";
 
 type HeaderProps = {
   content: {
