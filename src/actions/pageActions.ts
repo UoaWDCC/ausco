@@ -3,6 +3,7 @@
 import { getPayload } from "@libs/payload";
 import { HomePage } from "@/payload-types";
 import { AboutUsPage } from "@/payload-types";
+import { OurStory } from "@/payload-types";
 import { OurPerson } from "@/payload-types";
 import { Concert } from "@/payload-types";
 import { UpcomingConcert } from "@/payload-types";
@@ -25,6 +26,15 @@ export const getAboutUsPage = async (): Promise<AboutUsPage> => {
   });
 
   return aboutUsPage;
+};
+
+export const getOurStory = async (): Promise<OurStory> => {
+  const payload = await getPayload();
+  const ourStory = await payload.findGlobal({
+    slug: "our-story",
+  });
+
+  return ourStory;
 };
 
 // Payload Globals are single documents, so the generated TS type is singular (OurPerson) even if the slug is plural (our-people).

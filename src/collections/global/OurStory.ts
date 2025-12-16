@@ -13,13 +13,6 @@ export const OurStory: GlobalConfig = {
   fields: [
     // Header Component
     {
-      name: "title",
-      label: "Title",
-      type: "text",
-      defaultValue: "Our Story",
-      required: true,
-    },
-    {
       name: "description",
       label: "Description",
       type: "text",
@@ -225,6 +218,70 @@ export const OurStory: GlobalConfig = {
               ],
             },
           ],
+        },
+        {
+          name: "content",
+          label: "Content",
+          type: "richText",
+          required: true,
+          editor: lexicalEditor({
+            features: () => [
+              BoldFeature(),
+              ItalicFeature(),
+              UnderlineFeature(),
+              FixedToolbarFeature(),
+            ],
+          }),
+        },
+      ],
+    },
+    // Establishment Component (unique structure compared to Standard Timeline Component)
+    {
+      name: "establishment",
+      label: "Establisment",
+      type: "group",
+      fields: [
+        {
+          name: "year",
+          label: "Year",
+          type: "number",
+          required: true,
+        },
+        {
+          name: "title",
+          label: "Title",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "date",
+          label: "Date, Time, Location",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "present",
+          label: "Present Attendees",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "apologies",
+          label: "Apologies",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "meetingOpen",
+          label: "Meeting Opened Time",
+          type: "text",
+          required: false,
+        },
+        {
+          name: "establishmentText",
+          label: "Establishment Text",
+          type: "textarea",
+          required: false,
         },
         {
           name: "content",

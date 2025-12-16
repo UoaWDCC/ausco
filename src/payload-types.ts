@@ -810,7 +810,6 @@ export interface Gallery {
  */
 export interface OurStory {
   id: string;
-  title: string;
   description?: string | null;
   timeline?:
     | {
@@ -861,6 +860,30 @@ export interface OurStory {
         id?: string | null;
       }[]
     | null;
+  establishment: {
+    year: number;
+    title: string;
+    date?: string | null;
+    present?: string | null;
+    apologies?: string | null;
+    meetingOpen?: string | null;
+    establishmentText?: string | null;
+    content: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1349,7 +1372,6 @@ export interface GallerySelect<T extends boolean = true> {
  * via the `definition` "our-story_select".
  */
 export interface OurStorySelect<T extends boolean = true> {
-  title?: T;
   description?: T;
   timeline?:
     | T
@@ -1397,6 +1419,18 @@ export interface OurStorySelect<T extends boolean = true> {
             };
         content?: T;
         id?: T;
+      };
+  establishment?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        date?: T;
+        present?: T;
+        apologies?: T;
+        meetingOpen?: T;
+        establishmentText?: T;
+        content?: T;
       };
   updatedAt?: T;
   createdAt?: T;
