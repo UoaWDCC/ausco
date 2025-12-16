@@ -35,9 +35,9 @@ const navBar = [
     href: "/gallery",
     label: "Gallery",
     dropdown: [
-      { href: "/gallery/concert", label: "Concert Photos" },
-      { href: "/gallery/annualcamp", label: "Annual Camp Photos" },
-      { href: "/gallery/executivecamp", label: "Executive Camp Photos" },
+      { href: "/gallery/concerts", label: "Concert Photos" },
+      { href: "/gallery/annual", label: "Annual Camp Photos" },
+      { href: "/gallery/executive", label: "Executive Camp Photos" },
       { href: "/gallery/other", label: "Other Photos" },
     ],
   },

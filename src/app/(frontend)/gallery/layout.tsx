@@ -1,0 +1,12 @@
+import type { ReactNode } from "react";
+
+//shared content/styling for gallery pages
+export default function GalleryLayout({ children }: { children: ReactNode }) {
+  return (
+    <div>
+      <div style={{ backgroundColor: "var(--cream)" }}>
+        <div className="max-w-screen-2xl mx-auto px-6 py-10">{children}</div>
+      </div>
+    </div>
+  );
+}
