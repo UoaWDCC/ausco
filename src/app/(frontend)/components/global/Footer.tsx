@@ -40,7 +40,7 @@ const Footer = ({ content }: FooterProps) => {
   return (
     <footer
       id="footer"
-      className="flex flex-col lg:flex-row lg:justify-between items-stretch py-12 pl-10 pr-22"
+      className="flex flex-col lg:flex-row lg:justify-between items-stretch py-12 px-10 lg:pl-10 lg:pr-22"
     >
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
