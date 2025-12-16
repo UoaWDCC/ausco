@@ -5,6 +5,8 @@ import { GeoAltFill, Calendar2EventFill } from "react-bootstrap-icons";
 import { Media } from "@/payload-types";
 import { Button } from "../../ui/button";
 
+type pageVariant = "concertsUpcomingPage" | "homePage";
+
 type UpcomingConcertProps = {
   content: {
     isComingSoon?: boolean | null;
@@ -24,7 +26,7 @@ type UpcomingConcertProps = {
       };
     };
   };
-  headingVariant: string;
+  headingVariant: pageVariant;
   semester?: string; // optional
 };
 

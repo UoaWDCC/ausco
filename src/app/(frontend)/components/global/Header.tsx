@@ -152,7 +152,11 @@ const Header = ({ content }: HeaderProps) => {
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
-      <Link href="/" className="flex flex-row items-center">
+      <Link
+        href="/"
+        onMouseUp={(e) => e.currentTarget.blur()}
+        className="flex flex-row items-center"
+      >
         {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
