@@ -1,143 +1,46 @@
+import {
+  lexicalEditor,
+  BoldFeature,
+  ItalicFeature,
+  UnderlineFeature,
+  FixedToolbarFeature,
+} from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
 export const OurStory: GlobalConfig = {
   slug: "our-story",
   label: "Our Story",
   fields: [
+    // Header Component
     {
-      name: "OurStoryTitle",
-      label: "page title",
+      name: "title",
+      label: "Title",
       type: "text",
-      defaultValue: "OurStory",
+      defaultValue: "Our Story",
       required: true,
     },
     {
-      name: "OurStoryDescription",
-      label: "description of our story page",
+      name: "description",
+      label: "Description",
       type: "text",
-      defaultValue: "This is a description of the AUSCO story in a few sentences.",
-      required: true,
     },
+    // Standard Timeline Component
     {
       name: "timeline",
+      label: "Timeline",
       type: "array",
-      label: "Timeline item",
       fields: [
         {
           name: "year",
           label: "Year",
-          type: "text",
+          type: "number",
           required: true,
-          defaultValue: "2025",
         },
         {
           name: "title",
           label: "Title",
           type: "text",
-          required: false,
-          defaultValue: "Title",
-        },
-        {
-          name: "dateInfo",
-          label: "Date or additional info",
-          type: "text",
-          required: false,
-        },
-        {
-          name: "presidents",
-          label: "Presidents",
-          type: "array",
-          fields: [
-            {
-              name: "termType",
-              label: "Term",
-              type: "select",
-              options: [
-                { label: "Semester 1", value: "sem1" },
-                { label: "Semester 2", value: "sem2" },
-                { label: "Full Year", value: "full" },
-                { label: "Co-President", value: "co" },
-              ],
-              required: true,
-              defaultValue: "full",
-            },
-            {
-              name: "president",
-              label: "President Name",
-              type: "text",
-              required: true,
-            },
-          ],
-        },
-        {
-          name: "vicePresidents",
-          label: "Vice Presidents",
-          type: "array",
-          fields: [
-            {
-              name: "termType",
-              label: "Term",
-              type: "select",
-              options: [
-                { label: "Semester 1", value: "sem1" },
-                { label: "Semester 2", value: "sem2" },
-                { label: "Full Year", value: "full" },
-                { label: "Co-Vice President", value: "co" },
-              ],
-              required: true,
-              defaultValue: "full",
-            },
-            {
-              name: "vicePresident",
-              label: "Vice President Name",
-              type: "text",
-              required: true,
-            },
-          ],
-        },
-        {
-          name: "conductors",
-          label: "Conductors",
-          type: "array",
-          fields: [
-            {
-              name: "termType",
-              label: "Term",
-              type: "select",
-              options: [
-                { label: "Semester 1", value: "sem1" },
-                { label: "Semester 2", value: "sem2" },
-                { label: "Full Year", value: "full" },
-                { label: "Co-Conductor", value: "co" },
-              ],
-              required: true,
-              defaultValue: "full",
-            },
-            {
-              name: "conductor",
-              label: "Conductor Name",
-              type: "text",
-              required: true,
-            },
-          ],
-        },
-        {
-          name: "description",
-          label: "Description of the year's events",
-          type: "array",
-          labels: {
-            singular: "Paragraph",
-            plural: "Paragraphs",
-          },
           required: true,
-          fields: [
-            {
-              name: "paragraph",
-              type: "textarea",
-              label: "Paragraph Text",
-              required: true,
-            },
-          ],
         },
         {
           name: "image",
@@ -145,51 +48,197 @@ export const OurStory: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
-          defaultValue: "68716e81b0bf6c59846349f1",
         },
         {
-          name: "meetingMinutes",
-          label: "Meeting Section",
-          type: "array",
-          required: false,
+          name: "presidents",
+          label: "Presidents",
+          type: "group",
           fields: [
             {
-              name: "meetingRecords",
-              label: "Meeting records",
-              type: "array",
-              labels: {
-                singular: "Meeting Records",
-                plural: "Meeting Record",
-              },
+              name: "role",
+              label: "Role",
+              type: "select",
+              options: [
+                { label: "President", value: "president" },
+                { label: "Co-President", value: "co-president" },
+              ],
               required: true,
+            },
+            {
+              name: "termLength",
+              label: "Presidency Duration",
+              type: "select",
+              options: [
+                { label: "Full Year", value: "fullYear" },
+                { label: "Semester", value: "semester" },
+              ],
+              required: true,
+            },
+            // Only one field for full year-based presidency
+            {
+              name: "fullYearName",
+              label: "Name(s) - Full Year",
+              type: "text",
+              required: true,
+              admin: {
+                condition: (_, siblingData) => siblingData.termLength === "fullYear",
+              },
+            },
+            // Two fields for semester-based presidency
+            {
+              name: "semesterName",
+              label: "Names(s) - Semester",
+              type: "group",
+              admin: {
+                condition: (_, siblingData) => siblingData.termLength === "semester",
+              },
               fields: [
                 {
-                  name: "title",
-                  type: "textarea",
-                  label: "Title (e.g., PRESENT, APOLOGIES, MEETING OPENED)",
+                  name: "nameOne",
+                  label: "Semester 1 Name(s)",
+                  type: "text",
                   required: true,
                 },
                 {
-                  name: "content",
-                  type: "textarea",
-                  label: "Content",
+                  name: "nameTwo",
+                  label: "Semester 2 Name(s)",
+                  type: "text",
                   required: true,
                 },
               ],
             },
+          ],
+        },
+        {
+          name: "vicePresidents",
+          label: "Vice-Presidents",
+          type: "group",
+          fields: [
             {
-              name: "establishmentText",
-              label: "Establishment Text",
-              type: "textarea",
+              name: "exists",
+              label: "Do Vice Presidents exist this year?",
+              type: "radio",
               required: true,
+              options: [
+                { label: "Yes", value: "true" },
+                { label: "No", value: "false" },
+              ],
+              defaultValue: "true",
             },
             {
-              name: "establishmentQuote",
-              label: "Establishment Quote",
-              type: "textarea",
+              name: "termLength",
+              label: "Vice-Presidency Duration",
+              type: "select",
+              options: [
+                { label: "Full Year", value: "fullYear" },
+                { label: "Semester", value: "semester" },
+              ],
               required: true,
+              admin: {
+                // Show only if vice presidents exist
+                condition: (_, siblingData) => siblingData.exists === "true",
+              },
+            },
+            // Only one field for full year-based vice-presidency
+            {
+              name: "fullYearName",
+              label: "Name(s) - Full Year",
+              type: "text",
+              required: true,
+              admin: {
+                condition: (_, siblingData) =>
+                  siblingData.exists === "true" && siblingData.termLength === "fullYear",
+              },
+            },
+            // Two fields for semester-based vice-presidency
+            {
+              name: "semesterName",
+              label: "Names(s) - Semester",
+              type: "group",
+              admin: {
+                condition: (_, siblingData) =>
+                  siblingData.exists === "true" && siblingData.termLength === "semester",
+              },
+              fields: [
+                {
+                  name: "nameOne",
+                  label: "Semester 1 Name(s)",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "nameTwo",
+                  label: "Semester 2 Name(s)",
+                  type: "text",
+                  required: true,
+                },
+              ],
             },
           ],
+        },
+        {
+          name: "conductors",
+          label: "conductors",
+          type: "group",
+          fields: [
+            {
+              name: "termLength",
+              label: "Conductor Duration",
+              type: "select",
+              options: [
+                { label: "Full Year", value: "fullYear" },
+                { label: "Semester", value: "semester" },
+              ],
+              required: true,
+            },
+            // Only one field for full year-based conducting
+            {
+              name: "fullYearName",
+              label: "Name(s) - Full Year",
+              type: "text",
+              required: true,
+              admin: {
+                condition: (_, siblingData) => siblingData.termLength === "fullYear",
+              },
+            },
+            // Two fields for semester-based conducting
+            {
+              name: "semesterName",
+              label: "Names(s) - Semester",
+              type: "group",
+              admin: {
+                condition: (_, siblingData) => siblingData.termLength === "semester",
+              },
+              fields: [
+                {
+                  name: "nameOne",
+                  label: "Semester 1 Name(s)",
+                  type: "text",
+                  required: true,
+                },
+                {
+                  name: "nameTwo",
+                  label: "Semester 2 Name(s)",
+                  type: "text",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "content",
+          label: "Content",
+          type: "richText",
+          required: true,
+          editor: lexicalEditor({
+            features: () => [
+              BoldFeature(),
+              ItalicFeature(),
+              UnderlineFeature(),
+              FixedToolbarFeature(),
+            ],
+          }),
         },
       ],
     },
