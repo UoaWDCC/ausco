@@ -868,6 +868,7 @@ export interface OurStory {
     apologies?: string | null;
     meetingOpen?: string | null;
     establishmentText?: string | null;
+    image: string | Media;
     content: {
       root: {
         type: string;
@@ -1430,6 +1431,7 @@ export interface OurStorySelect<T extends boolean = true> {
         apologies?: T;
         meetingOpen?: T;
         establishmentText?: T;
+        image?: T;
         content?: T;
       };
   updatedAt?: T;

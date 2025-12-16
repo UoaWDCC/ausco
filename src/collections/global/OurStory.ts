@@ -171,7 +171,7 @@ export const OurStory: GlobalConfig = {
         },
         {
           name: "conductors",
-          label: "conductors",
+          label: "Conductors",
           type: "group",
           fields: [
             {
@@ -238,7 +238,7 @@ export const OurStory: GlobalConfig = {
     // Establishment Component (unique structure compared to Standard Timeline Component)
     {
       name: "establishment",
-      label: "Establisment",
+      label: "Establishment",
       type: "group",
       fields: [
         {
@@ -282,6 +282,13 @@ export const OurStory: GlobalConfig = {
           label: "Establishment Text",
           type: "textarea",
           required: false,
+        },
+        {
+          name: "image",
+          label: "Image",
+          type: "upload",
+          relationTo: "media",
+          required: true,
         },
         {
           name: "content",
