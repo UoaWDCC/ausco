@@ -45,7 +45,7 @@ const Footer = ({ content }: FooterProps) => {
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
         {/* Logo */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 hidden md:block">
           {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
             <Image
               src={content.primaryLogo.url}
@@ -58,7 +58,7 @@ const Footer = ({ content }: FooterProps) => {
 
         <div className="flex flex-col flex-1 justify-between">
           {/* Title */}
-          <div className="w-80 font-bold text-xl lg:text-xl whitespace-pre-line">
+          <div className="hidden md:block w-80 font-bold text-xl lg:text-xl whitespace-pre-line">
             {content.title}
           </div>
 
