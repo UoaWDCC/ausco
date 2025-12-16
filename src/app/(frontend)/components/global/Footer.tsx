@@ -30,10 +30,10 @@ type FooterProps = {
 };
 
 const iconMap: Record<string, JSX.Element> = {
-  facebook: <Facebook width={20} height={20} />,
-  youtube: <Youtube width={20} height={20} />,
-  spotify: <Spotify width={20} height={20} />,
-  instagram: <Instagram width={20} height={20} />,
+  facebook: <Facebook className="w-7 h-7 md:w-5 md:h-5" />,
+  youtube: <Youtube className="w-7 h-7 md:w-5 md:h-5" />,
+  spotify: <Spotify className="w-7 h-7 md:w-5 md:h-5" />,
+  instagram: <Instagram className="w-7 h-7 md:w-5 md:h-5" />,
 };
 
 const Footer = ({ content }: FooterProps) => {
@@ -63,7 +63,7 @@ const Footer = ({ content }: FooterProps) => {
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex gap-4">
+          <div className="flex gap-5 md:gap-4">
             {content.socialMedia?.map((social, index) => {
               const icon = iconMap[social.platform.toLowerCase()];
 
