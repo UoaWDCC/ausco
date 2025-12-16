@@ -40,7 +40,7 @@ const Footer = ({ content }: FooterProps) => {
   return (
     <footer
       id="footer"
-      className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-22"
+      className="flex flex-col lg:flex-row lg:justify-between items-stretch py-12 pl-10 pr-22"
     >
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
@@ -81,9 +81,9 @@ const Footer = ({ content }: FooterProps) => {
       <div className="my-8 h-px w-full bg-(--navy) block md:hidden" />
 
       {/* RIGHT: Columns */}
-      <div className="flex flex-col md:flex-row items-start gap-24">
+      <div className="w-full grid grid-cols-2 gap-8 md:flex md:gap-24 lg:w-auto lg:ml-auto">
         {content.sections?.map((section, index) => (
-          <div key={index} className="flex flex-col w-auto">
+          <div key={index} className={`flex flex-col ${index < 2 ? "" : "col-span-2"} md:w-auto`}>
             {/* Column Header */}
             <h3 className="font-bold mb-2">{section.title}</h3>
 
