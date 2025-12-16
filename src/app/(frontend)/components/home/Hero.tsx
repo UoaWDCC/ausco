@@ -27,7 +27,6 @@ const Hero = ({ content }: HeroProps) => {
 
   // image parallax effect scroll speed
   const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
-
   // smooth motion
   const y = useSpring(rawY, spring);
 
