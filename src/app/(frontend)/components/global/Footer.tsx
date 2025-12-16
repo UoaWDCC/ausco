@@ -77,6 +77,9 @@ const Footer = ({ content }: FooterProps) => {
         </div>
       </div>
 
+      {/* Mobile: divider between social icons and info columns*/}
+      <div className="my-8 h-px w-full bg-(--navy) block md:hidden" />
+
       {/* RIGHT: Columns */}
       <div className="flex flex-col md:flex-row items-start gap-24">
         {content.sections?.map((section, index) => (
