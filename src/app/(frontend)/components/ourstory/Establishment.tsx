@@ -28,7 +28,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
             {content.year}: {content.title}
           </h2>
           {/* Horizontal Line */}
-          <div className="h-px bg-(--navy) grow min-w-1/4" />
+          <div className="h-0.5 bg-(--navy) grow min-w-[150px] rounded-full -mr-0.5" />
         </div>
 
         <div className="pr-20">
@@ -69,7 +69,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
       </div>
 
       {/* Vertical Line */}
-      <div className="w-px bg-(--navy) self-stretch mt-4"></div>
+      <div className="w-0.5 bg-(--navy) self-stretch mt-4 rounded-full" />
 
       {/* RIGHT: Image */}
       <div className="w-1/2 pl-20 flex items-center justify-center">
