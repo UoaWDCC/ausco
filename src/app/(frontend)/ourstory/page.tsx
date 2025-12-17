@@ -11,7 +11,7 @@ export default async function OurStoryPage() {
       <div className="max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
         <Header description={content.description} />
 
-        <div className="absolute left-1/2 top-0 h-full w-px bg-(--navy)"></div>
+        {/* <div className="absolute left-1/2 top-0 h-full w-px bg-(--navy)"></div> */}
         <Establishment content={content.establishment} />
         {/* <Timeline /> */}
       </div>
