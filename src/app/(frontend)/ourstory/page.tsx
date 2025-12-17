@@ -1,6 +1,7 @@
 import { getOurStory } from "@/actions/pageActions";
-import Establishment from "@components/ourstory/Establishment";
+
 import Header from "@components/ourstory/Header";
+import Establishment from "@components/ourstory/Establishment";
 import TimelineItem from "@components/ourstory/TimelineItem";
 
 const Timeline = ({ children }: { children: React.ReactNode }) => {
@@ -22,7 +23,7 @@ export default async function OurStoryPage() {
         <Header description={content.description} />
         <Timeline>
           <Establishment content={content.establishment} />
-          <TimelineItem content={content?.timeline?.[0]} />
+          <TimelineItem content={content?.timeline?.[0]} flipLayout={0 % 2 === 0} />
         </Timeline>
       </div>
     </section>

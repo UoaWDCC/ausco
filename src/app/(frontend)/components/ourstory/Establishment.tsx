@@ -1,7 +1,7 @@
-import { Media } from "@/payload-types";
-import Image from "next/image";
-
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { Media } from "@/payload-types";
+
+import Image from "next/image";
 
 type EstablishmentProps = {
   content: {
@@ -34,9 +34,9 @@ const Establishment = ({ content }: EstablishmentProps) => {
   } = content;
 
   const infoBlocks = [
-    { label: "PRESENT", value: content.present },
-    { label: "APOLOGIES", value: content.apologies },
-    { label: "MEETING OPENED", value: content.meetingOpen },
+    { label: "PRESENT", value: present },
+    { label: "APOLOGIES", value: apologies },
+    { label: "MEETING OPENED", value: meetingOpen },
   ].filter((block) => block.value);
 
   return (

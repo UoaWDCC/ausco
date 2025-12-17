@@ -1,8 +1,8 @@
-import { Media } from "@/payload-types";
-import Image from "next/image";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { Media } from "@/payload-types";
 
-// TODO: sort all imports
+import Image from "next/image";
+
 type SemesterNames = {
   nameOne: string;
   nameTwo: string;
@@ -38,6 +38,7 @@ type TimelineItemProps = {
     conductors?: Conductor;
     text: any;
   };
+  flipLayout: boolean;
 };
 
 type RoleProps = {
@@ -81,34 +82,34 @@ const RoleBlock = ({
   );
 };
 
-const TimelineItem = ({ content }: TimelineItemProps) => {
+const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
   if (!content) return null;
 
   // Destructure
   const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
 
-  const stringToList = (players: string) =>
-    players
+  const stringToList = (members: string) =>
+    members
       .split(/[,;]+/) // split by comma or semicolon
-      .map((player) => player.trim()) // remove extra spaces
+      .map((member) => member.trim()) // remove extra spaces
       .filter(Boolean); // remove empty strings
 
   return (
     <section className="w-full flex flex-col text-left text-(--navy) ">
-      <div className="flex flex-row pb-18">
+      <div className={`flex flex-row pb-18 ${flipLayout ? "flex-row-reverse" : ""}`}>
         <div className="w-1/2 flex flex-col">
           {/* Text */}
-          <div className="relative flex items-center h-14 gap-4 pb-6">
-            <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
+          <div
+            className={`flex items-center h-14 gap-4 pb-6 ${flipLayout ? "flex-row-reverse justify-end" : ""}`}
+          >
+            <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap shrink-0">
               {year}: {title}
             </h2>
             {/* Horizontal Line */}
-            <div className="flex-1 relative">
-              <div className="absolute right-0 top-0 h-0.5 w-full bg-(--navy) rounded-full" />
-            </div>
+            <div className={`h-0.5 ${flipLayout ? "w-16" : "w-full"} bg-(--navy) rounded-full`} />
           </div>
 
-          <div className="pr-20 text-sm">
+          <div className={`text-sm ${flipLayout ? "pl-20 pr-0" : "pr-20 pl-0"}`}>
             <div className="flex flex-col space-y-4 w-1/2 pb-6">
               {/* President */}
               <RoleBlock
@@ -153,7 +154,9 @@ const TimelineItem = ({ content }: TimelineItemProps) => {
           </div>
         </div>
 
-        <div className="w-1/2 pl-20 flex items-center justify-center">
+        <div
+          className={`w-1/2 flex items-center justify-center ${flipLayout ? "pr-20 pl-0" : "pl-20 pr-0"}`}
+        >
           {typeof image === "object" && image?.url && (
             <Image
               src={image.url}
@@ -170,3 +173,13 @@ const TimelineItem = ({ content }: TimelineItemProps) => {
 };
 
 export default TimelineItem;
+
+// <div className="relative flex items-center h-14 gap-4 pb-6">
+//   <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
+//     {year}: {title}
+//   </h2>
+//   {/* Horizontal Line */}
+//   <div className="flex-1 relative">
+//     <div className="absolute right-0 top-0 h-0.5 w-full bg-(--navy) rounded-full" />
+//   </div>
+// </div>
