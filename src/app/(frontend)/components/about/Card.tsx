@@ -20,6 +20,38 @@ export type CardProps = {
   sponsorLogos?: { logo?: Media | string | null }[] | null;
 };
 
+const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }) => {
+  return (
+    <div className="overflow-hidden w-full">
+      <motion.div
+        className="flex gap-6 w-max"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          ease: "linear",
+          duration: 20, // slower = bigger number
+        }}
+      >
+        {[...logos, ...logos].map((item, index) => {
+          if (typeof item.logo === "object" && item.logo?.url) {
+            return (
+              <Image
+                key={index}
+                src={item.logo.url}
+                alt={item.logo.alt || `sponsor ${index + 1}`}
+                width={64}
+                height={64}
+                className="object-contain shrink-0"
+              />
+            );
+          }
+          return null;
+        })}
+      </motion.div>
+    </div>
+  );
+};
+
 const Card = ({
   icon,
   background,
@@ -75,21 +107,26 @@ const Card = ({
         <div className="flex justify-center mb-4">{icon}</div>
 
         {isSponsored && (
-          <div className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md gap-6 flex flex-wrap justify-center items-center">
-            {sponsorLogos?.map(
-              (item, index) =>
-                typeof item.logo === "object" &&
-                item.logo?.url && (
-                  <Image
-                    key={index}
-                    src={item.logo.url}
-                    alt={item.logo.alt || `sponsor ${index + 1}`}
-                    width={64}
-                    height={64}
-                    loading="lazy"
-                    className="object-contain"
-                  />
-                ),
+          <div className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md w-full">
+            {sponsorLogos!.length > 6 ? ( // when more than 6 logos, use scrolling effect
+              <ScrollingLogos logos={sponsorLogos!} />
+            ) : (
+              <div className="flex gap-6 justify-center items-center flex-nowrap">
+                {sponsorLogos?.map(
+                  (item, index) =>
+                    typeof item.logo === "object" &&
+                    item.logo?.url && (
+                      <Image
+                        key={index}
+                        src={item.logo.url}
+                        alt={item.logo.alt || `sponsor ${index + 1}`}
+                        width={64}
+                        height={64}
+                        className="object-contain"
+                      />
+                    ),
+                )}
+              </div>
             )}
           </div>
         )}
