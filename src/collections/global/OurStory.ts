@@ -220,8 +220,8 @@ export const OurStory: GlobalConfig = {
           ],
         },
         {
-          name: "content",
-          label: "Content",
+          name: "text",
+          label: "Text",
           type: "richText",
           required: true,
           editor: lexicalEditor({
@@ -291,8 +291,8 @@ export const OurStory: GlobalConfig = {
           required: true,
         },
         {
-          name: "content",
-          label: "Content",
+          name: "text",
+          label: "Text",
           type: "richText",
           required: true,
           editor: lexicalEditor({

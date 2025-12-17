@@ -36,31 +36,62 @@ type TimelineItemProps = {
     presidents: President;
     vicePresidents?: VicePresident;
     conductors?: Conductor;
-    content: any;
+    text: any;
   };
 };
 
+type RoleProps = {
+  title: string;
+  fullYearNames: string[];
+  semesterNames?: SemesterNames;
+  termLength?: "fullYear" | "semester" | null;
+  exists?: boolean;
+};
+
+const RoleBlock = ({
+  title,
+  fullYearNames,
+  semesterNames,
+  termLength,
+  exists = true,
+}: RoleProps) => {
+  if (!exists) return null;
+
+  if (termLength === "fullYear") {
+    return (
+      <div>
+        <p className="font-semibold">{fullYearNames.length < 2 ? title : `${title}S`}</p>
+        {fullYearNames.map((name, idx) => (
+          <p key={idx}>{name}</p>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <p className="font-semibold">{title}</p>
+      <p>
+        <span className="italic">SEM 1:</span> {semesterNames?.nameOne}
+      </p>
+      <p>
+        <span className="italic">SEM 2:</span> {semesterNames?.nameTwo}
+      </p>
+    </div>
+  );
+};
+
 const TimelineItem = ({ content }: TimelineItemProps) => {
+  if (!content) return null;
+
+  // Destructure
+  const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
+
   const stringToList = (players: string) =>
     players
       .split(/[,;]+/) // split by comma or semicolon
       .map((player) => player.trim()) // remove extra spaces
       .filter(Boolean); // remove empty strings
-
-  const presidents =
-    content?.presidents.termLength === "fullYear"
-      ? stringToList(content?.presidents.fullYearName || "")
-      : [];
-
-  const vicePresidents =
-    content?.vicePresidents?.termLength === "fullYear"
-      ? stringToList(content?.vicePresidents?.fullYearName || "")
-      : [];
-
-  const conductors =
-    content?.conductors?.termLength === "fullYear"
-      ? stringToList(content?.conductors?.fullYearName || "")
-      : [];
 
   return (
     <section className="w-full flex flex-col text-left text-(--navy) ">
@@ -69,7 +100,7 @@ const TimelineItem = ({ content }: TimelineItemProps) => {
           {/* Text */}
           <div className="relative flex items-center h-14 gap-4 pb-6">
             <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
-              {content?.year}: {content?.title}
+              {year}: {title}
             </h2>
             {/* Horizontal Line */}
             <div className="flex-1 relative">
@@ -80,88 +111,53 @@ const TimelineItem = ({ content }: TimelineItemProps) => {
           <div className="pr-20 text-sm">
             <div className="flex flex-col space-y-4 w-1/2 pb-6">
               {/* President */}
-              {content?.presidents.termLength === "fullYear" ? (
-                <div>
-                  <p className="font-semibold">
-                    {presidents.length < 2 ? "PRESIDENT" : "PRESIDENTS"}
-                  </p>
-                  {presidents.map((name, index) => (
-                    <p key={index}>{name}</p>
-                  ))}
-                </div>
-              ) : (
-                <div>
-                  <p className="font-semibold">PRESIDENTx</p>
-                  <p>
-                    <span className="italic">SEM 1:</span>
-                    {content?.presidents?.semesterName?.nameOne}
-                  </p>
-                  <p>
-                    <span className="italic">SEM 2:</span>
-                    {content?.presidents?.semesterName?.nameOne}
-                  </p>
-                </div>
-              )}
+              <RoleBlock
+                title="PRESIDENT"
+                fullYearNames={
+                  presidents.termLength === "fullYear"
+                    ? stringToList(presidents.fullYearName || "")
+                    : []
+                }
+                semesterNames={presidents.semesterName}
+                termLength={presidents.termLength}
+              />
 
               {/* Vice-President */}
-              {content?.vicePresidents?.exists &&
-                (content?.vicePresidents?.termLength === "fullYear" ? (
-                  <div>
-                    <p className="font-semibold">
-                      {vicePresidents.length < 2 ? "VICE-PRESIDENT" : "VICE-PRESIDENTS"}
-                    </p>
-                    {vicePresidents.map((name, index) => (
-                      <p key={index}>{name}</p>
-                    ))}
-                  </div>
-                ) : (
-                  <div>
-                    <p className="font-semibold">VICE-PRESIDENTS</p>
-                    <p>
-                      <span className="italic">SEM 1:</span>
-                      {content?.vicePresidents?.semesterName?.nameOne}
-                    </p>
-                    <p>
-                      <span className="italic">SEM 2:</span>
-                      {content?.vicePresidents?.semesterName?.nameOne}
-                    </p>
-                  </div>
-                ))}
+              <RoleBlock
+                title="VICE-PRESIDENT"
+                fullYearNames={
+                  vicePresidents?.termLength === "fullYear"
+                    ? stringToList(vicePresidents?.fullYearName || "")
+                    : []
+                }
+                semesterNames={vicePresidents?.semesterName}
+                termLength={vicePresidents?.termLength}
+                exists={vicePresidents?.exists === "true"}
+              />
 
               {/* Conductor */}
-              {content?.conductors?.termLength === "fullYear" ? (
-                <div>
-                  <p className="font-semibold">
-                    {conductors.length < 2 ? "CONDUCTOR" : "CONDUCTORS"}
-                  </p>
-                  {conductors.map((name, index) => (
-                    <p key={index}>{name}</p>
-                  ))}
-                </div>
-              ) : (
-                <div>
-                  <p className="font-semibold">CONDUCTORS</p>
-                  <p>
-                    <span className="italic">SEM 1:</span>
-                    {content?.conductors?.semesterName?.nameOne}
-                  </p>
-                  <p>
-                    <span className="italic">SEM 2:</span>
-                    {content?.conductors?.semesterName?.nameOne}
-                  </p>
-                </div>
-              )}
+              <RoleBlock
+                title="CONDUCTOR"
+                fullYearNames={
+                  conductors?.termLength === "fullYear"
+                    ? stringToList(conductors?.fullYearName || "")
+                    : []
+                }
+                semesterNames={conductors?.semesterName}
+                termLength={conductors?.termLength}
+              />
             </div>
-            {/* Content */}
-            <RichText data={content?.content} />
+
+            {/* Text Content */}
+            <RichText data={richText} />
           </div>
         </div>
 
         <div className="w-1/2 pl-20 flex items-center justify-center">
-          {typeof content?.image === "object" && content?.image?.url && (
+          {typeof image === "object" && image?.url && (
             <Image
-              src={content?.image.url}
-              alt={content?.image.alt}
+              src={image.url}
+              alt={image.alt}
               width={500}
               height={500}
               className="rounded-lg max-w-full max-h-full object-contain"

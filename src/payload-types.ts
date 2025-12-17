@@ -842,7 +842,7 @@ export interface OurStory {
             nameTwo: string;
           };
         };
-        content: {
+        text: {
           root: {
             type: string;
             children: {
@@ -869,7 +869,7 @@ export interface OurStory {
     meetingOpen?: string | null;
     establishmentText?: string | null;
     image: string | Media;
-    content: {
+    text: {
       root: {
         type: string;
         children: {
@@ -1418,7 +1418,7 @@ export interface OurStorySelect<T extends boolean = true> {
                     nameTwo?: T;
                   };
             };
-        content?: T;
+        text?: T;
         id?: T;
       };
   establishment?:
@@ -1432,7 +1432,7 @@ export interface OurStorySelect<T extends boolean = true> {
         meetingOpen?: T;
         establishmentText?: T;
         image?: T;
-        content?: T;
+        text?: T;
       };
   updatedAt?: T;
   createdAt?: T;

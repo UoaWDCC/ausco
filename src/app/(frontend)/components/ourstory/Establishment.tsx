@@ -13,11 +13,26 @@ type EstablishmentProps = {
     meetingOpen?: string | null;
     establishmentText?: string | null;
     image: Media | string | null;
-    content: any;
+    text: any;
   };
 };
 
 const Establishment = ({ content }: EstablishmentProps) => {
+  if (!content) return null;
+
+  // Destructure
+  const {
+    year,
+    title,
+    date,
+    present,
+    apologies,
+    meetingOpen,
+    establishmentText,
+    image,
+    text: richText,
+  } = content;
+
   const infoBlocks = [
     { label: "PRESENT", value: content.present },
     { label: "APOLOGIES", value: content.apologies },
@@ -32,7 +47,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
           {/* Note: adjusting the height (h) of this div will require adjusting the margin-top (mt) on the vertical line (line 71) */}
           <div className="flex items-center h-14 gap-4 pb-6">
             <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
-              {content.year}: {content.title}
+              {year}: {title}
             </h2>
             {/* Horizontal Line */}
             <div className="relative flex-1">
@@ -41,7 +56,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
           </div>
 
           <div className="pr-20 text-sm">
-            {content.date && <p className="font-semibold pb-4 ">{content.date}</p>}
+            {date && <p className="font-semibold pb-4 ">{date}</p>}
 
             <div className="flex flex-row gap-6 pb-6">
               <div className="flex flex-col space-y-4 w-1/2">
@@ -53,24 +68,24 @@ const Establishment = ({ content }: EstablishmentProps) => {
                 ))}
               </div>
 
-              {content.establishmentText && (
+              {establishmentText && (
                 <div className="w-1/2">
                   <p className="font-semibold italic">Establishment of the club:</p>
-                  <p className="italic">{content.establishmentText}</p>
+                  <p className="italic">{establishmentText}</p>
                 </div>
               )}
             </div>
 
-            <RichText data={content.content} />
+            <RichText data={richText} />
           </div>
         </div>
 
         {/* RIGHT: Image */}
         <div className="w-1/2 pl-20 flex items-center justify-center">
-          {typeof content.image === "object" && content.image?.url && (
+          {typeof image === "object" && image?.url && (
             <Image
-              src={content.image.url}
-              alt={content.image.alt}
+              src={image.url}
+              alt={image.alt}
               width={500}
               height={500}
               className="rounded-lg max-w-full max-h-full object-contain"
