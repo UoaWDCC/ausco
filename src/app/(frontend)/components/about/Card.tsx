@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -68,7 +68,7 @@ const Card = ({
   const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
   // image parallax effect scroll speed
-  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
   // smooth motion
   const y = useSpring(rawY, spring);
 
@@ -98,13 +98,14 @@ const Card = ({
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
       {/* On Display: Background Image */}
-      <motion.div style={{y, scale:1.4}}>
+      <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.4 }}>
         <Image
           src={background!}
           alt={alt}
           fill
           priority
-          loading="eager"
+          quality={90}
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover object-center"
         />
       </motion.div>
@@ -155,7 +156,7 @@ const Card = ({
               )}
             </div>
 
-            {/* 👀 Visible content */}
+            {/* Visible Content */}
             {shouldScroll ? (
               <ScrollingLogos logos={sponsorLogos!} />
             ) : (
