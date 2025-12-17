@@ -41,7 +41,7 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
                 alt={item.logo.alt || `sponsor ${index + 1}`}
                 width={64}
                 height={64}
-                className="object-contain shrink-0"
+                className="object-contain shrink-0 rounded-md"
               />
             );
           }
@@ -150,7 +150,7 @@ const Card = ({
                       alt=""
                       width={64}
                       height={64}
-                      className="object-contain shrink-0"
+                      className="object-contain shrink-0 rounded-md"
                     />
                   ),
               )}
@@ -171,7 +171,7 @@ const Card = ({
                         alt={item.logo.alt || `sponsor ${index + 1}`}
                         width={64}
                         height={64}
-                        className="object-contain"
+                        className="object-contain rounded-md"
                       />
                     ),
                 )}
