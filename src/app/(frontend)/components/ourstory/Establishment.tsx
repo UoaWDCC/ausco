@@ -32,10 +32,10 @@ const Establishment = ({ content }: EstablishmentProps) => {
             <div className="h-0.5 bg-(--navy) grow min-w-[150px] rounded-full -mr-0.5" />
           </div>
 
-          <div className="pr-20">
-            {content.date && <p className="font-semibold pb-4 text-sm">{content.date}</p>}
+          <div className="pr-20 text-sm">
+            {content.date && <p className="font-semibold pb-4 ">{content.date}</p>}
 
-            <div className="flex flex-row gap-6 pb-6 text-sm">
+            <div className="flex flex-row gap-6 pb-6">
               <div className="flex flex-col space-y-4 w-1/2">
                 {content.present && (
                   <div>
