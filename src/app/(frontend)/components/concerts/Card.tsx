@@ -1,9 +1,15 @@
+'use client';
+
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Archive, ArrowUpRight, CalendarClock } from "lucide-react";
 
 import { Media } from "@/payload-types";
+
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
+import parallaxConfig from "@/config/parallax";
 
 type CardProps = {
   background: Media | string | null;
@@ -20,17 +26,25 @@ const Card = ({ background, type }: CardProps) => {
       <Archive size={48} className="mb-4" />
     );
 
+    const { rangeIn, rangeOut, spring } = parallaxConfig;
+    const { scrollY } = useScroll();
+    // image parallax effect scroll speed
+    const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
+    // smooth motion
+    const y = useSpring(rawY, spring);
   return (
     <Link href={link} className="relative w-1/2 aspect-5/4 overflow-hidden rounded-lg group">
       {typeof background === "object" && background?.url && (
-        <Image
-          src={background.url}
-          alt={background.alt || `${label} Concerts Image`}
-          fill
-          priority
-          loading="eager"
-          className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
-        />
+        <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.4 }}>
+          <Image
+            src={background.url}
+            alt={background.alt || `${label} Concerts Image`}
+            fill
+            priority
+            loading="eager"
+            className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
+          />
+        </motion.div>
       )}
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
