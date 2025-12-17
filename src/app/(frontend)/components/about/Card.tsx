@@ -20,6 +20,38 @@ export type CardProps = {
   sponsorLogos?: { logo?: Media | string | null }[] | null;
 };
 
+const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }) => {
+  return (
+    <div className="overflow-hidden w-full">
+      <motion.div
+        className="flex gap-6 w-max"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          repeat: Infinity,
+          ease: "linear",
+          duration: 20, // slower = bigger number
+        }}
+      >
+        {[...logos, ...logos].map((item, index) => {
+          if (typeof item.logo === "object" && item.logo?.url) {
+            return (
+              <Image
+                key={index}
+                src={item.logo.url}
+                alt={item.logo.alt || `sponsor ${index + 1}`}
+                width={64}
+                height={64}
+                className="object-contain shrink-0"
+              />
+            );
+          }
+          return null;
+        })}
+      </motion.div>
+    </div>
+  );
+};
+
 const Card = ({
   icon,
   background,
@@ -39,6 +71,29 @@ const Card = ({
   const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
   // smooth motion
   const y = useSpring(rawY, spring);
+
+  const logosWrapperRef = React.useRef<HTMLDivElement>(null);
+  const logosRowRef = React.useRef<HTMLDivElement>(null);
+  const [shouldScroll, setShouldScroll] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!logosWrapperRef.current || !logosRowRef.current) return;
+
+    const checkOverflow = () => {
+      const maxWidth = logosWrapperRef.current!.clientWidth;
+      const contentWidth = logosRowRef.current!.scrollWidth;
+
+      setShouldScroll(contentWidth > maxWidth);
+    };
+
+    checkOverflow();
+
+    const resizeObserver = new ResizeObserver(checkOverflow);
+    resizeObserver.observe(logosWrapperRef.current);
+    resizeObserver.observe(logosRowRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, [sponsorLogos]);
 
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
@@ -76,21 +131,51 @@ const Card = ({
         <div className="flex justify-center mb-4">{icon}</div>
 
         {isSponsored && (
-          <div className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md gap-6 flex flex-wrap justify-center items-center">
-            {sponsorLogos?.map(
-              (item, index) =>
-                typeof item.logo === "object" &&
-                item.logo?.url && (
-                  <Image
-                    key={index}
-                    src={item.logo.url}
-                    alt={item.logo.alt || `sponsor ${index + 1}`}
-                    width={64}
-                    height={64}
-                    loading="lazy"
-                    className="object-contain"
-                  />
-                ),
+          <div
+            ref={logosWrapperRef}
+            className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md max-w-full overflow-hidden relative flex items-center"
+          >
+            {/* Hidden measurement row (always rendered) */}
+            <div
+              ref={logosRowRef}
+              className="absolute invisible pointer-events-none flex gap-6 flex-nowrap w-max"
+            >
+              {sponsorLogos!.map(
+                (item, index) =>
+                  typeof item.logo === "object" &&
+                  item.logo?.url && (
+                    <Image
+                      key={index}
+                      src={item.logo.url}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="object-contain shrink-0"
+                    />
+                  ),
+              )}
+            </div>
+
+            {/* 👀 Visible content */}
+            {shouldScroll ? (
+              <ScrollingLogos logos={sponsorLogos!} />
+            ) : (
+              <div className="flex gap-6 justify-center items-center flex-nowrap">
+                {sponsorLogos!.map(
+                  (item, index) =>
+                    typeof item.logo === "object" &&
+                    item.logo?.url && (
+                      <Image
+                        key={index}
+                        src={item.logo.url}
+                        alt={item.logo.alt || `sponsor ${index + 1}`}
+                        width={64}
+                        height={64}
+                        className="object-contain"
+                      />
+                    ),
+                )}
+              </div>
             )}
           </div>
         )}
@@ -102,7 +187,7 @@ const Card = ({
             </a>
           </Button>
         ) : (
-          <p className="text-base text-center">{description}</p>
+          <p className="text-base text-center overflow-hidden">{description}</p>
         )}
       </div>
     </div>
