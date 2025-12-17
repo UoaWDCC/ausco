@@ -19,7 +19,7 @@ type EstablishmentProps = {
 
 const Establishment = ({ content }: EstablishmentProps) => {
   return (
-    <section className="w-full flex flex-col text-left text-(--navy) ">
+    <section className="relative w-full flex flex-col text-left text-(--navy) pb-18">
       <div className="flex flex-row">
         <div className="w-1/2 flex flex-col">
           {/* LEFT: Text */}
@@ -29,7 +29,9 @@ const Establishment = ({ content }: EstablishmentProps) => {
               {content.year}: {content.title}
             </h2>
             {/* Horizontal Line */}
-            <div className="h-0.5 bg-(--navy) grow min-w-[150px] rounded-full -mr-0.5" />
+            <div className="relative flex-1">
+              <div className="absolute -right-px top-1/2 h-0.5 w-full bg-(--navy) -translate-y-1/2 rounded-full" />
+            </div>
           </div>
 
           <div className="pr-20 text-sm">
@@ -69,9 +71,6 @@ const Establishment = ({ content }: EstablishmentProps) => {
           </div>
         </div>
 
-        {/* Vertical Line */}
-        <div className="w-0.5 bg-(--navy) mt-4 rounded-full" />
-
         {/* RIGHT: Image */}
         <div className="w-1/2 pl-20 flex items-center justify-center">
           {typeof content.image === "object" && content.image?.url && (
@@ -84,11 +83,6 @@ const Establishment = ({ content }: EstablishmentProps) => {
             />
           )}
         </div>
-      </div>
-
-      {/* Vertical Line */}
-      <div className="h-[72px] w-full flex justify-center">
-        <div className="w-0.5 bg-(--navy) h-full rounded-full -mt-0.5" />
       </div>
     </section>
   );
