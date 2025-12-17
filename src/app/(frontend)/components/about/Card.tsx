@@ -132,9 +132,9 @@ const Card = ({
         {isSponsored && (
           <div
             ref={logosWrapperRef}
-            className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md w-full overflow-hidden relative"
+            className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md max-w-full overflow-hidden relative flex items-center"
           >
-            {/* 🔍 Hidden measurement row (always rendered) */}
+            {/* Hidden measurement row (always rendered) */}
             <div
               ref={logosRowRef}
               className="absolute invisible pointer-events-none flex gap-6 flex-nowrap w-max"
@@ -186,7 +186,7 @@ const Card = ({
             </a>
           </Button>
         ) : (
-          <p className="text-base text-center">{description}</p>
+          <p className="text-base text-center overflow-hidden">{description}</p>
         )}
       </div>
     </div>
