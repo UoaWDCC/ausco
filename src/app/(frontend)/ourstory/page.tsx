@@ -1,9 +1,9 @@
 import { getOurStory } from "@/actions/pageActions";
 import Establishment from "@components/ourstory/Establishment";
 import Header from "@components/ourstory/Header";
-import Timeline from "@components/ourstory/Timeline";
+import TimelineItem from "@components/ourstory/TimelineItem";
 
-const TimelineRail = ({ children }: { children: React.ReactNode }) => {
+const Timeline = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative">
       {/* Single continuous vertical line */}
@@ -20,10 +20,10 @@ export default async function OurStoryPage() {
     <section className="bg-(--cream)">
       <div className="max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
         <Header description={content.description} />
-        <TimelineRail>
+        <Timeline>
           <Establishment content={content.establishment} />
-          <Timeline content={content.timeline} />
-        </TimelineRail>
+          <TimelineItem content={content?.timeline?.[0]} />
+        </Timeline>
       </div>
     </section>
   );

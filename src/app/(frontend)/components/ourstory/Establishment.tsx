@@ -18,6 +18,12 @@ type EstablishmentProps = {
 };
 
 const Establishment = ({ content }: EstablishmentProps) => {
+  const infoBlocks = [
+    { label: "PRESENT", value: content.present },
+    { label: "APOLOGIES", value: content.apologies },
+    { label: "MEETING OPENED", value: content.meetingOpen },
+  ].filter((block) => block.value);
+
   return (
     <section className="relative w-full flex flex-col text-left text-(--navy) pb-18">
       <div className="flex flex-row">
@@ -39,24 +45,12 @@ const Establishment = ({ content }: EstablishmentProps) => {
 
             <div className="flex flex-row gap-6 pb-6">
               <div className="flex flex-col space-y-4 w-1/2">
-                {content.present && (
-                  <div>
-                    <p className="font-semibold">PRESENT:</p>
-                    <p>{content.present}</p>
+                {infoBlocks.map((block) => (
+                  <div key={block.label}>
+                    <p className="font-semibold">{block.label}:</p>
+                    <p>{block.value}</p>
                   </div>
-                )}
-                {content.apologies && (
-                  <div>
-                    <p className="font-semibold">APOLOGIES:</p>
-                    <p>{content.apologies}</p>
-                  </div>
-                )}
-                {content.meetingOpen && (
-                  <div>
-                    <p className="font-semibold">MEETING OPENED:</p>
-                    <p>{content.meetingOpen}</p>
-                  </div>
-                )}
+                ))}
               </div>
 
               {content.establishmentText && (
