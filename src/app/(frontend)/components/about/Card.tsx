@@ -72,6 +72,29 @@ const Card = ({
   // smooth motion
   const y = useSpring(rawY, spring);
 
+  const logosWrapperRef = React.useRef<HTMLDivElement>(null);
+  const logosRowRef = React.useRef<HTMLDivElement>(null);
+  const [shouldScroll, setShouldScroll] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!logosWrapperRef.current || !logosRowRef.current) return;
+
+    const checkOverflow = () => {
+      const maxWidth = logosWrapperRef.current!.clientWidth;
+      const contentWidth = logosRowRef.current!.scrollWidth;
+
+      setShouldScroll(contentWidth > maxWidth);
+    };
+
+    checkOverflow();
+
+    const resizeObserver = new ResizeObserver(checkOverflow);
+    resizeObserver.observe(logosWrapperRef.current);
+    resizeObserver.observe(logosRowRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, [sponsorLogos]);
+
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
       {/* On Display: Background Image */}
@@ -107,12 +130,37 @@ const Card = ({
         <div className="flex justify-center mb-4">{icon}</div>
 
         {isSponsored && (
-          <div className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md w-full">
-            {sponsorLogos!.length > 6 ? ( // when more than 6 logos, use scrolling effect
+          <div
+            ref={logosWrapperRef}
+            className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md w-full overflow-hidden relative"
+          >
+            {/* 🔍 Hidden measurement row (always rendered) */}
+            <div
+              ref={logosRowRef}
+              className="absolute invisible pointer-events-none flex gap-6 flex-nowrap w-max"
+            >
+              {sponsorLogos!.map(
+                (item, index) =>
+                  typeof item.logo === "object" &&
+                  item.logo?.url && (
+                    <Image
+                      key={index}
+                      src={item.logo.url}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="object-contain shrink-0"
+                    />
+                  ),
+              )}
+            </div>
+
+            {/* 👀 Visible content */}
+            {shouldScroll ? (
               <ScrollingLogos logos={sponsorLogos!} />
             ) : (
               <div className="flex gap-6 justify-center items-center flex-nowrap">
-                {sponsorLogos?.map(
+                {sponsorLogos!.map(
                   (item, index) =>
                     typeof item.logo === "object" &&
                     item.logo?.url && (
