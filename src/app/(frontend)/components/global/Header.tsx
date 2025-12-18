@@ -185,7 +185,7 @@ const Header = ({ content }: HeaderProps) => {
           />
         )}
         <h1
-          className="ml-20! mt-0! mb-0! font-semibold! text-lg! whitespace-pre-line transition-colors duration-400"
+          className="hidden md:block ml-20! mt-0! mb-0! font-semibold! text-lg! whitespace-pre-line transition-colors duration-400"
           style={{
             color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
           }}
