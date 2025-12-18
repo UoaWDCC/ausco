@@ -194,7 +194,7 @@ const Header = ({ content }: HeaderProps) => {
         </h1>
       </Link>
 
-      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
+      <nav className="hidden lg:flex flex-row gap-16 pr-6 items-center font-medium text-base">
         {navBar.map((item, index) => (
           <NavItem
             key={index}
