@@ -809,54 +809,81 @@ export interface Gallery {
  */
 export interface OurStory {
   id: string;
-  OurStoryTitle: string;
-  OurStoryDescription: string;
+  description?: string | null;
   timeline?:
     | {
-        year: string;
-        title?: string | null;
-        dateInfo?: string | null;
-        presidents?:
-          | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              president: string;
-              id?: string | null;
-            }[]
-          | null;
-        vicePresidents?:
-          | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              vicePresident: string;
-              id?: string | null;
-            }[]
-          | null;
-        conductors?:
-          | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              conductor: string;
-              id?: string | null;
-            }[]
-          | null;
-        description: {
-          paragraph: string;
-          id?: string | null;
-        }[];
+        year: number;
+        title: string;
         image: string | Media;
-        meetingMinutes?:
-          | {
-              meetingRecords: {
-                title: string;
-                content: string;
-                id?: string | null;
-              }[];
-              establishmentText: string;
-              establishmentQuote: string;
-              id?: string | null;
-            }[]
-          | null;
+        presidents: {
+          role: 'president' | 'co-president';
+          termLength: 'fullYear' | 'semester';
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        vicePresidents: {
+          exists: 'true' | 'false';
+          termLength?: ('fullYear' | 'semester') | null;
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        conductors: {
+          termLength: 'fullYear' | 'semester';
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        text: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
         id?: string | null;
       }[]
     | null;
+  establishment: {
+    year: number;
+    title: string;
+    date?: string | null;
+    present?: string | null;
+    apologies?: string | null;
+    meetingOpen?: string | null;
+    establishmentText?: string | null;
+    image: string | Media;
+    text: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1345,57 +1372,66 @@ export interface GallerySelect<T extends boolean = true> {
  * via the `definition` "our-story_select".
  */
 export interface OurStorySelect<T extends boolean = true> {
-  OurStoryTitle?: T;
-  OurStoryDescription?: T;
+  description?: T;
   timeline?:
     | T
     | {
         year?: T;
         title?: T;
-        dateInfo?: T;
+        image?: T;
         presidents?:
           | T
           | {
-              termType?: T;
-              president?: T;
-              id?: T;
+              role?: T;
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
+                | T
+                | {
+                    nameOne?: T;
+                    nameTwo?: T;
+                  };
             };
         vicePresidents?:
           | T
           | {
-              termType?: T;
-              vicePresident?: T;
-              id?: T;
+              exists?: T;
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
+                | T
+                | {
+                    nameOne?: T;
+                    nameTwo?: T;
+                  };
             };
         conductors?:
           | T
           | {
-              termType?: T;
-              conductor?: T;
-              id?: T;
-            };
-        description?:
-          | T
-          | {
-              paragraph?: T;
-              id?: T;
-            };
-        image?: T;
-        meetingMinutes?:
-          | T
-          | {
-              meetingRecords?:
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
                 | T
                 | {
-                    title?: T;
-                    content?: T;
-                    id?: T;
+                    nameOne?: T;
+                    nameTwo?: T;
                   };
-              establishmentText?: T;
-              establishmentQuote?: T;
-              id?: T;
             };
+        text?: T;
         id?: T;
+      };
+  establishment?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        date?: T;
+        present?: T;
+        apologies?: T;
+        meetingOpen?: T;
+        establishmentText?: T;
+        image?: T;
+        text?: T;
       };
   updatedAt?: T;
   createdAt?: T;

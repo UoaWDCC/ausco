@@ -3,8 +3,7 @@ import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import FeatureVideo from "@components/home/FeatureVideo";
 
-import { getHomePage } from "@/actions/pageActions";
-import { getConcertsUpcoming } from "@/actions/pageActions";
+import { getConcertsUpcoming, getHomePage } from "@/actions/pageActions";
 import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function HomePage() {

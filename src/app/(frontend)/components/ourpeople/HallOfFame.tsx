@@ -1,5 +1,5 @@
-import { Media } from "@/payload-types";
 import FramedImage from "./FramedImage";
+import { Media } from "@/payload-types";
 
 type HallOfFameProps = {
   content: {
