@@ -14,7 +14,9 @@ export default async function OurStoryPage() {
         <Header description={content.description} />
         <Timeline>
           <Establishment content={content.establishment} />
-          <TimelineItem content={content?.timeline?.[0]} flipLayout={0 % 2 === 0} />
+          {content?.timeline?.map((year, index) => {
+            return <TimelineItem key={index} content={year} flipLayout={index % 2 === 0} />;
+          })}
         </Timeline>
       </div>
     </section>
