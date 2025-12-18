@@ -73,13 +73,33 @@ const RoleBlock = ({
     <div>
       <p className="font-semibold">{title}</p>
       <p>
-        <span className="italic">SEM 1:</span> {semesterNames?.nameOne}
+        <span className="italic">SEM 1:</span>{" "}
+        {semesterNames && listToReadableString(semesterNames?.nameOne)}
       </p>
       <p>
-        <span className="italic">SEM 2:</span> {semesterNames?.nameTwo}
+        <span className="italic">SEM 2:</span>{" "}
+        {semesterNames && listToReadableString(semesterNames?.nameTwo)}
       </p>
     </div>
   );
+};
+
+// TODO: abstract into global util function
+const stringToList = (members: string) =>
+  members
+    .split(/[,;]+/) // split by comma or semicolon
+    .map((member) => member.trim()) // remove extra spaces
+    .filter(Boolean); // remove empty strings
+
+// Converts a comma- or semicolon-separated list of names into a human-readable string using “&” before the final name
+const listToReadableString = (members: string) => {
+  const list = stringToList(members);
+
+  if (list.length === 0) return "";
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} & ${list[1]}`;
+
+  return `${list.slice(0, -1).join(", ")} & ${list.at(-1)}`;
 };
 
 const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
@@ -87,12 +107,6 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
 
   // Destructure
   const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
-
-  const stringToList = (members: string) =>
-    members
-      .split(/[,;]+/) // split by comma or semicolon
-      .map((member) => member.trim()) // remove extra spaces
-      .filter(Boolean); // remove empty strings
 
   return (
     <section className="w-full flex flex-col text-left text-(--navy) ">
@@ -110,7 +124,7 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
           </div>
 
           <div className={`text-sm ${flipLayout ? "pl-20 pr-0" : "pr-20 pl-0"}`}>
-            <div className="flex flex-col space-y-4 w-1/2 pb-6">
+            <div className="flex flex-col space-y-4 pb-6">
               {/* President */}
               <RoleBlock
                 title="PRESIDENT"
@@ -161,9 +175,9 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
             <Image
               src={image.url}
               alt={image.alt}
-              width={500}
-              height={500}
-              className="rounded-lg max-w-full max-h-full object-contain"
+              width={700}
+              height={700}
+              className="w-full h-auto rounded-lg object-contain"
             />
           )}
         </div>
@@ -173,13 +187,3 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
 };
 
 export default TimelineItem;
-
-// <div className="relative flex items-center h-14 gap-4 pb-6">
-//   <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
-//     {year}: {title}
-//   </h2>
-//   {/* Horizontal Line */}
-//   <div className="flex-1 relative">
-//     <div className="absolute right-0 top-0 h-0.5 w-full bg-(--navy) rounded-full" />
-//   </div>
-// </div>

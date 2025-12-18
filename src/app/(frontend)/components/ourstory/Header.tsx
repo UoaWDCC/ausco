@@ -1,5 +1,3 @@
-import { getOurStory } from "@/actions/ourStoryActions";
-
 type HeaderProps = {
   description?: string | null;
 };

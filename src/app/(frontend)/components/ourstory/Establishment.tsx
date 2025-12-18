@@ -46,13 +46,11 @@ const Establishment = ({ content }: EstablishmentProps) => {
           {/* LEFT: Text */}
           {/* Note: adjusting the height (h) of this div will require adjusting the margin-top (mt) on the vertical line (line 71) */}
           <div className="flex items-center h-14 gap-4 pb-6">
-            <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap">
+            <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap shrink-0">
               {year}: {title}
             </h2>
             {/* Horizontal Line */}
-            <div className="relative flex-1">
-              <div className="absolute -right-px top-1/2 h-0.5 w-full bg-(--navy) -translate-y-1/2 rounded-full" />
-            </div>
+            <div className="h-0.5 w-full bg-(--navy) rounded-full -mr-px" />
           </div>
 
           <div className="pr-20 text-sm">
