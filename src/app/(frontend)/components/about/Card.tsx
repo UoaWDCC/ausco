@@ -187,7 +187,7 @@ const Card = ({
             </a>
           </Button>
         ) : (
-          <p className="text-base text-center overflow-hidden">{description}</p>
+          <p className="text-base text-center overflow-scroll">{description}</p>
         )}
       </div>
     </div>
