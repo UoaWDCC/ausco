@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const AboutUs: GlobalConfig = {
+const AboutUs: GlobalConfig = {
   slug: "about-us",
   label: "About Us",
   fields: [

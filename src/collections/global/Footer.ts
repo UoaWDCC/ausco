@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const Footer: GlobalConfig = {
+const Footer: GlobalConfig = {
   slug: "footer",
   label: "Footer",
   fields: [
@@ -58,3 +58,5 @@ export const Footer: GlobalConfig = {
     },
   ],
 };
+
+export default Footer

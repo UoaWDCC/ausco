@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const Header: GlobalConfig = {
+const Header: GlobalConfig = {
   slug: "header",
   label: "Header",
   fields: [

@@ -7,7 +7,7 @@ import {
 } from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
-export const Home: GlobalConfig = {
+const Home: GlobalConfig = {
   slug: "home",
   label: "Home",
   fields: [

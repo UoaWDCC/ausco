@@ -9,27 +9,22 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
-import { Header } from "./collections/global/Header";
-import { Footer } from "./collections/global/Footer";
-import { SiteSetting } from "./collections/global/SiteSetting";
 
-import { Home } from "./collections/global/Home";
-
-import { AboutUs } from "./collections/global/AboutUs";
-
-import { OurPeople } from "./collections/global/OurPeople";
-
-import { Concerts } from "./collections/global/Concerts";
-import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
-import { ConcertsPast } from "./collections/global/ConcertsPast";
-
-import { ConcertsGallery } from "./collections/global/GalleryConcert";
-import { AnnualCampGallery } from "./collections/global/GalleryAnnualCamp";
-import { ExecutiveCampGallery } from "./collections/global/GalleryExecutiveCamp";
-import { OtherGallery } from "./collections/global/GalleryOther";
-import { Gallery } from "./collections/global/Gallery";
-
-import { OurStory } from "./collections/global/OurStory";
+import SiteSetting from "./collections/global/SiteSetting";
+import Header from "./collections/global/Header";
+import Footer from "./collections/global/Footer";
+import Home from "./collections/global/Home";
+import OurStory from "./collections/global/OurStory";
+import AboutUs from "./collections/global/AboutUs";
+import OurPeople from "./collections/global/OurPeople";
+import Concerts from "./collections/global/Concerts";
+import ConcertsUpcoming from "./collections/global/ConcertsUpcoming";
+import ConcertsPast from "./collections/global/ConcertsPast";
+import GalleryConcert from "./collections/global/GalleryConcert";
+import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
+import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
+import GalleryOther from "./collections/global/GalleryOther";
+import Gallery from "./collections/global/Gallery";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -55,10 +50,10 @@ export default buildConfig({
     ConcertsUpcoming,
     ConcertsPast,
     Gallery,
-    ConcertsGallery,
-    AnnualCampGallery,
-    ExecutiveCampGallery,
-    OtherGallery,
+    GalleryConcert,
+    GalleryAnnualCamp,
+    GalleryExecutiveCamp,
+    GalleryOther,
   ],
   collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",

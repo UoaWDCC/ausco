@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const SiteSetting: GlobalConfig = {
+const SiteSetting: GlobalConfig = {
   slug: "siteSetting",
   label: "Site Setting",
   fields: [
@@ -56,3 +56,5 @@ export const SiteSetting: GlobalConfig = {
     },
   ],
 };
+
+export default SiteSetting
