@@ -12,7 +12,7 @@ type HeaderProps = {
 const Header = ({ content }: HeaderProps) => {
   return (
     <>
-      <section className="w-full pb-18 flex flex-row items-center text-left text-(--navy) gap-16">
+      <section className="w-full pb-16 flex flex-row items-center text-left text-(--navy) gap-16">
         {typeof content.image === "object" && content.image?.url && (
           <div className="relative w-1/2 aspect-3/2">
             <Image
@@ -33,7 +33,7 @@ const Header = ({ content }: HeaderProps) => {
         </div>
       </section>
 
-      <div className="w-full bg-(--navy) mb-18" style={{ height: "1px" }} />
+      <div className="w-full bg-(--navy) mb-16" style={{ height: "1px" }} />
     </>
   );
 };

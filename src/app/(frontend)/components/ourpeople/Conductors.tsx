@@ -24,7 +24,7 @@ const Conductors = ({ content }: ConductorsProps) => {
   const frameUrl = getImageUrl(content?.frame);
 
   return (
-    <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
+    <section className="w-full pb-16 flex flex-col items-center text-(--navy)">
       <h2 className="font-medium text-3xl text-center m-0 shrink-0 pb-7">Conductors</h2>
       {/* Conductors */}
       <div className="w-full mt-6 grid grid-cols-3 gap-16 justify-items-center">

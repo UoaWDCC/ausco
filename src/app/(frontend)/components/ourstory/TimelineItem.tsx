@@ -110,7 +110,7 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
 
   return (
     <section className="w-full flex flex-col text-left text-(--navy) ">
-      <div className={`flex flex-row pb-18 ${flipLayout ? "flex-row-reverse" : ""}`}>
+      <div className={`flex flex-row pb-16 ${flipLayout ? "flex-row-reverse" : ""}`}>
         <div className="w-1/2 flex flex-col">
           {/* Text */}
           <div

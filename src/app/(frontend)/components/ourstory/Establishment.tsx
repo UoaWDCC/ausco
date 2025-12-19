@@ -40,7 +40,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
   ].filter((block) => block.value);
 
   return (
-    <section className="relative w-full flex flex-col text-left text-(--navy) pb-18">
+    <section className="relative w-full flex flex-col text-left text-(--navy) pb-16">
       <div className="flex flex-row">
         <div className="w-1/2 flex flex-col">
           {/* LEFT: Text */}

@@ -7,7 +7,7 @@ export default async function Gallery() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="w-full max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
         <Header title="Gallery" />
 
         <div className="flex flex-row justify-between items-center gap-8 w-full pb-8">
