@@ -7,9 +7,9 @@ import {
 } from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
-export const HomePage: GlobalConfig = {
-  slug: "home-page",
-  label: "Home Page",
+export const Home: GlobalConfig = {
+  slug: "home",
+  label: "Home",
   fields: [
     // Hero Component
     {
@@ -137,4 +137,4 @@ export const HomePage: GlobalConfig = {
   ],
 };
 
-export default HomePage;
+export default Home;

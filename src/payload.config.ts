@@ -13,9 +13,9 @@ import { Header } from "./collections/global/Header";
 import { Footer } from "./collections/global/Footer";
 import { SiteSetting } from "./collections/global/SiteSetting";
 
-import HomePage from "./collections/global/HomePage";
+import { Home } from "./collections/global/Home";
 
-import AboutHeroSection from "./collections/global/AboutUsPage";
+import { AboutUs } from "./collections/global/AboutUs";
 
 import { OurPeople } from "./collections/global/OurPeople";
 
@@ -43,11 +43,11 @@ export default buildConfig({
   },
 
   globals: [
-    HomePage,
+    Home,
     Footer,
     Header,
     SiteSetting,
-    AboutHeroSection,
+    AboutUs,
     OurPeople,
     Concerts,
     ConcertsGallery,

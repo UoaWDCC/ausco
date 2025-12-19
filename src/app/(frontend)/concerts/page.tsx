@@ -1,10 +1,10 @@
-import { getConcertsPage } from "@/actions/pageActions";
+import { getConcerts } from "@/actions/pageActions";
 
 import Header from "@components/concerts/Header";
 import Card from "@components/concerts/Card";
 
 export default async function Concerts() {
-  const content = await getConcertsPage();
+  const content = await getConcerts();
 
   return (
     <section className="bg-(--cream)">

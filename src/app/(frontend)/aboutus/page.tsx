@@ -1,10 +1,10 @@
 import Hero from "@components/about/Hero";
 import CardsSection from "@components/about/CardsSection";
 
-import { getAboutUsPage } from "@/actions/pageActions";
+import { getAboutUs } from "@/actions/pageActions";
 
 export default async function AboutPage() {
-  const aboutUsContent = await getAboutUsPage();
+  const aboutUsContent = await getAboutUs();
 
   return (
     <section className="bg-(--cream)">

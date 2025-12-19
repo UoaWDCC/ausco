@@ -1,9 +1,9 @@
-import { getGalleryPage } from "@/actions/pageActions";
+import { getGallery } from "@/actions/pageActions";
 import Card from "@components/gallery/Card";
 import Header from "@components/gallery/Header";
 
 export default async function Gallery() {
-  const content = await getGalleryPage();
+  const content = await getGallery();
 
   return (
     <section className="bg-(--cream)">

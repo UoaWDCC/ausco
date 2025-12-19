@@ -90,11 +90,11 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'home-page': HomePage;
+    home: Home;
     footer: Footer;
     header: Header;
     siteSetting: SiteSetting;
-    'about-us-page': AboutUsPage;
+    'about-us': AboutUs;
     'our-people': OurPerson;
     concerts: Concert;
     'concerts-gallery': ConcertsGallery;
@@ -107,11 +107,11 @@ export interface Config {
     'our-story': OurStory;
   };
   globalsSelect: {
-    'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
-    'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
+    'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'concerts-gallery': ConcertsGallerySelect<false> | ConcertsGallerySelect<true>;
@@ -376,9 +376,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page".
+ * via the `definition` "home".
  */
-export interface HomePage {
+export interface Home {
   id: string;
   hero: {
     background: string | Media;
@@ -473,9 +473,9 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-page".
+ * via the `definition` "about-us".
  */
-export interface AboutUsPage {
+export interface AboutUs {
   id: string;
   hero: {
     description: string;
@@ -890,9 +890,9 @@ export interface OurStory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page_select".
+ * via the `definition` "home_select".
  */
-export interface HomePageSelect<T extends boolean = true> {
+export interface HomeSelect<T extends boolean = true> {
   hero?:
     | T
     | {
@@ -985,9 +985,9 @@ export interface SiteSettingSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-page_select".
+ * via the `definition` "about-us_select".
  */
-export interface AboutUsPageSelect<T extends boolean = true> {
+export interface AboutUsSelect<T extends boolean = true> {
   hero?:
     | T
     | {
