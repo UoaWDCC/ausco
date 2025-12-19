@@ -98,8 +98,8 @@ export interface Config {
     'about-us': AboutUs;
     'our-people': OurPerson;
     concerts: Concert;
-    'upcoming-concerts': UpcomingConcert;
-    'past-concerts': PastConcert;
+    'concerts-upcoming': ConcertsUpcoming;
+    'concerts-past': ConcertsPast;
     gallery: Gallery;
     'gallery-concert': GalleryConcert;
     'gallery-annualcamp': GalleryAnnualcamp;
@@ -115,8 +115,8 @@ export interface Config {
     'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
-    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'concerts-upcoming': ConcertsUpcomingSelect<false> | ConcertsUpcomingSelect<true>;
+    'concerts-past': ConcertsPastSelect<false> | ConcertsPastSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
     'gallery-concert': GalleryConcertSelect<false> | GalleryConcertSelect<true>;
     'gallery-annualcamp': GalleryAnnualcampSelect<false> | GalleryAnnualcampSelect<true>;
@@ -700,9 +700,9 @@ export interface Concert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "upcoming-concerts".
+ * via the `definition` "concerts-upcoming".
  */
-export interface UpcomingConcert {
+export interface ConcertsUpcoming {
   id: string;
   description: string;
   concertsUpcoming1: {
@@ -747,9 +747,9 @@ export interface UpcomingConcert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "past-concerts".
+ * via the `definition` "concerts-past".
  */
-export interface PastConcert {
+export interface ConcertsPast {
   id: string;
   description: string;
   pastConcerts?:
@@ -1226,9 +1226,9 @@ export interface ConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "upcoming-concerts_select".
+ * via the `definition` "concerts-upcoming_select".
  */
-export interface UpcomingConcertsSelect<T extends boolean = true> {
+export interface ConcertsUpcomingSelect<T extends boolean = true> {
   description?: T;
   concertsUpcoming1?:
     | T
@@ -1289,9 +1289,9 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "past-concerts_select".
+ * via the `definition` "concerts-past_select".
  */
-export interface PastConcertsSelect<T extends boolean = true> {
+export interface ConcertsPastSelect<T extends boolean = true> {
   description?: T;
   pastConcerts?:
     | T

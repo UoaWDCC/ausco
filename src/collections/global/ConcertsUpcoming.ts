@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
 const ConcertsUpcoming: GlobalConfig = {
-  slug: "upcoming-concerts",
-  label: "Upcoming Concerts",
+  slug: "concerts-upcoming",
+  label: "Concerts - Upcoming",
   fields: [
     {
       name: "description",

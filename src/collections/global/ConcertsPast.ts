@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
 const ConcertsPast: GlobalConfig = {
-  slug: "past-concerts",
-  label: "Past Concerts",
+  slug: "concerts-past",
+  label: "Concerts - Past",
   fields: [
     {
       name: "description",

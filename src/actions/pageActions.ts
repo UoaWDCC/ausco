@@ -6,8 +6,8 @@ import { AboutUs } from "@/payload-types";
 import { OurStory } from "@/payload-types";
 import { OurPerson } from "@/payload-types";
 import { Concert } from "@/payload-types";
-import { UpcomingConcert } from "@/payload-types";
-import { PastConcert } from "@/payload-types";
+import { ConcertsUpcoming } from "@/payload-types";
+import { ConcertsPast } from "@/payload-types";
 import { Gallery } from "@/payload-types";
 
 export const getHome = async (): Promise<Home> => {
@@ -57,19 +57,19 @@ export const getConcerts = async (): Promise<Concert> => {
   return concerts;
 };
 
-export const getConcertsUpcoming = async (): Promise<UpcomingConcert> => {
+export const getConcertsUpcoming = async (): Promise<ConcertsUpcoming> => {
   const payload = await getPayload();
   const concertsUpcoming = await payload.findGlobal({
-    slug: "upcoming-concerts",
+    slug: "concerts-upcoming",
   });
 
   return concertsUpcoming;
 };
 
-export const getConcertsPast = async (): Promise<PastConcert> => {
+export const getConcertsPast = async (): Promise<ConcertsPast> => {
   const payload = await getPayload();
   const concertsPast = await payload.findGlobal({
-    slug: "past-concerts",
+    slug: "concerts-past",
   });
 
   return concertsPast;

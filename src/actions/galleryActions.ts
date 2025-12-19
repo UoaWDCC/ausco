@@ -2,32 +2,28 @@
 
 import { getPayload } from "@libs/payload";
 import {
-  ConcertsGallery,
-  AnnualcampGallery,
-  ExecutivecampGallery,
-  OtherGallery,
+  GalleryConcert,
+  GalleryAnnualcamp,
+  GalleryExecutivecamp,
+  GalleryOther,
 } from "@/payload-types";
 
-//get concerts gallery
-export const getConcertsGallery = async (): Promise<ConcertsGallery> => {
+export const getConcertsGallery = async (): Promise<GalleryConcert> => {
   const payload = await getPayload();
-  return await payload.findGlobal({ slug: "concerts-gallery" });
+  return await payload.findGlobal({ slug: "gallery-concert" });
 };
 
-//get annual camp gallery
-export const getAnnualCampGallery = async (): Promise<AnnualcampGallery> => {
+export const getAnnualCampGallery = async (): Promise<GalleryAnnualcamp> => {
   const payload = await getPayload();
-  return await payload.findGlobal({ slug: "annualcamp-gallery" });
+  return await payload.findGlobal({ slug: "gallery-annualcamp" });
 };
 
-//get executive camp gallery
-export const getExecutiveCampGallery = async (): Promise<ExecutivecampGallery> => {
+export const getExecutiveCampGallery = async (): Promise<GalleryExecutivecamp> => {
   const payload = await getPayload();
-  return await payload.findGlobal({ slug: "executivecamp-gallery" });
+  return await payload.findGlobal({ slug: "gallery-executivecamp" });
 };
 
-//get other gallery
-export const getOtherGallery = async (): Promise<OtherGallery> => {
+export const getOtherGallery = async (): Promise<GalleryOther> => {
   const payload = await getPayload();
-  return await payload.findGlobal({ slug: "other-gallery" });
+  return await payload.findGlobal({ slug: "gallery-other" });
 };
