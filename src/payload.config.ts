@@ -23,10 +23,10 @@ import { Concerts } from "./collections/global/Concerts";
 import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
 import { ConcertsPast } from "./collections/global/ConcertsPast";
 
-import { ConcertsGallery } from "./collections/global/ConcertsGallery";
-import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
-import { ExecutiveCampGallery } from "./collections/global/ExecutiveCampGallery";
-import { OtherGallery } from "./collections/global/OtherGallery";
+import { ConcertsGallery } from "./collections/global/GalleryConcert";
+import { AnnualCampGallery } from "./collections/global/GalleryAnnualCamp";
+import { ExecutiveCampGallery } from "./collections/global/GalleryExecutiveCamp";
+import { OtherGallery } from "./collections/global/GalleryOther";
 import { Gallery } from "./collections/global/Gallery";
 
 import { OurStory } from "./collections/global/OurStory";
@@ -42,22 +42,23 @@ export default buildConfig({
     },
   },
 
+  // Payload Admin UI displays globals in the same order they are defined in this config
   globals: [
-    Home,
-    Footer,
-    Header,
     SiteSetting,
+    Header,
+    Footer,
+    Home,
+    OurStory,
     AboutUs,
     OurPeople,
     Concerts,
+    ConcertsUpcoming,
+    ConcertsPast,
+    Gallery,
     ConcertsGallery,
     AnnualCampGallery,
     ExecutiveCampGallery,
     OtherGallery,
-    ConcertsUpcoming,
-    ConcertsPast,
-    Gallery,
-    OurStory,
   ],
   collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",

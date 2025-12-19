@@ -1,11 +1,11 @@
 import type { GlobalConfig } from "payload";
 
-//concerts gallery
-export const ConcertsGallery: GlobalConfig = {
-  slug: "concerts-gallery",
+const GalleryOther: GlobalConfig = {
+  slug: "gallery-other",
+  label: "Gallery - Other",
   access: { read: () => true },
   fields: [
-    { name: "title", type: "text", required: true, defaultValue: "Concert Photos" },
+    { name: "title", type: "text", required: true, defaultValue: "Other Photos" },
     {
       name: "albums",
       type: "array",
@@ -30,3 +30,5 @@ export const ConcertsGallery: GlobalConfig = {
     },
   ],
 };
+
+export default GalleryOther;
