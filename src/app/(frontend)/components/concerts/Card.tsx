@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -26,12 +26,13 @@ const Card = ({ background, type }: CardProps) => {
       <Archive size={48} className="mb-4" />
     );
 
-    const { rangeIn, rangeOut, spring } = parallaxConfig;
-    const { scrollY } = useScroll();
-    // image parallax effect scroll speed
-    const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
-    // smooth motion
-    const y = useSpring(rawY, spring);
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
+  const { scrollY } = useScroll();
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
+  // smooth motion
+  const y = useSpring(rawY, spring);
+
   return (
     <Link href={link} className="relative w-1/2 aspect-5/4 overflow-hidden rounded-lg group">
       {typeof background === "object" && background?.url && (

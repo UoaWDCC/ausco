@@ -8,13 +8,13 @@ export default async function Concerts() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
         <Header title="Concerts" />
 
         <div className="flex flex-row justify-between items-center gap-8 w-full">
           {/* Upcoming Concerts Button */}
           <Card background={content.upcoming} type="upcoming" />
-          
+
           {/* Past Concerts Button */}
           <Card background={content.past} type="past" />
         </div>
