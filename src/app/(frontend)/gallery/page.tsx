@@ -16,7 +16,7 @@ export default async function Gallery() {
           <Card title="Annual Camp Photos" background={content.annual} />
         </div>
 
-        <div className="flex flex-row justify-between items-center gap-8 w-full">
+        <div className="flex flex-row justify-between items-center gap-6 w-full">
           <Card title="Executive Camp Photos" background={content.executive} />
 
           <Card title="Other Photos" background={content.other} />
