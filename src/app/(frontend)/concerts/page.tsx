@@ -11,7 +11,7 @@ export default async function Concerts() {
       <div className="w-full max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
         <Header title="Concerts" />
 
-        <div className="flex flex-row justify-between items-center gap-8 w-full">
+        <div className="flex flex-row justify-between items-center gap-6 w-full">
           {/* Upcoming Concerts Button */}
           <Card background={content.upcoming} type="upcoming" />
 

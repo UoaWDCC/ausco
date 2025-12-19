@@ -10,7 +10,7 @@ export default async function Gallery() {
       <div className="w-full max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
         <Header title="Gallery" />
 
-        <div className="flex flex-row justify-between items-center gap-8 w-full pb-8">
+        <div className="flex flex-row justify-between items-center gap-6 w-full pb-6">
           <Card title="Concert Photos" background={content.concert} />
 
           <Card title="Annual Camp Photos" background={content.annual} />
