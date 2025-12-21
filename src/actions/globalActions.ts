@@ -25,7 +25,7 @@ export const getFooter = async (): Promise<Footer> => {
 export const getSiteSetting = async (): Promise<SiteSetting> => {
   const payload = await getPayload();
   const siteSetting = await payload.findGlobal({
-    slug: "siteSetting",
+    slug: "site-setting",
     depth: 1,
   });
 

@@ -90,12 +90,12 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    siteSetting: SiteSetting;
+    'site-setting': SiteSetting;
     header: Header;
     footer: Footer;
     home: Home;
-    'our-story': OurStory;
     'about-us': AboutUs;
+    'our-story': OurStory;
     'our-people': OurPerson;
     concerts: Concert;
     'concerts-upcoming': ConcertsUpcoming;
@@ -107,12 +107,12 @@ export interface Config {
     'gallery-other': GalleryOther;
   };
   globalsSelect: {
-    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
+    'site-setting': SiteSettingSelect<false> | SiteSettingSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     home: HomeSelect<false> | HomeSelect<true>;
-    'our-story': OurStorySelect<false> | OurStorySelect<true>;
     'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
     'concerts-upcoming': ConcertsUpcomingSelect<false> | ConcertsUpcomingSelect<true>;
@@ -376,7 +376,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSetting".
+ * via the `definition` "site-setting".
  */
 export interface SiteSetting {
   id: string;
@@ -473,6 +473,54 @@ export interface Home {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us".
+ */
+export interface AboutUs {
+  id: string;
+  hero: {
+    description: string;
+    stickers?:
+      | {
+          sticker: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  cards: {
+    vision: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+    };
+    story: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    constitution: {
+      background: string | Media;
+      title: string;
+      summary: string;
+    };
+    sponsorsAndPartnerships: {
+      background: string | Media;
+      title: string;
+      summary: string;
+      description: string;
+      sponsorLogos?:
+        | {
+            logo: string | Media;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-story".
  */
 export interface OurStory {
@@ -550,54 +598,6 @@ export interface OurStory {
         version: number;
       };
       [k: string]: unknown;
-    };
-  };
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us".
- */
-export interface AboutUs {
-  id: string;
-  hero: {
-    description: string;
-    stickers?:
-      | {
-          sticker: string | Media;
-          id?: string | null;
-        }[]
-      | null;
-  };
-  cards: {
-    vision: {
-      background: string | Media;
-      title: string;
-      summary: string;
-      description: string;
-    };
-    story: {
-      background: string | Media;
-      title: string;
-      summary: string;
-    };
-    constitution: {
-      background: string | Media;
-      title: string;
-      summary: string;
-    };
-    sponsorsAndPartnerships: {
-      background: string | Media;
-      title: string;
-      summary: string;
-      description: string;
-      sponsorLogos?:
-        | {
-            logo: string | Media;
-            id?: string | null;
-          }[]
-        | null;
     };
   };
   updatedAt?: string | null;
@@ -890,7 +890,7 @@ export interface GalleryOther {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSetting_select".
+ * via the `definition` "site-setting_select".
  */
 export interface SiteSettingSelect<T extends boolean = true> {
   primaryLogo?: T;
@@ -985,6 +985,66 @@ export interface HomeSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-us_select".
+ */
+export interface AboutUsSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        description?: T;
+        stickers?:
+          | T
+          | {
+              sticker?: T;
+              id?: T;
+            };
+      };
+  cards?:
+    | T
+    | {
+        vision?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+            };
+        story?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        constitution?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+            };
+        sponsorsAndPartnerships?:
+          | T
+          | {
+              background?: T;
+              title?: T;
+              summary?: T;
+              description?: T;
+              sponsorLogos?:
+                | T
+                | {
+                    logo?: T;
+                    id?: T;
+                  };
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-story_select".
  */
 export interface OurStorySelect<T extends boolean = true> {
@@ -1048,66 +1108,6 @@ export interface OurStorySelect<T extends boolean = true> {
         establishmentText?: T;
         image?: T;
         text?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us_select".
- */
-export interface AboutUsSelect<T extends boolean = true> {
-  hero?:
-    | T
-    | {
-        description?: T;
-        stickers?:
-          | T
-          | {
-              sticker?: T;
-              id?: T;
-            };
-      };
-  cards?:
-    | T
-    | {
-        vision?:
-          | T
-          | {
-              background?: T;
-              title?: T;
-              summary?: T;
-              description?: T;
-            };
-        story?:
-          | T
-          | {
-              background?: T;
-              title?: T;
-              summary?: T;
-            };
-        constitution?:
-          | T
-          | {
-              background?: T;
-              title?: T;
-              summary?: T;
-            };
-        sponsorsAndPartnerships?:
-          | T
-          | {
-              background?: T;
-              title?: T;
-              summary?: T;
-              description?: T;
-              sponsorLogos?:
-                | T
-                | {
-                    logo?: T;
-                    id?: T;
-                  };
-            };
       };
   updatedAt?: T;
   createdAt?: T;

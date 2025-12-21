@@ -14,17 +14,17 @@ import SiteSetting from "./collections/global/SiteSetting";
 import Header from "./collections/global/Header";
 import Footer from "./collections/global/Footer";
 import Home from "./collections/global/Home";
-import OurStory from "./collections/global/OurStory";
 import AboutUs from "./collections/global/AboutUs";
+import OurStory from "./collections/global/OurStory";
 import OurPeople from "./collections/global/OurPeople";
 import Concerts from "./collections/global/Concerts";
 import ConcertsUpcoming from "./collections/global/ConcertsUpcoming";
 import ConcertsPast from "./collections/global/ConcertsPast";
+import Gallery from "./collections/global/Gallery";
 import GalleryConcert from "./collections/global/GalleryConcert";
 import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
 import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
 import GalleryOther from "./collections/global/GalleryOther";
-import Gallery from "./collections/global/Gallery";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -43,8 +43,8 @@ export default buildConfig({
     Header,
     Footer,
     Home,
-    OurStory,
     AboutUs,
+    OurStory,
     OurPeople,
     Concerts,
     ConcertsUpcoming,
