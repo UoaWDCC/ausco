@@ -76,7 +76,16 @@ const NavItem = ({
         <Button variant="link" asChild className="flex items-center gap-1">
           <Link href={item.href} onMouseUp={(e) => e.currentTarget.blur()}>
             {item.label}
-            {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
+            {hasDropdown && (
+              <ChevronDown
+                size={20}
+                strokeWidth={2.1}
+                className={clsx(
+                  "transition-transform duration-300 ease-in-out",
+                  hoveredItem === index && "rotate-180"
+                )}
+              />
+            )}
           </Link>
         </Button>
 
