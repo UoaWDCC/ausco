@@ -34,6 +34,7 @@ const Footer: GlobalConfig = {
               required: true,
             },
           ],
+          maxRows: 3,
         },
       ],
       // Starter template: only applies on document creation, not when editing existing docs
@@ -59,4 +60,4 @@ const Footer: GlobalConfig = {
   ],
 };
 
-export default Footer
+export default Footer;
