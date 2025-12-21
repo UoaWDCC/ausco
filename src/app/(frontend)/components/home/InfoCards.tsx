@@ -47,7 +47,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center text-center gap-5">
             <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
             <div>{content.aboutUs.description}</div>
-            <Link href="/about">
+            <Link href="/aboutus">
               <Button size="lg" className="mt-2" variant="navy">
                 Read More
                 <ArrowUpRight size={18} />

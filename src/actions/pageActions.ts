@@ -1,85 +1,57 @@
 "use server";
 
+import { cache } from "react";
 import { getPayload } from "@libs/payload";
-import { HomePage } from "@/payload-types";
-import { AboutUsPage } from "@/payload-types";
-import { OurStory } from "@/payload-types";
-import { OurPerson } from "@/payload-types";
-import { Concert } from "@/payload-types";
-import { UpcomingConcert } from "@/payload-types";
-import { PastConcert } from "@/payload-types";
-import { Gallery } from "@/payload-types";
 
-export const getHomePage = async (): Promise<HomePage> => {
+import {
+  Home,
+  AboutUs,
+  OurStory,
+  OurPerson,
+  Concert,
+  ConcertsUpcoming,
+  ConcertsPast,
+  Gallery,
+} from "@/payload-types";
+
+export const getHome = cache(async (): Promise<Home> => {
   const payload = await getPayload();
-  const homePage = await payload.findGlobal({
-    slug: "home-page",
-  });
+  return payload.findGlobal({ slug: "home", depth: 1 });
+});
 
-  return homePage;
-};
-
-export const getAboutUsPage = async (): Promise<AboutUsPage> => {
+export const getAboutUs = cache(async (): Promise<AboutUs> => {
   const payload = await getPayload();
-  const aboutUsPage = await payload.findGlobal({
-    slug: "about-us-page",
-  });
+  return payload.findGlobal({ slug: "about-us", depth: 1 });
+});
 
-  return aboutUsPage;
-};
-
-export const getOurStory = async (): Promise<OurStory> => {
+export const getOurStory = cache(async (): Promise<OurStory> => {
   const payload = await getPayload();
-  const ourStory = await payload.findGlobal({
-    slug: "our-story",
-  });
-
-  return ourStory;
-};
+  return payload.findGlobal({ slug: "our-story", depth: 1 });
+});
 
 // Payload Globals are single documents, so the generated TS type is singular (OurPerson) even if the slug is plural (our-people).
 // See src\collections\global\OurPeople.ts docs for more information.
-export const getOurPeople = async (): Promise<OurPerson> => {
+export const getOurPeople = cache(async (): Promise<OurPerson> => {
   const payload = await getPayload();
-  const people = await payload.findGlobal({
-    slug: "our-people",
-  });
+  return payload.findGlobal({ slug: "our-people", depth: 1 });
+});
 
-  return people;
-};
-
-export const getConcertsPage = async (): Promise<Concert> => {
+export const getConcerts = cache(async (): Promise<Concert> => {
   const payload = await getPayload();
-  const concertsPage = await payload.findGlobal({
-    slug: "concerts",
-  });
+  return payload.findGlobal({ slug: "concerts", depth: 1 });
+});
 
-  return concertsPage;
-};
-
-export const getConcertsUpcoming = async (): Promise<UpcomingConcert> => {
+export const getConcertsUpcoming = cache(async (): Promise<ConcertsUpcoming> => {
   const payload = await getPayload();
-  const concertsUpcoming = await payload.findGlobal({
-    slug: "upcoming-concerts",
-  });
+  return payload.findGlobal({ slug: "concerts-upcoming", depth: 1 });
+});
 
-  return concertsUpcoming;
-};
-
-export const getConcertsPast = async (): Promise<PastConcert> => {
+export const getConcertsPast = cache(async (): Promise<ConcertsPast> => {
   const payload = await getPayload();
-  const concertsPast = await payload.findGlobal({
-    slug: "past-concerts",
-  });
+  return payload.findGlobal({ slug: "concerts-past", depth: 1 });
+});
 
-  return concertsPast;
-};
-
-export const getGalleryPage = async (): Promise<Gallery> => {
+export const getGallery = cache(async (): Promise<Gallery> => {
   const payload = await getPayload();
-  const galleryPage = await payload.findGlobal({
-    slug: "gallery",
-  });
-
-  return galleryPage;
-};
+  return payload.findGlobal({ slug: "gallery", depth: 1 });
+});

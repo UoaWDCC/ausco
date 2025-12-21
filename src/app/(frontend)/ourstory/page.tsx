@@ -10,7 +10,7 @@ export default async function OurStoryPage() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto pt-44 pb-18 px-6 flex flex-col items-center">
+      <div className="max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
         <Header description={content.description} />
         <Timeline>
           <Establishment content={content.establishment} />

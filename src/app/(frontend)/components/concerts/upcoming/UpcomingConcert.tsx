@@ -158,7 +158,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
   );
 
   return (
-    <section className="bg-(--beige) text-(--brown) py-18 max-w-6xl mx-auto text-base rounded-lg">
+    <section className="bg-(--beige) text-(--brown) py-16 max-w-6xl mx-auto text-base rounded-lg">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
         <div className="flex justify-center pb-12">

@@ -43,14 +43,17 @@ const Card = ({
   return (
     <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
       {/* On Display: Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.2 }}>
+      <motion.div
+        className="absolute -inset-y-[20%] inset-x-0 z-0 will-change-transform"
+        style={{ y }}
+      >
         <Image
           src={background!}
           alt={alt}
           fill
           priority
           quality={90}
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 110vw, 55vw"
           className="object-cover object-center"
         />
       </motion.div>

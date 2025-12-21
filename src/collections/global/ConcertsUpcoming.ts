@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
-export const ConcertsUpcoming: GlobalConfig = {
-  slug: "upcoming-concerts",
-  label: "Upcoming Concerts",
+const ConcertsUpcoming: GlobalConfig = {
+  slug: "concerts-upcoming",
+  label: "Concerts - Upcoming",
   fields: [
     {
       name: "description",
@@ -12,7 +12,6 @@ export const ConcertsUpcoming: GlobalConfig = {
       // Starter template: only applies on document creation, not when editing existing docs
       defaultValue: "AUSCO hosts 2 different concerts and performs them twice a year.",
     },
-
     // Upcoming Concerts 1
     {
       name: "concertsUpcoming1",
@@ -47,7 +46,6 @@ export const ConcertsUpcoming: GlobalConfig = {
           type: "textarea",
           required: true,
         },
-
         {
           name: "tickets",
           label: "Tickets",
@@ -107,7 +105,6 @@ export const ConcertsUpcoming: GlobalConfig = {
         },
       ],
     },
-
     // Upcoming Concerts 2
     {
       name: "concertsUpcoming2",

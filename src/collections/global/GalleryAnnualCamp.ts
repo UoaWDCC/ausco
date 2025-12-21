@@ -1,11 +1,11 @@
 import type { GlobalConfig } from "payload";
 
-//other gallery
-export const OtherGallery: GlobalConfig = {
-  slug: "other-gallery",
+const GalleryAnnualCamp: GlobalConfig = {
+  slug: "gallery-annualcamp",
+  label: "Gallery - Annual Camp",
   access: { read: () => true },
   fields: [
-    { name: "title", type: "text", required: true, defaultValue: "Other Photos" },
+    { name: "title", type: "text", required: true, defaultValue: "Annual Camp Photos" },
     {
       name: "albums",
       type: "array",
@@ -30,3 +30,5 @@ export const OtherGallery: GlobalConfig = {
     },
   ],
 };
+
+export default GalleryAnnualCamp

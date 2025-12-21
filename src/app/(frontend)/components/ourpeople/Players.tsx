@@ -44,7 +44,7 @@ const Players = ({ content }: PlayersProps) => {
       .filter(Boolean);
 
   return (
-    <section className="pb-18">
+    <section className="pb-16">
       <div className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
         {/* LEFT: Title + Dscription */}
         <div className="text-left w-3/16 flex flex-col h-full justify-center">

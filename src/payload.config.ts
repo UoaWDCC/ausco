@@ -9,27 +9,22 @@ import sharp from "sharp";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Item } from "./collections/Test";
-import { Header } from "./collections/global/Header";
-import { Footer } from "./collections/global/Footer";
-import { SiteSetting } from "./collections/global/SiteSetting";
 
-import HomePage from "./collections/global/HomePage";
-
-import AboutHeroSection from "./collections/global/AboutUsPage";
-
-import { OurPeople } from "./collections/global/OurPeople";
-
-import { Concerts } from "./collections/global/Concerts";
-import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
-import { ConcertsPast } from "./collections/global/ConcertsPast";
-
-import { ConcertsGallery } from "./collections/global/ConcertsGallery";
-import { AnnualCampGallery } from "./collections/global/AnnualCampGallery";
-import { ExecutiveCampGallery } from "./collections/global/ExecutiveCampGallery";
-import { OtherGallery } from "./collections/global/OtherGallery";
-import { Gallery } from "./collections/global/Gallery";
-
-import { OurStory } from "./collections/global/OurStory";
+import SiteSetting from "./collections/global/SiteSetting";
+import Header from "./collections/global/Header";
+import Footer from "./collections/global/Footer";
+import Home from "./collections/global/Home";
+import AboutUs from "./collections/global/AboutUs";
+import OurStory from "./collections/global/OurStory";
+import OurPeople from "./collections/global/OurPeople";
+import Concerts from "./collections/global/Concerts";
+import ConcertsUpcoming from "./collections/global/ConcertsUpcoming";
+import ConcertsPast from "./collections/global/ConcertsPast";
+import Gallery from "./collections/global/Gallery";
+import GalleryConcert from "./collections/global/GalleryConcert";
+import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
+import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
+import GalleryOther from "./collections/global/GalleryOther";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,22 +37,23 @@ export default buildConfig({
     },
   },
 
+  // Payload Admin UI displays globals in the same order they are defined in this config
   globals: [
-    HomePage,
-    Footer,
-    Header,
     SiteSetting,
-    AboutHeroSection,
+    Header,
+    Footer,
+    Home,
+    AboutUs,
+    OurStory,
     OurPeople,
     Concerts,
-    ConcertsGallery,
-    AnnualCampGallery,
-    ExecutiveCampGallery,
-    OtherGallery,
     ConcertsUpcoming,
     ConcertsPast,
     Gallery,
-    OurStory,
+    GalleryConcert,
+    GalleryAnnualCamp,
+    GalleryExecutiveCamp,
+    GalleryOther,
   ],
   collections: [Users, Media, Item],
   secret: process.env.PAYLOAD_SECRET || "",

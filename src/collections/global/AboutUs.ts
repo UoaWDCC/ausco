@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
-export const AboutUsPage: GlobalConfig = {
-  slug: "about-us-page",
-  label: "About Us Page",
+const AboutUs: GlobalConfig = {
+  slug: "about-us",
+  label: "About Us",
   fields: [
     // Hero Component
     {
@@ -174,4 +174,4 @@ export const AboutUsPage: GlobalConfig = {
   ],
 };
 
-export default AboutUsPage;
+export default AboutUs;

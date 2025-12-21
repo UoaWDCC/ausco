@@ -1,8 +1,8 @@
 import type { GlobalConfig } from "payload";
 
-//executive camp gallery
-export const ExecutiveCampGallery: GlobalConfig = {
-  slug: "executivecamp-gallery",
+const GalleryExecutiveCamp: GlobalConfig = {
+  slug: "gallery-executivecamp",
+  label: "Gallery - Executive Camp",
   access: { read: () => true },
   fields: [
     { name: "title", type: "text", required: true, defaultValue: "Executive Camp Photos" },
@@ -30,3 +30,5 @@ export const ExecutiveCampGallery: GlobalConfig = {
     },
   ],
 };
+
+export default GalleryExecutiveCamp;

@@ -3,12 +3,12 @@ import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
 import InfoCards from "@components/home/InfoCards";
 import FeatureVideo from "@components/home/FeatureVideo";
 
-import { getConcertsUpcoming, getHomePage } from "@/actions/pageActions";
+import { getConcertsUpcoming, getHome } from "@/actions/pageActions";
 import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function HomePage() {
   const [homeContent, concertsUpcomingContent, siteSettingContent] = await Promise.all([
-    getHomePage(),
+    getHome(),
     getConcertsUpcoming(),
     getSiteSetting(),
   ]);

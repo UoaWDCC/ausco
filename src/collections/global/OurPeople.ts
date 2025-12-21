@@ -7,7 +7,7 @@ import { GlobalConfig } from "payload";
  * Payload generates a singular TypeScript type (`OurPerson`).
  * This is expected and types-only.
  */
-export const OurPeople: GlobalConfig = {
+const OurPeople: GlobalConfig = {
   slug: "our-people",
   label: "Our People",
   fields: [
@@ -299,3 +299,5 @@ export const OurPeople: GlobalConfig = {
     },
   ],
 };
+
+export default OurPeople;

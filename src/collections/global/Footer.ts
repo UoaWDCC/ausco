@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const Footer: GlobalConfig = {
+const Footer: GlobalConfig = {
   slug: "footer",
   label: "Footer",
   fields: [
@@ -34,6 +34,7 @@ export const Footer: GlobalConfig = {
               required: true,
             },
           ],
+          maxRows: 3,
         },
       ],
       // Starter template: only applies on document creation, not when editing existing docs
@@ -58,3 +59,5 @@ export const Footer: GlobalConfig = {
     },
   ],
 };
+
+export default Footer;

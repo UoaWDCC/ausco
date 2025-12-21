@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const Gallery: GlobalConfig = {
+const Gallery: GlobalConfig = {
   slug: "gallery",
   label: "Gallery",
   fields: [
