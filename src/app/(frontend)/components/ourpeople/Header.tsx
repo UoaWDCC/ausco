@@ -23,6 +23,7 @@ const Header = ({ content }: HeaderProps) => {
               priority
               sizes="(max-width: 768px) 100vw, 50vw"
               className="rounded-lg"
+              quality={90}
             />
           </div>
         )}

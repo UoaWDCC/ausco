@@ -61,8 +61,9 @@ const Players = ({ content }: PlayersProps) => {
                 <Image
                   src={group.image.url}
                   alt={group.image.alt}
-                  width={110}
-                  height={110}
+                  width={group.image.width || 800}
+                  height={group.image.height || 800}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="mx-auto"
                 />
               )}
@@ -88,8 +89,9 @@ const Players = ({ content }: PlayersProps) => {
                     <Image
                       src={group.image.url}
                       alt={group.image.alt}
-                      width={110}
-                      height={110}
+                      width={group.image.width || 800}
+                      height={group.image.height || 800}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="mx-auto"
                       key={index}
                     />

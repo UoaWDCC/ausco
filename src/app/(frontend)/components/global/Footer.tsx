@@ -52,6 +52,7 @@ const Footer = ({ content }: FooterProps) => {
               alt={content.primaryLogo.alt || "Footer Logo"}
               width={136}
               height={136}
+              unoptimized={content.primaryLogo.url.endsWith(".svg")}
             />
           )}
         </div>
