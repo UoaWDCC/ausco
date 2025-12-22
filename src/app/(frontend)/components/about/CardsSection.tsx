@@ -55,7 +55,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
           title={content.story.title}
           summary={content.story.summary}
           description={`View ${content.story.title}`}
-          link={"https://ausco.wdcc.co.nz/"} // TODO: update to /ourstory when page is live
+          link={"https://ausco.wdcc.co.nz/ourstory"}
         />
       </div>
 
