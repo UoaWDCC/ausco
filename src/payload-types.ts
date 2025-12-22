@@ -707,10 +707,10 @@ export interface ConcertsUpcoming {
   description: string;
   concertsUpcoming1: {
     isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
+    title?: string | null;
+    poster?: (string | null) | Media;
     description: string;
-    tickets: {
+    tickets?: {
       matinee: {
         date: string;
         location: string;
@@ -725,10 +725,10 @@ export interface ConcertsUpcoming {
   };
   concertsUpcoming2: {
     isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
+    title?: string | null;
+    poster?: (string | null) | Media;
     description: string;
-    tickets: {
+    tickets?: {
       matinee: {
         date: string;
         location: string;

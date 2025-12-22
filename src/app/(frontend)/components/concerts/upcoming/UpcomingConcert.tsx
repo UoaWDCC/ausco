@@ -32,9 +32,6 @@ type UpcomingConcertProps = {
 
 const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertProps) => {
   const title = content.isComingSoon ? "Coming Soon!" : content.title;
-  const description = content.isComingSoon
-    ? "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!"
-    : content.description;
 
   const normaliseDate = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());
@@ -85,7 +82,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             <h1 className="font-light! text-3xl! m-0! italic truncate w-full">{title}</h1>
           </div>
         )}
-        {description}
+        {content.description}
       </div>
 
       <div className="bg-(--brown) my-2" style={{ height: "0.5px" }} />
