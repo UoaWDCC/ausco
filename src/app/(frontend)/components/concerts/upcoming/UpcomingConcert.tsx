@@ -64,6 +64,8 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         alt={content.poster.alt || "Poster"}
         width={376}
         height={532}
+        sizes="(max-width: 768px) 80vw, 376px"
+        quality={90}
         className="border border-(--brown) rounded-md"
       />
     )

@@ -84,9 +84,10 @@ const Establishment = ({ content }: EstablishmentProps) => {
             <Image
               src={image.url}
               alt={image.alt}
-              width={500}
-              height={500}
-              className="rounded-lg max-w-full max-h-full object-contain"
+              width={image.width || 800}
+              height={image.height || 600}
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="rounded-lg w-full h-auto object-contain"
             />
           )}
         </div>

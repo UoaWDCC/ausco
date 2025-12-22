@@ -177,7 +177,7 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
               alt={image.alt}
               width={700}
               height={700}
-              className="w-full h-auto rounded-lg object-contain"
+              className="rounded-lg w-full h-auto object-contain"
             />
           )}
         </div>
