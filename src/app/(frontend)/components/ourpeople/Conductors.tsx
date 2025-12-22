@@ -51,11 +51,4 @@ const Conductors = ({ content }: ConductorsProps) => {
 
 export default Conductors;
 
-// TODO: consider adding this? to this and all files: "sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw""
-// It tells Next.js:
-// Desktop: image ≈ ⅓ screen width
-// Tablet: ≈ ½ screen width
-// Mobile: full width
-// Without this, Next.js over-downloads images.
-
 // TODO: make layout flexible / dynamic to the number of conductors

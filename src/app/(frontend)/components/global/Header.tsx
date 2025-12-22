@@ -82,7 +82,7 @@ const NavItem = ({
                 strokeWidth={2.1}
                 className={clsx(
                   "transition-transform duration-300 ease-in-out",
-                  hoveredItem === index && "rotate-180"
+                  hoveredItem === index && "rotate-180",
                 )}
               />
             )}
@@ -177,6 +177,7 @@ const Header = ({ content }: HeaderProps) => {
               "absolute transition-opacity duration-400 ease-in-out",
               isHomePage ? (scrolled ? "opacity-100" : "opacity-0") : "opacity-100",
             )}
+            unoptimized={content.primaryLogo.url.endsWith(".svg")}
           />
         )}
 
@@ -191,6 +192,7 @@ const Header = ({ content }: HeaderProps) => {
               "absolute transition-opacity duration-400 ease-in-out",
               isHomePage ? (scrolled ? "opacity-0" : "opacity-100") : "opacity-0",
             )}
+            unoptimized={content.secondaryLogo.url.endsWith(".svg")}
           />
         )}
         <h1
