@@ -23,6 +23,10 @@ const OurPeople: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            description:
+              "For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+          },
         },
         {
           name: "description",

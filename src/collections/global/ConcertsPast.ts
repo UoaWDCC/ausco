@@ -3,6 +3,10 @@ import { GlobalConfig } from "payload";
 const ConcertsPast: GlobalConfig = {
   slug: "concerts-past",
   label: "Concerts - Past",
+  admin: {
+    description:
+      "For each year, both Semester 1 and Semester 2 concerts must be listed (a year cannot have only one semester's concerts).",
+  },
   fields: [
     {
       name: "description",
@@ -34,6 +38,9 @@ const ConcertsPast: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description: "An aspect ratio similar to A4 works best.",
+              },
             },
             {
               name: "title",
@@ -76,6 +83,9 @@ const ConcertsPast: GlobalConfig = {
                   type: "number",
                   min: 0,
                   required: true,
+                  admin: {
+                    description: "Donation value only, no $ needed.",
+                  },
                 },
               ],
             },
@@ -92,6 +102,9 @@ const ConcertsPast: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description: "An aspect ratio similar to A4 works best.",
+              },
             },
             {
               name: "title",
@@ -134,6 +147,9 @@ const ConcertsPast: GlobalConfig = {
                   type: "number",
                   min: 0,
                   required: true,
+                  admin: {
+                    description: "Donation value only, no $ needed.",
+                  },
                 },
               ],
             },

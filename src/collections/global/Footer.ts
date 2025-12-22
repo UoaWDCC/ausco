@@ -23,6 +23,7 @@ const Footer: GlobalConfig = {
       fields: [
         {
           name: "title",
+          label: "Title",
           type: "text",
           required: true,
         },
@@ -35,11 +36,13 @@ const Footer: GlobalConfig = {
           fields: [
             {
               name: "label",
+              label: "Label",
               type: "text",
               required: true,
             },
             {
               name: "url",
+              label: "URL",
               type: "text",
               required: true,
             },

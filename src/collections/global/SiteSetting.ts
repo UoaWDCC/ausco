@@ -10,7 +10,8 @@ const SiteSetting: GlobalConfig = {
       label: "Logos",
       type: "group",
       admin: {
-        description: "For best results, use an SVG format for the logos.",
+        description:
+          "Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.",
       },
       fields: [
         {

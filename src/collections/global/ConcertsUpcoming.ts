@@ -41,6 +41,7 @@ const ConcertsUpcoming: GlobalConfig = {
           required: true,
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "For the posters, an aspect ratio similar to A4 works best.",
           },
         },
         {
@@ -58,6 +59,8 @@ const ConcertsUpcoming: GlobalConfig = {
           type: "group",
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website",
           },
           fields: [
             {
@@ -143,6 +146,7 @@ const ConcertsUpcoming: GlobalConfig = {
           required: true,
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "For the posters, an aspect ratio similar to A4 works best.",
           },
         },
         {
@@ -160,6 +164,8 @@ const ConcertsUpcoming: GlobalConfig = {
           type: "group",
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website",
           },
           fields: [
             {
@@ -222,6 +228,9 @@ const ConcertsUpcoming: GlobalConfig = {
       label: "Embeded Google Calendar Email",
       type: "text",
       required: true,
+      admin: {
+        description: "Only the email address is required.",
+      },
     },
   ],
 };
