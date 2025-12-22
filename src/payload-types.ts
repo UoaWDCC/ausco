@@ -695,6 +695,9 @@ export interface OurPerson {
         }[]
       | null;
   };
+  /**
+   * The [Large Orchestra Section] occupies a full column height, while [Small Orchestra Section] occupies half a column height and can stack with other half columns. All full columns are displayed first, followed by half columns. Recommended width: ~5 columns.
+   */
   players?: {
     description?: string | null;
     sections?:
