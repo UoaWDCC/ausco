@@ -380,9 +380,17 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface SiteSetting {
   id: string;
-  primaryLogo: string | Media;
-  secondaryLogo: string | Media;
-  tertiaryLogo: string | Media;
+  /**
+   * For best results, use an SVG format for the logos.
+   */
+  logos: {
+    primary: string | Media;
+    secondary: string | Media;
+    tertiary: string | Media;
+  };
+  /**
+   * Each platform can only be selected once. Duplicate platforms are not allowed.
+   */
   links?:
     | {
         platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
@@ -433,6 +441,9 @@ export interface Footer {
 export interface Home {
   id: string;
   hero: {
+    /**
+     * Large hero background image. WebP (or JPG) works best. Export at 2x size/resolution for sharpness on large screens.
+     */
     background: string | Media;
     header: {
       root: {
@@ -451,9 +462,15 @@ export interface Home {
     };
     content: string;
   };
+  /**
+   * Select a concert to be highlighted on the homepage. To configure the details of the concerts, please visit [Concerts - Upcoming].
+   */
   homePageUpcomingConcert: {
     select: 'concertSemesterOne' | 'concertSemesterTwo';
   };
+  /**
+   * For the About Us images, an aspect ratio similar to A4 works best.
+   */
   infoCards: {
     aboutUs: {
       image: string | Media;
@@ -467,6 +484,9 @@ export interface Home {
       image: string | Media;
     };
   };
+  /**
+   * Paste the full YouTube URL.
+   */
   featureVideoUrl: string;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -893,9 +913,13 @@ export interface GalleryOther {
  * via the `definition` "site-setting_select".
  */
 export interface SiteSettingSelect<T extends boolean = true> {
-  primaryLogo?: T;
-  secondaryLogo?: T;
-  tertiaryLogo?: T;
+  logos?:
+    | T
+    | {
+        primary?: T;
+        secondary?: T;
+        tertiary?: T;
+      };
   links?:
     | T
     | {

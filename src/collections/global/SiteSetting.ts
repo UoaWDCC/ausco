@@ -6,31 +6,59 @@ const SiteSetting: GlobalConfig = {
   fields: [
     // Logos
     {
-      name: "primaryLogo",
-      label: "Primary Logo",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-    },
-    {
-      name: "secondaryLogo",
-      label: "Secondary Logo",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-    },
-    {
-      name: "tertiaryLogo",
-      label: "Tertiary Logo",
-      type: "upload",
-      relationTo: "media",
-      required: true,
+      name: "logos",
+      label: "Logos",
+      type: "group",
+      admin: {
+        description: "For best results, use an SVG format for the logos.",
+      },
+      fields: [
+        {
+          name: "primary",
+          label: "Primary",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "secondary",
+          label: "Secondary",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+        {
+          name: "tertiary",
+          label: "Tertiary",
+          type: "upload",
+          relationTo: "media",
+          required: true,
+        },
+      ],
     },
     // Links
     {
       name: "links",
-      type: "array",
       label: "Links",
+      type: "array",
+      admin: {
+        description:
+          "Each platform can only be selected once. Duplicate platforms are not allowed.",
+      },
+      validate: (value) => {
+        if (!value) return true;
+
+        const platforms = value.map((item: any) => item.platform);
+        const duplicates = platforms.filter(
+          (platform, index) => platforms.indexOf(platform) !== index,
+        );
+
+        if (duplicates.length > 0) {
+          return "Each platform can only be selected once.";
+        }
+
+        return true;
+      },
       fields: [
         {
           name: "platform",

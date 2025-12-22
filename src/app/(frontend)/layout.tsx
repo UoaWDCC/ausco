@@ -31,12 +31,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const combinedHeaderContent = {
     ...headerContent,
-    primaryLogo: siteSettingContent.primaryLogo,
-    secondaryLogo: siteSettingContent.secondaryLogo,
+    primaryLogo: siteSettingContent.logos.primary,
+    secondaryLogo: siteSettingContent.logos.secondary,
   };
   const combinedFooterContent = {
     ...footerContent,
-    primaryLogo: siteSettingContent.primaryLogo,
+    primaryLogo: siteSettingContent.logos.primary,
     socialMedia: siteSettingContent.links,
   };
 
