@@ -42,8 +42,7 @@ const SiteSetting: GlobalConfig = {
       label: "Links",
       type: "array",
       admin: {
-        description:
-          "Each platform can only be selected once. Duplicate platforms are not allowed.",
+        description: "Each platform can only be selected once.",
       },
       validate: (value) => {
         if (!value) return true;
@@ -54,7 +53,7 @@ const SiteSetting: GlobalConfig = {
         );
 
         if (duplicates.length > 0) {
-          return "Each platform can only be selected once.";
+          return "Duplicate platforms are not allowed.";
         }
 
         return true;

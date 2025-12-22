@@ -389,7 +389,7 @@ export interface SiteSetting {
     tertiary: string | Media;
   };
   /**
-   * Each platform can only be selected once. Duplicate platforms are not allowed.
+   * Each platform can only be selected once.
    */
   links?:
     | {
@@ -407,6 +407,9 @@ export interface SiteSetting {
  */
 export interface Header {
   id: string;
+  /**
+   * Line breaks are reflected in the website.
+   */
   title: string;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -417,10 +420,19 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  /**
+   * Line breaks are reflected in the website.
+   */
   title: string;
+  /**
+   * Maximum of 3 lists.
+   */
   sections?:
     | {
         title: string;
+        /**
+         * Maximum of 3 links per list.
+         */
         options?:
           | {
               label: string;

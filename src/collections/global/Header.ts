@@ -9,6 +9,9 @@ const Header: GlobalConfig = {
       label: "Title",
       type: "textarea",
       required: true,
+      admin: {
+        description: "Line breaks are reflected in the website.",
+      },
     },
   ],
 };
