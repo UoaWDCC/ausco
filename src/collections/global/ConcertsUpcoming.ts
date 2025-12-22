@@ -41,7 +41,7 @@ const ConcertsUpcoming: GlobalConfig = {
           required: true,
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
-            description: "For the posters, an aspect ratio similar to A4 works best.",
+            description: "An aspect ratio similar to A4 works best.",
           },
         },
         {
@@ -60,7 +60,7 @@ const ConcertsUpcoming: GlobalConfig = {
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
             description:
-              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website",
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
           },
           fields: [
             {
@@ -146,7 +146,7 @@ const ConcertsUpcoming: GlobalConfig = {
           required: true,
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
-            description: "For the posters, an aspect ratio similar to A4 works best.",
+            description: "An aspect ratio similar to A4 works best.",
           },
         },
         {
@@ -165,7 +165,7 @@ const ConcertsUpcoming: GlobalConfig = {
           admin: {
             condition: (_, siblingData) => !siblingData?.isComingSoon,
             description:
-              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website",
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
           },
           fields: [
             {

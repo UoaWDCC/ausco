@@ -381,7 +381,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: string;
   /**
-   * For best results, use an SVG format for the logos.
+   * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
    */
   logos: {
     primary: string | Media;
@@ -511,6 +511,9 @@ export interface AboutUs {
   id: string;
   hero: {
     description: string;
+    /**
+     * Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).
+     */
     stickers?:
       | {
           sticker: string | Media;
@@ -518,6 +521,9 @@ export interface AboutUs {
         }[]
       | null;
   };
+  /**
+   * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+   */
   cards: {
     vision: {
       background: string | Media;
@@ -540,6 +546,9 @@ export interface AboutUs {
       title: string;
       summary: string;
       description: string;
+      /**
+       * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
+       */
       sponsorLogos?:
         | {
             logo: string | Media;
@@ -552,12 +561,17 @@ export interface AboutUs {
   createdAt?: string | null;
 }
 /**
+ * All subsequent timeline entries are listed first, before the establishemnt year (2018). The establishment year, which has a unique format, is placed at the bottom as it rarely changes.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-story".
  */
 export interface OurStory {
   id: string;
   description?: string | null;
+  /**
+   * For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+   */
   timeline?:
     | {
         year: number;
@@ -642,6 +656,9 @@ export interface OurStory {
 export interface OurPerson {
   id: string;
   header: {
+    /**
+     * For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+     */
     image: string | Media;
     description?: string | null;
   };
@@ -653,15 +670,24 @@ export interface OurPerson {
           role: string;
           degree: string;
           description: string;
+          /**
+           * Images will be automatically cropped to a square aspect ratio, keeping the center content visible.
+           */
           image: string | Media;
           id?: string | null;
         }[]
       | null;
   };
   conductors: {
+    /**
+     * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+     */
     frame: string | Media;
     members?:
       | {
+          /**
+           * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+           */
           image: string | Media;
           name: string;
           description: string;
@@ -675,7 +701,13 @@ export interface OurPerson {
       | (
           | {
               title: string;
+              /**
+               * An aspect ratio similar to a square works best.
+               */
               image: string | Media;
+              /**
+               * Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+               */
               players: string;
               id?: string | null;
               blockName?: string | null;
@@ -683,7 +715,13 @@ export interface OurPerson {
             }
           | {
               title: string;
+              /**
+               * An aspect ratio similar to a square works best.
+               */
               image: string | Media;
+              /**
+               * Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+               */
               players: string;
               id?: string | null;
               blockName?: string | null;
@@ -694,9 +732,15 @@ export interface OurPerson {
   };
   hallOfFame: {
     pastPresidents: {
+      /**
+       * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+       */
       frame: string | Media;
       members?:
         | {
+            /**
+             * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+             */
             image: string | Media;
             name: string;
             description: string;
@@ -705,9 +749,15 @@ export interface OurPerson {
         | null;
     };
     founders: {
+      /**
+       * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+       */
       frame: string | Media;
       members?:
         | {
+            /**
+             * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+             */
             image: string | Media;
             name: string;
             description: string;
@@ -720,6 +770,8 @@ export interface OurPerson {
   createdAt?: string | null;
 }
 /**
+ * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
@@ -740,8 +792,14 @@ export interface ConcertsUpcoming {
   concertsUpcoming1: {
     isComingSoon?: boolean | null;
     title?: string | null;
+    /**
+     * An aspect ratio similar to A4 works best.
+     */
     poster?: (string | null) | Media;
     description: string;
+    /**
+     * If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.
+     */
     tickets?: {
       matinee: {
         date: string;
@@ -758,8 +816,14 @@ export interface ConcertsUpcoming {
   concertsUpcoming2: {
     isComingSoon?: boolean | null;
     title?: string | null;
+    /**
+     * An aspect ratio similar to A4 works best.
+     */
     poster?: (string | null) | Media;
     description: string;
+    /**
+     * If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.
+     */
     tickets?: {
       matinee: {
         date: string;
@@ -773,11 +837,16 @@ export interface ConcertsUpcoming {
       };
     };
   };
+  /**
+   * Only the email address is required.
+   */
   googleCalendarEmail: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
+ * For each year, both Semester 1 and Semester 2 concerts must be listed (a year cannot have only one semester's concerts).
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts-past".
  */
@@ -788,6 +857,9 @@ export interface ConcertsPast {
     | {
         year: number;
         semesterOne: {
+          /**
+           * An aspect ratio similar to A4 works best.
+           */
           poster: string | Media;
           title: string;
           description: string;
@@ -795,10 +867,16 @@ export interface ConcertsPast {
           charity: {
             name: string;
             url: string;
+            /**
+             * Donation value only, no $ needed.
+             */
             donation: number;
           };
         };
         semesterTwo: {
+          /**
+           * An aspect ratio similar to A4 works best.
+           */
           poster: string | Media;
           title: string;
           description: string;
@@ -806,6 +884,9 @@ export interface ConcertsPast {
           charity: {
             name: string;
             url: string;
+            /**
+             * Donation value only, no $ needed.
+             */
             donation: number;
           };
         };
@@ -816,6 +897,8 @@ export interface ConcertsPast {
   createdAt?: string | null;
 }
 /**
+ * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery".
  */
