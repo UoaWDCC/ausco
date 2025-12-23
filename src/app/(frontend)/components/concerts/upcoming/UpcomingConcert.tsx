@@ -44,8 +44,8 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     : null;
 
   // Helper to check if ticket is available
-  const isMatineeAvailable = matineeDate && today <= matineeDate && !content.isComingSoon;
-  const isConcertAvailable = concertDate && today <= concertDate && !content.isComingSoon;
+  const isMatineeAvailable = !content.isComingSoon && matineeDate !== null && today <= matineeDate;
+  const isConcertAvailable = !content.isComingSoon && concertDate !== null && today <= concertDate;
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-GB", {
@@ -105,10 +105,10 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start gap-2">
             <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon || !concertDate ? (
-              <div>Date TBC</div>
+            {!content.isComingSoon && matineeDate ? (
+              <div>{formatDate(matineeDate)}</div>
             ) : (
-              <div>{formatDate(concertDate)}</div>
+              <div>Date TBC</div>
             )}
           </div>
           <div className="flex items-start gap-2">
@@ -124,10 +124,10 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start gap-2">
             <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon || !matineeDate ? (
-              <div>Date TBC</div>
+            {!content.isComingSoon && concertDate ? (
+              <div>{formatDate(concertDate)}</div>
             ) : (
-              <div>{formatDate(matineeDate)}</div>
+              <div>Date TBC</div>
             )}
           </div>
           <div className="flex items-start gap-2">
@@ -143,29 +143,29 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         {/* Row 4: Ticket URL Buttons */}
         <div className="w-fit">
           {isMatineeAvailable ? (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          ) : (
             <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="brown" size="lg" className="mt-1">
                 Tickets <ArrowUpRight size={18} />
               </Button>
             </a>
+          ) : (
+            <Button variant="brown" size="lg" className="mt-1" disabled>
+              Tickets <ArrowUpRight size={18} />
+            </Button>
           )}
         </div>
 
         <div className="w-fit">
           {isConcertAvailable ? (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          ) : (
             <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="brown" size="lg" className="mt-1">
                 Tickets <ArrowUpRight size={18} />
               </Button>
             </a>
+          ) : (
+            <Button variant="brown" size="lg" className="mt-1" disabled>
+              Tickets <ArrowUpRight size={18} />
+            </Button>
           )}
         </div>
       </div>
