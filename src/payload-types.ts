@@ -868,7 +868,7 @@ export interface ConcertsPast {
           description: string;
           url: string;
           /**
-           * Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.
+           * The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.
            */
           photoAlbum?: string | null;
           charity: {
@@ -889,7 +889,7 @@ export interface ConcertsPast {
           description: string;
           url: string;
           /**
-           * Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.
+           * The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.
            */
           photoAlbum?: string | null;
           charity: {

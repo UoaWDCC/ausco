@@ -33,10 +33,11 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
       : `${semester} Concert Poster`;
 
   const photoAlbumLink = (() => {
+    if (!content.photoAlbum || content.photoAlbum.trim() === "") return null;
+
     try {
-      return content.photoAlbum
-        ? new URL(content.photoAlbum, "https://ausco.wdcc.co.nz").pathname
-        : null;
+      const url = new URL(content.photoAlbum, "https://ausco.wdcc.co.nz");
+      return url.pathname !== "/" ? url.pathname : null;
     } catch {
       return null;
     }
