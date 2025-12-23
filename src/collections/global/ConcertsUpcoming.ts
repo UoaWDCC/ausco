@@ -24,32 +24,44 @@ const ConcertsUpcoming: GlobalConfig = {
           type: "checkbox",
           required: false,
         },
-
         {
           name: "title",
           label: "Title",
           type: "text",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+          },
         },
-
         {
           name: "poster",
           label: "Poster",
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "An aspect ratio similar to A4 works best.",
+          },
         },
-
         {
           name: "description",
           label: "Description",
           type: "textarea",
           required: true,
+          // Starter template: only applies on document creation, not when editing existing docs
+          defaultValue:
+            "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!",
         },
         {
           name: "tickets",
           label: "Tickets",
           type: "group",
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
+          },
           fields: [
             {
               name: "matinee",
@@ -122,6 +134,9 @@ const ConcertsUpcoming: GlobalConfig = {
           label: "Title",
           type: "text",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+          },
         },
         {
           name: "poster",
@@ -129,17 +144,29 @@ const ConcertsUpcoming: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "An aspect ratio similar to A4 works best.",
+          },
         },
         {
           name: "description",
           label: "Description",
           type: "textarea",
           required: true,
+          // Starter template: only applies on document creation, not when editing existing docs
+          defaultValue:
+            "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!",
         },
         {
           name: "tickets",
           label: "Tickets",
           type: "group",
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
+          },
           fields: [
             {
               name: "matinee",
@@ -201,6 +228,9 @@ const ConcertsUpcoming: GlobalConfig = {
       label: "Embeded Google Calendar Email",
       type: "text",
       required: true,
+      admin: {
+        description: "Only the email address is required.",
+      },
     },
   ],
 };

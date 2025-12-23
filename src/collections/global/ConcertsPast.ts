@@ -3,6 +3,10 @@ import { GlobalConfig } from "payload";
 const ConcertsPast: GlobalConfig = {
   slug: "concerts-past",
   label: "Concerts - Past",
+  admin: {
+    description:
+      "For each year, both Semester 1 and Semester 2 concerts must be listed (a year cannot have only one semester's concerts).",
+  },
   fields: [
     {
       name: "description",
@@ -34,6 +38,9 @@ const ConcertsPast: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description: "An aspect ratio similar to A4 works best.",
+              },
             },
             {
               name: "title",
@@ -52,6 +59,16 @@ const ConcertsPast: GlobalConfig = {
               label: "Concert Video URL",
               type: "text",
               required: true,
+            },
+            {
+              name: "photoAlbum",
+              label: "Gallery Photo Album",
+              type: "text",
+              required: false,
+              admin: {
+                description:
+                  "The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.",
+              },
             },
             {
               name: "charity",
@@ -76,6 +93,9 @@ const ConcertsPast: GlobalConfig = {
                   type: "number",
                   min: 0,
                   required: true,
+                  admin: {
+                    description: "Donation value only, no $ needed.",
+                  },
                 },
               ],
             },
@@ -92,6 +112,9 @@ const ConcertsPast: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description: "An aspect ratio similar to A4 works best.",
+              },
             },
             {
               name: "title",
@@ -110,6 +133,16 @@ const ConcertsPast: GlobalConfig = {
               label: "Concert Video URL",
               type: "text",
               required: true,
+            },
+            {
+              name: "photoAlbum",
+              label: "Gallery Photo Album",
+              type: "text",
+              required: false,
+              admin: {
+                description:
+                  "The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.",
+              },
             },
             {
               name: "charity",
@@ -134,6 +167,9 @@ const ConcertsPast: GlobalConfig = {
                   type: "number",
                   min: 0,
                   required: true,
+                  admin: {
+                    description: "Donation value only, no $ needed.",
+                  },
                 },
               ],
             },

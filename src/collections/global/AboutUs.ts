@@ -21,6 +21,10 @@ const AboutUs: GlobalConfig = {
           label: "Array of Stickers",
           type: "array",
           maxRows: 6,
+          admin: {
+            description:
+              "Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).",
+          },
           fields: [
             {
               name: "sticker",
@@ -38,6 +42,10 @@ const AboutUs: GlobalConfig = {
       name: "cards",
       label: "Cards",
       type: "group",
+      admin: {
+        description:
+          "For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+      },
       fields: [
         {
           name: "vision",
@@ -157,6 +165,11 @@ const AboutUs: GlobalConfig = {
               name: "sponsorLogos",
               label: "Sponsor and Partnership Logos",
               type: "array",
+              admin: {
+                description:
+                  "Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.",
+              },
+
               fields: [
                 {
                   name: "logo",

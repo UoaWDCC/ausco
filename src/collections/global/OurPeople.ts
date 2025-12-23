@@ -23,6 +23,10 @@ const OurPeople: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            description:
+              "For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+          },
         },
         {
           name: "description",
@@ -85,6 +89,10 @@ const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description:
+                  "Images will be automatically cropped to a square aspect ratio, keeping the center content visible.",
+              },
             },
           ],
         },
@@ -102,6 +110,10 @@ const OurPeople: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            description:
+              "Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.",
+          },
         },
         {
           name: "members",
@@ -114,6 +126,10 @@ const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description:
+                  "Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.",
+              },
             },
             {
               name: "name",
@@ -138,6 +154,10 @@ const OurPeople: GlobalConfig = {
       name: "players",
       label: "Orchestra Players",
       type: "group",
+      admin: {
+        description:
+          "The [Large Orchestra Section] occupies a full column height, while [Small Orchestra Section] occupies half a column height and can stack with other half columns. All full columns are displayed first, followed by half columns. Recommended width: ~5 columns.",
+      },
       fields: [
         {
           name: "description",
@@ -168,12 +188,17 @@ const OurPeople: GlobalConfig = {
                   type: "upload",
                   relationTo: "media",
                   required: true,
+                  admin: { description: "An aspect ratio similar to a square works best." },
                 },
                 {
                   name: "players",
                   label: "List of Players",
                   type: "text",
                   required: true,
+                  admin: {
+                    description:
+                      "Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).",
+                  },
                 },
               ],
             },
@@ -196,12 +221,17 @@ const OurPeople: GlobalConfig = {
                   type: "upload",
                   relationTo: "media",
                   required: true,
+                  admin: { description: "An aspect ratio similar to a square works best." },
                 },
                 {
                   name: "players",
                   label: "List of Section Players",
                   type: "text",
                   required: true,
+                  admin: {
+                    description:
+                      "Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).",
+                  },
                 },
               ],
             },
@@ -226,6 +256,10 @@ const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description:
+                  "Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.",
+              },
             },
             {
               name: "members",
@@ -238,6 +272,10 @@ const OurPeople: GlobalConfig = {
                   type: "upload",
                   relationTo: "media",
                   required: true,
+                  admin: {
+                    description:
+                      "Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.",
+                  },
                 },
                 {
                   name: "name",
@@ -266,6 +304,10 @@ const OurPeople: GlobalConfig = {
               type: "upload",
               relationTo: "media",
               required: true,
+              admin: {
+                description:
+                  "Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.",
+              },
             },
             {
               name: "members",
@@ -278,6 +320,10 @@ const OurPeople: GlobalConfig = {
                   type: "upload",
                   relationTo: "media",
                   required: true,
+                  admin: {
+                    description:
+                      "Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.",
+                  },
                 },
                 {
                   name: "name",

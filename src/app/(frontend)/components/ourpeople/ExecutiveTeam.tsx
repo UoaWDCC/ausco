@@ -36,7 +36,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
                     src={member.image.url}
                     alt={`Profile Picture of ${member.name}`}
                     fill
-                    className="w-full object-cover object-center"
+                    className="object-cover object-center"
                   />
                 )}
               </div>

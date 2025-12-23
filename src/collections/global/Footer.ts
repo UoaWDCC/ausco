@@ -8,33 +8,45 @@ const Footer: GlobalConfig = {
       name: "title",
       type: "textarea",
       required: true,
+      admin: {
+        description: "Line breaks are reflected in the website.",
+      },
     },
     {
       name: "sections",
-      type: "array",
       label: "Sections",
+      type: "array",
+      maxRows: 3,
+      admin: {
+        description: "Maximum of 3 lists.",
+      },
       fields: [
         {
           name: "title",
+          label: "Title",
           type: "text",
           required: true,
         },
         {
           name: "options",
           type: "array",
+          admin: {
+            description: "Maximum of 3 links per list.",
+          },
           fields: [
             {
               name: "label",
+              label: "Label",
               type: "text",
               required: true,
             },
             {
               name: "url",
+              label: "URL",
               type: "text",
               required: true,
             },
           ],
-          maxRows: 3,
         },
       ],
       // Starter template: only applies on document creation, not when editing existing docs

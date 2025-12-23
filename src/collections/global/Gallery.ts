@@ -3,6 +3,10 @@ import { GlobalConfig } from "payload";
 const Gallery: GlobalConfig = {
   slug: "gallery",
   label: "Gallery",
+  admin: {
+    description:
+      "For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+  },
   fields: [
     {
       name: "concert",

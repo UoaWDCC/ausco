@@ -10,6 +10,10 @@ import { GlobalConfig } from "payload";
 const OurStory: GlobalConfig = {
   slug: "our-story",
   label: "Our Story",
+  admin: {
+    description:
+      "All subsequent timeline entries are listed first, before the establishemnt year (2018). The establishment year, which has a unique format, is placed at the bottom as it rarely changes.",
+  },
   fields: [
     // Header Component
     {
@@ -22,6 +26,10 @@ const OurStory: GlobalConfig = {
       name: "timeline",
       label: "Timeline",
       type: "array",
+      admin: {
+        description:
+          "For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).",
+      },
       fields: [
         {
           name: "year",
@@ -309,4 +317,4 @@ const OurStory: GlobalConfig = {
   ],
 };
 
-export default OurStory
+export default OurStory;

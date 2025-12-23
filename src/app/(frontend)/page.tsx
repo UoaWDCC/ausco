@@ -14,7 +14,7 @@ export default async function HomePage() {
   ]);
 
   const heroContent = {
-    secondaryLogo: siteSettingContent.secondaryLogo,
+    secondaryLogo: siteSettingContent.logos.secondary,
     ...homeContent.hero,
   };
 
