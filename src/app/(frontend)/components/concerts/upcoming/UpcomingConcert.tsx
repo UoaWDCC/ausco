@@ -10,10 +10,10 @@ type pageVariant = "concertsUpcomingPage" | "homePage";
 type UpcomingConcertProps = {
   content: {
     isComingSoon?: boolean | null;
-    title: string;
-    poster: Media | string | null;
+    title?: string | null | undefined;
+    poster?: Media | string | null;
     description: string;
-    tickets: {
+    tickets?: {
       matinee: {
         date: string;
         location: string;
@@ -35,9 +35,17 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
 
   const normaliseDate = (date: Date) =>
     new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  const matineeDate = normaliseDate(new Date(content.tickets.matinee.date));
-  const concertDate = normaliseDate(new Date(content.tickets.concert.date));
   const today = normaliseDate(new Date());
+  const matineeDate = content.tickets?.matinee
+    ? normaliseDate(new Date(content.tickets.matinee.date))
+    : null;
+  const concertDate = content.tickets?.concert
+    ? normaliseDate(new Date(content.tickets.concert.date))
+    : null;
+
+  // Helper to check if ticket is available
+  const isMatineeAvailable = matineeDate && today <= matineeDate && !content.isComingSoon;
+  const isConcertAvailable = concertDate && today <= concertDate && !content.isComingSoon;
 
   const formatDate = (date: Date) =>
     date.toLocaleDateString("en-GB", {
@@ -97,14 +105,18 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start gap-2">
             <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? <div>Date TBC</div> : <div>{formatDate(matineeDate)}</div>}
+            {content.isComingSoon || !concertDate ? (
+              <div>Date TBC</div>
+            ) : (
+              <div>{formatDate(concertDate)}</div>
+            )}
           </div>
           <div className="flex items-start gap-2">
             <GeoAltFill size={18} className="shrink-0 mt-1" />
             {content.isComingSoon ? (
               <div>Location TBC</div>
             ) : (
-              <div>{content.tickets.matinee.location}</div>
+              <div>{content.tickets?.matinee.location}</div>
             )}
           </div>
         </div>
@@ -112,26 +124,30 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         <div className="flex flex-col gap-1.5">
           <div className="flex items-start gap-2">
             <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? <div>Date TBC</div> : <div>{formatDate(concertDate)}</div>}
+            {content.isComingSoon || !matineeDate ? (
+              <div>Date TBC</div>
+            ) : (
+              <div>{formatDate(matineeDate)}</div>
+            )}
           </div>
           <div className="flex items-start gap-2">
             <GeoAltFill size={18} className="shrink-0 mt-1" />
             {content.isComingSoon ? (
               <div>Location TBC</div>
             ) : (
-              <div>{content.tickets.concert.location}</div>
+              <div>{content.tickets?.concert.location}</div>
             )}
           </div>
         </div>
 
         {/* Row 4: Ticket URL Buttons */}
         <div className="w-fit">
-          {today > matineeDate || content.isComingSoon ? (
+          {isMatineeAvailable ? (
             <Button variant="brown" size="lg" className="mt-1" disabled>
               Tickets <ArrowUpRight size={18} />
             </Button>
           ) : (
-            <a href={content.tickets.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
+            <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="brown" size="lg" className="mt-1">
                 Tickets <ArrowUpRight size={18} />
               </Button>
@@ -140,12 +156,12 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         </div>
 
         <div className="w-fit">
-          {today > concertDate || content.isComingSoon ? (
+          {isConcertAvailable ? (
             <Button variant="brown" size="lg" className="mt-1" disabled>
               Tickets <ArrowUpRight size={18} />
             </Button>
           ) : (
-            <a href={content.tickets.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
+            <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
               <Button variant="brown" size="lg" className="mt-1">
                 Tickets <ArrowUpRight size={18} />
               </Button>
