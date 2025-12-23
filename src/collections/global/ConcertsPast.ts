@@ -61,6 +61,16 @@ const ConcertsPast: GlobalConfig = {
               required: true,
             },
             {
+              name: "photoAlbum",
+              label: "Gallery Photo Album",
+              type: "text",
+              required: false,
+              admin: {
+                description:
+                  "Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.",
+              },
+            },
+            {
               name: "charity",
               label: "Charity",
               type: "group",
@@ -123,6 +133,16 @@ const ConcertsPast: GlobalConfig = {
               label: "Concert Video URL",
               type: "text",
               required: true,
+            },
+            {
+              name: "photoAlbum",
+              label: "Gallery Photo Album",
+              type: "text",
+              required: false,
+              admin: {
+                description:
+                  "Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.",
+              },
             },
             {
               name: "charity",

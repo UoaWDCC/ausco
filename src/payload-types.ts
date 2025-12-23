@@ -867,6 +867,10 @@ export interface ConcertsPast {
           title: string;
           description: string;
           url: string;
+          /**
+           * Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.
+           */
+          photoAlbum?: string | null;
           charity: {
             name: string;
             url: string;
@@ -884,6 +888,10 @@ export interface ConcertsPast {
           title: string;
           description: string;
           url: string;
+          /**
+           * Enter the full link to the concert photo album if available (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If images are not ready, leave the field blank and the poster will not link to an album.
+           */
+          photoAlbum?: string | null;
           charity: {
             name: string;
             url: string;
@@ -1426,6 +1434,7 @@ export interface ConcertsPastSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               url?: T;
+              photoAlbum?: T;
               charity?:
                 | T
                 | {
@@ -1441,6 +1450,7 @@ export interface ConcertsPastSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               url?: T;
+              photoAlbum?: T;
               charity?:
                 | T
                 | {
