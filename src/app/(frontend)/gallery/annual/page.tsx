@@ -11,7 +11,7 @@ export default async function AnnualCampGallery() {
       <Header title="Annual Camp Photos" align="left" />
 
       {/* Albums */}
-      {content.albums ? (
+      {content.albums && content.albums.length > 0 ? (
         content.albums?.map((album, index) =>
           album ? (
             <div key={index}>
