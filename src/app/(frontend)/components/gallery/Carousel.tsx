@@ -4,16 +4,17 @@ import { useEffect, useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Media } from "@/payload-types";
+import Image from "next/image";
 
 type CarouselProps = {
   album: {
     year: number;
     title: string;
-    images: Media[] | string[];
+    images: (Media | string)[];
   };
 };
 
-const GalleryCarousel = ({ album }: CarouselProps) => {
+const Carousel = ({ album }: CarouselProps) => {
   //carousel starts from left side, free drag scrolling
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -82,17 +83,9 @@ const GalleryCarousel = ({ album }: CarouselProps) => {
     <section>
       <div className="flex flex-col gap-8 gap-20 py-8 md:py-20">
         {/*carousel title*/}
-        <h3 className="px-4 sm:px-8 md:px-12 text-2xl text-(--navy) font-semibold tracking-tight md:text-3xl">
-          {album.title}
-        </h3>
-
-        {(!album.images || album.images.length === 0) && (
-          <div className="px-4 sm:px-8 md:px-12">
-            <p className="text-lg text-(--navy)">
-              This album has no photos to show right now, check back later!
-            </p>
-          </div>
-        )}
+        <h2 className="font-medium text-2xl m-0 text-(--navy) pb-7 text-left self-start">
+          {album.year}: {album.title}
+        </h2>
 
         {album.images && album.images.length > 0 && (
           <div className="relative w-full px-4 sm:px-8 md:px-12">
@@ -120,16 +113,26 @@ const GalleryCarousel = ({ album }: CarouselProps) => {
               {/*styling + hide scrollbar*/}
               <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {/*map + render images, scale for consistent height while maintaining aspect ratio*/}
-                {album.images.map((img, idx) => (
-                  <div key={`${img.src}-${idx}`} className="flex-shrink-0 min-w-0">
-                    <img
-                      src={img.src}
-                      alt={img.alt ?? `Gallery Image ${idx + 1}`}
-                      className="h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] object-contain cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => openLightbox(idx)}
-                    />
-                  </div>
-                ))}
+
+                {album.images.map((image, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="shrink-0 min-w-0 relative h-28 sm:h-36 md:h-40 lg:h-44 w-auto max-w-[350px] max-h-[220px] cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => openLightbox(index)}
+                    >
+                      {typeof image === "object" && image?.url && (
+                        <Image
+                          src={image.url}
+                          alt={image.alt}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, (max-width: 1024px) 160px, 176px"
+                        />
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -182,11 +185,20 @@ const GalleryCarousel = ({ album }: CarouselProps) => {
             className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={album.images[openImageIdx].src}
-              alt={album.images[openImageIdx].alt ?? `Gallery Image ${openImageIdx + 1}`}
-              className="max-w-full max-h-[90vh] object-contain"
-            />
+            {openImageIdx !== null && album.images[openImageIdx] && (
+              <div className="relative w-full h-full max-w-[90vw] max-h-[90vh]">
+                {typeof album.images[openImageIdx] === "object" &&
+                  album.images[openImageIdx]?.url && (
+                    <Image
+                      src={album.images[openImageIdx].url}
+                      alt={album.images[openImageIdx].alt}
+                      fill
+                      className="object-contain"
+                      sizes="90vw"
+                    />
+                  )}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -194,4 +206,4 @@ const GalleryCarousel = ({ album }: CarouselProps) => {
   );
 };
 
-export default GalleryCarousel;
+export default Carousel;

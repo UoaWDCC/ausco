@@ -1,5 +1,5 @@
 import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
-import GalleryCarousel from "@/app/(frontend)/components/gallery/GalleryCarousel";
+import GalleryCarousel from "@components/gallery/Carousel";
 import { getExecutiveCampGallery } from "@/actions/galleryActions";
 import type { Media } from "@/payload-types";
 
