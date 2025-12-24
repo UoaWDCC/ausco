@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Media } from "@/payload-types";
 import Image from "next/image";
+import { Button } from "@components/ui/button";
 
 type CarouselProps = {
   album: {
@@ -89,17 +90,17 @@ const Carousel = ({ album }: CarouselProps) => {
             {canScrollPrev && (
               <button
                 onClick={scrollPrev}
-                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) hover:text-(--lightblue) focus:outline-none transition-colors cursor-pointer"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue) focus:outline-none transition-colors cursor-pointer duration-300"
               >
-                <ChevronLeft size={30} strokeWidth={2.5} />
+                <ChevronLeft size={30} strokeWidth={1.5} />
               </button>
             )}
             {canScrollNext && (
               <button
                 onClick={scrollNext}
-                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) hover:text-(--lightblue) focus:outline-none transition-colors cursor-pointer"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue) focus:outline-none transition-colors cursor-pointer duration-300"
               >
-                <ChevronRight size={30} strokeWidth={2.5} />
+                <ChevronRight size={30} strokeWidth={1.5} />
               </button>
             )}
 
