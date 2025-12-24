@@ -67,7 +67,7 @@ const Carousel = ({ album }: CarouselProps) => {
     [openImageIdx, album.images],
   );
 
-  // Helper to normalize image source & alt
+  // Helpers to normalise image source & alt
   const getSrc = (img: Media | string) => (typeof img === "string" ? img : img.url || "");
   const getAlt = (img: Media | string, index: number) =>
     typeof img === "string"
@@ -75,8 +75,8 @@ const Carousel = ({ album }: CarouselProps) => {
       : img.alt || img.filename || `Gallery Image ${index + 1}`;
 
   return (
-    <section className="w-full">
-      <div className="flex flex-col gap-20">
+    <section className="w-full pb-16">
+      <div className="flex flex-col">
         {/* Title */}
         <h2 className="font-medium text-2xl text-(--navy) pb-7 text-left">
           {album.year}: {album.title}
@@ -107,9 +107,16 @@ const Carousel = ({ album }: CarouselProps) => {
             <div ref={emblaRef} className="overflow-hidden">
               <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {album.images.map((img, index) => (
+                  // Preserve each image’s natural width while keeping a consistent height using its aspect ratio
                   <div
                     key={index}
-                    className="relative shrink-0 min-w-0 h-28 sm:h-36 md:h-40 lg:h-44 w-[350px] max-h-[220px] cursor-pointer hover:opacity-80 transition-opacity"
+                    className="relative shrink-0 min-w-0 h-28 sm:h-36 md:h-40 lg:h-44 cursor-pointer hover:opacity-80 transition-opacity"
+                    style={{
+                      aspectRatio:
+                        typeof img === "object" && img.width && img.height
+                          ? `${img.width} / ${img.height}`
+                          : "1 / 1",
+                    }}
                     onClick={() => openLightbox(index)}
                   >
                     <Image
