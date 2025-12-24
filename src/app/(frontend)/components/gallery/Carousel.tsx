@@ -167,18 +167,19 @@ const Carousel = ({ album }: CarouselProps) => {
 
           {/* Opened image */}
           <div
-            className="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center"
+            className="relative w-[90vw] h-[90vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative w-full h-full max-w-[90vw] max-h-[90vh]">
+            {album.images[openImageIdx] && getSrc(album.images[openImageIdx]) && (
               <Image
                 src={getSrc(album.images[openImageIdx])}
                 alt={getAlt(album.images[openImageIdx], openImageIdx)}
                 fill
                 className="object-contain"
                 sizes="90vw"
+                priority
               />
-            </div>
+            )}
           </div>
         </div>
       )}
