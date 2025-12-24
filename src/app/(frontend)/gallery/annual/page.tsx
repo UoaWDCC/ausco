@@ -14,7 +14,7 @@ export default async function AnnualCampGallery() {
       {content.albums && content.albums.length > 0 ? (
         content.albums?.map((album, index) =>
           album ? (
-            <div key={index}>
+            <div className="w-full" key={index}>
               {/* Divider */}
               <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
 
@@ -25,8 +25,8 @@ export default async function AnnualCampGallery() {
         )
       ) : (
         <div className="pt-8 sm:pt-18 px-4 sm:px-8 md:px-12 text-center">
-          <p className="text-xl text-(--navy) opacity-75">
-            No photos to show right now, check back later!
+          <p className="text-base text-(--navy)">
+            No photos available at the moment. Please check back soon.
           </p>
         </div>
       )}
