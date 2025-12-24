@@ -13,10 +13,10 @@ export const getConcertsGallery = async (): Promise<GalleryConcert> => {
   return await payload.findGlobal({ slug: "gallery-concert" });
 };
 
-export const getAnnualCampGallery = async (): Promise<GalleryAnnualcamp> => {
-  const payload = await getPayload();
-  return await payload.findGlobal({ slug: "gallery-annualcamp" });
-};
+// export const getAnnualCampGallery = async (): Promise<GalleryAnnualcamp> => {
+//   const payload = await getPayload();
+//   return await payload.findGlobal({ slug: "gallery-annualcamp" });
+// };
 
 export const getExecutiveCampGallery = async (): Promise<GalleryExecutivecamp> => {
   const payload = await getPayload();

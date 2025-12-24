@@ -951,17 +951,11 @@ export interface GalleryConcert {
  */
 export interface GalleryAnnualcamp {
   id: string;
-  title: string;
   albums?:
     | {
+        year: number;
         title: string;
-        images?:
-          | {
-              image: string | Media;
-              alt?: string | null;
-              id?: string | null;
-            }[]
-          | null;
+        images: (string | Media)[];
         id?: string | null;
       }[]
     | null;
@@ -1506,18 +1500,12 @@ export interface GalleryConcertSelect<T extends boolean = true> {
  * via the `definition` "gallery-annualcamp_select".
  */
 export interface GalleryAnnualcampSelect<T extends boolean = true> {
-  title?: T;
   albums?:
     | T
     | {
+        year?: T;
         title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
+        images?: T;
         id?: T;
       };
   updatedAt?: T;

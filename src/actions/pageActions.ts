@@ -12,6 +12,7 @@ import {
   ConcertsUpcoming,
   ConcertsPast,
   Gallery,
+  GalleryAnnualcamp,
 } from "@/payload-types";
 
 export const getHome = cache(async (): Promise<Home> => {
@@ -54,4 +55,9 @@ export const getConcertsPast = cache(async (): Promise<ConcertsPast> => {
 export const getGallery = cache(async (): Promise<Gallery> => {
   const payload = await getPayload();
   return payload.findGlobal({ slug: "gallery", depth: 1 });
+});
+
+export const getAnnualCampGallery = cache(async (): Promise<GalleryAnnualcamp> => {
+  const payload = await getPayload();
+  return payload.findGlobal({ slug: "gallery-annualcamp", depth: 1 });
 });
