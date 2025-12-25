@@ -1,18 +1,20 @@
-// import GalleryHero from "@/app/(frontend)/components/gallery/GalleryHero";
-import { getAnnualCampGallery } from "@/actions/pageActions";
-import Carousel from "@components/gallery/Carousel";
 import Header from "@components/gallery/Header";
+import Carousel from "@components/gallery/Carousel";
+
+import { getAnnualCampGallery } from "@/actions/pageActions";
 
 export default async function AnnualCampGallery() {
   const content = await getAnnualCampGallery();
+
+  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
 
   return (
     <div className="w-full max-w-6xl mx-auto pt-44 px-6 flex flex-col items-center">
       <Header title="Annual Camp Photos" align="left" />
 
       {/* Albums */}
-      {content.albums && content.albums.length > 0 ? (
-        content.albums?.map((album, index) =>
+      {sortedAlbums.length > 0 ? (
+        sortedAlbums.map((album, index) =>
           album ? (
             <div className="w-full" key={index}>
               {/* Divider */}

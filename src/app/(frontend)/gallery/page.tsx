@@ -1,6 +1,7 @@
-import { getGallery } from "@/actions/pageActions";
-import Card from "@components/gallery/Card";
 import Header from "@components/gallery/Header";
+import Card from "@components/gallery/Card";
+
+import { getGallery } from "@/actions/pageActions";
 
 export default async function Gallery() {
   const content = await getGallery();

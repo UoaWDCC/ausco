@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
+
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { Media } from "@/payload-types";
 import Image from "next/image";
+
+import { Media } from "@/payload-types";
 
 type CarouselProps = {
   album: {
@@ -17,7 +19,6 @@ type CarouselProps = {
 // TODO: COPY OVER ANNUAL CONCERT CODE TEMPLATE AND SCHEMA TO OTHER REMAINING 3 GALLERIES
 // TODO: USE LAYOUT.TSX TO YOUR ADVANTAGE.
 // TODO: DOUBLE CHECK CONDITIONAL CODE (I.E. THE CODE THAT RENDERS WHEN GALLERY/ALBUMS IS EMPTY)
-// TODO: SORT THE ALBUMS ARRAY IN DESCENDING ORDER OF YEARS (CHECK OTHER FILES TOO LIKE PAST CONCERTS, SEE IF IT CAN BE DONE IN PAYLOAD, OTHERWISE FE WILL HAVE TO DO)
 const Carousel = ({ album }: CarouselProps) => {
   // Embla carousel setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
