@@ -16,9 +16,6 @@ type CarouselProps = {
   };
 };
 
-// TODO: COPY OVER ANNUAL CONCERT CODE TEMPLATE AND SCHEMA TO OTHER REMAINING 3 GALLERIES
-// TODO: USE LAYOUT.TSX TO YOUR ADVANTAGE.
-// TODO: DOUBLE CHECK CONDITIONAL CODE (I.E. THE CODE THAT RENDERS WHEN GALLERY/ALBUMS IS EMPTY)
 const Carousel = ({ album }: CarouselProps) => {
   // Embla carousel setup
   const [emblaRef, emblaApi] = useEmblaCarousel({

@@ -9,7 +9,7 @@ export default async function ConcertGallery() {
   const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
 
   return (
-    <div className="w-full max-w-6xl mx-auto pt-44 px-6 flex flex-col items-center">
+    <>
       <Header title="Annual Camp Photos" align="left" />
 
       {/* Albums */}
@@ -32,6 +32,6 @@ export default async function ConcertGallery() {
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 }
