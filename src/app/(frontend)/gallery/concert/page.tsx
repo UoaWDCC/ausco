@@ -5,12 +5,11 @@ import { getGalleryConcerts } from "@/actions/pageActions";
 
 export default async function ConcertGallery() {
   const content = await getGalleryConcerts();
-
   const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
 
   return (
     <>
-      <Header title="Annual Camp Photos" align="left" />
+      <Header title="Concert Photos" align="left" />
 
       {/* Albums */}
       {sortedAlbums.length > 0 ? (
@@ -26,7 +25,8 @@ export default async function ConcertGallery() {
           ) : null,
         )
       ) : (
-        <div className="pt-8 sm:pt-18 px-4 sm:px-8 md:px-12 text-center">
+        <div className="w-full">
+          <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
           <p className="text-base">No photos available at the moment. Please check back soon.</p>
         </div>
       )}
