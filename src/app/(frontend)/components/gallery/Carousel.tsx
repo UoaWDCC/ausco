@@ -80,7 +80,7 @@ const Carousel = ({ album }: CarouselProps) => {
     <section className="w-full pb-16">
       <div className="flex flex-col">
         {/* Title */}
-        <h2 className="font-medium text-2xl text-(--navy) pb-7 text-left">
+        <h2 className="font-medium text-2xl pb-7 text-left">
           {album.year}: {album.title}
         </h2>
 
@@ -91,14 +91,14 @@ const Carousel = ({ album }: CarouselProps) => {
             <button
               onClick={scrollPrev}
               disabled={!canScrollPrev}
-              className={`absolute -left-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollPrev ? "text-(--navy) hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+              className={`absolute -left-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollPrev ? "hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
             >
               <ChevronLeft size={30} strokeWidth={1.5} />
             </button>
             <button
               onClick={scrollNext}
               disabled={!canScrollNext}
-              className={`absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollNext ? "text-(--navy) hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+              className={`absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollNext ? "hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
             >
               <ChevronRight size={30} strokeWidth={1.5} />
             </button>

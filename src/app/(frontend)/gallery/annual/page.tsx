@@ -27,9 +27,7 @@ export default async function AnnualCampGallery() {
         )
       ) : (
         <div className="pt-8 sm:pt-18 px-4 sm:px-8 md:px-12 text-center">
-          <p className="text-base text-(--navy)">
-            No photos available at the moment. Please check back soon.
-          </p>
+          <p className="text-base">No photos available at the moment. Please check back soon.</p>
         </div>
       )}
     </div>
