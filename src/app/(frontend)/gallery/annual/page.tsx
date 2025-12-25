@@ -1,10 +1,10 @@
 import Header from "@components/gallery/Header";
 import Carousel from "@components/gallery/Carousel";
 
-import { getAnnualCampGallery } from "@/actions/pageActions";
+import { getGalleryAnnualCamp } from "@/actions/pageActions";
 
 export default async function AnnualCampGallery() {
-  const content = await getAnnualCampGallery();
+  const content = await getGalleryAnnualCamp();
 
   const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
 

@@ -928,17 +928,11 @@ export interface Gallery {
  */
 export interface GalleryConcert {
   id: string;
-  title: string;
   albums?:
     | {
+        year: number;
         title: string;
-        images?:
-          | {
-              image: string | Media;
-              alt?: string | null;
-              id?: string | null;
-            }[]
-          | null;
+        images: (string | Media)[];
         id?: string | null;
       }[]
     | null;
@@ -968,17 +962,11 @@ export interface GalleryAnnualcamp {
  */
 export interface GalleryExecutivecamp {
   id: string;
-  title: string;
   albums?:
     | {
+        year: number;
         title: string;
-        images?:
-          | {
-              image: string | Media;
-              alt?: string | null;
-              id?: string | null;
-            }[]
-          | null;
+        images: (string | Media)[];
         id?: string | null;
       }[]
     | null;
@@ -991,17 +979,11 @@ export interface GalleryExecutivecamp {
  */
 export interface GalleryOther {
   id: string;
-  title: string;
   albums?:
     | {
+        year: number;
         title: string;
-        images?:
-          | {
-              image: string | Media;
-              alt?: string | null;
-              id?: string | null;
-            }[]
-          | null;
+        images: (string | Media)[];
         id?: string | null;
       }[]
     | null;
@@ -1477,18 +1459,12 @@ export interface GallerySelect<T extends boolean = true> {
  * via the `definition` "gallery-concert_select".
  */
 export interface GalleryConcertSelect<T extends boolean = true> {
-  title?: T;
   albums?:
     | T
     | {
+        year?: T;
         title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
+        images?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -1517,18 +1493,12 @@ export interface GalleryAnnualcampSelect<T extends boolean = true> {
  * via the `definition` "gallery-executivecamp_select".
  */
 export interface GalleryExecutivecampSelect<T extends boolean = true> {
-  title?: T;
   albums?:
     | T
     | {
+        year?: T;
         title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
+        images?: T;
         id?: T;
       };
   updatedAt?: T;
@@ -1540,18 +1510,12 @@ export interface GalleryExecutivecampSelect<T extends boolean = true> {
  * via the `definition` "gallery-other_select".
  */
 export interface GalleryOtherSelect<T extends boolean = true> {
-  title?: T;
   albums?:
     | T
     | {
+        year?: T;
         title?: T;
-        images?:
-          | T
-          | {
-              image?: T;
-              alt?: T;
-              id?: T;
-            };
+        images?: T;
         id?: T;
       };
   updatedAt?: T;
