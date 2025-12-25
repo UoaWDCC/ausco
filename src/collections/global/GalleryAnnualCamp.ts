@@ -3,32 +3,24 @@ import type { GlobalConfig } from "payload";
 const GalleryAnnualCamp: GlobalConfig = {
   slug: "gallery-annualcamp",
   label: "Gallery - Annual Camp",
-  access: { read: () => true },
   fields: [
-    { name: "title", type: "text", required: true, defaultValue: "Annual Camp Photos" },
     {
       name: "albums",
       type: "array",
       labels: { singular: "album", plural: "albums" },
       fields: [
-        { name: "title", type: "text", required: true },
+        { name: "year", label: "Year", type: "number", required: true },
+        { name: "title", label: "Title", type: "text", required: true },
         {
           name: "images",
-          type: "array",
-          labels: { singular: "image", plural: "images" },
-          fields: [
-            {
-              name: "image",
-              type: "upload",
-              relationTo: "media",
-              required: true,
-            },
-            { name: "alt", type: "text" },
-          ],
+          type: "relationship",
+          relationTo: "media",
+          hasMany: true,
+          required: true,
         },
       ],
     },
   ],
 };
 
-export default GalleryAnnualCamp
+export default GalleryAnnualCamp;

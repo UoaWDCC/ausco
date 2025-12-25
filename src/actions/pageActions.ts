@@ -12,6 +12,10 @@ import {
   ConcertsUpcoming,
   ConcertsPast,
   Gallery,
+  GalleryConcert,
+  GalleryAnnualcamp,
+  GalleryExecutivecamp,
+  GalleryOther,
 } from "@/payload-types";
 
 export const getHome = cache(async (): Promise<Home> => {
@@ -36,6 +40,7 @@ export const getOurPeople = cache(async (): Promise<OurPerson> => {
   return payload.findGlobal({ slug: "our-people", depth: 1 });
 });
 
+// Concert Pages
 export const getConcerts = cache(async (): Promise<Concert> => {
   const payload = await getPayload();
   return payload.findGlobal({ slug: "concerts", depth: 1 });
@@ -51,7 +56,28 @@ export const getConcertsPast = cache(async (): Promise<ConcertsPast> => {
   return payload.findGlobal({ slug: "concerts-past", depth: 1 });
 });
 
+// Gallery Pages
 export const getGallery = cache(async (): Promise<Gallery> => {
   const payload = await getPayload();
   return payload.findGlobal({ slug: "gallery", depth: 1 });
 });
+
+export const getGalleryConcerts = async (): Promise<GalleryConcert> => {
+  const payload = await getPayload();
+  return await payload.findGlobal({ slug: "gallery-concert" });
+};
+
+export const getGalleryAnnualCamp = cache(async (): Promise<GalleryAnnualcamp> => {
+  const payload = await getPayload();
+  return payload.findGlobal({ slug: "gallery-annualcamp", depth: 1 });
+});
+
+export const getGalleryExecutiveCamp = async (): Promise<GalleryExecutivecamp> => {
+  const payload = await getPayload();
+  return await payload.findGlobal({ slug: "gallery-executivecamp" });
+};
+
+export const getGalleryOther = async (): Promise<GalleryOther> => {
+  const payload = await getPayload();
+  return await payload.findGlobal({ slug: "gallery-other" });
+};
