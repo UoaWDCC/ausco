@@ -7,7 +7,7 @@ export default async function AnnualCampGallery() {
   const content = await getAnnualCampGallery();
 
   return (
-    <div className="w-full max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
+    <div className="w-full max-w-6xl mx-auto pt-44 px-6 flex flex-col items-center">
       <Header title="Annual Camp Photos" align="left" />
 
       {/* Albums */}

@@ -14,10 +14,10 @@ type CarouselProps = {
   };
 };
 
-// TODO: FIX VERTICAL ALIGNEMNT, OVERALL PAGE AND ARROW AND CAROUSEL IMAGES NOT LINING UP.
 // TODO: COPY OVER ANNUAL CONCERT CODE TEMPLATE AND SCHEMA TO OTHER REMAINING 3 GALLERIES
 // TODO: USE LAYOUT.TSX TO YOUR ADVANTAGE.
 // TODO: DOUBLE CHECK CONDITIONAL CODE (I.E. THE CODE THAT RENDERS WHEN GALLERY/ALBUMS IS EMPTY)
+// TODO: SORT THE ALBUMS ARRAY IN DESCENDING ORDER OF YEARS (CHECK OTHER FILES TOO LIKE PAST CONCERTS, SEE IF IT CAN BE DONE IN PAYLOAD, OTHERWISE FE WILL HAVE TO DO)
 const Carousel = ({ album }: CarouselProps) => {
   // Embla carousel setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -88,24 +88,22 @@ const Carousel = ({ album }: CarouselProps) => {
 
         {/* Carousel */}
         {album.images && album.images.length > 0 && (
-          <div className="relative w-full px-4 sm:px-8 md:px-12">
+          <div className="relative w-full">
             {/* Navigation Buttons */}
-            {canScrollPrev && (
-              <button
-                onClick={scrollPrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue)/35 focus:outline-none cursor-pointer transition-colors duration-300"
-              >
-                <ChevronLeft size={30} strokeWidth={1.5} />
-              </button>
-            )}
-            {canScrollNext && (
-              <button
-                onClick={scrollNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue)/35 focus:outline-none cursor-pointer transition-colors duration-300"
-              >
-                <ChevronRight size={30} strokeWidth={1.5} />
-              </button>
-            )}
+            <button
+              onClick={scrollPrev}
+              disabled={!canScrollPrev}
+              className={`absolute -left-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollPrev ? "text-(--navy) hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+            >
+              <ChevronLeft size={30} strokeWidth={1.5} />
+            </button>
+            <button
+              onClick={scrollNext}
+              disabled={!canScrollNext}
+              className={`absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollNext ? "text-(--navy) hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+            >
+              <ChevronRight size={30} strokeWidth={1.5} />
+            </button>
 
             {/* Carousel Track */}
             <div ref={emblaRef} className="overflow-hidden">
