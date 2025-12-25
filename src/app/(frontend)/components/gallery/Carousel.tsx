@@ -5,7 +5,6 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Media } from "@/payload-types";
 import Image from "next/image";
-import { Button } from "@components/ui/button";
 
 type CarouselProps = {
   album: {
@@ -15,6 +14,10 @@ type CarouselProps = {
   };
 };
 
+// TODO: FIX VERTICAL ALIGNEMNT, OVERALL PAGE AND ARROW AND CAROUSEL IMAGES NOT LINING UP.
+// TODO: COPY OVER ANNUAL CONCERT CODE TEMPLATE AND SCHEMA TO OTHER REMAINING 3 GALLERIES
+// TODO: USE LAYOUT.TSX TO YOUR ADVANTAGE.
+// TODO: DOUBLE CHECK CONDITIONAL CODE (I.E. THE CODE THAT RENDERS WHEN GALLERY/ALBUMS IS EMPTY)
 const Carousel = ({ album }: CarouselProps) => {
   // Embla carousel setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
@@ -86,11 +89,11 @@ const Carousel = ({ album }: CarouselProps) => {
         {/* Carousel */}
         {album.images && album.images.length > 0 && (
           <div className="relative w-full px-4 sm:px-8 md:px-12">
-            {/* Navigation buttons */}
+            {/* Navigation Buttons */}
             {canScrollPrev && (
               <button
                 onClick={scrollPrev}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue) focus:outline-none transition-colors cursor-pointer duration-300"
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue)/35 focus:outline-none cursor-pointer transition-colors duration-300"
               >
                 <ChevronLeft size={30} strokeWidth={1.5} />
               </button>
@@ -98,13 +101,13 @@ const Carousel = ({ album }: CarouselProps) => {
             {canScrollNext && (
               <button
                 onClick={scrollNext}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue) focus:outline-none transition-colors cursor-pointer duration-300"
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-1 text-(--navy) rounded-md hover:bg-(--lightblue)/35 focus:outline-none cursor-pointer transition-colors duration-300"
               >
                 <ChevronRight size={30} strokeWidth={1.5} />
               </button>
             )}
 
-            {/* Carousel track */}
+            {/* Carousel Track */}
             <div ref={emblaRef} className="overflow-hidden">
               <div className="flex gap-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {album.images.map((img, index) => (
@@ -135,18 +138,18 @@ const Carousel = ({ album }: CarouselProps) => {
         )}
       </div>
 
-      {/* Lightbox modal */}
+      {/* Lightbox Modal */}
       {album.images && openImageIdx !== null && album.images[openImageIdx] && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
           onClick={closeLightbox}
         >
-          {/* Close button */}
+          {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 p-2 text-white hover:text-(--navy) focus:outline-none cursor-pointer"
+            className="absolute top-4 right-4 p-1 text-(--cream) hover:text-(--lightblue) rounded-md hover:bg-(--lightblue)/20 focus:outline-none cursor-pointer transition-colors duration-300"
           >
-            <X size={32} strokeWidth={2.5} />
+            <X size={30} strokeWidth={1.5} />
           </button>
 
           {/* Navigation */}
@@ -157,23 +160,23 @@ const Carousel = ({ album }: CarouselProps) => {
                   e.stopPropagation();
                   navigateLightbox("prev");
                 }}
-                className="absolute left-0 sm:left-2 top-1/2 -translate-y-1/2 z-10 p-1 text-white hover:text-(--navy) focus:outline-none cursor-pointer"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-1 text-(--cream) hover:text-(--lightblue) rounded-md hover:bg-(--lightblue)/20 focus:outline-none cursor-pointer transition-colors duration-300"
               >
-                <ChevronLeft size={32} strokeWidth={2.5} />
+                <ChevronLeft size={35} strokeWidth={1.5} />
               </button>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   navigateLightbox("next");
                 }}
-                className="absolute right-0 sm:right-2 top-1/2 -translate-y-1/2 z-10 p-1 text-white hover:text-(--navy) focus:outline-none cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-1 text-(--cream) hover:text-(--lightblue) rounded-md hover:bg-(--lightblue)/20 focus:outline-none cursor-pointer transition-colors duration-300"
               >
-                <ChevronRight size={32} strokeWidth={2.5} />
+                <ChevronRight size={35} strokeWidth={1.5} />
               </button>
             </>
           )}
 
-          {/* Opened image */}
+          {/* Opened Image */}
           <div
             className="relative w-[90vw] h-[90vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
