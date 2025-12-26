@@ -21,9 +21,9 @@ const Card = ({ background, type }: CardProps) => {
   const label = type === "upcoming" ? "Upcoming" : "Past";
   const icon =
     type === "upcoming" ? (
-      <CalendarClock size={48} className="mb-4" />
+      <CalendarClock className="w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 mb-1 sm:mb-2 md:mb-4" />
     ) : (
-      <Archive size={48} className="mb-4" />
+      <Archive className="w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 mb-1 sm:mb-2 md:mb-4" />
     );
 
   const { rangeIn, rangeOut, spring } = parallaxConfig;
@@ -68,7 +68,7 @@ const Card = ({ background, type }: CardProps) => {
             after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current
             after:transition-[width] after:duration-300 group-hover:after:w-full"
         >
-          Concerts <ArrowUpRight size={40} className="ml-1" />
+          Concerts <ArrowUpRight className="sm:ml-1 w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10" />
         </h3>
       </div>
     </Link>
