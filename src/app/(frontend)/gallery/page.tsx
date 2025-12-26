@@ -10,13 +10,13 @@ export default async function Gallery() {
     <>
       <Header title="Gallery" align="center" />
 
-      <div className="flex flex-row justify-between items-center gap-6 w-full pb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-6 w-full pb-6">
         <Card title="Concert Photos" background={content.concert} />
 
         <Card title="Annual Camp Photos" background={content.annual} />
       </div>
 
-      <div className="flex flex-row justify-between items-center gap-6 w-full pb-16">
+      <div className="flex flex-col sm:flex-row justify-between items-center gap-6 w-full pb-16">
         <Card title="Executive Camp Photos" background={content.executive} />
 
         <Card title="Other Photos" background={content.other} />

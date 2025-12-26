@@ -54,7 +54,7 @@ const Card = ({ background, type }: CardProps) => {
         </motion.div>
       )}
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
+      <div className="absolute inset-0 p-6 flex flex-col items-center justify-center text-(--cream)">
         {icon}
         <h3
           className="md:mb-2 text-xl sm:text-2xl md:text-3xl font-semibold text-center relative inline-block

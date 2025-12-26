@@ -15,6 +15,7 @@
 ### BUGS
 
 1. font (fraunces) not being applied globally
+2. double check parallax effect on phone ui screen
 
 ## Project Setup
 
