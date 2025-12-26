@@ -1,11 +1,11 @@
 export const parallaxConfig = {
   // How far user scrolls before animation finishes
-  rangeIn: 800,     
+  rangeIn: 800,
 
   // How far the image moves (smaller = slower parallax)
-  rangeOut: 75,       
+  rangeOut: 75,
 
-  // motion smoothing
+  // Motion smoothing
   spring: {
     damping: 20,
     stiffness: 120,

@@ -1,5 +1,6 @@
-import { Media } from "@/payload-types";
 import Image from "next/image";
+
+import { Media } from "@/payload-types";
 
 type PlayersProps = {
   content?: {
@@ -43,7 +44,7 @@ const Players = ({ content }: PlayersProps) => {
       .filter(Boolean);
 
   return (
-    <section className="pb-18">
+    <section className="pb-16">
       <div className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
         {/* LEFT: Title + Dscription */}
         <div className="text-left w-3/16 flex flex-col h-full justify-center">
@@ -60,8 +61,9 @@ const Players = ({ content }: PlayersProps) => {
                 <Image
                   src={group.image.url}
                   alt={group.image.alt}
-                  width={110}
-                  height={110}
+                  width={group.image.width || 800}
+                  height={group.image.height || 800}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="mx-auto"
                 />
               )}
@@ -87,8 +89,9 @@ const Players = ({ content }: PlayersProps) => {
                     <Image
                       src={group.image.url}
                       alt={group.image.alt}
-                      width={110}
-                      height={110}
+                      width={group.image.width || 800}
+                      height={group.image.height || 800}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                       className="mx-auto"
                       key={index}
                     />
@@ -114,67 +117,3 @@ const Players = ({ content }: PlayersProps) => {
 };
 
 export default Players;
-
-// return (
-//     <div className="bg-[var(--cream)] w-full flex flex-col items-center">
-//       <div className="w-5/6 rounded-xl bg-[var(--beige)] text-[var(--brown)] pt-20 pb-10 mt-10 mb-20">
-//         <div className="flex flex-col lg:flex-row items-center lg:items-start">
-//           <div className="w-1/4 mt-0 mb-10 lg:mb-0 lg:mt-33 lg:ml-10">
-//             <div className="text-center lg:text-left text-4xl mb-6">Players</div>
-//             <div className="text-center lg:text-left">{content.playerDescription}</div>
-//           </div>
-
-//           <div className="flex flex-wrap md:flex-nowrap flex-row items-start justify-evenly w-5/6 lg:w-3/4 gap-y-10">
-//             {largeGroups.map((section: any, idx: number) => (
-//               <div className="flex w-[48%] md:w-auto flex-col items-center gap-0" key={idx}>
-//                 <img
-//                   className="mb-10"
-//                   src={section.photo.url}
-//                   alt={section.sectionTitle}
-//                   width={108}
-//                 />
-//                 <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
-//                 {section.players.map((player: any, i: number) => (
-//                   <p className="mb-0 leading-tight" key={i}>
-//                     {player.name}
-//                   </p>
-//                 ))}
-//               </div>
-//             ))}
-
-//             {chunkedSmallGroups.map(
-//               (
-//                 groupPair: any[],
-//                 colIdx: number, // group pair is one set of 2 (ie one column)
-//               ) => (
-//                 <div
-//                   key={`small-col-${colIdx}`}
-//                   className="flex flex-col w-[48%] md:w-auto h-full  gap-10 md:gap-16"
-//                 >
-//                   {groupPair.map((section, idx) => (
-//                     <div
-//                       key={`small-${colIdx}-${idx}`}
-//                       className="flex flex-col items-center h-1/2"
-//                     >
-//                       <img
-//                         className="mb-10"
-//                         src={section.photo.url}
-//                         alt={section.sectionTitle}
-//                         width={108}
-//                       />
-//                       <h2 className="mb-6 text-2xl">{section.sectionTitle}</h2>
-//                       {section.players.map((player: any, i: number) => (
-//                         <p className="mb-0 leading-tight" key={i}>
-//                           {player.name}
-//                         </p>
-//                       ))}
-//                     </div>
-//                   ))}
-//                 </div>
-//               ),
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );

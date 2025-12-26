@@ -1,15 +1,15 @@
 import Header from "@components/gallery/Header";
 import Carousel from "@components/gallery/Carousel";
 
-import { getGalleryOther } from "@/actions/pageActions";
+import { getGalleryConcerts } from "@/actions/pageActions";
 
-export default async function OtherGallery() {
-  const content = await getGalleryOther();
+export default async function ConcertGallery() {
+  const content = await getGalleryConcerts();
   const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
 
   return (
     <>
-      <Header title="Other Photos" align="left" />
+      <Header title="Concert Photos" align="left" />
 
       {/* Albums */}
       {sortedAlbums.length > 0 ? (

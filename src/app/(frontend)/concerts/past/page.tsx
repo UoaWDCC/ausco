@@ -14,9 +14,9 @@ export default async function Past() {
         {/* Past Concerts */}
         <section className="text-left">
           {content.pastConcerts?.map((concert, index) => (
-            <div key={concert.id} className="pb-18">
+            <div key={index} className="pb-16">
               {/* Divider */}
-              <div className="bg-(--brown) mb-18" style={{ height: "0.5px" }} />
+              <div className="bg-(--brown) mb-16" style={{ height: "0.5px" }} />
 
               {/* Year */}
               <h1 className="font-semibold! text-4xl! m-0! text-(--brown) pb-7">{concert.year}</h1>

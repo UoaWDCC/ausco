@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -26,22 +26,26 @@ const Card = ({ background, type }: CardProps) => {
       <Archive size={48} className="mb-4" />
     );
 
-    const { rangeIn, rangeOut, spring } = parallaxConfig;
-    const { scrollY } = useScroll();
-    // image parallax effect scroll speed
-    const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
-    // smooth motion
-    const y = useSpring(rawY, spring);
+  const { rangeIn, rangeOut, spring } = parallaxConfig;
+  const { scrollY } = useScroll();
+  // image parallax effect scroll speed
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
+  // smooth motion
+  const y = useSpring(rawY, spring);
+
   return (
     <Link href={link} className="relative w-1/2 aspect-5/4 overflow-hidden rounded-lg group">
       {typeof background === "object" && background?.url && (
-        <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.4 }}>
+        <motion.div
+          className="absolute -inset-y-[15%] inset-x-0 z-0 will-change-transform"
+          style={{ y }}
+        >
           <Image
             src={background.url}
             alt={background.alt || `${label} Concerts Image`}
             fill
             priority
-            loading="eager"
+            sizes="(max-width: 768px) 110vw, 55vw"
             className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
           />
         </motion.div>

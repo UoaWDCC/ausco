@@ -14,6 +14,7 @@ type SemesterConcertProps = {
     title: string;
     description: string;
     url: string;
+    photoAlbum?: string | null;
     charity: { name: string; url: string; donation: number };
   };
 };
@@ -31,6 +32,17 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
       ? content.poster.alt
       : `${semester} Concert Poster`;
 
+  const photoAlbumLink = (() => {
+    if (!content.photoAlbum || content.photoAlbum.trim() === "") return null;
+
+    try {
+      const url = new URL(content.photoAlbum, "https://ausco.wdcc.co.nz");
+      return url.pathname !== "/" ? url.pathname : null;
+    } catch {
+      return null;
+    }
+  })();
+
   return (
     <div className="flex w-1/2 gap-7">
       {/* Poster */}
@@ -47,18 +59,19 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
           )}
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-(--brown) opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
-            {/* TODO: add real link when page is created (or maybe it needs optional/conditional rendering */}
-            <Link href="/">
-              <Button variant="link">
-                View the
-                <br />
-                photos for this
-                <br />
-                concert <ArrowUpRight size={18} className="inline-block" />
-              </Button>
-            </Link>
-          </div>
+          {photoAlbumLink && (
+            <div className="absolute inset-0 bg-(--brown) opacity-0 group-hover:opacity-100 flex items-center justify-center text-(--cream) text-center transition-opacity duration-300">
+              <Link href={photoAlbumLink}>
+                <Button variant="link">
+                  View the
+                  <br />
+                  photos for this
+                  <br />
+                  concert <ArrowUpRight size={18} className="inline-block" />
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -34,13 +34,16 @@ const Card = ({ title, background }: CardProps) => {
   return (
     <Link href={link} className="relative w-1/2 aspect-2/1 overflow-hidden rounded-lg group">
       {typeof background === "object" && background?.url && (
-        <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.4 }}>
+        <motion.div
+          className="absolute -inset-y-[15%] inset-x-0 z-0 will-change-transform"
+          style={{ y }}
+        >
           <Image
             src={background.url}
             alt={background.alt || title}
             fill
             priority
-            loading="eager"
+            sizes="(max-width: 768px) 110vw, 55vw"
             className="object-cover object-center transition-transform duration-300 group-hover:scale-107"
           />
         </motion.div>

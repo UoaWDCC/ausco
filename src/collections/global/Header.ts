@@ -1,14 +1,17 @@
 import { GlobalConfig } from "payload";
 
-export const Header: GlobalConfig = {
+const Header: GlobalConfig = {
   slug: "header",
-  label: "Site Header",
+  label: "Header",
   fields: [
     {
       name: "title",
       label: "Title",
       type: "textarea",
       required: true,
+      admin: {
+        description: "Line breaks are reflected in the website.",
+      },
     },
   ],
 };

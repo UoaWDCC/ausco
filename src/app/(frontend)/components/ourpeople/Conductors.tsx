@@ -1,6 +1,5 @@
-import { Media } from "@/payload-types";
-
 import FramedImage from "./FramedImage";
+import { Media } from "@/payload-types";
 
 type ConductorsProps = {
   content?: {
@@ -25,7 +24,7 @@ const Conductors = ({ content }: ConductorsProps) => {
   const frameUrl = getImageUrl(content?.frame);
 
   return (
-    <section className="w-full pb-18 flex flex-col items-center text-(--navy)">
+    <section className="w-full pb-16 flex flex-col items-center text-(--navy)">
       <h2 className="font-medium text-3xl text-center m-0 shrink-0 pb-7">Conductors</h2>
       {/* Conductors */}
       <div className="w-full mt-6 grid grid-cols-3 gap-16 justify-items-center">
@@ -51,12 +50,5 @@ const Conductors = ({ content }: ConductorsProps) => {
 };
 
 export default Conductors;
-
-// TODO: consider adding this? to this and all files: "sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw""
-// It tells Next.js:
-// Desktop: image ≈ ⅓ screen width
-// Tablet: ≈ ½ screen width
-// Mobile: full width
-// Without this, Next.js over-downloads images.
 
 // TODO: make layout flexible / dynamic to the number of conductors

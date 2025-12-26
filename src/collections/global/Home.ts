@@ -7,9 +7,9 @@ import {
 } from "@payloadcms/richtext-lexical";
 import { GlobalConfig } from "payload";
 
-export const HomePage: GlobalConfig = {
-  slug: "home-page",
-  label: "Home Page",
+const Home: GlobalConfig = {
+  slug: "home",
+  label: "Home",
   fields: [
     // Hero Component
     {
@@ -23,6 +23,10 @@ export const HomePage: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            description:
+              "Large hero background image. WebP (or JPG) works best. Export at 2x size/resolution for sharpness on large screens.",
+          },
         },
         {
           name: "header",
@@ -46,6 +50,10 @@ export const HomePage: GlobalConfig = {
       name: "homePageUpcomingConcert",
       label: "Upcoming Concert (Select)",
       type: "group",
+      admin: {
+        description:
+          "Select a concert to be highlighted on the homepage. To configure the details of the concerts, please visit [Concerts - Upcoming].",
+      },
       fields: [
         {
           name: "select",
@@ -70,6 +78,9 @@ export const HomePage: GlobalConfig = {
       name: "infoCards",
       label: "Information Cards",
       type: "group",
+      admin: {
+        description: "For the About Us images, an aspect ratio similar to A4 works best.",
+      },
       fields: [
         {
           name: "aboutUs",
@@ -133,8 +144,11 @@ export const HomePage: GlobalConfig = {
       label: "Feature Video URL",
       type: "text",
       required: true,
+      admin: {
+        description: "Paste the full YouTube URL.",
+      },
     },
   ],
 };
 
-export default HomePage;
+export default Home;

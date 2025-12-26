@@ -45,13 +45,14 @@ const Footer = ({ content }: FooterProps) => {
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
         {/* Logo */}
-        <div className="flex-shrink-0 hidden lg:block">
+        <div className="shrink-0 hidden lg:block">
           {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
             <Image
               src={content.primaryLogo.url}
               alt={content.primaryLogo.alt || "Footer Logo"}
               width={136}
               height={136}
+              unoptimized={content.primaryLogo.url.endsWith(".svg")}
             />
           )}
         </div>

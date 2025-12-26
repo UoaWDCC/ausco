@@ -15,6 +15,7 @@
 11. labels in payload schema?
 12. add type props to files in /actions
 13. blur when image is rendering
+14. global util file (stringToList, url checker for Media, etc.)
 
 ### BUGS
 

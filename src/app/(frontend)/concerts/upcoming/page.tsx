@@ -29,7 +29,7 @@ export default async function Upcoming() {
 
         {/* Embded Google Calendar */}
         {content.googleCalendarEmail && (
-          <section className="w-full max-w-6xl mx-auto overflow-hidden flex items-center justify-center pb-18">
+          <section className="w-full max-w-6xl mx-auto overflow-hidden flex items-center justify-center pb-16">
             <iframe
               src={`https://calendar.google.com/calendar/embed?src=${content.googleCalendarEmail}&ctz=Pacific/Auckland`}
               className="w-full h-[700px] rounded-lg"

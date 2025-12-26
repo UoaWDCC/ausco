@@ -42,6 +42,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               alt={content.aboutUs.image.alt || "About Us"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center gap-5">
@@ -67,6 +68,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               alt={content.ourPeople.image.alt || "Our People"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center gap-5">
@@ -92,10 +94,11 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               alt={content.contact.image.alt || "Our People"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center justify-between flex-1">
-            <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
+            <h1 className="font-normal! text-4xl! m-0!">Contact Us</h1>
             <div className="flex flex-col gap-2 items-center">
               <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="navy">
