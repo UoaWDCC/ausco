@@ -3,24 +3,18 @@
 ### TODOs
 
 1. verify a or Link usage for internal/external navigation
-2. look into next.js caching for actions/api calls
-3. clean data/content types (required fields cannot be null but add anyway for type safety)
-4. make colours/colour variables consistent across website (including logos)
-5. helper text in payload for clients? (e.g. poster should be a4 size ideally)
-6. check text uses p, h1, etc. tags for seo
-7. add secondary global font to repo
-8. add permanent header height to the layout.tsx can remove calculated heights in each page
-9. consider max-w-?
-10. routing? (with dashes)
-11. labels in payload schema?
-12. add type props to files in /actions
-13. blur when image is rendering
-14. global util file (stringToList, url checker for Media, etc.)
+2. clean data/content types (required fields cannot be null but add anyway for type safety)
+3. make colours/colour variables consistent across website (including logos)
+4. check text uses p, h1, etc. tags for seo
+5. add secondary global font to repo
+6.  routing? (with dashes)
+7.  add type props to files in /actions
+8.  blur when image is rendering
+9.  global util file (stringToList, url checker for Media, etc.)
 
 ### BUGS
 
-1. [MINOR] when home page/hero renders, there is a pause/delay for the header's height to be accounted. potential cause: useEffect in header is updating too slow or hero/header is rendering too slow
-2. font (fraunces) not being applied globally
+1. font (fraunces) not being applied globally
 
 ## Project Setup
 

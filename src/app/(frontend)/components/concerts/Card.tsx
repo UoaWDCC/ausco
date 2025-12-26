@@ -34,7 +34,10 @@ const Card = ({ background, type }: CardProps) => {
   const y = useSpring(rawY, spring);
 
   return (
-    <Link href={link} className="relative w-1/2 aspect-5/4 overflow-hidden rounded-lg group">
+    <Link
+      href={link}
+      className="relative w-full sm:w-1/2 aspect-5/3 sm:aspect-5/4 overflow-hidden rounded-lg group"
+    >
       {typeof background === "object" && background?.url && (
         <motion.div
           className="absolute -inset-y-[15%] inset-x-0 z-0 will-change-transform"
@@ -54,14 +57,14 @@ const Card = ({ background, type }: CardProps) => {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-(--cream)">
         {icon}
         <h3
-          className="mb-2 text-3xl font-semibold text-center relative inline-block
+          className="md:mb-2 text-xl sm:text-2xl md:text-3xl font-semibold text-center relative inline-block
             after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current
             after:transition-[width] after:duration-300 group-hover:after:w-full"
         >
           {label}
         </h3>
         <h3
-          className="flex items-center text-3xl font-semibold text-center relative
+          className="flex items-center text-xl sm:text-2xl md:text-3xl font-semibold text-center relative
             after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-0 after:bg-current
             after:transition-[width] after:duration-300 group-hover:after:w-full"
         >
