@@ -22,5 +22,3 @@ export default async function Concerts() {
     </section>
   );
 }
-
-//todo: pages with divder and pb, and then the px on header, for sm screens only
