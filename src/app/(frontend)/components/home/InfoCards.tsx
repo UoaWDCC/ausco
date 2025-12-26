@@ -35,7 +35,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
     <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-32 px-10 flex items-center justify-center">
       <div className="flex flex-col md:flex-row gap-7 w-full md:w-auto">
         {/* 1/3: About Us Card */}
-        <div className="w-full md:w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.aboutUs.image === "object" && content.aboutUs.image?.url && (
             <Image
               src={content.aboutUs.image.url}
@@ -46,7 +46,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           )}
           <div className="flex flex-col items-center text-center gap-5">
             <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
-            <div>{content.aboutUs.description}</div>
+            <div className="hidden md:block">{content.aboutUs.description}</div>
             <Link href="/about">
               <Button size="lg" className="mt-2" variant="navy">
                 Read More
@@ -56,8 +56,11 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           </div>
         </div>
 
+        {/* Divider between About Us and Our People */}
+        <div className="w-full h-px bg-[var(--navy)] md:hidden"></div>
+
         {/* 2/3: Our People Card */}
-        <div className="w-full md:w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.ourPeople.image === "object" && content.ourPeople.image?.url && (
             <Image
               src={content.ourPeople.image.url}
@@ -68,7 +71,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           )}
           <div className="flex flex-col items-center text-center gap-5">
             <h1 className="!font-normal !text-4xl !m-0">Our People</h1>
-            <div>{content.ourPeople.description}</div>
+            <div className="hidden md:block">{content.ourPeople.description}</div>
             <Link href="/ourpeople">
               <Button size="lg" className="mt-2" variant="navy">
                 Read More
@@ -78,8 +81,11 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           </div>
         </div>
 
+        {/* Divider between Our People and Contact Us */}
+        <div className="w-full h-px bg-[var(--navy)] md:hidden"></div>
+
         {/* 3/3: Reach Out To Us Card */}
-        <div className="w-full md:w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.contact.image === "object" && content.contact.image?.url && (
             <Image
               src={content.contact.image.url}
