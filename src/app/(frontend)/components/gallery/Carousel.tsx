@@ -77,10 +77,10 @@ const Carousel = ({ album }: CarouselProps) => {
       : img.alt || img.filename || `Gallery Image ${index + 1}`;
 
   return (
-    <section className="w-full pb-16">
+    <section className="w-full pb-8 sm:pb-12 md:pb-16">
       <div className="flex flex-col">
         {/* Title */}
-        <h2 className="font-medium text-2xl pb-7 text-left">
+        <h2 className="font-medium text-lg sm:text-xl md:text-2xl pb-3 md:pb-7 text-center sm:text-left">
           {album.year}: {album.title}
         </h2>
 
@@ -91,14 +91,14 @@ const Carousel = ({ album }: CarouselProps) => {
             <button
               onClick={scrollPrev}
               disabled={!canScrollPrev}
-              className={`absolute -left-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollPrev ? "hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+              className={`hidden sm:inline-flex absolute left-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 bg-(--lightblue) ${canScrollPrev ? "cursor-pointer hover:bg-(--navy) hover:text-(--cream)" : "opacity-0 pointer-events-none"}`}
             >
               <ChevronLeft size={30} strokeWidth={1.5} />
             </button>
             <button
               onClick={scrollNext}
               disabled={!canScrollNext}
-              className={`absolute -right-12 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 ${canScrollNext ? "hover:bg-(--lightblue)/35 cursor-pointer" : "opacity-0 pointer-events-none"}`}
+              className={`hidden sm:inline-flex absolute right-1 top-1/2 -translate-y-1/2 z-10 p-1 rounded-md transition-all duration-300 bg-(--lightblue) ${canScrollNext ? "cursor-pointer hover:bg-(--navy) hover:text-(--cream)" : "opacity-0 pointer-events-none"}`}
             >
               <ChevronRight size={30} strokeWidth={1.5} />
             </button>
@@ -110,7 +110,7 @@ const Carousel = ({ album }: CarouselProps) => {
                   // Preserve each image’s natural width while keeping a consistent height using its aspect ratio
                   <div
                     key={index}
-                    className="relative shrink-0 min-w-0 h-28 sm:h-36 md:h-40 lg:h-44 cursor-pointer hover:opacity-80 transition-opacity"
+                    className="relative shrink-0 min-w-0 h-32 sm:h-36 md:h-40 lg:h-44 cursor-pointer hover:opacity-80 transition-opacity"
                     style={{
                       aspectRatio:
                         typeof img === "object" && img.width && img.height

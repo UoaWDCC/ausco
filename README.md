@@ -16,6 +16,7 @@
 
 1. font (fraunces) not being applied globally
 2. double check parallax effect on phone ui screen
+3. min-h-screen doesn't account for footer height. 
 
 ## Project Setup
 

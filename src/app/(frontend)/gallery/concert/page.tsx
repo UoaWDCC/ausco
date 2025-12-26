@@ -17,7 +17,10 @@ export default async function ConcertGallery() {
           album ? (
             <div className="w-full" key={index}>
               {/* Divider */}
-              <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
+              <div
+                className="w-full bg-(--navy) mb-8 sm:mb-12 md:mb-16"
+                style={{ height: "0.5px" }}
+              />
 
               {/* Album */}
               <Carousel album={album} />
@@ -26,7 +29,7 @@ export default async function ConcertGallery() {
         )
       ) : (
         <div className="w-full">
-          <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
+          <div className="w-full bg-(--navy) mb-8 sm:mb-12 md:mb-16" style={{ height: "0.5px" }} />
           <p className="text-base">No photos available at the moment. Please check back soon.</p>
         </div>
       )}

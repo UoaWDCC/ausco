@@ -8,7 +8,7 @@ export default async function Concerts() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="w-full max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
+      <div className="w-full max-w-6xl mx-auto pt-44 pb-8 sm:pb-12 md:pb-16 px-6 flex flex-col items-center">
         <Header title="Concerts" />
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 w-full">
@@ -22,3 +22,5 @@ export default async function Concerts() {
     </section>
   );
 }
+
+//todo: pages with divder and pb, and then the px on header, for sm screens only
