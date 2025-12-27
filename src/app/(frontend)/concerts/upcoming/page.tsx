@@ -17,7 +17,7 @@ export default async function Upcoming() {
           headingVariant="concertsUpcomingPage"
           semester="1"
         />
-        <div className="py-9" />
+        <div className="pb-8 sm:pb-12 md:pb-16" />
 
         {/* Semester 2 */}
         <UpcomingConcert
@@ -25,7 +25,7 @@ export default async function Upcoming() {
           headingVariant="concertsUpcomingPage"
           semester="2"
         />
-        <div className="py-9"></div>
+        <div className="pb-8 sm:pb-12 md:pb-16" />
 
         {/* Embded Google Calendar */}
         {content.googleCalendarEmail && (

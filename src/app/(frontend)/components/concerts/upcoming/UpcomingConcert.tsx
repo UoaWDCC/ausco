@@ -55,8 +55,8 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div className="w-full max-w-[376px] aspect-5/7 bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base">
-      Coming Soon! 😉
+    <div className="w-full max-w-[376px] p-1 aspect-5/7 bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base">
+      <p className="text-center text-xs sm:text-sm md:text-base">Coming Soon! 😉</p>
     </div>
   ) : (
     typeof content.poster === "object" &&
