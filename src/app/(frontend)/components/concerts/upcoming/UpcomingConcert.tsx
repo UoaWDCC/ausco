@@ -55,10 +55,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div
-      style={{ width: 376, height: 532 }}
-      className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base"
-    >
+    <div className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base shrink-0 w-80 sm:w-96 md:w-[376px] aspect-5/7">
       Coming Soon! 😉
     </div>
   ) : (
@@ -69,15 +66,15 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         alt={content.poster.alt || "Poster"}
         width={376}
         height={532}
-        sizes="(max-width: 768px) 80vw, 376px"
+        className="rounded-md border border-(--brown) shrink-0 w-80 sm:w-96 md:w-[376px] aspect-5/7 object-cover"
+        sizes="(max-width: 640px) 80vw, (max-width: 768px) 40vw, 376px"
         quality={90}
-        className="border border-(--brown) rounded-md"
       />
     )
   );
 
   const titleContent = headingVariant === "concertsUpcomingPage" && (
-    <div className="flex items-center gap-3 pb-4 whitespace-pre-line">
+    <div className="flex items-center gap-3 whitespace-pre-line">
       {semester && (
         <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
           Semester {semester}
@@ -165,102 +162,6 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     </div>
   );
 
-  const textContent = (
-    <div className="flex flex-col justify-between lg:w-lg w-72">
-      {/* Title + Text */}
-      <div className="flex flex-col gap-4 whitespace-pre-line pb-2">
-        {headingVariant === "concertsUpcomingPage" && (
-          <div className="flex items-center gap-3">
-            {semester && (
-              <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
-                Semester {semester}
-              </div>
-            )}
-            <h1 className="font-light! text-3xl! m-0! italic truncate w-full">{title}</h1>
-          </div>
-        )}
-        {content.description}
-      </div>
-
-      <div className="bg-(--brown) my-2" style={{ height: "0.5px" }} />
-
-      {/* Tickets */}
-      <div className="grid grid-cols-2 gap-x-10 gap-y-4 items-start">
-        {/* Row 1: Headings */}
-        <h2 className="font-bold m-0!">Matinee</h2>
-        <h2 className="font-bold m-0!">Concert</h2>
-
-        {/* Row 2+3: Date + Location */}
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-start gap-2">
-            <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {!content.isComingSoon && matineeDate ? (
-              <div>{formatDate(matineeDate)}</div>
-            ) : (
-              <div>Date TBC</div>
-            )}
-          </div>
-          <div className="flex items-start gap-2">
-            <GeoAltFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? (
-              <div>Location TBC</div>
-            ) : (
-              <div>{content.tickets?.matinee.location}</div>
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-start gap-2">
-            <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {!content.isComingSoon && concertDate ? (
-              <div>{formatDate(concertDate)}</div>
-            ) : (
-              <div>Date TBC</div>
-            )}
-          </div>
-          <div className="flex items-start gap-2">
-            <GeoAltFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? (
-              <div>Location TBC</div>
-            ) : (
-              <div>{content.tickets?.concert.location}</div>
-            )}
-          </div>
-        </div>
-
-        {/* Row 4: Ticket URL Buttons */}
-        <div className="w-fit">
-          {isMatineeAvailable ? (
-            <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="brown" size="lg" className="mt-1">
-                Tickets <ArrowUpRight size={18} />
-              </Button>
-            </a>
-          ) : (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          )}
-        </div>
-
-        <div className="w-fit">
-          {isConcertAvailable ? (
-            <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="brown" size="lg" className="mt-1">
-                Tickets <ArrowUpRight size={18} />
-              </Button>
-            </a>
-          ) : (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <section className="bg-(--beige) text-(--brown) py-16 max-w-6xl mx-auto text-base rounded-lg">
       {/* Home Page Only - Title Header */}
@@ -272,16 +173,25 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       )}
 
       {/* Content */}
-      <div className="flex flex-row px-16 gap-8 lg:gap-16 items-stretch justify-center">
+      <div className="flex flex-row px-24 gap-8 lg:gap-16 items-stretch justify-center">
         {semester === "2" ? (
           <>
-            {textContent}
+            <div
+              className={`flex flex-col ${content.isComingSoon ? "justify-evenly py-10" : "justify-between"}`}
+            >
+              {titleContent}
+              {descriptionContent}
+              <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+              {ticketContent}
+            </div>
             {poster}
           </>
         ) : (
           <>
             {poster}
-            <div className="flex flex-col justify-between">
+            <div
+              className={`flex flex-col ${content.isComingSoon ? "justify-evenly py-10" : "justify-between"}`}
+            >
               {titleContent}
               {descriptionContent}
               <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
