@@ -55,7 +55,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base shrink-0 w-80 sm:w-96 md:w-[376px] aspect-5/7">
+    <div className="w-full max-w-[376px] aspect-5/7 bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base">
       Coming Soon! 😉
     </div>
   ) : (
@@ -74,36 +74,40 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
   );
 
   const titleContent = headingVariant === "concertsUpcomingPage" && (
-    <div className="flex items-center gap-3 whitespace-pre-line">
+    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-1 sm:gap-2 lg:gap-3 whitespace-pre-line">
       {semester && (
-        <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
+        <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap text-xs sm:text-sm md:text-base">
           Semester {semester}
         </div>
       )}
-      <h1 className="font-light! text-3xl! m-0! italic truncate w-full">{title}</h1>
+      <h1 className="font-light! text-xl sm:text-2xl md:text-3xl italic truncate w-full">
+        {title}
+      </h1>
     </div>
   );
 
-  const descriptionContent = <p className="whitespace-pre-line">{content.description}</p>;
+  const descriptionContent = (
+    <p className="whitespace-pre-line text-xs sm:text-sm md:text-base">{content.description}</p>
+  );
 
   const ticketContent = (
-    <div className="grid grid-cols-2 gap-x-10 gap-y-4 items-start">
+    <div className="grid grid-cols-2 gap-x-3 lg:gap-x-10 gap-y-2 md:gap-y-3 lg:gap-y-4 items-start text-xs sm:text-sm md:text-base">
       {/* Row 1: Headings */}
       <h2 className="font-bold m-0!">Matinee</h2>
       <h2 className="font-bold m-0!">Concert</h2>
 
       {/* Row 2+3: Date + Location */}
       <div className="flex flex-col gap-1.5">
-        <div className="flex items-start gap-2">
-          <Calendar2EventFill size={18} className="shrink-0 mt-1" />
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <Calendar2EventFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
           {!content.isComingSoon && matineeDate ? (
             <div>{formatDate(matineeDate)}</div>
           ) : (
             <div>Date TBC</div>
           )}
         </div>
-        <div className="flex items-start gap-2">
-          <GeoAltFill size={18} className="shrink-0 mt-1" />
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <GeoAltFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
           {content.isComingSoon ? (
             <div>Location TBC</div>
           ) : (
@@ -113,16 +117,16 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <div className="flex items-start gap-2">
-          <Calendar2EventFill size={18} className="shrink-0 mt-1" />
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <Calendar2EventFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
           {!content.isComingSoon && concertDate ? (
             <div>{formatDate(concertDate)}</div>
           ) : (
             <div>Date TBC</div>
           )}
         </div>
-        <div className="flex items-start gap-2">
-          <GeoAltFill size={18} className="shrink-0 mt-1" />
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <GeoAltFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
           {content.isComingSoon ? (
             <div>Location TBC</div>
           ) : (
@@ -135,13 +139,22 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       <div className="w-fit">
         {isMatineeAvailable ? (
           <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="brown" size="lg" className="mt-1">
-              Tickets <ArrowUpRight size={18} />
+            <Button
+              variant="brown"
+              size="lg"
+              className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            >
+              Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </Button>
           </a>
         ) : (
-          <Button variant="brown" size="lg" className="mt-1" disabled>
-            Tickets <ArrowUpRight size={18} />
+          <Button
+            variant="brown"
+            size="lg"
+            className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            disabled
+          >
+            Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
           </Button>
         )}
       </div>
@@ -149,13 +162,22 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       <div className="w-fit">
         {isConcertAvailable ? (
           <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
-            <Button variant="brown" size="lg" className="mt-1">
-              Tickets <ArrowUpRight size={18} />
+            <Button
+              variant="brown"
+              size="lg"
+              className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            >
+              Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </Button>
           </a>
         ) : (
-          <Button variant="brown" size="lg" className="mt-1" disabled>
-            Tickets <ArrowUpRight size={18} />
+          <Button
+            variant="brown"
+            size="lg"
+            className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            disabled
+          >
+            Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
           </Button>
         )}
       </div>
@@ -163,7 +185,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
   );
 
   return (
-    <section className="bg-(--beige) text-(--brown) py-16 max-w-6xl mx-auto text-base rounded-lg">
+    <section className="bg-(--beige) text-(--brown) mx-auto lg:max-w-6xl rounded-lg px-3 sm:px-8 md:px-14 lg:px-24 py-3 sm:py-8 md:py-12 lg:py-16">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
         <div className="flex justify-center pb-12">
@@ -172,8 +194,8 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         </div>
       )}
 
-      {/* Content */}
-      <div className="flex flex-row px-24 gap-8 lg:gap-16 items-stretch justify-center">
+      {/* Content - Large screens layout */}
+      <div className="hidden lg:flex gap-8 lg:gap-16 items-stretch justify-center">
         {semester === "2" ? (
           <>
             <div
@@ -199,6 +221,18 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             </div>
           </>
         )}
+      </div>
+
+      {/* Content - Small to medium screens layout */}
+      <div className="flex flex-col lg:hidden gap-3">
+        {titleContent}
+        <div className="grid grid-cols-2 gap-3 sm:gap-7 md:gap-9 items-start">
+          {poster}
+          {descriptionContent}
+        </div>
+
+        <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+        {ticketContent}
       </div>
     </section>
   );
