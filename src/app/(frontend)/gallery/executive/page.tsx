@@ -18,7 +18,7 @@ export default async function ExecutiveCampGallery() {
             <div className="w-full" key={index}>
               {/* Divider */}
               <div
-                className="w-full bg-(--navy) mb-8 sm:mb-12 md:mb-16"
+                className="hidden sm:block w-full bg-(--navy) sm:mb-12 md:mb-16"
                 style={{ height: "0.5px" }}
               />
 
