@@ -188,9 +188,13 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     <section className="bg-(--beige) text-(--brown) mx-auto lg:max-w-6xl rounded-lg px-3 sm:px-8 md:px-14 lg:px-24 py-3 sm:py-8 md:py-12 lg:py-16">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
-        <div className="flex justify-center pb-12">
-          <h1 className="font-semibold! text-4xl! m-0!">Our Upcoming Concert,&nbsp;</h1>
-          <h1 className="font-light! text-4xl! m-0! italic">{title}</h1>
+        <div className="flex flex-col lg:flex-row justify-center pb-4 sm:pb-8 md:pb-12">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl!">
+            Our Upcoming Concert,&nbsp;
+          </h1>
+          <h1 className="font-light! text-xl sm:text-2xl md:text-3xl lg:text-4xl! italic">
+            {title}
+          </h1>
         </div>
       )}
 
