@@ -76,6 +76,95 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     )
   );
 
+  const titleContent = headingVariant === "concertsUpcomingPage" && (
+    <div className="flex items-center gap-3 pb-4 whitespace-pre-line">
+      {semester && (
+        <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
+          Semester {semester}
+        </div>
+      )}
+      <h1 className="font-light! text-3xl! m-0! italic truncate w-full">{title}</h1>
+    </div>
+  );
+
+  const descriptionContent = <p className="whitespace-pre-line">{content.description}</p>;
+
+  const ticketContent = (
+    <div className="grid grid-cols-2 gap-x-10 gap-y-4 items-start">
+      {/* Row 1: Headings */}
+      <h2 className="font-bold m-0!">Matinee</h2>
+      <h2 className="font-bold m-0!">Concert</h2>
+
+      {/* Row 2+3: Date + Location */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-start gap-2">
+          <Calendar2EventFill size={18} className="shrink-0 mt-1" />
+          {!content.isComingSoon && matineeDate ? (
+            <div>{formatDate(matineeDate)}</div>
+          ) : (
+            <div>Date TBC</div>
+          )}
+        </div>
+        <div className="flex items-start gap-2">
+          <GeoAltFill size={18} className="shrink-0 mt-1" />
+          {content.isComingSoon ? (
+            <div>Location TBC</div>
+          ) : (
+            <div>{content.tickets?.matinee.location}</div>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-start gap-2">
+          <Calendar2EventFill size={18} className="shrink-0 mt-1" />
+          {!content.isComingSoon && concertDate ? (
+            <div>{formatDate(concertDate)}</div>
+          ) : (
+            <div>Date TBC</div>
+          )}
+        </div>
+        <div className="flex items-start gap-2">
+          <GeoAltFill size={18} className="shrink-0 mt-1" />
+          {content.isComingSoon ? (
+            <div>Location TBC</div>
+          ) : (
+            <div>{content.tickets?.concert.location}</div>
+          )}
+        </div>
+      </div>
+
+      {/* Row 4: Ticket URL Buttons */}
+      <div className="w-fit">
+        {isMatineeAvailable ? (
+          <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="brown" size="lg" className="mt-1">
+              Tickets <ArrowUpRight size={18} />
+            </Button>
+          </a>
+        ) : (
+          <Button variant="brown" size="lg" className="mt-1" disabled>
+            Tickets <ArrowUpRight size={18} />
+          </Button>
+        )}
+      </div>
+
+      <div className="w-fit">
+        {isConcertAvailable ? (
+          <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
+            <Button variant="brown" size="lg" className="mt-1">
+              Tickets <ArrowUpRight size={18} />
+            </Button>
+          </a>
+        ) : (
+          <Button variant="brown" size="lg" className="mt-1" disabled>
+            Tickets <ArrowUpRight size={18} />
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+
   const textContent = (
     <div className="flex flex-col justify-between lg:w-lg w-72">
       {/* Title + Text */}
@@ -96,7 +185,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       <div className="bg-(--brown) my-2" style={{ height: "0.5px" }} />
 
       {/* Tickets */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 items-start">
+      <div className="grid grid-cols-2 gap-x-10 gap-y-4 items-start">
         {/* Row 1: Headings */}
         <h2 className="font-bold m-0!">Matinee</h2>
         <h2 className="font-bold m-0!">Concert</h2>
@@ -183,7 +272,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       )}
 
       {/* Content */}
-      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center">
+      <div className="flex flex-row px-16 gap-8 lg:gap-16 items-stretch justify-center">
         {semester === "2" ? (
           <>
             {textContent}
@@ -192,7 +281,12 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         ) : (
           <>
             {poster}
-            {textContent}
+            <div className="flex flex-col justify-between">
+              {titleContent}
+              {descriptionContent}
+              <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+              {ticketContent}
+            </div>
           </>
         )}
       </div>
