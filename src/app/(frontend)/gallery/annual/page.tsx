@@ -5,7 +5,7 @@ import { getGalleryAnnualCamp } from "@/actions/pageActions";
 
 export default async function AnnualCampGallery() {
   const content = await getGalleryAnnualCamp();
-  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
+  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? []; // newest year first
 
   return (
     <>

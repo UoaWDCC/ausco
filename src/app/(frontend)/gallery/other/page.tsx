@@ -5,7 +5,7 @@ import { getGalleryOther } from "@/actions/pageActions";
 
 export default async function OtherGallery() {
   const content = await getGalleryOther();
-  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
+  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? []; // newest year first
 
   return (
     <>
