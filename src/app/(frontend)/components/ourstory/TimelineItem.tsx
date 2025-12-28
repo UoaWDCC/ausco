@@ -109,33 +109,31 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
   const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
 
   return (
-    <section className="relative w-full flex flex-col text-left text-(--navy) ">
+    <section className="relative w-full flex flex-col text-left text-(--navy) pb-8 sm:pb-12 md:pb-16">
       {/* Title */}
       <div className="flex w-full">
         <div
-          className={`flex items-center w-full sm:w-1/2 h-14 gap-4 pb-6 ${flipLayout ? "sm:ml-auto sm:flex-row-reverse sm:justify-end" : ""}`}
+          className={`flex items-center min-w-0 w-full sm:w-1/2 h-auto min-h-14 gap-4 pb-6 ${flipLayout ? "sm:ml-auto sm:flex-row-reverse sm:justify-end" : ""}`}
         >
           {/* Dot - Small screens only */}
           <div className="absolute sm:hidden left-0 h-1.5 w-1.5 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
-
-          <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap shrink-0">
+          <h2 className="font-medium text-xl md:text-2xl overflow-hidden sm:whitespace-nowrap sm:text-ellipsis sm:shrink">
             {year}: {title}
           </h2>
-
           {/* Horizontal Line - Small screen and above */}
           <div
             className={`hidden sm:block h-0.5 ${
-              flipLayout ? "w-16" : "w-full"
+              flipLayout ? "w-16" : "flex-1 min-w-16"
             } bg-(--navy) rounded-full`}
           />
         </div>
       </div>
 
+      {/* Content */}
       <div
-        className={`flex flex-col sm:flex-row pb-8 sm:pb-12 md:pb-16 ${flipLayout ? "sm:flex-row-reverse" : ""}`}
+        className={`flex flex-col sm:flex-row min-w-0 ${flipLayout ? "sm:flex-row-reverse" : ""}`}
       >
-        {/* Content */}
-        <div className="flex order-2 sm:order-1 flex-col sm:flex-row w-full sm:w-1/2">
+        <div className="flex flex-col order-2 sm:order-1 w-full sm:w-1/2 min-w-0">
           {/* Text */}
           <div className={`text-sm px-0 ${flipLayout ? "sm:pl-20 sm:pr-0" : "sm:pr-20 sm:pl-0"}`}>
             <div className="flex flex-col space-y-4 pb-6">
@@ -183,14 +181,15 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
         </div>
 
         <div
-          className={`flex order-1 sm:order-2 w-full sm:w-1/2 px-0 items-center justify-center pb-6 sm:pb-0 sm:-mt-7 ${flipLayout ? "sm:pr-20 sm:pl-0" : "sm:pl-20 sm:pr-0"}`}
+          className={`flex order-1 sm:order-2 min-w-0 w-full sm:w-1/2 px-0 items-center justify-center pb-6 sm:pb-0 sm:-mt-7 ${flipLayout ? "sm:pr-20 sm:pl-0" : "sm:pl-20 sm:pr-0"}`}
         >
           {typeof image === "object" && image?.url && (
             <Image
               src={image.url}
               alt={image.alt}
-              width={700}
-              height={700}
+              width={image.width || 800}
+              height={image.height || 600}
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="rounded-lg w-full h-auto object-contain"
             />
           )}
