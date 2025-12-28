@@ -14,9 +14,12 @@ export default async function OurStoryPage() {
         <Header description={content.description} />
         <Timeline>
           <Establishment content={content.establishment} />
-          {/* {content?.timeline?.map((year, index) => {
-            return <TimelineItem key={index} content={year} flipLayout={index % 2 === 0} />;
-          })} */}
+          {content?.timeline
+            ?.slice()
+            .sort((a, b) => a.year - b.year) // oldest year first
+            .map((item, index) => (
+              <TimelineItem key={index} content={item} flipLayout={index % 2 === 0} />
+            ))}
         </Timeline>
       </div>
     </section>
