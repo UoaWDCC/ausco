@@ -45,7 +45,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
       {/* Note: adjusting the height (h) of this div will require adjusting the margin-top (mt) on the vertical line (line 71) */}
       <div className="flex w-full min-w-0 sm:w-1/2 items-center h-auto min-h-14 gap-4 pb-6">
         {/* Dot - Small screens only */}
-        <div className="absolute sm:hidden left-0 h-1.5 w-1.5 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
+        <div className="absolute sm:hidden left-0 h-2 w-2 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
         <h2 className="font-medium text-xl md:text-2xl overflow-hidden sm:whitespace-nowrap sm:text-ellipsis sm:shrink">
           {year}: {title}
         </h2>

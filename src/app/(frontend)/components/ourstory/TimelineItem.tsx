@@ -116,7 +116,7 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
           className={`flex items-center min-w-0 w-full sm:w-1/2 h-auto min-h-14 gap-4 pb-6 ${flipLayout ? "sm:ml-auto sm:flex-row-reverse sm:justify-end" : ""}`}
         >
           {/* Dot - Small screens only */}
-          <div className="absolute sm:hidden left-0 h-1.5 w-1.5 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
+          <div className="absolute sm:hidden left-0 h-2 w-2 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
           <h2 className="font-medium text-xl md:text-2xl overflow-hidden sm:whitespace-nowrap sm:text-ellipsis sm:shrink">
             {year}: {title}
           </h2>
