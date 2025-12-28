@@ -109,21 +109,35 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
   const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
 
   return (
-    <section className="w-full flex flex-col text-left text-(--navy) ">
-      <div className={`flex flex-row pb-16 ${flipLayout ? "flex-row-reverse" : ""}`}>
-        <div className="w-1/2 flex flex-col">
-          {/* Text */}
-          <div
-            className={`flex items-center h-14 gap-4 pb-6 ${flipLayout ? "flex-row-reverse justify-end" : ""}`}
-          >
-            <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap shrink-0">
-              {year}: {title}
-            </h2>
-            {/* Horizontal Line */}
-            <div className={`h-0.5 ${flipLayout ? "w-16" : "w-full"} bg-(--navy) rounded-full`} />
-          </div>
+    <section className="relative w-full flex flex-col text-left text-(--navy) ">
+      {/* Title */}
+      <div className="flex w-full">
+        <div
+          className={`flex items-center w-full sm:w-1/2 h-14 gap-4 pb-6 ${flipLayout ? "sm:ml-auto sm:flex-row-reverse sm:justify-end" : ""}`}
+        >
+          {/* Dot - Small screens only */}
+          <div className="absolute sm:hidden left-0 h-1.5 w-1.5 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
 
-          <div className={`text-sm ${flipLayout ? "pl-20 pr-0" : "pr-20 pl-0"}`}>
+          <h2 className="font-medium text-2xl overflow-hidden text-ellipsis whitespace-nowrap shrink-0">
+            {year}: {title}
+          </h2>
+
+          {/* Horizontal Line - Small screen and above */}
+          <div
+            className={`hidden sm:block h-0.5 ${
+              flipLayout ? "w-16" : "w-full"
+            } bg-(--navy) rounded-full`}
+          />
+        </div>
+      </div>
+
+      <div
+        className={`flex flex-col sm:flex-row pb-8 sm:pb-12 md:pb-16 ${flipLayout ? "sm:flex-row-reverse" : ""}`}
+      >
+        {/* Content */}
+        <div className="flex order-2 sm:order-1 flex-col sm:flex-row w-full sm:w-1/2">
+          {/* Text */}
+          <div className={`text-sm px-0 ${flipLayout ? "sm:pl-20 sm:pr-0" : "sm:pr-20 sm:pl-0"}`}>
             <div className="flex flex-col space-y-4 pb-6">
               {/* President */}
               <RoleBlock
@@ -169,7 +183,7 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
         </div>
 
         <div
-          className={`w-1/2 flex items-center justify-center ${flipLayout ? "pr-20 pl-0" : "pl-20 pr-0"}`}
+          className={`flex order-1 sm:order-2 w-full sm:w-1/2 px-0 items-center justify-center pb-6 sm:pb-0 sm:-mt-7 ${flipLayout ? "sm:pr-20 sm:pl-0" : "sm:pl-20 sm:pr-0"}`}
         >
           {typeof image === "object" && image?.url && (
             <Image
@@ -185,5 +199,4 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
     </section>
   );
 };
-
 export default TimelineItem;
