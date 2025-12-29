@@ -42,6 +42,8 @@ export default async function HomePage() {
       </div>
       <InfoCards content={infoCardsContent} />
       <FeatureVideo content={homeContent.featureVideoUrl} />
+      <div className="text-center flex p-4 justify-between bg-white" />
+
     </>
   );
 }
