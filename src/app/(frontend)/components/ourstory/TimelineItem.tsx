@@ -134,7 +134,7 @@ const TimelineItem = ({ content, flipLayout, isLast }: TimelineItemProps) => {
           {/* Horizontal Line - Small screen and above */}
           <div
             className={`hidden sm:block h-0.5 ${
-              flipLayout ? "w-16" : "flex-1 min-w-16"
+              flipLayout ? "sm:w-6 md:w-16" : "flex-1 sm:min-w-12 md:min-w-16"
             } bg-(--navy) rounded-full`}
           />
         </div>
@@ -146,7 +146,9 @@ const TimelineItem = ({ content, flipLayout, isLast }: TimelineItemProps) => {
       >
         <div className="flex flex-col order-2 sm:order-1 w-full sm:w-1/2 min-w-0">
           {/* Text */}
-          <div className={`text-sm px-0 ${flipLayout ? "sm:pl-20 sm:pr-0" : "sm:pr-20 sm:pl-0"}`}>
+          <div
+            className={`text-sm px-0 ${flipLayout ? "sm:pl-10 sm:pr-0 md:pl-20 md:pr-0" : "sm:pr-10 sm:pl-0 md:pr-20 md:pl-0"}`}
+          >
             <div className="flex flex-col space-y-4 pb-6">
               {/* President */}
               <RoleBlock
@@ -192,7 +194,7 @@ const TimelineItem = ({ content, flipLayout, isLast }: TimelineItemProps) => {
         </div>
 
         <div
-          className={`flex order-1 sm:order-2 min-w-0 w-full sm:w-1/2 px-0 items-center justify-center pb-6 sm:pb-0 sm:-mt-7 ${flipLayout ? "sm:pr-20 sm:pl-0" : "sm:pl-20 sm:pr-0"}`}
+          className={`flex order-1 sm:order-2 min-w-0 w-full sm:w-1/2 px-0 items-center justify-center pb-6 sm:pb-0 sm:-mt-7 ${flipLayout ? "sm:pr-10 sm:pl-0 md:pr-20 md:pl-0" : "sm:pl-10 sm:pr-0 md:pl-20 md:pr-0"}`}
         >
           {typeof image === "object" && image?.url && (
             <Image

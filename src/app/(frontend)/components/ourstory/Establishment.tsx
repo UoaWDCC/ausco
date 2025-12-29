@@ -53,14 +53,14 @@ const Establishment = ({ content }: EstablishmentProps) => {
           {year}: {title}
         </h2>
         {/* Horizontal Line - Small screen and above */}
-        <div className="hidden sm:block h-0.5 flex-1 min-w-16 bg-(--navy) rounded-full -mr-px" />
+        <div className="hidden sm:block h-0.5 flex-1 sm:min-w-12 md:min-w-16 bg-(--navy) rounded-full -mr-px" />
       </div>
 
       {/* Content */}
       <div className="flex flex-col sm:flex-row min-w-0">
         <div className="flex flex-col order-2 sm:order-1 w-full sm:w-1/2 min-w-0">
           {/* LEFT: Text */}
-          <div className="sm:pr-20 text-sm">
+          <div className="sm:pr-10 md:pr-20 text-sm">
             {date && <p className="font-semibold pb-4">{date}</p>}
 
             <div className="flex flex-row gap-4 pb-6">
@@ -86,7 +86,7 @@ const Establishment = ({ content }: EstablishmentProps) => {
         </div>
 
         {/* RIGHT: Image */}
-        <div className="flex order-1 sm:order-2 w-full min-w-0 sm:w-1/2 pl-0 sm:pl-20 pb-6 sm:pb-0 sm:-mt-7 items-center justify-center">
+        <div className="flex order-1 sm:order-2 w-full min-w-0 sm:w-1/2 pl-0 sm:pl-10 md:pl-20 pb-6 sm:pb-0 sm:-mt-7 items-center justify-center">
           {typeof image === "object" && image?.url && (
             <Image
               src={image.url}
