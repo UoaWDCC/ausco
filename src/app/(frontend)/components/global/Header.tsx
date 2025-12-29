@@ -76,16 +76,7 @@ const NavItem = ({
         <Button variant="link" asChild className="flex items-center gap-1">
           <Link href={item.href} onMouseUp={(e) => e.currentTarget.blur()}>
             {item.label}
-            {hasDropdown && (
-              <ChevronDown
-                size={20}
-                strokeWidth={2.1}
-                className={clsx(
-                  "transition-transform duration-300 ease-in-out",
-                  hoveredItem === index && "rotate-180",
-                )}
-              />
-            )}
+            {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
           </Link>
         </Button>
 
@@ -158,14 +149,14 @@ const Header = ({ content }: HeaderProps) => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400",
+        "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400 overflow-hidden",
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
       {/* mobile menu hamburger */}
       <button
         type="button"
-        className="flex h-10 w-10 lg:hidden"
+        className="flex h-10 w-10 lg:hidden flex-shrink-0"
         onClick={() => setMobileDropdown((open) => !open)}
       >
         <Menu className="h-6 w-6 text-(--navy)" strokeWidth={2} />
@@ -174,7 +165,7 @@ const Header = ({ content }: HeaderProps) => {
       <Link
         href="/"
         onMouseUp={(e) => e.currentTarget.blur()}
-        className="flex flex-row items-center"
+        className="flex flex-row items-center relative flex-shrink-0"
       >
         {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
@@ -184,10 +175,9 @@ const Header = ({ content }: HeaderProps) => {
             width={85}
             height={85}
             className={clsx(
-              "absolute transition-opacity duration-400 ease-in-out",
+              "absolute transition-opacity duration-400 ease-in-out flex-shrink-0",
               isHomePage ? (scrolled ? "opacity-100" : "opacity-0") : "opacity-100",
             )}
-            unoptimized={content.primaryLogo.url.endsWith(".svg")}
           />
         )}
 
@@ -199,10 +189,9 @@ const Header = ({ content }: HeaderProps) => {
             width={85}
             height={85}
             className={clsx(
-              "absolute transition-opacity duration-400 ease-in-out",
+              "relative lg:absolute transition-opacity duration-400 ease-in-out flex-shrink-0",
               isHomePage ? (scrolled ? "opacity-0" : "opacity-100") : "opacity-0",
             )}
-            unoptimized={content.secondaryLogo.url.endsWith(".svg")}
           />
         )}
         <h1
