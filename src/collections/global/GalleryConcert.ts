@@ -11,7 +11,11 @@ const GalleryConcert: GlobalConfig = {
     {
       name: "albums",
       type: "array",
-      labels: { singular: "album", plural: "albums" },
+      labels: { singular: "Album", plural: "Albums" },
+      admin: {
+        description:
+          "Albums are automatically sorted by descending year when displayed on the website.",
+      },
       fields: [
         { name: "year", label: "Year", type: "number", required: true },
         { name: "title", label: "Title", type: "text", required: true },

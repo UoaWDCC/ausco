@@ -516,7 +516,7 @@ export interface OurStory {
   id: string;
   description?: string | null;
   /**
-   * For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+   * 1: Each year is sorted by ascending year when displayed on the website. 2: For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
    */
   timeline?:
     | {
@@ -802,6 +802,9 @@ export interface ConcertsUpcoming {
 export interface ConcertsPast {
   id: string;
   description: string;
+  /**
+   * Concerts are automatically sorted by descending year when displayed on the website.
+   */
   pastConcerts?:
     | {
         year: number;
@@ -876,6 +879,9 @@ export interface Gallery {
  */
 export interface GalleryConcert {
   id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
   albums?:
     | {
         year: number;
@@ -898,6 +904,9 @@ export interface GalleryConcert {
  */
 export interface GalleryAnnualcamp {
   id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
   albums?:
     | {
         year: number;
@@ -920,6 +929,9 @@ export interface GalleryAnnualcamp {
  */
 export interface GalleryExecutivecamp {
   id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
   albums?:
     | {
         year: number;
@@ -942,6 +954,9 @@ export interface GalleryExecutivecamp {
  */
 export interface GalleryOther {
   id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
   albums?:
     | {
         year: number;

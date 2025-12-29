@@ -19,7 +19,11 @@ const ConcertsPast: GlobalConfig = {
       label: "Past Concerts",
       type: "array",
       minRows: 1,
-      labels: { singular: "Concert Year", plural: "Concert Years" },
+      labels: { singular: "Past Concert", plural: "Past Concert" },
+      admin: {
+        description:
+          "Concerts are automatically sorted by descending year when displayed on the website.",
+      },
       fields: [
         {
           name: "year",
