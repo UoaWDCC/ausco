@@ -6,8 +6,9 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
+import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
+import { Users } from "./collections/Users";
 
 import SiteSetting from "./collections/global/SiteSetting";
 import Header from "./collections/global/Header";
@@ -54,7 +55,7 @@ export default buildConfig({
     GalleryExecutiveCamp,
     GalleryOther,
   ],
-  collections: [Media, Users],
+  collections: [Albums, Media, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -68,6 +69,7 @@ export default buildConfig({
     // storage-adapter-placeholder
     s3Storage({
       collections: {
+        albums: true,
         media: true, // your collection slug
       },
       bucket: process.env.S3_BUCKET || " ",
