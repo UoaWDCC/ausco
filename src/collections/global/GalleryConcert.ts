@@ -3,6 +3,10 @@ import type { GlobalConfig } from "payload";
 const GalleryConcert: GlobalConfig = {
   slug: "gallery-concert",
   label: "Gallery - Concert",
+  admin: {
+    description:
+      "Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.",
+  },
   fields: [
     {
       name: "albums",
@@ -22,6 +26,7 @@ const GalleryConcert: GlobalConfig = {
           },
           admin: {
             sortOptions: "-year,-createdAt",
+            description: "Images are sorted by descending year, then by descending upload date.",
           },
         },
       ],

@@ -151,6 +151,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "albums".
  */
@@ -867,6 +869,8 @@ export interface Gallery {
   createdAt?: string | null;
 }
 /**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-concert".
  */
@@ -876,6 +880,9 @@ export interface GalleryConcert {
     | {
         year: number;
         title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
         images: (string | Album)[];
         id?: string | null;
       }[]
@@ -884,6 +891,8 @@ export interface GalleryConcert {
   createdAt?: string | null;
 }
 /**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-annualcamp".
  */
@@ -893,6 +902,9 @@ export interface GalleryAnnualcamp {
     | {
         year: number;
         title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
         images: (string | Album)[];
         id?: string | null;
       }[]
@@ -901,6 +913,8 @@ export interface GalleryAnnualcamp {
   createdAt?: string | null;
 }
 /**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-executivecamp".
  */
@@ -910,6 +924,9 @@ export interface GalleryExecutivecamp {
     | {
         year: number;
         title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
         images: (string | Album)[];
         id?: string | null;
       }[]
@@ -918,6 +935,8 @@ export interface GalleryExecutivecamp {
   createdAt?: string | null;
 }
 /**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery-other".
  */
@@ -927,6 +946,9 @@ export interface GalleryOther {
     | {
         year: number;
         title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
         images: (string | Album)[];
         id?: string | null;
       }[]

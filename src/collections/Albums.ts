@@ -6,6 +6,10 @@ export const Albums: CollectionConfig = {
     singular: "Gallery Album Media",
     plural: "Gallery Album Media",
   },
+  admin: {
+    description:
+      "Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.",
+  },
   access: {
     read: () => true,
   },
