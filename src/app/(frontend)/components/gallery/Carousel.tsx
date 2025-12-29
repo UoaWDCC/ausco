@@ -6,13 +6,13 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 
-import { Media } from "@/payload-types";
+import { Album } from "@/payload-types";
 
 type CarouselProps = {
   album: {
     year: number;
     title: string;
-    images: (Media | string)[];
+    images: (Album | string)[];
   };
 };
 
@@ -70,11 +70,11 @@ const Carousel = ({ album }: CarouselProps) => {
   );
 
   // Helpers to normalise image source & alt
-  const getSrc = (img: Media | string) => (typeof img === "string" ? img : img.url || "");
-  const getAlt = (img: Media | string, index: number) =>
+  const getSrc = (img: Album | string) => (typeof img === "string" ? img : img.url || "");
+  const getAlt = (img: Album | string, index: number) =>
     typeof img === "string"
       ? `Gallery Image ${index + 1}`
-      : img.alt || img.filename || `Gallery Image ${index + 1}`;
+      : img.filename || `Gallery Image ${index + 1}`;
 
   return (
     <section className="w-full pb-8 sm:pb-12 md:pb-16">
