@@ -2,11 +2,12 @@ import type { CollectionConfig } from "payload";
 
 export const Albums: CollectionConfig = {
   slug: "albums",
+  labels: {
+    singular: "Gallery Album Media",
+    plural: "Gallery Album Media",
+  },
   access: {
     read: () => true,
-  },
-  admin: {
-    useAsTitle: "alt",
   },
   upload: {
     mimeTypes: ["image/*"],
@@ -14,6 +15,7 @@ export const Albums: CollectionConfig = {
   fields: [
     {
       name: "category",
+      label: "Category",
       type: "select",
       required: true,
       options: [
@@ -24,8 +26,9 @@ export const Albums: CollectionConfig = {
       ],
     },
     {
-      name: "alt",
-      type: "text",
+      name: "year",
+      label: "Year",
+      type: "number",
       required: true,
     },
   ],

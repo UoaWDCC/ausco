@@ -14,9 +14,15 @@ const GalleryOther: GlobalConfig = {
         {
           name: "images",
           type: "relationship",
-          relationTo: "media",
+          relationTo: "albums",
           hasMany: true,
           required: true,
+          filterOptions: {
+            category: { equals: "other" },
+          },
+          admin: {
+            sortOptions: "-year,-createdAt",
+          },
         },
       ],
     },

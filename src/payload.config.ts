@@ -10,9 +10,6 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
-import SiteSetting from "./collections/global/SiteSetting";
-import Header from "./collections/global/Header";
-import Footer from "./collections/global/Footer";
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
 import OurStory from "./collections/global/OurStory";
@@ -25,6 +22,9 @@ import GalleryConcert from "./collections/global/GalleryConcert";
 import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
 import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
 import GalleryOther from "./collections/global/GalleryOther";
+import Header from "./collections/global/Header";
+import Footer from "./collections/global/Footer";
+import SiteSettings from "./collections/global/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -39,9 +39,6 @@ export default buildConfig({
 
   // Payload Admin UI displays globals in the same order they are defined in this config
   globals: [
-    SiteSetting,
-    Header,
-    Footer,
     Home,
     AboutUs,
     OurStory,
@@ -54,6 +51,9 @@ export default buildConfig({
     GalleryAnnualCamp,
     GalleryExecutiveCamp,
     GalleryOther,
+    Header,
+    Footer,
+    SiteSettings,
   ],
   collections: [Albums, Media, Users],
   secret: process.env.PAYLOAD_SECRET || "",

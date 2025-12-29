@@ -14,9 +14,15 @@ const GalleryAnnualCamp: GlobalConfig = {
         {
           name: "images",
           type: "relationship",
-          relationTo: "media",
+          relationTo: "albums",
           hasMany: true,
           required: true,
+          filterOptions: {
+            category: { equals: "annualcamp" },
+          },
+          admin: {
+            sortOptions: "-year,-createdAt",
+          },
         },
       ],
     },

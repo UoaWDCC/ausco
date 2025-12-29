@@ -14,9 +14,15 @@ const GalleryConcert: GlobalConfig = {
         {
           name: "images",
           type: "relationship",
-          relationTo: "media",
+          relationTo: "albums",
           hasMany: true,
           required: true,
+          filterOptions: {
+            category: { equals: "concert" },
+          },
+          admin: {
+            sortOptions: "-year,-createdAt",
+          },
         },
       ],
     },
