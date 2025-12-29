@@ -10,13 +10,21 @@ export default async function OurStoryPage() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
+      <div className="max-w-6xl mx-auto pt-44 pb-8 sm:pb-12 md:pb-16 px-6 flex flex-col items-center">
         <Header description={content.description} />
         <Timeline>
           <Establishment content={content.establishment} />
-          {content?.timeline?.map((year, index) => {
-            return <TimelineItem key={index} content={year} flipLayout={index % 2 === 0} />;
-          })}
+          {content?.timeline
+            ?.slice()
+            .sort((a, b) => a.year - b.year) // oldest year first
+            .map((item, index) => (
+              <TimelineItem
+                key={index}
+                content={item}
+                flipLayout={index % 2 === 0}
+                isLast={index === (content?.timeline?.length ?? 0) - 1}
+              />
+            ))}
         </Timeline>
       </div>
     </section>

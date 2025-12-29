@@ -5,7 +5,7 @@ import { getGalleryOther } from "@/actions/pageActions";
 
 export default async function OtherGallery() {
   const content = await getGalleryOther();
-  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? [];
+  const sortedAlbums = content.albums?.slice().sort((a, b) => b.year - a.year) ?? []; // newest year first
 
   return (
     <>
@@ -17,7 +17,10 @@ export default async function OtherGallery() {
           album ? (
             <div className="w-full" key={index}>
               {/* Divider */}
-              <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
+              <div
+                className="hidden sm:block w-full bg-(--navy) sm:mb-12 md:mb-16"
+                style={{ height: "0.5px" }}
+              />
 
               {/* Album */}
               <Carousel album={album} />
@@ -26,7 +29,7 @@ export default async function OtherGallery() {
         )
       ) : (
         <div className="w-full">
-          <div className="w-full bg-(--navy) mb-16" style={{ height: "0.5px" }} />
+          <div className="w-full bg-(--navy) mb-8 sm:mb-12 md:mb-16" style={{ height: "0.5px" }} />
           <p className="text-base">No photos available at the moment. Please check back soon.</p>
         </div>
       )}

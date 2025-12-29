@@ -8,7 +8,7 @@ export default async function Upcoming() {
 
   return (
     <div className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto pt-44">
+      <div className="max-w-6xl mx-auto px-6 pt-44">
         <Header title="Upcoming Concerts" description={content.description} />
 
         {/* Semester 1 */}
@@ -17,7 +17,7 @@ export default async function Upcoming() {
           headingVariant="concertsUpcomingPage"
           semester="1"
         />
-        <div className="py-9" />
+        <div className="pb-8 sm:pb-12 md:pb-16" />
 
         {/* Semester 2 */}
         <UpcomingConcert
@@ -25,11 +25,11 @@ export default async function Upcoming() {
           headingVariant="concertsUpcomingPage"
           semester="2"
         />
-        <div className="py-9"></div>
+        <div className="pb-8 sm:pb-12 md:pb-16" />
 
         {/* Embded Google Calendar */}
         {content.googleCalendarEmail && (
-          <section className="w-full max-w-6xl mx-auto overflow-hidden flex items-center justify-center pb-16">
+          <section className="w-full max-w-6xl mx-auto overflow-hidden flex items-center justify-center pb-8 sm:pb-12 md:pb-16">
             <iframe
               src={`https://calendar.google.com/calendar/embed?src=${content.googleCalendarEmail}&ctz=Pacific/Auckland`}
               className="w-full h-[700px] rounded-lg"
