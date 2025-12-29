@@ -156,7 +156,7 @@ const Header = ({ content }: HeaderProps) => {
       {/* mobile menu hamburger */}
       <button
         type="button"
-        className="flex h-10 w-10 lg:hidden flex-shrink-0"
+        className="flex h-10 w-10 lg:hidden flex-shrink-0 items-center justify-center"
         onClick={() => setMobileDropdown((open) => !open)}
       >
         <Menu
