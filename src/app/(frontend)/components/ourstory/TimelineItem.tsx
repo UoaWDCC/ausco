@@ -39,6 +39,7 @@ type TimelineItemProps = {
     text: any;
   };
   flipLayout: boolean;
+  isLast: boolean;
 };
 
 type RoleProps = {
@@ -102,24 +103,34 @@ const listToReadableString = (members: string) => {
   return `${list.slice(0, -1).join(", ")} & ${list.at(-1)}`;
 };
 
-const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
+const TimelineItem = ({ content, flipLayout, isLast }: TimelineItemProps) => {
   if (!content) return null;
 
   // Destructure
   const { year, title, image, presidents, vicePresidents, conductors, text: richText } = content;
 
   return (
-    <section className="relative w-full flex flex-col text-left text-(--navy) pb-8 sm:pb-12 md:pb-16">
+    <section className="relative w-full flex flex-col pl-4 sm:pl-0 text-left text-(--navy) pb-8 sm:pb-12 md:pb-16">
+      {/* Vertical line - only on sm screens */}
+      {!isLast && (
+        <div className="sm:hidden absolute left-0 top-0 bottom-0 w-0.5 bg-(--navy) -translate-x-1/2" />
+      )}
+
       {/* Title */}
       <div className="flex w-full">
         <div
           className={`flex items-center min-w-0 w-full sm:w-1/2 h-auto min-h-14 gap-4 pb-6 ${flipLayout ? "sm:ml-auto sm:flex-row-reverse sm:justify-end" : ""}`}
         >
-          {/* Dot - Small screens only */}
-          <div className="absolute sm:hidden left-0 h-2 w-2 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
-          <h2 className="font-medium text-xl md:text-2xl overflow-hidden sm:whitespace-nowrap sm:text-ellipsis sm:shrink">
+          <h2 className="relative font-medium text-xl md:text-2xl leading-normal">
+            {/* Dot - Small screens only */}
+            <span className="absolute sm:hidden -left-4 top-0 h-lh flex items-center -translate-x-1/2">
+              <span className="h-2 w-2 bg-(--navy) rounded-full" />
+            </span>
+            {/* Short Vertical Line - Small screens and last timeline item only */}
+            <div className="sm:hidden absolute -left-4 -top-px h-[0.5lh] w-0.5 bg-(--navy) -translate-x-1/2" />
             {year}: {title}
           </h2>
+
           {/* Horizontal Line - Small screen and above */}
           <div
             className={`hidden sm:block h-0.5 ${
@@ -198,4 +209,5 @@ const TimelineItem = ({ content, flipLayout }: TimelineItemProps) => {
     </section>
   );
 };
+
 export default TimelineItem;

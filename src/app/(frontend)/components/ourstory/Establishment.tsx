@@ -40,12 +40,15 @@ const Establishment = ({ content }: EstablishmentProps) => {
   ].filter((block) => block.value);
 
   return (
-    <section className="relative w-full flex flex-col text-left text-(--navy) pb-8 sm:pb-12 md:pb-16">
+    <section className="relative w-full flex pl-4 sm:pl-0 flex-col text-left text-(--navy) pb-8 sm:pb-12 md:pb-16">
+      {/* Vertical line - only on sm screens */}
+      <div className="sm:hidden absolute left-0 top-4 bottom-0 w-0.5 bg-(--navy) -translate-x-1/2" />
+
       {/* Title */}
       {/* Note: adjusting the height (h) of this div will require adjusting the margin-top (mt) on the vertical line (line 71) */}
       <div className="flex w-full min-w-0 sm:w-1/2 items-center h-auto min-h-14 gap-4 pb-6">
         {/* Dot - Small screens only */}
-        <div className="absolute sm:hidden left-0 h-2 w-2 bg-(--navy) rounded-full -translate-x-1/2 -ml-4" />
+        <div className="absolute sm:hidden left-0 h-2 w-2 bg-(--navy) rounded-full -translate-x-1/2" />
         <h2 className="font-medium text-xl md:text-2xl overflow-hidden sm:whitespace-nowrap sm:text-ellipsis sm:shrink">
           {year}: {title}
         </h2>
