@@ -192,6 +192,8 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it would lock you out of the Payload Admin.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
