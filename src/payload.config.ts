@@ -8,7 +8,6 @@ import sharp from "sharp";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
-import { Item } from "./collections/Test";
 
 import SiteSetting from "./collections/global/SiteSetting";
 import Header from "./collections/global/Header";
@@ -55,7 +54,7 @@ export default buildConfig({
     GalleryExecutiveCamp,
     GalleryOther,
   ],
-  collections: [Users, Media, Item],
+  collections: [Media, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
