@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import clsx from "clsx";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
@@ -134,7 +134,7 @@ const Header = ({ content }: HeaderProps) => {
   const isHomePage = usePathname() === "/";
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-  const [mobileDropdown, setMobileDropdown] = useState(false);
+  const [_mobileDropdown, setMobileDropdown] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -159,7 +159,13 @@ const Header = ({ content }: HeaderProps) => {
         className="flex h-10 w-10 lg:hidden flex-shrink-0"
         onClick={() => setMobileDropdown((open) => !open)}
       >
-        <Menu className="h-6 w-6 text-(--navy)" strokeWidth={2} />
+        <Menu
+          className="h-6 w-6 transition-colors duration-400"
+          style={{
+            color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
+          }}
+          strokeWidth={2}
+        />
       </button>
 
       <Link
