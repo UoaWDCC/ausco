@@ -17,5 +17,5 @@ export const getFooter = cache(async (): Promise<Footer> => {
 
 export const getSiteSetting = cache(async (): Promise<SiteSetting> => {
   const payload = await getPayload();
-  return payload.findGlobal({ slug: "site-setting", depth: 1 });
+  return payload.findGlobal({ slug: "site-settings", depth: 1 });
 });
