@@ -16,7 +16,7 @@ const fraunces = Fraunces({
 
 export const metadata = {
   title: "Auckland University Student Chamber Orchestra",
-  description: "A blank template using Payload in a Next.js app.",
+  description: "A blank template using Payload in a Next.js app.", // TODO: Edit
   icons: {
     icon: "/favicon.png",
   },
