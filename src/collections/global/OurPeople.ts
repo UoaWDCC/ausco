@@ -313,6 +313,10 @@ const OurPeople: GlobalConfig = {
               name: "members",
               label: "Founder Members",
               type: "array",
+              maxRows: 2,
+              admin: {
+                description: "Note: This is designed to hold 2 founding members.",
+              },
               fields: [
                 {
                   name: "image",

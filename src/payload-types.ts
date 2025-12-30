@@ -704,6 +704,9 @@ export interface OurPerson {
        * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
        */
       frame: string | Media;
+      /**
+       * Note: This is designed to hold 2 founding members.
+       */
       members?:
         | {
             /**
