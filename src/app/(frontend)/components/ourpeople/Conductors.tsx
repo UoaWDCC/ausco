@@ -1,9 +1,9 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 import FramedImage from "./FramedImage";
 import { Media } from "@/payload-types";
-
-import { useEffect, useRef, useState } from "react";
 
 type ConductorsProps = {
   content?: {
@@ -39,11 +39,11 @@ const Conductors = ({ content }: ConductorsProps) => {
   const fullRowMembers = members.slice(0, fullRowsCount * MAX_COLS);
   const remainderMembers = members.slice(fullRowsCount * MAX_COLS);
 
+  // Measuring column width for remainder == 2 case
   const gridRef = useRef<HTMLDivElement | null>(null);
   const colRef = useRef<HTMLDivElement | null>(null);
-
   const [colWidth, setColWidth] = useState<number | null>(null);
-
+  // Set up ResizeObserver to track column width - responsive to viewport changes
   useEffect(() => {
     if (!colRef.current) return;
 

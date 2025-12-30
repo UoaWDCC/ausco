@@ -8,15 +8,18 @@ import HallOfFame from "@components/ourpeople/HallOfFame";
 
 export default async function OurPeoplePage() {
   const content = await getOurPeople();
-  
+
+  // TODO: REFACTOR CLASSNAMES, DIV STRUCTURE FOR THIS FILE
   return (
-    <section className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto pt-44 pb-16 px-6 flex flex-col items-center">
+    <section className="flex flex-col items-center bg-(--cream)">
+      <div className="w-full pt-28 md:mx-auto md:flex md:max-w-6xl md:flex-col md:items-center md:px-6 md:pt-44">
         <Header content={content.header} />
+      </div>
+      <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pb-8 sm:pb-12 md:pb-16">
         <ExecutiveTeam content={content.executive} />
         <Conductors content={content.conductors} />
-        <Players content={content.players} />
-        <HallOfFame content={content.hallOfFame} />
+        {/* <Players content={content.players} />
+        <HallOfFame content={content.hallOfFame} /> */}
       </div>
     </section>
   );
