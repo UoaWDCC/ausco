@@ -19,18 +19,20 @@ type ExecutiveTeamProps = {
 
 const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
   return (
-    <section className="w-full pb-16 flex flex-col items-center text-(--navy)">
-      <div className="flex justify-between items-center w-full pb-7">
-        <h2 className="font-medium text-3xl m-0 shrink-0">Executive Team</h2>
-        {content?.description && <p className="pl-36 flex-1">{content.description}</p>}
+    <section className="flex w-full flex-col items-center pb-8 text-(--navy) sm:pb-12 md:pb-16">
+      <div className="flex w-full items-center justify-between pb-4 md:pb-7">
+        <h2 className="m-0 shrink-0 text-xl font-medium sm:text-2xl md:text-3xl">Executive Team</h2>
+        {content?.description && (
+          <p className="hidden flex-1 md:block md:pl-36">{content.description}</p>
+        )}
       </div>
 
       {/* Executive Team Members */}
-      <div className="mt-6 pb-16 grid grid-cols-4 gap-8 justify-items-center">
+      <div className="grid grid-cols-3 justify-items-center gap-2 pb-8 sm:gap-5 sm:pb-12 md:grid-cols-4 md:gap-8 md:pb-16">
         {content?.members?.map((member, index) => {
           return (
-            <div key={index} className="flex flex-col items-start w-full">
-              <div className="relative w-full aspect-square mb-6 overflow-hidden rounded-md">
+            <div key={index} className="flex w-full flex-col items-start">
+              <div className="relative mb-3 aspect-square w-full overflow-hidden rounded-md sm:mb-6">
                 {typeof member.image === "object" && member.image?.url && (
                   <Image
                     src={member.image.url}
@@ -41,11 +43,11 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
                 )}
               </div>
 
-              <div className="flex flex-col text-sm w-full gap-1">
-                <p className="font-semibold">{member.name}</p>
-                <p>Role: {member.role}</p>
-                <p>Degree: {member.degree}</p>
-                <p>Fun Fact: {member.description}</p>
+              <div className="flex w-full flex-col gap-1.5 text-sm">
+                <p className="font-bold wrap-break-word">{member.name}</p>
+                <p className="text-xs sm:text-sm">Role: {member.role}</p>
+                <p className="text-xs sm:text-sm">Degree: {member.degree}</p>
+                <p className="text-xs sm:text-sm">Fun Fact: {member.description}</p>
               </div>
             </div>
           );
