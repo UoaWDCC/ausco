@@ -21,7 +21,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
   return (
     <section className="flex w-full flex-col items-center pb-8 text-(--navy) sm:pb-12 md:pb-16">
       <div className="flex w-full items-center justify-between pb-4 md:pb-7">
-        <h2 className="m-0 shrink-0 text-xl font-medium sm:text-2xl md:text-3xl">Executive Team</h2>
+        <h2 className="shrink-0 text-xl font-medium sm:text-2xl md:text-3xl">Executive Team</h2>
         {content?.description && (
           <p className="hidden flex-1 md:block md:pl-36">{content.description}</p>
         )}
