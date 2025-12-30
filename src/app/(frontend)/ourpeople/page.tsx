@@ -18,8 +18,8 @@ export default async function OurPeoplePage() {
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pb-8 sm:pb-12 md:pb-16">
         <ExecutiveTeam content={content.executive} />
         <Conductors content={content.conductors} />
-        {/* <Players content={content.players} />
-        <HallOfFame content={content.hallOfFame} /> */}
+        {/* <Players content={content.players} /> */}
+        <HallOfFame content={content.hallOfFame} />
       </div>
     </section>
   );

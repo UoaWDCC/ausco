@@ -60,8 +60,8 @@ const Conductors = ({ content }: ConductorsProps) => {
       <h2 className="shrink-0 pb-4 text-center text-xl font-medium sm:text-2xl md:pb-7 md:text-3xl">
         Conductors
       </h2>
+
       {/* Conductors - Full Row */}
-      {/* Note: adjusting the gap will affect calculations on [Conductors - Remaining Rows], when remainder == 2 */}
       <div
         ref={gridRef}
         className="grid w-full grid-cols-3 justify-items-center gap-2 sm:gap-9 md:gap-16"
@@ -88,7 +88,7 @@ const Conductors = ({ content }: ConductorsProps) => {
         })}
       </div>
 
-      {/* Conductors - Remaining Rows */}
+      {/* Conductors - Remaining Row */}
       {remainder === 1 && (
         <div className="mt-2 grid w-full grid-cols-3 justify-items-center gap-2 sm:mt-9 sm:gap-9 md:mt-16 md:gap-16">
           <div className="col-start-2 flex w-full flex-col text-center">
@@ -111,7 +111,6 @@ const Conductors = ({ content }: ConductorsProps) => {
           </div>
         </div>
       )}
-
       {remainder === 2 && colWidth && (
         <div data-remainder-two className="mt-2 flex w-full justify-evenly sm:mt-9 md:mt-16">
           {remainderMembers.map((member, index) => {
