@@ -112,7 +112,7 @@ const Conductors = ({ content }: ConductorsProps) => {
         </div>
       )}
       {remainder === 2 && colWidth && (
-        <div data-remainder-two className="mt-2 flex w-full justify-evenly sm:mt-9 md:mt-16">
+        <div className="mt-2 flex w-full justify-evenly sm:mt-9 md:mt-16">
           {remainderMembers.map((member, index) => {
             const profileUrl = getImageUrl(member.image);
 
