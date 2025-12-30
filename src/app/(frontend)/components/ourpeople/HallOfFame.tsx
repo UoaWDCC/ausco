@@ -82,7 +82,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
       {/* Past Presidents - Full Row */}
       <div
         ref={gridRef}
-        className="mb-5 grid w-full grid-cols-3 justify-items-center gap-2 sm:mb-9 sm:gap-9 md:mb-13 md:gap-16"
+        className="grid w-full grid-cols-3 justify-items-center gap-2 sm:gap-9 md:gap-16"
       >
         {fullRowMembers.map((member, index) => {
           const profileUrl = getImageUrl(member.image);
@@ -108,6 +108,7 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
           );
         })}
       </div>
+
       {/* Past Presidents - Remaining Row */}
       {remainder === 1 && (
         <div className="mt-2 grid w-full grid-cols-3 justify-items-center gap-2 sm:mt-9 sm:gap-9 md:mt-16 md:gap-16">
@@ -166,33 +167,42 @@ const HallOfFame = ({ content }: HallOfFameProps) => {
         </div>
       )}
 
-      <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
+      <div className="mt-2 w-full bg-(--navy) sm:mt-9 md:mt-16" style={{ height: "1px" }} />
 
       <h3 className="pt-5 pb-3 text-base font-semibold sm:pt-9 sm:pb-6 sm:text-lg md:pt-13 md:pb-9 md:text-xl">
         Founders
       </h3>
 
-      <div className="mx-auto grid w-1/2 grid-cols-2 gap-16">
-        {content?.founders?.members?.map((member, index) => {
-          const profileUrl = getImageUrl(member.image);
+      {colWidth && (
+        <div className="flex flex-row justify-evenly">
+          {content?.founders?.members?.map((member, index) => {
+            const profileUrl = getImageUrl(member.image);
 
-          return (
-            <div key={index} className="flex flex-1 flex-col">
-              {profileUrl && foundersFrameUrl && (
-                <FramedImage
-                  imageUrl={profileUrl}
-                  frameUrl={foundersFrameUrl}
-                  frameType="rectangle"
-                />
-              )}
-              <div className="flex w-full flex-col gap-1.5">
-                <p className="text-sm font-bold sm:text-base">{member.name}</p>
-                <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+            return (
+              <div
+                key={index}
+                className="flex w-full flex-col"
+                style={{
+                  width: colWidth,
+                  maxWidth: colWidth,
+                }}
+              >
+                {profileUrl && foundersFrameUrl && (
+                  <FramedImage
+                    imageUrl={profileUrl}
+                    frameUrl={foundersFrameUrl}
+                    frameType="rectangle"
+                  />
+                )}
+                <div className="flex w-full flex-col gap-1.5">
+                  <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                  <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };
