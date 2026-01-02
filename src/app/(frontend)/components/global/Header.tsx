@@ -149,7 +149,7 @@ const Header = ({ content }: HeaderProps) => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full h-22 lg:h-28 px-4 flex justify-between items-center z-50 transition-colors duration-400 overflow-hidden",
+        "fixed top-0 left-0 w-full h-22 lg:h-28 px-4 lg:px-6 flex justify-between items-center z-50 transition-colors duration-400 overflow-hidden",
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
