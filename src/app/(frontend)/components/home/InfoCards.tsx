@@ -73,7 +73,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               width={169}
               height={239}
               sizes="(max-width: 768px) 100vw, 20vw"
-              className="w-[70px] h-[70px] md:w-[169px] md:h-[239px] "
+              className="w-[70px] h-[70px] md:w-[169px] md:h-[239px]"
             />
           )}
           <div className="flex flex-row md:flex-col items-center justify-between md:justify-start md:text-center gap-3 md:gap-5 flex-1 md:flex-none">
@@ -95,47 +95,77 @@ const InfoCards = ({ content }: InfoCardsProps) => {
         <div className="w-full h-px bg-[var(--navy)] md:hidden"></div>
 
         {/* 3/3: Reach Out To Us Card */}
-        <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl p-8 flex flex-col items-center justify-start gap-3">
-          {typeof content.contact.image === "object" && content.contact.image?.url && (
-            <Image
-              src={content.contact.image.url}
-              alt={content.contact.image.alt || "Our People"}
-              width={169}
-              height={239}
-              sizes="(max-width: 768px) 100vw, 20vw"
-              className="w-[70px] h-[70px] md:w-[169px] md:h-[239px] flex-shrink-0"
-            />
-          )}
-          <div className="flex flex-col items-center text-center justify-between flex-1">
-            <h1 className="!font-normal text-2xl md:!text-4xl !m-0">Contact Us</h1>
-            <div className="flex flex-col gap-2 items-center">
+        <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl md:p-8 flex flex-col md:justify-between">
+          <div className="flex flex-row md:flex-col items-center justify-start gap-3">
+            {typeof content.contact.image === "object" && content.contact.image?.url && (
+              <Image
+                src={content.contact.image.url}
+                alt={content.contact.image.alt || "Our People"}
+                width={169}
+                height={239}
+                sizes="(max-width: 768px) 100vw, 20vw"
+                className="w-[70px] h-[70px] md:w-[169px] md:h-[239px]"
+              />
+            )}
+            <div className="flex flex-row md:flex-col items-center justify-between md:justify-start md:text-center gap-3 md:gap-5 flex-1 md:flex-none">
+              <h1 className="!font-normal !text-2xl md:!text-4xl !m-0">Contact Us</h1>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2 items-start md:items-center ml-[82px] md:ml-0 -mt-4 md:mt-0">
+            {/* Top row: Feedback Form + Email (mobile), OR Feedback Form only (desktop) */}
+            <div className="flex flex-row md:flex-col gap-2 items-center">
               <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="navy">
+                <Button
+                  size="lg"
+                  className="text-xs h-8 md:h-10 !px-2 gap-1.5 md:gap-2 md:!px-4 md:text-base"
+                  variant="navy"
+                >
                   <FileEarmarkText size={18} />
                   Feedback Form
                 </Button>
               </a>
-              <div className="flex flex-row gap-2 items-center">
-                <a href={links.instagram} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="navy">
-                    <Instagram size={18} />
-                    Instagram
-                  </Button>
-                </a>
-                <a href={links.facebook} target="_blank" rel="noopener noreferrer">
-                  <Button size="lg" variant="navy">
-                    <Facebook size={18} />
-                    Facebook
-                  </Button>
-                </a>
-              </div>
-              <a href={links.email} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="navy">
+              <a href={links.email} target="_blank" rel="noopener noreferrer" className="md:hidden">
+                <Button size="lg" className="text-xs h-8 !px-2 gap-1.5" variant="navy">
                   <EnvelopeFill size={18} />
                   Email
                 </Button>
               </a>
             </div>
+            {/* Middle row: Instagram + Facebook */}
+            <div className="flex flex-row gap-2 items-center">
+              <a href={links.instagram} target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="text-xs h-8 md:h-10 !px-2 gap-1.5 md:gap-2 md:!px-4 md:text-base"
+                  variant="navy"
+                >
+                  <Instagram size={18} />
+                  Instagram
+                </Button>
+              </a>
+              <a href={links.facebook} target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="text-xs h-8 md:h-10 !px-2 gap-1.5 md:gap-2 md:!px-4 md:text-base"
+                  variant="navy"
+                >
+                  <Facebook size={18} />
+                  Facebook
+                </Button>
+              </a>
+            </div>
+            {/* Bottom row: Email (desktop) */}
+            <a
+              href={links.email}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:block"
+            >
+              <Button size="lg" variant="navy">
+                <EnvelopeFill size={18} />
+                Email
+              </Button>
+            </a>
           </div>
         </div>
       </div>
