@@ -36,6 +36,8 @@ const Players = ({ content }: PlayersProps) => {
     smallGroups.push(smallColumns.slice(i, i + 2));
   }
 
+  const totalColumns = Math.min(4, largeGroups.length + smallGroups.length);
+
   // Map players into a list
   const listOfPlayers = (players: string) =>
     players
@@ -59,10 +61,13 @@ const Players = ({ content }: PlayersProps) => {
         </div>
 
         {/* RIGHT: Players Columns */}
-        <div className="grid w-full grid-cols-4 justify-items-center text-center">
+        <div
+          className="grid w-full justify-items-center text-center"
+          style={{ gridTemplateColumns: `repeat(${totalColumns}, minmax(0, 1fr))` }}
+        >
           {/* Large Groups - Each gets its own column */}
           {largeGroups.map((group, index) => (
-            <div key={index} className="flex w-10 flex-col gap-1 sm:w-20 sm:gap-3 md:w-35 md:gap-4">
+            <div key={index} className="flex w-full max-w-40 flex-col gap-3 sm:gap-4 md:gap-5">
               {typeof group.image === "object" && group.image?.url && (
                 <Image
                   src={group.image.url}
@@ -70,13 +75,15 @@ const Players = ({ content }: PlayersProps) => {
                   width={group.image.width || 800}
                   height={group.image.height || 800}
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="mx-auto"
+                  className="mx-auto px-1.5"
                 />
               )}
 
-              <h3 className="px-1 text-base font-bold sm:px-2 md:px-3 md:text-lg">{group.title}</h3>
+              <h3 className="px-1 text-sm font-bold sm:px-2 sm:text-base md:px-3 md:text-lg">
+                {group.title}
+              </h3>
 
-              <ul className="space-y-2 px-1 sm:px-2 md:space-y-3 md:px-3">
+              <ul className="space-y-2 px-0.5 sm:px-1.5 md:space-y-3 md:px-3">
                 {listOfPlayers(group.players).map((player, index) => (
                   <li
                     key={index}
@@ -88,15 +95,14 @@ const Players = ({ content }: PlayersProps) => {
               </ul>
             </div>
           ))}
-
           {/* Small Groups - 2 per column */}
           {smallGroups.map((column, columnIndex) => (
             <div
               key={columnIndex}
-              className="flex w-10 flex-col gap-1 sm:w-20 sm:gap-3 md:w-35 md:gap-4"
+              className="flex w-full max-w-40 flex-col gap-5 sm:gap-6 md:gap-7"
             >
               {column.map((group, index) => (
-                <div key={index} className="flex w-40 flex-col gap-4">
+                <div key={index} className="flex w-full max-w-40 flex-col gap-3 sm:gap-4 md:gap-5">
                   {typeof group.image === "object" && group.image?.url && (
                     <Image
                       src={group.image.url}
@@ -104,14 +110,16 @@ const Players = ({ content }: PlayersProps) => {
                       width={group.image.width || 800}
                       height={group.image.height || 800}
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="mx-auto"
+                      className="mx-auto px-1.5"
                       key={index}
                     />
                   )}
 
-                  <h3 className="text-base font-bold md:text-lg">{group.title}</h3>
+                  <h3 className="px-1 text-sm font-bold sm:px-2 sm:text-base md:px-3 md:text-lg">
+                    {group.title}
+                  </h3>
 
-                  <ul className="space-y-2 md:space-y-3">
+                  <ul className="space-y-2 px-0.5 sm:px-1.5 md:space-y-3 md:px-3">
                     {listOfPlayers(group.players).map((player, index) => (
                       <li
                         key={index}
