@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import clsx from "clsx";
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
@@ -134,7 +134,7 @@ const Header = ({ content }: HeaderProps) => {
   const isHomePage = usePathname() === "/";
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-  const [_mobileDropdown, setMobileDropdown] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -149,18 +149,18 @@ const Header = ({ content }: HeaderProps) => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400 overflow-hidden",
+        "fixed top-0 left-0 w-full h-22 lg:h-28 px-4 flex justify-between items-center z-50 transition-colors duration-400 overflow-hidden",
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
       {/* mobile menu hamburger */}
       <button
         type="button"
-        className="flex h-10 w-10 lg:hidden flex-shrink-0 items-center justify-center"
+        className="flex h-10 w-10 lg:hidden items-center justify-center"
         onClick={() => setMobileDropdown((open) => !open)}
       >
         <Menu
-          className="h-6 w-6 transition-colors duration-400"
+          className="h-7 w-7 transition-colors duration-400"
           style={{
             color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
           }}
@@ -182,6 +182,7 @@ const Header = ({ content }: HeaderProps) => {
             height={85}
             className={clsx(
               "absolute transition-opacity duration-400 ease-in-out flex-shrink-0",
+              "w-12 h-12 lg:w-[85px] lg:h-[85px]",
               isHomePage ? (scrolled ? "opacity-100" : "opacity-0") : "opacity-100",
             )}
           />
@@ -196,6 +197,7 @@ const Header = ({ content }: HeaderProps) => {
             height={85}
             className={clsx(
               "relative lg:absolute transition-opacity duration-400 ease-in-out flex-shrink-0",
+              "w-12 h-12 lg:w-[85px] lg:h-[85px]",
               isHomePage ? (scrolled ? "opacity-0" : "opacity-100") : "opacity-0",
             )}
           />
@@ -223,6 +225,77 @@ const Header = ({ content }: HeaderProps) => {
           />
         ))}
       </nav>
+
+      {/*mobile dropdown*/}
+      {mobileDropdown && (
+        <div className="fixed inset-0 z-40 bg-[var(--cream)] lg:hidden">
+          <div className="flex flex-col">
+            <div className="flex h-22 items-center px-4">
+              {/*close dropdown button*/}
+              <button
+                type="button"
+                className="flex h-10 w-10 items-center justify-center"
+                onClick={() => setMobileDropdown(false)}
+                aria-label="Close menu"
+              >
+                <X className="h-7 w-7 text-[var(--navy)]" strokeWidth={2} />
+              </button>
+            </div>
+
+            {/*navigation links*/}
+            <nav className="px-6" role="navigation">
+              <div className="space-y-4">
+                {navBar.map((item) => (
+                  <div key={item.label}>
+                    {!item.dropdown ? (
+                      <Link
+                        href={item.href}
+                        className="block py-2 text-lg font-medium"
+                        style={{ color: "var(--navy)" }}
+                        onClick={() => setMobileDropdown(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <div>
+                        <Link
+                          href={item.href}
+                          className="block mb-3 text-lg font-medium"
+                          style={{ color: "var(--navy)" }}
+                          onClick={() => setMobileDropdown(false)}
+                        >
+                          {item.label}
+                        </Link>
+
+                        {/*filter out unnecessary links from mobile*/}
+                        <div className="space-y-2 pl-4">
+                          {item.dropdown
+                            .filter(
+                              (subItem) =>
+                                subItem.label !== "Constitution" &&
+                                subItem.label !== "Proof of Registration",
+                            )
+                            .map((subItem) => (
+                              <Link
+                                key={subItem.label}
+                                href={subItem.href}
+                                className="block py-1 text-base"
+                                style={{ color: "var(--navy)" }}
+                                onClick={() => setMobileDropdown(false)}
+                              >
+                                {subItem.label}
+                              </Link>
+                            ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
