@@ -56,7 +56,7 @@ const Conductors = ({ content }: ConductorsProps) => {
   }, []);
 
   return (
-    <section className="flex w-full flex-col items-center pb-8 text-(--navy) sm:pb-12 md:pb-16">
+    <section className="flex w-full flex-col items-center text-(--navy)">
       <h2 className="shrink-0 pb-4 text-center text-xl font-medium sm:text-2xl md:pb-7 md:text-3xl">
         Conductors
       </h2>
