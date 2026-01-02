@@ -44,19 +44,25 @@ const Players = ({ content }: PlayersProps) => {
       .filter(Boolean);
 
   return (
-    <section className="pb-16">
-      <div className="bg-(--beige) w-full flex rounded-lg text-(--brown) gap-16 p-16">
+    <section className="pb-8 sm:pb-12 md:pb-16">
+      <div className="flex w-full gap-2 bg-(--beige) px-6 py-6 text-(--brown) sm:gap-9 md:gap-16 md:rounded-lg md:px-16 md:py-16">
         {/* LEFT: Title + Dscription */}
-        <div className="text-left w-3/16 flex flex-col h-full justify-center">
-          <h2 className="font-medium text-3xl m-0 shrink-0 pb-7">Players</h2>
-          {content?.description && <p className="">{content.description}</p>}
+        <div className="flex h-full w-auto flex-col md:w-3/16">
+          {/* Title */}
+          <h2 className="text-center text-xl sm:text-2xl md:hidden">
+            P<br />L<br />A<br />Y<br />E<br />R<br />S
+          </h2>
+          <h2 className="hidden font-medium md:block md:text-left md:text-3xl">Players</h2>
+          {content?.description && (
+            <p className="hidden pt-2 text-left md:block">{content.description}</p>
+          )}
         </div>
 
         {/* RIGHT: Players Columns */}
-        <div className="flex-1 flex justify-between text-center">
+        <div className="grid grid-cols-4 text-center">
           {/* Large Groups - Each gets its own column */}
           {largeGroups.map((group, index) => (
-            <div key={index} className="w-40 flex flex-col gap-4">
+            <div key={index} className="flex w-20 flex-col gap-2 sm:w-30 sm:gap-3 md:w-40 md:gap-4">
               {typeof group.image === "object" && group.image?.url && (
                 <Image
                   src={group.image.url}
@@ -68,11 +74,14 @@ const Players = ({ content }: PlayersProps) => {
                 />
               )}
 
-              <h3 className="text-lg font-semibold">{group.title}</h3>
+              <h3 className="text-base font-bold md:text-lg">{group.title}</h3>
 
-              <ul className="space-y-3">
+              <ul className="space-y-2 md:space-y-3">
                 {listOfPlayers(group.players).map((player, index) => (
-                  <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                  <li
+                    key={index}
+                    className="text-xs leading-none wrap-break-word hyphens-auto md:text-sm"
+                  >
                     {player}
                   </li>
                 ))}
@@ -84,7 +93,7 @@ const Players = ({ content }: PlayersProps) => {
           {smallGroups.map((column, columnIndex) => (
             <div key={columnIndex} className="flex flex-col gap-10">
               {column.map((group, index) => (
-                <div key={index} className="w-40 flex flex-col gap-4">
+                <div key={index} className="flex w-40 flex-col gap-4">
                   {typeof group.image === "object" && group.image?.url && (
                     <Image
                       src={group.image.url}
@@ -97,11 +106,14 @@ const Players = ({ content }: PlayersProps) => {
                     />
                   )}
 
-                  <h3 className="text-lg font-semibold">{group.title}</h3>
+                  <h3 className="text-base font-bold md:text-lg">{group.title}</h3>
 
-                  <ul className="space-y-3">
+                  <ul className="space-y-2 md:space-y-3">
                     {listOfPlayers(group.players).map((player, index) => (
-                      <li key={index} className="text-sm leading-none wrap-break-word hyphens-auto">
+                      <li
+                        key={index}
+                        className="text-xs leading-none wrap-break-word hyphens-auto md:text-sm"
+                      >
                         {player}
                       </li>
                     ))}
