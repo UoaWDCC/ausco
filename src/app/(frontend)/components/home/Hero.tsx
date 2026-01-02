@@ -56,6 +56,7 @@ const Hero = ({ content }: HeroProps) => {
             width={280}
             height={280}
             unoptimized={content.secondaryLogo.url.endsWith(".svg")}
+            className="!hidden md:!block"
           />
         )}
 
