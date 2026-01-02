@@ -33,7 +33,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
 
   return (
     <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-32 px-10 flex items-center justify-center">
-      <div className="flex flex-col gap-4 md:flex-row md:gap-7 w-full md:w-auto">
+      <div className="flex flex-col gap-2 md:flex-row md:gap-7 w-full md:w-auto">
         {/* 1/3: About Us Card */}
         <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl md:p-8 flex flex-row md:flex-col items-center justify-start gap-3">
           {typeof content.aboutUs.image === "object" && content.aboutUs.image?.url && (
@@ -56,7 +56,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               </Button>
             </Link>
             <Link href="/aboutus" className="md:hidden">
-              <ArrowUpRight size={32} className="flex-shrink-0 text-[var(--navy)]" />
+              <ArrowUpRight size={38} className="flex-shrink-0 text-[var(--navy)]" />
             </Link>
           </div>
         </div>
@@ -86,7 +86,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               </Button>
             </Link>
             <Link href="/ourpeople" className="md:hidden">
-              <ArrowUpRight size={32} className="flex-shrink-0 text-[var(--navy)]" />
+              <ArrowUpRight size={38} className="flex-shrink-0 text-[var(--navy)]" />
             </Link>
           </div>
         </div>
