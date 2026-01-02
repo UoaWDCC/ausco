@@ -49,13 +49,13 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-row md:flex-col items-center justify-between md:justify-start md:text-center gap-3 md:gap-5 flex-1 md:flex-none">
             <h1 className="!font-normal !text-2xl md:!text-4xl !m-0">About Us</h1>
             <div className="hidden md:block">{content.aboutUs.description}</div>
-            <Link href="/about">
+            <Link href="/aboutus">
               <Button size="lg" className="mt-2 hidden md:flex" variant="navy">
                 Read More
                 <ArrowUpRight size={18} />
               </Button>
             </Link>
-            <Link href="/about" className="md:hidden">
+            <Link href="/aboutus" className="md:hidden">
               <ArrowUpRight size={32} className="flex-shrink-0 text-[var(--navy)]" />
             </Link>
           </div>
