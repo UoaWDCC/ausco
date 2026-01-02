@@ -111,7 +111,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
               <h1 className="!font-normal !text-2xl md:!text-4xl !m-0">Contact Us</h1>
             </div>
           </div>
-          <div className="flex flex-col gap-2 items-start md:items-center ml-[82px] md:ml-0 -mt-4 md:mt-0">
+          <div className="flex flex-col gap-2 items-start md:items-center ml-[82px] md:ml-0 -mt-2 md:mt-0">
             {/* Top row: Feedback Form + Email (mobile), OR Feedback Form only (desktop) */}
             <div className="flex flex-row md:flex-col gap-2 items-center">
               <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
