@@ -15,11 +15,11 @@ export default async function OurPeoplePage() {
       <div className="w-full pt-28 md:mx-auto md:flex md:max-w-6xl md:flex-col md:items-center md:px-6 md:pt-44">
         <Header content={content.header} />
       </div>
-
+      {/* 
       <div className="mx-auto flex max-w-6xl flex-col items-center px-6 pb-8 sm:pb-12 md:pb-16">
         <ExecutiveTeam content={content.executive} />
         <Conductors content={content.conductors} />
-      </div>
+      </div> */}
 
       <div className="w-full flex-col items-center md:mx-auto md:flex md:max-w-6xl md:px-6">
         <Players content={content.players} />
