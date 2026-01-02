@@ -32,7 +32,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
   const links = Object.fromEntries((content.links || []).map((link) => [link.platform, link.url]));
 
   return (
-    <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-32 px-10 flex items-center justify-center">
+    <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-18 md:py-32 px-10 flex items-center justify-center">
       <div className="flex flex-col gap-2 md:flex-row md:gap-7 w-full md:w-auto">
         {/* 1/3: About Us Card */}
         <div className="w-full md:w-[22rem] md:bg-[var(--lightbeige)] md:rounded-xl md:p-8 flex flex-row md:flex-col items-center justify-start gap-3">
