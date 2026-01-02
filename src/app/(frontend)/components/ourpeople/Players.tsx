@@ -59,7 +59,7 @@ const Players = ({ content }: PlayersProps) => {
         </div>
 
         {/* RIGHT: Players Columns */}
-        <div className="grid grid-cols-4 text-center">
+        <div className="grid w-full grid-cols-4 justify-items-center text-center">
           {/* Large Groups - Each gets its own column */}
           {largeGroups.map((group, index) => (
             <div key={index} className="flex w-20 flex-col gap-2 sm:w-30 sm:gap-3 md:w-40 md:gap-4">
