@@ -1,13 +1,21 @@
+type Align = "center" | "left";
+
 type HeaderProps = {
   title: string;
-  description?: string;
+  align: Align;
 };
 
-const Header = ({ title, description }: HeaderProps) => {
+const textDirection: Record<Align, string> = {
+  center: "text-center",
+  left: "text-left",
+};
+
+const Header = ({ title, align }: HeaderProps) => {
   return (
-    <section className="w-full pb-18 px-6 flex flex-col items-center text-center text-(--navy)">
-      <h1 className="font-semibold! text-4xl! m-0! ">{title}</h1>
-      {description && <h3 className="text-base pt-7 px-30">{description}</h3>}
+    <section className="w-full pb-8 sm:pb-12 md:pb-16 flex flex-col items-center text-(--navy)">
+      <div className={`w-full text-center sm:${textDirection[align]} px-6 sm:px-0`}>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl">{title}</h1>
+      </div>
     </section>
   );
 };

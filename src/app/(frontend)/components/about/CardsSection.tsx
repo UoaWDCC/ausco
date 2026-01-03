@@ -35,7 +35,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
   };
 
   return (
-    <section className="flex flex-col items-center pb-16 w-full max-w-6xl mx-auto gap-6">
+    <section className="flex flex-col items-center w-full gap-6">
       {/* First Row */}
       <div className="flex flex-row justify-between items-center gap-6">
         <Card

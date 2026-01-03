@@ -1,48 +1,61 @@
-import { getOurPeople } from "@/actions/ourPeopleActions";
 import Image from "next/image";
 
-const ExecutiveTeam = async () => {
-  // stores payload data, empty array if there are no execs
-  const [content] = await Promise.all([getOurPeople()]);
-  const execs = content.execs || [];
+import { Media } from "@/payload-types";
 
+type ExecutiveTeamProps = {
+  content?: {
+    description?: string | null;
+    members?:
+      | {
+          name: string;
+          role: string;
+          degree: string;
+          description: string;
+          image: Media | string | null;
+        }[]
+      | null;
+  };
+};
+
+const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
   return (
-    <div className="w-full bg-[var(--cream)] pt-20 md:pt-24">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 sm:py-8">
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-3 md:gap-0 text-[var(--navy)]">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium">
-            Executive Team
-          </h2>
-          <p className="text-sm max-w-full md:max-w-xl font-light">{content.generalDescription}</p>
-        </div>
-        <div className="my-6 sm:my-10 md:my-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 justify-items-center">
-          {/*maps execs in array to grid, renders grid*/}
-          {execs.map((exec, i) => {
-            //handles both string and media cases for Image
-            const imageUrl = typeof exec.image === "string" ? exec.image : exec.image?.url;
-            return (
-              <div key={i} className="flex flex-col items-start justify-between">
-                <Image
-                  src={imageUrl || ""}
-                  alt={exec.name}
-                  height={200}
-                  width={200}
-                  className="w-full object-cover mb-6"
-                />
-                {/*displaying exec info*/}
-                <div className="text-xs text-[var(--navy)] w-full leading-5">
-                  <div className="font-semibold text-[var(--navy)]">Name: {exec.name}</div>
-                  <div>Role: {exec.role}</div>
-                  <div>Degree: {exec.degree}</div>
-                  <div>Fun Fact / Description: {exec.description}</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <hr className="border-t-[1.5px] border-[var(--navy)]" />
+    <section className="flex w-full flex-col items-center pb-8 text-(--navy) sm:pb-12 md:pb-16">
+      <div className="flex w-full items-center justify-between pb-4 md:pb-7">
+        <h2 className="shrink-0 text-xl font-medium sm:text-2xl md:text-3xl">Executive Team</h2>
+        {content?.description && (
+          <p className="hidden flex-1 md:block md:pl-36">{content.description}</p>
+        )}
       </div>
-    </div>
+
+      {/* Executive Team Members */}
+      <div className="grid grid-cols-3 justify-items-center gap-2 pb-8 sm:grid-cols-4 sm:gap-5 sm:pb-12 md:grid-cols-5 md:gap-8 md:pb-16">
+        {content?.members?.map((member, index) => {
+          return (
+            <div key={index} className="flex w-full flex-col items-start">
+              <div className="relative mb-3 aspect-square w-full overflow-hidden rounded-md sm:mb-6">
+                {typeof member.image === "object" && member.image?.url && (
+                  <Image
+                    src={member.image.url}
+                    alt={`Profile Picture of ${member.name}`}
+                    fill
+                    className="object-cover object-center"
+                  />
+                )}
+              </div>
+
+              <div className="flex w-full flex-col gap-1.5 text-sm">
+                <p className="font-bold wrap-break-word">{member.name}</p>
+                <p className="text-xs sm:text-sm">Role: {member.role}</p>
+                <p className="text-xs sm:text-sm">Degree: {member.degree}</p>
+                <p className="text-xs sm:text-sm">Fun Fact: {member.description}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
+    </section>
   );
 };
 

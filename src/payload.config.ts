@@ -6,26 +6,25 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
+import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
-import { Item } from "./collections/Test";
-import { Header } from "./collections/global/Header";
-import { Footer } from "./collections/global/Footer";
-import { SiteSetting } from "./collections/global/SiteSetting";
+import { Users } from "./collections/Users";
 
-import HomePage from "./collections/global/HomePage";
-
-import AboutHeroSection from "./collections/global/AboutUsPage";
-
-import { Concerts } from "./collections/global/Concerts";
-
-import { OurPeople } from "./collections/global/OurPeople";
-import { ConcertsUpcoming } from "./collections/global/ConcertsUpcoming";
-import { ConcertsPast } from "./collections/global/ConcertsPast";
-
-import { Gallery } from "./collections/global/Gallery";
-
-import { OurStory } from "./collections/global/OurStory";
+import Home from "./collections/global/Home";
+import AboutUs from "./collections/global/AboutUs";
+import OurStory from "./collections/global/OurStory";
+import OurPeople from "./collections/global/OurPeople";
+import Concerts from "./collections/global/Concerts";
+import ConcertsUpcoming from "./collections/global/ConcertsUpcoming";
+import ConcertsPast from "./collections/global/ConcertsPast";
+import Gallery from "./collections/global/Gallery";
+import GalleryConcert from "./collections/global/GalleryConcert";
+import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
+import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
+import GalleryOther from "./collections/global/GalleryOther";
+import Header from "./collections/global/Header";
+import Footer from "./collections/global/Footer";
+import SiteSettings from "./collections/global/SiteSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -38,20 +37,25 @@ export default buildConfig({
     },
   },
 
+  // Payload Admin UI displays globals in the same order they are defined in this config
   globals: [
-    HomePage,
-    Footer,
-    Header,
-    SiteSetting,
-    AboutHeroSection,
+    Home,
+    AboutUs,
+    OurStory,
     OurPeople,
     Concerts,
     ConcertsUpcoming,
     ConcertsPast,
     Gallery,
-    OurStory,
+    GalleryConcert,
+    GalleryAnnualCamp,
+    GalleryExecutiveCamp,
+    GalleryOther,
+    Header,
+    Footer,
+    SiteSettings,
   ],
-  collections: [Users, Media, Item],
+  collections: [Albums, Media, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -65,6 +69,7 @@ export default buildConfig({
     // storage-adapter-placeholder
     s3Storage({
       collections: {
+        albums: true,
         media: true, // your collection slug
       },
       bucket: process.env.S3_BUCKET || " ",

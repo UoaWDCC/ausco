@@ -16,7 +16,7 @@ const fraunces = Fraunces({
 
 export const metadata = {
   title: "Auckland University Student Chamber Orchestra",
-  description: "A blank template using Payload in a Next.js app.",
+  description: "A blank template using Payload in a Next.js app.", // TODO: Edit
   icons: {
     icon: "/favicon.png",
   },
@@ -31,12 +31,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   const combinedHeaderContent = {
     ...headerContent,
-    primaryLogo: siteSettingContent.primaryLogo,
-    secondaryLogo: siteSettingContent.secondaryLogo,
+    primaryLogo: siteSettingContent.logos.primary,
+    secondaryLogo: siteSettingContent.logos.secondary,
   };
   const combinedFooterContent = {
     ...footerContent,
-    primaryLogo: siteSettingContent.primaryLogo,
+    primaryLogo: siteSettingContent.logos.primary,
     socialMedia: siteSettingContent.links,
   };
 

@@ -1,132 +1,142 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-interface PayloadImage {
-  id: string;
-  url: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-  filename?: string;
-}
+import FramedImage from "./FramedImage";
+import { Media } from "@/payload-types";
 
-const conductorPhotos = [
-  {
-    filename: "Conductor_1.PNG",
-    title: "Conductor 1",
-    text: "Description about them (Developers just put lorem ipsum text for now)",
-  },
-  {
-    filename: "Conductor_2.PNG",
-    title: "Conductor 2",
-    text: "Description about them (Developers just put lorem ipsum text for now)",
-  },
-  {
-    filename: "Conductor_3.PNG",
-    title: "Conductor 3",
-    text: "Description about them (Developers just put lorem ipsum text for now)",
-  },
-];
+type ConductorsProps = {
+  content?: {
+    frame: Media | string | null;
+    members?:
+      | {
+          image: Media | string | null;
+          name: string;
+          description: string;
+        }[]
+      | null;
+  };
+};
 
-const Conductors = () => {
-  const [frameImg, setFrameImg] = useState<PayloadImage | null>(null);
-  const [conductorImgs, setConductorImgs] = useState<(PayloadImage | null)[]>([null, null, null]);
-  const [hovered, setHovered] = useState<number | null>(null);
+const MAX_COLS = 3; // Maximum number of columns per full row
 
+const Conductors = ({ content }: ConductorsProps) => {
+  const getImageUrl = (image: Media | string | null | undefined): string | null => {
+    if (!image) return null; // handle undefined or null
+    if (typeof image === "string") return image; // if it's already a string URL
+    if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
+    return null;
+  };
+  const frameUrl = getImageUrl(content?.frame);
+
+  // 1. Prepare members for layout
+  const members = content?.members ?? [];
+  const count = members.length;
+  // 2. Calculate full rows and remainder
+  const fullRowsCount = Math.floor(count / MAX_COLS);
+  const remainder = count % MAX_COLS;
+  // 3. Split members into full rows and remainder
+  const fullRowMembers = members.slice(0, fullRowsCount * MAX_COLS);
+  const remainderMembers = members.slice(fullRowsCount * MAX_COLS);
+
+  // Measuring column width for remainder == 2 case
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const colRef = useRef<HTMLDivElement | null>(null);
+  const [colWidth, setColWidth] = useState<number | null>(null);
+  // Set up ResizeObserver to track column width - responsive to viewport changes
   useEffect(() => {
-    let foundFrame: PayloadImage | null = null;
-    const foundConductors: (PayloadImage | null)[] = [null, null, null];
-    const allowedNames = ["Conductor_1.PNG", "Conductor_2.PNG", "Conductor_3.PNG"];
+    if (!colRef.current) return;
 
-    const fetchAllPages = async (page = 1) => {
-      const res = await fetch(`/api/media?page=${page}`);
-      const data = await res.json();
-
-      if (data.docs && data.docs.length > 0) {
-        // Find frame if not already found
-        if (!foundFrame) {
-          foundFrame =
-            data.docs.find((doc: PayloadImage) => doc.filename === "ROUND_FRAME_1.PNG") || null;
-        }
-        // Find conductors by allowedNames, keep null if not found
-        allowedNames.forEach((filename, idx) => {
-          if (!foundConductors[idx]) {
-            const img = data.docs.find((doc: PayloadImage) => doc.filename === filename);
-            foundConductors[idx] = img || null;
-          }
-        });
-      }
-
-      // If there's another page, keep fetching
-      if (data.hasNextPage) {
-        await fetchAllPages(page + 1);
-      }
-    };
-
-    fetchAllPages().then(() => {
-      setFrameImg(foundFrame);
-      setConductorImgs(foundConductors);
+    const observer = new ResizeObserver(([entry]) => {
+      setColWidth(entry.contentRect.width);
     });
+
+    observer.observe(colRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="flex flex-col items-center justify-center w-full min-h-screen bg-[var(--cream)]">
-      <h1 className="text-[var(--navy)] font-bold text-center text-2xl md:text-5xl mt-10 mb-4">
+    <section className="flex w-full flex-col items-center text-(--navy)">
+      <h2 className="shrink-0 pb-4 text-center text-xl font-medium sm:text-2xl md:pb-7 md:text-3xl">
         Conductors
-      </h1>
-      <div className="flex flex-row items-center justify-center gap-2 md:gap-5 mt-2">
-        {conductorImgs.map((img, i) => (
-          <div
-            key={i}
-            className="w-50 h-62 md:w-82 md:h-82 flex items-center justify-center rounded-full relative cursor-pointer transition-all duration-300"
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            {/* Frame image as background */}
-            {frameImg && (
-              <Image
-                src={frameImg.url}
-                alt={frameImg.alt || "Frame"}
-                width={frameImg.width || 250}
-                height={frameImg.height || 250}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[40%] md:-translate-y-1/2.5 w-full h-full rounded-full object-cover pointer-events-none"
-                style={{ zIndex: 1 }}
-                priority={i === 0}
-              />
-            )}
-            {/* Photo or Description hovering */}
-            {img ? (
-              hovered === i ? (
-                <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[var(--beige)] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                  <span className="text-center text-m md:text-xl font-bold text-[var(--brown)]">
-                    {conductorPhotos[i]?.title}
-                  </span>
-                  <span className="text-center text-s md:text-lg font-medium text-[var(--brown)]">
-                    {conductorPhotos[i]?.text}
-                  </span>
-                </div>
-              ) : (
-                <Image
-                  src={img.url}
-                  alt={img.alt || `Conductor ${i + 1}`}
-                  width={160}
-                  height={200}
-                  className="absolute left-1/2 top-1/2 w-30 h-40 md:w-52 md:h-66 -translate-x-1/2 -translate-y-1/3 rounded-[50%/50%] object-cover z-10"
-                  priority={i === 0}
-                />
-              )
-            ) : hovered === i ? (
-              <div className="absolute left-1/2 top-1/2 w-33 h-39 md:w-52 md:h-60 -translate-x-1/2 -translate-y-1/3 flex flex-col items-center justify-center bg-[var(--beige)] z-20 pointer-events-none px-4 rounded-[50%/50%]">
-                <span className="text-center text-m md:text-xl font-bold text-[var(--brown)]">
-                  Conductor doesn&apos;t exist
-                </span>
+      </h2>
+
+      {/* Conductors - Full Row */}
+      <div
+        ref={gridRef}
+        className="grid w-full grid-cols-3 justify-items-center gap-2 sm:gap-9 md:gap-16"
+      >
+        {fullRowMembers.map((member, index) => {
+          const profileUrl = getImageUrl(member.image);
+
+          return (
+            <div
+              key={index}
+              ref={index === 0 ? colRef : null}
+              className="flex w-full flex-col text-center"
+            >
+              {profileUrl && frameUrl && (
+                <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} frameType="oval" />
+              )}
+
+              <div className="flex w-full flex-col gap-1.5">
+                <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
               </div>
-            ) : null}
-          </div>
-        ))}
+            </div>
+          );
+        })}
       </div>
+
+      {/* Conductors - Remaining Row */}
+      {remainder === 1 && (
+        <div className="mt-2 grid w-full grid-cols-3 justify-items-center gap-2 sm:mt-9 sm:gap-9 md:mt-16 md:gap-16">
+          <div className="col-start-2 flex w-full flex-col text-center">
+            {(() => {
+              const member = remainderMembers[0];
+              const profileUrl = getImageUrl(member.image);
+
+              return (
+                <>
+                  {profileUrl && frameUrl && (
+                    <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} frameType="oval" />
+                  )}
+                  <div className="flex flex-col gap-1.5">
+                    <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                    <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
+        </div>
+      )}
+      {remainder === 2 && colWidth && (
+        <div className="mt-2 flex w-full justify-evenly sm:mt-9 md:mt-16">
+          {remainderMembers.map((member, index) => {
+            const profileUrl = getImageUrl(member.image);
+
+            return (
+              <div
+                key={index}
+                className="flex w-full flex-col text-center"
+                style={{
+                  width: colWidth,
+                  maxWidth: colWidth,
+                }}
+              >
+                {profileUrl && frameUrl && (
+                  <FramedImage imageUrl={profileUrl} frameUrl={frameUrl} frameType="oval" />
+                )}
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                  <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };

@@ -1,186 +1,210 @@
 "use client";
 
-import { getOurPeople } from "@/actions/ourPeopleActions";
+import { useEffect, useRef, useState } from "react";
+
+import FramedImage from "./FramedImage";
 import { Media } from "@/payload-types";
-import Image from "next/image";
-import pastPresidentsFrame from "../../assets/pastPresidentsFrame.png";
-import foundersFrame from "../../assets/foundersFrame.png";
-import { useEffect, useState } from "react";
 
-// Define cards structure
-type CardStructure = {
-  name: string;
-  image?: string | Media;
-  description: string;
-  index: number;
+type HallOfFameProps = {
+  content: {
+    pastPresidents?: {
+      frame: Media | string | null;
+      members?:
+        | {
+            image: Media | string | null;
+            name: string;
+            description: string;
+          }[]
+        | null;
+    } | null;
+    founders?: {
+      frame: Media | string | null;
+      members?:
+        | {
+            image: Media | string | null;
+            name: string;
+            description: string;
+          }[]
+        | null;
+    } | null;
+  };
 };
 
-const PastPresidentsCard = ({ name, image, description, index }: CardStructure) => {
-  const imageUrl = typeof image === "string" ? image : image?.url;
-  const imageALT = typeof image == "string" ? image : image?.alt;
-  const [hovered, setHovered] = useState<number | null>(null);
-  return (
-    <div
-      className="relative flex flex-col items-center justify-center w-30 h-40 sm:w-30 sm:h-34 md:w-44 md:h-48 lg:w-56 lg:h-64 text-center text-[var(--navy)] rounded-[50%] shadow-sm cursor-pointer transition-all duration-300"
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
-    >
-      {/* Frame as background */}
-      <div className="absolute -inset-6 sm:-inset-8 md:-inset-10 lg:-inset-12 z-20 pointer-events-none">
-        <Image
-          src={pastPresidentsFrame.src}
-          alt="Frame"
-          fill
-          className="absolute rounded-[50%] scale-175 w-full h-full object-cover pointer-events-none"
-          priority={index === 0}
-        />
-      </div>
+const MAX_COLS = 3; // Maximum number of columns per full row
 
-      {/* hovered state - past president's name and description */}
-      {hovered === index ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none px-4 rounded-[50%] bg-[var(--headerblue)] transition-all duration-300">
-          <span className="text-center text-md sm:text-l lg:text-xl">{name}</span>
-          <span className="text-center text-xs sm:xs leading-relaxed">{description}</span>
-        </div>
-      ) : imageUrl ? (
-        <div className="absolute inset-0 rounded-[50%] overflow-hidden">
-          {/* unhovered state - past president's image */}
-          <Image
-            src={imageUrl}
-            alt={imageALT ?? "Image"}
-            fill
-            className="object-cover absolute rounded-[50%] z-10 transition-all duration-300"
-            priority={index === 0}
-          />
-        </div>
-      ) : (
-        // unhovered state when there's no image uploaded
-        <div className="flex flex-col w-36 h-40 sm:w-44 sm:h-48 md:w-52 md:h-60 lg:w-56 lg:h-64 items-center justify-center rounded-[50%] px-4 transition-all duration-300 z-10">
-          <span className="text-center text-xs sm:xs leading-relaxed">image placeholder</span>
-        </div>
-      )}
-    </div>
-  );
-};
+const HallOfFame = ({ content }: HallOfFameProps) => {
+  const getImageUrl = (image: Media | string | null | undefined): string | null => {
+    if (!image) return null; // handle undefined or null
+    if (typeof image === "string") return image; // if it's already a string URL
+    if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
+    return null;
+  };
+  const pastPresidentsFrameUrl = getImageUrl(content?.pastPresidents?.frame);
+  const foundersFrameUrl = getImageUrl(content?.founders?.frame);
 
-const FoundersCard = ({ name, image, description, index }: CardStructure) => {
-  const imageUrl = typeof image === "string" ? image : image?.url;
-  const imageALT = typeof image == "string" ? image : image?.alt;
-  const [hovered, setHovered] = useState<number | null>(null);
-  return (
-    <div
-      className="relative flex flex-col items-center justify-center w-36 h-44 sm:w-44 sm:h-48 md:w-52 md:h-56 lg:w-56 lg:h-64 bg-[var(--cream)] text-center text-[var(--navy)] space-y-5 lg:space-y-6 shadow-sm cursor-pointer transition-all duration-300"
-      onMouseEnter={() => setHovered(index)}
-      onMouseLeave={() => setHovered(null)}
-    >
-      {/* Frame as background */}
-      <div className="absolute -inset-6 sm:-inset-8 md:-inset-10 lg:-inset-12 z-20 pointer-events-none">
-        <Image
-          src={foundersFrame.src}
-          alt="Frame"
-          fill
-          className="absolute w-full h-full object-cover pointer-events-none -translate-y-[-20px]"
-          priority={index === 0}
-        />
-      </div>
+  // 1. Prepare members for layout
+  const members = content?.pastPresidents?.members ?? [];
+  const count = members.length;
+  // 2. Calculate full rows and remainder
+  const fullRowsCount = Math.floor(count / MAX_COLS);
+  const remainder = count % MAX_COLS;
+  // 3. Split members into full rows and remainder
+  const fullRowMembers = members.slice(0, fullRowsCount * MAX_COLS);
+  const remainderMembers = members.slice(fullRowsCount * MAX_COLS);
 
-      {/* hovered state - founder's name and description */}
-      {hovered === index ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none px-4 bg-[var(--headerblue)] transition-all duration-300">
-          <span className="text-center text-md sm:text-l lg:text-xl">{name}</span>
-          <span className="text-center text-xs sm:xs leading-relaxed">{description}</span>
-        </div>
-      ) : imageUrl ? (
-        <div className="absolute inset-0 overflow-hidden">
-          {/* unhovered state - founder's image */}
-          <Image
-            src={imageUrl}
-            alt={imageALT ?? "Image"}
-            fill
-            className="object-cover z-10 transition-all duration-300"
-            priority={index === 0}
-          />
-        </div>
-      ) : (
-        // unhovered state when there's no image uploaded
-        <div className="flex flex-col w-36 h-44 sm:w-44 sm:h-48 md:w-52 md:h-56 lg:w-56 lg:h-64 items-center justify-center px-4 transition-all duration-300 z-10">
-          <span className="text-center text-xs sm:xs leading-relaxed">image placeholder</span>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const HallOfFame = () => {
-  const [pastPresidents, setPastPresidents] = useState<CardStructure[]>([]);
-  const [founders, setFounders] = useState<CardStructure[]>([]);
-
+  // Measuring column width for remainder == 2 case
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const colRef = useRef<HTMLDivElement | null>(null);
+  const [colWidth, setColWidth] = useState<number | null>(null);
+  // Set up ResizeObserver to track column width - responsive to viewport changes
   useEffect(() => {
-    const fetchData = async () => {
-      const [content] = await Promise.all([getOurPeople()]);
-      const hallOfFameData = Array.isArray(content.hallOfFame)
-        ? content.hallOfFame[0]
-        : content.hallOfFame;
-      const pp = hallOfFameData?.pastPresidents || [];
-      const fd = hallOfFameData?.founders || [];
+    if (!colRef.current) return;
 
-      setPastPresidents(
-        pp.map((person: any, index: number) => ({
-          ...person,
-          index,
-          image: (person.image as Media)?.url || "",
-        })),
-      );
-      setFounders(
-        fd.map((person: any, index: number) => ({
-          ...person,
-          index,
-          image: (person.image as Media)?.url || "",
-        })),
-      );
-    };
-    fetchData();
+    const observer = new ResizeObserver(([entry]) => {
+      setColWidth(entry.contentRect.width);
+    });
+
+    observer.observe(colRef.current);
+    return () => observer.disconnect();
   }, []);
+
   return (
-    <div className="bg-[var(--cream)] text-[var(--navy)] justify-center text-center items-center mx-auto py-9 px-4">
-      {/* Title of section is Hall of Fame */}
-      <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"> Hall of Fame </h2>
-      <hr className="border-t-[1.5px] border-[var(--concertblue)] mt-12" />
-      {/* Past Presidents */}
-      <div>
-        <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9">
-          {" "}
-          Past Presidents{" "}
-        </h5>
-        <div className="flex flex-wrap justify-center gap-16 py-9">
-          {pastPresidents.map(({ name, image, description }, i) => (
-            <PastPresidentsCard
-              key={name}
-              name={name}
-              image={image}
-              description={description}
-              index={i}
-            />
-          ))}
-        </div>
+    <section className="text-center text-(--navy)">
+      <h2 className="shrink-0 pb-5 text-xl font-medium sm:pb-9 sm:text-2xl md:pb-13 md:text-3xl">
+        Hall Of Fame
+      </h2>
+      <div className="w-full bg-(--navy)" style={{ height: "1px" }} />
+
+      <h3 className="pt-5 pb-3 text-base font-semibold sm:pt-9 sm:pb-6 sm:text-lg md:pt-13 md:pb-9 md:text-xl">
+        Past Presidents
+      </h3>
+
+      {/* Past Presidents - Full Row */}
+      <div
+        ref={gridRef}
+        className="grid w-full grid-cols-3 justify-items-center gap-2 sm:gap-9 md:gap-16"
+      >
+        {fullRowMembers.map((member, index) => {
+          const profileUrl = getImageUrl(member.image);
+
+          return (
+            <div
+              key={index}
+              ref={index === 0 ? colRef : null}
+              className="flex w-full flex-col text-center"
+            >
+              {profileUrl && pastPresidentsFrameUrl && (
+                <FramedImage
+                  imageUrl={profileUrl}
+                  frameUrl={pastPresidentsFrameUrl}
+                  frameType="oval"
+                />
+              )}
+              <div className="flex w-full flex-col gap-1.5">
+                <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <hr className="border-t-[1.5px] border-[var(--concertblue)] mt-12" />
-      {/* Founders */}
-      <div>
-        <h5 className="text-sm sm:text-sm md:text-md lg:text-l xl:text-xl py-9"> Founders </h5>
-        <div className="flex flex-wrap justify-center gap-16 py-9">
-          {founders.map(({ name, image, description }, i) => (
-            <FoundersCard
-              key={name}
-              name={name}
-              image={image}
-              description={description}
-              index={i}
-            />
-          ))}
+
+      {/* Past Presidents - Remaining Row */}
+      {remainder === 1 && (
+        <div className="mt-2 grid w-full grid-cols-3 justify-items-center gap-2 sm:mt-9 sm:gap-9 md:mt-16 md:gap-16">
+          <div className="col-start-2 flex w-full flex-col text-center">
+            {(() => {
+              const member = remainderMembers[0];
+              const profileUrl = getImageUrl(member.image);
+
+              return (
+                <>
+                  {profileUrl && pastPresidentsFrameUrl && (
+                    <FramedImage
+                      imageUrl={profileUrl}
+                      frameUrl={pastPresidentsFrameUrl}
+                      frameType="oval"
+                    />
+                  )}
+                  <div className="flex w-full flex-col gap-1.5">
+                    <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                    <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                  </div>
+                </>
+              );
+            })()}
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+      {remainder === 2 && colWidth && (
+        <div className="mt-2 flex w-full justify-evenly sm:mt-9 md:mt-16">
+          {remainderMembers.map((member, index) => {
+            const profileUrl = getImageUrl(member.image);
+
+            return (
+              <div
+                key={index}
+                className="flex w-full flex-col text-center"
+                style={{
+                  width: colWidth,
+                  maxWidth: colWidth,
+                }}
+              >
+                {profileUrl && pastPresidentsFrameUrl && (
+                  <FramedImage
+                    imageUrl={profileUrl}
+                    frameUrl={pastPresidentsFrameUrl}
+                    frameType="oval"
+                  />
+                )}
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                  <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="mt-2 w-full bg-(--navy) sm:mt-9 md:mt-16" style={{ height: "1px" }} />
+
+      <h3 className="pt-5 pb-3 text-base font-semibold sm:pt-9 sm:pb-6 sm:text-lg md:pt-13 md:pb-9 md:text-xl">
+        Founders
+      </h3>
+
+      {colWidth && (
+        <div className="flex flex-row justify-evenly">
+          {content?.founders?.members?.map((member, index) => {
+            const profileUrl = getImageUrl(member.image);
+
+            return (
+              <div
+                key={index}
+                className="flex w-full flex-col"
+                style={{
+                  width: colWidth,
+                  maxWidth: colWidth,
+                }}
+              >
+                {profileUrl && foundersFrameUrl && (
+                  <FramedImage
+                    imageUrl={profileUrl}
+                    frameUrl={foundersFrameUrl}
+                    frameType="rectangle"
+                  />
+                )}
+                <div className="flex w-full flex-col gap-1.5">
+                  <p className="text-sm font-bold sm:text-base">{member.name}</p>
+                  <p className="text-xs sm:text-sm md:text-base">{member.description}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </section>
   );
 };
+
 export default HallOfFame;

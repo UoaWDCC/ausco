@@ -1,6 +1,6 @@
 import { GlobalConfig } from "payload";
 
-export const Footer: GlobalConfig = {
+const Footer: GlobalConfig = {
   slug: "footer",
   label: "Footer",
   fields: [
@@ -8,28 +8,41 @@ export const Footer: GlobalConfig = {
       name: "title",
       type: "textarea",
       required: true,
+      admin: {
+        description: "Line breaks are reflected in the website.",
+      },
     },
     {
       name: "sections",
-      type: "array",
       label: "Sections",
+      type: "array",
+      maxRows: 3,
+      admin: {
+        description: "Maximum of 3 lists.",
+      },
       fields: [
         {
           name: "title",
+          label: "Title",
           type: "text",
           required: true,
         },
         {
           name: "options",
           type: "array",
+          admin: {
+            description: "Maximum of 3 links per list.",
+          },
           fields: [
             {
               name: "label",
+              label: "Label",
               type: "text",
               required: true,
             },
             {
               name: "url",
+              label: "URL",
               type: "text",
               required: true,
             },
@@ -58,3 +71,5 @@ export const Footer: GlobalConfig = {
     },
   ],
 };
+
+export default Footer;

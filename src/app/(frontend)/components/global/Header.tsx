@@ -36,8 +36,8 @@ const navBar = [
     label: "Gallery",
     dropdown: [
       { href: "/gallery/concert", label: "Concert Photos" },
-      { href: "/gallery/annualcamp", label: "Annual Camp Photos" },
-      { href: "/gallery/executivecamp", label: "Executive Camp Photos" },
+      { href: "/gallery/annual", label: "Annual Camp Photos" },
+      { href: "/gallery/executive", label: "Executive Camp Photos" },
       { href: "/gallery/other", label: "Other Photos" },
     ],
   },
@@ -76,7 +76,16 @@ const NavItem = ({
         <Button variant="link" asChild className="flex items-center gap-1">
           <Link href={item.href} onMouseUp={(e) => e.currentTarget.blur()}>
             {item.label}
-            {hasDropdown && <ChevronDown size={20} strokeWidth={2.1} />}
+            {hasDropdown && (
+              <ChevronDown
+                size={20}
+                strokeWidth={2.1}
+                className={clsx(
+                  "transition-transform duration-300 ease-in-out",
+                  hoveredItem === index && "rotate-180",
+                )}
+              />
+            )}
           </Link>
         </Button>
 
@@ -152,7 +161,11 @@ const Header = ({ content }: HeaderProps) => {
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
-      <Link href="/" className="flex flex-row items-center">
+      <Link
+        href="/"
+        onMouseUp={(e) => e.currentTarget.blur()}
+        className="flex flex-row items-center"
+      >
         {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
@@ -164,6 +177,7 @@ const Header = ({ content }: HeaderProps) => {
               "absolute transition-opacity duration-400 ease-in-out",
               isHomePage ? (scrolled ? "opacity-100" : "opacity-0") : "opacity-100",
             )}
+            unoptimized={content.primaryLogo.url.endsWith(".svg")}
           />
         )}
 
@@ -178,6 +192,7 @@ const Header = ({ content }: HeaderProps) => {
               "absolute transition-opacity duration-400 ease-in-out",
               isHomePage ? (scrolled ? "opacity-0" : "opacity-100") : "opacity-0",
             )}
+            unoptimized={content.secondaryLogo.url.endsWith(".svg")}
           />
         )}
         <h1

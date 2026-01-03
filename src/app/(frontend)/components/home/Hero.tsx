@@ -21,26 +21,26 @@ type HeroProps = {
 
 // TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
-
   const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
 
   // image parallax effect scroll speed
-  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);  
-
+  const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
   // smooth motion
   const y = useSpring(rawY, spring);
 
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+      <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
             alt={content.background.alt || "Home Page Hero"}
             fill
             priority
+            quality={90}
+            sizes="100vw"
             className="object-cover w-full h-full"
           />
         )}
@@ -55,6 +55,7 @@ const Hero = ({ content }: HeroProps) => {
             alt={content.secondaryLogo.alt || "Hero Logo"}
             width={280}
             height={280}
+            unoptimized={content.secondaryLogo.url.endsWith(".svg")}
           />
         )}
 

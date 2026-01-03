@@ -22,9 +22,9 @@ export type CardProps = {
 
 const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }) => {
   return (
-    <div className="overflow-hidden w-full">
+    <div className="w-full overflow-hidden">
       <motion.div
-        className="flex gap-6 w-max"
+        className="flex w-max gap-6"
         animate={{ x: ["0%", "-50%"] }}
         transition={{
           repeat: Infinity,
@@ -41,7 +41,7 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
                 alt={item.logo.alt || `sponsor ${index + 1}`}
                 width={64}
                 height={64}
-                className="object-contain shrink-0"
+                className="shrink-0 object-contain"
               />
             );
           }
@@ -96,49 +96,52 @@ const Card = ({
   }, [sponsorLogos]);
 
   return (
-    <div className="group relative block w-full h-[400px] overflow-hidden rounded-lg text-(--lightblue) py-18 px-18">
+    <div className="group relative block h-[400px] w-full overflow-hidden rounded-lg px-18 py-18 text-(--lightblue)">
       {/* On Display: Background Image */}
-      <motion.div className="absolute inset-0 z-0" style={{ y, scale: 1.4 }}>
+      <motion.div
+        className="absolute inset-x-0 -inset-y-[20%] z-0 will-change-transform"
+        style={{ y }}
+      >
         <Image
           src={background!}
           alt={alt}
           fill
           priority
           quality={90}
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 110vw, 55vw"
           className="object-cover object-center"
         />
       </motion.div>
 
       {/* On Display: Content */}
-      <div className="relative z-10 h-full flex flex-col items-center text-center">
-        <div className="flex flex-col justify-between items-center h-1/2 w-full">
+      <div className="relative z-10 flex h-full flex-col items-center text-center">
+        <div className="flex h-1/2 w-full flex-col items-center justify-between">
           <div className="flex justify-center">{icon}</div>
 
-          <h1 className="font-semibold! text-4xl! m-0!">{title}</h1>
+          <h1 className="m-0! text-4xl! font-semibold!">{title}</h1>
         </div>
 
-        <div className="h-1/2 w-full flex items-start mt-4">
+        <div className="mt-4 flex h-1/2 w-full items-start">
           <p className="text-base">{summary}</p>
         </div>
       </div>
 
       {/* On Hover: Background Colour */}
-      <div className="absolute inset-0 z-10 group-hover:bg-(--navy) transition-colors duration-500"></div>
+      <div className="absolute inset-0 z-10 transition-colors duration-500 group-hover:bg-(--navy)"></div>
 
       {/* On Hover: Content */}
-      <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-start text-center py-18 px-18">
-        <div className="flex justify-center mb-4">{icon}</div>
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start px-18 py-18 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <div className="mb-4 flex justify-center">{icon}</div>
 
         {isSponsored && (
           <div
             ref={logosWrapperRef}
-            className="bg-(--lightblue) py-3 px-6 mb-4 rounded-md max-w-full overflow-hidden relative flex items-center"
+            className="relative mb-4 flex max-w-full items-center overflow-hidden rounded-md bg-(--lightblue) px-6 py-3"
           >
             {/* Hidden measurement row (always rendered) */}
             <div
               ref={logosRowRef}
-              className="absolute invisible pointer-events-none flex gap-6 flex-nowrap w-max"
+              className="pointer-events-none invisible absolute flex w-max flex-nowrap gap-6"
             >
               {sponsorLogos!.map(
                 (item, index) =>
@@ -150,7 +153,7 @@ const Card = ({
                       alt=""
                       width={64}
                       height={64}
-                      className="object-contain shrink-0"
+                      className="shrink-0 object-contain"
                     />
                   ),
               )}
@@ -160,7 +163,7 @@ const Card = ({
             {shouldScroll ? (
               <ScrollingLogos logos={sponsorLogos!} />
             ) : (
-              <div className="flex gap-6 justify-center items-center flex-nowrap">
+              <div className="flex flex-nowrap items-center justify-center gap-6">
                 {sponsorLogos!.map(
                   (item, index) =>
                     typeof item.logo === "object" &&
@@ -183,11 +186,11 @@ const Card = ({
         {isLinked ? (
           <Button variant="link" asChild className="mt-7">
             <a href={link} target="_blank" rel="noopener noreferrer">
-              <h1 className="font-semibold! text-3xl! m-0!">{description}</h1>
+              <h1 className="m-0! text-3xl! font-semibold!">{description}</h1>
             </a>
           </Button>
         ) : (
-          <p className="text-base text-center overflow-hidden">{description}</p>
+          <p className="overflow-hidden text-center text-base">{description}</p>
         )}
       </div>
     </div>

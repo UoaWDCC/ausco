@@ -30,40 +30,41 @@ type FooterProps = {
 };
 
 const iconMap: Record<string, JSX.Element> = {
-  facebook: <Facebook width={20} height={20} />,
-  youtube: <Youtube width={20} height={20} />,
-  spotify: <Spotify width={20} height={20} />,
-  instagram: <Instagram width={20} height={20} />,
+  facebook: <Facebook className="w-7 h-7 lg:w-5 lg:h-5" />,
+  youtube: <Youtube className="w-7 h-7 lg:w-5 lg:h-5" />,
+  spotify: <Spotify className="w-7 h-7 lg:w-5 lg:h-5" />,
+  instagram: <Instagram className="w-7 h-7 lg:w-5 lg:h-5" />,
 };
 
 const Footer = ({ content }: FooterProps) => {
   return (
     <footer
       id="footer"
-      className="flex flex-col lg:flex-row justify-between items-stretch py-12 pl-10 pr-22"
+      className="flex flex-col lg:flex-row lg:justify-between items-stretch py-12 px-6 lg:pl-10 lg:pr-22"
     >
       {/* LEFT: Logo + Title + Social Media Icons */}
       <div className="flex items-stretch gap-4">
         {/* Logo */}
-        <div className="flex-shrink-0">
+        <div className="shrink-0 hidden lg:block">
           {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
             <Image
               src={content.primaryLogo.url}
               alt={content.primaryLogo.alt || "Footer Logo"}
               width={136}
               height={136}
+              unoptimized={content.primaryLogo.url.endsWith(".svg")}
             />
           )}
         </div>
 
         <div className="flex flex-col flex-1 justify-between">
           {/* Title */}
-          <div className="w-80 font-bold text-xl lg:text-xl whitespace-pre-line">
+          <div className="hidden lg:block w-80 font-bold text-xl lg:text-xl whitespace-pre-line">
             {content.title}
           </div>
 
           {/* Social Media Icons */}
-          <div className="flex gap-4">
+          <div className="flex gap-5 lg:gap-4">
             {content.socialMedia?.map((social, index) => {
               const icon = iconMap[social.platform.toLowerCase()];
 
@@ -77,10 +78,13 @@ const Footer = ({ content }: FooterProps) => {
         </div>
       </div>
 
+      {/* Mobile: divider between social icons and info columns*/}
+      <div className="my-8 h-px w-full bg-(--navy) block lg:hidden" />
+
       {/* RIGHT: Columns */}
-      <div className="flex flex-col md:flex-row items-start gap-24">
+      <div className="w-full grid grid-cols-2 gap-8 lg:flex lg:gap-14 xl:gap-24 lg:w-auto lg:ml-auto">
         {content.sections?.map((section, index) => (
-          <div key={index} className="flex flex-col w-auto">
+          <div key={index} className={`flex flex-col ${index < 2 ? "" : "col-span-2"} lg:w-auto`}>
             {/* Column Header */}
             <h3 className="font-bold mb-2">{section.title}</h3>
 

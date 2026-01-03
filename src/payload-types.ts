@@ -67,9 +67,9 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
+    albums: Album;
     media: Media;
-    test: Test;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -77,9 +77,9 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
+    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    test: TestSelect<false> | TestSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -90,30 +90,38 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
-    'home-page': HomePage;
-    footer: Footer;
-    header: Header;
-    siteSetting: SiteSetting;
-    'about-us-page': AboutUsPage;
+    home: Home;
+    'about-us': AboutUs;
+    'our-story': OurStory;
     'our-people': OurPerson;
     concerts: Concert;
-    'upcoming-concerts': UpcomingConcert;
-    'past-concerts': PastConcert;
+    'concerts-upcoming': ConcertsUpcoming;
+    'concerts-past': ConcertsPast;
     gallery: Gallery;
-    'our-story': OurStory;
+    'gallery-concert': GalleryConcert;
+    'gallery-annualcamp': GalleryAnnualcamp;
+    'gallery-executivecamp': GalleryExecutivecamp;
+    'gallery-other': GalleryOther;
+    header: Header;
+    footer: Footer;
+    'site-settings': SiteSetting;
   };
   globalsSelect: {
-    'home-page': HomePageSelect<false> | HomePageSelect<true>;
-    footer: FooterSelect<false> | FooterSelect<true>;
-    header: HeaderSelect<false> | HeaderSelect<true>;
-    siteSetting: SiteSettingSelect<false> | SiteSettingSelect<true>;
-    'about-us-page': AboutUsPageSelect<false> | AboutUsPageSelect<true>;
+    home: HomeSelect<false> | HomeSelect<true>;
+    'about-us': AboutUsSelect<false> | AboutUsSelect<true>;
+    'our-story': OurStorySelect<false> | OurStorySelect<true>;
     'our-people': OurPeopleSelect<false> | OurPeopleSelect<true>;
     concerts: ConcertsSelect<false> | ConcertsSelect<true>;
-    'upcoming-concerts': UpcomingConcertsSelect<false> | UpcomingConcertsSelect<true>;
-    'past-concerts': PastConcertsSelect<false> | PastConcertsSelect<true>;
+    'concerts-upcoming': ConcertsUpcomingSelect<false> | ConcertsUpcomingSelect<true>;
+    'concerts-past': ConcertsPastSelect<false> | ConcertsPastSelect<true>;
     gallery: GallerySelect<false> | GallerySelect<true>;
-    'our-story': OurStorySelect<false> | OurStorySelect<true>;
+    'gallery-concert': GalleryConcertSelect<false> | GalleryConcertSelect<true>;
+    'gallery-annualcamp': GalleryAnnualcampSelect<false> | GalleryAnnualcampSelect<true>;
+    'gallery-executivecamp': GalleryExecutivecampSelect<false> | GalleryExecutivecampSelect<true>;
+    'gallery-other': GalleryOtherSelect<false> | GalleryOtherSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -143,6 +151,49 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "albums".
+ */
+export interface Album {
+  id: string;
+  category: 'concert' | 'annualcamp' | 'executivecamp' | 'other';
+  year: number;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it would lock you out of the Payload Admin.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -165,37 +216,6 @@ export interface User {
       }[]
     | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: string;
-  alt: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "test".
- */
-export interface Test {
-  id: string;
-  title: string;
-  description: string;
-  dateTime: string;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -222,16 +242,16 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'albums';
+        value: string | Album;
       } | null)
     | ({
         relationTo: 'media';
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'test';
-        value: string | Test;
+        relationTo: 'users';
+        value: string | User;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -277,25 +297,22 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "albums_select".
  */
-export interface UsersSelect<T extends boolean = true> {
+export interface AlbumsSelect<T extends boolean = true> {
+  category?: T;
+  year?: T;
   updatedAt?: T;
   createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -317,14 +334,25 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "test_select".
+ * via the `definition` "users_select".
  */
-export interface TestSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  dateTime?: T;
+export interface UsersSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -368,11 +396,14 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page".
+ * via the `definition` "home".
  */
-export interface HomePage {
+export interface Home {
   id: string;
   hero: {
+    /**
+     * Large hero background image. WebP (or JPG) works best. Export at 2x size/resolution for sharpness on large screens.
+     */
     background: string | Media;
     header: {
       root: {
@@ -391,9 +422,15 @@ export interface HomePage {
     };
     content: string;
   };
+  /**
+   * Select a concert to be highlighted on the homepage. To configure the details of the concerts, please visit [Concerts - Upcoming].
+   */
   homePageUpcomingConcert: {
     select: 'concertSemesterOne' | 'concertSemesterTwo';
   };
+  /**
+   * For the About Us images, an aspect ratio similar to A4 works best.
+   */
   infoCards: {
     aboutUs: {
       image: string | Media;
@@ -407,70 +444,24 @@ export interface HomePage {
       image: string | Media;
     };
   };
+  /**
+   * Paste the full YouTube URL.
+   */
   featureVideoUrl: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer".
+ * via the `definition` "about-us".
  */
-export interface Footer {
-  id: string;
-  title: string;
-  sections?:
-    | {
-        title: string;
-        options?:
-          | {
-              label: string;
-              url: string;
-              id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
- */
-export interface Header {
-  id: string;
-  title: string;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSetting".
- */
-export interface SiteSetting {
-  id: string;
-  primaryLogo: string | Media;
-  secondaryLogo: string | Media;
-  tertiaryLogo: string | Media;
-  links?:
-    | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-page".
- */
-export interface AboutUsPage {
+export interface AboutUs {
   id: string;
   hero: {
     description: string;
+    /**
+     * Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).
+     */
     stickers?:
       | {
           sticker: string | Media;
@@ -478,6 +469,9 @@ export interface AboutUsPage {
         }[]
       | null;
   };
+  /**
+   * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+   */
   cards: {
     vision: {
       background: string | Media;
@@ -500,6 +494,9 @@ export interface AboutUsPage {
       title: string;
       summary: string;
       description: string;
+      /**
+       * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
+       */
       sponsorLogos?:
         | {
             logo: string | Media;
@@ -512,80 +509,223 @@ export interface AboutUsPage {
   createdAt?: string | null;
 }
 /**
+ * All subsequent timeline entries are listed first, before the establishemnt year (2018). The establishment year, which has a unique format, is placed at the bottom as it rarely changes.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story".
+ */
+export interface OurStory {
+  id: string;
+  description?: string | null;
+  /**
+   * 1: Each year is sorted by ascending year when displayed on the website. 2: For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+   */
+  timeline?:
+    | {
+        year: number;
+        title: string;
+        image: string | Media;
+        presidents: {
+          role: 'president' | 'co-president';
+          termLength: 'fullYear' | 'semester';
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        vicePresidents: {
+          exists: 'true' | 'false';
+          termLength?: ('fullYear' | 'semester') | null;
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        conductors: {
+          termLength: 'fullYear' | 'semester';
+          fullYearName?: string | null;
+          semesterName?: {
+            nameOne: string;
+            nameTwo: string;
+          };
+        };
+        text: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  establishment: {
+    year: number;
+    title: string;
+    date?: string | null;
+    present?: string | null;
+    apologies?: string | null;
+    meetingOpen?: string | null;
+    establishmentText?: string | null;
+    image: string | Media;
+    text: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-people".
  */
 export interface OurPerson {
   id: string;
-  image?: (string | null) | Media;
-  description?: string | null;
-  generalDescription?: string | null;
-  execs?:
-    | {
-        name: string;
-        role: string;
-        degree: string;
-        description: string;
-        image: string | Media;
-        id?: string | null;
-      }[]
-    | null;
-  playerDescription?: string | null;
-  sections?:
-    | (
-        | {
-            sectionTitle: string;
-            photo: string | Media;
-            players?:
-              | {
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'large-group';
-          }
-        | {
-            sectionTitle: string;
-            photo: string | Media;
-            players?:
-              | {
-                  name?: string | null;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'small-group';
-          }
-      )[]
-    | null;
-  hallOfFame?:
-    | {
-        pastPresidents?:
+  header: {
+    /**
+     * For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+     */
+    image: string | Media;
+    description?: string | null;
+  };
+  executive?: {
+    description?: string | null;
+    members?:
+      | {
+          name: string;
+          role: string;
+          degree: string;
+          description: string;
+          /**
+           * Images will be automatically cropped to a square aspect ratio, keeping the center content visible.
+           */
+          image: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  conductors: {
+    /**
+     * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+     */
+    frame: string | Media;
+    members?:
+      | {
+          /**
+           * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+           */
+          image: string | Media;
+          name: string;
+          description: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  players?: {
+    description?: string | null;
+    /**
+     * The [Large Orchestra Section] occupies a full column height, while [Small Orchestra Section] occupies half a column height and two [Small Orchestra Section]s stack to create a full column height. All [Large Orchestra Section] columns are displayed first, followed by [Small Orchestra Section] columns. Recommended width: 3 to 4 total columns. Note: Column count on the website is capped at 4, if more columns are needed, it will wrap onto a new row; please check the final layout on the website, as tall columns may affect visual balance.
+     */
+    sections?:
+      | (
           | {
-              name?: string | null;
-              description?: string | null;
-              image?: (string | null) | Media;
+              title: string;
+              /**
+               * An aspect ratio similar to a square works best.
+               */
+              image: string | Media;
+              /**
+               * Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+               */
+              players: string;
               id?: string | null;
-            }[]
-          | null;
-        founders?:
+              blockName?: string | null;
+              blockType: 'large-group';
+            }
           | {
-              name?: string | null;
-              description?: string | null;
-              image?: (string | null) | Media;
+              title: string;
+              /**
+               * An aspect ratio similar to a square works best.
+               */
+              image: string | Media;
+              /**
+               * Seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).
+               */
+              players: string;
               id?: string | null;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
+              blockName?: string | null;
+              blockType: 'small-group';
+            }
+        )[]
+      | null;
+  };
+  hallOfFame: {
+    pastPresidents: {
+      /**
+       * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+       */
+      frame: string | Media;
+      members?:
+        | {
+            /**
+             * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+             */
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    founders: {
+      /**
+       * Frame changes are discouraged. However, if needed, maintain the same size, aspect ratio, and inner frame dimensions to avoid affecting the profile image display.
+       */
+      frame: string | Media;
+      /**
+       * Note: This is designed to hold 2 founding members.
+       */
+      members?:
+        | {
+            /**
+             * Images are automatically cropped to fit the frame. For best results, use images roughly matching the frame's aspect ratio.
+             */
+            image: string | Media;
+            name: string;
+            description: string;
+            id?: string | null;
+          }[]
+        | null;
+    };
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
+ * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
  */
@@ -598,17 +738,23 @@ export interface Concert {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "upcoming-concerts".
+ * via the `definition` "concerts-upcoming".
  */
-export interface UpcomingConcert {
+export interface ConcertsUpcoming {
   id: string;
   description: string;
   concertsUpcoming1: {
     isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
+    title?: string | null;
+    /**
+     * An aspect ratio similar to A4 works best.
+     */
+    poster?: (string | null) | Media;
     description: string;
-    tickets: {
+    /**
+     * If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.
+     */
+    tickets?: {
       matinee: {
         date: string;
         location: string;
@@ -623,10 +769,16 @@ export interface UpcomingConcert {
   };
   concertsUpcoming2: {
     isComingSoon?: boolean | null;
-    title: string;
-    poster: string | Media;
+    title?: string | null;
+    /**
+     * An aspect ratio similar to A4 works best.
+     */
+    poster?: (string | null) | Media;
     description: string;
-    tickets: {
+    /**
+     * If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.
+     */
+    tickets?: {
       matinee: {
         date: string;
         location: string;
@@ -639,39 +791,67 @@ export interface UpcomingConcert {
       };
     };
   };
+  /**
+   * Only the email address is required.
+   */
   googleCalendarEmail: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
+ * For each year, both Semester 1 and Semester 2 concerts must be listed (a year cannot have only one semester's concerts).
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "past-concerts".
+ * via the `definition` "concerts-past".
  */
-export interface PastConcert {
+export interface ConcertsPast {
   id: string;
   description: string;
+  /**
+   * Concerts are automatically sorted by descending year when displayed on the website.
+   */
   pastConcerts?:
     | {
         year: number;
         semesterOne: {
+          /**
+           * An aspect ratio similar to A4 works best.
+           */
           poster: string | Media;
           title: string;
           description: string;
           url: string;
+          /**
+           * The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.
+           */
+          photoAlbum?: string | null;
           charity: {
             name: string;
             url: string;
+            /**
+             * Donation value only, no $ needed.
+             */
             donation: number;
           };
         };
         semesterTwo: {
+          /**
+           * An aspect ratio similar to A4 works best.
+           */
           poster: string | Media;
           title: string;
           description: string;
           url: string;
+          /**
+           * The link has to be native to this website (i.e https://ausco.wdcc.co.nz). Once the photo album is available in the Gallery page, enter the full link to the photo album (e.g. https://ausco.wdcc.co.nz/gallery/annual/[concert-name]). If the photo album is not ready, leave the field blank and the poster will not link to an album.
+           */
+          photoAlbum?: string | null;
           charity: {
             name: string;
             url: string;
+            /**
+             * Donation value only, no $ needed.
+             */
             donation: number;
           };
         };
@@ -682,6 +862,8 @@ export interface PastConcert {
   createdAt?: string | null;
 }
 /**
+ * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery".
  */
@@ -695,53 +877,141 @@ export interface Gallery {
   createdAt?: string | null;
 }
 /**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "our-story".
+ * via the `definition` "gallery-concert".
  */
-export interface OurStory {
+export interface GalleryConcert {
   id: string;
-  OurStoryTitle: string;
-  OurStoryDescription: string;
-  timeline?:
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
+  albums?:
     | {
-        year: string;
-        title?: string | null;
-        dateInfo?: string | null;
-        presidents?:
+        year: number;
+        title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
+        images: (string | Album)[];
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-annualcamp".
+ */
+export interface GalleryAnnualcamp {
+  id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
+  albums?:
+    | {
+        year: number;
+        title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
+        images: (string | Album)[];
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-executivecamp".
+ */
+export interface GalleryExecutivecamp {
+  id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
+  albums?:
+    | {
+        year: number;
+        title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
+        images: (string | Album)[];
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-other".
+ */
+export interface GalleryOther {
+  id: string;
+  /**
+   * Albums are automatically sorted by descending year when displayed on the website.
+   */
+  albums?:
+    | {
+        year: number;
+        title: string;
+        /**
+         * Images are sorted by descending year, then by descending upload date.
+         */
+        images: (string | Album)[];
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: string;
+  /**
+   * Line breaks are reflected in the website.
+   */
+  title: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: string;
+  /**
+   * Line breaks are reflected in the website.
+   */
+  title: string;
+  /**
+   * Maximum of 3 lists.
+   */
+  sections?:
+    | {
+        title: string;
+        /**
+         * Maximum of 3 links per list.
+         */
+        options?:
           | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              president: string;
-              id?: string | null;
-            }[]
-          | null;
-        vicePresidents?:
-          | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              vicePresident: string;
-              id?: string | null;
-            }[]
-          | null;
-        conductors?:
-          | {
-              termType: 'sem1' | 'sem2' | 'full' | 'co';
-              conductor: string;
-              id?: string | null;
-            }[]
-          | null;
-        description: {
-          paragraph: string;
-          id?: string | null;
-        }[];
-        image: string | Media;
-        meetingMinutes?:
-          | {
-              meetingRecords: {
-                title: string;
-                content: string;
-                id?: string | null;
-              }[];
-              establishmentText: string;
-              establishmentQuote: string;
+              label: string;
+              url: string;
               id?: string | null;
             }[]
           | null;
@@ -753,9 +1023,36 @@ export interface OurStory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "home-page_select".
+ * via the `definition` "site-settings".
  */
-export interface HomePageSelect<T extends boolean = true> {
+export interface SiteSetting {
+  id: string;
+  /**
+   * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
+   */
+  logos: {
+    primary: string | Media;
+    secondary: string | Media;
+    tertiary: string | Media;
+  };
+  /**
+   * Each platform can only be selected once.
+   */
+  links?:
+    | {
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "home_select".
+ */
+export interface HomeSelect<T extends boolean = true> {
   hero?:
     | T
     | {
@@ -796,61 +1093,9 @@ export interface HomePageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
+ * via the `definition` "about-us_select".
  */
-export interface FooterSelect<T extends boolean = true> {
-  title?: T;
-  sections?:
-    | T
-    | {
-        title?: T;
-        options?:
-          | T
-          | {
-              label?: T;
-              url?: T;
-              id?: T;
-            };
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
- */
-export interface HeaderSelect<T extends boolean = true> {
-  title?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "siteSetting_select".
- */
-export interface SiteSettingSelect<T extends boolean = true> {
-  primaryLogo?: T;
-  secondaryLogo?: T;
-  tertiaryLogo?: T;
-  links?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "about-us-page_select".
- */
-export interface AboutUsPageSelect<T extends boolean = true> {
+export interface AboutUsSelect<T extends boolean = true> {
   hero?:
     | T
     | {
@@ -908,53 +1153,138 @@ export interface AboutUsPageSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "our-story_select".
+ */
+export interface OurStorySelect<T extends boolean = true> {
+  description?: T;
+  timeline?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        image?: T;
+        presidents?:
+          | T
+          | {
+              role?: T;
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
+                | T
+                | {
+                    nameOne?: T;
+                    nameTwo?: T;
+                  };
+            };
+        vicePresidents?:
+          | T
+          | {
+              exists?: T;
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
+                | T
+                | {
+                    nameOne?: T;
+                    nameTwo?: T;
+                  };
+            };
+        conductors?:
+          | T
+          | {
+              termLength?: T;
+              fullYearName?: T;
+              semesterName?:
+                | T
+                | {
+                    nameOne?: T;
+                    nameTwo?: T;
+                  };
+            };
+        text?: T;
+        id?: T;
+      };
+  establishment?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        date?: T;
+        present?: T;
+        apologies?: T;
+        meetingOpen?: T;
+        establishmentText?: T;
+        image?: T;
+        text?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "our-people_select".
  */
 export interface OurPeopleSelect<T extends boolean = true> {
-  image?: T;
-  description?: T;
-  generalDescription?: T;
-  execs?:
+  header?:
     | T
     | {
-        name?: T;
-        role?: T;
-        degree?: T;
-        description?: T;
         image?: T;
-        id?: T;
+        description?: T;
       };
-  playerDescription?: T;
-  sections?:
+  executive?:
     | T
     | {
-        'large-group'?:
+        description?: T;
+        members?:
           | T
           | {
-              sectionTitle?: T;
-              photo?: T;
-              players?:
-                | T
-                | {
-                    name?: T;
-                    id?: T;
-                  };
+              name?: T;
+              role?: T;
+              degree?: T;
+              description?: T;
+              image?: T;
               id?: T;
-              blockName?: T;
             };
-        'small-group'?:
+      };
+  conductors?:
+    | T
+    | {
+        frame?: T;
+        members?:
           | T
           | {
-              sectionTitle?: T;
-              photo?: T;
-              players?:
+              image?: T;
+              name?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  players?:
+    | T
+    | {
+        description?: T;
+        sections?:
+          | T
+          | {
+              'large-group'?:
                 | T
                 | {
-                    name?: T;
+                    title?: T;
+                    image?: T;
+                    players?: T;
                     id?: T;
+                    blockName?: T;
                   };
-              id?: T;
-              blockName?: T;
+              'small-group'?:
+                | T
+                | {
+                    title?: T;
+                    image?: T;
+                    players?: T;
+                    id?: T;
+                    blockName?: T;
+                  };
             };
       };
   hallOfFame?:
@@ -963,20 +1293,29 @@ export interface OurPeopleSelect<T extends boolean = true> {
         pastPresidents?:
           | T
           | {
-              name?: T;
-              description?: T;
-              image?: T;
-              id?: T;
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
+                  };
             };
         founders?:
           | T
           | {
-              name?: T;
-              description?: T;
-              image?: T;
-              id?: T;
+              frame?: T;
+              members?:
+                | T
+                | {
+                    image?: T;
+                    name?: T;
+                    description?: T;
+                    id?: T;
+                  };
             };
-        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -995,9 +1334,9 @@ export interface ConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "upcoming-concerts_select".
+ * via the `definition` "concerts-upcoming_select".
  */
-export interface UpcomingConcertsSelect<T extends boolean = true> {
+export interface ConcertsUpcomingSelect<T extends boolean = true> {
   description?: T;
   concertsUpcoming1?:
     | T
@@ -1058,9 +1397,9 @@ export interface UpcomingConcertsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "past-concerts_select".
+ * via the `definition` "concerts-past_select".
  */
-export interface PastConcertsSelect<T extends boolean = true> {
+export interface ConcertsPastSelect<T extends boolean = true> {
   description?: T;
   pastConcerts?:
     | T
@@ -1073,6 +1412,7 @@ export interface PastConcertsSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               url?: T;
+              photoAlbum?: T;
               charity?:
                 | T
                 | {
@@ -1088,6 +1428,7 @@ export interface PastConcertsSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               url?: T;
+              photoAlbum?: T;
               charity?:
                 | T
                 | {
@@ -1117,59 +1458,122 @@ export interface GallerySelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "our-story_select".
+ * via the `definition` "gallery-concert_select".
  */
-export interface OurStorySelect<T extends boolean = true> {
-  OurStoryTitle?: T;
-  OurStoryDescription?: T;
-  timeline?:
+export interface GalleryConcertSelect<T extends boolean = true> {
+  albums?:
     | T
     | {
         year?: T;
         title?: T;
-        dateInfo?: T;
-        presidents?:
+        images?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-annualcamp_select".
+ */
+export interface GalleryAnnualcampSelect<T extends boolean = true> {
+  albums?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        images?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-executivecamp_select".
+ */
+export interface GalleryExecutivecampSelect<T extends boolean = true> {
+  albums?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        images?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "gallery-other_select".
+ */
+export interface GalleryOtherSelect<T extends boolean = true> {
+  albums?:
+    | T
+    | {
+        year?: T;
+        title?: T;
+        images?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  title?: T;
+  sections?:
+    | T
+    | {
+        title?: T;
+        options?:
           | T
           | {
-              termType?: T;
-              president?: T;
+              label?: T;
+              url?: T;
               id?: T;
             };
-        vicePresidents?:
-          | T
-          | {
-              termType?: T;
-              vicePresident?: T;
-              id?: T;
-            };
-        conductors?:
-          | T
-          | {
-              termType?: T;
-              conductor?: T;
-              id?: T;
-            };
-        description?:
-          | T
-          | {
-              paragraph?: T;
-              id?: T;
-            };
-        image?: T;
-        meetingMinutes?:
-          | T
-          | {
-              meetingRecords?:
-                | T
-                | {
-                    title?: T;
-                    content?: T;
-                    id?: T;
-                  };
-              establishmentText?: T;
-              establishmentQuote?: T;
-              id?: T;
-            };
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  logos?:
+    | T
+    | {
+        primary?: T;
+        secondary?: T;
+        tertiary?: T;
+      };
+  links?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
         id?: T;
       };
   updatedAt?: T;

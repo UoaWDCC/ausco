@@ -1,8 +1,8 @@
 import { GlobalConfig } from "payload";
 
-export const ConcertsUpcoming: GlobalConfig = {
-  slug: "upcoming-concerts",
-  label: "Upcoming Concerts",
+const ConcertsUpcoming: GlobalConfig = {
+  slug: "concerts-upcoming",
+  label: "Concerts - Upcoming",
   fields: [
     {
       name: "description",
@@ -12,7 +12,6 @@ export const ConcertsUpcoming: GlobalConfig = {
       // Starter template: only applies on document creation, not when editing existing docs
       defaultValue: "AUSCO hosts 2 different concerts and performs them twice a year.",
     },
-
     // Upcoming Concerts 1
     {
       name: "concertsUpcoming1",
@@ -25,33 +24,44 @@ export const ConcertsUpcoming: GlobalConfig = {
           type: "checkbox",
           required: false,
         },
-
         {
           name: "title",
           label: "Title",
           type: "text",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+          },
         },
-
         {
           name: "poster",
           label: "Poster",
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "An aspect ratio similar to A4 works best.",
+          },
         },
-
         {
           name: "description",
           label: "Description",
           type: "textarea",
           required: true,
+          // Starter template: only applies on document creation, not when editing existing docs
+          defaultValue:
+            "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!",
         },
-
         {
           name: "tickets",
           label: "Tickets",
           type: "group",
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
+          },
           fields: [
             {
               name: "matinee",
@@ -107,7 +117,6 @@ export const ConcertsUpcoming: GlobalConfig = {
         },
       ],
     },
-
     // Upcoming Concerts 2
     {
       name: "concertsUpcoming2",
@@ -125,6 +134,9 @@ export const ConcertsUpcoming: GlobalConfig = {
           label: "Title",
           type: "text",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+          },
         },
         {
           name: "poster",
@@ -132,17 +144,29 @@ export const ConcertsUpcoming: GlobalConfig = {
           type: "upload",
           relationTo: "media",
           required: true,
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description: "An aspect ratio similar to A4 works best.",
+          },
         },
         {
           name: "description",
           label: "Description",
           type: "textarea",
           required: true,
+          // Starter template: only applies on document creation, not when editing existing docs
+          defaultValue:
+            "Experience the magic of classical music - details coming soon. Stay tuned for our next unforgettable concert!",
         },
         {
           name: "tickets",
           label: "Tickets",
           type: "group",
+          admin: {
+            condition: (_, siblingData) => !siblingData?.isComingSoon,
+            description:
+              "If the Matinee/Concert dates listed are before the current date, the ticket purchasing button (with the ticket URL) will be automatically disabled on the website.",
+          },
           fields: [
             {
               name: "matinee",
@@ -204,6 +228,9 @@ export const ConcertsUpcoming: GlobalConfig = {
       label: "Embeded Google Calendar Email",
       type: "text",
       required: true,
+      admin: {
+        description: "Only the email address is required.",
+      },
     },
   ],
 };

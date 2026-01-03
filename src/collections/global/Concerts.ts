@@ -1,8 +1,12 @@
 import { GlobalConfig } from "payload";
 
-export const Concerts: GlobalConfig = {
+const Concerts: GlobalConfig = {
   slug: "concerts",
   label: "Concerts",
+  admin: {
+    description:
+      "For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+  },
   fields: [
     {
       name: "upcoming",

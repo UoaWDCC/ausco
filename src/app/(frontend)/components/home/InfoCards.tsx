@@ -32,22 +32,23 @@ const InfoCards = ({ content }: InfoCardsProps) => {
   const links = Object.fromEntries((content.links || []).map((link) => [link.platform, link.url]));
 
   return (
-    <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-32 px-10 flex items-center justify-center">
+    <section className="bg-(--cream) text-(--navy) text-base py-32 px-10 flex items-center justify-center">
       <div className="flex flex-row gap-7">
         {/* 1/3: About Us Card */}
-        <div className="w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-88 bg-(--lightbeige) rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.aboutUs.image === "object" && content.aboutUs.image?.url && (
             <Image
               src={content.aboutUs.image.url}
               alt={content.aboutUs.image.alt || "About Us"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center gap-5">
-            <h1 className="!font-normal !text-4xl !m-0">About Us</h1>
+            <h1 className="font-normal! text-4xl! m-0!">About Us</h1>
             <div>{content.aboutUs.description}</div>
-            <Link href="/about">
+            <Link href="/aboutus">
               <Button size="lg" className="mt-2" variant="navy">
                 Read More
                 <ArrowUpRight size={18} />
@@ -57,17 +58,18 @@ const InfoCards = ({ content }: InfoCardsProps) => {
         </div>
 
         {/* 2/3: Our People Card */}
-        <div className="w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-88 bg-(--lightbeige) rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.ourPeople.image === "object" && content.ourPeople.image?.url && (
             <Image
               src={content.ourPeople.image.url}
               alt={content.ourPeople.image.alt || "Our People"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center gap-5">
-            <h1 className="!font-normal !text-4xl !m-0">Our People</h1>
+            <h1 className="font-normal! text-4xl! m-0!">Our People</h1>
             <div>{content.ourPeople.description}</div>
             <Link href="/ourpeople">
               <Button size="lg" className="mt-2" variant="navy">
@@ -79,17 +81,18 @@ const InfoCards = ({ content }: InfoCardsProps) => {
         </div>
 
         {/* 3/3: Reach Out To Us Card */}
-        <div className="w-[22rem] bg-[var(--lightbeige)] rounded-xl p-8 flex flex-col items-center justify-start gap-3">
+        <div className="w-88 bg-(--lightbeige) rounded-xl p-8 flex flex-col items-center justify-start gap-3">
           {typeof content.contact.image === "object" && content.contact.image?.url && (
             <Image
               src={content.contact.image.url}
               alt={content.contact.image.alt || "Our People"}
               width={169}
               height={239}
+              sizes="(max-width: 768px) 100vw, 20vw"
             />
           )}
           <div className="flex flex-col items-center text-center justify-between flex-1">
-            <h1 className="!font-normal !text-4xl !m-0">Contact Us</h1>
+            <h1 className="font-normal! text-4xl! m-0!">Contact Us</h1>
             <div className="flex flex-col gap-2 items-center">
               <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="navy">
