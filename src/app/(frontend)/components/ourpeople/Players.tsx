@@ -50,7 +50,7 @@ const Players = ({ content }: PlayersProps) => {
       {/* LEFT: Title + Dscription */}
       <div className="flex h-full w-auto flex-col md:w-3/16">
         {/* Title */}
-        <h2 className="text-center text-xl sm:text-2xl md:hidden">
+        <h2 className="text-center text-xl font-medium sm:text-2xl md:hidden">
           P<br />L<br />A<br />Y<br />E<br />R<br />S
         </h2>
         <h2 className="hidden font-medium md:block md:text-left md:text-3xl">Players</h2>
@@ -74,11 +74,11 @@ const Players = ({ content }: PlayersProps) => {
                 width={group.image.width || 800}
                 height={group.image.height || 800}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="mx-auto px-1.5"
+                className="mx-auto px-2.5 sm:px-2 md:px-1.5"
               />
             )}
 
-            <h3 className="px-1 text-sm font-bold sm:px-2 sm:text-base md:px-3 md:text-lg">
+            <h3 className="px-1 pt-2 text-sm font-bold sm:px-2 sm:pt-2.5 sm:text-base md:px-3 md:pt-3 md:text-lg">
               {group.title}
             </h3>
 
@@ -106,12 +106,12 @@ const Players = ({ content }: PlayersProps) => {
                     width={group.image.width || 800}
                     height={group.image.height || 800}
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="mx-auto px-1.5"
+                    className="mx-auto px-2.5 sm:px-2 md:px-1.5"
                     key={index}
                   />
                 )}
 
-                <h3 className="px-1 text-sm font-bold sm:px-2 sm:text-base md:px-3 md:text-lg">
+                <h3 className="px-1 pt-2 text-sm font-bold sm:px-2 sm:pt-2.5 sm:text-base md:px-3 md:pt-3 md:text-lg">
                   {group.title}
                 </h3>
 

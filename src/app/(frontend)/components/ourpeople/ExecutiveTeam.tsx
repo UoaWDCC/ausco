@@ -28,7 +28,7 @@ const ExecutiveTeam = ({ content }: ExecutiveTeamProps) => {
       </div>
 
       {/* Executive Team Members */}
-      <div className="grid grid-cols-3 justify-items-center gap-2 pb-8 sm:gap-5 sm:pb-12 md:grid-cols-4 md:gap-8 md:pb-16">
+      <div className="grid grid-cols-3 justify-items-center gap-2 pb-8 sm:grid-cols-4 sm:gap-5 sm:pb-12 md:grid-cols-5 md:gap-8 md:pb-16">
         {content?.members?.map((member, index) => {
           return (
             <div key={index} className="flex w-full flex-col items-start">
