@@ -1,5 +1,5 @@
-import Hero from "@components/about/Hero";
-import CardsSection from "@components/about/CardsSection";
+import Hero from "@components/aboutus/Hero";
+import CardsSection from "@components/aboutus/CardsSection";
 
 import { getAboutUs } from "@/actions/pageActions";
 
