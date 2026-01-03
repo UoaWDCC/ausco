@@ -154,10 +154,6 @@ const OurPeople: GlobalConfig = {
       name: "players",
       label: "Orchestra Players",
       type: "group",
-      admin: {
-        description:
-          "The [Large Orchestra Section] occupies a full column height, while [Small Orchestra Section] occupies half a column height and can stack with other half columns. All full columns are displayed first, followed by half columns. Recommended width: ~5 columns.",
-      },
       fields: [
         {
           name: "description",
@@ -168,6 +164,10 @@ const OurPeople: GlobalConfig = {
         {
           name: "sections",
           type: "blocks",
+          admin: {
+            description:
+              "The [Large Orchestra Section] occupies a full column height, while [Small Orchestra Section] occupies half a column height and two [Small Orchestra Section]s stack to create a full column height. All [Large Orchestra Section] columns are displayed first, followed by [Small Orchestra Section] columns. Recommended width: 3 to 4 total columns. Note: Column count on the website is capped at 4, if more columns are needed, it will wrap onto a new row; please check the final layout on the website, as tall columns may affect visual balance.",
+          },
           blocks: [
             {
               slug: "large-group",
@@ -313,6 +313,10 @@ const OurPeople: GlobalConfig = {
               name: "members",
               label: "Founder Members",
               type: "array",
+              maxRows: 2,
+              admin: {
+                description: "Note: This is designed to hold 2 founding members.",
+              },
               fields: [
                 {
                   name: "image",

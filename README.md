@@ -11,7 +11,6 @@
 7.  add type props to files in /actions
 8.  blur when image is rendering
 9.  global util file (stringToList, url checker for Media, etc.)
-10. sort tailwind css classes (use Tailwind CSS IntelliSense extension for auto sorting)
 
 ### BUGS
 
