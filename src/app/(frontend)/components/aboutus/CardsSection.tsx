@@ -89,8 +89,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
             )}
             title={content.sponsorsAndPartnerships.title}
             summary={content.sponsorsAndPartnerships.summary}
-            // description={content.sponsorsAndPartnerships.description}
-            description={""}
+            description={content.sponsorsAndPartnerships.description}
             link={""}
             sponsorLogos={content.sponsorsAndPartnerships.sponsorLogos}
           />

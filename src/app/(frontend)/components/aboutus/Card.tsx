@@ -170,5 +170,3 @@ const Card = ({
 };
 
 export default Card;
-
-// overflow-scroll
