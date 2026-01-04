@@ -45,7 +45,7 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
 
   const LogoSet = ({ keyPrefix }: { keyPrefix: string }) => (
     <motion.div
-      className="flex shrink-0 gap-6"
+      className="flex h-full shrink-0 items-center gap-6 pr-6"
       animate={{ x: [0, "-100%"] }}
       transition={{
         x: {
@@ -61,14 +61,14 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
         return (
           <div
             key={`${keyPrefix}-${index}`}
-            className="flex h-16 w-16 shrink-0 items-center justify-center"
+            className="relative flex h-full shrink-0 items-center justify-center"
           >
             <Image
               src={logo.url!}
               alt={logo.alt || `sponsor ${(index % validLogos.length) + 1}`}
               width={64}
               height={64}
-              className="h-full w-auto rounded-md object-contain"
+              className="h-full max-h-full w-auto rounded-md object-contain"
             />
           </div>
         );
@@ -145,7 +145,7 @@ const Card = ({
         <div className="mb-4 flex justify-center">{icon}</div>
 
         {isSponsored && (
-          <div className="relative mb-4 flex w-full items-center overflow-hidden rounded-md bg-(--lightblue) px-6 py-4">
+          <div className="relative mb-4 flex w-full items-center overflow-hidden rounded-md bg-(--lightblue) px-6 py-6">
             {/* Visible Content */}
             <ScrollingLogos logos={sponsorLogos!} />
           </div>
