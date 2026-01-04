@@ -15,39 +15,73 @@ export type CardProps = {
   alt: string;
   title: string;
   summary: string;
-  description: string;
+  description?: string;
   link?: string | undefined;
   sponsorLogos?: { logo?: Media | string | null }[] | null;
 };
 
 const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }) => {
-  return (
-    <div className="w-full overflow-hidden">
-      <motion.div
-        className="flex w-max gap-6"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [duplicateCount, setDuplicateCount] = React.useState(2);
+  const validLogos = logos.filter((item) => typeof item.logo === "object" && item.logo?.url); // Filter out invalid logos
+
+  // Calculate how many times to duplicate logos based on container width
+  React.useEffect(() => {
+    if (!containerRef.current || validLogos.length === 0) return;
+
+    const containerWidth = containerRef.current.offsetWidth;
+    const itemWidth = 88; // 64px logo + 24px gap
+    const totalLogosWidth = itemWidth * validLogos.length;
+
+    // Duplicate enough times to fill at least 2x the container width
+    const needed = Math.ceil((containerWidth * 2) / totalLogosWidth);
+    setDuplicateCount(Math.max(2, needed));
+  }, [validLogos.length]);
+
+  if (validLogos.length === 0) return null;
+
+  const duplicatedLogos = Array(duplicateCount).fill(validLogos).flat();
+  const duration = 20 + duplicatedLogos.length * 0.3;
+
+  const LogoSet = ({ keyPrefix }: { keyPrefix: string }) => (
+    <motion.div
+      className="flex shrink-0 gap-6"
+      animate={{ x: [0, "-100%"] }}
+      transition={{
+        x: {
           repeat: Infinity,
+          repeatType: "loop",
+          duration: duration,
           ease: "linear",
-          duration: 20, // slower = bigger number
-        }}
-      >
-        {[...logos, ...logos].map((item, index) => {
-          if (typeof item.logo === "object" && item.logo?.url) {
-            return (
-              <Image
-                key={index}
-                src={item.logo.url}
-                alt={item.logo.alt || `sponsor ${index + 1}`}
-                width={64}
-                height={64}
-                className="shrink-0 rounded-md object-contain"
-              />
-            );
-          }
-          return null;
-        })}
-      </motion.div>
+        },
+      }}
+    >
+      {duplicatedLogos.map((item, index) => {
+        const logo = item.logo as Media;
+        return (
+          <div
+            key={`${keyPrefix}-${index}`}
+            className="flex h-16 w-16 shrink-0 items-center justify-center"
+          >
+            <Image
+              src={logo.url!}
+              alt={logo.alt || `sponsor ${(index % validLogos.length) + 1}`}
+              width={64}
+              height={64}
+              className="h-full w-auto rounded-md object-contain"
+            />
+          </div>
+        );
+      })}
+    </motion.div>
+  );
+
+  return (
+    <div ref={containerRef} className="relative w-full overflow-hidden">
+      <div className="flex">
+        <LogoSet keyPrefix="first" />
+        <LogoSet keyPrefix="second" />
+      </div>
     </div>
   );
 };
@@ -71,29 +105,6 @@ const Card = ({
   const rawY = useTransform(scrollY, [0, rangeIn], [0, rangeOut]);
   // smooth motion
   const y = useSpring(rawY, spring);
-
-  const logosWrapperRef = React.useRef<HTMLDivElement>(null);
-  const logosRowRef = React.useRef<HTMLDivElement>(null);
-  const [shouldScroll, setShouldScroll] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!logosWrapperRef.current || !logosRowRef.current) return;
-
-    const checkOverflow = () => {
-      const maxWidth = logosWrapperRef.current!.clientWidth;
-      const contentWidth = logosRowRef.current!.scrollWidth;
-
-      setShouldScroll(contentWidth > maxWidth);
-    };
-
-    checkOverflow();
-
-    const resizeObserver = new ResizeObserver(checkOverflow);
-    resizeObserver.observe(logosWrapperRef.current);
-    resizeObserver.observe(logosRowRef.current);
-
-    return () => resizeObserver.disconnect();
-  }, [sponsorLogos]);
 
   return (
     <div className="group relative block h-[400px] w-full overflow-hidden rounded-lg px-18 py-18 text-(--lightblue)">
@@ -134,52 +145,9 @@ const Card = ({
         <div className="mb-4 flex justify-center">{icon}</div>
 
         {isSponsored && (
-          <div
-            ref={logosWrapperRef}
-            className="relative mb-4 flex max-w-full items-center overflow-hidden rounded-md bg-(--lightblue) px-6 py-3"
-          >
-            {/* Hidden measurement row (always rendered) */}
-            <div
-              ref={logosRowRef}
-              className="pointer-events-none invisible absolute flex w-max flex-nowrap gap-6"
-            >
-              {sponsorLogos!.map(
-                (item, index) =>
-                  typeof item.logo === "object" &&
-                  item.logo?.url && (
-                    <Image
-                      key={index}
-                      src={item.logo.url}
-                      alt=""
-                      width={64}
-                      height={64}
-                      className="shrink-0 rounded-md object-contain"
-                    />
-                  ),
-              )}
-            </div>
-
+          <div className="relative mb-4 flex w-full items-center overflow-hidden rounded-md bg-(--lightblue) px-6 py-4">
             {/* Visible Content */}
-            {shouldScroll ? (
-              <ScrollingLogos logos={sponsorLogos!} />
-            ) : (
-              <div className="flex flex-nowrap items-center justify-center gap-6">
-                {sponsorLogos!.map(
-                  (item, index) =>
-                    typeof item.logo === "object" &&
-                    item.logo?.url && (
-                      <Image
-                        key={index}
-                        src={item.logo.url}
-                        alt={item.logo.alt || `sponsor ${index + 1}`}
-                        width={64}
-                        height={64}
-                        className="rounded-md object-contain"
-                      />
-                    ),
-                )}
-              </div>
-            )}
+            <ScrollingLogos logos={sponsorLogos!} />
           </div>
         )}
 
@@ -190,7 +158,7 @@ const Card = ({
             </a>
           </Button>
         ) : (
-          <p className="overflow-scroll text-center text-base">{description}</p>
+          <p className="text-center text-base">{description}</p>
         )}
       </div>
     </div>
@@ -198,3 +166,5 @@ const Card = ({
 };
 
 export default Card;
+
+// overflow-scroll
