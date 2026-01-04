@@ -35,33 +35,37 @@ const CardsSection = ({ content }: CardsSectionProps) => {
   };
 
   return (
-    <section className="flex flex-col items-center w-full gap-6">
-      {/* First Row */}
-      <div className="flex flex-row justify-between items-center gap-6">
-        <Card
-          icon={<Eye className="h-12 w-12" />}
-          background={getImageUrl(content.vision.background)}
-          alt={getImageAlt(content.vision.background, "Vision Background")}
-          title={content.vision.title}
-          summary={content.vision.summary}
-          description={content.vision.description ?? "Vision Description"}
-          link={""}
-        />
+    <section className="flex w-full flex-col items-center gap-6">
+      {/* First Row: Vision & Story */}
+      <div className="flex flex-row items-center justify-between gap-6">
+        <div className="basis-13/21">
+          <Card
+            icon={<Eye className="h-12 w-12" />}
+            background={getImageUrl(content.vision.background)}
+            alt={getImageAlt(content.vision.background, "Vision Background")}
+            title={content.vision.title}
+            summary={content.vision.summary}
+            description={content.vision.description}
+            link={""}
+          />
+        </div>
 
-        <Card
-          icon={<History className="h-12 w-12" />}
-          background={getImageUrl(content.story.background)}
-          alt={getImageAlt(content.story.background, "Story Background")}
-          title={content.story.title}
-          summary={content.story.summary}
-          description={`View ${content.story.title}`}
-          link={"https://ausco.wdcc.co.nz/ourstory"}
-        />
+        <div className="basis-8/20">
+          <Card
+            icon={<History className="h-12 w-12" />}
+            background={getImageUrl(content.story.background)}
+            alt={getImageAlt(content.story.background, "Story Background")}
+            title={content.story.title}
+            summary={content.story.summary}
+            description={`View ${content.story.title}`}
+            link={"https://ausco.wdcc.co.nz/ourstory"}
+          />
+        </div>
       </div>
 
-      {/* Second Row */}
-      <div className="flex flex-row justify-between items-center gap-6">
-        <div className="basis-2/5">
+      {/* Second Row: Constitution & Sponsors/Partnerships */}
+      <div className="flex flex-row items-center justify-between gap-6">
+        <div className="basis-8/20">
           <Card
             icon={<BookText className="h-12 w-12" />}
             background={getImageUrl(content.constitution.background)}
@@ -75,7 +79,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
           />
         </div>
 
-        <div className="basis-3/5">
+        <div className="basis-13/21">
           <Card
             icon={<Handshake className="h-12 w-12" />}
             background={getImageUrl(content.sponsorsAndPartnerships.background)}
@@ -85,9 +89,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
             )}
             title={content.sponsorsAndPartnerships.title}
             summary={content.sponsorsAndPartnerships.summary}
-            description={
-              content.sponsorsAndPartnerships.description ?? "Sponsors & Partnerships Description"
-            }
+            description={content.sponsorsAndPartnerships.description}
             link={""}
             sponsorLogos={content.sponsorsAndPartnerships.sponsorLogos}
           />
