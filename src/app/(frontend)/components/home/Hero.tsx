@@ -66,9 +66,11 @@ const Hero = ({ content }: HeroProps) => {
         </h1>
 
         {/* Content */}
-        <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-208">{content.content}</h3>
+        <h3 className="hidden md:block text-base md:text-lg w-full md:w-[75%] max-w-208">
+          {content.content}
+        </h3>
 
-        <Button variant="beige" size="lg" className="mt-2.5">
+        <Button variant="beige" size="lg" className="hidden md:flex mt-2.5">
           Join Us
           <ArrowUpRight size={18} />
         </Button>
