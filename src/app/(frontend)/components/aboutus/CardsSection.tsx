@@ -37,8 +37,8 @@ const CardsSection = ({ content }: CardsSectionProps) => {
   return (
     <section className="flex w-full flex-col items-center gap-6">
       {/* First Row: Vision & Story */}
-      <div className="flex flex-row items-center justify-between gap-6">
-        <div className="basis-13/21">
+      <div className="flex w-full flex-row items-center gap-6">
+        <div className="w-3/5">
           <Card
             icon={<Eye className="h-12 w-12" />}
             background={getImageUrl(content.vision.background)}
@@ -50,7 +50,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
           />
         </div>
 
-        <div className="basis-8/20">
+        <div className="w-2/5">
           <Card
             icon={<History className="h-12 w-12" />}
             background={getImageUrl(content.story.background)}
@@ -64,8 +64,8 @@ const CardsSection = ({ content }: CardsSectionProps) => {
       </div>
 
       {/* Second Row: Constitution & Sponsors/Partnerships */}
-      <div className="flex flex-row items-center justify-between gap-6">
-        <div className="basis-8/20">
+      <div className="flex w-full flex-row items-center gap-6">
+        <div className="w-2/5">
           <Card
             icon={<BookText className="h-12 w-12" />}
             background={getImageUrl(content.constitution.background)}
@@ -79,7 +79,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
           />
         </div>
 
-        <div className="basis-13/21">
+        <div className="w-3/5">
           <Card
             icon={<Handshake className="h-12 w-12" />}
             background={getImageUrl(content.sponsorsAndPartnerships.background)}
