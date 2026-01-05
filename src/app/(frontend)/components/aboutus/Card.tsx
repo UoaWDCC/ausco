@@ -111,7 +111,7 @@ const Card = ({
   const y = useSpring(rawY, spring);
 
   return (
-    <div className="group relative block h-[400px] w-full overflow-hidden rounded-lg px-18 py-18 text-(--lightblue)">
+    <div className="group relative block h-[390px] w-full overflow-hidden rounded-lg px-16 py-16 text-(--lightblue)">
       {/* On Display: Background Image */}
       <motion.div
         className="absolute inset-x-0 -inset-y-[20%] z-0 will-change-transform"
@@ -136,8 +136,8 @@ const Card = ({
           <h1 className="m-0! text-4xl! font-semibold!">{title}</h1>
         </div>
 
-        <div className="mt-4 flex h-1/2 w-full items-start">
-          <p className="text-base">{summary}</p>
+        <div className="mt-4 h-1/2 w-full overflow-hidden">
+          <p className="line-clamp-4 text-base">{summary}</p>
         </div>
       </div>
 
@@ -145,24 +145,26 @@ const Card = ({
       <div className="absolute inset-0 z-10 transition-colors duration-500 group-hover:bg-(--navy)"></div>
 
       {/* On Hover: Content */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start px-18 py-18 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-start px-16 py-16 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <div className="mb-4 flex justify-center">{icon}</div>
 
         {isSponsored && (
-          <div className="relative mb-4 flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-3">
+          <div className="relative mb-4 flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-2">
             {/* Visible Content */}
             <ScrollingLogos logos={sponsorLogos!} />
           </div>
         )}
 
         {isLinked ? (
-          <Button variant="link" asChild className="mt-7">
+          <Button variant="link" asChild className="mt-10">
             <a href={link} target="_blank" rel="noopener noreferrer">
-              <h1 className="m-0! text-3xl! font-semibold!">{description}</h1>
+              <h1 className="line-clamp-3 text-3xl">{description}</h1>
             </a>
           </Button>
         ) : (
-          <p className="text-center text-base">{description}</p>
+          <p className={`text-center text-base ${isSponsored ? "line-clamp-2" : "line-clamp-6"}`}>
+            {description}
+          </p>
         )}
       </div>
     </div>
