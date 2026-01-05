@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
 import parallaxConfig from "@/config/parallax";
 
-export type CardProps = {
+export type DesktopCardProps = {
   icon: React.ReactNode;
   background: string | null;
   alt: string;
@@ -41,7 +41,7 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
   if (validLogos.length === 0) return null;
 
   const duplicatedLogos = Array(duplicateCount).fill(validLogos).flat();
-  const duration = 40 + duplicatedLogos.length * 0.3; // Seconds to complete one full loop - increase/decrease the base number to speed up/slow down one loop
+  const duration = 45 + duplicatedLogos.length * 0.3; // Seconds to complete one full loop - increase/decrease the base number to speed up/slow down one loop
 
   const LogoSet = ({ keyPrefix }: { keyPrefix: string }) => (
     <motion.div
@@ -90,7 +90,7 @@ const ScrollingLogos = ({ logos }: { logos: { logo?: Media | string | null }[] }
   );
 };
 
-const Card = ({
+const DesktopCard = ({
   icon,
   background,
   alt,
@@ -99,7 +99,7 @@ const Card = ({
   description,
   link,
   sponsorLogos,
-}: CardProps) => {
+}: DesktopCardProps) => {
   const isLinked = link ? link.trim() !== "" : false;
   const isSponsored = sponsorLogos && sponsorLogos.length > 0;
 
@@ -171,4 +171,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default DesktopCard;

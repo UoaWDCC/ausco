@@ -11,6 +11,7 @@
 7.  add type props to files in /actions
 8.  blur when image is rendering
 9.  global util file (stringToList, url checker for Media, etc.)
+10. rename header to hero.tsx (so not to be confused with global header)
 
 ### BUGS
 

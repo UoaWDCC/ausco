@@ -1,9 +1,9 @@
 import { Eye, History, BookText, Handshake } from "lucide-react";
 
 import { Media } from "@/payload-types";
-import Card from "./Card";
+import DesktopCard from "./DesktopCard";
 
-type CardTileProps = {
+type CardProps = {
   background: Media | string | null;
   title: string;
   summary: string;
@@ -11,16 +11,16 @@ type CardTileProps = {
   sponsorLogos?: { logo: Media | string | null }[] | null;
 };
 
-type CardsSectionProps = {
+type CardLayoutProps = {
   content: {
-    vision: CardTileProps;
-    story: CardTileProps;
-    constitution: CardTileProps;
-    sponsorsAndPartnerships: CardTileProps;
+    vision: CardProps;
+    story: CardProps;
+    constitution: CardProps;
+    sponsorsAndPartnerships: CardProps;
   };
 };
 
-const CardsSection = ({ content }: CardsSectionProps) => {
+const CardLayout = ({ content }: CardLayoutProps) => {
   const getImageUrl = (image: Media | string | null | undefined): string | null => {
     if (!image) return null; // handle undefined or null
     if (typeof image === "string") return image; // if it's already a string URL
@@ -39,7 +39,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
       {/* First Row: Vision & Story */}
       <div className="flex w-full flex-row items-center gap-6">
         <div className="w-3/5">
-          <Card
+          <DesktopCard
             icon={<Eye className="h-12 w-12" />}
             background={getImageUrl(content.vision.background)}
             alt={getImageAlt(content.vision.background, "Vision Background")}
@@ -51,7 +51,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
         </div>
 
         <div className="w-2/5">
-          <Card
+          <DesktopCard
             icon={<History className="h-12 w-12" />}
             background={getImageUrl(content.story.background)}
             alt={getImageAlt(content.story.background, "Story Background")}
@@ -66,7 +66,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
       {/* Second Row: Constitution & Sponsors/Partnerships */}
       <div className="flex w-full flex-row items-center gap-6">
         <div className="w-2/5">
-          <Card
+          <DesktopCard
             icon={<BookText className="h-12 w-12" />}
             background={getImageUrl(content.constitution.background)}
             alt={getImageAlt(content.constitution.background, "Constitution Background")}
@@ -80,7 +80,7 @@ const CardsSection = ({ content }: CardsSectionProps) => {
         </div>
 
         <div className="w-3/5">
-          <Card
+          <DesktopCard
             icon={<Handshake className="h-12 w-12" />}
             background={getImageUrl(content.sponsorsAndPartnerships.background)}
             alt={getImageAlt(
@@ -99,4 +99,4 @@ const CardsSection = ({ content }: CardsSectionProps) => {
   );
 };
 
-export default CardsSection;
+export default CardLayout;
