@@ -1,3 +1,5 @@
+"use client";
+
 import { JSX } from "react";
 import Image from "next/image";
 import { Facebook, Instagram, Spotify, Youtube } from "react-bootstrap-icons";
@@ -69,7 +71,7 @@ const Footer = ({ content }: FooterProps) => {
               const icon = iconMap[social.platform.toLowerCase()];
 
               return (
-                <a key={index} href={social.url} target="_blank" rel="noopener noreferrer">
+                <a key={index} href={social.url} target="_blank" rel="noopener noreferrer" onMouseUp={(e) => e.currentTarget.blur()}>
                   {icon}
                 </a>
               );
@@ -91,7 +93,7 @@ const Footer = ({ content }: FooterProps) => {
             {/* Column Options */}
             {section.options?.map((option, index) => (
               <Button key={index} variant="link" asChild className="mb-1">
-                <a href={option.url}>{option.label}</a>
+                <a href={option.url} onMouseUp={(e) => e.currentTarget.blur()}>{option.label}</a>
               </Button>
             ))}
           </div>
