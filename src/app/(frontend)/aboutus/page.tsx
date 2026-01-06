@@ -1,5 +1,5 @@
 import Hero from "@components/aboutus/Hero";
-import DesktopLayout from "@components/aboutus/CardLayout";
+import CardLayout from "@components/aboutus/CardLayout";
 
 import { getAboutUs } from "@/actions/pageActions";
 
@@ -10,8 +10,7 @@ export default async function AboutPage() {
     <section className="bg-(--cream)">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-44 pb-16">
         <Hero content={aboutUsContent.hero} />
-        <DesktopLayout content={aboutUsContent.cards} />
-        <PhoneLayout />
+        <CardLayout content={aboutUsContent.cards} />
       </div>
     </section>
   );

@@ -258,6 +258,16 @@ svg {
   }
 }
 
+@layer utilities {
+  .rtl {
+    direction: rtl;
+  }
+
+  .ltr {
+    direction: ltr;
+  }
+}
+
 footer {
   background-color: var(--beige);
 }
