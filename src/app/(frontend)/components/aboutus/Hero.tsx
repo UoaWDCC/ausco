@@ -20,7 +20,7 @@ const Hero = ({ content }: HeroProps) => {
         </div>
 
         {/* Array of Stickers */}
-        <div className="rtl order-1 grid grid-cols-6 gap-0 md:order-2 md:gap-1">
+        <div className="md:rtl order-1 grid grid-cols-6 gap-0 pr-18 md:order-2 md:gap-1 md:pr-0">
           {content.stickers?.map(
             (item, index) =>
               typeof item.sticker === "object" &&
