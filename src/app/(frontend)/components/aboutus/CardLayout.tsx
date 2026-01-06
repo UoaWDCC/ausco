@@ -108,20 +108,21 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 
       {/* Mobile Layout: below md */}
       <div className="flex w-full flex-col bg-(--lightblue) text-(--navy) md:hidden">
-        <div className="px-6 py-8">
-          <div className="flex flex-col gap-8">
-            <button
-              type="button"
-              onClick={() => setOurVisionOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between text-left text-2xl font-semibold sm:text-3xl"
-            >
-              <span>Our Vision</span>
-              {ourVisionOpen ? <X /> : <ChevronDown />}
-            </button>
+        <div className="flex flex-col">
+          <button
+            type="button"
+            onClick={() => setOurVisionOpen((prev) => !prev)}
+            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
+          >
+            <span>Our Vision</span>
+            {ourVisionOpen ? <X /> : <ChevronDown />}
+          </button>
 
-            {ourVisionOpen && <p className="text-sm">{content.vision.description}</p>}
-            <div className="mb-8 h-px bg-(--navy) md:hidden" />
-          </div>
+          {ourVisionOpen && (
+            <div className="px-6 pb-8">
+              <p className="text-sm">{content.vision.description}</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -129,3 +130,4 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 };
 
 export default CardLayout;
+//           <div className="mb-8 h-px bg-(--navy) md:hidden" />

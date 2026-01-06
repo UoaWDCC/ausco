@@ -11,7 +11,7 @@ export default async function AboutPage() {
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-44">
         <Hero content={aboutUsContent.hero} />
       </div>
-      <div className="w-full pb-8 sm:pb-12 md:pb-16">
+      <div className="w-full md:pb-16">
         <CardLayout content={aboutUsContent.cards} />
       </div>
     </section>
