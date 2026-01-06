@@ -460,7 +460,7 @@ export interface AboutUs {
   hero: {
     description: string;
     /**
-     * Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).
+     * Maximum and recommended number of stickers: 6. Use PNG format for transparent backgrounds (WebP also supported).
      */
     stickers?:
       | {

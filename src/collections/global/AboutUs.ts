@@ -23,7 +23,7 @@ const AboutUs: GlobalConfig = {
           maxRows: 6,
           admin: {
             description:
-              "Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).",
+              "Maximum and recommended number of stickers: 6. Use PNG format for transparent backgrounds (WebP also supported).",
           },
           fields: [
             {

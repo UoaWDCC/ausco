@@ -20,7 +20,12 @@ const Hero = ({ content }: HeroProps) => {
         </div>
 
         {/* Array of Stickers */}
-        <div className="md:rtl order-1 grid grid-cols-6 gap-0 pr-18 md:order-2 md:gap-1 md:pr-0">
+        <div
+          className="order-1 grid gap-0 pr-18 md:order-2 md:gap-1 md:pr-0"
+          style={{
+            gridTemplateColumns: `repeat(${content.stickers?.length}, minmax(0, 1fr))`,
+          }}
+        >
           {content.stickers?.map(
             (item, index) =>
               typeof item.sticker === "object" &&
@@ -31,7 +36,7 @@ const Hero = ({ content }: HeroProps) => {
                   alt={item.sticker.alt || `sticker ${index + 1}`}
                   width={100}
                   height={100}
-                  className="wiggle-hover ltr"
+                  className="wiggle-hover"
                   priority
                   loading="eager"
                 />
