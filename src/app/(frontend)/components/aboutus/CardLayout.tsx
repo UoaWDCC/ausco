@@ -8,6 +8,7 @@ import { ArrowUpRight, BookText, ChevronDown, Eye, Handshake, History, X } from 
 import { Media } from "@/payload-types";
 
 import DesktopCard from "./DesktopCard";
+import LogoCarousel from "./LogoCarousel";
 
 type CardProps = {
   background: Media | string | null;
@@ -136,8 +137,14 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             {sponsorOpen ? <X /> : <ChevronDown />}
           </button>
           {sponsorOpen && (
-            <div className="px-6 pb-8">
+            <div className="flex flex-col gap-8 px-6 pb-8">
               <p className="text-sm">{content.sponsorsAndPartnerships.description}</p>
+
+              {content.sponsorsAndPartnerships.sponsorLogos && (
+                <div className="relative flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-2">
+                  <LogoCarousel logos={content.sponsorsAndPartnerships.sponsorLogos} />{" "}
+                </div>
+              )}
             </div>
           )}
 

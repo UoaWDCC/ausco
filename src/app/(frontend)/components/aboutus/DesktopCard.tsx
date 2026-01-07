@@ -83,7 +83,7 @@ const DesktopCard = ({
         {isSponsored && (
           <div className="relative mb-4 flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-2">
             {/* Visible Content */}
-            <LogoCarousel logos={sponsorLogos!} />
+            <LogoCarousel logos={sponsorLogos} />
           </div>
         )}
 
