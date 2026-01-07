@@ -1,12 +1,13 @@
 "use client";
 
-import { ArrowUpRight, ChevronDown, Eye, History, BookText, Handshake, X } from "lucide-react";
-
-import { Media } from "@/payload-types";
-import DesktopCard from "./DesktopCard";
-
 import { useState } from "react";
 import Link from "next/link";
+
+import { ArrowUpRight, BookText, ChevronDown, Eye, Handshake, History, X } from "lucide-react";
+
+import { Media } from "@/payload-types";
+
+import DesktopCard from "./DesktopCard";
 
 type CardProps = {
   background: Media | string | null;
