@@ -1,11 +1,12 @@
 "use client";
 
-import { ChevronDown, Eye, History, BookText, Handshake, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Eye, History, BookText, Handshake, X } from "lucide-react";
 
 import { Media } from "@/payload-types";
 import DesktopCard from "./DesktopCard";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type CardProps = {
   background: Media | string | null;
@@ -117,12 +118,49 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             <span>Our Vision</span>
             {ourVisionOpen ? <X /> : <ChevronDown />}
           </button>
-
           {ourVisionOpen && (
             <div className="px-6 pb-8">
               <p className="text-sm">{content.vision.description}</p>
             </div>
           )}
+
+          <div className="mx-6 h-px bg-(--navy) md:hidden" />
+
+          <button
+            type="button"
+            onClick={() => setSponsorOpen((prev) => !prev)}
+            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
+          >
+            <span>Sponsors & Partnerships</span>
+            {sponsorOpen ? <X /> : <ChevronDown />}
+          </button>
+          {sponsorOpen && (
+            <div className="px-6 pb-8">
+              <p className="text-sm">{content.sponsorsAndPartnerships.description}</p>
+            </div>
+          )}
+
+          <div className="mx-6 h-px bg-(--navy) md:hidden" />
+
+          <Link
+            href="/ourstory"
+            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
+          >
+            <span>Our Story</span>
+            <ArrowUpRight />
+          </Link>
+
+          <div className="mx-6 h-px bg-(--navy) md:hidden" />
+
+          <a
+            href="https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
+          >
+            <span>Constitution</span>
+            <ArrowUpRight />
+          </a>
         </div>
       </div>
     </section>
@@ -130,4 +168,3 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 };
 
 export default CardLayout;
-//           <div className="mb-8 h-px bg-(--navy) md:hidden" />
