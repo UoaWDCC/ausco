@@ -80,12 +80,8 @@ const DesktopCard = ({
       <div className="absolute inset-0 z-20 flex flex-col items-center justify-start px-16 py-16 text-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <div className="mb-4 flex justify-center">{icon}</div>
 
-        {isSponsored && (
-          <div className="relative mb-4 flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-2">
-            {/* Visible Content */}
-            <LogoCarousel logos={sponsorLogos} />
-          </div>
-        )}
+        {/* Visible Content */}
+        {isSponsored && <LogoCarousel logos={sponsorLogos} />}
 
         {isLinked ? (
           <Button variant="link" asChild className="mt-10">

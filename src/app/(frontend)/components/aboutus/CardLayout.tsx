@@ -141,9 +141,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               <p className="text-sm">{content.sponsorsAndPartnerships.description}</p>
 
               {content.sponsorsAndPartnerships.sponsorLogos && (
-                <div className="relative flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) py-2">
-                  <LogoCarousel logos={content.sponsorsAndPartnerships.sponsorLogos} />{" "}
-                </div>
+                <LogoCarousel logos={content.sponsorsAndPartnerships.sponsorLogos} />
               )}
             </div>
           )}
@@ -177,6 +175,5 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 
 export default CardLayout;
 
-// todo: edit the carousel so it looks good on phone screens, move height div into the carousel.
 // edit the icon thickness/boldness
 // add links to about us cards

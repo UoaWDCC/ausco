@@ -34,11 +34,11 @@ const LogoCarousel = ({ logos }: LogoCarouselProps) => {
   if (validLogos.length === 0) return null;
 
   const duplicatedLogos = Array(duplicateCount).fill(validLogos).flat();
-  const duration = 45 + duplicatedLogos.length * 0.3; // Seconds to complete one full loop - increase/decrease the base number to speed up/slow down one loop
+  const duration = 40 + duplicatedLogos.length * 0.3; // Seconds to complete one full loop - increase/decrease the base number to speed up/slow down one loop
 
   const LogoSet = ({ keyPrefix }: { keyPrefix: string }) => (
     <motion.div
-      className="flex h-full shrink-0 items-center gap-23 pr-23"
+      className="flex h-full shrink-0 items-center gap-18 pr-18 md:gap-23 md:pr-23"
       animate={{ x: [0, "-100%"] }}
       transition={{
         x: {
@@ -71,14 +71,14 @@ const LogoCarousel = ({ logos }: LogoCarouselProps) => {
   );
 
   return (
-    <div ref={containerRef} className="relative h-full w-full overflow-hidden">
+    <div
+      ref={containerRef}
+      className="relative flex h-24 w-full items-center overflow-hidden rounded-md bg-(--lightblue) md:mb-4 md:py-2"
+    >
       <div className="flex h-full">
         <LogoSet keyPrefix="first" />
         <LogoSet keyPrefix="second" />
       </div>
-
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-8 bg-linear-to-r from-(--lightblue) to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-8 bg-linear-to-l from-(--lightblue) to-transparent" />
     </div>
   );
 };
