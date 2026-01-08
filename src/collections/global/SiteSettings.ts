@@ -42,6 +42,7 @@ const SiteSettings: GlobalConfig = {
       name: "links",
       label: "Links",
       type: "array",
+      maxRows: 7,
       admin: {
         description: "Each platform can only be selected once.",
       },
@@ -72,6 +73,7 @@ const SiteSettings: GlobalConfig = {
             { label: "Spotify", value: "spotify" },
             { label: "Feedback Form", value: "feedbackForm" },
             { label: "Email", value: "email" },
+            { label: "Constitution", value: "constitution" },
           ],
         },
         {

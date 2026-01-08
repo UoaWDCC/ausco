@@ -2,9 +2,18 @@ import Hero from "@components/aboutus/Hero";
 import CardLayout from "@components/aboutus/CardLayout";
 
 import { getAboutUs } from "@/actions/pageActions";
+import { getSiteSetting } from "@/actions/globalActions";
 
 export default async function AboutPage() {
-  const aboutUsContent = await getAboutUs();
+  const [aboutUsContent, siteSettingContent] = await Promise.all([getAboutUs(), getSiteSetting()]);
+
+  const constitutionLink = siteSettingContent?.links?.find(
+    (link) => link.platform === "constitution",
+  )?.url;
+  const cardContent = {
+    ...aboutUsContent.cards,
+    constitutionLink,
+  };
 
   return (
     <section className="bg-(--cream)">
@@ -12,7 +21,7 @@ export default async function AboutPage() {
         <Hero content={aboutUsContent.hero} />
       </div>
       <div className="w-full md:pb-16">
-        <CardLayout content={aboutUsContent.cards} />
+        <CardLayout content={cardContent} />
       </div>
     </section>
   );

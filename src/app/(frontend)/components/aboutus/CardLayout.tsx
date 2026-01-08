@@ -24,6 +24,7 @@ type CardLayoutProps = {
     story: CardProps;
     constitution: CardProps;
     sponsorsAndPartnerships: CardProps;
+    constitutionLink?: string | null;
   };
 };
 
@@ -43,6 +44,10 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 
   const [ourVisionOpen, setOurVisionOpen] = useState(false);
   const [sponsorOpen, setSponsorOpen] = useState(false);
+
+  const constitutionLink =
+    content.constitutionLink ??
+    "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra";
 
   return (
     <section className="flex w-full flex-col">
@@ -85,9 +90,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.constitution.title}
               summary={content.constitution.summary}
               description={`View ${content.constitution.title}`}
-              link={
-                "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
-              }
+              link={constitutionLink}
             />
           </div>
 
@@ -167,7 +170,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
           <a
-            href="https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra"
+            href={constitutionLink}
             target="_blank"
             rel="noopener noreferrer"
             className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"

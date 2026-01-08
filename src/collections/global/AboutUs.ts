@@ -109,6 +109,9 @@ const AboutUs: GlobalConfig = {
           name: "constitution",
           label: "Constitution",
           type: "group",
+          admin: {
+            description: "Note: To change the link to AUSCO's Constitution, please refer to [Site Settings | Links]."
+          },
           fields: [
             {
               name: "background",
