@@ -176,3 +176,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 };
 
 export default CardLayout;
+
+// todo: edit the carousel so it looks good on phone screens, move height div into the carousel.
+// edit the icon thickness/boldness
+// add links to about us cards
