@@ -118,7 +118,11 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
           >
             <span>Our Vision</span>
-            {ourVisionOpen ? <X /> : <ChevronDown />}
+            {ourVisionOpen ? (
+              <X strokeWidth={3.25} size={30} />
+            ) : (
+              <ChevronDown strokeWidth={3.25} size={30} />
+            )}
           </button>
           {ourVisionOpen && (
             <div className="px-6 pb-8">
@@ -134,7 +138,11 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
           >
             <span>Sponsors & Partnerships</span>
-            {sponsorOpen ? <X /> : <ChevronDown />}
+            {sponsorOpen ? (
+              <X strokeWidth={3.25} size={30} />
+            ) : (
+              <ChevronDown strokeWidth={3.25} size={30} />
+            )}
           </button>
           {sponsorOpen && (
             <div className="flex flex-col gap-8 px-6 pb-8">
@@ -153,7 +161,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
           >
             <span>Our Story</span>
-            <ArrowUpRight />
+            <ArrowUpRight strokeWidth={3.25} size={30} />
           </Link>
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
@@ -165,7 +173,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
             className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
           >
             <span>Constitution</span>
-            <ArrowUpRight />
+            <ArrowUpRight strokeWidth={3.25} size={30} />
           </a>
         </div>
       </div>
@@ -174,6 +182,3 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 };
 
 export default CardLayout;
-
-// edit the icon thickness/boldness
-// add links to about us cards
