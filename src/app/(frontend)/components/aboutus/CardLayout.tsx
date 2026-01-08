@@ -1,14 +1,9 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-
-import { ArrowUpRight, BookText, ChevronDown, Eye, Handshake, History, X } from "lucide-react";
+import { BookText, Eye, Handshake, History } from "lucide-react";
 
 import { Media } from "@/payload-types";
 
 import DesktopCard from "./DesktopCard";
-import LogoCarousel from "./LogoCarousel";
+import PhoneCard from "./PhoneCard";
 
 type CardProps = {
   background: Media | string | null;
@@ -41,9 +36,6 @@ const CardLayout = ({ content }: CardLayoutProps) => {
     if (typeof image === "object" && image?.alt) return image.alt; // if it's a Media object, extract the alt text
     return fallback;
   };
-
-  const [ourVisionOpen, setOurVisionOpen] = useState(false);
-  const [sponsorOpen, setSponsorOpen] = useState(false);
 
   const constitutionLink =
     content.constitutionLink ??
@@ -115,69 +107,23 @@ const CardLayout = ({ content }: CardLayoutProps) => {
       {/* Mobile Layout: below md */}
       <div className="flex w-full flex-col bg-(--lightblue) text-(--navy) md:hidden">
         <div className="flex flex-col">
-          <button
-            type="button"
-            onClick={() => setOurVisionOpen((prev) => !prev)}
-            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
-          >
-            <span>Our Vision</span>
-            {ourVisionOpen ? (
-              <X strokeWidth={3.25} size={30} />
-            ) : (
-              <ChevronDown strokeWidth={3.25} size={30} />
-            )}
-          </button>
-          {ourVisionOpen && (
-            <div className="px-6 pb-8">
-              <p className="text-sm">{content.vision.description}</p>
-            </div>
-          )}
+          <PhoneCard type="vision" content={content.vision.description} />
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
-          <button
-            type="button"
-            onClick={() => setSponsorOpen((prev) => !prev)}
-            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
-          >
-            <span>Sponsors & Partnerships</span>
-            {sponsorOpen ? (
-              <X strokeWidth={3.25} size={30} />
-            ) : (
-              <ChevronDown strokeWidth={3.25} size={30} />
-            )}
-          </button>
-          {sponsorOpen && (
-            <div className="flex flex-col gap-8 px-6 pb-8">
-              <p className="text-sm">{content.sponsorsAndPartnerships.description}</p>
-
-              {content.sponsorsAndPartnerships.sponsorLogos && (
-                <LogoCarousel logos={content.sponsorsAndPartnerships.sponsorLogos} />
-              )}
-            </div>
-          )}
+          <PhoneCard
+            type="sponsors"
+            content={content.sponsorsAndPartnerships.description}
+            sponsorLogos={content.sponsorsAndPartnerships.sponsorLogos}
+          />
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
-          <Link
-            href="/ourstory"
-            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
-          >
-            <span>Our Story</span>
-            <ArrowUpRight strokeWidth={3.25} size={30} />
-          </Link>
+          <PhoneCard type="story" link="/ourstory" />
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
-          <a
-            href={constitutionLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex w-full items-center justify-between px-6 py-8 text-left text-2xl font-semibold sm:text-3xl"
-          >
-            <span>Constitution</span>
-            <ArrowUpRight strokeWidth={3.25} size={30} />
-          </a>
+          <PhoneCard type="constitution" link={constitutionLink} />
         </div>
       </div>
     </section>

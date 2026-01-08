@@ -12,8 +12,8 @@
 8. blur when image is rendering
 9. global util file (stringToList, url checker for Media, etc.)
 10. rename header to hero.tsx (so not to be confused with global header)
-11. add links to about us schema (cards)
-12. purge codebase of .env and login details
+11. purge codebase of .env and login details
+12. add notes to custom react component - some links have fallbacks (e.g. constitution/youtube video, etc.)
 
 ### BUGS
 
