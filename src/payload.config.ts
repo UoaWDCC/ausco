@@ -10,6 +10,8 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
+import StartPanel from "./app/(payload)/admin/StartPanel";
+
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
 import OurStory from "./collections/global/OurStory";
@@ -34,6 +36,9 @@ export default buildConfig({
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    components: {
+      beforeDashboard: [StartPanel],
     },
   },
 
