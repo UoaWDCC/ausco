@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import { Album } from "@/payload-types";
 
-type CarouselProps = {
+type PhotoCarouselProps = {
   album: {
     year: number;
     title: string;
@@ -16,7 +16,7 @@ type CarouselProps = {
   };
 };
 
-const Carousel = ({ album }: CarouselProps) => {
+const PhotoCarousel = ({ album }: PhotoCarouselProps) => {
   // Embla carousel setup
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -194,4 +194,4 @@ const Carousel = ({ album }: CarouselProps) => {
   );
 };
 
-export default Carousel;
+export default PhotoCarousel;

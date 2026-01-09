@@ -459,7 +459,7 @@ export interface AboutUs {
   hero: {
     description: string;
     /**
-     * Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).
+     * Maximum and recommended number of stickers: 6. Use PNG format for transparent backgrounds (WebP also supported).
      */
     stickers?:
       | {
@@ -483,6 +483,9 @@ export interface AboutUs {
       title: string;
       summary: string;
     };
+    /**
+     * Note: To change the link to AUSCO's Constitution, please refer to [Site Settings | Links].
+     */
     constitution: {
       background: string | Media;
       title: string;
@@ -1039,7 +1042,7 @@ export interface SiteSetting {
    */
   links?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email';
+        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email' | 'constitution';
         url: string;
         id?: string | null;
       }[]

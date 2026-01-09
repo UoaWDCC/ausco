@@ -11,16 +11,21 @@ type HeroProps = {
 
 const Hero = ({ content }: HeroProps) => {
   return (
-    <section className="w-full pb-16">
-      <div className="flex flex-row items-center justify-between">
+    <section className="w-full pb-8 sm:pb-12 md:pb-16">
+      <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-0">
         {/* Text */}
-        <div className="flex flex-col gap-4 w-2/5 text-(--navy)">
-          <h1 className="font-semibold! text-4xl! m-0!">About Us</h1>
-          <p className="text-base">{content.description}</p>
+        <div className="order-2 flex w-full flex-col gap-4 text-(--navy) md:order-1 md:w-2/5">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl">About Us</h1>
+          <p className="text-sm md:text-base">{content.description}</p>
         </div>
 
         {/* Array of Stickers */}
-        <div className="flex flex-row gap-1">
+        <div
+          className="order-1 grid gap-0 pr-18 md:order-2 md:gap-1 md:pr-0"
+          style={{
+            gridTemplateColumns: `repeat(${content.stickers?.length}, minmax(0, 1fr))`,
+          }}
+        >
           {content.stickers?.map(
             (item, index) =>
               typeof item.sticker === "object" &&
@@ -31,7 +36,7 @@ const Hero = ({ content }: HeroProps) => {
                   alt={item.sticker.alt || `sticker ${index + 1}`}
                   width={100}
                   height={100}
-                  className={"wiggle-hover"}
+                  className="wiggle-hover"
                   priority
                   loading="eager"
                 />
@@ -40,7 +45,7 @@ const Hero = ({ content }: HeroProps) => {
         </div>
       </div>
 
-      <div className="h-px bg-(--navy) mt-16" />
+      <div className="mt-16 hidden h-px bg-(--navy) md:block" />
     </section>
   );
 };

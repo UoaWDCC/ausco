@@ -23,7 +23,7 @@ const AboutUs: GlobalConfig = {
           maxRows: 6,
           admin: {
             description:
-              "Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).",
+              "Maximum and recommended number of stickers: 6. Use PNG format for transparent backgrounds (WebP also supported).",
           },
           fields: [
             {
@@ -109,6 +109,9 @@ const AboutUs: GlobalConfig = {
           name: "constitution",
           label: "Constitution",
           type: "group",
+          admin: {
+            description: "Note: To change the link to AUSCO's Constitution, please refer to [Site Settings | Links]."
+          },
           fields: [
             {
               name: "background",

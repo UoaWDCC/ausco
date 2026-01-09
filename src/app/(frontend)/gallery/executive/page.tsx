@@ -1,5 +1,5 @@
 import Header from "@components/gallery/Header";
-import Carousel from "@components/gallery/Carousel";
+import PhotoCarousel from "@components/gallery/PhotoCarousel";
 
 import { getGalleryExecutiveCamp } from "@/actions/pageActions";
 
@@ -18,18 +18,18 @@ export default async function ExecutiveCampGallery() {
             <div className="w-full" key={index}>
               {/* Divider */}
               <div
-                className="hidden sm:block w-full bg-(--navy) sm:mb-12 md:mb-16"
+                className="hidden w-full bg-(--navy) sm:mb-12 sm:block md:mb-16"
                 style={{ height: "0.5px" }}
               />
 
               {/* Album */}
-              <Carousel album={album} />
+              <PhotoCarousel album={album} />
             </div>
           ) : null,
         )
       ) : (
         <div className="w-full">
-          <div className="w-full bg-(--navy) mb-8 sm:mb-12 md:mb-16" style={{ height: "0.5px" }} />
+          <div className="mb-8 w-full bg-(--navy) sm:mb-12 md:mb-16" style={{ height: "0.5px" }} />
           <p className="text-base">No photos available at the moment. Please check back soon.</p>
         </div>
       )}
