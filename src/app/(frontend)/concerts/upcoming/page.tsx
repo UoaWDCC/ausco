@@ -1,4 +1,4 @@
-import Header from "@components/concerts/Header";
+import Hero from "@components/concerts/Hero";
 import UpcomingConcert from "@components/concerts/upcoming/UpcomingConcert";
 
 import { getConcertsUpcoming } from "@/actions/pageActions";
@@ -8,8 +8,8 @@ export default async function Upcoming() {
 
   return (
     <div className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto px-6 pt-44">
-        <Header title="Upcoming Concerts" description={content.description} />
+      <div className="mx-auto max-w-6xl px-6 pt-44">
+        <Hero title="Upcoming Concerts" description={content.description} />
 
         {/* Semester 1 */}
         <UpcomingConcert
@@ -29,10 +29,10 @@ export default async function Upcoming() {
 
         {/* Embded Google Calendar */}
         {content.googleCalendarEmail && (
-          <section className="w-full max-w-6xl mx-auto overflow-hidden flex items-center justify-center pb-8 sm:pb-12 md:pb-16">
+          <section className="mx-auto flex w-full max-w-6xl items-center justify-center overflow-hidden pb-8 sm:pb-12 md:pb-16">
             <iframe
               src={`https://calendar.google.com/calendar/embed?src=${content.googleCalendarEmail}&ctz=Pacific/Auckland`}
-              className="w-full h-[700px] rounded-lg"
+              className="h-[700px] w-full rounded-lg"
               title="Google Calendar"
             />
           </section>

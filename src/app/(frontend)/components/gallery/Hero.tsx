@@ -1,6 +1,6 @@
 type Align = "center" | "left";
 
-type HeaderProps = {
+type HeroProps = {
   title: string;
   align: Align;
 };
@@ -10,9 +10,9 @@ const textDirection: Record<Align, string> = {
   left: "text-left",
 };
 
-const Header = ({ title, align }: HeaderProps) => {
+const Hero = ({ title, align }: HeroProps) => {
   return (
-    <section className="w-full pb-8 sm:pb-12 md:pb-16 flex flex-col items-center text-(--navy)">
+    <section className="flex w-full flex-col items-center pb-8 text-(--navy) sm:pb-12 md:pb-16">
       <div className={`w-full text-center sm:${textDirection[align]} px-6 sm:px-0`}>
         <h1 className="text-2xl sm:text-3xl md:text-4xl">{title}</h1>
       </div>
@@ -20,4 +20,4 @@ const Header = ({ title, align }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default Hero;

@@ -1,4 +1,4 @@
-import Header from "@components/gallery/Header";
+import Hero from "@components/gallery/Hero";
 import PhotoCarousel from "@components/gallery/PhotoCarousel";
 
 import { getGalleryOther } from "@/actions/pageActions";
@@ -9,7 +9,7 @@ export default async function OtherGallery() {
 
   return (
     <>
-      <Header title="Other Photos" align="left" />
+      <Hero title="Other Photos" align="left" />
 
       {/* Albums */}
       {sortedAlbums.length > 0 ? (

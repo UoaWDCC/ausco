@@ -1,4 +1,4 @@
-import Header from "@components/gallery/Header";
+import Hero from "@components/gallery/Hero";
 import PhotoCarousel from "@components/gallery/PhotoCarousel";
 
 import { getGalleryExecutiveCamp } from "@/actions/pageActions";
@@ -9,7 +9,7 @@ export default async function ExecutiveCampGallery() {
 
   return (
     <>
-      <Header title="Executive Camp Photos" align="left" />
+      <Hero title="Executive Camp Photos" align="left" />
 
       {/* Albums */}
       {sortedAlbums.length > 0 ? (

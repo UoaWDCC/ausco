@@ -1,6 +1,6 @@
 import { getConcerts } from "@/actions/pageActions";
 
-import Header from "@components/concerts/Header";
+import Hero from "@components/concerts/Hero";
 import Card from "@components/concerts/Card";
 
 export default async function Concerts() {
@@ -8,10 +8,10 @@ export default async function Concerts() {
 
   return (
     <section className="bg-(--cream)">
-      <div className="w-full max-w-6xl mx-auto pt-44 pb-8 sm:pb-12 md:pb-16 px-6 flex flex-col items-center">
-        <Header title="Concerts" />
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 pt-44 pb-8 sm:pb-12 md:pb-16">
+        <Hero title="Concerts" />
 
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 w-full">
+        <div className="flex w-full flex-col items-center justify-between gap-6 sm:flex-row">
           {/* Upcoming Concerts Button */}
           <Card background={content.upcoming} type="upcoming" />
 

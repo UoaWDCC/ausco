@@ -1,6 +1,6 @@
 import { getOurPeople } from "@/actions/pageActions";
 
-import Header from "@components/ourpeople/Header";
+import Hero from "@components/ourpeople/Hero";
 import ExecutiveTeam from "@components/ourpeople/ExecutiveTeam";
 import Conductors from "@components/ourpeople/Conductors";
 import Players from "@components/ourpeople/Players";
@@ -24,7 +24,7 @@ export default async function OurPeoplePage() {
   return (
     <section className="flex flex-col items-center bg-(--cream)">
       <div className="w-full pt-28 md:max-w-6xl md:px-6 md:pt-44">
-        <Header content={content.header} />
+        <Hero content={content.header} />
       </div>
 
       <SectionWrapper>

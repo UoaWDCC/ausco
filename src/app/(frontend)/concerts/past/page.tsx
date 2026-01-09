@@ -1,6 +1,6 @@
 import { getConcertsPast } from "@/actions/pageActions";
 
-import Header from "@components/concerts/Header";
+import Hero from "@components/concerts/Hero";
 import SemesterConcert from "@components/concerts/past/SemesterConcert";
 
 export default async function Past() {
@@ -8,8 +8,8 @@ export default async function Past() {
 
   return (
     <div className="bg-(--cream)">
-      <div className="max-w-6xl mx-auto px-6 pt-44">
-        <Header title="Past Concerts" description={content.description} />
+      <div className="mx-auto max-w-6xl px-6 pt-44">
+        <Hero title="Past Concerts" description={content.description} />
 
         {/* Past Concerts */}
         <section className="text-left">
@@ -18,19 +18,19 @@ export default async function Past() {
             .map((concert, index) => (
               <div key={index} className="pb-8 sm:pb-12 md:pb-16">
                 {/* Divider */}
-                <div className="hidden lg:block w-full h-px bg-(--brown) mb-16" />
+                <div className="mb-16 hidden h-px w-full bg-(--brown) lg:block" />
 
                 {/* Year */}
-                <h1 className="text-center lg:text-left text-lg sm:text-xl md:text-2xl text-(--brown) pb-3 md:pb-7">
+                <h1 className="pb-3 text-center text-lg text-(--brown) sm:text-xl md:pb-7 md:text-2xl lg:text-left">
                   {concert.year}
                 </h1>
 
                 {/* Concerts - Semester 1 & 2 */}
-                <div className="flex flex-col lg:flex-row gap-4 sm:gap-7 md:gap-9 items-start bg-(--beige) w-full rounded-lg p-4 sm:p-7 md:p-9">
+                <div className="flex w-full flex-col items-start gap-4 rounded-lg bg-(--beige) p-4 sm:gap-7 sm:p-7 md:gap-9 md:p-9 lg:flex-row">
                   <SemesterConcert semester="1" content={concert.semesterOne} />
 
                   <div
-                    className="block lg:hidden w-full bg-(--brown)"
+                    className="block w-full bg-(--brown) lg:hidden"
                     style={{ height: "0.5px" }}
                   />
 

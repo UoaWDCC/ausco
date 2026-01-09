@@ -1,4 +1,4 @@
-import Header from "@components/gallery/Header";
+import Hero from "@components/gallery/Hero";
 import PhotoCarousel from "@components/gallery/PhotoCarousel";
 
 import { getGalleryAnnualCamp } from "@/actions/pageActions";
@@ -9,7 +9,8 @@ export default async function AnnualCampGallery() {
 
   return (
     <>
-      <Header title="Annual Camp Photos" align="left" />
+      <Hero title="Annual Camp Photos" align="left" />
+
       {/* Albums */}
       {sortedAlbums.length > 0 ? (
         sortedAlbums.map((album, index) =>

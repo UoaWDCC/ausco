@@ -1,4 +1,4 @@
-import Header from "@components/gallery/Header";
+import Hero from "@components/gallery/Hero";
 import PhotoCarousel from "@components/gallery/PhotoCarousel";
 
 import { getGalleryConcerts } from "@/actions/pageActions";
@@ -9,7 +9,7 @@ export default async function ConcertGallery() {
 
   return (
     <>
-      <Header title="Concert Photos" align="left" />
+      <Hero title="Concert Photos" align="left" />
 
       {/* Albums */}
       {sortedAlbums.length > 0 ? (
