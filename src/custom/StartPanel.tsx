@@ -4,7 +4,7 @@ const StartPanel = () => {
   return (
     <div
       style={{
-        padding: "1.5rem",
+        padding: "3rem",
         backgroundColor: "var(--theme-elevation-50)",
         borderRadius: "4px",
         border: "1px solid var(--theme-border-color)",
@@ -18,7 +18,7 @@ const StartPanel = () => {
       </p>
 
       <div style={{ marginBottom: "1.5rem" }}>
-        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.1rem" }}>
+        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
           📚 Collections
         </h3>
         <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>
@@ -42,7 +42,7 @@ const StartPanel = () => {
       </div>
 
       <div style={{ marginBottom: "1.5rem" }}>
-        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.1rem" }}>🌐 Globals</h3>
+        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>🌐 Globals</h3>
         <p style={{ marginTop: 0, marginBottom: 0 }}>
           Each Global represents a specific page or site-wide component. They're organized in the
           order visitors navigate the website, from Home page through to shared elements like
@@ -50,15 +50,8 @@ const StartPanel = () => {
         </p>
       </div>
 
-      <div
-        style={{
-          padding: "1rem",
-          backgroundColor: "var(--theme-elevation-100)",
-          borderRadius: "4px",
-          borderLeft: "3px solid var(--theme-success-500)",
-        }}
-      >
-        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1rem" }}>💡 Quick Tips</h3>
+      <div style={{ marginBottom: 0 }}>
+        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>💡 Quick Tips</h3>
         <ul style={{ marginLeft: "1.25rem", marginBottom: 0 }}>
           <li style={{ marginBottom: "0.5rem" }}>
             <strong>Typical workflow:</strong> Use <strong>Globals</strong> to update page content,
@@ -66,11 +59,11 @@ const StartPanel = () => {
           </li>
           <li style={{ marginBottom: 0 }}>
             <strong>Image format guidelines:</strong>
-            <ul style={{ marginTop: "0.25rem", marginLeft: "1.25rem" }}>
-              <li>
+            <ul style={{ marginTop: "0.5rem", marginLeft: "1.25rem" }}>
+              <li style={{ marginBottom: "0.5rem" }}>
                 Use <strong>SVG</strong> for logos, icons, or graphics requiring transparency
               </li>
-              <li>
+              <li style={{ marginBottom: 0 }}>
                 Use <strong>WebP</strong> (preferred) or <strong>PNG</strong> for photos,
                 backgrounds, and posters
               </li>
@@ -78,17 +71,6 @@ const StartPanel = () => {
           </li>
         </ul>
       </div>
-
-      <p
-        style={{
-          marginTop: "1rem",
-          marginBottom: 0,
-          fontSize: "0.9rem",
-          color: "var(--theme-elevation-800)",
-        }}
-      >
-        Need help? Contact the web administrator or refer to the documentation.
-      </p>
     </div>
   );
 };
