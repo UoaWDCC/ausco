@@ -10,7 +10,7 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
-import StartPanel from "./app/(payload)/admin/StartPanel";
+import StartPanel from "./app/(payload)/components/StartPanel";
 
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
@@ -38,11 +38,11 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
-      beforeDashboard: [StartPanel],
+      beforeDashboard: [StartPanel] as any,
     },
   },
 
-  // Payload Admin UI displays globals in the same order they are defined in this config
+  // Payload Admin UI displays globals in t  he same order they are defined in this config
   globals: [
     Home,
     AboutUs,
