@@ -12,8 +12,7 @@
 8. blur when image is rendering
 9. global util file (stringToList, url checker for Media, etc.)
 10. rename header to hero.tsx (so not to be confused with global header)
-11. purge codebase of .env and login details
-12. add notes to custom react component - some links have fallbacks (e.g. constitution/youtube video, etc.)
+11. add notes to custom react component - some links have fallbacks (e.g. constitution/youtube video, etc.)
 
 ### BUGS
 
@@ -45,20 +44,6 @@
 4. Run: "npm run dev"
 5. Go to your browser and enter: "http://localhost:3000"
 6. Any saved changes you make in VS Code will be automatically reflected in localhost:3000
-
-### Add .env file under ausco (root directory)
-
-```
-PAYLOAD_SECRET="a710400222333f83c1b1bd6abb7bd3116e3321f813c48efe8ba93bc75cd16b82"
-DATABASE_URI="mongodb+srv://ausco:ausco!!!@ausco.ioi3ahr.mongodb.net/"
-```
-
-### Payload admin login
-
-```
-ausco@wdcc.co.nz
-e1160e47
-```
 
 ## Development
 
