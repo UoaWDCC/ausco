@@ -1,5 +1,18 @@
 import React from "react";
 
+/**
+ * StartPanel component - Welcome and guidance panel for the AUSCO CMS admin portal.
+ *
+ * Displays an introductory guide to help administrators navigate and understand the CMS structure,
+ * including information about Collections (General Media, Gallery Album Media, Users) and Globals
+ * (page-specific components). Also provides quick tips on typical workflows and image format guidelines.
+ *
+ * @component
+ * @returns {React.ReactElement} A styled welcome panel with sections for Collections, Globals, and Quick Tips
+ *
+ * @note Hot reloading does not appear to work for this component. Any changes made require restarting
+ * the development server to take effect.
+ */
 const StartPanel = () => {
   return (
     <div
