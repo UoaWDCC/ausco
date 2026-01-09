@@ -67,8 +67,8 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    albums: Album;
     media: Media;
+    albums: Album;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,8 +77,8 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -151,15 +151,12 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums".
+ * via the `definition` "media".
  */
-export interface Album {
+export interface Media {
   id: string;
-  category: 'concert' | 'annualcamp' | 'executivecamp' | 'other';
-  year: number;
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -173,12 +170,15 @@ export interface Album {
   focalY?: number | null;
 }
 /**
+ * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "albums".
  */
-export interface Media {
+export interface Album {
   id: string;
-  alt: string;
+  category: 'concert' | 'annualcamp' | 'executivecamp' | 'other';
+  year: number;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -242,12 +242,12 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'albums';
-        value: string | Album;
-      } | null)
-    | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'albums';
+        value: string | Album;
       } | null)
     | ({
         relationTo: 'users';
@@ -297,11 +297,10 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums_select".
+ * via the `definition` "media_select".
  */
-export interface AlbumsSelect<T extends boolean = true> {
-  category?: T;
-  year?: T;
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -316,10 +315,11 @@ export interface AlbumsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "albums_select".
  */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
+export interface AlbumsSelect<T extends boolean = true> {
+  category?: T;
+  year?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
