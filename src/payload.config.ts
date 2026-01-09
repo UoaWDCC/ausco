@@ -10,7 +10,7 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
-import StartPanel from "./app/(payload)/components/StartPanel";
+import StartPanel from "./custom/StartPanel";
 
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
@@ -60,7 +60,7 @@ export default buildConfig({
     Footer,
     SiteSettings,
   ],
-  collections: [Albums, Media, Users],
+  collections: [Media, Albums, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
