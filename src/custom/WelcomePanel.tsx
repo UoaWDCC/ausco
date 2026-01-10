@@ -24,6 +24,10 @@ const WelcomePanel = () => {
         backgroundColor: "var(--theme-elevation-50)",
         borderRadius: "4px",
         border: "1px solid var(--theme-border-color)",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "auto",
       }}
     >
       <h2 style={{ marginTop: 0, marginBottom: "1rem" }}>Welcome to AUSCO's CMS ‧₊˚♪ 𝄞₊˚⊹</h2>
