@@ -1059,7 +1059,7 @@ export interface SiteSetting {
  */
 export interface Legacy {
   id: string;
-  note?:
+  notes?:
     | {
         createdAt?: string | null;
         name: string;
@@ -1621,7 +1621,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "legacy_select".
  */
 export interface LegacySelect<T extends boolean = true> {
-  note?:
+  notes?:
     | T
     | {
         createdAt?: T;

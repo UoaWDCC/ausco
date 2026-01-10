@@ -1,87 +1,80 @@
-"use client";
+import React from "react";
+import { cache } from "react";
 
-import React, { useEffect, useState } from "react";
 import { RichText } from "@payloadcms/richtext-lexical/react";
+import { getPayload } from "payload";
+import config from "@payload-config";
 
-/**
- *  component - Welcome and guidance panel for the AUSCO CMS admin portal.
- *
- * Displays an introductory guide to help administrators navigate and understand the CMS structure,
- * including information about Collections (General Media, Gallery Album Media, Users) and Globals
- * (page-specific components). Also provides quick tips on typical workflows and image format guidelines.
- *
- * @component
- * @returns {React.ReactElement} A styled welcome panel with sections for Collections, Globals, and Quick Tips
- *
- * @note Hot reloading does not appear to work for this component. Any changes made require restarting
- * the development server to take effect.
- */
+import { Legacy } from "@/payload-types";
+
 type LegacyNote = {
-  createdAt: string;
+  createdAt?: string | null;
   name: string;
   content: any;
 };
 
-const LegacyPanel = () => {
-  const [notes, setNotes] = useState<LegacyNote[]>([]);
-  const [loading, setLoading] = useState(true);
+const getLegacyNotes = cache(async (): Promise<Legacy> => {
+  const payload = await getPayload({ config });
+  return payload.findGlobal({ slug: "legacy", depth: 1 });
+});
 
-  useEffect(() => {
-    const fetchLegacy = async () => {
-      try {
-        const res = await fetch("/api/globals/legacy");
-        const data = await res.json();
-        setNotes(data.note || []);
-      } catch (err) {
-        console.error("Failed to load legacy notes", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+const LegacyPanel = async () => {
+  try {
+    const legacyData = await getLegacyNotes();
+    const notes: LegacyNote[] = legacyData.notes || [];
 
-    fetchLegacy();
-  }, []);
+    if (notes.length === 0) {
+      return null; // Do not show the panel if there are no notes
+    }
 
-  if (loading) {
-    return <p>Loading legacy notes…</p>;
-  }
+    return (
+      <div
+        style={{
+          padding: "3rem",
+          backgroundColor: "var(--theme-elevation-50)",
+          borderRadius: "4px",
+          border: "1px solid var(--theme-border-color)",
+        }}
+      >
+        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
+          📜 Legacy Notes
+        </h3>
 
-  return (
-    <div
-      style={{
-        padding: "2rem",
-        backgroundColor: "var(--theme-elevation-50)",
-        border: "1px solid var(--theme-border-color)",
-        borderRadius: "4px",
-        marginBottom: "2rem",
-      }}
-    >
-      <h3 style={{ marginTop: 0 }}>📜 Legacy Notes</h3>
-
-      {notes.length === 0 ? (
-        <p>No legacy notes yet.</p>
-      ) : (
-        notes.map((note, index) => (
+        {notes.map((note, index) => (
           <div
             key={index}
             style={{
-              padding: "1rem 0",
-              borderBottom: "1px solid var(--theme-elevation-100)",
+              marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
+              borderBottom:
+                index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
             }}
           >
-            <p style={{ margin: 0, fontWeight: 600 }}>{note.name}</p>
-            <p style={{ fontSize: "0.85rem", opacity: 0.7 }}>
-              Created {new Date(note.createdAt).toLocaleString()}
+            <p style={{ margin: 0, marginBottom: "0.15rem" }}>
+              <strong>{note.name}</strong>
             </p>
 
-            <div style={{ whiteSpace: "pre-wrap" }}>
-              <RichText data={note.content} />
-            </div>
+            {note.createdAt && (
+              <p
+                style={{
+                  fontSize: "0.85rem",
+                  opacity: 0.7,
+                  margin: 0,
+                  marginBottom: "0.75rem",
+                }}
+              >
+                Created {new Date(note.createdAt).toLocaleString()}
+              </p>
+            )}
+
+            <RichText data={note.content} />
           </div>
-        ))
-      )}
-    </div>
-  );
+        ))}
+      </div>
+    );
+  } catch (error) {
+    console.error("Failed to load legacy notes:", error);
+    return null;
+  }
 };
 
 export default LegacyPanel;

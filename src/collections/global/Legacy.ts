@@ -12,8 +12,8 @@ const Legacy: GlobalConfig = {
   label: "Legacy Notes",
   fields: [
     {
-      name: "note",
-      label: "Note",
+      name: "notes",
+      label: "Notes",
       type: "array",
       fields: [
         {
@@ -43,7 +43,7 @@ const Legacy: GlobalConfig = {
         },
         {
           name: "content",
-          label: "content",
+          label: "Content",
           type: "richText",
           required: true,
           editor: lexicalEditor({
