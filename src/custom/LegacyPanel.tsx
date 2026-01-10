@@ -48,53 +48,63 @@ const LegacyPanel = async () => {
     }
 
     return (
-      <div
-        style={{
-          padding: "3rem",
-          backgroundColor: "var(--theme-elevation-50)",
-          borderRadius: "4px",
-          border: "1px solid var(--theme-border-color)",
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          overflowY: "auto",
-        }}
-      >
-        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
-          📜 Legacy Notes
-        </h3>
+      <>
+        <style>{`
+        .welcome-panel {
+          padding: 1.5rem;
+          background-color: var(--theme-elevation-50);
+          border-radius: 4px;
+          border: 1px solid var(--theme-border-color);
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow-y: auto;
+        }
 
-        {notes.map((note, index) => (
-          <div
-            key={index}
-            style={{
-              paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
-              marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
-              borderBottom:
-                index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
-            }}
-          >
-            <p style={{ margin: 0, marginBottom: "0.15rem" }}>
-              <strong>{note.name}</strong>
-            </p>
+        @media (min-width: 768px) {
+          .welcome-panel {
+            padding: 3rem;
+          }
+        }
+      `}</style>
 
-            {note.createdAt && (
-              <p
-                style={{
-                  fontSize: "0.85rem",
-                  opacity: 0.7,
-                  margin: 0,
-                  marginBottom: "0.75rem",
-                }}
-              >
-                Created {new Date(note.createdAt).toLocaleString()}
+        <div className="welcome-panel">
+          <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
+            📜 Legacy Notes
+          </h3>
+
+          {notes.map((note, index) => (
+            <div
+              key={index}
+              style={{
+                paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                borderBottom:
+                  index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
+              }}
+            >
+              <p style={{ margin: 0, marginBottom: "0.15rem" }}>
+                <strong>{note.name}</strong>
               </p>
-            )}
 
-            <RichText data={note.content} />
-          </div>
-        ))}
-      </div>
+              {note.createdAt && (
+                <p
+                  style={{
+                    fontSize: "0.85rem",
+                    opacity: 0.7,
+                    margin: 0,
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  Created {new Date(note.createdAt).toLocaleString()}
+                </p>
+              )}
+
+              <RichText data={note.content} />
+            </div>
+          ))}
+        </div>
+      </>
     );
   } catch (error) {
     console.error("Failed to load legacy notes:", error);

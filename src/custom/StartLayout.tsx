@@ -31,18 +31,30 @@ const StartLayout = () => {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
-          height: clamp(300px, 35vh, 600px);
+        }
+
+        .start-layout__welcome,
+        .start-layout__legacy {
+          display: flex;
+        }
+
+        .start-layout__welcome {
+          height: clamp(200px, 25vh, 350px);
+        }
+
+        .start-layout__legacy {
+          height: clamp(150px, 20vh, 300px);
         }
 
         @media (min-width: 768px) {
         .start-layout {
           flex-direction: row;
+          height: clamp(300px, 35vh, 600px);
         }
 
         .start-layout__welcome,
         .start-layout__legacy {
           height: 100%;
-          display: flex;
         }
 
         .start-layout__welcome {
