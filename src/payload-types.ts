@@ -105,6 +105,7 @@ export interface Config {
     header: Header;
     footer: Footer;
     'site-settings': SiteSetting;
+    legacy: Legacy;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
@@ -122,6 +123,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    legacy: LegacySelect<false> | LegacySelect<true>;
   };
   locale: null;
   user: User & {
@@ -1053,6 +1055,37 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legacy".
+ */
+export interface Legacy {
+  id: string;
+  note?:
+    | {
+        createdAt?: string | null;
+        name: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -1577,6 +1610,23 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legacy_select".
+ */
+export interface LegacySelect<T extends boolean = true> {
+  note?:
+    | T
+    | {
+        createdAt?: T;
+        name?: T;
+        content?: T;
         id?: T;
       };
   updatedAt?: T;

@@ -12,7 +12,6 @@
 8. global util file (stringToList, url checker for Media, etc.) \*\*
 9. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
 10. legacy notes from past presidents \*
-11. end panel \*
 
 ### BUGS
 

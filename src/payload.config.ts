@@ -11,6 +11,7 @@ import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
 import StartPanel from "./custom/StartPanel";
+import LegacyPanel from "./custom/LegacyPanel";
 import EndPanel from "./custom/EndPanel";
 
 import Home from "./collections/global/Home";
@@ -28,6 +29,7 @@ import GalleryOther from "./collections/global/GalleryOther";
 import Header from "./collections/global/Header";
 import Footer from "./collections/global/Footer";
 import SiteSettings from "./collections/global/SiteSettings";
+import Legacy from "./collections/global/Legacy";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -39,8 +41,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
-      beforeDashboard: [StartPanel] as any,
-      afterDashboard: [EndPanel] as any
+      beforeDashboard: [LegacyPanel] as any,
+      afterDashboard: [EndPanel] as any,
     },
   },
 
@@ -61,6 +63,7 @@ export default buildConfig({
     Header,
     Footer,
     SiteSettings,
+    Legacy,
   ],
   collections: [Media, Albums, Users],
   secret: process.env.PAYLOAD_SECRET || "",
