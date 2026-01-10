@@ -1,8 +1,8 @@
-import React from "react";
-import { cache } from "react";
+import React, { cache } from "react";
 
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
+
 import config from "@payload-config";
 
 import { Legacy } from "@/payload-types";
@@ -17,6 +17,24 @@ const getLegacyNotes = cache(async (): Promise<Legacy> => {
   const payload = await getPayload({ config });
   return payload.findGlobal({ slug: "legacy", depth: 1 });
 });
+
+/**
+ * LegacyPanel component - A panel that fetches and displays read-only "Legacy Notes"
+ * from the `legacy` Global in Payload CMS. Notes are rendered in chronological order
+ * and include a title, creation timestamp, and rich text content.
+ *
+ * Data is fetched via the Payload server API and cached using React's `cache`
+ * utility to avoid repeated requests during a single render pass.
+ *
+ * The panel is hidden entirely if no legacy notes exist.
+ *
+ * @component
+ * @returns {Promise<React.ReactElement | null>} A styled panel displaying legacy notes,
+ * or `null` if there are no notes to display or if an error occurs.
+ *
+ * @note Hot reloading does not appear to work for this component. Any changes made require restarting
+ * the development server to take effect.
+ */
 
 const LegacyPanel = async () => {
   try {
