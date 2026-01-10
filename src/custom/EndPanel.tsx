@@ -17,40 +17,62 @@ const EndPanel = () => {
         (such as creating new pages or structural changes), please reach out:
       </p>
 
-      <div style={{ marginBottom: "1.5rem" }}>
-        <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>
-          <strong>Project Manager</strong>
-        </p>
-        <ul style={{ marginLeft: "1.25rem", marginTop: 0, marginBottom: 0 }}>
-          <li style={{ marginBottom: "0.5rem" }}>
-            <strong>Vincent Tao</strong>
-          </li>
-          <li style={{ marginBottom: "0.5rem" }}>
-            Email:{" "}
-            <a href="mailto:vincent.jh.tao@gmail.com" style={{ color: "var(--theme-text)" }}>
-              vincent.jh.tao@gmail.com
-            </a>
-          </li>
-          <li style={{ marginBottom: 0 }}>Discord: vincenttao_</li>
-        </ul>
-      </div>
+      <style>{`
+        .endpanel-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
 
-      <div style={{ marginBottom: "1.5rem" }}>
-        <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>
-          <strong>Tech Lead</strong>
-        </p>
-        <ul style={{ marginLeft: "1.25rem", marginTop: 0, marginBottom: 0 }}>
-          <li style={{ marginBottom: "0.5rem" }}>
-            <strong>Harry Sheng</strong>
-          </li>
-          <li style={{ marginBottom: "0.5rem" }}>
-            Email:{" "}
-            <a href="mailto:harryshengcoding@gmail.com" style={{ color: "var(--theme-text)" }}>
-              harryshengcoding@gmail.com
-            </a>
-          </li>
-          <li style={{ marginBottom: 0 }}>Discord: harry_cs</li>
-        </ul>
+        @media (min-width: 768px) {
+          .endpanel-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        @media (min-width: 1200px) {
+          .endpanel-grid {
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+      `}</style>
+
+      <div className="endpanel-grid" style={{ marginBottom: "1.5rem" }}>
+        <div>
+          <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>
+            <strong>Project Manager</strong>
+          </p>
+          <ul style={{ marginLeft: "1.25rem", marginTop: 0, marginBottom: 0 }}>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <strong>Vincent Tao</strong>
+            </li>
+            <li style={{ marginBottom: "0.5rem" }}>
+              Email:{" "}
+              <a href="mailto:vincent.jh.tao@gmail.com" style={{ color: "var(--theme-text)" }}>
+                vincent.jh.tao@gmail.com
+              </a>
+            </li>
+            <li style={{ marginBottom: 0 }}>Discord: vincenttao_</li>
+          </ul>
+        </div>
+
+        <div>
+          <p style={{ marginTop: 0, marginBottom: "0.75rem" }}>
+            <strong>Tech Lead</strong>
+          </p>
+          <ul style={{ marginLeft: "1.25rem", marginTop: 0, marginBottom: 0 }}>
+            <li style={{ marginBottom: "0.5rem" }}>
+              <strong>Harry Sheng</strong>
+            </li>
+            <li style={{ marginBottom: "0.5rem" }}>
+              Email:{" "}
+              <a href="mailto:harryshengcoding@gmail.com" style={{ color: "var(--theme-text)" }}>
+                harryshengcoding@gmail.com
+              </a>
+            </li>
+            <li style={{ marginBottom: 0 }}>Discord: harry_cs</li>
+          </ul>
+        </div>
       </div>
 
       <p style={{ marginBottom: "1.5rem" }}>
