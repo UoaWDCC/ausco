@@ -11,6 +11,7 @@ import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
 import StartPanel from "./custom/StartPanel";
+import EndPanel from "./custom/EndPanel";
 
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
@@ -39,6 +40,7 @@ export default buildConfig({
     },
     components: {
       beforeDashboard: [StartPanel] as any,
+      afterDashboard: [EndPanel] as any
     },
   },
 

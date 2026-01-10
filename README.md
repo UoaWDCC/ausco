@@ -7,11 +7,12 @@
 3. make colours/colour variables consistent across website (including logos)
 4. check text uses p, h1, etc. tags for seo
 5. add secondary global font to repo
-6. routing? (with dashes)
-7. add type props to files in /actions
-8. blur when image is rendering
-9. global util file (stringToList, url checker for Media, etc.)
-10. add notes to custom react component - some links have fallbacks (e.g. constitution/youtube video, etc.)
+6. routing? (with dashes) \*\*
+7. blur when image is rendering
+8. global util file (stringToList, url checker for Media, etc.) \*\*
+9. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
+10. legacy notes from past presidents \*
+11. end panel \*
 
 ### BUGS
 
