@@ -31,7 +31,7 @@ const StartLayout = () => {
           display: flex;
           flex-direction: column;
           gap: 1.5rem;
-          height: 45vh;
+          height: clamp(300px, 35vh, 600px);
         }
 
         @media (min-width: 768px) {
@@ -46,11 +46,11 @@ const StartLayout = () => {
         }
 
         .start-layout__welcome {
-          width: 65%;
+          width: 70%;
         }
 
         .start-layout__legacy {
-          width: 35%;
+          width: 30%;
         }
       }`}</style>
 

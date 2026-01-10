@@ -31,12 +31,10 @@ const WelcomePanel = () => {
       }}
     >
       <h2 style={{ marginTop: 0, marginBottom: "1rem" }}>Welcome to AUSCO's CMS ‧₊˚♪ 𝄞₊˚⊹</h2>
-
       <p style={{ marginBottom: "1.5rem" }}>
         This admin portal manages all content across the AUSCO website. Here's a quick guide to help
         you navigate and update the site effectively.
       </p>
-
       <div style={{ marginBottom: "1.5rem" }}>
         <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
           📚 Collections
@@ -60,7 +58,6 @@ const WelcomePanel = () => {
           </li>
         </ul>
       </div>
-
       <div style={{ marginBottom: "1.5rem" }}>
         <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>🌐 Globals</h3>
         <p style={{ marginTop: 0, marginBottom: 0 }}>
@@ -69,7 +66,6 @@ const WelcomePanel = () => {
           Header, Footer, and Site Settings.
         </p>
       </div>
-
       <div style={{ marginBottom: 0 }}>
         <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>💡 Quick Tips</h3>
         <ul style={{ marginLeft: "1.25rem", marginBottom: 0 }}>

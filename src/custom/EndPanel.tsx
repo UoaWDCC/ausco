@@ -12,7 +12,7 @@ import React from "react";
  *
  * @note Hot reloading does not appear to work for this component. Any changes made require restarting
  * the development server to take effect.
- * 
+ *
  * @note Tailwind CSS classes are not supported in this context. Styling must be applied
  * using inline styles or custom CSS.
  */
@@ -24,6 +24,8 @@ const EndPanel = () => {
         backgroundColor: "var(--theme-elevation-50)",
         borderRadius: "4px",
         border: "1px solid var(--theme-border-color)",
+        height: "clamp(150px, 25vh, 450px)",
+        overflowY: "auto",
       }}
     >
       <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>❓ Need Help?</h3>
