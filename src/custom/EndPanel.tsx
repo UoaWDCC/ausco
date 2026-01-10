@@ -1,5 +1,18 @@
 import React from "react";
 
+/**
+ * EndPanel component - Help and contact information panel for the AUSCO CMS admin portal.
+ *
+ * Displays contact information for project managers and tech leads, along with guidance on how to
+ * report issues, request features, or seek assistance. Provides responsive grid layout for contact details
+ * and tips for effective communication with the development team.
+ *
+ * @component
+ * @returns {React.ReactElement} A styled help panel with contact information and guidelines
+ *
+ * @note Hot reloading does not appear to work for this component. Any changes made require restarting
+ * the development server to take effect.
+ */
 const EndPanel = () => {
   return (
     <div
