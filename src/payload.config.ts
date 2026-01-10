@@ -10,8 +10,7 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
-import StartPanel from "./custom/StartPanel";
-import LegacyPanel from "./custom/LegacyPanel";
+import StartLayout from "./custom/StartLayout";
 import EndPanel from "./custom/EndPanel";
 
 import Home from "./collections/global/Home";
@@ -41,7 +40,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
-      beforeDashboard: [LegacyPanel] as any,
+      beforeDashboard: [StartLayout] as any,
       afterDashboard: [EndPanel] as any,
     },
   },
