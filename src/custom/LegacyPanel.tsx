@@ -64,6 +64,7 @@ const LegacyPanel = async () => {
           <div
             key={index}
             style={{
+              paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
               marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
               borderBottom:
                 index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
