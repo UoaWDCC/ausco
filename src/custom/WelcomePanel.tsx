@@ -1,7 +1,7 @@
 import React from "react";
 
 /**
- * StartPanel component - Welcome and guidance panel for the AUSCO CMS admin portal.
+ * WelcomePanel component - Welcome and guidance panel for the AUSCO CMS admin portal.
  *
  * Displays an introductory guide to help administrators navigate and understand the CMS structure,
  * including information about Collections (General Media, Gallery Album Media, Users) and Globals
@@ -12,8 +12,11 @@ import React from "react";
  *
  * @note Hot reloading does not appear to work for this component. Any changes made require restarting
  * the development server to take effect.
+ *
+ * @note Tailwind CSS classes are not supported in this context. Styling must be applied
+ * using inline styles or custom CSS.
  */
-const StartPanel = () => {
+const WelcomePanel = () => {
   return (
     <div
       style={{
@@ -88,4 +91,4 @@ const StartPanel = () => {
   );
 };
 
-export default StartPanel;
+export default WelcomePanel;

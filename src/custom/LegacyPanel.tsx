@@ -34,8 +34,10 @@ const getLegacyNotes = cache(async (): Promise<Legacy> => {
  *
  * @note Hot reloading does not appear to work for this component. Any changes made require restarting
  * the development server to take effect.
+ *
+ * @note Tailwind CSS classes are not supported in this context. Styling must be applied
+ * using inline styles or custom CSS.
  */
-
 const LegacyPanel = async () => {
   try {
     const legacyData = await getLegacyNotes();
