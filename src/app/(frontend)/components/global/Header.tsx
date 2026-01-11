@@ -14,15 +14,15 @@ import type { Media } from "@/payload-types";
 // TODO: add appropriate links into header options
 const navBar = [
   {
-    href: "/aboutus",
+    href: "/about-us",
     label: "About Us",
     dropdown: [
-      { href: "/ourstory", label: "Our Story" },
+      { href: "/our-story", label: "Our Story" },
       { href: "https://www.google.com/", label: "Constitution" },
       { href: "https://www.google.com/", label: "Proof of Registration" },
     ],
   },
-  { href: "/ourpeople", label: "Our People" },
+  { href: "/our-people", label: "Our People" },
   {
     href: "/concerts",
     label: "Concerts",

@@ -1,10 +1,10 @@
 import { getOurPeople } from "@/actions/pageActions";
 
-import Hero from "@components/ourpeople/Hero";
-import ExecutiveTeam from "@components/ourpeople/ExecutiveTeam";
-import Conductors from "@components/ourpeople/Conductors";
-import Players from "@components/ourpeople/Players";
-import HallOfFame from "@components/ourpeople/HallOfFame";
+import Hero from "@components/our-people/Hero";
+import ExecutiveTeam from "@components/our-people/ExecutiveTeam";
+import Conductors from "@components/our-people/Conductors";
+import Players from "@components/our-people/Players";
+import HallOfFame from "@components/our-people/HallOfFame";
 
 type SectionWrapperProps = {
   children: React.ReactNode;

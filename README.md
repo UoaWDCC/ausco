@@ -11,6 +11,7 @@
 7. blur when image is rendering
 8. global util file (stringToList, url checker for Media, etc.) \*\*
 9. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
+10. sort notes imports
 
 ### BUGS
 

@@ -1,5 +1,5 @@
-import Hero from "@components/aboutus/Hero";
-import CardLayout from "@components/aboutus/CardLayout";
+import Hero from "@components/about-us/Hero";
+import CardLayout from "@components/about-us/CardLayout";
 
 import { getAboutUs } from "@/actions/pageActions";
 import { getSiteSetting } from "@/actions/globalActions";

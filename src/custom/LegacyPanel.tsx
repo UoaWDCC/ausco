@@ -26,8 +26,6 @@ const getLegacyNotes = cache(async (): Promise<Legacy> => {
  * Data is fetched via the Payload server API and cached using React's `cache`
  * utility to avoid repeated requests during a single render pass.
  *
- * The panel is hidden entirely if no legacy notes exist.
- *
  * @component
  * @returns {Promise<React.ReactElement | null>} A styled panel displaying legacy notes,
  * or `null` if there are no notes to display or if an error occurs.
