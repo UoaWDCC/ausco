@@ -1,21 +1,22 @@
 "use server";
 
 import { cache } from "react";
-import { getPayload } from "@libs/payload";
+import { getPayload } from "payload";
 
+import config from "@payload-config";
 import { Header, Footer, SiteSetting } from "@/payload-types";
 
 export const getHeader = cache(async (): Promise<Header> => {
-  const payload = await getPayload();
+  const payload = await getPayload({ config });
   return payload.findGlobal({ slug: "header", depth: 1 });
 });
 
 export const getFooter = cache(async (): Promise<Footer> => {
-  const payload = await getPayload();
+  const payload = await getPayload({ config });
   return payload.findGlobal({ slug: "footer", depth: 1 });
 });
 
 export const getSiteSetting = cache(async (): Promise<SiteSetting> => {
-  const payload = await getPayload();
+  const payload = await getPayload({ config });
   return payload.findGlobal({ slug: "site-settings", depth: 1 });
 });

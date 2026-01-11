@@ -40,8 +40,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
     components: {
-      beforeDashboard: [StartLayout] as any,
-      afterDashboard: [EndPanel] as any,
+      beforeDashboard: [async () => (await import("./custom/StartLayout")).default] as any,
+      afterDashboard: [async () => (await import("./custom/EndPanel")).default] as any,
     },
   },
 
