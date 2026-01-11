@@ -39,10 +39,12 @@ const WelcomePanel = () => {
       `}</style>
 
       <div className="welcome-panel">
-        <h2 style={{ marginTop: 0, marginBottom: "1rem" }}>Welcome to AUSCO's CMS ‧₊˚♪ 𝄞₊˚⊹</h2>
+        <h2 style={{ marginTop: 0, marginBottom: "1rem" }}>
+          Welcome to AUSCO&apos;s CMS ‧₊˚♪ 𝄞₊˚⊹
+        </h2>
         <p style={{ marginBottom: "1.5rem" }}>
-          This admin portal manages all content across the AUSCO website. Here's a quick guide to
-          help you navigate and update the site effectively.
+          This admin portal manages all content across the AUSCO website. Here&apos;s a quick guide
+          to help you navigate and update the site effectively.
         </p>
         <div style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
@@ -70,8 +72,8 @@ const WelcomePanel = () => {
         <div style={{ marginBottom: "1.5rem" }}>
           <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>🌐 Globals</h3>
           <p style={{ marginTop: 0, marginBottom: 0 }}>
-            Each Global represents a specific page or site-wide component. They're organized in the
-            order visitors navigate the website, from Home page through to shared elements like
+            Each Global represents a specific page or site-wide component. They&apos;re organised in
+            the order visitors navigate the website, from Home page through to shared elements like
             Header, Footer, and Site Settings.
           </p>
         </div>

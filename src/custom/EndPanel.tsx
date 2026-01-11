@@ -40,8 +40,8 @@ const EndPanel = () => {
         <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>❓ Need Help?</h3>
 
         <p style={{ marginBottom: "1.5rem" }}>
-          If you have questions, notice bugs, or need changes that can't be made through this portal
-          (such as creating new pages or structural changes), please reach out:
+          If you have questions, notice bugs, or need changes that can&apos;t be made through this
+          portal (such as creating new pages or structural changes), please reach out:
         </p>
 
         <style>{`
