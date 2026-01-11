@@ -5,7 +5,7 @@ const Concerts: GlobalConfig = {
   label: "Concerts",
   admin: {
     description:
-      "For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+      "For background images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.",
   },
   fields: [
     {

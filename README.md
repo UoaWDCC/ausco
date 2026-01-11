@@ -8,7 +8,7 @@
 4. check text uses p, h1, etc. tags for seo
 5. add secondary global font to repo
 6. blur when image is rendering
-7. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
+7. make links have a single source of truth (site settings) -> ensure there is only 1 single source of truth and this is tested when data is returned (one line of implementation would be good).
 
 ### BUGS
 

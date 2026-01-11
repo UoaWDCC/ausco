@@ -10,8 +10,7 @@ const SiteSettings: GlobalConfig = {
       label: "Logos",
       type: "group",
       admin: {
-        description:
-          "Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.",
+        description: "Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.",
       },
       fields: [
         {
@@ -44,7 +43,8 @@ const SiteSettings: GlobalConfig = {
       type: "array",
       maxRows: 7,
       admin: {
-        description: "Each platform can only be selected once.",
+        description:
+          "Each platform can only be selected once. For [Constitution], if no link is provided, https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra is used as the fallback.",
       },
       validate: (value) => {
         if (!value) return true;

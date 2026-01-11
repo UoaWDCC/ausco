@@ -25,7 +25,7 @@ const OurPeople: GlobalConfig = {
           required: true,
           admin: {
             description:
-              "For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+              "For hero images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.",
           },
         },
         {
@@ -315,7 +315,7 @@ const OurPeople: GlobalConfig = {
               type: "array",
               maxRows: 2,
               admin: {
-                description: "Note: This is designed to hold 2 founding members.",
+                description: "This is designed to hold 2 founding members.",
               },
               fields: [
                 {

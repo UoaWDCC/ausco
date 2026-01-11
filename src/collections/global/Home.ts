@@ -25,7 +25,7 @@ const Home: GlobalConfig = {
           required: true,
           admin: {
             description:
-              "Large hero background image. WebP (or JPG) works best. Export at 2x size/resolution for sharpness on large screens.",
+              "Large hero background image. WebP (or PNG) works best. Export at 2x size/resolution for sharpness on large screens.",
           },
         },
         {
@@ -145,7 +145,8 @@ const Home: GlobalConfig = {
       type: "text",
       required: true,
       admin: {
-        description: "Paste the full YouTube URL.",
+        description:
+          "Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback.",
       },
     },
   ],

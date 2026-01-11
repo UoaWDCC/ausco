@@ -98,7 +98,7 @@ const ConcertsPast: GlobalConfig = {
                   min: 0,
                   required: true,
                   admin: {
-                    description: "Donation value only, no $ needed.",
+                    description: "Donation value only, no $ sign needed.",
                   },
                 },
               ],
@@ -172,7 +172,7 @@ const ConcertsPast: GlobalConfig = {
                   min: 0,
                   required: true,
                   admin: {
-                    description: "Donation value only, no $ needed.",
+                    description: "Donation value only, no $ sign needed.",
                   },
                 },
               ],

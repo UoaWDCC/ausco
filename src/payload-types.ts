@@ -194,7 +194,7 @@ export interface Album {
   focalY?: number | null;
 }
 /**
- * Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it would lock you out of the Payload Admin.
+ * Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it will lock you out of the Payload Admin.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
@@ -404,7 +404,7 @@ export interface Home {
   id: string;
   hero: {
     /**
-     * Large hero background image. WebP (or JPG) works best. Export at 2x size/resolution for sharpness on large screens.
+     * Large hero background image. WebP (or PNG) works best. Export at 2x size/resolution for sharpness on large screens.
      */
     background: string | Media;
     header: {
@@ -447,7 +447,7 @@ export interface Home {
     };
   };
   /**
-   * Paste the full YouTube URL.
+   * Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback.
    */
   featureVideoUrl: string;
   updatedAt?: string | null;
@@ -462,7 +462,7 @@ export interface AboutUs {
   hero: {
     description: string;
     /**
-     * Maximum and recommended number of stickers: 6. Use PNG format for transparent backgrounds (WebP also supported).
+     * Maximum and recommended number of stickers: 6. Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.
      */
     stickers?:
       | {
@@ -472,7 +472,7 @@ export interface AboutUs {
       | null;
   };
   /**
-   * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+   * For background images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.
    */
   cards: {
     vision: {
@@ -487,7 +487,7 @@ export interface AboutUs {
       summary: string;
     };
     /**
-     * Note: To change the link to AUSCO's Constitution, please refer to [Site Settings | Links].
+     * To change the link to AUSCO's Constitution, please refer to [Site Settings -> Links].
      */
     constitution: {
       background: string | Media;
@@ -500,7 +500,7 @@ export interface AboutUs {
       summary: string;
       description: string;
       /**
-       * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
+       * Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.
        */
       sponsorLogos?:
         | {
@@ -610,7 +610,7 @@ export interface OurPerson {
   id: string;
   header: {
     /**
-     * For hero images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+     * For hero images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.
      */
     image: string | Media;
     description?: string | null;
@@ -710,7 +710,7 @@ export interface OurPerson {
        */
       frame: string | Media;
       /**
-       * Note: This is designed to hold 2 founding members.
+       * This is designed to hold 2 founding members.
        */
       members?:
         | {
@@ -729,7 +729,7 @@ export interface OurPerson {
   createdAt?: string | null;
 }
 /**
- * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ * For background images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "concerts".
@@ -834,7 +834,7 @@ export interface ConcertsPast {
             name: string;
             url: string;
             /**
-             * Donation value only, no $ needed.
+             * Donation value only, no $ sign needed.
              */
             donation: number;
           };
@@ -855,7 +855,7 @@ export interface ConcertsPast {
             name: string;
             url: string;
             /**
-             * Donation value only, no $ needed.
+             * Donation value only, no $ sign needed.
              */
             donation: number;
           };
@@ -867,7 +867,7 @@ export interface ConcertsPast {
   createdAt?: string | null;
 }
 /**
- * For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.
+ * For background images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "gallery".
@@ -1033,7 +1033,7 @@ export interface Footer {
 export interface SiteSetting {
   id: string;
   /**
-   * Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.
+   * Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.
    */
   logos: {
     primary: string | Media;
@@ -1041,7 +1041,7 @@ export interface SiteSetting {
     tertiary: string | Media;
   };
   /**
-   * Each platform can only be selected once.
+   * Each platform can only be selected once. For [Constitution], if no link is provided, https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra is used as the fallback.
    */
   links?:
     | {
@@ -1059,6 +1059,9 @@ export interface SiteSetting {
  */
 export interface Legacy {
   id: string;
+  /**
+   * Notes are automatically sorted by descending created date (not updated date) when displayed on the website.
+   */
   notes?:
     | {
         createdAt?: string | null;
