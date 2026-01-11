@@ -43,10 +43,6 @@ const LegacyPanel = async () => {
     const legacyData = await getLegacyNotes();
     const notes: LegacyNote[] = legacyData.notes || [];
 
-    if (notes.length === 0) {
-      return null; // Do not show the panel if there are no notes
-    }
-
     return (
       <>
         <style>{`
@@ -56,6 +52,7 @@ const LegacyPanel = async () => {
           border-radius: 4px;
           border: 1px solid var(--theme-border-color);
           height: 100%;
+          width: 100%;
           display: flex;
           flex-direction: column;
           overflow-y: auto;
@@ -73,36 +70,47 @@ const LegacyPanel = async () => {
             📜 Legacy Notes
           </h3>
 
-          {notes.map((note, index) => (
-            <div
-              key={index}
+          {notes.length > 0 ? (
+            notes.map((note, index) => (
+              <div
+                key={index}
+                style={{
+                  paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                  marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                  borderBottom:
+                    index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
+                }}
+              >
+                <p style={{ margin: 0, marginBottom: "0.15rem" }}>
+                  <strong>{note.name}</strong>
+                </p>
+
+                {note.createdAt && (
+                  <p
+                    style={{
+                      fontSize: "0.85rem",
+                      opacity: 0.7,
+                      margin: 0,
+                      marginBottom: "0.75rem",
+                    }}
+                  >
+                    Created {new Date(note.createdAt).toLocaleString()}
+                  </p>
+                )}
+
+                <RichText data={note.content} />
+              </div>
+            ))
+          ) : (
+            <p
               style={{
-                paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
-                marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
-                borderBottom:
-                  index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
+                fontStyle: "italic",
+                marginBottom: "1.5rem",
               }}
             >
-              <p style={{ margin: 0, marginBottom: "0.15rem" }}>
-                <strong>{note.name}</strong>
-              </p>
-
-              {note.createdAt && (
-                <p
-                  style={{
-                    fontSize: "0.85rem",
-                    opacity: 0.7,
-                    margin: 0,
-                    marginBottom: "0.75rem",
-                  }}
-                >
-                  Created {new Date(note.createdAt).toLocaleString()}
-                </p>
-              )}
-
-              <RichText data={note.content} />
-            </div>
-          ))}
+              No notes recorded
+            </p>
+          )}
         </div>
       </>
     );
