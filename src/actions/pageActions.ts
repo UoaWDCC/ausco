@@ -63,22 +63,22 @@ export const getGallery = cache(async (): Promise<Gallery> => {
   return payload.findGlobal({ slug: "gallery", depth: 1 });
 });
 
-export const getGalleryConcerts = async (): Promise<GalleryConcert> => {
+export const getGalleryConcerts = cache(async (): Promise<GalleryConcert> => {
   const payload = await getPayload({ config });
-  return await payload.findGlobal({ slug: "gallery-concert" });
-};
+  return await payload.findGlobal({ slug: "gallery-concert", depth: 1 });
+});
 
 export const getGalleryAnnualCamp = cache(async (): Promise<GalleryAnnualcamp> => {
   const payload = await getPayload({ config });
   return payload.findGlobal({ slug: "gallery-annualcamp", depth: 1 });
 });
 
-export const getGalleryExecutiveCamp = async (): Promise<GalleryExecutivecamp> => {
+export const getGalleryExecutiveCamp = cache(async (): Promise<GalleryExecutivecamp> => {
   const payload = await getPayload({ config });
-  return await payload.findGlobal({ slug: "gallery-executivecamp" });
-};
+  return await payload.findGlobal({ slug: "gallery-executivecamp", depth: 1 });
+});
 
-export const getGalleryOther = async (): Promise<GalleryOther> => {
+export const getGalleryOther = cache(async (): Promise<GalleryOther> => {
   const payload = await getPayload({ config });
-  return await payload.findGlobal({ slug: "gallery-other" });
-};
+  return await payload.findGlobal({ slug: "gallery-other", depth: 1 });
+});

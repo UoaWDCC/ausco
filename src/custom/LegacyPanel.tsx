@@ -1,10 +1,7 @@
-import React, { cache } from "react";
+"use client";
 
-import { getPayload } from "payload";
+import React, { useEffect, useState } from "react";
 import { RichText } from "@payloadcms/richtext-lexical/react";
-
-import config from "@payload-config";
-import { Legacy } from "@/payload-types";
 
 type LegacyNote = {
   createdAt?: string | null;
@@ -12,18 +9,12 @@ type LegacyNote = {
   content: any;
 };
 
-const getLegacyNotes = cache(async (): Promise<Legacy> => {
-  const payload = await getPayload({ config });
-  return payload.findGlobal({ slug: "legacy", depth: 1 });
-});
-
 /**
  * LegacyPanel component - A panel that fetches and displays read-only "Legacy Notes"
  * from the `legacy` Global in Payload CMS. Notes are rendered in chronological order
  * and include a title, creation timestamp, and rich text content.
  *
- * Data is fetched via the Payload server API and cached using React's `cache`
- * utility to avoid repeated requests during a single render pass.
+ * Data is fetched client-side via an API endpoint to avoid blocking the admin panel load.
  *
  * @component
  * @returns {Promise<React.ReactElement | null>} A styled panel displaying legacy notes,
@@ -35,19 +26,33 @@ const getLegacyNotes = cache(async (): Promise<Legacy> => {
  * @note Tailwind CSS classes are not supported in this context. Styling must be applied
  * using inline styles or custom CSS.
  */
-const LegacyPanel = async () => {
-  try {
-    const legacyData = await getLegacyNotes();
+const LegacyPanel = () => {
+  const [notes, setNotes] = useState<LegacyNote[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const notes: LegacyNote[] = (legacyData.notes || []).slice().sort((a, b) => {
-      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
-      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
-      return dateB - dateA; // newest note first
-    });
+  useEffect(() => {
+    fetch("/api/admin/legacy")
+      .then((r) => r.json())
+      .then((data) => {
+        const fetchedNotes = data?.notes ?? [];
+        // Sort notes - newest first
+        const sortedNotes = fetchedNotes.slice().sort((a: LegacyNote, b: LegacyNote) => {
+          const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+          const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+          return dateB - dateA;
+        });
+        setNotes(sortedNotes);
+      })
+      .catch((err) => {
+        console.error("Failed to load legacy notes:", err);
+        setNotes([]);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
-    return (
-      <>
-        <style>{`
+  return (
+    <>
+      <style>{`
         .welcome-panel {
           padding: 1.5rem;
           background-color: var(--theme-elevation-50);
@@ -67,59 +72,57 @@ const LegacyPanel = async () => {
         }
       `}</style>
 
-        <div className="welcome-panel">
-          <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
-            📜 Legacy Notes
-          </h3>
+      <div className="welcome-panel">
+        <h3 style={{ marginTop: 0, marginBottom: "0.75rem", fontSize: "1.3rem" }}>
+          📜 Legacy Notes
+        </h3>
 
-          {notes.length > 0 ? (
-            notes.map((note, index) => (
-              <div
-                key={index}
-                style={{
-                  paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
-                  marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
-                  borderBottom:
-                    index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
-                }}
-              >
-                <p style={{ margin: 0, marginBottom: "0.15rem" }}>
-                  <strong>{note.name}</strong>
-                </p>
-
-                {note.createdAt && (
-                  <p
-                    style={{
-                      fontSize: "0.85rem",
-                      opacity: 0.7,
-                      margin: 0,
-                      marginBottom: "0.75rem",
-                    }}
-                  >
-                    Created {new Date(note.createdAt).toLocaleString()}
-                  </p>
-                )}
-
-                <RichText data={note.content} />
-              </div>
-            ))
-          ) : (
-            <p
+        {loading ? (
+          <p style={{ fontStyle: "italic", marginBottom: "1.5rem" }}>Loading notes...</p>
+        ) : notes.length > 0 ? (
+          notes.map((note, index) => (
+            <div
+              key={index}
               style={{
-                fontStyle: "italic",
-                marginBottom: "1.5rem",
+                paddingBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                marginBottom: index < notes.length - 1 ? "1.5rem" : 0,
+                borderBottom:
+                  index < notes.length - 1 ? "1px solid var(--theme-elevation-100)" : "none",
               }}
             >
-              No notes recorded
-            </p>
-          )}
-        </div>
-      </>
-    );
-  } catch (error) {
-    console.error("Failed to load legacy notes:", error);
-    return null;
-  }
+              <p style={{ margin: 0, marginBottom: "0.15rem" }}>
+                <strong>{note.name}</strong>
+              </p>
+
+              {note.createdAt && (
+                <p
+                  style={{
+                    fontSize: "0.85rem",
+                    opacity: 0.7,
+                    margin: 0,
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  Created {new Date(note.createdAt).toLocaleString()}
+                </p>
+              )}
+
+              <RichText data={note.content} />
+            </div>
+          ))
+        ) : (
+          <p
+            style={{
+              fontStyle: "italic",
+              marginBottom: "1.5rem",
+            }}
+          >
+            No notes recorded
+          </p>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default LegacyPanel;
