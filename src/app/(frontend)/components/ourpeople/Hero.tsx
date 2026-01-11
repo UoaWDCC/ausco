@@ -2,14 +2,14 @@ import Image from "next/image";
 
 import { Media } from "@/payload-types";
 
-type HeaderProps = {
+type HeroProps = {
   content: {
     image: Media | string | null;
     description?: string | null;
   };
 };
 
-const Header = ({ content }: HeaderProps) => {
+const Hero = ({ content }: HeroProps) => {
   return (
     <>
       <section className="relative w-full pb-8 sm:flex sm:flex-row sm:items-center sm:gap-16 sm:pb-12 md:pb-16">
@@ -17,7 +17,7 @@ const Header = ({ content }: HeaderProps) => {
           <div className="relative h-[22vh] w-full sm:h-[28vh] md:aspect-3/2 md:h-auto md:w-1/2">
             <Image
               src={content.image.url}
-              alt={content.image.alt || "Header Image"}
+              alt={content.image.alt || "Hero Image"}
               fill
               priority
               sizes="(max-width: 640px) 100vw, 50vw"
@@ -44,4 +44,4 @@ const Header = ({ content }: HeaderProps) => {
   );
 };
 
-export default Header;
+export default Hero;

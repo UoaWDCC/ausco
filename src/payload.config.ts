@@ -10,6 +10,9 @@ import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
 import { Users } from "./collections/Users";
 
+import StartLayout from "./custom/StartLayout";
+import EndPanel from "./custom/EndPanel";
+
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
 import OurStory from "./collections/global/OurStory";
@@ -25,6 +28,7 @@ import GalleryOther from "./collections/global/GalleryOther";
 import Header from "./collections/global/Header";
 import Footer from "./collections/global/Footer";
 import SiteSettings from "./collections/global/SiteSettings";
+import Legacy from "./collections/global/Legacy";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -35,9 +39,13 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      beforeDashboard: [StartLayout] as any,
+      afterDashboard: [EndPanel] as any,
+    },
   },
 
-  // Payload Admin UI displays globals in the same order they are defined in this config
+  // Payload Admin UI displays globals in t  he same order they are defined in this config
   globals: [
     Home,
     AboutUs,
@@ -54,8 +62,9 @@ export default buildConfig({
     Header,
     Footer,
     SiteSettings,
+    Legacy,
   ],
-  collections: [Albums, Media, Users],
+  collections: [Media, Albums, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),

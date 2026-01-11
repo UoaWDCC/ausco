@@ -67,8 +67,8 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    albums: Album;
     media: Media;
+    albums: Album;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -77,8 +77,8 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    albums: AlbumsSelect<false> | AlbumsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -88,6 +88,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: null;
   globals: {
     home: Home;
     'about-us': AboutUs;
@@ -104,6 +105,7 @@ export interface Config {
     header: Header;
     footer: Footer;
     'site-settings': SiteSetting;
+    legacy: Legacy;
   };
   globalsSelect: {
     home: HomeSelect<false> | HomeSelect<true>;
@@ -121,6 +123,7 @@ export interface Config {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    legacy: LegacySelect<false> | LegacySelect<true>;
   };
   locale: null;
   user: User & {
@@ -150,15 +153,12 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums".
+ * via the `definition` "media".
  */
-export interface Album {
+export interface Media {
   id: string;
-  category: 'concert' | 'annualcamp' | 'executivecamp' | 'other';
-  year: number;
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -172,12 +172,15 @@ export interface Album {
   focalY?: number | null;
 }
 /**
+ * Use the bulk upload option to add multiple images at once. Selecting a category will automatically assign images to the correct gallery album. Once images are uploaded, proceed to the corresponding gallery album page to select the images.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
+ * via the `definition` "albums".
  */
-export interface Media {
+export interface Album {
   id: string;
-  alt: string;
+  category: 'concert' | 'annualcamp' | 'executivecamp' | 'other';
+  year: number;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -241,12 +244,12 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'albums';
-        value: string | Album;
-      } | null)
-    | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'albums';
+        value: string | Album;
       } | null)
     | ({
         relationTo: 'users';
@@ -296,11 +299,10 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "albums_select".
+ * via the `definition` "media_select".
  */
-export interface AlbumsSelect<T extends boolean = true> {
-  category?: T;
-  year?: T;
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -315,10 +317,11 @@ export interface AlbumsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media_select".
+ * via the `definition` "albums_select".
  */
-export interface MediaSelect<T extends boolean = true> {
-  alt?: T;
+export interface AlbumsSelect<T extends boolean = true> {
+  category?: T;
+  year?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1052,6 +1055,37 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legacy".
+ */
+export interface Legacy {
+  id: string;
+  notes?:
+    | {
+        createdAt?: string | null;
+        name: string;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "home_select".
  */
 export interface HomeSelect<T extends boolean = true> {
@@ -1576,6 +1610,23 @@ export interface SiteSettingsSelect<T extends boolean = true> {
     | {
         platform?: T;
         url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legacy_select".
+ */
+export interface LegacySelect<T extends boolean = true> {
+  notes?:
+    | T
+    | {
+        createdAt?: T;
+        name?: T;
+        content?: T;
         id?: T;
       };
   updatedAt?: T;
