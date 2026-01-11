@@ -1,10 +1,9 @@
 import React, { cache } from "react";
 
-import { RichText } from "@payloadcms/richtext-lexical/react";
 import { getPayload } from "payload";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 import config from "@payload-config";
-
 import { Legacy } from "@/payload-types";
 
 type LegacyNote = {
@@ -39,7 +38,12 @@ const getLegacyNotes = cache(async (): Promise<Legacy> => {
 const LegacyPanel = async () => {
   try {
     const legacyData = await getLegacyNotes();
-    const notes: LegacyNote[] = legacyData.notes || [];
+
+    const notes: LegacyNote[] = (legacyData.notes || []).slice().sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA; // newest note first
+    });
 
     return (
       <>

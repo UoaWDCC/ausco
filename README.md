@@ -7,11 +7,10 @@
 3. make colours/colour variables consistent across website (including logos)
 4. check text uses p, h1, etc. tags for seo
 5. add secondary global font to repo
-6. routing? (with dashes) \*\*
-7. blur when image is rendering
-8. global util file (stringToList, url checker for Media, etc.) \*\*
-9. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
-10. sort notes imports
+6. blur when image is rendering
+7. global util file (stringToList, url checker for Media, etc.) \*\*
+8. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
+9. sort notes imports
 
 ### BUGS
 
