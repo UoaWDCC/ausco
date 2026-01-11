@@ -8,9 +8,7 @@
 4. check text uses p, h1, etc. tags for seo
 5. add secondary global font to repo
 6. blur when image is rendering
-7. global util file (stringToList, url checker for Media, etc.) \*\*
-8. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
-9. sort notes imports
+7. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
 
 ### BUGS
 

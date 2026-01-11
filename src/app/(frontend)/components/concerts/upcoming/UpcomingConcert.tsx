@@ -1,9 +1,12 @@
 import Image from "next/image";
+
 import { ArrowUpRight } from "lucide-react";
 import { GeoAltFill, Calendar2EventFill } from "react-bootstrap-icons";
 
 import { Media } from "@/payload-types";
+
 import { Button } from "../../ui/button";
+import { normaliseDate } from "@/app/(frontend)/util/date";
 
 type pageVariant = "concertsUpcomingPage" | "homePage";
 
@@ -33,8 +36,6 @@ type UpcomingConcertProps = {
 const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertProps) => {
   const title = content.isComingSoon ? "Coming Soon!" : content.title;
 
-  const normaliseDate = (date: Date) =>
-    new Date(date.getFullYear(), date.getMonth(), date.getDate());
   const today = normaliseDate(new Date());
   const matineeDate = content.tickets?.matinee
     ? normaliseDate(new Date(content.tickets.matinee.date))
@@ -55,7 +56,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div className="w-full max-w-[376px] p-1 aspect-5/7 bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base">
+    <div className="flex aspect-5/7 w-full max-w-[376px] items-center justify-center rounded-md bg-(--brown) p-1 text-base text-(--cream)">
       <p className="text-center text-xs sm:text-sm md:text-base">Coming Soon! 😉</p>
     </div>
   ) : (
@@ -66,7 +67,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
         alt={content.poster.alt || "Poster"}
         width={376}
         height={532}
-        className="rounded-md border border-(--brown) shrink-0 w-80 sm:w-96 md:w-[376px] aspect-5/7 object-cover"
+        className="aspect-5/7 w-80 shrink-0 rounded-md border border-(--brown) object-cover sm:w-96 md:w-[376px]"
         sizes="(max-width: 640px) 80vw, (max-width: 768px) 40vw, 376px"
         quality={90}
       />
@@ -74,32 +75,32 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
   );
 
   const titleContent = headingVariant === "concertsUpcomingPage" && (
-    <div className="flex flex-col lg:flex-row items-start lg:items-center gap-1 sm:gap-2 lg:gap-3 whitespace-pre-line">
+    <div className="flex flex-col items-start gap-1 whitespace-pre-line sm:gap-2 lg:flex-row lg:items-center lg:gap-3">
       {semester && (
-        <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap text-xs sm:text-sm md:text-base">
+        <div className="rounded-md bg-(--brown) px-3 py-1 text-xs whitespace-nowrap text-(--cream) sm:text-sm md:text-base">
           Semester {semester}
         </div>
       )}
-      <h1 className="font-light! text-xl sm:text-2xl md:text-3xl italic truncate w-full">
+      <h1 className="w-full truncate text-xl font-light! italic sm:text-2xl md:text-3xl">
         {title}
       </h1>
     </div>
   );
 
   const descriptionContent = (
-    <p className="whitespace-pre-line text-xs sm:text-sm md:text-base">{content.description}</p>
+    <p className="text-xs whitespace-pre-line sm:text-sm md:text-base">{content.description}</p>
   );
 
   const ticketContent = (
-    <div className="grid grid-cols-2 gap-x-3 lg:gap-x-10 gap-y-2 md:gap-y-3 lg:gap-y-4 items-start text-xs sm:text-sm md:text-base">
+    <div className="grid grid-cols-2 items-start gap-x-3 gap-y-2 text-xs sm:text-sm md:gap-y-3 md:text-base lg:gap-x-10 lg:gap-y-4">
       {/* Row 1: Headings */}
-      <h2 className="font-bold m-0!">Matinee</h2>
-      <h2 className="font-bold m-0!">Concert</h2>
+      <h2 className="m-0! font-bold">Matinee</h2>
+      <h2 className="m-0! font-bold">Concert</h2>
 
       {/* Row 2+3: Date + Location */}
       <div className="flex flex-col gap-1.5">
         <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
-          <Calendar2EventFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
+          <Calendar2EventFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
           {!content.isComingSoon && matineeDate ? (
             <div>{formatDate(matineeDate)}</div>
           ) : (
@@ -107,7 +108,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
           )}
         </div>
         <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
-          <GeoAltFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
+          <GeoAltFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
           {content.isComingSoon ? (
             <div>Location TBC</div>
           ) : (
@@ -118,7 +119,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
 
       <div className="flex flex-col gap-1.5">
         <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
-          <Calendar2EventFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
+          <Calendar2EventFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
           {!content.isComingSoon && concertDate ? (
             <div>{formatDate(concertDate)}</div>
           ) : (
@@ -126,7 +127,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
           )}
         </div>
         <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
-          <GeoAltFill className="shrink-0 w-[1em] h-[1em] mt-0.5 lg:mt-1" />
+          <GeoAltFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
           {content.isComingSoon ? (
             <div>Location TBC</div>
           ) : (
@@ -142,19 +143,19 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             <Button
               variant="brown"
               size="lg"
-              className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+              className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
             >
-              Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+              Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
             </Button>
           </a>
         ) : (
           <Button
             variant="brown"
             size="lg"
-            className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
             disabled
           >
-            Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </Button>
         )}
       </div>
@@ -165,19 +166,19 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             <Button
               variant="brown"
               size="lg"
-              className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+              className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
             >
-              Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+              Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
             </Button>
           </a>
         ) : (
           <Button
             variant="brown"
             size="lg"
-            className="text-xs sm:text-sm md:text-base h-8 sm:h-9 md:h-11 px-2 sm:px-3 md:px-4 gap-1.5 sm:gap-2 lg:mt-1"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
             disabled
           >
-            Tickets <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+            Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
           </Button>
         )}
       </div>
@@ -185,21 +186,21 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
   );
 
   return (
-    <section className="bg-(--beige) text-(--brown) mx-auto lg:max-w-6xl rounded-lg px-3 sm:px-8 md:px-14 lg:px-24 py-3 sm:py-8 md:py-12 lg:py-16">
+    <section className="mx-auto rounded-lg bg-(--beige) px-3 py-3 text-(--brown) sm:px-8 sm:py-8 md:px-14 md:py-12 lg:max-w-6xl lg:px-24 lg:py-16">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
-        <div className="flex flex-col lg:flex-row justify-center pb-4 sm:pb-8 md:pb-12">
+        <div className="flex flex-col justify-center pb-4 sm:pb-8 md:pb-12 lg:flex-row">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl!">
             Our Upcoming Concert,&nbsp;
           </h1>
-          <h1 className="font-light! text-xl sm:text-2xl md:text-3xl lg:text-4xl! italic">
+          <h1 className="text-xl font-light! italic sm:text-2xl md:text-3xl lg:text-4xl!">
             {title}
           </h1>
         </div>
       )}
 
       {/* Content - Large screens layout */}
-      <div className="hidden lg:flex gap-8 lg:gap-16 items-stretch justify-center">
+      <div className="hidden items-stretch justify-center gap-8 lg:flex lg:gap-16">
         {semester === "2" ? (
           <>
             <div
@@ -207,7 +208,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             >
               {titleContent}
               {descriptionContent}
-              <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+              <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
               {ticketContent}
             </div>
             {poster}
@@ -220,7 +221,7 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
             >
               {titleContent}
               {descriptionContent}
-              <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+              <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
               {ticketContent}
             </div>
           </>
@@ -228,14 +229,14 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       </div>
 
       {/* Content - Small to medium screens layout */}
-      <div className="flex flex-col lg:hidden gap-3">
+      <div className="flex flex-col gap-3 lg:hidden">
         {titleContent}
-        <div className="grid grid-cols-2 gap-3 sm:gap-7 md:gap-9 items-start">
+        <div className="grid grid-cols-2 items-start gap-3 sm:gap-7 md:gap-9">
           {poster}
           {descriptionContent}
         </div>
 
-        <div className="w-full bg-(--brown) my-2" style={{ height: "0.5px" }} />
+        <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
         {ticketContent}
       </div>
     </section>

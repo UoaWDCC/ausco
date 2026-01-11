@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import FramedImage from "./FramedImage";
 import { Media } from "@/payload-types";
 
+import { getImageUrl } from "@/app/(frontend)/util/media";
+
 type HallOfFameProps = {
   content: {
     pastPresidents?: {
@@ -33,12 +35,6 @@ type HallOfFameProps = {
 const MAX_COLS = 3; // Maximum number of columns per full row
 
 const HallOfFame = ({ content }: HallOfFameProps) => {
-  const getImageUrl = (image: Media | string | null | undefined): string | null => {
-    if (!image) return null; // handle undefined or null
-    if (typeof image === "string") return image; // if it's already a string URL
-    if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
-    return null;
-  };
   const pastPresidentsFrameUrl = getImageUrl(content?.pastPresidents?.frame);
   const foundersFrameUrl = getImageUrl(content?.founders?.frame);
 

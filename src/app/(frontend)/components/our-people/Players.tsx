@@ -2,6 +2,8 @@ import Image from "next/image";
 
 import { Media } from "@/payload-types";
 
+import { stringToList } from "@/app/(frontend)/util/list";
+
 type PlayersProps = {
   content?: {
     description?: string | null;
@@ -37,13 +39,6 @@ const Players = ({ content }: PlayersProps) => {
   }
 
   const totalColumns = Math.min(4, largeGroups.length + smallGroups.length);
-
-  // Map players into a list
-  const listOfPlayers = (players: string) =>
-    players
-      .split(/[,;]+/)
-      .map((player) => player.trim())
-      .filter(Boolean);
 
   return (
     <section className="flex w-full gap-2 bg-(--beige) px-6 py-6 text-(--brown) sm:gap-9 md:gap-16 md:rounded-lg md:px-16 md:py-16">
@@ -83,7 +78,7 @@ const Players = ({ content }: PlayersProps) => {
             </h3>
 
             <ul className="space-y-2 px-0.5 sm:px-1.5 md:space-y-3 md:px-3">
-              {listOfPlayers(group.players).map((player, index) => (
+              {stringToList(group.players).map((player, index) => (
                 <li
                   key={index}
                   className="text-xs leading-none wrap-break-word hyphens-auto md:text-sm"
@@ -116,7 +111,7 @@ const Players = ({ content }: PlayersProps) => {
                 </h3>
 
                 <ul className="space-y-2 px-0.5 sm:px-1.5 md:space-y-3 md:px-3">
-                  {listOfPlayers(group.players).map((player, index) => (
+                  {stringToList(group.players).map((player, index) => (
                     <li
                       key={index}
                       className="text-xs leading-none wrap-break-word hyphens-auto md:text-sm"

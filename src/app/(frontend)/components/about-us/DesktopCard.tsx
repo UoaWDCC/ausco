@@ -6,7 +6,7 @@ import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import { Media } from "@/payload-types";
-import parallaxConfig from "@/config/parallax";
+import parallaxConfig from "@/app/(frontend)/config/parallax";
 
 import { Button } from "../ui/button";
 import LogoCarousel from "./LogoCarousel";
