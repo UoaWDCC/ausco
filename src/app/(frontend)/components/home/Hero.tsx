@@ -30,7 +30,7 @@ const Hero = ({ content }: HeroProps) => {
   const y = useSpring(rawY, spring);
 
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-[45vh] md:min-h-screen overflow-hidden">
       {/* Background Image */}
       <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
