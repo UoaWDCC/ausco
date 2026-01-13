@@ -32,7 +32,7 @@ const Hero = ({ content }: HeroProps) => {
   return (
     <section className="relative min-h-[45vh] md:min-h-screen overflow-hidden">
       {/* Background Image */}
-      <motion.div className="absolute inset-0 z-0 will-change-transform" style={{ y }}>
+      <motion.div className="absolute inset-0 z-0 will-change-transform md:h-full h-[45vh]" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
           <Image
             src={content.background.url}
