@@ -61,7 +61,7 @@ const Hero = ({ content }: HeroProps) => {
         )}
 
         {/* Header */}
-        <h1 className="text-2xl md:text-4xl font-semibold! leading-tight mt-4! mb-1.5!">
+        <h1 className="text-2xl md:text-4xl !font-medium md:!font-semibold !leading-snug md:!leading-normal mt-4 mb-1.5 w-[60%] max-w-full px-4 text-center break-words overflow-wrap-anywhere">
           <RichText data={content.header} />
         </h1>
 
