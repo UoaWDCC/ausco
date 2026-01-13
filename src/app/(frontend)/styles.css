@@ -42,9 +42,6 @@
   --cream: oklch(0.9665 0.0108 95.16); /*#F6F4EC*/
   --brown: oklch(0.359 0.0856 46.62); /*#602C0F*/
   --beige: oklch(0.9255 0.02 77.31); /*#EEE5D8*/
-  --lightbeige: oklch(
-    0.9369 0.0165 91.56
-  ); /*#EEEADE - TODO: USED IN INFO CARDS - SEE IF IT CAN BE REMOVED AND USED ONLY IN INFOCARDS */
   --lightblue: oklch(89.36% 0.048 256.37) /*#C7D5E8*/;
 }
 
