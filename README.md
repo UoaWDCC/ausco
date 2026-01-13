@@ -2,19 +2,20 @@
 
 ### TODOs
 
-1. verify a or Link usage for internal/external navigation
-2. clean data/content types (required fields cannot be null but add anyway for type safety)
-3. make colours/colour variables consistent across website (including logos)
-4. check text uses p, h1, etc. tags for seo
+1. verify a or Link usage for internal/external navigation \*
+2. clean data/content types (required fields cannot be null but add anyway for type safety) \*
+3. make colours/colour variables consistent across website (including logos) \*
+4. check text uses p, h1, etc. tags for seo \*
 5. add secondary global font to repo
-6. blur when image is rendering
-7. make links have a single source of truth (site settings) -> ensure there is only 1 single source of truth and this is tested when data is returned (one line of implementation would be good).
+6. blur when image is rendering \*
+7. make links have a single source of truth (site settings) -> ensure there is only 1 single source of truth and this is tested when data is returned (one line of implementation would be good). \*
+8. look into the quality={90} \*
 
 ### BUGS
 
 1. font (fraunces) not being applied globally
 2. double check parallax effect on phone ui screen
-3. min-h-screen doesn't account for footer height.
+3. min-h-screen doesn't account for footer height. \*
 
 ## Project Setup
 

@@ -17,7 +17,7 @@ const Legacy: GlobalConfig = {
       type: "array",
       admin: {
         description:
-          "Notes are automatically sorted by descending created date (not updated date) when displayed on the website.",
+          "Notes are automatically sorted by descending created date (not updated date) when displayed on the admin portal.",
       },
       fields: [
         {
