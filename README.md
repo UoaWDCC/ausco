@@ -3,8 +3,11 @@
 ### TODOs
 
 1. verify a or Link usage for internal/external navigation
-2. make links have a single source of truth (site settings) -> ensure there is only 1 single source of truth and this is tested when data is returned (one line of implementation would be good). \*
-3. look into the quality={90} \*
+2. look into the quality={90} \*
+3. on click up \*
+4. edit footer schema, account for the fallbacks used in site settings. need to parse site setting data to footer. \*
+5. add notes about the site settings. if a page uses a link, like social media, it should be edited through site settings. \*
+6. home page, uses sign up form link \*
 
 ### BUGS
 

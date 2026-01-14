@@ -447,7 +447,7 @@ export interface Home {
     };
   };
   /**
-   * Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback.
+   * Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback. To change the fallback video will require developer assistance; see src\app\(frontend)\components\home\FeatureVideo.tsx
    */
   featureVideoUrl: string;
   updatedAt?: string | null;
@@ -1041,11 +1041,20 @@ export interface SiteSetting {
     tertiary: string | Media;
   };
   /**
-   * Each platform can only be selected once. For [Constitution], if no link is provided, https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra is used as the fallback.
+   * Each platform can only be selected once. If no values are provided, these are the fallbacks in place: Facebook: 'https://www.facebook.com/ausco.ausa', Instagram: 'https://www.instagram.com/ausco.uoa/', Youtube: 'https://www.youtube.com/@AUSCO-UoA', Spotify: 'https://open.spotify.com/user/31b5qnnkievulqbuxajy5etbmo7u?si=d4f38d8f71e349b7&nd=1&dlsi=456d9aa5404649b4', Feedback Form: 'https://google.com', Email: 'mailto:example@example.com', Constitution: 'https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra', SignUp Form: 'https://google.com', Engage: 'https://google.com'. Changing the fallbacks will require a developer's assistance.
    */
   links?:
     | {
-        platform: 'facebook' | 'instagram' | 'youtube' | 'spotify' | 'feedbackForm' | 'email' | 'constitution';
+        platform:
+          | 'facebook'
+          | 'instagram'
+          | 'youtube'
+          | 'spotify'
+          | 'feedbackForm'
+          | 'email'
+          | 'constitution'
+          | 'signUpForm'
+          | 'engage';
         url: string;
         id?: string | null;
       }[]
@@ -1060,7 +1069,7 @@ export interface SiteSetting {
 export interface Legacy {
   id: string;
   /**
-   * Notes are automatically sorted by descending created date (not updated date) when displayed on the website.
+   * Notes are automatically sorted by descending created date (not updated date) when displayed on the admin portal.
    */
   notes?:
     | {

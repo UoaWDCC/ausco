@@ -41,7 +41,7 @@ const SiteSettings: GlobalConfig = {
       name: "links",
       label: "Links",
       type: "array",
-      maxRows: 7,
+      maxRows: 9,
       admin: {
         description:
           "Each platform can only be selected once. If no values are provided, these are the fallbacks in place: Facebook: 'https://www.facebook.com/ausco.ausa', Instagram: 'https://www.instagram.com/ausco.uoa/', Youtube: 'https://www.youtube.com/@AUSCO-UoA', Spotify: 'https://open.spotify.com/user/31b5qnnkievulqbuxajy5etbmo7u?si=d4f38d8f71e349b7&nd=1&dlsi=456d9aa5404649b4', Feedback Form: 'https://google.com', Email: 'mailto:example@example.com', Constitution: 'https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra', SignUp Form: 'https://google.com', Engage: 'https://google.com'. Changing the fallbacks will require a developer's assistance.",

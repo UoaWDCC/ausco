@@ -21,15 +21,11 @@ type CardLayoutProps = {
     story: CardProps;
     constitution: CardProps;
     sponsorsAndPartnerships: CardProps;
-    constitutionLink?: string | null;
+    constitutionLink: string;
   };
 };
 
 const CardLayout = ({ content }: CardLayoutProps) => {
-  const constitutionLink =
-    content.constitutionLink ??
-    "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra";
-
   return (
     <section className="flex w-full flex-col">
       {/* Desktop Layout: md and above */}
@@ -71,7 +67,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.constitution.title}
               summary={content.constitution.summary}
               description={`View ${content.constitution.title}`}
-              link={constitutionLink}
+              link={content.constitutionLink}
             />
           </div>
 
@@ -112,7 +108,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
-          <PhoneCard type="constitution" link={constitutionLink} />
+          <PhoneCard type="constitution" link={content.constitutionLink} />
         </div>
       </div>
     </section>

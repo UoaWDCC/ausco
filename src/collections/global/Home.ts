@@ -146,7 +146,7 @@ const Home: GlobalConfig = {
       required: true,
       admin: {
         description:
-          "Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback.",
+          "Paste the full YouTube URL. If no link is provided or the link provided is broken/invalid, https://www.youtube.com/watch?v=wyFaQIvxQEI is used as the fallback. To change the fallback video will require developer assistance; see src\\app\\(frontend)\\components\\home\\FeatureVideo.tsx",
       },
     },
   ],
