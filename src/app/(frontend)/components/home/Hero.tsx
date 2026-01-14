@@ -30,7 +30,8 @@ const Hero = ({ content }: HeroProps) => {
   const y = useSpring(rawY, spring);
 
   return (
-    <section className="relative min-h-[45vh] md:min-h-screen overflow-hidden">
+    <>
+      <section className="relative min-h-[45vh] md:min-h-screen overflow-hidden">
       {/* Background Image */}
       <motion.div className="absolute inset-0 z-0 will-change-transform md:h-full h-[45vh]" style={{ y }}>
         {typeof content.background === "object" && content.background?.url && (
@@ -47,7 +48,7 @@ const Hero = ({ content }: HeroProps) => {
       </motion.div>
 
       {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
-      <div className="relative z-10 flex flex-col items-center text-center text-(--cream) h-full pt-40 pb-12 px-6 gap-10">
+      <div className="relative z-10 flex flex-col items-center text-center text-(--cream) h-full pt-30 md:pt-40 pb-12 px-6 gap-10">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
@@ -76,6 +77,20 @@ const Hero = ({ content }: HeroProps) => {
         </Button>
       </div>
     </section>
+
+      {/*mobile-only section, separate content text + join us button*/}
+      <section className="md:hidden bg-[var(--cream)] px-6 py-12">
+        <div className="flex flex-col items-start text-left gap-6 max-w-2xl">
+          <h3 className="text-base text-[var(--brown)] w-full">
+            {content.content}
+          </h3>
+          <Button variant="brown" size="lg" className="mt-2.5">
+            Join Us
+            <ArrowUpRight size={18} />
+          </Button>
+        </div>
+      </section>
+    </>
   );
 };
 
