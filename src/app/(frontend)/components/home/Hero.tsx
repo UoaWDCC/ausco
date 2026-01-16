@@ -16,10 +16,10 @@ type HeroProps = {
     background: Media | string | null;
     header: any;
     content: string;
+    signUpLink: string | undefined;
   };
 };
 
-// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
   const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
@@ -67,9 +67,16 @@ const Hero = ({ content }: HeroProps) => {
         {/* Content */}
         <h3 className="w-full max-w-208 text-base md:w-[75%] md:text-lg">{content.content}</h3>
 
-        <Button variant="beige" size="lg" className="mt-2.5">
-          Join Us
-          <ArrowUpRight size={18} />
+        <Button asChild variant="beige" size="lg" className="mt-2.5">
+          <a
+            href={content.signUpLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2"
+          >
+            Join Us
+            <ArrowUpRight size={18} />
+          </a>
         </Button>
       </div>
     </section>
