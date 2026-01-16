@@ -47,7 +47,7 @@ const Hero = ({ content }: HeroProps) => {
       </motion.div>
 
       {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
-      <div className="relative z-10 flex h-full flex-col items-center gap-10 px-6 pt-40 pb-12 text-center text-(--cream)">
+      <div className="relative z-10 flex h-full flex-col items-center gap-10 px-6 pt-40 pb-12 text-center">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
@@ -60,12 +60,14 @@ const Hero = ({ content }: HeroProps) => {
         )}
 
         {/* Header */}
-        <h1 className="mt-4! mb-1.5! text-2xl leading-tight font-semibold! md:text-4xl">
+        <h1 className="mt-4! mb-1.5! text-2xl leading-tight font-semibold! text-(--cream) md:text-4xl">
           <RichText data={content.header} />
         </h1>
 
         {/* Content */}
-        <h3 className="w-full max-w-208 text-base md:w-[75%] md:text-lg">{content.content}</h3>
+        <h3 className="w-full max-w-208 text-base text-(--cream) md:w-[75%] md:text-lg">
+          {content.content}
+        </h3>
 
         <Button asChild variant="beige" size="lg" className="mt-2.5">
           <a
