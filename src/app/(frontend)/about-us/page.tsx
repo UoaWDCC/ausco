@@ -7,12 +7,9 @@ import { getSiteSetting } from "@/actions/globalActions";
 export default async function AboutPage() {
   const [aboutUsContent, siteSettingContent] = await Promise.all([getAboutUs(), getSiteSetting()]);
 
-  const constitutionLink = siteSettingContent?.links?.find(
-    (link) => link.platform === "constitution",
-  )?.url;
   const cardContent = {
     ...aboutUsContent.cards,
-    constitutionLink,
+    constitutionLink: siteSettingContent.linksMap.constitution,
   };
 
   return (
