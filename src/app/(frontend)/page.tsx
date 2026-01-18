@@ -24,7 +24,7 @@ export default async function HomePage() {
 
   const infoCardsContent = {
     ...homeContent.infoCards,
-    links: siteSettingContent.links,
+    links: siteSettingContent.linksMap,
   };
 
   return (
