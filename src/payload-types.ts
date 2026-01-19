@@ -1011,12 +1011,23 @@ export interface Footer {
     | {
         title: string;
         /**
-         * Maximum of 3 links per list.
+         * Maximum of 3 links per list. The URLs for default links can be amended through [Site Settings]. To add a custom label/URL, select "Custom Link" under the dropdown menu
          */
         options?:
           | {
               label: string;
-              url: string;
+              select:
+                | 'facebook'
+                | 'instagram'
+                | 'youtube'
+                | 'spotify'
+                | 'feedbackForm'
+                | 'email'
+                | 'constitution'
+                | 'signUpForm'
+                | 'engage'
+                | 'custom';
+              customUrl?: string | null;
               id?: string | null;
             }[]
           | null;
@@ -1596,7 +1607,8 @@ export interface FooterSelect<T extends boolean = true> {
           | T
           | {
               label?: T;
-              url?: T;
+              select?: T;
+              customUrl?: T;
               id?: T;
             };
         id?: T;
