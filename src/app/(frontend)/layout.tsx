@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const combinedFooterContent = {
     ...footerContent,
     primaryLogo: siteSettingContent.logos.primary,
-    socialMedia: siteSettingContent.linksMap,
+    links: siteSettingContent.linksMap,
   };
 
   // Note: each page is pushed down by the height of the header component (h-28), its height is included in the top padding

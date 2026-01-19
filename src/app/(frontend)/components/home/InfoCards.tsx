@@ -19,12 +19,7 @@ type InfoCardsProps = {
     contact: {
       image: Media | string | null;
     };
-    links?:
-      | {
-          platform: string;
-          url: string;
-        }[]
-      | null;
+    links: Record<string, string>;
   };
 };
 
@@ -32,8 +27,6 @@ const LIGHT_BEIGE =
   "oklch(0.9369 0.0165 91.56)"; /* #EEEADE - This is not the same as the globally declared beige */
 
 const InfoCards = ({ content }: InfoCardsProps) => {
-  const links = Object.fromEntries((content.links || []).map((link) => [link.platform, link.url]));
-
   return (
     <section className="flex items-center justify-center bg-(--cream) px-10 py-32 text-base text-(--navy)">
       <div className="flex flex-row gap-7">
@@ -106,27 +99,27 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-1 flex-col items-center justify-between text-center">
             <h1 className="m-0! text-4xl! font-normal!">Contact Us</h1>
             <div className="flex flex-col items-center gap-2">
-              <a href={links.feedbackForm} target="_blank" rel="noopener noreferrer">
+              <a href={content.links.feedbackForm} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="navy">
                   <FileEarmarkText size={18} />
                   Feedback Form
                 </Button>
               </a>
               <div className="flex flex-row items-center gap-2">
-                <a href={links.instagram} target="_blank" rel="noopener noreferrer">
+                <a href={content.links.instagram} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="navy">
                     <Instagram size={18} />
                     Instagram
                   </Button>
                 </a>
-                <a href={links.facebook} target="_blank" rel="noopener noreferrer">
+                <a href={content.links.facebook} target="_blank" rel="noopener noreferrer">
                   <Button size="lg" variant="navy">
                     <Facebook size={18} />
                     Facebook
                   </Button>
                 </a>
               </div>
-              <a href={links.email} target="_blank" rel="noopener noreferrer">
+              <a href={content.links.email} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="navy">
                   <EnvelopeFill size={18} />
                   Email
