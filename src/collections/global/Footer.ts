@@ -3,6 +3,7 @@ import { GlobalConfig } from "payload";
 const Footer: GlobalConfig = {
   slug: "footer",
   label: "Footer",
+  admin: { description: "To amend the Footer's Social Media URLs, use [Site Settings]" },
   fields: [
     {
       name: "title",

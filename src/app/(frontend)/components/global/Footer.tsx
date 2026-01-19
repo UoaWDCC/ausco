@@ -105,7 +105,12 @@ const Footer = ({ content }: FooterProps) => {
 
               return (
                 <Button key={idx} variant="link" asChild className="mb-1">
-                  <a href={url} onMouseUp={(e) => e.currentTarget.blur()}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onMouseUp={(e) => e.currentTarget.blur()}
+                  >
                     {option.label}
                   </a>
                 </Button>
