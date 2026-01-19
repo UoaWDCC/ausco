@@ -76,6 +76,7 @@ const SiteSettings: GlobalConfig = {
             { label: "Constitution", value: "constitution" },
             { label: "Sign Up Form", value: "signUpForm" },
             { label: "Engage Page", value: "engage" },
+            { label: "Proof of Registration", value: "registration" },
           ],
         },
         {

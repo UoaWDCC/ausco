@@ -46,6 +46,7 @@ const Footer: GlobalConfig = {
               label: "Select a Link",
               type: "select",
               required: true,
+              // The following options are derived from src\collections\global\SiteSettings.ts
               options: [
                 { label: "Facebook", value: "facebook" },
                 { label: "Instagram", value: "instagram" },
@@ -56,6 +57,7 @@ const Footer: GlobalConfig = {
                 { label: "Constitution", value: "constitution" },
                 { label: "Sign Up Form", value: "signUpForm" },
                 { label: "Engage Page", value: "engage" },
+                { label: "Proof of Registration", value: "registration" },
                 { label: "Custom Link", value: "custom" },
               ],
             },
@@ -82,25 +84,6 @@ const Footer: GlobalConfig = {
           ],
         },
       ],
-      // // Starter template: only applies on document creation, not when editing existing docs
-      // defaultValue: [
-      //   {
-      //     title: "Documents",
-      //     options: [
-      //       { label: "Proof of Registration", url: "" },
-      //       { label: "Constitution", url: "" },
-      //     ],
-      //   },
-      //   { title: "Join Us", options: [{ label: "Sign Up Form", url: "" }] },
-      //   {
-      //     title: "Reach Out",
-      //     options: [
-      //       { label: "Email", url: "" },
-      //       { label: "Feedback Form", url: "" },
-      //       { label: "Engage Page", url: "" },
-      //     ],
-      //   },
-      // ],
     },
   ],
 };

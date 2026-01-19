@@ -30,6 +30,7 @@ const LINK_FALLBACKS: Record<string, string> = {
     "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra",
   signUpForm: "https://google.com", // TODO
   engage: "https://google.com", // TODO
+  registration: "https://google.com", // TODO
 };
 export const getSiteSetting = cache(
   async (): Promise<SiteSetting & { linksMap: Record<string, string> }> => {

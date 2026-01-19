@@ -1026,6 +1026,7 @@ export interface Footer {
                 | 'constitution'
                 | 'signUpForm'
                 | 'engage'
+                | 'registration'
                 | 'custom';
               customUrl?: string | null;
               id?: string | null;
@@ -1065,7 +1066,8 @@ export interface SiteSetting {
           | 'email'
           | 'constitution'
           | 'signUpForm'
-          | 'engage';
+          | 'engage'
+          | 'registration';
         url: string;
         id?: string | null;
       }[]
