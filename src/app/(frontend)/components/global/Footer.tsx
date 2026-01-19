@@ -16,7 +16,8 @@ type FooterProps = {
           options?:
             | {
                 label: string;
-                url: string;
+                select: string;
+                customUrl?: string | null;
               }[]
             | null;
         }[]
@@ -95,13 +96,21 @@ const Footer = ({ content }: FooterProps) => {
             <h3 className="mb-2 font-bold">{section.title}</h3>
 
             {/* Column Options */}
-            {section.options?.map((option, index) => (
-              <Button key={index} variant="link" asChild className="mb-1">
-                <a href={option.url} onMouseUp={(e) => e.currentTarget.blur()}>
-                  {option.label}
-                </a>
-              </Button>
-            ))}
+            {section.options?.map((option, idx) => {
+              // Resolve URL based on user select option
+              const url =
+                option.select === "custom" ? option.customUrl : content.links[option.select];
+
+              if (!url) return null;
+
+              return (
+                <Button key={idx} variant="link" asChild className="mb-1">
+                  <a href={url} onMouseUp={(e) => e.currentTarget.blur()}>
+                    {option.label}
+                  </a>
+                </Button>
+              );
+            })}
           </div>
         ))}
       </div>
