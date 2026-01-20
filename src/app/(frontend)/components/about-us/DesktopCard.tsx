@@ -84,7 +84,7 @@ const DesktopCard = ({
         {isSponsored && <LogoCarousel logos={sponsorLogos} />}
 
         {isLinked ? (
-          <Button variant="link" asChild className="mt-10">
+          <Button asChild variant="link" className="mt-10">
             <a href={link} target="_blank" rel="noopener noreferrer">
               <h1 className="line-clamp-3 text-3xl">{description}</h1>
             </a>

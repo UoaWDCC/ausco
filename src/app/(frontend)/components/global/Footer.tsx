@@ -6,6 +6,7 @@ import { Facebook, Instagram, Spotify, Youtube } from "react-bootstrap-icons";
 
 import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
+import { handleLinkClick } from "../../util/pointer";
 
 type FooterProps = {
   content: {
@@ -71,11 +72,10 @@ const Footer = ({ content }: FooterProps) => {
 
                 return (
                   <a
-                    key={platform}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onMouseUp={(e) => e.currentTarget.blur()}
+                    onClick={(e) => handleLinkClick(e)}
                   >
                     {icon}
                   </a>
@@ -104,13 +104,8 @@ const Footer = ({ content }: FooterProps) => {
               if (!url) return null;
 
               return (
-                <Button key={idx} variant="link" asChild className="mb-1">
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onMouseUp={(e) => e.currentTarget.blur()}
-                  >
+                <Button asChild key={idx} variant="link" className="mb-1">
+                  <a href={url} target="_blank" rel="noopener noreferrer">
                     {option.label}
                   </a>
                 </Button>

@@ -54,15 +54,15 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
           {/* Overlay */}
           {photoAlbumLink && (
             <div className="absolute inset-0 flex items-center justify-center bg-(--brown) text-center text-(--cream) opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <Link href={photoAlbumLink}>
-                <Button variant="link">
+              <Button asChild variant="link">
+                <Link href={photoAlbumLink}>
                   View the
                   <br />
                   photos for this
                   <br />
                   concert <ArrowUpRight size={18} className="inline-block" />
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             </div>
           )}
         </div>
@@ -102,11 +102,11 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
         </a>
         <p className="text-xs font-normal italic sm:text-sm">
           ${content.charity.donation} donated to{" "}
-          <a href={content.charity.url} target="_blank" rel="noopener noreferrer">
-            <Button variant="link" className="text-xs font-normal! sm:text-sm">
+          <Button asChild variant="link" className="text-xs font-normal! sm:text-sm">
+            <a href={content.charity.url} target="_blank" rel="noopener noreferrer">
               {content.charity.name}
-            </Button>
-          </a>
+            </a>
+          </Button>
         </p>
       </div>
     </div>

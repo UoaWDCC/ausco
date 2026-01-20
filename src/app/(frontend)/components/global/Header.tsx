@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -9,10 +8,9 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { ChevronDown } from "lucide-react";
 
-import type { Media } from "@/payload-types";
-
+import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
-import { blurOnPointerNavigate } from "../../util/pointer";
+import { handleLinkClick } from "../../util/pointer";
 
 // TODO: add appropriate links into header options
 const navBar = [
@@ -76,7 +74,7 @@ const NavItem = ({
       }}
     >
       <div className="group relative">
-        <Button variant="link" asChild className="flex items-center gap-1">
+        <Button asChild variant="link" className="flex items-center gap-1">
           <Link href={item.href}>
             {item.label}
             {hasDropdown && (
@@ -108,7 +106,7 @@ const NavItem = ({
             >
               {item.dropdown!.map((subitem, index) => (
                 <div className="w-full py-1 text-left" key={index}>
-                  <Button variant="link" asChild>
+                  <Button asChild variant="link">
                     <Link
                       href={subitem.href}
                       style={{
@@ -163,7 +161,7 @@ const Header = ({ content }: HeaderProps) => {
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
-      <Link href="/" className="flex flex-row items-center" onClick={blurOnPointerNavigate}>
+      <Link href="/" className="flex flex-row items-center" onClick={(e) => handleLinkClick(e)}>
         {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image

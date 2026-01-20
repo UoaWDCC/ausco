@@ -1,12 +1,8 @@
 import * as React from "react";
 
 /**
- * Blurs the target element when navigation is triggered via pointer input (mouse or touch).
- *
- * When an element is activated through keyboard interaction (Enter or Space),
- * focus is intentionally preserved for accessibility.
- * For pointer-based navigation, the element is blurred after the click event completes
- * to prevent stuck :active / :focus-visible visual states in SPA navigation.
+ * Runs a consumer onClick handler, then cleans up focus
+ * for SPA navigation when the element is a link (<a> / <Link>).
  *
  * Note:
  * If the element is rendered via the shadcn Button component (e.g. using `asChild`),
@@ -23,9 +19,12 @@ import * as React from "react";
  * </Link>
  * ```
  */
-export function blurOnPointerNavigate(e: React.MouseEvent<HTMLElement>) {
-  // Keyboard activation (Enter / Space) → keep focus
-  if (e.detail === 0) return;
+export function handleLinkClick(
+  e: React.MouseEvent<HTMLElement>,
+  onClick?: React.MouseEventHandler<HTMLElement>,
+) {
+  // Run consumer onClick first
+  onClick?.(e);
 
   const target = e.currentTarget;
 
