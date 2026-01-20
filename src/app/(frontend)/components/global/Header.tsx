@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
 import { ChevronDown } from "lucide-react";
 
-import { Button } from "../ui/button";
 import type { Media } from "@/payload-types";
+
+import { Button } from "../ui/button";
+import { blurOnPointerNavigate } from "../../util/pointer";
 
 // TODO: add appropriate links into header options
 const navBar = [
@@ -72,9 +75,9 @@ const NavItem = ({
         color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
       }}
     >
-      <div className="relative group">
+      <div className="group relative">
         <Button variant="link" asChild className="flex items-center gap-1">
-          <Link href={item.href} onMouseUp={(e) => e.currentTarget.blur()}>
+          <Link href={item.href}>
             {item.label}
             {hasDropdown && (
               <ChevronDown
@@ -92,19 +95,19 @@ const NavItem = ({
         {hasDropdown && (
           <>
             {/* Hover Buffer - prevent dropdown from flickering */}
-            <div className="absolute left-0 top-full h-2 w-full" />
+            <div className="absolute top-full left-0 h-2 w-full" />
 
             <div
               className={clsx(
-                "absolute left-0 top-full w-52 mt-2 py-2 px-4 rounded-lg bg-(--cream) z-50 tranition-colors duration-400",
+                "tranition-colors absolute top-full left-0 z-50 mt-2 w-52 rounded-lg bg-(--cream) px-4 py-2 duration-400",
                 hoveredItem === index
-                  ? "opacity-100 pointer-events-auto"
-                  : "opacity-0 pointer-events-none",
+                  ? "pointer-events-auto opacity-100"
+                  : "pointer-events-none opacity-0",
                 isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
               )}
             >
               {item.dropdown!.map((subitem, index) => (
-                <div className="w-full text-left py-1" key={index}>
+                <div className="w-full py-1 text-left" key={index}>
                   <Button variant="link" asChild>
                     <Link
                       href={subitem.href}
@@ -116,7 +119,6 @@ const NavItem = ({
                           : "var(--navy)",
                         transition: "color 100ms",
                       }}
-                      onMouseUp={(e) => e.currentTarget.blur()}
                     >
                       {subitem.label}
                     </Link>
@@ -157,15 +159,11 @@ const Header = ({ content }: HeaderProps) => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full h-28 px-6 flex justify-between items-center z-50 transition-colors duration-400",
+        "fixed top-0 left-0 z-50 flex h-28 w-full items-center justify-between px-6 transition-colors duration-400",
         isHomePage ? (scrolled ? "bg-(--cream)" : "bg-transparent") : "bg-(--lightblue)",
       )}
     >
-      <Link
-        href="/"
-        onMouseUp={(e) => e.currentTarget.blur()}
-        className="flex flex-row items-center"
-      >
+      <Link href="/" className="flex flex-row items-center" onClick={blurOnPointerNavigate}>
         {/* Primary Logo */}
         {typeof content.primaryLogo === "object" && content.primaryLogo?.url && (
           <Image
@@ -196,7 +194,7 @@ const Header = ({ content }: HeaderProps) => {
           />
         )}
         <h1
-          className="ml-20! mt-0! mb-0! font-semibold! text-lg! whitespace-pre-line transition-colors duration-400"
+          className="mt-0! mb-0! ml-20! text-lg! font-semibold! whitespace-pre-line transition-colors duration-400"
           style={{
             color: isHomePage ? (scrolled ? "var(--navy)" : "var(--cream)") : "var(--navy)",
           }}
@@ -205,7 +203,7 @@ const Header = ({ content }: HeaderProps) => {
         </h1>
       </Link>
 
-      <nav className="flex flex-row gap-16 pr-6 items-center font-medium text-base">
+      <nav className="flex flex-row items-center gap-16 pr-6 text-base font-medium">
         {navBar.map((item, index) => (
           <NavItem
             key={index}

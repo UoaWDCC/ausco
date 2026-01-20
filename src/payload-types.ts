@@ -995,6 +995,8 @@ export interface Header {
   createdAt?: string | null;
 }
 /**
+ * To amend the Footer's Social Media URLs, use [Site Settings]
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
