@@ -4,7 +4,7 @@
 
 1. verify a or Link usage for internal/external navigation
 2. look into the quality={90} \*
-3. on click up \* maybe move into base of shadcn/button? -> double check button, a and Link tags
+3. on click up \* maybe move into base of shadcn/button? -> double check button, a and Link tags, remaining Button (no space after)
 4. infocards, amend with updated link
 
 ### BUGS

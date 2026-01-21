@@ -12,15 +12,14 @@ import { Media } from "@/payload-types";
 import { Button } from "../ui/button";
 import { handleLinkClick } from "../../util/pointer";
 
-// TODO: add appropriate links into header options
 const navBar = [
   {
     href: "/about-us",
     label: "About Us",
     dropdown: [
       { href: "/our-story", label: "Our Story" },
-      { href: "https://www.google.com/", label: "Constitution" },
-      { href: "https://www.google.com/", label: "Proof of Registration" },
+      { href: "", label: "Constitution" }, // href is dynamically updated, see updatedNavBar
+      { href: "", label: "Proof of Registration" }, // href is dynamically updated, see updatedNavBar
     ],
   },
   { href: "/our-people", label: "Our People" },
@@ -136,6 +135,7 @@ type HeaderProps = {
     title: string;
     primaryLogo?: Media | string | null;
     secondaryLogo?: Media | string | null;
+    links: Record<string, string>;
   };
 };
 
@@ -152,6 +152,31 @@ const Header = ({ content }: HeaderProps) => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const updatedNavBar = navBar.map((item) => {
+    if (!item.dropdown) return item;
+
+    return {
+      ...item,
+      dropdown: item.dropdown.map((sub) => {
+        if (sub.label === "Constitution") {
+          return {
+            ...sub,
+            href: content.links.constitution,
+          };
+        }
+
+        if (sub.label === "Proof of Registration") {
+          return {
+            ...sub,
+            href: content.links.registration,
+          };
+        }
+
+        return sub;
+      }),
+    };
+  });
 
   // Note: header height is fixed at h-28, adjusting this height will affect padding on all pages - see note on src\app\(frontend)\layout.tsx
   return (
@@ -202,7 +227,7 @@ const Header = ({ content }: HeaderProps) => {
       </Link>
 
       <nav className="flex flex-row items-center gap-16 pr-6 text-base font-medium">
-        {navBar.map((item, index) => (
+        {updatedNavBar.map((item, index) => (
           <NavItem
             key={index}
             item={item}

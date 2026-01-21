@@ -33,6 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     ...headerContent,
     primaryLogo: siteSettingContent.logos.primary,
     secondaryLogo: siteSettingContent.logos.secondary,
+    links: siteSettingContent.linksMap,
   };
 
   const combinedFooterContent = {

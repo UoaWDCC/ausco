@@ -75,16 +75,16 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
           {content.title}
         </h3>
         <p className="text-xs sm:text-sm md:text-base">{content.description}</p>
-        <a
-          href={content.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="pt-1 pb-1.5 md:pt-1.5 md:pb-2.5"
+        <Button
+          asChild
+          variant="invertedBrown"
+          className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base"
         >
-          <Button
-            size="lg"
-            variant="invertedBrown"
-            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base"
+          <a
+            href={content.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pt-1 pb-1.5 md:pt-1.5 md:pb-2.5"
           >
             <Youtube className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
             {/* Mobile */}
@@ -98,8 +98,8 @@ const SemesterConcert = ({ semester, content }: SemesterConcertProps) => {
 
             {/* Large+ */}
             <span className="hidden lg:block">Watch the Concert Video</span>
-          </Button>
-        </a>
+          </a>
+        </Button>
         <p className="text-xs font-normal italic sm:text-sm">
           ${content.charity.donation} donated to{" "}
           <Button asChild variant="link" className="text-xs font-normal! sm:text-sm">

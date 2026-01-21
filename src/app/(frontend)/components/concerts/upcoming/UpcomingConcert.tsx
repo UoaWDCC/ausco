@@ -139,15 +139,16 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
       {/* Row 4: Ticket URL Buttons */}
       <div className="w-fit">
         {isMatineeAvailable ? (
-          <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
-            <Button
-              variant="brown"
-              size="lg"
-              className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
-            >
+          <Button
+            asChild
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+          >
+            <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
               Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
-            </Button>
-          </a>
+            </a>
+          </Button>
         ) : (
           <Button
             variant="brown"
@@ -162,15 +163,16 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
 
       <div className="w-fit">
         {isConcertAvailable ? (
-          <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
-            <Button
-              variant="brown"
-              size="lg"
-              className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
-            >
+          <Button
+            asChild
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+          >
+            <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
               Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
-            </Button>
-          </a>
+            </a>
+          </Button>
         ) : (
           <Button
             variant="brown"
