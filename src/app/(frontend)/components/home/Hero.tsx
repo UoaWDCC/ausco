@@ -8,7 +8,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Button } from "../ui/button";
 
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
-import parallaxConfig from "@/config/parallax";
+import parallaxConfig from "@/app/(frontend)/config/parallax";
 
 type HeroProps = {
   content: {
@@ -16,10 +16,10 @@ type HeroProps = {
     background: Media | string | null;
     header: any;
     content: string;
+    signUpLink: string | undefined;
   };
 };
 
-// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
   const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
@@ -41,13 +41,13 @@ const Hero = ({ content }: HeroProps) => {
             priority
             quality={90}
             sizes="100vw"
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
           />
         )}
       </motion.div>
 
       {/* Foreground Content - only the content is pushed down by the height of the header component (h-28)*/}
-      <div className="relative z-10 flex flex-col items-center text-center text-(--cream) h-full pt-40 pb-12 px-6 gap-10">
+      <div className="relative z-10 flex h-full flex-col items-center gap-10 px-6 pt-40 pb-12 text-center">
         {/* Logo */}
         {typeof content.secondaryLogo === "object" && content.secondaryLogo?.url && (
           <Image
@@ -60,16 +60,25 @@ const Hero = ({ content }: HeroProps) => {
         )}
 
         {/* Header */}
-        <h1 className="text-2xl md:text-4xl font-semibold! leading-tight mt-4! mb-1.5!">
+        <h1 className="mt-4! mb-1.5! text-2xl leading-tight font-semibold! text-(--cream) md:text-4xl">
           <RichText data={content.header} />
         </h1>
 
         {/* Content */}
-        <h3 className="text-base md:text-lg w-full md:w-[75%] max-w-208">{content.content}</h3>
+        <h3 className="w-full max-w-208 text-base text-(--cream) md:w-[75%] md:text-lg">
+          {content.content}
+        </h3>
 
-        <Button variant="beige" size="lg" className="mt-2.5">
-          Join Us
-          <ArrowUpRight size={18} />
+        <Button asChild variant="beige" size="lg" className="mt-2.5">
+          <a
+            href={content.signUpLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2"
+          >
+            Join Us
+            <ArrowUpRight size={18} />
+          </a>
         </Button>
       </div>
     </section>

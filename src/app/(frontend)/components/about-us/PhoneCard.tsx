@@ -3,9 +3,11 @@
 import { useState } from "react";
 
 import Link from "next/link";
-import { X, ChevronDown, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronDown, X } from "lucide-react";
 
 import { Media } from "@/payload-types";
+import { isExternal } from "@/app/(frontend)/util/url";
+
 import LogoCarousel from "./LogoCarousel";
 
 type CardType = "vision" | "sponsors" | "story" | "constitution";
@@ -39,10 +41,6 @@ const CARD_MAP = {
 const PhoneCard = ({ type, content, sponsorLogos, link }: PhoneCardProps) => {
   const card = CARD_MAP[type];
   const [open, setOpen] = useState(false);
-
-  const isExternal = (url: string) => {
-    return url.startsWith("http://") || url.startsWith("https://");
-  };
 
   if (card.collapsible) {
     return (

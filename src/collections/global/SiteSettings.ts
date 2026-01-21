@@ -10,8 +10,7 @@ const SiteSettings: GlobalConfig = {
       label: "Logos",
       type: "group",
       admin: {
-        description:
-          "Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.",
+        description: "Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.",
       },
       fields: [
         {
@@ -42,9 +41,10 @@ const SiteSettings: GlobalConfig = {
       name: "links",
       label: "Links",
       type: "array",
-      maxRows: 7,
+      maxRows: 9,
       admin: {
-        description: "Each platform can only be selected once.",
+        description:
+          "Each platform can only be selected once. If no values are provided, these are the fallbacks in place: Facebook: 'https://www.facebook.com/ausco.ausa', Instagram: 'https://www.instagram.com/ausco.uoa/', Youtube: 'https://www.youtube.com/@AUSCO-UoA', Spotify: 'https://open.spotify.com/user/31b5qnnkievulqbuxajy5etbmo7u?si=d4f38d8f71e349b7&nd=1&dlsi=456d9aa5404649b4', Feedback Form: 'https://google.com', Email: 'mailto:example@example.com', Constitution: 'https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra', SignUp Form: 'https://google.com', Engage: 'https://google.com'. Changing the fallbacks will require a developer's assistance.",
       },
       validate: (value) => {
         if (!value) return true;
@@ -74,6 +74,9 @@ const SiteSettings: GlobalConfig = {
             { label: "Feedback Form", value: "feedbackForm" },
             { label: "Email", value: "email" },
             { label: "Constitution", value: "constitution" },
+            { label: "Sign Up Form", value: "signUpForm" },
+            { label: "Engage Page", value: "engage" },
+            { label: "Proof of Registration", value: "registration" },
           ],
         },
         {

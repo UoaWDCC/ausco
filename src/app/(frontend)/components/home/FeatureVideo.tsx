@@ -89,7 +89,7 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
       <motion.h2
         className="relative z-20 w-full max-w-[90vw] overflow-hidden text-center text-[2rem] leading-tight font-bold tracking-tight text-ellipsis whitespace-nowrap sm:text-[2.7rem]"
         style={{
-          color: "var(--concertblue)",
+          color: "oklch(0.2859 0.0798 251.34)" /* #032B50 */,
           opacity: headerOpacity,
           top: "0px",
           y: headerY,

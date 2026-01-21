@@ -3,6 +3,7 @@ import { GlobalConfig } from "payload";
 const Footer: GlobalConfig = {
   slug: "footer",
   label: "Footer",
+  admin: { description: "To amend the Footer's Social Media URLs, use [Site Settings]" },
   fields: [
     {
       name: "title",
@@ -31,7 +32,8 @@ const Footer: GlobalConfig = {
           name: "options",
           type: "array",
           admin: {
-            description: "Maximum of 3 links per list.",
+            description:
+              'Maximum of 3 links per list. The URLs for default links can be amended through [Site Settings]. To add a custom label/URL, select "Custom Link" under the dropdown menu',
           },
           fields: [
             {
@@ -41,30 +43,45 @@ const Footer: GlobalConfig = {
               required: true,
             },
             {
-              name: "url",
-              label: "URL",
-              type: "text",
+              name: "select",
+              label: "Select a Link",
+              type: "select",
               required: true,
+              // The following options are derived from src\collections\global\SiteSettings.ts
+              options: [
+                { label: "Facebook", value: "facebook" },
+                { label: "Instagram", value: "instagram" },
+                { label: "YouTube", value: "youtube" },
+                { label: "Spotify", value: "spotify" },
+                { label: "Feedback Form", value: "feedbackForm" },
+                { label: "Email", value: "email" },
+                { label: "Constitution", value: "constitution" },
+                { label: "Sign Up Form", value: "signUpForm" },
+                { label: "Engage Page", value: "engage" },
+                { label: "Proof of Registration", value: "registration" },
+                { label: "Custom Link", value: "custom" },
+              ],
             },
-          ],
-        },
-      ],
-      // Starter template: only applies on document creation, not when editing existing docs
-      defaultValue: [
-        {
-          title: "Documents",
-          options: [
-            { label: "Proof of Registration", url: "" },
-            { label: "Constitution", url: "" },
-          ],
-        },
-        { title: "Join Us", options: [{ label: "Sign Up Form", url: "" }] },
-        {
-          title: "Reach Out",
-          options: [
-            { label: "Email", url: "" },
-            { label: "Feedback Form", url: "" },
-            { label: "Engage Page", url: "" },
+            {
+              name: "customUrl",
+              label: "Custom URL",
+              type: "text",
+              admin: {
+                condition: (_, siblingData) => siblingData?.select === "custom",
+              },
+              validate: (
+                value: string | string[] | null | undefined,
+                { siblingData }: { siblingData?: { select?: string } },
+              ) => {
+                const resolvedValue = Array.isArray(value) ? value[0] : value;
+
+                if (siblingData?.select === "custom" && !resolvedValue) {
+                  return "Custom URL is required when using a custom link.";
+                }
+
+                return true;
+              },
+            },
           ],
         },
       ],

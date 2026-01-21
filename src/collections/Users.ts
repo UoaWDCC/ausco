@@ -5,7 +5,7 @@ export const Users: CollectionConfig = {
   admin: {
     useAsTitle: "email",
     description:
-      "Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it would lock you out of the Payload Admin.",
+      "Warning: Do NOT delete the ausco@wdcc.co.nz account if it is the last remaining admin. Deleting it will lock you out of the Payload Admin.",
   },
   auth: true,
   fields: [

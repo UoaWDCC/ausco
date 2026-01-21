@@ -90,11 +90,14 @@ const WelcomePanel = () => {
               <strong>Image format guidelines:</strong>
               <ul style={{ marginTop: "0.5rem", marginLeft: "1.25rem" }}>
                 <li style={{ marginBottom: "0.5rem" }}>
-                  Use <strong>SVG</strong> for logos, icons, or graphics requiring transparency
+                  Use <strong>SVG</strong> for logos, icons, or graphics requiring transparency.
+                </li>
+                <li style={{ marginBottom: "0.5rem" }}>
+                  Use <strong>WebP</strong> (preferred) or <strong>PNG</strong> for photos,
+                  backgrounds, and posters.
                 </li>
                 <li style={{ marginBottom: 0 }}>
-                  Use <strong>WebP</strong> (preferred) or <strong>PNG</strong> for photos,
-                  backgrounds, and posters
+                  Use <strong>JPG</strong> as a final resort.
                 </li>
               </ul>
             </li>

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Media } from "@/payload-types";
 
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
-import parallaxConfig from "@/config/parallax";
+import parallaxConfig from "@/app/(frontend)/config/parallax";
 
 const cardLinks = {
   "Concert Photos": "/gallery/concert",
@@ -34,11 +34,11 @@ const Card = ({ title, background }: CardProps) => {
   return (
     <Link
       href={link}
-      className="relative w-full sm:w-1/2 aspect-2/1 overflow-hidden rounded-lg group"
+      className="group relative aspect-2/1 w-full overflow-hidden rounded-lg sm:w-1/2"
     >
       {typeof background === "object" && background?.url && (
         <motion.div
-          className="absolute -inset-y-[15%] inset-x-0 z-0 will-change-transform"
+          className="absolute inset-x-0 -inset-y-[15%] z-0 will-change-transform"
           style={{ y }}
         >
           <Image
@@ -52,14 +52,8 @@ const Card = ({ title, background }: CardProps) => {
         </motion.div>
       )}
 
-      <div className="absolute inset-0 p-6 flex flex-col items-center justify-center text-(--cream)">
-        <h3
-          className="text-xl sm:text-2xl md:text-3xl font-semibold text-center relative inline-block 
-                       after:absolute after:left-0 after:-bottom-0.5 
-                       after:h-px after:w-0 after:bg-current 
-                       after:transition-[width] after:duration-300 
-                       group-hover:after:w-full"
-        >
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-(--cream)">
+        <h3 className="relative inline-block text-center text-xl font-semibold after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-current after:transition-[width] after:duration-300 group-hover:after:w-full sm:text-2xl md:text-3xl">
           {title}
         </h3>
       </div>

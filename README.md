@@ -1,22 +1,10 @@
 # AUSCO Project
 
-### TODOs
-
-1. verify a or Link usage for internal/external navigation
-2. clean data/content types (required fields cannot be null but add anyway for type safety)
-3. make colours/colour variables consistent across website (including logos)
-4. check text uses p, h1, etc. tags for seo
-5. add secondary global font to repo
-6. routing? (with dashes) \*\*
-7. blur when image is rendering
-8. global util file (stringToList, url checker for Media, etc.) \*\*
-9. some links have fallbacks (e.g. constitution/youtube video, etc.) \*
-
 ### BUGS
 
 1. font (fraunces) not being applied globally
 2. double check parallax effect on phone ui screen
-3. min-h-screen doesn't account for footer height.
+3. min-h-screen doesn't account for footer height. \*
 
 ## Project Setup
 

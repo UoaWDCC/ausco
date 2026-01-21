@@ -16,6 +16,7 @@ export default async function HomePage() {
   const heroContent = {
     secondaryLogo: siteSettingContent.logos.secondary,
     ...homeContent.hero,
+    signUpLink: siteSettingContent.linksMap.signUpForm,
   };
 
   const isConcertSemesterOne =
@@ -23,13 +24,13 @@ export default async function HomePage() {
 
   const infoCardsContent = {
     ...homeContent.infoCards,
-    links: siteSettingContent.links,
+    links: siteSettingContent.linksMap,
   };
 
   return (
     <>
       <Hero content={heroContent} />
-      <div className="pt-7 pb-14 bg-(--beige)">
+      <div className="bg-(--beige) pt-7 pb-14">
         <UpcomingConcert
           content={
             isConcertSemesterOne

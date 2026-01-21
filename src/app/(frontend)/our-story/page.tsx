@@ -1,9 +1,9 @@
 import { getOurStory } from "@/actions/pageActions";
 
-import Hero from "@components/ourstory/Hero";
-import Timeline from "@components/ourstory/Timeline";
-import Establishment from "@components/ourstory/Establishment";
-import TimelineItem from "@components/ourstory/TimelineItem";
+import Hero from "@components/our-story/Hero";
+import Timeline from "@components/our-story/Timeline";
+import Establishment from "@components/our-story/Establishment";
+import TimelineItem from "@components/our-story/TimelineItem";
 
 export default async function OurStoryPage() {
   const content = await getOurStory();

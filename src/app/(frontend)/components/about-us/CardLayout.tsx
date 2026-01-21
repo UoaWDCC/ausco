@@ -5,6 +5,8 @@ import { Media } from "@/payload-types";
 import DesktopCard from "./DesktopCard";
 import PhoneCard from "./PhoneCard";
 
+import { getImageUrl, getImageAlt } from "@/app/(frontend)/util/media";
+
 type CardProps = {
   background: Media | string | null;
   title: string;
@@ -19,28 +21,11 @@ type CardLayoutProps = {
     story: CardProps;
     constitution: CardProps;
     sponsorsAndPartnerships: CardProps;
-    constitutionLink?: string | null;
+    constitutionLink: string;
   };
 };
 
 const CardLayout = ({ content }: CardLayoutProps) => {
-  const getImageUrl = (image: Media | string | null | undefined): string | null => {
-    if (!image) return null; // handle undefined or null
-    if (typeof image === "string") return image; // if it's already a string URL
-    if (typeof image === "object" && image.url) return image.url; // if it's a Media object, extract the URL
-    return null;
-  };
-
-  const getImageAlt = (image: Media | string | null | undefined, fallback: string): string => {
-    if (!image) return fallback; // handle undefined or null
-    if (typeof image === "object" && image?.alt) return image.alt; // if it's a Media object, extract the alt text
-    return fallback;
-  };
-
-  const constitutionLink =
-    content.constitutionLink ??
-    "https://auckland.campuslabs.com/engage/organization/auckland-university-student-chamber-orchestra";
-
   return (
     <section className="flex w-full flex-col">
       {/* Desktop Layout: md and above */}
@@ -67,7 +52,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.story.title}
               summary={content.story.summary}
               description={`View ${content.story.title}`}
-              link={"https://ausco.wdcc.co.nz/ourstory"}
+              link={"/our-story"}
             />
           </div>
         </div>
@@ -82,7 +67,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.constitution.title}
               summary={content.constitution.summary}
               description={`View ${content.constitution.title}`}
-              link={constitutionLink}
+              link={content.constitutionLink}
             />
           </div>
 
@@ -123,7 +108,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />
 
-          <PhoneCard type="constitution" link={constitutionLink} />
+          <PhoneCard type="constitution" link={content.constitutionLink} />
         </div>
       </div>
     </section>
