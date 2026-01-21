@@ -52,7 +52,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.story.title}
               summary={content.story.summary}
               description={`View ${content.story.title}`}
-              link={"/ourstory"}
+              link={"/our-story"}
             />
           </div>
         </div>

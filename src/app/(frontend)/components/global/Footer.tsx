@@ -65,13 +65,14 @@ const Footer = ({ content }: FooterProps) => {
           {/* Social Media Icons */}
           <div className="flex gap-5 lg:gap-4">
             {content.links &&
-              Object.entries(content.links).map(([platform, url]) => {
+              Object.entries(content.links).map(([platform, url], idx) => {
                 const icon = iconMap[platform];
 
                 if (!icon) return null; // Skip any unknown platforms
 
                 return (
                   <a
+                    key={idx}
                     href={url}
                     target="_blank"
                     rel="noopener noreferrer"

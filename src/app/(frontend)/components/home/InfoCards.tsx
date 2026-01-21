@@ -47,7 +47,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center gap-5 text-center">
             <h1 className="m-0! text-4xl! font-normal!">About Us</h1>
             <div>{content.aboutUs.description}</div>
-            <Button size="lg" className="mt-2" variant="navy" asChild>
+            <Button asChild size="lg" className="mt-2" variant="navy">
               <Link href="/about-us">
                 Read More
                 <ArrowUpRight size={18} />
@@ -73,7 +73,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
           <div className="flex flex-col items-center gap-5 text-center">
             <h1 className="m-0! text-4xl! font-normal!">Our People</h1>
             <div>{content.ourPeople.description}</div>
-            <Button size="lg" className="mt-2" variant="navy" asChild>
+            <Button asChild size="lg" className="mt-2" variant="navy">
               <Link href="/our-people">
                 Read More
                 <ArrowUpRight size={18} />
@@ -121,7 +121,7 @@ const InfoCards = ({ content }: InfoCardsProps) => {
                   </a>
                 </Button>
               </div>
-              
+
               <Button asChild size="lg" variant="navy">
                 <a href={content.links.email} target="_blank" rel="noopener noreferrer">
                   <EnvelopeFill size={18} />
