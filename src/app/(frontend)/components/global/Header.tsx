@@ -144,6 +144,7 @@ const Header = ({ content }: HeaderProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
 
+  // Handle scroll to change header background
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 35);
@@ -153,6 +154,7 @@ const Header = ({ content }: HeaderProps) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Update navBar links dynamically based on content props
   const updatedNavBar = navBar.map((item) => {
     if (!item.dropdown) return item;
 

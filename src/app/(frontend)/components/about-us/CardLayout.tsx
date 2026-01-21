@@ -52,7 +52,7 @@ const CardLayout = ({ content }: CardLayoutProps) => {
               title={content.story.title}
               summary={content.story.summary}
               description={`View ${content.story.title}`}
-              link={"https://ausco.wdcc.co.nz/ourstory"} //TODO
+              link={"/ourstory"}
             />
           </div>
         </div>
@@ -92,7 +92,6 @@ const CardLayout = ({ content }: CardLayoutProps) => {
       {/* Mobile Layout: below md */}
       <div className="flex w-full flex-col bg-(--lightblue) text-(--navy) md:hidden">
         <div className="flex flex-col">
-          {/* TODO make into map */}
           <PhoneCard type="vision" content={content.vision.description} />
 
           <div className="mx-6 h-px bg-(--navy) md:hidden" />

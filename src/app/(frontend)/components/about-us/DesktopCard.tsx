@@ -6,10 +6,12 @@ import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 
 import { Media } from "@/payload-types";
+import { isExternal } from "@/app/(frontend)/util/url";
 import parallaxConfig from "@/app/(frontend)/config/parallax";
 
 import { Button } from "../ui/button";
 import LogoCarousel from "./LogoCarousel";
+import Link from "next/link";
 
 type DesktopCardProps = {
   icon: React.ReactNode;
@@ -84,11 +86,19 @@ const DesktopCard = ({
         {isSponsored && <LogoCarousel logos={sponsorLogos} />}
 
         {isLinked ? (
-          <Button asChild variant="link" className="mt-10">
-            <a href={link} target="_blank" rel="noopener noreferrer">
-              <h1 className="line-clamp-3 text-3xl">{description}</h1>
-            </a>
-          </Button>
+          link && isExternal(link) ? (
+            <Button asChild variant="link" className="mt-10">
+              <a href={link} target="_blank" rel="noopener noreferrer">
+                <h1 className="line-clamp-3 text-3xl">{description}</h1>
+              </a>
+            </Button>
+          ) : (
+            <Button asChild variant="link" className="mt-10">
+              <Link href={link ?? "#"}>
+                <h1 className="line-clamp-3 text-3xl">{description}</h1>
+              </Link>
+            </Button>
+          )
         ) : (
           <p className={`text-center text-base ${isSponsored ? "line-clamp-2" : "line-clamp-6"}`}>
             {description}
