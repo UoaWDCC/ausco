@@ -55,48 +55,61 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div
-      style={{ width: 376, height: 532 }}
-      className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-base"
-    >
+    <div className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-sm md:text-base w-[140px] md:w-[200px] lg:w-[320px] aspect-[376/532] shrink-0 self-start">
       Coming Soon! 😉
     </div>
   ) : (
     typeof content.poster === "object" &&
     content.poster?.url && (
-      <Image
-        src={content.poster.url}
-        alt={content.poster.alt || "Poster"}
-        width={376}
-        height={532}
-        sizes="(max-width: 768px) 80vw, 376px"
-        quality={90}
-        className="border border-(--brown) rounded-md"
-      />
+      <div className="w-[140px] md:w-[200px] lg:w-[320px] shrink-0 self-start">
+        <Image
+          src={content.poster.url}
+          alt={content.poster.alt || "Poster"}
+          width={320}
+          height={454}
+          sizes="(max-width: 768px) 140px, (max-width: 1024px) 200px, 320px"
+          quality={90}
+          className="border border-(--brown) rounded-md w-full h-auto"
+        />
+      </div>
     )
   );
 
-  const textContent = (
-    <div className="flex flex-col justify-between lg:w-lg w-72">
-      {/* Title + Text */}
-      <div className="flex flex-col gap-4 whitespace-pre-line pb-2">
-        {headingVariant === "concertsUpcomingPage" && (
-          <div className="flex items-center gap-3">
-            {semester && (
-              <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap">
-                Semester {semester}
-              </div>
-            )}
-            <h1 className="font-light! text-3xl! m-0! italic truncate w-full">{title}</h1>
-          </div>
-        )}
-        {content.description}
-      </div>
+  // Split description into first paragraph and remaining content
+  const descriptionParts = content.description.split(/\n\n+/);
+  const firstParagraph = descriptionParts[0] || content.description;
+  const remainingDescription = descriptionParts.slice(1).join("\n\n");
 
-      <div className="bg-(--brown) my-2" style={{ height: "0.5px" }} />
+  const firstParagraphContent = (
+    <div className="flex flex-col gap-3 md:gap-4 h-full justify-start">
+      {headingVariant === "concertsUpcomingPage" && (
+        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-1">
+          {semester && (
+            <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap w-fit text-sm">
+              Semester {semester}
+            </div>
+          )}
+          <h1 className="font-light! text-lg md:text-3xl! m-0! italic">{title}</h1>
+        </div>
+      )}
+      <p className="text-sm md:text-sm leading-relaxed text-(--brown)">{firstParagraph}</p>
+    </div>
+  );
 
-      {/* Tickets */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 items-start">
+  const remainingContent = (
+    <div className="flex flex-col gap-4 pt-0 md:pt-3">
+      {remainingDescription && (
+        <p className="text-sm md:text-sm leading-relaxed whitespace-pre-line text-(--brown)">
+          {remainingDescription}
+        </p>
+      )}
+    </div>
+  );
+
+  const ticketsContent = (
+    <div className="mt-6 md:mt-8">
+      <div className="bg-(--brown) mb-6 md:mb-4" style={{ height: "1px" }} />
+      <div className="grid grid-cols-2 gap-x-4 md:gap-x-10 gap-y-6 md:gap-y-4 items-start">
         {/* Row 1: Headings */}
         <h2 className="font-bold m-0!">Matinee</h2>
         <h2 className="font-bold m-0!">Concert</h2>
@@ -176,23 +189,37 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     <section className="bg-(--beige) text-(--brown) py-16 max-w-6xl mx-auto text-base rounded-lg">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
-        <div className="flex justify-center pb-12">
-          <h1 className="font-semibold! text-4xl! m-0!">Our Upcoming Concert,&nbsp;</h1>
-          <h1 className="font-light! text-4xl! m-0! italic">{title}</h1>
+        <div className="flex flex-col md:flex-row md:justify-center md:items-center pb-8 md:pb-12 px-6 md:px-0 gap-2 md:gap-0">
+          <h1 className="font-semibold! text-2xl! md:text-4xl! m-0! text-left">
+            Our Upcoming Concert,&nbsp;
+          </h1>
+          <h1 className="font-light! text-2xl! md:text-4xl! m-0! italic text-left">{title}</h1>
         </div>
       )}
 
       {/* Content */}
-      <div className="flex lg:flex-row flex-col gap-8 lg:gap-16 items-stretch justify-center">
+      <div className="grid grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-12 items-start justify-center px-6 md:px-0">
         {semester === "2" ? (
           <>
-            {textContent}
-            {poster}
+            <div className="col-start-2 row-start-1 min-w-0 flex items-start">
+              {firstParagraphContent}
+            </div>
+            <div className="col-start-1 row-start-1">{poster}</div>
+            <div className="col-start-1 col-span-2 row-start-2 mt-2 md:mt-3">
+              {remainingContent}
+            </div>
+            <div className="col-start-1 col-span-2 row-start-3">{ticketsContent}</div>
           </>
         ) : (
           <>
-            {poster}
-            {textContent}
+            <div className="col-start-1 row-start-1">{poster}</div>
+            <div className="col-start-2 row-start-1 min-w-0 flex items-start">
+              {firstParagraphContent}
+            </div>
+            <div className="col-start-1 col-span-2 row-start-2 mt-2 md:mt-3">
+              {remainingContent}
+            </div>
+            <div className="col-start-1 col-span-2 row-start-3">{ticketsContent}</div>
           </>
         )}
       </div>
