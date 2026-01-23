@@ -3,20 +3,35 @@ import type { GlobalConfig } from "payload";
 const GalleryAnnualCamp: GlobalConfig = {
   slug: "gallery-annualcamp",
   label: "Gallery - Annual Camp",
+  admin: {
+    description:
+      "Do NOT upload multiple images directly on this page. To upload many images at once, use the bulk upload option in [Gallery Album Media]. Then come back here to select which uploaded images should appear on the website.",
+  },
   fields: [
     {
       name: "albums",
       type: "array",
-      labels: { singular: "album", plural: "albums" },
+      labels: { singular: "Album", plural: "Albums" },
+      admin: {
+        description:
+          "Albums are automatically sorted by descending year when displayed on the website.",
+      },
       fields: [
         { name: "year", label: "Year", type: "number", required: true },
         { name: "title", label: "Title", type: "text", required: true },
         {
           name: "images",
           type: "relationship",
-          relationTo: "media",
+          relationTo: "albums",
           hasMany: true,
           required: true,
+          filterOptions: {
+            category: { equals: "annualcamp" },
+          },
+          admin: {
+            sortOptions: "-year,-createdAt",
+            description: "Images are sorted by descending year, then by descending upload date.",
+          },
         },
       ],
     },

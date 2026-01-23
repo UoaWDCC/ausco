@@ -1,26 +1,10 @@
 # AUSCO Project
 
-### TODOs
-
-1. verify a or Link usage for internal/external navigation
-2. look into next.js caching for actions/api calls
-3. clean data/content types (required fields cannot be null but add anyway for type safety)
-4. make colours/colour variables consistent across website (including logos)
-5. helper text in payload for clients? (e.g. poster should be a4 size ideally)
-6. check text uses p, h1, etc. tags for seo
-7. add secondary global font to repo
-8. add permanent header height to the layout.tsx can remove calculated heights in each page
-9. consider max-w-?
-10. routing? (with dashes)
-11. labels in payload schema?
-12. add type props to files in /actions
-13. blur when image is rendering
-14. global util file (stringToList, url checker for Media, etc.)
-
 ### BUGS
 
-1. [MINOR] when home page/hero renders, there is a pause/delay for the header's height to be accounted. potential cause: useEffect in header is updating too slow or hero/header is rendering too slow
-2. font (fraunces) not being applied globally
+1. font (fraunces) not being applied globally
+2. double check parallax effect on phone ui screen
+3. min-h-screen doesn't account for footer height. \*
 
 ## Project Setup
 
@@ -46,20 +30,6 @@
 4. Run: "npm run dev"
 5. Go to your browser and enter: "http://localhost:3000"
 6. Any saved changes you make in VS Code will be automatically reflected in localhost:3000
-
-### Add .env file under ausco (root directory)
-
-```
-PAYLOAD_SECRET="a710400222333f83c1b1bd6abb7bd3116e3321f813c48efe8ba93bc75cd16b82"
-DATABASE_URI="mongodb+srv://ausco:ausco!!!@ausco.ioi3ahr.mongodb.net/"
-```
-
-### Payload admin login
-
-```
-ausco@wdcc.co.nz
-e1160e47
-```
 
 ## Development
 

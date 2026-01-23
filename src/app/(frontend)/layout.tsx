@@ -16,7 +16,7 @@ const fraunces = Fraunces({
 
 export const metadata = {
   title: "Auckland University Student Chamber Orchestra",
-  description: "A blank template using Payload in a Next.js app.",
+  description: "A blank template using Payload in a Next.js app.", // TODO: Edit
   icons: {
     icon: "/favicon.png",
   },
@@ -33,11 +33,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     ...headerContent,
     primaryLogo: siteSettingContent.logos.primary,
     secondaryLogo: siteSettingContent.logos.secondary,
+    links: siteSettingContent.linksMap,
   };
+
   const combinedFooterContent = {
     ...footerContent,
     primaryLogo: siteSettingContent.logos.primary,
-    socialMedia: siteSettingContent.links,
+    links: siteSettingContent.linksMap,
   };
 
   // Note: each page is pushed down by the height of the header component (h-28), its height is included in the top padding

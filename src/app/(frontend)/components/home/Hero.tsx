@@ -8,7 +8,7 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Button } from "../ui/button";
 
 import { motion, useTransform, useScroll, useSpring } from "framer-motion";
-import parallaxConfig from "@/config/parallax";
+import parallaxConfig from "@/app/(frontend)/config/parallax";
 
 type HeroProps = {
   content: {
@@ -16,10 +16,10 @@ type HeroProps = {
     background: Media | string | null;
     header: any;
     content: string;
+    signUpLink: string | undefined;
   };
 };
 
-// TODO: Link the "Join Us" button to the appropriate page
 const Hero = ({ content }: HeroProps) => {
   const { rangeIn, rangeOut, spring } = parallaxConfig;
   const { scrollY } = useScroll();
@@ -42,7 +42,7 @@ const Hero = ({ content }: HeroProps) => {
             priority
             quality={90}
             sizes="100vw"
-            className="object-cover w-full h-full"
+            className="h-full w-full object-cover"
           />
         )}
       </motion.div>

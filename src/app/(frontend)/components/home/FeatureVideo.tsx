@@ -11,7 +11,8 @@ type FeatureVideoProps = {
 const FeatureVideo = ({ content }: FeatureVideoProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoContainerRef = useRef<HTMLDivElement | null>(null);
-  const [showHeader, setShowHeader] = useState(true); // TODO: maybe safe to remove/hard code showHeader if its a constant
+  // const [showHeader, setShowHeader] = useState(true);
+  const showHeader = true;
   const [maxScale, setMaxScale] = useState<number>(3);
   const [sectionHeight, setSectionHeight] = useState<string>("100vh");
 
@@ -81,14 +82,14 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
   return (
     <motion.section
       ref={sectionRef}
-      className="relative flex flex-col items-center justify-center py-8 gap-8 w-full"
+      className="relative flex w-full flex-col items-center justify-center gap-8 py-8"
       style={{ backgroundColor: bgColor, minHeight: sectionHeight }}
     >
       {/* Header */}
       <motion.h2
-        className="w-full max-w-[90vw] text-[2rem] sm:text-[2.7rem] font-bold text-center tracking-tight leading-tight whitespace-nowrap overflow-hidden text-ellipsis relative z-20"
+        className="relative z-20 w-full max-w-[90vw] overflow-hidden text-center text-[2rem] leading-tight font-bold tracking-tight text-ellipsis whitespace-nowrap sm:text-[2.7rem]"
         style={{
-          color: "var(--concertblue)",
+          color: "oklch(0.2859 0.0798 251.34)" /* #032B50 */,
           opacity: headerOpacity,
           top: "0px",
           y: headerY,
@@ -100,13 +101,13 @@ const FeatureVideo = ({ content }: FeatureVideoProps) => {
       {/* Feature Video */}
       <motion.div
         ref={videoContainerRef}
-        className="flex items-center justify-center mx-auto bg-black relative overflow-hidden w-[180px] sm:w-[420px] md:w-[660px] max-w-[100vw] aspect-video z-10"
+        className="relative z-10 mx-auto flex aspect-video w-[180px] max-w-[100vw] items-center justify-center overflow-hidden bg-black sm:w-[420px] md:w-[660px]"
         style={{ scale: scaleValue }}
       >
         <iframe
           loading="lazy"
           src={embedUrl}
-          className="w-full h-full"
+          className="h-full w-full"
           allow="autoplay; fullscreen; encrypted-media"
           allowFullScreen
           title="Past concert video"

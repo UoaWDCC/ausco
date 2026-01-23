@@ -23,7 +23,7 @@ const AboutUs: GlobalConfig = {
           maxRows: 6,
           admin: {
             description:
-              "Maximum of 6 stickers. Use PNG format for transparent backgrounds (WebP also supported).",
+              "Maximum and recommended number of stickers: 6. Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.",
           },
           fields: [
             {
@@ -44,7 +44,7 @@ const AboutUs: GlobalConfig = {
       type: "group",
       admin: {
         description:
-          "For background images, WebP (or JPG) works best and export at 2x size/resolution for sharpness.",
+          "For background images, WebP (or PNG) works best and export at 2x size/resolution for sharpness.",
       },
       fields: [
         {
@@ -109,6 +109,10 @@ const AboutUs: GlobalConfig = {
           name: "constitution",
           label: "Constitution",
           type: "group",
+          admin: {
+            description:
+              "To change the link to AUSCO's Constitution, please refer to [Site Settings -> Links].",
+          },
           fields: [
             {
               name: "background",
@@ -166,10 +170,8 @@ const AboutUs: GlobalConfig = {
               label: "Sponsor and Partnership Logos",
               type: "array",
               admin: {
-                description:
-                  "Upload logos in this order of preference: 1. SVG, 2. PNG or WebP if transparency is needed, 3. JPG if transparency is not needed.",
+                description: "Order of preference for file type: 1. SVG, 2. WebP or PNG  3. JPG.",
               },
-
               fields: [
                 {
                   name: "logo",

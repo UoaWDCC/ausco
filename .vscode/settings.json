@@ -1,5 +1,6 @@
 {
   "npm.packageManager": "pnpm",
+  "prettier.prettierPath": "./node_modules/prettier",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",

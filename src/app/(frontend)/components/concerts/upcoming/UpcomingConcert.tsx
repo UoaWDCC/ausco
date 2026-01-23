@@ -1,9 +1,12 @@
 import Image from "next/image";
+
 import { ArrowUpRight } from "lucide-react";
 import { GeoAltFill, Calendar2EventFill } from "react-bootstrap-icons";
 
 import { Media } from "@/payload-types";
+
 import { Button } from "../../ui/button";
+import { normaliseDate } from "@/app/(frontend)/util/date";
 
 type pageVariant = "concertsUpcomingPage" | "homePage";
 
@@ -33,8 +36,6 @@ type UpcomingConcertProps = {
 const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertProps) => {
   const title = content.isComingSoon ? "Coming Soon!" : content.title;
 
-  const normaliseDate = (date: Date) =>
-    new Date(date.getFullYear(), date.getMonth(), date.getDate());
   const today = normaliseDate(new Date());
   const matineeDate = content.tickets?.matinee
     ? normaliseDate(new Date(content.tickets.matinee.date))
@@ -55,173 +56,190 @@ const UpcomingConcert = ({ content, headingVariant, semester }: UpcomingConcertP
     });
 
   const poster = content.isComingSoon ? (
-    <div className="bg-(--brown) rounded-md flex items-center justify-center text-(--cream) text-sm md:text-base w-[140px] md:w-[200px] lg:w-[320px] aspect-[376/532] shrink-0 self-start">
-      Coming Soon! 😉
+    <div className="flex aspect-5/7 w-full max-w-[376px] items-center justify-center rounded-md bg-(--brown) p-1 text-base text-(--cream)">
+      <p className="text-center text-xs sm:text-sm md:text-base">Coming Soon! 😉</p>
     </div>
   ) : (
     typeof content.poster === "object" &&
     content.poster?.url && (
-      <div className="w-[140px] md:w-[200px] lg:w-[320px] shrink-0 self-start">
-        <Image
-          src={content.poster.url}
-          alt={content.poster.alt || "Poster"}
-          width={320}
-          height={454}
-          sizes="(max-width: 768px) 140px, (max-width: 1024px) 200px, 320px"
-          quality={90}
-          className="border border-(--brown) rounded-md w-full h-auto"
-        />
-      </div>
+      <Image
+        src={content.poster.url}
+        alt={content.poster.alt || "Poster"}
+        width={376}
+        height={532}
+        className="aspect-5/7 w-80 shrink-0 rounded-md border border-(--brown) object-cover sm:w-96 md:w-[376px]"
+        sizes="(max-width: 640px) 80vw, (max-width: 768px) 40vw, 376px"
+        quality={90}
+      />
     )
   );
 
-  // Split description into first paragraph and remaining content
-  const descriptionParts = content.description.split(/\n\n+/);
-  const firstParagraph = descriptionParts[0] || content.description;
-  const remainingDescription = descriptionParts.slice(1).join("\n\n");
+  const titleContent = headingVariant === "concertsUpcomingPage" && (
+    <div className="flex flex-col items-start gap-1 whitespace-pre-line sm:gap-2 lg:flex-row lg:items-center lg:gap-3">
+      {semester && (
+        <div className="rounded-md bg-(--brown) px-3 py-1 text-xs whitespace-nowrap text-(--cream) sm:text-sm md:text-base">
+          Semester {semester}
+        </div>
+      )}
+      <h1 className="w-full truncate text-xl font-light! italic sm:text-2xl md:text-3xl">
+        {title}
+      </h1>
+    </div>
+  );
 
-  const firstParagraphContent = (
-    <div className="flex flex-col gap-3 md:gap-4 h-full justify-start">
-      {headingVariant === "concertsUpcomingPage" && (
-        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 mb-1">
-          {semester && (
-            <div className="py-1 px-3 bg-(--brown) text-(--cream) rounded-md whitespace-nowrap w-fit text-sm">
-              Semester {semester}
-            </div>
+  const descriptionContent = (
+    <p className="text-xs whitespace-pre-line sm:text-sm md:text-base">{content.description}</p>
+  );
+
+  const ticketContent = (
+    <div className="grid grid-cols-2 items-start gap-x-3 gap-y-2 text-xs sm:text-sm md:gap-y-3 md:text-base lg:gap-x-10 lg:gap-y-4">
+      {/* Row 1: Headings */}
+      <h2 className="m-0! font-bold">Matinee</h2>
+      <h2 className="m-0! font-bold">Concert</h2>
+
+      {/* Row 2+3: Date + Location */}
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <Calendar2EventFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
+          {!content.isComingSoon && matineeDate ? (
+            <div>{formatDate(matineeDate)}</div>
+          ) : (
+            <div>Date TBC</div>
           )}
-          <h1 className="font-light! text-lg md:text-3xl! m-0! italic">{title}</h1>
         </div>
-      )}
-      <p className="text-sm md:text-sm leading-relaxed text-(--brown)">{firstParagraph}</p>
-    </div>
-  );
-
-  const remainingContent = (
-    <div className="flex flex-col gap-4 pt-0 md:pt-3">
-      {remainingDescription && (
-        <p className="text-sm md:text-sm leading-relaxed whitespace-pre-line text-(--brown)">
-          {remainingDescription}
-        </p>
-      )}
-    </div>
-  );
-
-  const ticketsContent = (
-    <div className="mt-6 md:mt-8">
-      <div className="bg-(--brown) mb-6 md:mb-4" style={{ height: "1px" }} />
-      <div className="grid grid-cols-2 gap-x-4 md:gap-x-10 gap-y-6 md:gap-y-4 items-start">
-        {/* Row 1: Headings */}
-        <h2 className="font-bold m-0!">Matinee</h2>
-        <h2 className="font-bold m-0!">Concert</h2>
-
-        {/* Row 2+3: Date + Location */}
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-start gap-2">
-            <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {!content.isComingSoon && matineeDate ? (
-              <div>{formatDate(matineeDate)}</div>
-            ) : (
-              <div>Date TBC</div>
-            )}
-          </div>
-          <div className="flex items-start gap-2">
-            <GeoAltFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? (
-              <div>Location TBC</div>
-            ) : (
-              <div>{content.tickets?.matinee.location}</div>
-            )}
-          </div>
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <GeoAltFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
+          {content.isComingSoon ? (
+            <div>Location TBC</div>
+          ) : (
+            <div>{content.tickets?.matinee.location}</div>
+          )}
         </div>
+      </div>
 
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-start gap-2">
-            <Calendar2EventFill size={18} className="shrink-0 mt-1" />
-            {!content.isComingSoon && concertDate ? (
-              <div>{formatDate(concertDate)}</div>
-            ) : (
-              <div>Date TBC</div>
-            )}
-          </div>
-          <div className="flex items-start gap-2">
-            <GeoAltFill size={18} className="shrink-0 mt-1" />
-            {content.isComingSoon ? (
-              <div>Location TBC</div>
-            ) : (
-              <div>{content.tickets?.concert.location}</div>
-            )}
-          </div>
+      <div className="flex flex-col gap-1.5">
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <Calendar2EventFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
+          {!content.isComingSoon && concertDate ? (
+            <div>{formatDate(concertDate)}</div>
+          ) : (
+            <div>Date TBC</div>
+          )}
         </div>
+        <div className="flex items-start gap-1 md:gap-1.5 lg:gap-2">
+          <GeoAltFill className="mt-0.5 h-[1em] w-[1em] shrink-0 lg:mt-1" />
+          {content.isComingSoon ? (
+            <div>Location TBC</div>
+          ) : (
+            <div>{content.tickets?.concert.location}</div>
+          )}
+        </div>
+      </div>
 
-        {/* Row 4: Ticket URL Buttons */}
-        <div className="w-fit">
-          {isMatineeAvailable ? (
+      {/* Row 4: Ticket URL Buttons */}
+      <div className="w-fit">
+        {isMatineeAvailable ? (
+          <Button
+            asChild
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+          >
             <a href={content.tickets?.matinee.ticketUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="brown" size="lg" className="mt-1">
-                Tickets <ArrowUpRight size={18} />
-              </Button>
+              Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
             </a>
-          ) : (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          )}
-        </div>
+          </Button>
+        ) : (
+          <Button
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+            disabled
+          >
+            Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+          </Button>
+        )}
+      </div>
 
-        <div className="w-fit">
-          {isConcertAvailable ? (
+      <div className="w-fit">
+        {isConcertAvailable ? (
+          <Button
+            asChild
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+          >
             <a href={content.tickets?.concert.ticketUrl} target="_blank" rel="noopener noreferrer">
-              <Button variant="brown" size="lg" className="mt-1">
-                Tickets <ArrowUpRight size={18} />
-              </Button>
+              Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
             </a>
-          ) : (
-            <Button variant="brown" size="lg" className="mt-1" disabled>
-              Tickets <ArrowUpRight size={18} />
-            </Button>
-          )}
-        </div>
+          </Button>
+        ) : (
+          <Button
+            variant="brown"
+            size="lg"
+            className="h-8 gap-1.5 px-2 text-xs sm:h-9 sm:gap-2 sm:px-3 sm:text-sm md:h-11 md:px-4 md:text-base lg:mt-1"
+            disabled
+          >
+            Tickets <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
+          </Button>
+        )}
       </div>
     </div>
   );
 
   return (
-    <section className="bg-(--beige) text-(--brown) py-16 max-w-6xl mx-auto text-base rounded-lg">
+    <section className="mx-auto rounded-lg bg-(--beige) px-3 py-3 text-(--brown) sm:px-8 sm:py-8 md:px-14 md:py-12 lg:max-w-6xl lg:px-24 lg:py-16">
       {/* Home Page Only - Title Header */}
       {headingVariant === "homePage" && (
-        <div className="flex flex-col md:flex-row md:justify-center md:items-center pb-8 md:pb-12 px-6 md:px-0 gap-2 md:gap-0">
-          <h1 className="font-semibold! text-2xl! md:text-4xl! m-0! text-left">
+        <div className="flex flex-col justify-center pb-4 sm:pb-8 md:pb-12 lg:flex-row">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl!">
             Our Upcoming Concert,&nbsp;
           </h1>
-          <h1 className="font-light! text-2xl! md:text-4xl! m-0! italic text-left">{title}</h1>
+          <h1 className="text-xl font-light! italic sm:text-2xl md:text-3xl lg:text-4xl!">
+            {title}
+          </h1>
         </div>
       )}
 
-      {/* Content */}
-      <div className="grid grid-cols-[auto_1fr] gap-4 md:gap-6 lg:gap-12 items-start justify-center px-6 md:px-0">
+      {/* Content - Large screens layout */}
+      <div className="hidden items-stretch justify-center gap-8 lg:flex lg:gap-16">
         {semester === "2" ? (
           <>
-            <div className="col-start-2 row-start-1 min-w-0 flex items-start">
-              {firstParagraphContent}
+            <div
+              className={`flex flex-col ${content.isComingSoon ? "justify-evenly py-10" : "justify-between"}`}
+            >
+              {titleContent}
+              {descriptionContent}
+              <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
+              {ticketContent}
             </div>
-            <div className="col-start-1 row-start-1">{poster}</div>
-            <div className="col-start-1 col-span-2 row-start-2 mt-2 md:mt-3">
-              {remainingContent}
-            </div>
-            <div className="col-start-1 col-span-2 row-start-3">{ticketsContent}</div>
+            {poster}
           </>
         ) : (
           <>
-            <div className="col-start-1 row-start-1">{poster}</div>
-            <div className="col-start-2 row-start-1 min-w-0 flex items-start">
-              {firstParagraphContent}
+            {poster}
+            <div
+              className={`flex flex-col ${content.isComingSoon ? "justify-evenly py-10" : "justify-between"}`}
+            >
+              {titleContent}
+              {descriptionContent}
+              <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
+              {ticketContent}
             </div>
-            <div className="col-start-1 col-span-2 row-start-2 mt-2 md:mt-3">
-              {remainingContent}
-            </div>
-            <div className="col-start-1 col-span-2 row-start-3">{ticketsContent}</div>
           </>
         )}
+      </div>
+
+      {/* Content - Small to medium screens layout */}
+      <div className="flex flex-col gap-3 lg:hidden">
+        {titleContent}
+        <div className="grid grid-cols-2 items-start gap-3 sm:gap-7 md:gap-9">
+          {poster}
+          {descriptionContent}
+        </div>
+
+        <div className="my-2 w-full bg-(--brown)" style={{ height: "0.5px" }} />
+        {ticketContent}
       </div>
     </section>
   );

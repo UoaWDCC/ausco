@@ -19,18 +19,14 @@ type InfoCardsProps = {
     contact: {
       image: Media | string | null;
     };
-    links?:
-      | {
-          platform: string;
-          url: string;
-        }[]
-      | null;
+    links: Record<string, string>;
   };
 };
 
-const InfoCards = ({ content }: InfoCardsProps) => {
-  const links = Object.fromEntries((content.links || []).map((link) => [link.platform, link.url]));
+const LIGHT_BEIGE =
+  "oklch(0.9369 0.0165 91.56)"; /* #EEEADE - This is not the same as the globally declared beige */
 
+const InfoCards = ({ content }: InfoCardsProps) => {
   return (
     <section className="bg-[var(--cream)] text-[var(--navy)] text-base py-18 md:py-32 px-10 flex items-center justify-center">
       <div className="flex flex-col gap-2 md:flex-row md:gap-7 w-full md:w-auto">
@@ -128,8 +124,8 @@ const InfoCards = ({ content }: InfoCardsProps) => {
                 <Button size="lg" className="text-xs h-8 !px-2 gap-1.5" variant="navy">
                   <EnvelopeFill size={18} />
                   Email
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
             {/* Middle row: Instagram + Facebook */}
             <div className="flex flex-row gap-2 items-center">

@@ -19,7 +19,11 @@ const ConcertsPast: GlobalConfig = {
       label: "Past Concerts",
       type: "array",
       minRows: 1,
-      labels: { singular: "Concert Year", plural: "Concert Years" },
+      labels: { singular: "Past Concert", plural: "Past Concert" },
+      admin: {
+        description:
+          "Concerts are automatically sorted by descending year when displayed on the website.",
+      },
       fields: [
         {
           name: "year",
@@ -94,7 +98,7 @@ const ConcertsPast: GlobalConfig = {
                   min: 0,
                   required: true,
                   admin: {
-                    description: "Donation value only, no $ needed.",
+                    description: "Donation value only, no $ sign needed.",
                   },
                 },
               ],
@@ -168,7 +172,7 @@ const ConcertsPast: GlobalConfig = {
                   min: 0,
                   required: true,
                   admin: {
-                    description: "Donation value only, no $ needed.",
+                    description: "Donation value only, no $ sign needed.",
                   },
                 },
               ],

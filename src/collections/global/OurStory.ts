@@ -28,7 +28,7 @@ const OurStory: GlobalConfig = {
       type: "array",
       admin: {
         description:
-          "For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).",
+          "1: Each year is sorted by ascending year when displayed on the website. 2: For the [Name] fields, seperate names using commas or semi-colans (e.g. Name 1; Name 2; Name 3; Name 4).",
       },
       fields: [
         {

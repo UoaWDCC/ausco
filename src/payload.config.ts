@@ -6,13 +6,13 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
-import { Users } from "./collections/Users";
+import { Albums } from "./collections/Albums";
 import { Media } from "./collections/Media";
-import { Item } from "./collections/Test";
+import { Users } from "./collections/Users";
 
-import SiteSetting from "./collections/global/SiteSetting";
-import Header from "./collections/global/Header";
-import Footer from "./collections/global/Footer";
+// import StartLayout from "./custom/StartLayout";
+// import EndPanel from "./custom/EndPanel";
+
 import Home from "./collections/global/Home";
 import AboutUs from "./collections/global/AboutUs";
 import OurStory from "./collections/global/OurStory";
@@ -25,6 +25,10 @@ import GalleryConcert from "./collections/global/GalleryConcert";
 import GalleryAnnualCamp from "./collections/global/GalleryAnnualCamp";
 import GalleryExecutiveCamp from "./collections/global/GalleryExecutiveCamp";
 import GalleryOther from "./collections/global/GalleryOther";
+import Header from "./collections/global/Header";
+import Footer from "./collections/global/Footer";
+import SiteSettings from "./collections/global/SiteSettings";
+import Legacy from "./collections/global/Legacy";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -35,13 +39,14 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      beforeDashboard: ["./custom/StartLayout#default"],
+      afterDashboard: ["./custom/EndPanel#default"],
+    },
   },
 
-  // Payload Admin UI displays globals in the same order they are defined in this config
+  // Payload Admin UI displays globals in t  he same order they are defined in this config
   globals: [
-    SiteSetting,
-    Header,
-    Footer,
     Home,
     AboutUs,
     OurStory,
@@ -54,8 +59,12 @@ export default buildConfig({
     GalleryAnnualCamp,
     GalleryExecutiveCamp,
     GalleryOther,
+    Header,
+    Footer,
+    SiteSettings,
+    Legacy,
   ],
-  collections: [Users, Media, Item],
+  collections: [Media, Albums, Users],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -69,6 +78,7 @@ export default buildConfig({
     // storage-adapter-placeholder
     s3Storage({
       collections: {
+        albums: true,
         media: true, // your collection slug
       },
       bucket: process.env.S3_BUCKET || " ",

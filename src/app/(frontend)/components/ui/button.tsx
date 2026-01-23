@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -18,12 +20,12 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "relative inline-block w-fit !whitespace-normal !p-0 !h-auto after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-0 after:bg-current after:transition-[width] after:duration-300 hover:after:w-full",
         beige:
-          "bg-transparent text-[var(--cream)] border border-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--brown)] flex gap-2 transition",
+          "bg-transparent text-[var(--cream)] border border-[var(--cream)] hover:bg-[var(--cream)] hover:!text-[var(--brown)] flex gap-2",
         brown:
-          "bg-(--beige) text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:text-[var(--beige)] flex gap-2 transition",
+          "bg-(--beige) text-[var(--brown)] border border-[var(--brown)] hover:bg-[var(--brown)] hover:!text-[var(--beige)] flex gap-2",
         invertedBrown:
-          "bg-(--brown) text-(--cream) border border-(--brown) hover:bg-(--beige) hover:text-(--brown) flex gap-2 transition",
-        navy: "bg-transparent text-[var(--navy)] border border-[var(--navy)] hover:bg-[var(--navy)] hover:text-[var(--cream)] flex gap-2 transition",
+          "bg-(--brown) text-(--cream) border border-(--brown) hover:bg-(--beige) hover:!text-(--brown) flex gap-2",
+        navy: "bg-transparent text-[var(--navy)] border border-[var(--navy)] hover:bg-[var(--navy)] hover:!text-[var(--cream)] flex gap-2",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -44,6 +46,7 @@ function Button({
   variant,
   size,
   asChild = false,
+  onClick,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -55,6 +58,22 @@ function Button({
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
+      onClick={(e) => {
+        // Run consumer onClick first
+        onClick?.(e);
+
+        // Only blur for asChild (Link / anchor)
+        if (!asChild) return;
+
+        const target = e.currentTarget;
+
+        // Narrow Element -> HTMLElement (blur lives here)
+        if (target instanceof HTMLElement) {
+          requestAnimationFrame(() => {
+            target.blur();
+          });
+        }
+      }}
       {...props}
     />
   );

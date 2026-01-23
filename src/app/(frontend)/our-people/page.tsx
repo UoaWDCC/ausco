@@ -1,0 +1,44 @@
+import { getOurPeople } from "@/actions/pageActions";
+
+import Hero from "@components/our-people/Hero";
+import ExecutiveTeam from "@components/our-people/ExecutiveTeam";
+import Conductors from "@components/our-people/Conductors";
+import Players from "@components/our-people/Players";
+import HallOfFame from "@components/our-people/HallOfFame";
+
+type SectionWrapperProps = {
+  children: React.ReactNode;
+};
+
+const SectionWrapper = ({ children }: SectionWrapperProps) => {
+  return (
+    <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-8 sm:pb-12 md:pb-16">
+      {children}
+    </div>
+  );
+};
+
+export default async function OurPeoplePage() {
+  const content = await getOurPeople();
+
+  return (
+    <section className="flex flex-col items-center bg-(--cream)">
+      <div className="w-full pt-28 md:max-w-6xl md:px-6 md:pt-44">
+        <Hero content={content.header} />
+      </div>
+
+      <SectionWrapper>
+        <ExecutiveTeam content={content.executive} />
+        <Conductors content={content.conductors} />
+      </SectionWrapper>
+
+      <div className="w-full pb-8 sm:pb-12 md:max-w-6xl md:px-6 md:pb-16">
+        <Players content={content.players} />
+      </div>
+
+      <SectionWrapper>
+        <HallOfFame content={content.hallOfFame} />
+      </SectionWrapper>
+    </section>
+  );
+}
